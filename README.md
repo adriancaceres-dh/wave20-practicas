@@ -3,7 +3,7 @@ by Digital House 💗
 
 way to work 🎯
 
-Repositorio de practicas de Bootcamp DH Java Wave 18
+Repositorio de practicas de Bootcamp DH Java Wave 20
 
 ## Directrices de creación de ramas
 
