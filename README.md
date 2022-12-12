@@ -27,11 +27,11 @@ Cada desarrolador cuenta con un branch con la estructura ya creada a su nombre p
 
 1. Clonar el repositorio (branch y estructura)
    
-   `git clone git@github.com:adriancaceres98/wave20-practicas.git`
+   `git clone git@github.com:adriancaceres-dh/wave20-practicas.git`
    
    o
    
-   `git clone https://github.com/adriancaceres98/wave20-practicas.git`
+   `git clone https://github.com/adriancaceres-dh/wave20-practicas.git`
    
 2. Entrar a la carpeta del proyecto clonado y crear el branch con su apellido y nombre
 
