@@ -12,23 +12,23 @@ public class App {
                 {0,39},{-7,26},
                 {-1,31},{-10,35}
         } ;
-        int[][] maxMinTemp = {{temperatura[0][0], temperatura[0][1]}};
+        int[][] minMaxTemp = {{temperatura[0][0], temperatura[0][1]}};
 
         int[][] indiceCiudades = {{0,0}};
 
         for(int i = 0; i < temperatura.length; i++ ){
-                if (temperatura[i][0] < maxMinTemp[0][0]) {
-                    maxMinTemp[0][0] = temperatura[i][0];
+                if (temperatura[i][0] < minMaxTemp[0][0]) {
+                    minMaxTemp[0][0] = temperatura[i][0];
                     indiceCiudades[0][0] = i;
                 }
-                if (temperatura[i][1] > maxMinTemp[0][1]) {
-                    maxMinTemp[0][1] = temperatura[i][1];
+                if (temperatura[i][1] > minMaxTemp[0][1]) {
+                    minMaxTemp[0][1] = temperatura[i][1];
                     indiceCiudades[0][1] = i;
                 }
         }
 
-        System.out.println("la Ciudad con la menor temperatura fue "+ciudades[indiceCiudades[0][0]]+" con "+maxMinTemp[0][0]+" grados");
-        System.out.println("la Ciudad con la mayor temperatura fue "+ciudades[indiceCiudades[0][1]]+" con "+maxMinTemp[0][1]+" grados");
+        System.out.println("la Ciudad con la menor temperatura fue "+ciudades[indiceCiudades[0][0]]+" con "+minMaxTemp[0][0]+" grados");
+        System.out.println("la Ciudad con la mayor temperatura fue "+ciudades[indiceCiudades[0][1]]+" con "+minMaxTemp[0][1]+" grados");
 
     }
 }
