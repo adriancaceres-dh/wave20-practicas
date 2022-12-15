@@ -1,4 +1,4 @@
-package Bootcamp;
+package Bootcamp.Vectores_Matrices;
 
 public class Temperaturas {
     public static void main(String[] args){

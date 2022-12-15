@@ -1,4 +1,4 @@
-package Bootcamp;
+package Bootcamp.Collections;
 import java.util.*;
 
 public class CarreraSelva {
