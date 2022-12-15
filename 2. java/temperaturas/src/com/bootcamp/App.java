@@ -2,6 +2,7 @@ package com.bootcamp;
 
 public class App {
 
+    //Compañeros: Ivan amaro, Manuel Alejandro Diaz
     public static void main(String[] args) {
 
         String[] ciudades = {"Londres", "Madrid", "New york", "Buenos aires", "Asuncion", "Sao Paulo",
