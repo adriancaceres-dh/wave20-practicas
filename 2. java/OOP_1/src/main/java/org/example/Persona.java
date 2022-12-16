@@ -25,10 +25,17 @@ public class Persona {
     }
 
     public int calcularIMC() {
+        if (altura == 0) throw new ArithmeticException("La altura no puede ser 0");
         Double imc = peso/(altura*altura);
-        if (peso < 20) return -1;
-        else if (peso >= 20 && peso <=25) return 0;
-        else return 1;
+        if (imc < 20) {
+            return -1;
+        }
+        else if (imc >= 20 && imc <=25) {
+            return 0;
+        }
+        else  {
+            return 1;
+        }
     }
 
     public boolean esMayorDeEdad() {
