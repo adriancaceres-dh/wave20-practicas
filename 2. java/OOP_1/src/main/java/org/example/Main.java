@@ -2,6 +2,8 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Persona persona_0 = new Persona();
+        Persona persona_1 = new Persona("Juan", 30, "dni");
+        Persona persona_2 = new Persona("Juan", 30, "dni", 70.8, 1.83);
     }
 }
