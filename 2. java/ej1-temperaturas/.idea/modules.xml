@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ej1-temperaturas.iml" filepath="$PROJECT_DIR$/ej1-temperaturas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ej3-poo/ej3-poo/ej3-poo.iml" filepath="$PROJECT_DIR$/../ej3-poo/ej3-poo/ej3-poo.iml" />
     </modules>
   </component>
 </project>
