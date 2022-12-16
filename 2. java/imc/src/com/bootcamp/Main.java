@@ -27,7 +27,7 @@ public class Main {
                 mensaje += "Peso saludable";
                 break;
             case 1:
-                mensaje += "Sobre peso";
+                mensaje += "Sobrepeso";
                 break;
             default:
                 mensaje += "N/A";
