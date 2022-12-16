@@ -42,7 +42,7 @@ public class Main {
         DatosParticipante4.add("H");
 
 
-        // Agrego participantes con sus claves.
+        // Agrego participantes con sus nro de participacion.
         Map<Integer, List<String>> Participantes = new TreeMap<>();
         Participantes.put(1,DatosParticipante1);
         Participantes.put(2,DatosParticipante2);
@@ -61,10 +61,8 @@ public class Main {
         Map<Integer, List> InscritposCircuitoAvanzado = new TreeMap<>();
         InscritposCircuitoAvanzado.put(4, Participantes.get(4));
 
-
         // Desincribo un participante
         InscritposCircuitoMedio.remove(3);
-
 
         // Listado de participantes inscriptos
         System.out.println("INSCRIPCIONES.");
@@ -73,29 +71,66 @@ public class Main {
         for(Map.Entry<Integer, List> insC : InscritposCircuitoChico.entrySet())
         {
             System.out.println(" -> " + insC);
-            System.out.println(insC.getValue().get(3));
 
-            /*if(insC.getValue().get(3) > 18)
+            //Casteo la edad para manipularla.
+            String edadStr = insC.getValue().get(3).toString();
+            Integer edad = Integer.parseInt(edadStr);
+
+            Integer PrecioCircuito = 0;
+
+            if(edad < 18)
             {
-                System.out.println("Es mayor de edad");
+                PrecioCircuito = 1300;
             }
             else
             {
-                System.out.println("No es mayor");
-            }*/
+                PrecioCircuito = 1500;
+            }
 
+            System.out.println("-> Debera abonar: $" + PrecioCircuito);
         }
 
         System.out.println("Circuito Medio : ");
         for(Map.Entry<Integer, List> insM : InscritposCircuitoMedio.entrySet())
         {
             System.out.println(" -> " + insM);
+
+            //Casteo la edad para manipularla.
+            String edadStr = insM.getValue().get(3).toString();
+            Integer edad = Integer.parseInt(edadStr);
+
+            Integer PrecioCircuito = 0;
+
+            if(edad < 18)
+            {
+                PrecioCircuito = 2000;
+            }
+            else
+            {
+                PrecioCircuito = 2300;
+            }
+
+            System.out.println("-> Debera abonar: $" + PrecioCircuito);
         }
 
         System.out.println("Circuito Avanzado : ");
         for(Map.Entry<Integer, List> insA : InscritposCircuitoAvanzado.entrySet())
         {
+
             System.out.println(" -> " + insA);
+
+            //Casteo la edad para manipularla.
+            String edadStr = insA.getValue().get(3).toString();
+            Integer edad = Integer.parseInt(edadStr);
+
+            Integer PrecioCircuito = 0;
+
+            if(edad > 18)
+            {
+                PrecioCircuito = 2800;
+            }
+
+            System.out.println("-> Debera abonar: $" + PrecioCircuito);
         }
     }
 }
