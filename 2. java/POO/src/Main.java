@@ -1,3 +1,6 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
         Persona persona1 = new Persona();
@@ -8,21 +11,28 @@ public class Main {
         int imcPersona3 = persona3.calcularIMC();
         System.out.print("La persona: " + persona3.toString() + " posee un IMC de: " + imcPersona3 + ". Esto " +
                 "significa que la persona posee un nivel de peso: ");
-        if (imcPersona3 == -1) {
-            System.out.print("Bajo peso");
-        } else if (imcPersona3 == 0) {
-            System.out.print("Peso saludable");
-        } else {
-            System.out.print("Sobrepeso");
+        switch (imcPersona3){
+            case -1:
+                System.out.println("Bajo peso");
+                break;
+
+            case 0:
+                System.out.println("Peso saludable");
+                break;
+
+            case 1:
+                System.out.println("Sobrepeso");
+                break;
+            default:
+                System.out.println("Error");
         }
-        System.out.println();
 
         boolean esMayor = persona3.esMayorDeEdad();
         System.out.print("Además, esta persona posee la edad de: " + persona3.getEdad() + " años. " +"Es decir, esta persona ");
         if(esMayor){
-            System.out.print("es mayor de edad.");
+            System.out.println("es mayor de edad.");
         }else{
-            System.out.print("no es mayor de edad.");
+            System.out.println("no es mayor de edad.");
         }
     }
 }

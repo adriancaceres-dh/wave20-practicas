@@ -47,15 +47,21 @@ public class Persona {
     }
 
     public int calcularIMC(){
-        double imc = peso/(Math.pow(altura,2));
-        if (imc<20) {
-            return -1;
-        } else if (imc>=20  && imc<=25) {
-            return 0;
+        try{
+            double imc = peso/(Math.pow(altura,2));
+
+            if (imc<20) {
+                return -1;
+            } else if (imc>=20  && imc<=25) {
+                return 0;
+            }
+            else{
+                return 1;
+            }
+        }catch (ArithmeticException ex){
+            System.out.println(ex.getMessage());
         }
-        else{
-            return 1;
-        }
+        return 2; // Si llega aquí es un error.
     }
 
     public boolean esMayorDeEdad(){
