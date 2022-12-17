@@ -13,15 +13,13 @@ public class App {
         int cityMinTemperatureIndex = 0;
         int cityMaxTemperatureIndex = 0;
 
-        for (int i = 0; i < cities.length; i++) {
-            for (int j = 0; j < temperatures[i].length; j++) {
-                if (minTemperature > temperatures[i][j]) {
-                    minTemperature = temperatures[i][j];
-                    cityMinTemperatureIndex = i;
-                } else if (maxTemperature < temperatures[i][j]) {
-                    maxTemperature = temperatures[i][j];
-                    cityMaxTemperatureIndex = i;
-                }
+        for (int i = 0; i < temperatures.length; i++) {
+            if (minTemperature > temperatures[i][0]) {
+                minTemperature = temperatures[i][0];
+                cityMinTemperatureIndex = i;
+            } else if (maxTemperature < temperatures[i][1]) {
+                maxTemperature = temperatures[i][1];
+                cityMaxTemperatureIndex = i;
             }
         }
 
