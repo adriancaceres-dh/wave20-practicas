@@ -5,5 +5,7 @@ public class Main {
 
     Distribuidora distribuidora = new Distribuidora();
     distribuidora.imprimirProductos();
+    PracticaExcepciones practicaExcepciones = new PracticaExcepciones();
+    practicaExcepciones.calcularCociente();
   }
 }
