@@ -1,4 +1,4 @@
-public class Basic implements iTransaccion, iConsultaDeSaldo, iPagodeServicio, iRetirodeEfectivo{
+public class Basic implements iConsultaDeSaldo, iPagodeServicio, iRetirodeEfectivo{
     @Override
     public void transaccionOk() {
         System.out.println("Transaccion Ok");

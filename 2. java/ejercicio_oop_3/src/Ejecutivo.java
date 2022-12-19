@@ -1,4 +1,4 @@
-public class Ejecutivo implements iTransaccion, iDeposito, iTransferencia{
+public class Ejecutivo implements iDeposito, iTransferencia{
     @Override
     public void hacerDeposito() {
         System.out.println("Haciendo Deposito...");

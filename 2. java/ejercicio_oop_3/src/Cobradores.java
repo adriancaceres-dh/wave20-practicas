@@ -1,4 +1,4 @@
-public class Cobradores implements iTransaccion, iRetirodeEfectivo, iConsultaDeSaldo{
+public class Cobradores implements iRetirodeEfectivo, iConsultaDeSaldo{
     @Override
     public void transaccionOk() {
         System.out.println("Transaccion Ok");
