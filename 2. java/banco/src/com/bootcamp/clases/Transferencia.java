@@ -5,7 +5,7 @@ import com.bootcamp.interfaces.ITransaccion;
 public class Transferencia implements ITransaccion {
     @Override
     public void transaccionOk() {
-        System.out.println("Realizándose transferencia");
+        System.out.println("Realizando transferencia");
         System.out.println("Transferencia exitosa");
     }
 

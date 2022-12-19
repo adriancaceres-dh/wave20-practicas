@@ -5,7 +5,7 @@ import com.bootcamp.interfaces.ITransaccion;
 public class PagoDeServicios implements ITransaccion {
     @Override
     public void transaccionOk() {
-        System.out.println("Realizándose pago de servicio");
+        System.out.println("Realizando pago de servicios");
         System.out.println("Pago de servicios exitoso");
     }
 

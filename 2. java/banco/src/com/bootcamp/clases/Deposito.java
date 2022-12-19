@@ -5,8 +5,8 @@ import com.bootcamp.interfaces.ITransaccion;
 public class Deposito implements ITransaccion {
     @Override
     public void transaccionOk() {
-        System.out.println("Realizándose depósito");
-        System.out.println("Deposito exitoso");
+        System.out.println("Realizando depósito");
+        System.out.println("Depósito exitoso");
     }
 
     @Override
