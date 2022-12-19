@@ -8,6 +8,6 @@ public class Distribuidora {
         productos[2] = new NoPerecedero("tomate", 15, "c");
         productos[3] = new NoPerecedero("lechuga", 32, "d");
         productos[4] = new NoPerecedero("maite", 7, "f");
-        
+
     }
 }
