@@ -5,3 +5,7 @@
 [🏃️🌴️ Carrera de la selva (sin P.O.O)](CarreraDeLaSelva/src/Main.java)
 
 [⚖️🧑‍💼 Calculo de IMC para una Persona](PersonaImcExercise/src/com/bootcamp/Main.java)
+
+[🤾🧤 Ejercicio con excepciones](PracticaExcepciones/src/Main.java)
+
+[🚚🍔 Distrubuidora de alimentos](DistribuidoraAlimentos/src/com/bootcamp/Distribuidora.java)
