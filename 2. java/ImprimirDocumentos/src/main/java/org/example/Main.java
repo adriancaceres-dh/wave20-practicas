@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Main {
   public static void main(String[] args) {
-    Documento[] documentos = {new Curriculum(), new Informe(), new LibroPDF()};
-    Arrays.stream(documentos)
+    Imprimible[] imprimibles = {new Curriculum(), new Informe(), new LibroPDF()};
+    Arrays.stream(imprimibles)
         .forEach(documento -> Impresora.imprimir(documento));
   }
 }

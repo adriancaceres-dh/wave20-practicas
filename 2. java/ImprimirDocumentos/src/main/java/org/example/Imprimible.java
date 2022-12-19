@@ -1,6 +1,7 @@
 package org.example;
 
-public class Impresora {
+public interface Imprimible {
+  public void imprimir();
   public static void imprimir(Imprimible imprimible) {
     imprimible.imprimir();
   }

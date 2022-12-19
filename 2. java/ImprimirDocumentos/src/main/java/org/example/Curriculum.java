@@ -1,6 +1,6 @@
 package org.example;
 
-public class Curriculum implements Documento {
+public class Curriculum implements Imprimible {
   @Override
   public void imprimir() {
     System.out.println("Curriculum impreso");
