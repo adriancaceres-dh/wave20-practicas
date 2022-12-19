@@ -24,13 +24,13 @@ public class Main {
         );
 
         // Imprimir los documentos
-        curriculum.imprimir();
+        Impresora.imprimir(curriculum);
         System.out.println();
 
-        libro.imprimir();
+        Impresora.imprimir(libro);
         System.out.println();
 
-        informe.imprimir();
+        Impresora.imprimir(informe);
         System.out.println();
     }
 }
