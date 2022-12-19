@@ -6,11 +6,11 @@ public class PracticaExcepciones {
     public static void main(String[] args) {
 
         int a = 0, b = 300;
+        double c = 0;
 
         // PARTE 1
-
         try {
-            float c = b/a;
+            c = b/a;
         }catch (ArithmeticException ae){
             System.out.println(ae.getMessage());
         }finally{
@@ -19,7 +19,7 @@ public class PracticaExcepciones {
         System.out.println("------------------------");
         // PARTE 2
         try {
-            double c = division (b,a);
+            c = division (b,a);
         }catch (IllegalArgumentException iae){
             System.out.println(iae.getMessage());
         }finally{
