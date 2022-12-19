@@ -8,4 +8,4 @@
 
 [🤾🧤 Ejercicio con excepciones](PracticaExcepciones/src/Main.java)
 
-[🚚🍔 Distrubuidora de alimentos](DistribuidoraAlimentos/src/com/bootcamp/Distribuidora.java)
+[🚚🍔 Distribuidora de alimentos](DistribuidoraAlimentos/src/com/bootcamp/Distribuidora.java)
