@@ -9,8 +9,7 @@ public class Main {
         Map<Integer, List<String>> circuitoChico = new TreeMap<>();
         Map<Integer, List<String>> circuitoMediado = new TreeMap<>();
         Map<Integer, List<String>> circuitoAvanzado = new TreeMap<>();
-        boolean op = true;
-        while (op) {
+        while (true) {
             System.out.println("Menu");
             System.out.println("1-Incripcionn\n2-Ver listas\n3-Dar de baja\n4-Salir");
             int num = sc.nextInt();
@@ -35,7 +34,7 @@ public class Main {
                         System.out.println("Opcion incorrecta");
                 }
             }else{
-                op= false;
+                break;
             }
 
         }
