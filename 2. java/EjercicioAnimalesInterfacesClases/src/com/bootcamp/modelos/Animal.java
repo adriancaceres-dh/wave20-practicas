@@ -25,4 +25,5 @@ public abstract class Animal {
         Edad = edad;
     }
     public abstract String emitirSonido();
+
 }
