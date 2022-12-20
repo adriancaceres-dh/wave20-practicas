@@ -12,5 +12,9 @@ public class App {
         gato.comer();
         vaca.emitirSonido();
         vaca.comer();
+
+        ComerAnimal.comerAnimal(perro);
+        ComerAnimal.comerAnimal(gato);
+        ComerAnimal.comerAnimal(vaca);
     }
 }

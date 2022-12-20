@@ -1,6 +1,6 @@
 package com.bootcamp;
 
-public class Gato extends Animal implements Carnivoro{
+public class Gato extends Animal implements Carnivoro,ComerAnimal{
     @Override
     public void emitirSonido() {
         System.out.println("Miauu");
