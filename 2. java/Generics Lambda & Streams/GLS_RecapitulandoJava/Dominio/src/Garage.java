@@ -2,6 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class Garage {
     private int Id;
@@ -35,5 +36,8 @@ public class Garage {
 
     public Collection<Vehiculo> sortVehiculos(Comparator<Vehiculo> comparator) {
         return Vehiculos.stream().sorted(comparator).toList();
+    }
+    public Collection<Vehiculo> filterVehicle(Predicate<Vehiculo> predicado) {
+        return Vehiculos.stream().filter(predicado).toList();
     }
 }
