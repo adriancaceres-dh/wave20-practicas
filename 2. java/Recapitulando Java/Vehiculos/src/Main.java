@@ -51,6 +51,6 @@ public class Main {
         garaje.getListaVehiculos().stream().filter(x -> x.getCosto() >= 1000).sorted((x, y) -> Double.compare(x.getCosto(), y.getCosto())).forEach(System.out::println);
 
         System.out.println("--------Calcular promedio de los precios-----------");
-        System.out.println(garaje.getListaVehiculos().stream().mapToDouble(x -> x.getCosto()).average());
+        System.out.println(garaje.getListaVehiculos().stream().mapToDouble(x -> x.getCosto()).average().getAsDouble());
     }
 }
