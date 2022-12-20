@@ -21,6 +21,6 @@ public class Main {
         Ejecutivos ejecutivos1 = new Ejecutivos("Ejecutivo 1");
         ejecutivos1.depositar("4325345",3444,true);
         ejecutivos1.transferencia("3443", 3434,true);
-        
+
     }
 }
