@@ -1,16 +1,26 @@
 package generador;
 
-public abstract class GeneradorDeSeries {
-    protected int valorActual;
-    protected int valorInicial;
+public abstract class GeneradorDeSeries<T extends Number> {
+    protected T valorActual;
+    protected T valorInicial;
+    protected T salto;
 
-    public abstract int next();
+    public GeneradorDeSeries(T salto) {
+        this.salto = salto;
+    }
+
+    public GeneradorDeSeries(T salto, T valorInicial) {
+        this.salto = salto;
+        this.valorInicial = valorInicial;
+    }
+
+    public abstract T next();
 
     public void reset() {
         valorActual = valorInicial;
     }
 
-    public void setValorInicial(int valorInicial) {
+    public void setValorInicial(T valorInicial) {
         this.valorInicial = valorInicial;
         reset();
     }
