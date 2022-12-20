@@ -1,4 +1,4 @@
-package Bootcamp.POO2.Ejercicio2;
+package Bootcamp.POO.POO2.Ejercicio2;
 
 public class NoPerecedero extends Producto {
     private String tipo;

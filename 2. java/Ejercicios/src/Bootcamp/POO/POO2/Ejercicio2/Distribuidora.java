@@ -1,4 +1,4 @@
-package Bootcamp.POO2.Ejercicio2;
+package Bootcamp.POO.POO2.Ejercicio2;
 
 public class Distribuidora {
     public static void main(String[] args) {

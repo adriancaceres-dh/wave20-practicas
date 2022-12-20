@@ -1,4 +1,4 @@
-package Bootcamp.POO2.Ejercicio1;
+package Bootcamp.POO.POO2.Ejercicio1;
 
 public class PracticaExcepciones {
     private final int a;

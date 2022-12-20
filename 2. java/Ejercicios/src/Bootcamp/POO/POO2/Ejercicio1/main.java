@@ -1,4 +1,4 @@
-package Bootcamp.POO2.Ejercicio1;
+package Bootcamp.POO.POO2.Ejercicio1;
 
 public class main {
     public static void main(String[] args) {

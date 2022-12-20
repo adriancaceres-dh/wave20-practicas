@@ -1,4 +1,4 @@
-package Bootcamp.POO;
+package Bootcamp.POO.POO1.Ejercicio1;
 
 public class Persona {
 
