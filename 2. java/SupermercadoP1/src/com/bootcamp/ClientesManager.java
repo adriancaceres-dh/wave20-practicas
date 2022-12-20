@@ -16,10 +16,7 @@ public class ClientesManager {
     }
 
     public void removeClient(String dni) {
-        Optional<Cliente> clienteEncontrado = clientes.stream()
-                .parallel()
-                .filter(cliente -> cliente.getDni().equals(dni))
-                .findAny();
+        Optional<Cliente> clienteEncontrado = findClientByDni(dni);
         if (clienteEncontrado.isPresent()) {
             clientes.remove(clienteEncontrado.get());
         } else {
@@ -33,15 +30,19 @@ public class ClientesManager {
     }
 
     public void displayClient(String dni) {
-        Optional<Cliente> clienteEncontrado = clientes.stream()
-                .parallel()
-                .filter(cliente -> cliente.getDni().equals(dni))
-                .findAny();
+        Optional<Cliente> clienteEncontrado = findClientByDni(dni);
 
         if (clienteEncontrado.isPresent()) {
             System.out.println(clienteEncontrado.get());
         } else {
             System.out.println("No se encontró el cliente con DNI: " + dni);
         }
+    }
+
+    private Optional<Cliente> findClientByDni(String dni) {
+        return clientes.stream()
+                .parallel()
+                .filter(cliente -> cliente.getDni().equals(dni))
+                .findAny();
     }
 }
