@@ -1,14 +1,14 @@
 package com.bootcamp;
 
-public class SerieTres extends Prototipo<Number> {
+public class SerieIntegerDos extends Prototipo<Integer> {
 
-    public SerieTres(Number inicial) {
+    public SerieIntegerDos(Integer inicial) {
         super(inicial);
     }
 
     @Override
-    protected Number valorSiguiente() {
-        inicial = inicial.doubleValue() + 3;
+    protected Integer valorSiguiente() {
+        inicial = inicial + 2;
         return inicial;
     }
 

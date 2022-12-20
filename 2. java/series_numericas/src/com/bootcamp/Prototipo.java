@@ -1,6 +1,6 @@
 package com.bootcamp;
 
-public abstract class Prototipo<T> {
+public abstract class Prototipo<T extends Number> {
 
     T inicial;
 
