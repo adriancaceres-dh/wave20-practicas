@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Main {
 
-    public static Map<Integer,List<String>> listaCircuitoChico = new TreeMap<>();
-    public static Map<Integer,List<String>> listaCircuitoMedio = new TreeMap<>();
-    public static Map<Integer,List<String>> listaCircuitoGrande = new TreeMap<>();
+    public static TreeMap<Integer,List<String>> listaCircuitoChico = new TreeMap<>();
+    public static TreeMap<Integer,List<String>> listaCircuitoMedio = new TreeMap<>();
+    public static TreeMap<Integer,List<String>> listaCircuitoGrande = new TreeMap<>();
 
 
     public static void main(String[] args) {
@@ -143,13 +143,25 @@ public class Main {
 
         switch (opcion){
             case(1):
-                listaCircuitoChico.put(listaCircuitoChico.size(), participante);
+                if(listaCircuitoChico.isEmpty()){
+                    listaCircuitoChico.put(0, participante);
+                } else {
+                    listaCircuitoChico.put(listaCircuitoChico.lastKey()+1, participante);
+                }
                 break;
             case(2):
-                listaCircuitoMedio.put(listaCircuitoMedio.size(), participante);
+                if(listaCircuitoMedio.isEmpty()){
+                    listaCircuitoMedio.put(0, participante);
+                } else {
+                    listaCircuitoMedio.put(listaCircuitoMedio.lastKey()+1, participante);
+                }
                 break;
             case(3):
-                listaCircuitoGrande.put(listaCircuitoGrande.size(), participante);
+                if(listaCircuitoGrande.isEmpty()){
+                    listaCircuitoGrande.put(0, participante);
+                } else {
+                    listaCircuitoGrande.put(listaCircuitoGrande.lastKey()+1, participante);
+                }
                 break;
         }
     }
