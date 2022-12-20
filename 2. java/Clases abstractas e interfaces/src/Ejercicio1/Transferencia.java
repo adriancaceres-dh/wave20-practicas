@@ -1,6 +1,6 @@
 package Ejercicio1;
 
-public class Transferencia implements Transacciones{
+public class Transferencia implements ITransacciones {
     // Solo se aceptara 1 simplicando que la cuenta a depositar existe, 0 en caso contrario.
     public void realizarTransferencia(int cuentaTransferencia) {
         if (cuentaTransferencia == 1) {

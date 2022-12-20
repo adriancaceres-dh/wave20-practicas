@@ -1,5 +1,5 @@
 package Ejercicio3;
 
-public interface carnivoro {
+public interface ICarnivoro {
     public void comerCarne();
 }

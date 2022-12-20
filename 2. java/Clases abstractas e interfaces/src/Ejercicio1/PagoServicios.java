@@ -1,6 +1,6 @@
 package Ejercicio1;
 
-public class PagoServicios implements Transacciones{
+public class PagoServicios implements ITransacciones {
     // Si el servicio seleecionado es correcto se define como 1, 0 en caso contrario.
     public void realizarPagoServicio(int servicioAPagar) {
         if (servicioAPagar == 1) {

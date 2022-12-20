@@ -1,6 +1,6 @@
 package Ejercicio1;
 
-public class RetiroDeEfectivo implements Transacciones{
+public class RetiroDeEfectivo implements ITransacciones {
 
     // Solo se aceptara 1 posee dinero suficiente, 0 en caso contrario.
     public void realizarRetiroDeDinero(int dinero) {

@@ -26,4 +26,5 @@ public class Banco {
     public void setNombreBanco(String nombreBanco) {
         this.nombreBanco = nombreBanco;
     }
+
 }

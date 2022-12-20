@@ -1,6 +1,6 @@
 package Ejercicio1;
 
-public class ConsultaSaldo implements Transacciones {
+public class ConsultaSaldo implements ITransacciones {
     // El valor de 1 significa cuenta valida y 0 cuenta invalida
     public void realizarConsultaSaldo(int cuentaConsutalSaldo) {
         if (cuentaConsutalSaldo == 1) {

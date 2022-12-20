@@ -1,6 +1,6 @@
 package Ejercicio3;
 
-public class Perro extends Animal implements carnivoro {
+public class Perro extends Animal implements ICarnivoro {
     String nombre;
 
     public Perro(String nombre) {
