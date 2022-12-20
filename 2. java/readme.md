@@ -9,3 +9,13 @@
 [🤾🧤 Ejercicio con excepciones](PracticaExcepciones/src/Main.java)
 
 [🚚🍔 Distribuidora de alimentos](DistribuidoraAlimentos/src/com/bootcamp/Distribuidora.java)
+
+[🦒🦜 Animales POO](Animales/src/Main.java)
+
+[🖨️📄 Impresora de Documentos](ImpresoraDocumentos/src/Main.java)
+
+[📚🔢 Series Numéricas](SeriesNumericas/src/Main.java)
+
+[🏪🥘 Supermercado Parte 1](SupermercadoP1/src/Main.java)
+
+[🚗🌀 Vehículos con Lambda y Streams](VehiculosLambdaStreams/src/Main.java)
