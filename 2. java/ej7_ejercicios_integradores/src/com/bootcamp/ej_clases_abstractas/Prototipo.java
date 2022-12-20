@@ -1,6 +1,6 @@
 package com.bootcamp.ej_clases_abstractas;
 
-public abstract class Prototipo <T>{
+public abstract class Prototipo <T extends Number>{
 
     protected final T numero_serie;
     protected T valor_actual;
