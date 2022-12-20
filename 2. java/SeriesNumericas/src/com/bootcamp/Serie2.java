@@ -1,10 +1,10 @@
 package com.bootcamp;
 
-public class Serie<T extends Number> extends Prototipo<T >{
+public class Serie2<T extends Number> extends Prototipo<T >{
     private T valorInicial;
     private double ultimoValor;
 
-    public Serie(T valorInicial) {
+    public Serie2(T valorInicial) {
         this.valorInicial = valorInicial;
         this.ultimoValor =valorInicial.doubleValue();
     }
@@ -13,7 +13,7 @@ public class Serie<T extends Number> extends Prototipo<T >{
     public double valorSiguiente() {
         double valorRetorno=ultimoValor;
 
-        ultimoValor=ultimoValor*valorInicial.doubleValue();
+        ultimoValor=ultimoValor+2;
         return valorRetorno;
     }
 
