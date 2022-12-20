@@ -60,6 +60,7 @@ public class Main {
                 .collect(Collectors.summingInt(Vehiculo::getCosto));
         OptionalDouble sum2 = G1.getVehiculos().stream().mapToDouble(Vehiculo::getCosto).average();
         System.out.println(sum / G1.getVehiculos().stream().count());
-        System.out.println(Math.round(Integer));
-    }
+        //System.out.println(Math.round(Integer));
+
+        }
 }
