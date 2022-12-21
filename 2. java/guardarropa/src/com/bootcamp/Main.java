@@ -9,21 +9,21 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Prenda> prendas = new ArrayList<>(Arrays.asList(
-                new Prenda("marca1", "modelo1"),
-                new Prenda("marca2", "modelo2")
+        List<Prenda> deportivo = new ArrayList<>(Arrays.asList(
+                new Prenda("Nike", "Short"),
+                new Prenda("Adidas", "Playera")
         ));
 
-        List<Prenda> prendas2 = new ArrayList<>(Arrays.asList(
-                new Prenda("marca3", "modelo3"),
-                new Prenda("marca4", "modelo4")
+        List<Prenda> casual = new ArrayList<>(Arrays.asList(
+                new Prenda("Gap", "Playera"),
+                new Prenda("Levis", "Jeans")
         ));
 
         GuardaRopa guardaRopa = new GuardaRopa();
 
         // Guardar prendas
-        Integer numero = guardaRopa.guardarPrendas(prendas);
-        Integer numero2 = guardaRopa.guardarPrendas(prendas2);
+        Integer numeroDeportivo = guardaRopa.guardarPrendas(deportivo);
+        Integer numeroCasual = guardaRopa.guardarPrendas(casual);
 
         // Mostrar prendas
         System.out.println();
@@ -32,7 +32,11 @@ public class Main {
 
         // Devolver prendas
         System.out.println();
-        System.out.println("PRENDA SOLICITADA: " + numero);
-        System.out.println(guardaRopa.devolverPrendas(numero));
+        System.out.println("PRENDAS SOLICITADAS: " + numeroDeportivo);
+        System.out.println(guardaRopa.devolverPrendas(numeroDeportivo));
+
+        System.out.println();
+        System.out.println("PRENDAS SOLICITADAS: " + numeroCasual);
+        System.out.println(guardaRopa.devolverPrendas(numeroCasual));
     }
 }
