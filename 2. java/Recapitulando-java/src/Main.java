@@ -25,7 +25,7 @@ public class Main {
         List<Vehiculo> listaDeVehiculos = garage.getVehiculos();
 
         System.out.println("Ordenados por precio: ");
-        listaDeVehiculos.stream().sorted(Comparator.comparingDouble(Vehiculo::getCosto)).forEach(c->System.out.println(c.getCosto()));
+        listaDeVehiculos.stream().sorted(Comparator.comparingDouble(Vehiculo::getCosto)).forEach(c->System.out.println(c.getMarca() +" "+ c.getModelo() + " : " + c.getCosto()));
 
         System.out.println(" ");
 
