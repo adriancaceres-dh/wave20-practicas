@@ -2,15 +2,15 @@ public class Item {
     int codigo;
     String nombre;
     int totalVendida;
-    double costo;
+    int costo;
 
     public Item() {
     }
 
-    public Item(int codigo, String nombre, int totalVendida, double costo) {
+    public Item(int codigo, String nombre, int costo) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.totalVendida = totalVendida;
+        this.totalVendida = 0;
         this.costo = costo;
     }
 
@@ -37,12 +37,15 @@ public class Item {
     public void setTotalVendida(int totalVendida) {
         this.totalVendida = totalVendida;
     }
+    public void aumentarTotalVendida() {
+        this.totalVendida += 1;
+    }
 
-    public double getCosto() {
+    public int getCosto() {
         return costo;
     }
 
-    public void setCosto(double costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 

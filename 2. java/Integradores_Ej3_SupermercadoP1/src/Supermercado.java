@@ -80,15 +80,57 @@ public class Supermercado {
     }
     public Cliente mostrarUnCliente(String dni){
 
-        List<Cliente> listaNueva = this.clientes.stream().filter(c-> c.getDni() == dni).collect(Collectors.toList());
+        List<Cliente> listaNueva = this.clientes.stream().filter(c-> c.getDni().equals(dni)).collect(Collectors.toList());
         return listaNueva.size() >0 ? listaNueva.get(0) : new Cliente();
     }
     public boolean agregarItem(Item nuevoItem){
         this.items.add(nuevoItem);
         return true;
     }
-    public void agregarFactura(Factura nuevaFactura){
+    public String mostrarItems(){
+        StringBuilder returnVal = new StringBuilder("____________________\n Items: \n");
+        this.items.forEach(item -> {
+            returnVal.append(item.toString()+'\n');
+        });
+        returnVal.append("_______________________");
+        return returnVal.toString();
+    }
+
+    public Item mostrarUnItem(int codigo){
+        List<Item> listaNueva = this.items.stream().filter(c-> c.getCodigo() == codigo).collect(Collectors.toList());
+        return listaNueva.size() >0 ? listaNueva.get(0) : new Item();
+    }
+
+    public boolean actualiarCantidadCompradaItem(int codigo, int cantidad){
+        List<Item> listaNueva = this.items.stream().map(c-> {
+            if(c.getCodigo() == codigo){
+                Item aux = c;
+                aux.setTotalVendida(aux.getTotalVendida()+cantidad);
+                return aux;
+            }return c;
+        }).collect(Collectors.toList());
+        this.setItems(listaNueva);
+        return true;
+    }
+
+    public boolean eliminarItem(String codigo){
+        List<Item> listaNueva = this.items.stream().filter(c-> !(c.getCodigo()==Integer.parseInt(codigo))).collect(Collectors.toList());
+
+        this.setItems(listaNueva);
+        return true;
+    }
+    public boolean agregarFactura(Factura nuevaFactura){
         this.facturas.add(nuevaFactura);
+        System.out.println(nuevaFactura);
+        return true;
+    }
+    public String mostrarFacturas(){
+        StringBuilder returnVal = new StringBuilder("____________________\n Facturas: \n");
+        this.facturas.forEach(factura -> {
+            returnVal.append(factura.toString()+'\n');
+        });
+        returnVal.append("_______________________");
+        return returnVal.toString();
     }
 
 

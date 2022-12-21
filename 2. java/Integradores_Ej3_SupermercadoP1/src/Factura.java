@@ -1,14 +1,15 @@
 import java.util.List;
 
 public class Factura {
+
     String dniCliente;
-    List<Item> itemsComprados;
+    List<int[]> itemsComprados;
     int total;
 
     public Factura() {
     }
 
-    public Factura(String dniCliente, List<Item> itemsComprados, int total) {
+    public Factura(String dniCliente, List<int[]> itemsComprados, int total) {
         this.dniCliente = dniCliente;
         this.itemsComprados = itemsComprados;
         this.total = total;
@@ -22,11 +23,11 @@ public class Factura {
         this.dniCliente = dniCliente;
     }
 
-    public List<Item> getItemsComprados() {
+    public List<int[]> getItemsComprados() {
         return itemsComprados;
     }
 
-    public void setItemsComprados(List<Item> itemsComprados) {
+    public void setItemsComprados(List<int[]> itemsComprados) {
         this.itemsComprados = itemsComprados;
     }
 

@@ -47,17 +47,7 @@ public class Cliente {
                 '}';
     }
 
-    public Cliente clienteNuevo(){
-        Scanner scannerObj = new Scanner(System.in);
-        System.out.println("Ingresar DNI:");
-        String dni = scannerObj.nextLine();
-        System.out.println("Ingresar nombres:");
-        String name = scannerObj.nextLine();
-        System.out.println("Ingresar apellidos:");
-        String lastName = scannerObj.nextLine();
 
-        return new Cliente(dni,name,lastName);
-    }
 
 
 }
