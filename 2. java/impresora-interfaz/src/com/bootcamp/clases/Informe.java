@@ -1,4 +1,11 @@
-package com.bootcamp.clases.clases;
+package com.bootcamp.clases;
 
-public class Informe {
+import com.bootcamp.interfaces.IImpresora;
+
+public class Informe implements IImpresora {
+
+    @Override
+    public void imprimir() {
+        System.out.println("Imprimiendo un informe");
+    }
 }

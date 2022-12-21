@@ -1,4 +1,7 @@
-package com.bootcamp.clases.interfaces;
+package com.bootcamp.interfaces;
 
 public interface IImpresora {
+
+    void imprimir();
+
 }
