@@ -110,5 +110,10 @@ public class Localizador {
     return this.reservas;
   }
 
-
+  @Override
+  public String toString() {
+    return "Localizador{" +
+            "costoTotal=" + costoTotal +
+            '}';
+  }
 }
