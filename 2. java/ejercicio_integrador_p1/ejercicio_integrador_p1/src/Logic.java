@@ -1,6 +1,6 @@
 public class Logic {
     public static double calcularTotal(Reserva reserva, Client client){
-
+        return 0.0;
     }
 
     public static double calcularDescuento(Reserva reserva, Client client){
