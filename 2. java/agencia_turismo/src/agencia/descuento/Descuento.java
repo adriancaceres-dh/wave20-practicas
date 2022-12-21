@@ -3,9 +3,10 @@ package agencia.descuento;
 import agencia.Localizador;
 
 public abstract class Descuento {
-    private double porcentajeDescuento;
+    protected double porcentajeDescuento;
     public abstract boolean estaVigente();
     public abstract boolean aplicaDescuento(Localizador localizador);
+    public abstract double calcularDescuento(Localizador localizador, double montoPrevio);
 
     public Descuento(double porcentajeDescuento) {
         this.porcentajeDescuento = porcentajeDescuento;

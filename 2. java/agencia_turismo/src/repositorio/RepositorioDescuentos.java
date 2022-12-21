@@ -1,4 +1,4 @@
-package agencia.repositorio;
+package repositorio;
 
 import agencia.descuento.Descuento;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RepositorioDescuentos {
-    private static List<Descuento> descuentos = new ArrayList<>();
+    private static final List<Descuento> descuentos = new ArrayList<>();
 
     public static void addDescuento(Descuento descuento) {
         descuentos.add(descuento);

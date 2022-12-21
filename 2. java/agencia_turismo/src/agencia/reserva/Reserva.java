@@ -24,4 +24,12 @@ public class Reserva {
     public void setCosto(double costo) {
         this.costo = costo;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "tipoReserva=" + tipoReserva.getNombre() +
+                ", costo=" + costo +
+                '}';
+    }
 }

@@ -15,6 +15,11 @@ public class DescuentoFrecuente extends Descuento{
 
     @Override
     public boolean aplicaDescuento(Localizador localizador) {
-        return localizador.getCliente().getLocalizadores().size() >= 2;
+        return localizador.getCliente().getLocalizadores().size() > 2;
+    }
+
+    @Override
+    public double calcularDescuento(Localizador localizador, double montoPrevio) {
+        return montoPrevio * (porcentajeDescuento / 100);
     }
 }

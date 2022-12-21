@@ -18,4 +18,9 @@ public class DescuentoPaqueteCompleto extends Descuento {
         return localizador.getReservas().stream()
                 .anyMatch(reserva -> reserva.getTipoReserva().getNombre().equals("Completa"));
     }
+
+    @Override
+    public double calcularDescuento(Localizador localizador, double montoPrevio) {
+        return montoPrevio * (porcentajeDescuento / 100);
+    }
 }
