@@ -6,16 +6,16 @@ public class ReservaHotel extends Reserva {
     private static double precioCatalogo = 20000;
     private static final String tipoReserva = "HOTEL";
 
-    private String restaurante;
+    private String hotel;
 
     public ReservaHotel() {
         this.precio = precioCatalogo;
         this.tipo = tipoReserva;
     }
 
-    public ReservaHotel(Date fecha, String restaurante) {
+    public ReservaHotel(Date fecha, String hotel) {
         super(fecha);
-        this.restaurante = restaurante;
+        this.hotel = hotel;
         this.precio = precioCatalogo;
         this.tipo = tipoReserva;
     }
@@ -28,12 +28,12 @@ public class ReservaHotel extends Reserva {
         ReservaHotel.precioCatalogo = precioCatalogo;
     }
 
-    public String getRestaurante() {
-        return restaurante;
+    public String getHotel() {
+        return hotel;
     }
 
-    public void setRestaurante(String restaurante) {
-        this.restaurante = restaurante;
+    public void setHotel(String hotel) {
+        this.hotel = hotel;
     }
 
     public static String getTipoReserva() {
@@ -45,7 +45,7 @@ public class ReservaHotel extends Reserva {
         return "ReservaHotel{" +
                 "precio=" + precio +
                 ", fecha=" + fecha +
-                ", restaurante='" + restaurante + '\'' +
+                ", restaurante='" + hotel + '\'' +
                 '}';
     }
 }

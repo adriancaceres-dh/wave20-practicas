@@ -46,9 +46,9 @@ public class Repositorio {
         Map<String, Integer> clasificadas = clasificarReservas(reservas);
 
         // Se calculan los descuentos totales
-        float descuento = 0f;
-        if(descuentoPaqueteCompleto(clasificadas))  descuento += 0.10f;
-        if(descuentoDosLocalizadores(dni))          descuento += 0.05f;
+        double descuento = 0.0;
+        if(descuentoPaqueteCompleto(clasificadas))  descuento += 0.10;
+        if(descuentoDosLocalizadores(dni))          descuento += 0.05;
 
         // Se calculan los descuentos por reserva
         Set<String> tiposConDescuento = obtenerDescuentosParaHotelOViaje(clasificadas);
@@ -88,5 +88,39 @@ public class Repositorio {
     private void detallesDeCompra(Localizador localizador) {
         System.out.println("DETALLES DE LA COMPRA:");
         System.out.println(localizador);
+    }
+
+    public int cantidadDeLocalizadoresVendidos() {
+        return localizadores.size();
+    }
+
+    public int cantidadTotalDeReservas() {
+        return localizadores.stream().mapToInt(l -> l.getReservas().size()).sum();
+    }
+
+    public Map<String, List<Reserva>> reservasClasificadas() {
+        List<Reserva> reservas = obtenerReservas();
+        Map<String, List<Reserva>> clasificadas = new HashMap<>();
+        for(Reserva reserva : reservas) {
+            if(!clasificadas.containsKey(reserva.getTipo()))
+                clasificadas.put(reserva.getTipo(), new ArrayList<>(Arrays.asList(reserva)));
+            else
+                clasificadas.get(reserva.getTipo()).add(reserva);
+        }
+        return clasificadas;
+    }
+
+    private List<Reserva> obtenerReservas() {
+        List<Reserva> reservas = new ArrayList<>();
+        localizadores.forEach(l -> reservas.addAll(l.getReservas()));
+        return reservas;
+    }
+
+    public double totalDeVentas() {
+        return localizadores.stream().mapToDouble(Localizador::getPrecioFinal).sum();
+    }
+
+    public double promedioTotalVentas() {
+        return totalDeVentas() / localizadores.size();
     }
 }
