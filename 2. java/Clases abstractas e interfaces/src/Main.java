@@ -2,6 +2,10 @@ import Ejercicio1.Banco;
 import Ejercicio1.Basic;
 import Ejercicio1.Cobradores;
 import Ejercicio1.Ejecutivos;
+import Ejercicio2.Curriculum;
+import Ejercicio2.IImprimible;
+import Ejercicio2.Informes;
+import Ejercicio2.LibrosPDF;
 import Ejercicio3.Animal;
 import Ejercicio3.Gato;
 import Ejercicio3.Perro;
@@ -9,6 +13,7 @@ import Ejercicio3.Vaca;
 import Generics_Wrapper_Lambda_Streams.Garaje;
 import Generics_Wrapper_Lambda_Streams.Vehiculo;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("##############EJERCICIO 1##############");
+        /*System.out.println("##############EJERCICIO 1##############");
         // Creamos los usuarios del banco.
         Basic U1 = new Basic("Emanuel", "Fonseca");
         Cobradores C1 = new Cobradores("Adrián", "Cáceres");
@@ -31,10 +36,21 @@ public class Main {
         ITAU.realizarConsultaDeSaldo(U1);
         ITAU.realizarRetiroDeEfectivo(1,C1);
         ITAU.realizarTransferencia(0,E1);
-        System.out.println();
+        System.out.println();*/
 
         /*System.out.println("##############EJERCICIO 2##############");
-        System.out.println();
+        Curriculum nuevoCV = new Curriculum("Emanuel","Ingenioso-Dedicado");
+        LibrosPDF nuevoLPDF = new LibrosPDF(12,"Adrián","Chistes malos",
+                "Entretenimiento");
+
+        ArrayList<String> texto = new ArrayList<>();
+        texto.add("La casa de al lado");
+        texto.add("La casa de la abuela");
+        Informes nuevoInf = new Informes(texto,12,"Micaela","Fonseca");
+        IImprimible.imprimir(nuevoCV);
+        IImprimible.imprimir(nuevoLPDF);
+        IImprimible.imprimir(nuevoInf);
+        System.out.println();*/
 
         System.out.println("##############EJERCICIO 3##############");
         Animal gatitoChico = new Gato("Bombona");
@@ -45,7 +61,7 @@ public class Main {
         perroCiego.emitirSonidos();
         vacaLechera.emitirSonidos();
 
-        // ¿¿¿¿¿¿¿Cómo se puede hacer la parte extra??????*/
+        // ¿¿¿¿¿¿¿Cómo se puede hacer la parte extra??????
 
 
         /*Vehiculo v1 = new Vehiculo("Ford", "Fiesta", 1000);
