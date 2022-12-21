@@ -1,13 +1,11 @@
-package com.mercadolibre;
+package com.mercadolibre.model;
 
 public class Cliente {
   private String nombre;
-  private String apellido;
   private String dni;
 
-  public Cliente(String nombre, String apellido, String dni) {
+  public Cliente(String nombre, String dni) {
     this.nombre = nombre;
-    this.apellido = apellido;
     this.dni = dni;
   }
 
@@ -17,14 +15,6 @@ public class Cliente {
 
   public void setNombre(String nombre) {
     this.nombre = nombre;
-  }
-
-  public String getApellido() {
-    return apellido;
-  }
-
-  public void setApellido(String apellido) {
-    this.apellido = apellido;
   }
 
   public String getDni() {
@@ -39,7 +29,6 @@ public class Cliente {
   public String toString() {
     return "Cliente{" +
             "nombre='" + nombre + '\'' +
-            ", apellido='" + apellido + '\'' +
             ", dni='" + dni + '\'' +
             '}';
   }
