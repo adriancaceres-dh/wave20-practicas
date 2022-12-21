@@ -5,6 +5,9 @@ import ejercicio2.clases.Impresora;
 import ejercicio2.clases.Informe;
 import ejercicio2.clases.LibroPdf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,5 +18,6 @@ public class Main {
         Impresora.imprimir(informe);
         Impresora.imprimir(pdf);
         Impresora.imprimir(curriculum);
+
     }
 }
