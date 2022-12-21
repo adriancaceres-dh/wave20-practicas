@@ -8,6 +8,15 @@ public class Item {
         this.costo = costo;
     }
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "codigo='" + codigo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", costo=" + costo +
+                '}';
+    }
+
     public String getCodigo() {
         return codigo;
     }

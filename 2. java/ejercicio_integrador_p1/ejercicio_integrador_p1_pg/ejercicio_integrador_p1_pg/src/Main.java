@@ -7,19 +7,19 @@ public class Main {
     public static void main(String[] args) {
         //List<Client> clientes = new ArrayList<Client>();
         ClientRepository clientRepository = new ClientRepository();
-
-        clientRepository.clientes.add(new Client("39891852", "Luciano", "Benavides"));
-        clientRepository.clientes.add(new Client("654365437", "Alberto", "Juarez"));
-        clientRepository.clientes.add(new Client("12342145", "Juan", "Perez"));
-        //clientRepository.clientes.remove(1);
-        for(Client client : clientRepository.clientes) {
-            System.out.println(client.toString());
-        }
         Scanner scanner = new Scanner(System.in);
+
+        Client client = new Client("39891852", "Luciano", "Benavides");
+        Client client1 = new Client("654365437", "Alberto", "Juarez");
+        Client client2 = new Client("12342145", "Juan", "Perez");
+
+
+        //clientRepository.clientes.remove(1);
+        /*
         System.out.println("search by dni");
         String dni = scanner.nextLine();
-        Logic.searchClientByDni(dni, clientRepository);
-
-
+        Client clientByDni = Logic.searchClientByDni(dni, clientRepository);
+        System.out.println(clientByDni);
+         */
     }
 }

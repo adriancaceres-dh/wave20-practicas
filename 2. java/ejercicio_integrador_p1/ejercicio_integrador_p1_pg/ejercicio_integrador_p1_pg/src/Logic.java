@@ -8,15 +8,14 @@ public class Logic {
         double totalCost = items.stream().mapToDouble(Item::getCosto).sum();
         return totalCost;
     }
-    public static void searchClientByDni(String dni, ClientRepository clientRepository){
+    public static Client searchClientByDni(String dni, ClientRepository clientRepository){
         for (Client client : clientRepository.clientes){
             if(client.getDni().equals(dni)) {
-                System.out.println(client.toString());
-                return;
+                return client;
             }
         }
         throw new Error ("no se encontro el cliente");
-
     }
+
 
 }
