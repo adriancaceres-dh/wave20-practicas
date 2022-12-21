@@ -79,7 +79,8 @@ public class Persona {
                     return 1;
                 }
             } else {
-                throw new IllegalArgumentException("No se puede dividir por cero!");
+                //throw new IllegalArgumentException("No se puede dividir por cero!");
+                throw new ArrayIndexOutOfBoundsException("No se puede dividir por cero!");
             }
 
         } catch (IllegalArgumentException e) {
