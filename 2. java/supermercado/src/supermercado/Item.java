@@ -10,6 +10,10 @@ public class Item {
         this.producto = producto;
     }
 
+    public double calcularCosto() {
+        return cantidadComprada * producto.getCostoUnitario();
+    }
+
     public long getId() {
         return id;
     }
