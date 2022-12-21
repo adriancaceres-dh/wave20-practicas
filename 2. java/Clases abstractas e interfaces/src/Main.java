@@ -61,6 +61,8 @@ public class Main {
         perroCiego.emitirSonidos();
         vacaLechera.emitirSonidos();
 
+        Animal.comerAnimal(gatitoChico);
+
         // ¿¿¿¿¿¿¿Cómo se puede hacer la parte extra??????
 
 

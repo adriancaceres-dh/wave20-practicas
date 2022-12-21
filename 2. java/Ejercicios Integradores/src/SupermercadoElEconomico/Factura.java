@@ -7,14 +7,15 @@ public class Factura {
     private int codigoFactura;
     private Cliente cliente;
     List<Item> listaCompra;
-    private int totalCompra;
+    private double totalCompra;
 
-    public Factura(int codigoFactura, Cliente cliente, int totalCompra) {
+    public Factura(int codigoFactura, Cliente cliente) {
         this.codigoFactura = codigoFactura;
         this.cliente = cliente;
         this.listaCompra = new LinkedList<>();
-        this.totalCompra = totalCompra;
+        this.totalCompra = 0;
     }
+
 
     public int getCodigoFactura() {
         return codigoFactura;
@@ -36,15 +37,19 @@ public class Factura {
         return listaCompra;
     }
 
+    public void setListaCompra(List<Item> listaCompra) {
+        this.listaCompra = listaCompra;
+    }
+
     public void agregarCompra(Item nuevaCompra) {
         listaCompra.add(nuevaCompra);
     }
 
-    public int getTotalCompra() {
+    public double getTotalCompra() {
         return totalCompra;
     }
 
-    public void setTotalCompra(int totalCompra) {
-        this.totalCompra = totalCompra;
+    public double calcularTotalCompra() {
+        return (listaCompra.stream().mapToDouble(e->e.getCantidadComprada()*e.getCostoUnitario()).sum());
     }
 }
