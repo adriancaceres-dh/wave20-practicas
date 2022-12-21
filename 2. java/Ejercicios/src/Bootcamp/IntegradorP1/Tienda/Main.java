@@ -1,4 +1,4 @@
-package Bootcamp.IntegradorP1;
+package Bootcamp.IntegradorP1.Tienda;
 
 import Bootcamp.IntegradorP1.Crud.ClienteImp;
 import Bootcamp.IntegradorP1.Crud.FacturaImp;
