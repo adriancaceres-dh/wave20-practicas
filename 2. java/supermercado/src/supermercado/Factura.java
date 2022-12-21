@@ -1,7 +1,7 @@
 package supermercado;
 
-import repositorios.RepositorioClientes;
 import repositorios.FactoryRepositorioClientes;
+import repositorios.RepositorioClientes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ public class Factura {
         this.cliente = cliente;
         this.fechaRealizacion = LocalDateTime.now();
         this.items = new ArrayList<>();
+        cliente.addFactura(this);
     }
 
     private void verificarCliente(Cliente cliente) {
@@ -56,7 +57,7 @@ public class Factura {
     @Override
     public String toString() {
         return "Factura{" +
-                "cliente=" + cliente +
+                "cliente=" + cliente.getNombre() + " " + cliente.getApellido() +
                 ", fechaRealizacion=" + fechaRealizacion +
                 ", items=" + items +
                 '}';

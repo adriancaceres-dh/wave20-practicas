@@ -17,6 +17,10 @@ public class Cliente {
         facturas = new ArrayList<>();
     }
 
+    public void addFactura(Factura factura) {
+        facturas.add(factura);
+    }
+
     public long getId() {
         return id;
     }

@@ -1,7 +1,7 @@
-import repositorios.RepositorioClientes;
-import repositorios.RepositorioGenerico;
 import repositorios.FactoryRepositorioClientes;
 import repositorios.FactoryRepositorioGenerico;
+import repositorios.RepositorioClientes;
+import repositorios.RepositorioGenerico;
 import supermercado.Cliente;
 import supermercado.Factura;
 import supermercado.Item;
@@ -49,14 +49,16 @@ public class Main {
         repoFacturas.add(factura);
         System.out.println("Clientes");
         repo.buscarTodos().forEach(System.out::println);
-        System.out.println("-------------------------");
-
         List<Item> items = new ArrayList<>(List.of(
                 new Item(5, new Producto("111", 23, "Jabon")),
                 new Item(1, new Producto("112", 12, "Sal")),
                 new Item(2, new Producto("333", 23, "Harina"))
         ));
         factura.addAllItems(items);
+        System.out.println("Facturas");
+        repoFacturas.buscarTodos().forEach(System.out::println);
+        System.out.println("-------------------------");
+
         System.out.println("Total de la factura: " + factura.getTotal());
         System.out.println("-------------------------");
     }
