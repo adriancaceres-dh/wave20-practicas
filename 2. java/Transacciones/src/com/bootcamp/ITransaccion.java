@@ -1,6 +1,6 @@
 package com.bootcamp;
 
-public interface Transaccion {
+public interface ITransaccion {
 
     public void transaccionOk();
     public void transaccionNoOk();

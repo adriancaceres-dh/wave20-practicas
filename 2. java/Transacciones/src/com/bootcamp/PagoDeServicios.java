@@ -1,6 +1,6 @@
 package com.bootcamp;
 
-public class PagoDeServicios implements Transaccion{
+public class PagoDeServicios implements ITransaccion {
     @Override
     public void transaccionOk() {
         System.out.println("Realizando pago de servicios");

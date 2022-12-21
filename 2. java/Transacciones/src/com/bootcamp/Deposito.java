@@ -1,6 +1,6 @@
 package com.bootcamp;
 
-public class Deposito implements Transaccion{
+public class Deposito implements ITransaccion {
 
     @Override
     public void transaccionOk() {

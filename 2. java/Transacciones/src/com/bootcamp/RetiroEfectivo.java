@@ -1,6 +1,6 @@
 package com.bootcamp;
 
-public class RetiroEfectivo implements Transaccion{
+public class RetiroEfectivo implements ITransaccion {
     @Override
     public void transaccionOk() {
         System.out.println("Realizando retiro en efectivo");
