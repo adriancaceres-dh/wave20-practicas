@@ -14,15 +14,11 @@ public class SeriePotenciaDeDos extends SerieNumerica <Integer> {
   static int nextPowerOf2(int n)
   {
     int count = 0;
-
-    // First n in the below
-    // condition is for the
-    // case where n is 0
-    if (n > 0 && (n & (n - 1)) == 0)
+    if (n == 0) {
       return n;
+    }
 
-    while(n != 0)
-    {
+    while(n != 0) {
       n >>= 1;
       count += 1;
     }
