@@ -61,6 +61,7 @@ public class Main {
                     break;
                 case 4:
                     iniciado = false;
+                    System.out.println("Programa finalizado");
             }
         }
     }
