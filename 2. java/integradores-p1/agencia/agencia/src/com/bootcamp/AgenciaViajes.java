@@ -1,21 +1,21 @@
 package com.bootcamp;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class AgenciaViajes {
-    List<Cliente> clientes;
-    Map<String, Localizador> localizadoresPorCliente;
-
-    public AgenciaViajes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    Map<String, Cliente> clientes;
+    public AgenciaViajes() {
+        this.clientes = new HashMap<String, Cliente>();
     }
 
-    public contratarLocalizador(Localizador localizador) {
+    public boolean contratarLocalizador(Cliente cliente, Localizador localizador) {
+        if (!clientes.containsKey(cliente.dni)) {
+            clientes.put(cliente.dni, cliente);
+        }
 
+        boolean localizadorValido = cliente.agregarLocalizador(localizador);
+        System.out.println(localizador);
+        return localizadorValido;
     }
 }
-
-// carlitos = Cliente {"4", "Carlitos", "Gonzalez"}
-
-// {carlitos, 5000, }
