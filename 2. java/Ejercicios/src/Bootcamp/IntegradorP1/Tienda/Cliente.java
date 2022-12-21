@@ -1,4 +1,4 @@
-package Bootcamp.IntegradorP1;
+package Bootcamp.IntegradorP1.Tienda;
 
 public class Cliente {
 

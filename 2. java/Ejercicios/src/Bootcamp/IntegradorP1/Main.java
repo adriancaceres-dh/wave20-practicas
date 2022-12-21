@@ -1,6 +1,12 @@
 package Bootcamp.IntegradorP1;
 
-import java.util.ArrayList;
+import Bootcamp.IntegradorP1.Crud.ClienteImp;
+import Bootcamp.IntegradorP1.Crud.FacturaImp;
+import Bootcamp.IntegradorP1.Crud.ItemImp;
+import Bootcamp.IntegradorP1.Tienda.Cliente;
+import Bootcamp.IntegradorP1.Tienda.Factura;
+import Bootcamp.IntegradorP1.Tienda.Item;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,60 +15,51 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        List<Cliente> clientes = new ArrayList<>();
-        clientes.add(new Cliente(1923, "Carlos", "Escobar"));
-        clientes.add(new Cliente(1421, "Alejandro", "Torres"));
-        clientes.add(new Cliente(1453, "Pablo", "Picapiedras"));
+        ClienteImp clienteImp = new ClienteImp();
+        FacturaImp facturaImp = new FacturaImp();
+        ItemImp itemImp = new ItemImp();
 
-        boolean iniciado = true;
+        // Crear clientes
+        Cliente cliente1= new Cliente(1923, "Carlos", "Escobar");
+        Cliente cliente2 = new Cliente(1421, "Alejandro", "Torres");
+        Cliente cliente3 = new  Cliente(1453, "Pablo", "Picapiedras");
 
-        while(iniciado){
-            System.out.println("Elija una opcion: ");
+        //Crear items
+        Item items1 = new Item(2, "papas", 12, 1400.0);
+        Item items2 = new Item(3, "frijoles", 8, 400.0);
+        Item items3 = new Item(4, "lentejas", 13, 540.0);
+
+        // Gurdar items
+        itemImp.guardar(items1);
+        itemImp.guardar(items2);
+        itemImp.guardar(items3);
+
+        // Mostrar items
+        itemImp.mostrar();
+
+        // Guardar clientes
+        clienteImp.guardar(cliente1);
+        clienteImp.guardar(cliente2);
+        clienteImp.guardar(cliente3);
+
+        // Mostrar clientes
+        clienteImp.mostrar();
+
+        //Buscar clientes
+        System.out.println("Ingrese el dni del cliente que desea buscar: ");
+        int dni_buscado = scan.nextInt();
+        clienteImp.buscar(dni_buscado);
+
+        // Eliminar clientes
+        System.out.println("Ingrese el dni del cliente que desea eliminar: ");
+        int cliente_borrado = scan.nextInt();
+        clienteImp.eliminar(cliente_borrado);
+
+
+            /*System.out.println("Elija una opcion: ");
             System.out.println("1. Mostrar los clientes: ");
             System.out.println("2. Eliminar un cliente: ");
             System.out.println("3. Buscar un cliente por su dni: ");
-            System.out.println("4. Salir ");
-            int opcion = scan.nextInt();
-            switch (opcion) {
-                case 1:
-                    System.out.println("Clientes: ");
-                    clientes.stream().forEach(System.out::println);
-                    break;
-                case 2:
-                    System.out.println("Ingrese el dni del cliente que desea eliminar: ");
-                    int numero = scan.nextInt();
-                    boolean eliminado = false;
-                    for (Cliente cliente : clientes) {
-                        if (cliente.getDni().equals(numero)) {
-                            clientes.remove(cliente);
-                            System.out.println("Cliente eliminado exitosamente");
-                            eliminado = true;
-                            break;
-                        }
-                    }
-                    if (eliminado == false) {
-                        System.out.println("Cliente no encontrado");
-                    }
-                    break;
-                case 3:
-                    System.out.println("Ingrese el dni del cliente que desea buscar: ");
-                    int buscar = scan.nextInt();
-                    boolean buscado = false;
-                    for (Cliente cliente : clientes) {
-                        if (cliente.getDni().equals(buscar)) {
-                            System.out.println(cliente.toString());
-                            buscado = true;
-                            break;
-                        }
-                    }
-                    if (buscado== false) {
-                        System.out.println("Cliente no encontrado");
-                    }
-                    break;
-                case 4:
-                    iniciado = false;
-                    System.out.println("Programa finalizado");
-            }
-        }
+            System.out.println("4. Salir ");*/
     }
 }
