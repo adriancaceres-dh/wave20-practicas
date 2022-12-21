@@ -1,12 +1,19 @@
 public class Persona {
+    // Se le asigna variable tipo String porque es un nombre, es decir, una cadena de carácteres.
     private String nombre;
 
+    // Representa la edad, en números enteros > 0, por lo tanto debe ir en int.
     private int edad;
 
+    // Si bien en Uruguay son solo números, en otros paises está compuesta por letras también.
     private String dni;
 
+    // Valor que posee una parte entera y otra decimal donde se representan los gramos que faltan para llegar
+    // al kg. Ej. 86.3kg -> 86kg. y 300gr.
     private double peso;
 
+    // Valor que posee una parte entera y otra decimal donde se representan los centímetros que faltan para
+    // legar al metro. Ej. 1.79m -> 1 metro y 79 centímetros.
     private double altura;
 
     public String getNombre() {
@@ -46,26 +53,25 @@ public class Persona {
         this.altura = altura;
     }
 
-    public int calcularIMC(){
-        try{
-            double imc = peso/(Math.pow(altura,2));
+    public int calcularIMC() {
+        try {
+            double imc = peso / (Math.pow(altura, 2));
 
-            if (imc<20) {
+            if (imc < 20) {
                 return -1;
-            } else if (imc>=20  && imc<=25) {
+            } else if (imc >= 20 && imc <= 25) {
                 return 0;
-            }
-            else{
+            } else {
                 return 1;
             }
-        }catch (ArithmeticException ex){
+        } catch (ArithmeticException ex) {
             System.out.println(ex.getMessage());
         }
         return 2; // Si llega aquí es un error.
     }
 
-    public boolean esMayorDeEdad(){
-        return edad>=18;
+    public boolean esMayorDeEdad() {
+        return edad >= 18;
     }
 
     @Override

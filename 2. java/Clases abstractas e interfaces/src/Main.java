@@ -16,20 +16,24 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        /*System.out.println("##############EJERCICIO 1##############");
+        System.out.println("##############EJERCICIO 1##############");
+        // Creamos los usuarios del banco.
         Basic U1 = new Basic("Emanuel", "Fonseca");
         Cobradores C1 = new Cobradores("Adrián", "Cáceres");
         Ejecutivos E1 = new Ejecutivos("Diego", "Forlán");
+        // Creamos el banco.
         Banco ITAU = new Banco("ITAU");
+        // Agregamos los usuarios a la lista de usuarios del banco.
         ITAU.agregarUsuariosBanco(U1);
         ITAU.agregarUsuariosBanco(C1);
         ITAU.agregarUsuariosBanco(E1);
-        U1.realizarConsultaDeSaldo(1);
-        C1.realizarRetiroDeEfectivo(1);
-        E1.realizarTransferencia(1);
+        // Los usuarios realizan consultas.
+        ITAU.realizarConsultaDeSaldo(U1);
+        ITAU.realizarRetiroDeEfectivo(1,C1);
+        ITAU.realizarTransferencia(0,E1);
         System.out.println();
 
-        System.out.println("##############EJERCICIO 2##############");
+        /*System.out.println("##############EJERCICIO 2##############");
         System.out.println();
 
         System.out.println("##############EJERCICIO 3##############");
@@ -44,7 +48,7 @@ public class Main {
         // ¿¿¿¿¿¿¿Cómo se puede hacer la parte extra??????*/
 
 
-        Vehiculo v1 = new Vehiculo("Ford", "Fiesta", 1000);
+        /*Vehiculo v1 = new Vehiculo("Ford", "Fiesta", 1000);
         Vehiculo v2 = new Vehiculo("Ford", "Focus", 1200);
         Vehiculo v3 = new Vehiculo("Ford", "Explorer", 2500);
         Vehiculo v4 = new Vehiculo("Fiat", "Uno", 500);
@@ -71,13 +75,13 @@ public class Main {
         G1.agregarNuevoVehiculo(v11);
 
         //LinkedList<Vehiculo> listaVehiculosPorPrecio = G1.getVehiculos().stream().sorted(Comparator.reverseOrder());
-        /*List<String> sortedList = G1.getVehiculos().stream()
+        List<String> sortedList = G1.getVehiculos().stream()
                 .sorted((o1, o2) -> o1.getCosto()< o2.getCosto())
-                .collect(Collectors.toList());*/
+                .collect(Collectors.toList());
         List<Vehiculo> sortedList2 = G1.getVehiculos().stream()
                 .sorted(Comparator.comparingInt(Vehiculo::getCosto)
                         .reversed())
                 .collect(Collectors.toList());
-        sortedList2.forEach(System.out::println);
+        sortedList2.forEach(System.out::println);*/
     }
 }
