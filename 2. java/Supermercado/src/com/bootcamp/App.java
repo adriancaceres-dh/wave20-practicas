@@ -2,32 +2,46 @@ package com.bootcamp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class App {
+
+    public void agregarFactura(Factura nuevaFactura,Clienteimp clientesCRUD,Facturaimp facturasCRUD){
+        Cliente clienteFactura=nuevaFactura.getCliente();
+        Optional<Cliente> validacionCliente=clientesCRUD.buscar(clienteFactura.getDni());
+        if(validacionCliente.isEmpty()) clientesCRUD.guardar(clienteFactura);
+        facturasCRUD.guardar(nuevaFactura);
+
+
+    }
     public static void main(String[] args) {
+        Clienteimp clientesCRUD=new Clienteimp();
+        Facturaimp facturasCRUD=new Facturaimp();
 
         Cliente cliente1=new Cliente("10456","pepe","perez");
         Cliente cliente2=new Cliente("10678","carlos","torres");
         Cliente cliente3=new Cliente("12958","maria","carvajal");
 
-        List<Cliente> clientes=new ArrayList<>();
-        clientes.add(cliente1);
-        clientes.add(cliente2);
-        clientes.add(cliente3);
-
-        clientes.stream().forEach(System.out::println);
-        clientes.remove(0);
-        System.out.println("");
-        clientes.stream().forEach(System.out::println);
+        //guardar clientes
+        clientesCRUD.guardar(cliente1);
+        clientesCRUD.guardar(cliente2);
+        clientesCRUD.guardar(cliente3);
 
         Scanner teclado=new Scanner(System.in);
-        System.out.println("Ingrese el dni:");
+
+        //Buscar cliente
+        System.out.println("Ingrese el dni del cliente a buscar:");
         String dni=teclado.next();
-        List<Cliente> filterClientes=clientes.stream().filter(x->x.getDni().equals(dni)).collect(Collectors.toList());
-        if (filterClientes.size()>0) System.out.println(filterClientes.get(0));
-        else System.out.println("No se encuentra el cliente");
+        clientesCRUD.buscar(dni);
+
+        //Eliminar cliente
+        System.out.println("Ingrese el dni del cliente a eliminar:");
+        dni=teclado.next();
+        clientesCRUD.eliminar(dni);
+
+
 
     }
 }
