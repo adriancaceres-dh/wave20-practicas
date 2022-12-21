@@ -17,7 +17,12 @@ public class Main {
 
         guardaRopa.mostrarPrendas();
 
-        System.out.println(guardaRopa.devolverPrendas(codigo));
+        try {
+            System.out.println(guardaRopa.devolverPrendas(codigo));
+            System.out.println(guardaRopa.devolverPrendas(123));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

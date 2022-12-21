@@ -23,9 +23,11 @@ public class GuardaRopa {
         System.out.println(mapaRopa);
     }
 
-    public List<Prenda> devolverPrendas(int codigo) {
-        List<Prenda> prendas = mapaRopa.get(codigo);
-        return prendas;
+    public List<Prenda> devolverPrendas(int codigo) throws Exception {
+        if (mapaRopa.containsKey(codigo)) {
+            return mapaRopa.get(codigo);
+        }
+        throw new Exception(codigo + " No existe");
     }
 
     private void sumarContador() {
