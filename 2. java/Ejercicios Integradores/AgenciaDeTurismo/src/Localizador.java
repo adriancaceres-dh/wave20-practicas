@@ -3,6 +3,7 @@ import java.util.List;
 public class Localizador {
     private Cliente cliente;
     private List<Reserva> reservas;
+    private double descuento;
     private double totalPrecio;
     private boolean esPaquete;
 
@@ -15,7 +16,36 @@ public class Localizador {
     }
 
     private void aplicarDescuentoAReservas() {
+        boolean aplicarDescuentoPorReservas = false;
+        for(Reserva reserva : reservas){
+            int cantReservasHotel = 0;
+            int cantReservasBoleto = 0;
+            if(reserva.getClass().isInstance(new Hotel())){
+                cantReservasHotel++;
+            }
+            if(reserva.getClass().isInstance(new BoletoViaje())) {
+                cantReservasBoleto++;
+            }
+            if(cantReservasHotel >= 2) {
+                aplicarDescuentoPorReservas = true;
+                break;
+            }
 
+            if(cantReservasBoleto >= 2) {
+                aplicarDescuentoPorReservas = true;
+                break;
+            }
+        }
+        if(aplicarDescuentoPorReservas) {
+            for (Reserva reserva : reservas) {
+                if (reserva.getClass().isInstance(new Hotel())) {
+                    reserva.setPrecio(reserva.getPrecio() * 0.95);
+                }
+                if (reserva.getClass().isInstance(new BoletoViaje())) {
+                    reserva.setPrecio(reserva.getPrecio() * 0.95);
+                }
+            }
+        }
     }
 
     private boolean esPaquete() {
@@ -50,7 +80,7 @@ public class Localizador {
         if(cliente.getLocalizadores().size() >= 2)
             totalDescuento += 0.05;
 
-
-        return 1 - totalDescuento;
+        descuento =  1 - totalDescuento;
+        return descuento;
     }
 }
