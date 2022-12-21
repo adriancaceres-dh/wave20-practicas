@@ -12,6 +12,8 @@ public class Carrera {
     private String nombre;
     private int cantidadDeVehiculosPermitidos;
     private List<Vehiculo> vehiculos;
+    private SocorristaMoto socorristaMoto;
+    private SocorristaAuto socorristaAuto;
 
     public Carrera(double distancia, double premioEnDolares, String nombre, int cantidadDeVehiculosPermitidos) {
         this.distancia = distancia;
@@ -19,6 +21,8 @@ public class Carrera {
         this.nombre = nombre;
         this.cantidadDeVehiculosPermitidos = cantidadDeVehiculosPermitidos;
         this.vehiculos = new ArrayList<>();
+        this.socorristaAuto = new SocorristaAuto();
+        this.socorristaMoto = new SocorristaMoto();
     }
 
     public void darDeAltaAuto(double velocidad, double aceleracion, double anguloDeGiro, String patente) {
@@ -45,10 +49,7 @@ public class Carrera {
     }
 
     public void eliminarVehiculoConPatente(String patente) {
-        Optional<Vehiculo> vehiculoAEliminar = vehiculos
-                .stream()
-                .filter(vehiculo -> vehiculo.getPatente().equals(patente))
-                .findFirst();
+        Optional<Vehiculo> vehiculoAEliminar = obtenerVehiculoPorPatente(patente);
         if (vehiculoAEliminar.isPresent()) {
             vehiculos.remove(vehiculoAEliminar.get());
         } else {
@@ -56,10 +57,35 @@ public class Carrera {
         }
     }
 
+    private Optional<Vehiculo> obtenerVehiculoPorPatente(String patente) {
+        return vehiculos
+                .stream()
+                .filter(vehiculo -> vehiculo.getPatente().equals(patente))
+                .findFirst();
+    }
+
     public Vehiculo determinarGanador() {
         return vehiculos.stream()
                 .max(Comparator.comparingDouble(Vehiculo::getResultado))
                 .get();
+    }
+
+    public void socorrerAuto(String patente) {
+        Optional<Vehiculo> vehiculoASocorrer = obtenerVehiculoPorPatente(patente);
+        if (vehiculoASocorrer.isPresent() && vehiculoASocorrer.get() instanceof Auto) {
+            socorristaAuto.socorrer((Auto) vehiculoASocorrer.get());
+        } else {
+            System.out.println("Esa patente no esta registrada o no es un auto");
+        }
+    }
+
+    public void socorrerMoto(String patente) {
+        Optional<Vehiculo> vehiculoASocorrer = obtenerVehiculoPorPatente(patente);
+        if (vehiculoASocorrer.isPresent() && vehiculoASocorrer.get() instanceof Moto) {
+            socorristaMoto.socorrer((Moto) vehiculoASocorrer.get());
+        } else {
+            System.out.println("Esa patente no esta registrada o no es una moto");
+        }
     }
 
 }

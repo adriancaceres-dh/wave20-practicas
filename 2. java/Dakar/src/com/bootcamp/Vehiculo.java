@@ -24,4 +24,16 @@ public abstract class Vehiculo {
     public String getPatente() {
         return patente;
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "velocidad=" + velocidad +
+                ", aceleracion=" + aceleracion +
+                ", anguloDeGiro=" + anguloDeGiro +
+                ", patente='" + patente + '\'' +
+                ", peso=" + peso +
+                ", ruedas=" + ruedas +
+                '}';
+    }
 }

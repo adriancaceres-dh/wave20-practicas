@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/2. java.iml" filepath="$PROJECT_DIR$/.idea/2. java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AdministracionCursoUniversidad/AdministracionCursoUniversidad.iml" filepath="$PROJECT_DIR$/AdministracionCursoUniversidad/AdministracionCursoUniversidad.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AgenciaTurismo/AgenciaTurismo.iml" filepath="$PROJECT_DIR$/AgenciaTurismo/AgenciaTurismo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Animales/Animales.iml" filepath="$PROJECT_DIR$/Animales/Animales.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Asteroid/Asteroid.iml" filepath="$PROJECT_DIR$/Asteroid/Asteroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Banco/Banco.iml" filepath="$PROJECT_DIR$/Banco/Banco.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarreraDeLaSelva/CarreraDeLaSelva.iml" filepath="$PROJECT_DIR$/CarreraDeLaSelva/CarreraDeLaSelva.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dakar/Dakar.iml" filepath="$PROJECT_DIR$/Dakar/Dakar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DistribuidoraAlimentos/DistribuidoraAlimentos.iml" filepath="$PROJECT_DIR$/DistribuidoraAlimentos/DistribuidoraAlimentos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EjercicioTemperatura/EjercicioTemperatura.iml" filepath="$PROJECT_DIR$/EjercicioTemperatura/EjercicioTemperatura.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImpresoraDocumentos/ImpresoraDocumentos.iml" filepath="$PROJECT_DIR$/ImpresoraDocumentos/ImpresoraDocumentos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PersonaImcExercise/PersonaImcExercise.iml" filepath="$PROJECT_DIR$/PersonaImcExercise/PersonaImcExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PracticaExcepciones/PracticaExcepciones.iml" filepath="$PROJECT_DIR$/PracticaExcepciones/PracticaExcepciones.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SaveTheRopa/SaveTheRopa.iml" filepath="$PROJECT_DIR$/SaveTheRopa/SaveTheRopa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SeriesNumericas/SeriesNumericas.iml" filepath="$PROJECT_DIR$/SeriesNumericas/SeriesNumericas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SupermercadoP1/SupermercadoP1.iml" filepath="$PROJECT_DIR$/SupermercadoP1/SupermercadoP1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VehiculosLambdaStreams/VehiculosLambdaStreams.iml" filepath="$PROJECT_DIR$/VehiculosLambdaStreams/VehiculosLambdaStreams.iml" />
+    </modules>
+  </component>
+</project>
