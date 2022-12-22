@@ -3,7 +3,7 @@ package com.bootcamp.numerosromanos.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NumberConverter {
+public class NumberConverterUtil {
     static private final Map<Character, Integer> romanianMap = new HashMap<>();
 
     public static Integer transformRomanianToInteger(String romanian) {
