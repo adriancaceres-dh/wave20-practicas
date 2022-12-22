@@ -1,4 +1,4 @@
-package com.collections;
+package com.carrera_selva;
 
 import java.util.*;
 
@@ -28,7 +28,8 @@ public class App {
     private static final String PARTICIPANT = "El número de participante es: ";
     private static final String DATA = "Sus datos personales son: ";
     private static final String ADD_PARTICIPANT = "¿Desea añadir otro participante? Ingrese si/no";
-    private static long num = 0;
+    private static Long num = 0L;
+    private static Set<Long> reusable_number = new HashSet<>();
     private static List<Long> participants = new ArrayList<>();
     private static Map<Long, List<String>> circuit_1 = new HashMap<>();
     private static Map<Long, List<String>> circuit_2 = new HashMap<>();
@@ -60,7 +61,7 @@ public class App {
         }
     }
 
-    //No se está realizando validación de datos por el tiempo que dicha tarea insume.
+    //No se está realizando validación del correcto ingreso de datos por el tiempo que dicha tarea insume.
     public static void inscription(int circuit, int age) {
         System.out.println(DNI);
         Long dni = input.nextLong();
@@ -78,11 +79,15 @@ public class App {
             System.out.println(PERMISSION_DENIED);
         } else {
             participants.add(dni);
-            String[] data = {String.valueOf(dni), name, surname, cellphone, emergency, blood_type};
+            String[] data = {"DNI: "+ String.valueOf(dni), " Nombre: "+name, " Apellido: "+surname,
+                    " Número de celular: "+cellphone, " Número de emergencia: "+emergency,
+                    " Grupo sanguineo: "+blood_type};
 
-            if (circuit == 1) circuit_1.put(++num, Arrays.asList(data));
-            if (circuit == 2) circuit_2.put(++num, Arrays.asList(data));
-            if (circuit == 3) circuit_3.put(++num, Arrays.asList(data));
+            num = reusable_number.isEmpty() ? ++num : (Long) Arrays.asList(reusable_number.toArray()).get(0);
+
+            if (circuit == 1) circuit_1.put(num, Arrays.asList(data));
+            if (circuit == 2) circuit_2.put(num, Arrays.asList(data));
+            if (circuit == 3) circuit_3.put(num, Arrays.asList(data));
 
             finalize(circuit, age);
         }
@@ -126,6 +131,7 @@ public class App {
             System.out.println(PARTICIPANT_NON_EXIST);
         } else {
             System.out.println(PARTICIPANT_DELETED);
+            reusable_number.add(id);
         }
 
 
