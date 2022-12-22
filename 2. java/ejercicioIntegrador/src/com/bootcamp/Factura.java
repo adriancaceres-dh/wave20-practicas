@@ -16,4 +16,12 @@ public class Factura {
         this.cliente = cliente;
     }
 
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "items=" + items +
+                ", totalCompra=" + totalCompra +
+                ", cliente=" + cliente +
+                '}';
+    }
 }

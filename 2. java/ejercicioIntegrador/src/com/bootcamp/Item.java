@@ -6,8 +6,6 @@ public class Item {
     String nombre;
     int cantidadComprada;
 
-    public Item() {
-    }
 
     public Item(double costoUnitario, String codigo, String nombre, int cantidadComprada) {
         this.costoUnitario = costoUnitario;
@@ -16,5 +14,13 @@ public class Item {
         this.cantidadComprada = cantidadComprada;
     }
 
-
+    @Override
+    public String toString() {
+        return "Item{" +
+                "costoUnitario=" + costoUnitario +
+                ", codigo='" + codigo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", cantidadComprada=" + cantidadComprada +
+                '}';
+    }
 }
