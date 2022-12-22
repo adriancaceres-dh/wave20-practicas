@@ -10,6 +10,11 @@ public class Main {
 
         Map<String, String> persona = new HashMap<String, String>();
 
+        try {
+
+        }catch (NullPointerException e ){
+            System.out.println(e.getMessage());
+        }
         persona.put("DNI", "1064121751");
         persona.put("Nombre", "Juan Carlos");
         persona.put("Apellido", "Ortiz Reales");
@@ -19,6 +24,8 @@ public class Main {
         for (String key : persona.keySet()){
             System.out.println(key + "=> " + persona.get(key));
         }
+
+
 
         
     }
