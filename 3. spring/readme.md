@@ -1,3 +1,3 @@
 ## Ejercicios
 
-[🏛️🔢🌡️ Conversor de números romanos a arábicos](numerosromanos)
+[🏛️🔢 Conversor de números romanos a arábicos](numerosromanos)
