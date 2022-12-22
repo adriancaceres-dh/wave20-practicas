@@ -12,7 +12,7 @@ public class Romanos {
     TreeMap<Integer,String> mapRomanos;
 
     public Romanos() {
-        this.mapRomanos = new TreeMap<Integer,String>();
+        this.mapRomanos = new TreeMap<>();
 
         mapRomanos.put(1000, "M");
         mapRomanos.put(900, "CM");
@@ -31,7 +31,7 @@ public class Romanos {
 
     @GetMapping("/toRoman/{decimal}")
     public String decimalToRomans(@PathVariable int decimal){
-        //mapRomanos.entrySet().stream().
+        //apRomanos.entrySet().stream().forEach(i -> i == decimal);
 
         int l =  mapRomanos.floorKey(decimal);
         if ( decimal == l ) {
