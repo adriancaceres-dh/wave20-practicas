@@ -1,13 +1,21 @@
 package com.bootcamp.numerosromanos.utils;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.Map.entry;
+
 public class NumberConverterUtil {
-    static private final Map<Character, Integer> romanianMap = new HashMap<>();
+    static private final Map<Character, Integer> romanianMap = Map.ofEntries(
+            entry('I', 1),
+            entry('V', 5),
+            entry('X', 10),
+            entry('L', 50),
+            entry('C', 100),
+            entry('D', 500),
+            entry('M', 1000)
+    );
 
     public static Integer transformRomanianToInteger(String romanian) {
-        fillRomanianMap();
         int arabic = 0;
         for (int i = 0; i < romanian.length(); i++) {
             char ch = romanian.charAt(i);
@@ -17,16 +25,6 @@ public class NumberConverterUtil {
                 arabic += romanianMap.get(ch);
         }
         return arabic;
-    }
-
-    private static void fillRomanianMap() {
-        romanianMap.putIfAbsent('I', 1);
-        romanianMap.putIfAbsent('V', 5);
-        romanianMap.putIfAbsent('X', 10);
-        romanianMap.putIfAbsent('L', 50);
-        romanianMap.putIfAbsent('C', 100);
-        romanianMap.putIfAbsent('D', 500);
-        romanianMap.putIfAbsent('M', 1000);
     }
 
 }
