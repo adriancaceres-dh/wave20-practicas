@@ -1,10 +1,14 @@
+import java.util.List;
+
 public class Reserva {
     int id;
     String tipo;
+    Cliente cliente;
 
-    public Reserva(int id, String tipo) {
+    public Reserva(int id, String tipo, Cliente cliente) {
         this.id = id;
         this.tipo = tipo;
+        this.cliente = cliente;
     }
 
     public String getTipo() {
@@ -25,5 +29,13 @@ public class Reserva {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

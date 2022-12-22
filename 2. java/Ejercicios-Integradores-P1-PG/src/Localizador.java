@@ -8,7 +8,7 @@ public class Localizador {
 
     }
 
-    public Localizador(List<Reserva> reservas, int id) {
+    public Localizador(int id, List<Reserva> reservas) {
         this.reservas = reservas;
         this.id = id;
     }
@@ -28,4 +28,6 @@ public class Localizador {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }
