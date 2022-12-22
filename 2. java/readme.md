@@ -21,3 +21,13 @@
 [🏪🥘 Supermercado Parte 1](SupermercadoP1/src/Main.java)
 
 [🚗🌀 Vehículos con Lambda y Streams](VehiculosLambdaStreams/src/Main.java)
+
+[✈️🌴 Agencia Turismo](AgenciaTurismo/src/Main.java)
+
+[👽🌌 Juego Asteroides](Asteroid/src/Main.java)
+
+[🏁🏎 Dakar](Dakar/src/Main.java)
+
+[👕👗 SaveTheRopa](SaveTheRopa/src/Main.java)
+
+[👨‍🎓📚 Administracion Curso Universidad](AdministracionCursoUniversidad/src/Main.java)
