@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @RestController
 public class Morse {
@@ -53,7 +55,7 @@ public class Morse {
         mapMorse.put(".-.-.-", ".");
         mapMorse.put("-.-.--", "!");
         mapMorse.put("--..--", ",");
-
+        mapMorse.put("X", " ");
 
     }
 
@@ -61,12 +63,20 @@ public class Morse {
     @GetMapping("/morseToEsp/{morse}")
     public String morseToEsp(@PathVariable String morse){
         //apRomanos.entrySet().stream().forEach(i -> i == decimal);
-        String[] palabras = morse.split(" ");
-        String espa = "";
+        String espacios = morse.replaceAll("   "," X ");
 
+        String[] palabras = espacios.split(" ");
+
+        //For
+        /*
+        String espa = "";
         for(String palabra : palabras){
             espa = espa + mapMorse.get(palabra);
         }
         return espa;
+        */
+
+        //Stream
+        return Arrays.stream(palabras).map(s -> mapMorse.get(s)).collect(Collectors.joining());
     }
 }
