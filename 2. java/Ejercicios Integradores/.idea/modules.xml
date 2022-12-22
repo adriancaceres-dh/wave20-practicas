@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AgenciaDeTurismo/AgenciaDeTurismo.iml" filepath="$PROJECT_DIR$/AgenciaDeTurismo/AgenciaDeTurismo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Ejercicios Integradores.iml" filepath="$PROJECT_DIR$/.idea/Ejercicios Integradores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SaveTheRopaSA/SaveTheRopaSA.iml" filepath="$PROJECT_DIR$/SaveTheRopaSA/SaveTheRopaSA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SupermercadoElEconomico/SupermercadoElEconomico.iml" filepath="$PROJECT_DIR$/SupermercadoElEconomico/SupermercadoElEconomico.iml" />
+    </modules>
+  </component>
+</project>
