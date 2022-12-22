@@ -9,10 +9,10 @@ public class Localizador {
     private List<Producto> reserva;
     private double total;
 
-    public Localizador(Cliente cliente, List<Producto> reserva, double total) {
+    public Localizador(Cliente cliente, List<Producto> reserva) {
         this.cliente = cliente;
         this.reserva = reserva;
-        this.total = total;
+        total = 0;
     }
 
     public Cliente getCliente() {
@@ -37,5 +37,14 @@ public class Localizador {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Localizador{" +
+                "cliente=" + cliente +
+                ", reserva=" + reserva +
+                ", total=" + total +
+                '}';
     }
 }

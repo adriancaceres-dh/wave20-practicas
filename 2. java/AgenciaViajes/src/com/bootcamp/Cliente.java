@@ -1,6 +1,7 @@
 package com.bootcamp;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Cliente {
     private String nombre;
@@ -27,12 +28,24 @@ public class Cliente {
         this.id = id;
     }
 
-    /**
-     *
-     * @param lista
-     * @return la cantidad de localizadores adquiridos por el cliente anteriormente
-     */
-    public int verificarReservasAnteriores(List<Localizador> lista) {
-        return (int) lista.stream().filter(l -> l.getCliente().getId().equals(this.id)).count();
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(nombre, cliente.nombre) && Objects.equals(id, cliente.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, id);
     }
 }

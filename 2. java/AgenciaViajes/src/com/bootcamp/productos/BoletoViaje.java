@@ -15,4 +15,11 @@ public class BoletoViaje extends Producto{
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "BoletoViaje{" +
+                "fecha=" + fecha +
+                '}';
+    }
 }

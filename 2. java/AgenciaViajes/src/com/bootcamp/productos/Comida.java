@@ -15,4 +15,11 @@ public class Comida extends Producto{
     public void setVegana(boolean vegana) {
         this.vegana = vegana;
     }
+
+    @Override
+    public String toString() {
+        return "Comida{" +
+                "vegana=" + vegana +
+                '}';
+    }
 }

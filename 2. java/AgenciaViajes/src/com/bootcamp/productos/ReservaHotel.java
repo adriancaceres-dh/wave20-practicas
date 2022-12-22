@@ -16,4 +16,11 @@ public class ReservaHotel extends Producto{
     public void setDias(int dias) {
         this.dias = dias;
     }
+
+    @Override
+    public String toString() {
+        return "ReservaHotel{" +
+                "dias=" + dias +
+                '}';
+    }
 }
