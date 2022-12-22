@@ -1,13 +1,10 @@
 package com.bootcamp.clases;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class Main {
 
@@ -33,15 +30,52 @@ public class Main {
 
 
        // lista de vehículos ordenados por precio de menor a mayor e impreso por pantalla el resultado.
-        System.out.println("vehiculos con orden ********");
+        System.out.println("vehiculos con orden de costo menor a mayor ********");
         misVehiculos.stream()
-                        .sorted(Comparator.comparing(Vehiculo::getCosto)
-                        .thenComparing(Vehiculo::getCosto))
-                        .forEach(System.out::println);// se muestran todos los elementos ordenados
+                .sorted(Comparator.comparing(Vehiculo::getCosto)
+                .thenComparing(Vehiculo::getCosto))
+                .forEach(System.out::println);// se muestran todos los elementos ordenados
 
 
+        // lista de vehículos ordenados por marca y costo e impreso por pantalla el resultado.
+        System.out.println("vehiculos con orden de marca y costo********");
+        misVehiculos.stream()
+                .sorted(Comparator.comparing(Vehiculo::getMarca)
+                .thenComparing(Vehiculo::getCosto))
+                .forEach(System.out::println);// se muestran todos los elementos ordenados
+
+
+        // Flitro de lista de vehículos con precios < 1000
+        List<Vehiculo> vehiculosCostoMenor= misVehiculos
+                .stream()
+                .filter(vehiculo -> vehiculo.getCosto() < 1000)
+                .collect(Collectors.toList());
+
+        // Flitro de lista de vehículos con precios >= 1000
+        List<Vehiculo> vehiculosCostoMayor = misVehiculos
+                .stream()
+                .filter( vehiculo -> vehiculo.getCosto() >= 1000)
+                .collect(Collectors.toList());
+
+        System.out.println("*****************");
+        System.out.println(vehiculosCostoMenor);
+
+        System.out.println("*****************");
+        System.out.println(vehiculosCostoMayor);
+
+
+        //obtén el promedio total de precios de toda la lista de vehículos.
+
+
+        double promedio = misVehiculos
+                .stream()
+                .map(Vehiculo::getCosto)
+                .reduce((double) 0, (subtotal, element) -> subtotal + element);
+
+        System.out.println(promedio);
 
 
 
     }
+
 }

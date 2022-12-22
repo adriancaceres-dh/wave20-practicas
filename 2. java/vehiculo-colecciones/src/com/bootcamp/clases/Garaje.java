@@ -6,7 +6,10 @@ public class Garaje {
     private int id;
     ArrayList<Vehiculo> vehiculos;
 
-
+    public Garaje(int id) {
+        this.id = id;
+        vehiculos = new ArrayList<>();
+    }
 
     public Garaje(int id, ArrayList<Vehiculo>vehiculos) {
         this.id = id;
