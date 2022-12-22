@@ -1,6 +1,7 @@
 package com.example.numerosromanos;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -30,8 +31,8 @@ public class ConverterController {
     }
   };
 
-  @GetMapping("/convertir")
-  public String convertToRoman(Integer number) {
+  @GetMapping("/convertir/{number}")
+  public String convertToRoman(@PathVariable Integer number) {
     int l =  diccionario.floorKey(number);
     if ( number == l ) {
       return diccionario.get(number);
