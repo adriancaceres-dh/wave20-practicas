@@ -6,6 +6,7 @@ import dakar.vehiculo.Auto;
 import dakar.vehiculo.Moto;
 import dakar.vehiculo.Vehiculo;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -18,12 +19,30 @@ public class Carrera {
     private SocorristaAuto socorristaAuto;
     private SocorristaMoto socorristaMoto;
 
+    public Carrera(float distancia, double premioEnDolares, String nombre, int cantidadDeVehiculosPermitidos, SocorristaAuto socorristaAuto, SocorristaMoto socorristaMoto) {
+        this.distancia = distancia;
+        this.premioEnDolares = premioEnDolares;
+        this.nombre = nombre;
+        this.cantidadDeVehiculosPermitidos = cantidadDeVehiculosPermitidos;
+        this.vehiculos = new ArrayList<>();
+        this.socorristaAuto = socorristaAuto;
+        this.socorristaMoto = socorristaMoto;
+    }
+
+    private void agregarVehiculoSiCorresponde(Vehiculo vehiculo) {
+        if(vehiculos.size() < cantidadDeVehiculosPermitidos) {
+            vehiculos.add(vehiculo);
+        } else {
+            System.out.println("Ya se alcanzó el límite de vehículos");
+        }
+    }
+
     public void darDeAltaAuto(float velocidad, float aceleracion, float anguloDeGiro, String patente){
-        vehiculos.add(new Auto(velocidad, aceleracion, anguloDeGiro, patente));
+        agregarVehiculoSiCorresponde(new Auto(velocidad, aceleracion, anguloDeGiro, patente));
     }
 
     public void darDeAltaMoto(float velocidad, float aceleracion, float anguloDeGiro, String patente){
-        vehiculos.add(new Moto(velocidad, aceleracion, anguloDeGiro, patente));
+        agregarVehiculoSiCorresponde(new Moto(velocidad, aceleracion, anguloDeGiro, patente));
     }
 
     public void eliminarVehiculo(Vehiculo vehiculo){

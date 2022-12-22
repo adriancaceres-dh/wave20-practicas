@@ -68,4 +68,16 @@ public abstract class Vehiculo {
     public void setPatente(String patente) {
         this.patente = patente;
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "velocidad=" + velocidad +
+                ", aceleracion=" + aceleracion +
+                ", anguloDeGiro=" + anguloDeGiro +
+                ", peso=" + peso +
+                ", cantidadDeRuedas=" + cantidadDeRuedas +
+                ", patente='" + patente + '\'' +
+                '}';
+    }
 }
