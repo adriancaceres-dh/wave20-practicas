@@ -1,4 +1,4 @@
-package com.bootcamp.clases;
+package com.bootcamp.transacciones;
 
 public interface Transaccion {
     //Metodos de la Interface

@@ -1,18 +1,17 @@
-package com.bootcamp.clases;
+package com.bootcamp.transacciones;
 
-import java.sql.SQLOutput;
-
-public class Deposito implements Transaccion {
-
+public interface Deposito implements Transaccion {
     @Override
     public void transaccionOk() {
-        System.out.println("Realizando deposito ...");
+        System.out.println("Realizando transaccion ...");
         System.out.println("Transaccion ok");
     }
 
     @Override
     public void transaccionNoOk() {
-        System.out.println("Deposito NO relaizado ...");
+        System.out.println("Transaccion NO relaizada ...");
         System.out.println("Transaccion NO ok");
     }
+
+
 }
