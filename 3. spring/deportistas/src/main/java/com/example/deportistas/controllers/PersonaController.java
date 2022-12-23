@@ -24,8 +24,7 @@ public class PersonaController {
     @PostMapping("/personas")
     public ResponseEntity<String> addPersona(@RequestBody Persona persona) {
         personaService.addPersona(persona);
-
-        return new ResponseEntity<>("Persona agregada", HttpStatus.OK);
+        return ResponseEntity.ok("Persona agregada");
     }
 
     @GetMapping("/findSportsPersons")
