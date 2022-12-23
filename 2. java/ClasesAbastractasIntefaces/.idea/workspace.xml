@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a6a6be5-03df-4f87-914c-bf0f7bc5963b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/ColeccionesMapasDiccionarios.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/src/com/bootcamp/CarreraSelva.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ColeccionesMapasDiccionarios/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
