@@ -1,6 +1,7 @@
 package com.bootcamp.Hospital.controller;
 
 
+import com.bootcamp.Hospital.dto.SintomaDto;
 import com.bootcamp.Hospital.model.Persona;
 import com.bootcamp.Hospital.model.Sintoma;
 import com.bootcamp.Hospital.response.ResponseEntity;
@@ -23,8 +24,13 @@ public class PersonaController {
     }
 
     @GetMapping("findAllPerson")
-    public ResponseEntity<List<Persona>> findAllPerson(){
+    public ResponseEntity<List<SintomaDto>> findAllPerson(){
         return personaService.findAllPerson();
     }
+    @GetMapping("findPerson/{id}")
+    public ResponseEntity<Persona> findPerson(@PathVariable String id){
+        return personaService.findPerson(id);
+    }
+
 
 }

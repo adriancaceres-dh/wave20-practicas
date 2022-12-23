@@ -27,4 +27,6 @@ public class SintomaController {
     public ResponseEntity<Sintoma> findSymptom(@RequestParam String nombre){
         return sintomaService.findSymptom(nombre);
     }
+
+
 }
