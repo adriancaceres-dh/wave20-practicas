@@ -32,10 +32,9 @@ public class DeporteController {
     @GetMapping("/findSports/{name}")
     public ResponseEntity<Deporte> getDeporteByName(@PathVariable String name) {
         Deporte deporteEncontrado = deporteService.getDeporte(name);
-
         if (Objects.isNull(deporteEncontrado)) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
-        return new ResponseEntity<>(deporteEncontrado, HttpStatus.OK);
+        return ResponseEntity.ok().body(deporteEncontrado);
     }
 }
