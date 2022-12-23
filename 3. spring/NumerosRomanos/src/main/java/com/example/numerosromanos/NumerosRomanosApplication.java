@@ -21,6 +21,7 @@ public class NumerosRomanosApplication {
     }
 
     public static String recursivoRomano(String numero){
+        // Pasamos el número a un entero.
         int actual = Integer.parseInt(numero);
         String numeroMostrar = "";
         if (actual <= 0) {
@@ -57,6 +58,7 @@ public class NumerosRomanosApplication {
                     break;
             }
         }
+        // Devolvemos los casos revursivos.
         return numeroMostrar;
     }
 }
