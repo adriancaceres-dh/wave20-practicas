@@ -1,13 +1,13 @@
-package com.example.deportistas.dtos;
+package com.example.deportistas.dtos.response;
 
 import java.io.Serializable;
 
-public class PersonaDeporteDTO implements Serializable {
+public class PersonaDeporteResponseDTO implements Serializable {
     private final String nombre;
     private final String apellido;
     private final String nivelDeporte;
 
-    public PersonaDeporteDTO(String nombre, String apellido, String nivelDeporte) {
+    public PersonaDeporteResponseDTO(String nombre, String apellido, String nivelDeporte) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nivelDeporte = nivelDeporte;

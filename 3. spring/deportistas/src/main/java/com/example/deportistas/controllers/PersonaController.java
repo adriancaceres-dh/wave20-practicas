@@ -1,9 +1,8 @@
 package com.example.deportistas.controllers;
 
-import com.example.deportistas.dtos.PersonaDeporteDTO;
+import com.example.deportistas.dtos.response.PersonaDeporteResponseDTO;
 import com.example.deportistas.models.Persona;
 import com.example.deportistas.services.PersonaService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,10 +27,10 @@ public class PersonaController {
     }
 
     @GetMapping("/findSportsPersons")
-    public List<PersonaDeporteDTO> getPersonasDeportistas() {
+    public List<PersonaDeporteResponseDTO> getPersonasDeportistas() {
         return personaService.getPersonas()
                 .stream()
-                .map(persona -> new PersonaDeporteDTO(persona.getNombre(), persona.getApellido(), persona.getDeporte().getNivel()))
+                .map(persona -> new PersonaDeporteResponseDTO(persona.getNombre(), persona.getApellido(), persona.getDeporte().getNivel()))
                 .collect(Collectors.toList());
     }
 }
