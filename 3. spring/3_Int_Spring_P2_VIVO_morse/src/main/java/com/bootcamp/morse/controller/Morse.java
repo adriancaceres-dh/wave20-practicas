@@ -10,52 +10,52 @@ import java.util.stream.Collectors;
 
 @RestController
 public class Morse {
-    TreeMap<String,String> mapMorse;
+    TreeMap<String,String> mapMorseCode;
 
     public Morse() {
-        this.mapMorse = new TreeMap<>();
+        this.mapMorseCode = new TreeMap<>();
 
-        mapMorse.put(".-", "A");
-        mapMorse.put("-...", "B");
-        mapMorse.put("-.-.", "C");
-        mapMorse.put("-..", "D");
-        mapMorse.put(".", "E");
-        mapMorse.put("..-.", "F");
-        mapMorse.put("--.", "G");
-        mapMorse.put("....", "H");
-        mapMorse.put("..", "I");
-        mapMorse.put(".---", "J");
-        mapMorse.put("-.-", "K");
-        mapMorse.put(".-..", "L");
-        mapMorse.put("--", "M");
-        mapMorse.put("-.", "N");
-        mapMorse.put("---", "O");
-        mapMorse.put(".--.", "P");
-        mapMorse.put("--.-", "Q");
-        mapMorse.put(".-.", "R");
-        mapMorse.put("...", "S");
-        mapMorse.put("-", "T");
-        mapMorse.put("..-", "U");
-        mapMorse.put("...-", "V");
-        mapMorse.put(".--", "W");
-        mapMorse.put("-..-", "X");
-        mapMorse.put("-.--", "Y");
-        mapMorse.put("--..", "Z");
-        mapMorse.put(".----", "1");
-        mapMorse.put("..---", "2");
-        mapMorse.put("...--", "3");
-        mapMorse.put("....-", "4");
-        mapMorse.put(".....", "5");
-        mapMorse.put("-....", "6");
-        mapMorse.put("--...", "7");
-        mapMorse.put("---..", "8");
-        mapMorse.put("----.", "9");
-        mapMorse.put("-----", "0");
-        mapMorse.put("..--..", "?");
-        mapMorse.put(".-.-.-", ".");
-        mapMorse.put("-.-.--", "!");
-        mapMorse.put("--..--", ",");
-        mapMorse.put("X", " ");
+        mapMorseCode.put(".-", "A");
+        mapMorseCode.put("-...", "B");
+        mapMorseCode.put("-.-.", "C");
+        mapMorseCode.put("-..", "D");
+        mapMorseCode.put(".", "E");
+        mapMorseCode.put("..-.", "F");
+        mapMorseCode.put("--.", "G");
+        mapMorseCode.put("....", "H");
+        mapMorseCode.put("..", "I");
+        mapMorseCode.put(".---", "J");
+        mapMorseCode.put("-.-", "K");
+        mapMorseCode.put(".-..", "L");
+        mapMorseCode.put("--", "M");
+        mapMorseCode.put("-.", "N");
+        mapMorseCode.put("---", "O");
+        mapMorseCode.put(".--.", "P");
+        mapMorseCode.put("--.-", "Q");
+        mapMorseCode.put(".-.", "R");
+        mapMorseCode.put("...", "S");
+        mapMorseCode.put("-", "T");
+        mapMorseCode.put("..-", "U");
+        mapMorseCode.put("...-", "V");
+        mapMorseCode.put(".--", "W");
+        mapMorseCode.put("-..-", "X");
+        mapMorseCode.put("-.--", "Y");
+        mapMorseCode.put("--..", "Z");
+        mapMorseCode.put(".----", "1");
+        mapMorseCode.put("..---", "2");
+        mapMorseCode.put("...--", "3");
+        mapMorseCode.put("....-", "4");
+        mapMorseCode.put(".....", "5");
+        mapMorseCode.put("-....", "6");
+        mapMorseCode.put("--...", "7");
+        mapMorseCode.put("---..", "8");
+        mapMorseCode.put("----.", "9");
+        mapMorseCode.put("-----", "0");
+        mapMorseCode.put("..--..", "?");
+        mapMorseCode.put(".-.-.-", ".");
+        mapMorseCode.put("-.-.--", "!");
+        mapMorseCode.put("--..--", ",");
+        mapMorseCode.put("X", " ");
 
     }
 
@@ -71,12 +71,14 @@ public class Morse {
         /*
         String espa = "";
         for(String palabra : palabras){
-            espa = espa + mapMorse.get(palabra);
+            espa = espa + mapMorseCode.get(palabra);
         }
         return espa;
         */
 
         //Stream
-        return Arrays.stream(palabras).map(s -> mapMorse.get(s)).collect(Collectors.joining());
+        return Arrays.stream(palabras)
+                .map(s -> mapMorseCode.get(s))
+                .collect(Collectors.joining());
     }
 }
