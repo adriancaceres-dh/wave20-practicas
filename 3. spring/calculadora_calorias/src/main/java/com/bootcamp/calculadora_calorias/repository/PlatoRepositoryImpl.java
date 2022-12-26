@@ -1,7 +1,6 @@
 package com.bootcamp.calculadora_calorias.repository;
 
 import com.bootcamp.calculadora_calorias.model.Plato;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,16 +19,24 @@ public class PlatoRepositoryImpl implements IPlatoRepository {
         this.platos = new ArrayList<>();
     }
 
-    private boolean obtenerPlatosMenu() {
+    private void obtenerPlatosMenu() {
         this.platos = List.of(
                 new Plato("Hamburguesa con espinacas",
                         List.of(
                                 ingredienteRepository.obtenerIngredientePorNombre("Hamburguesa").get(),
                                 ingredienteRepository.obtenerIngredientePorNombre("Espinaca").get(),
-                                ingredienteRepository.obtenerIngredientePorNombre("Pan de trigo integral").get()))
+                                ingredienteRepository.obtenerIngredientePorNombre("Pan de trigo integral").get())),
+                new Plato("Ensalada con pollo",
+                        List.of(
+                                ingredienteRepository.obtenerIngredientePorNombre("Lechuga").get(),
+                                ingredienteRepository.obtenerIngredientePorNombre("Tomates").get(),
+                                ingredienteRepository.obtenerIngredientePorNombre("Pollo").get(),
+                                ingredienteRepository.obtenerIngredientePorNombre("Pimiento").get())),
+                new Plato("Pastel de manzana y moras",
+                        List.of(
+                                ingredienteRepository.obtenerIngredientePorNombre("Pastel de manzana").get(),
+                                ingredienteRepository.obtenerIngredientePorNombre("Mora").get()))
         );
-
-        return true;
     }
 
     @Override
