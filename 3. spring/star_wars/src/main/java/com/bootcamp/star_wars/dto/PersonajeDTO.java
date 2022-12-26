@@ -1,11 +1,12 @@
 package com.bootcamp.star_wars.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
+
+import java.io.Serializable;
 
 @AllArgsConstructor
-@Getter
+@NoArgsConstructor
+@Data
 @Builder
 public class PersonajeDTO {
     private String name;
