@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Repository
 public class PersonajeRepositoryImpl implements IPersonajeRepository {
@@ -38,7 +40,11 @@ public class PersonajeRepositoryImpl implements IPersonajeRepository {
     }
 
     @Override
-    public List<Personaje> obtenerPersonajes() {
-        return personajes;
+    public List<Personaje> obtenerPersonajes(String nombre) {
+        return nombre == null
+                ? personajes
+                : personajes.stream()
+                    .filter(personaje -> personaje.getName().toLowerCase(Locale.ROOT).contains(nombre.toLowerCase(Locale.ROOT)))
+                    .collect(Collectors.toList());
     }
 }

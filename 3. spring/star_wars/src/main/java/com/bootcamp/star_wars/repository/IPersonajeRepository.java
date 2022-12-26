@@ -5,5 +5,5 @@ import com.bootcamp.star_wars.model.Personaje;
 import java.util.List;
 
 public interface IPersonajeRepository {
-    List<Personaje> obtenerPersonajes();
+    List<Personaje> obtenerPersonajes(String nombre);
 }
