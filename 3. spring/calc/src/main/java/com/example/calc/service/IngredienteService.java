@@ -11,13 +11,8 @@ public class IngredienteService implements IIngredienteService{
     @Autowired
     private IIngredienteRepository repo;
 
-    public int calcularCalorias(String ingrediente, int calorias){
-        /*Integer aRetornar = repo.getIngredientes().stream().filter(i -> i.getNombre().equals(ingrediente))
-                .findFirst().get().getCalorias();
-        if(aRetornar == null) return 0;
-        else return calorias * aRetornar;*/
-        //return repo.getIngredientes().stream().filter(i -> i.getNombre().equals(ingrediente)).findFirst().get().getCalorias();
-        for(Ingrediente i: repo.getIngredientes()) if(i.getName().equals(ingrediente)) return i.getCalories();
+    public int calcularCalorias(String ingrediente, int peso){
+        for(Ingrediente i: repo.getIngredientes()) if(i.getName().equals(ingrediente)) return i.getCalories()*peso;
         return 0;
     }
 

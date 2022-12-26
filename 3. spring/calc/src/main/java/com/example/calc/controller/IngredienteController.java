@@ -18,9 +18,8 @@ public class IngredienteController {
     private IIngredienteService ingredienteService;
 
     @GetMapping("/{plato}/{peso}")
-    public ResponseEntity<Object> mostrarPlato(@PathVariable String plato, @PathVariable int peso){
-        int calorias = ingredienteService.calcularCalorias(plato, peso);
-        return new ResponseEntity<>(calorias, HttpStatus.OK);
+    public int mostrarPlato(@PathVariable String plato, @PathVariable int peso){
+        return ingredienteService.calcularCalorias(plato, peso);
     }
 
 }
