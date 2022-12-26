@@ -23,6 +23,7 @@ public class Personaje {
     @JsonProperty("birth_year")
     private String birthYear;
     private String gender;
-    private String homeworld;
+    @JsonProperty("homeworld")
+    private String homeWorld;
     private String species;
 }
