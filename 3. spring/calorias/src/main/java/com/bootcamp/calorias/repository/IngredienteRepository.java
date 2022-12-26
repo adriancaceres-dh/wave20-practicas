@@ -29,4 +29,8 @@ public class IngredienteRepository {
     public Ingrediente findByName(String name) {
         return ingredients.stream().filter(i -> i.getName().equals(name)).findFirst().get();
     }
+
+    public double getIngredientCaloriesByName(String name) {
+        return findByName(name).getCalories();
+    }
 }
