@@ -5,14 +5,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        ClientImp cliImp = new ClientImp();
+
         Cliente c1 = new Cliente("123", "Snoop", "Dogg");
         Cliente c2 = new Cliente("234", "Pepe", "Platano");
         Cliente c3 = new Cliente("345", "Michael", "Scotch");
 
-        List<Cliente> listaClientes = new ArrayList<>();
-        listaClientes.add(c1);
-        listaClientes.add(c2);
-        listaClientes.add(c3);
+        cliImp.create(c1);
+        cliImp.create(c2);
+        cliImp.create(c3);
+
+        cliImp.read();
+
+        ItemImp itemImp = new ItemImp();
 
         Item i1 = new Item(123L, "Galletas Navideñas", 1, 990);
         Item i2 = new Item(234L, "Shampoo Tio Nacho", 1, 5990);
@@ -22,65 +27,38 @@ public class Main {
         Item i6 = new Item(678L, "Lecha Chocolatada", 2, 1900);
         Item i7 = new Item(789L, "Desodorante Nivea", 4, 1550);
 
-        List<Item> listaItems1 = new ArrayList<>();
-        listaItems1.add(i1);
-        listaItems1.add(i6);
-        List<Item> listaItems2 = new ArrayList<>();
-        listaItems2.add(i2);
-        listaItems2.add(i3);
-        listaItems2.add(i7);
-        listaItems2.add(i4);
-        List<Item> listaItems3 = new ArrayList<>();
-        listaItems3.add(i5);
-        listaItems3.add(i1);
-        listaItems3.add(i4);
+        itemImp.create(i1);
+        itemImp.create(i2);
+        itemImp.create(i3);
+        itemImp.create(i4);
+        itemImp.create(i5);
+        itemImp.create(i6);
+        itemImp.create(i7);
 
+        itemImp.read();
 
+        itemImp.find("456");
 
-        Factura f1 = new Factura(321L, c1, listaItems1);
-        System.out.println(f1.toString());
+        itemImp.delete("234");
 
-        List<Factura> listaFacturas = new ArrayList<>();
+        FacturaImp facImp = new FacturaImp();
 
+        Factura f1 = new Factura(321L, c1, itemImp.listaItems);
 
-        for(Cliente c : listaClientes){
-            System.out.println("Dni: " + c.getDni() + " Nombre: " + c.getNombre() + " " + c.getApellido());
-        }
+        facImp.create(f1);
+
+        facImp.read();
+
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese dni del cliente a borrar");
         String dniBorrado = scanner.next();
-        boolean flag = false;
 
-        for(Cliente c : listaClientes) {
-            if(c.getDni().equals(dniBorrado)) {
-                listaClientes.remove(c);
-                flag = true;
-                break;
-            }
-        }
-        if(!flag) {
-            System.out.println("No se encontro el cliente a borrar");
-        }
-        else {
-            System.out.println("Cliente borrado correctamente");
-        }
+        cliImp.delete(dniBorrado);
 
         System.out.println("Ingrese el dni del cliente a buscar");
         String dniBuscado = scanner.next();
+        cliImp.find(dniBuscado);
 
-        flag = false;
-        for(Cliente c : listaClientes) {
-            if(c.getDni().equals(dniBuscado)) {
-                System.out.println("--- Cliente encontrado, sus datos son: ---");
-                System.out.println("Dni: " + c.getDni() + " Nombre: " + c.getNombre() + " " + c.getApellido());
-                flag = true;
-                break;
-            }
-        }
-
-        if(!flag) {
-            System.out.println("Cliente no encontrado");
-        }
     }
 }
