@@ -42,33 +42,9 @@ public class RiskPersonsRequestDTO {
     @Override
     public String toString() {
         return "{" + '\n' +
-                "personFirstName='" + personFirstName + '\n' +
-                ", personLastName='" + personLastName + '\n' +
+                "Nombre: " + personFirstName + '\n' +
+                "Apellido: " + personLastName + '\n' +
                 "}\n";
     }
 
-    public List<RiskPersonsRequestDTO> getRiskPersons (){
-        PersonSymptomS personSymptom = new PersonSymptomS();
-        PersonS personS = new PersonS();
-        SymptomS symptomS = new SymptomS();
-
-        List<RiskPersonsRequestDTO> personsAtRisk = new ArrayList<>();
-
-        personSymptom.getPersonSymptomList().forEach((personId, listSymptoms)-> {
-           PersonM auxPerson = personS.findOneById(personId);
-
-           if(auxPerson.getAge()>=60) personsAtRisk.add(new RiskPersonsRequestDTO(auxPerson.getFirstName(), auxPerson.getLastName()));
-        });
-
-    return personsAtRisk;
-    }
-
-
-    public String printList(){
-        List<RiskPersonsRequestDTO> personsAtRisk = getRiskPersons();
-        StringBuilder listToString = new StringBuilder("La lista de síntomas es: \n");
-        personsAtRisk.forEach(item -> listToString.append(item.toString()));
-        listToString.append(("________________"));
-        return listToString.toString();
-    }
 }
