@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EdadController {
 
     @Autowired
-    EdadService edadService;
-
-
-
+    private EdadService edadService;
 
 
     // Método que solita una edad enviando una fecha
