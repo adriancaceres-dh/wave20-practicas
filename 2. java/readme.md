@@ -10,9 +10,9 @@
 
 [Distribuidora de alimentos](poo-p2/excepciones-y-polimorfismo/src/com/bootcamp/Distribuidora.java)
 
-[Animales POO](clases-abstractas/ej3/src/com/bootcamp/Main.java)
+[Animales POO](clases-abstractas/ej3/animales/src/com/bootcamp/Main.java)
 
-[Imprimibles](clases-abstractas/ej2/src/com/bootcamp/Main.java)
+[Imprimibles](clases-abstractas/ej2/imprimibles/src/com/bootcamp/Main.java)
 
 [Banco](clases-abstractas/ej1/src/com/bootcamp/Main.java)
 
@@ -24,6 +24,6 @@
 
 [Agencia Turismo](integradores-p1/agencia/agencia/src/com/bootcamp/Main.java)
 
-[Dakar](integradores-p2/Dakar/Dakar/src/Main.java)
+[Dakar](integradores-p2/Dakar/Dakar/src/com/bootcamp/Carrera.java)
 
-[SaveTheRopa](integradores-p2/SaveTheRopa/SaveTheRopa/src/com/bootcamp/Main.java)
+[SaveTheRopa](integradores-p2/SsaveTheRopa/SaveTheRopa/src/com/bootcamp/Main.java)
