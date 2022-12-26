@@ -1,0 +1,53 @@
+package com.example.autos.service;
+
+import com.example.autos.dto.request.CarRequestDto;
+import com.example.autos.dto.request.CarRequestToCarModel;
+import com.example.autos.model.Car;
+import com.example.autos.repository.CarRepositoryInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public class CarService {
+
+    private final CarRepositoryInterface carRepository;
+    private final ModelMapper modelMapper;
+
+    @Autowired
+    public CarService(CarRepositoryInterface carRepository, ModelMapper modelMapper) {
+        this.carRepository = carRepository;
+        this.modelMapper = modelMapper;
+    }
+
+    public long addCar(CarRequestDto carRequestDto) {
+        Car newCar = CarRequestToCarModel.getCarFromCarRequestDto(carRequestDto);
+        newCar.setId(idToAdd());
+        carRepository.addCar(newCar);
+
+        return newCar.getId();
+    }
+
+    public List<Car> getAllCars() {
+        return carRepository.getAllCars();
+    }
+
+    public List<Car> getCarsFilteredByDate(LocalDate from, LocalDate to) {
+        return carRepository.filterCarsByDate(from, to);
+    }
+
+    public List<Car> getCarsFilteredByPrice(double from, double to) {
+        return carRepository.filterCarsByPrice(from,to);
+    }
+
+    public Car getCarById(long id) {
+        return carRepository.getCarById(id);
+    }
+
+    private long idToAdd() {
+        return carRepository.getAllCars().size() + 1;
+    }
+}
