@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 @Builder
-public class PersonaResponseDto {
+public class PersonajeResponseDto {
 
     private String name;
     private String height;
