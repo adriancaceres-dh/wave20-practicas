@@ -18,11 +18,12 @@ public class PersonajeServiceImpl implements IPersonajeService{
     private final ModelMapper mapper = new ModelMapper();
     @Override
     public List<PersonajeDTO> buscarTodosPorNombre(String nombre) {
-       List<Personaje> personajes =  iPersonajesRepository.buscarTodosPorNombre();
+       List<Personaje> personajes =  iPersonajesRepository.buscarTodos();
 
         List<PersonajeDTO> personajesFiltrados = new ArrayList<>();
 
-        personajesFiltrados = personajes.stream().filter(x->x.getName().contains(nombre)).collect(Collectors.toList()).stream().map(p-> mapper.map(p,PersonajeDTO.class)).collect(Collectors.toList());
+        personajesFiltrados = personajes.stream().filter(x->x.getName().contains(nombre)).collect(Collectors.toList())
+                .stream().map(p-> mapper.map(p,PersonajeDTO.class)).collect(Collectors.toList());
 
 
         return personajesFiltrados;

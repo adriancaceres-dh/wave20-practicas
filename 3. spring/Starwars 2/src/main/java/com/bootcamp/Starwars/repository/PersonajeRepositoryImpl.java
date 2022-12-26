@@ -42,7 +42,7 @@ public class PersonajeRepositoryImpl implements IPersonajesRepository{
     }
 
     @Override
-    public List<Personaje> buscarTodosPorNombre() {
+    public List<Personaje> buscarTodos() {
         return this.database;
     }
 }

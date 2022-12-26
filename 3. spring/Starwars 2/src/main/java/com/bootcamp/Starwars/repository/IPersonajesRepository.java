@@ -6,5 +6,5 @@ import com.bootcamp.Starwars.model.Personaje;
 import java.util.List;
 
 public interface IPersonajesRepository {
-    List<Personaje> buscarTodosPorNombre();
+    List<Personaje> buscarTodos();
 }
