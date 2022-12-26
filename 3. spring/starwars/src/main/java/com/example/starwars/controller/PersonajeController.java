@@ -1,6 +1,6 @@
 package com.example.starwars.controller;
 
-import com.example.starwars.dto.CharacterDTO;
+import com.example.starwars.dto.PersonajeDTO;
 import com.example.starwars.service.StarWarsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class StarwarsController {
     }
 
     @GetMapping("/personajes")
-    public ResponseEntity<List<CharacterDTO>> searchCharacter(@RequestParam String name){
+    public ResponseEntity<List<PersonajeDTO>> searchCharacter(@RequestParam String name){
 
         return new ResponseEntity<>(starWarsService.consulta(name), HttpStatus.ACCEPTED);
     }

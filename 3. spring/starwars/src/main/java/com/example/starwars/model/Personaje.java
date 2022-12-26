@@ -1,4 +1,4 @@
-package com.example.starwars.entity;
+package com.example.starwars.model;
 
 public class Character {
     private String name;
