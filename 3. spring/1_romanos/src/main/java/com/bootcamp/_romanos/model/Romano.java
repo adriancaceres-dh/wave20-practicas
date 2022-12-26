@@ -1,20 +1,13 @@
 package com.bootcamp._romanos.model;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
-
-public class NumeroRomano {
-
-    private final static Map<Integer, String> mapaRomanos= new HashMap<>(){{
-            put(1000,"M");
-            put(500,"D");
-            put(100,"C");
-            put(50,"L");
-            put(10,"X");
-            put(5,"V");
-            put(1,"I");
-    }};
-
+import java.util.TreeMap;
+@Getter
+public class Romano implements IRomano{
+    /*
     public static String agregarCXI(String romano, Integer contador, String letra){
         String compuesto4;
         switch (letra){
@@ -41,8 +34,9 @@ public class NumeroRomano {
 
     public static String convertirARomano(Integer numero){
         String romano="";
-        int contador;
-        if (numero<3999){
+        if (numero<3999 && numero>0){
+            int contador;
+
             while(numero-1000>=0){
                 romano+="M";
                 numero-=1000;
@@ -86,4 +80,5 @@ public class NumeroRomano {
         }
         return romano;
     }
+    */
 }
