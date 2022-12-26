@@ -14,8 +14,12 @@ import java.util.List;
 @RestController
 public class PersonajeController {
 
+    private final PersonajeService personajeService;
+
     @Autowired
-    private PersonajeService personajeService;
+    public PersonajeController(PersonajeService personajeService) {
+        this.personajeService = personajeService;
+    }
 
     @GetMapping("/personajes")
     public ResponseEntity<List<PersonajeDto>> getPersonajes(

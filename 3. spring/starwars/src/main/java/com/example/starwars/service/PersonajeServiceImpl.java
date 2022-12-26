@@ -13,11 +13,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class PersonajeServiceImpl implements PersonajeService {
+    private final PersonajeRepository personajeRepository;
+    private final ModelMapper modelMapper;
+    
     @Autowired
-    private PersonajeRepository personajeRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    public PersonajeServiceImpl(PersonajeRepository personajeRepository, ModelMapper modelMapper) {
+        this.personajeRepository = personajeRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public List<PersonajeDto> getAll() {
