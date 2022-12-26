@@ -3,6 +3,7 @@ package com.bootcamp.clases;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -65,8 +66,6 @@ public class Main {
 
 
         //obtén el promedio total de precios de toda la lista de vehículos.
-
-
         double promedio = misVehiculos
                 .stream()
                 .map(Vehiculo::getCosto)
@@ -74,6 +73,11 @@ public class Main {
 
         System.out.println(promedio);
 
+
+         Optional<Vehiculo> v2 =   misVehiculos.stream()
+                 .filter(vehiculo -> vehiculo.getCosto() == 1250)
+                 .findFirst();
+        System.out.println(v2);
 
 
     }
