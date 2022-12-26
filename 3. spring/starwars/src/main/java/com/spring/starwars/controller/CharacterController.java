@@ -21,4 +21,5 @@ public class CharacterController {
     public ResponseEntity<List<CharacterDTO>> findCharacters(@RequestParam String name){
         return new ResponseEntity<>(characterService.characterByName(name), HttpStatus.OK);
     }
+
 }

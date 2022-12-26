@@ -1,10 +1,6 @@
 package com.spring.starwars.model;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 @Data
 public class Character {
     private String name;
