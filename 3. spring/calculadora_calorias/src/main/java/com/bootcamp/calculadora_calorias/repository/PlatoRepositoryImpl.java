@@ -15,11 +15,7 @@ public class PlatoRepositoryImpl implements IPlatoRepository {
 
     private List<Plato> platos;
 
-    public PlatoRepositoryImpl() {
-        this.platos = new ArrayList<>();
-    }
-
-    private void obtenerPlatosMenu() {
+    private void generarPlatosMenu() {
         this.platos = List.of(
                 new Plato("Hamburguesa con espinacas",
                         List.of(
@@ -41,8 +37,8 @@ public class PlatoRepositoryImpl implements IPlatoRepository {
 
     @Override
     public Optional<Plato> obtenerPlato(String nombre) {
-        if(platos.isEmpty())
-            obtenerPlatosMenu();
+        if(platos == null)
+            generarPlatosMenu();
 
         return platos.stream().filter(plato -> plato.getNombre().equalsIgnoreCase(nombre)).findFirst();
     }
