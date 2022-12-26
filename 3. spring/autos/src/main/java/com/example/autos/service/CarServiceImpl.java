@@ -12,13 +12,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class CarService {
+public class CarServiceImpl implements CarServiceInterface{
 
     private final CarRepositoryInterface carRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public CarService(CarRepositoryInterface carRepository, ModelMapper modelMapper) {
+    public CarServiceImpl(CarRepositoryInterface carRepository, ModelMapper modelMapper) {
         this.carRepository = carRepository;
         this.modelMapper = modelMapper;
     }

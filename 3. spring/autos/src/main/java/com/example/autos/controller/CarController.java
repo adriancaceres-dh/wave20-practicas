@@ -2,7 +2,8 @@ package com.example.autos.controller;
 
 import com.example.autos.dto.request.CarRequestDto;
 import com.example.autos.model.Car;
-import com.example.autos.service.CarService;
+import com.example.autos.service.CarServiceImpl;
+import com.example.autos.service.CarServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,10 @@ import java.util.List;
 @RequestMapping("v1/api/vehicles")
 public class CarController {
 
-    private final CarService carService;
+    private final CarServiceInterface carService;
 
     @Autowired
-    public CarController(CarService carService) {
+    public CarController(CarServiceInterface carService) {
         this.carService = carService;
     }
 
