@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,20 +21,28 @@ public class PlatoServiceImpl implements IPlatoService {
     ModelMapper mapper = new ModelMapper();
 
     @Override
-    public PlatoDTO obtenerInformacionPlato(String nombre) {
-        Plato plato = platoRepository.obtenerPlato(nombre).get();
+    public Optional<PlatoDTO> obtenerInformacionPlato(String nombre) {
+        Optional<Plato> platoOptional = platoRepository.obtenerPlato(nombre);
+
+        if(platoOptional.isEmpty())
+            return Optional.empty();
+
+        Plato plato =platoOptional.get();
         PlatoDTO platoDTO = new PlatoDTO();
 
+        // Suma de calorías
         platoDTO.setCalorias(plato.getIngredientes().stream().mapToInt(Ingrediente::getCalorias).sum());
+        // Ingredientes mapeados a IngredienteDTO
         platoDTO.setIngredientes(
                 plato.getIngredientes().stream().map(ingrediente -> mapper.map(ingrediente, IngredienteDTO.class))
                 .collect(Collectors.toList())
         );
+        // Ingrediente con más calorías
         platoDTO.setIngredienteMasCalorias(
                 plato.getIngredientes().stream().max(Comparator.comparingInt(Ingrediente::getCalorias))
-                .map(Ingrediente::getNombre).get()
+                .map(Ingrediente::getNombre).orElse("N/A")
         );
 
-        return platoDTO;
+        return Optional.of(platoDTO);
     }
 }
