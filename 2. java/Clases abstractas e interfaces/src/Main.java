@@ -13,10 +13,7 @@ import Ejercicio3.Vaca;
 import Generics_Wrapper_Lambda_Streams.Garaje;
 import Generics_Wrapper_Lambda_Streams.Vehiculo;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -52,7 +49,7 @@ public class Main {
         IImprimible.imprimir(nuevoInf);
         System.out.println();*/
 
-        System.out.println("##############EJERCICIO 3##############");
+        /*System.out.println("##############EJERCICIO 3##############");
         Animal gatitoChico = new Gato("Bombona");
         Animal perroCiego = new Perro("Fatiga");
         Animal vacaLechera = new Vaca("Pompas");
@@ -63,10 +60,10 @@ public class Main {
 
         Animal.comerAnimal(gatitoChico);
 
-        // ¿¿¿¿¿¿¿Cómo se puede hacer la parte extra??????
+        // ¿¿¿¿¿¿¿Cómo se puede hacer la parte extra??????*/
 
 
-        /*Vehiculo v1 = new Vehiculo("Ford", "Fiesta", 1000);
+        Vehiculo v1 = new Vehiculo("Ford", "Fiesta", 1000);
         Vehiculo v2 = new Vehiculo("Ford", "Focus", 1200);
         Vehiculo v3 = new Vehiculo("Ford", "Explorer", 2500);
         Vehiculo v4 = new Vehiculo("Fiat", "Uno", 500);
@@ -92,14 +89,34 @@ public class Main {
         G1.agregarNuevoVehiculo(v10);
         G1.agregarNuevoVehiculo(v11);
 
-        //LinkedList<Vehiculo> listaVehiculosPorPrecio = G1.getVehiculos().stream().sorted(Comparator.reverseOrder());
-        List<String> sortedList = G1.getVehiculos().stream()
-                .sorted((o1, o2) -> o1.getCosto()< o2.getCosto())
-                .collect(Collectors.toList());
-        List<Vehiculo> sortedList2 = G1.getVehiculos().stream()
+        List<Vehiculo> ordenadoPorPrecio = G1.getVehiculos().stream()
                 .sorted(Comparator.comparingInt(Vehiculo::getCosto)
                         .reversed())
                 .collect(Collectors.toList());
-        sortedList2.forEach(System.out::println);*/
+        ordenadoPorPrecio.forEach(System.out::println);
+
+        System.out.println();
+        List<Vehiculo> ordenadoPorPrecioYMarca = G1.getVehiculos().stream()
+                .sorted(Comparator.comparingInt(Vehiculo::getCosto)
+                        .reversed())
+                .sorted((x,y) -> x.getMarca().compareToIgnoreCase(y.getMarca()))
+                .collect(Collectors.toList());
+        ordenadoPorPrecioYMarca.forEach(System.out::println);
+
+        System.out.println();
+        List<Vehiculo> menoresA1000 = G1.getVehiculos().stream().filter(x->x.getCosto()<1000).collect(Collectors.toList());
+        List<Vehiculo> mayoresA1000 = G1.getVehiculos().stream().filter(x->x.getCosto()>=1000).collect(Collectors.toList());
+
+        System.out.println("MENORES A 1000");
+        menoresA1000.forEach(System.out::println);
+        System.out.println("MAYORES A 1000");
+        mayoresA1000.forEach(System.out::println);
+
+        System.out.println("PROMEDIO TOTAL");
+        int sum = G1.getVehiculos().stream()
+                .collect(Collectors.summingInt(Vehiculo::getCosto));
+        OptionalDouble sum2 = G1.getVehiculos().stream().mapToDouble(Vehiculo::getCosto).average();
+        System.out.println(sum / G1.getVehiculos().stream().count());
+        //System.out.println(Math.round(Integer));
     }
 }

@@ -8,9 +8,9 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Vehiculo(String modelo, String marca, int costo) {
-        this.modelo = modelo;
+    public Vehiculo(String marca, String modelo, int costo) {
         this.marca = marca;
+        this.modelo = modelo;
         this.costo = costo;
     }
 
@@ -36,5 +36,14 @@ public class Vehiculo {
 
     public void setCosto(int costo) {
         this.costo = costo;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "modelo='" + modelo + '\'' +
+                ", marca='" + marca + '\'' +
+                ", costo=" + costo +
+                '}';
     }
 }

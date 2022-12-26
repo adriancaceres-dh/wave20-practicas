@@ -40,9 +40,9 @@ public class ClienteImp implements CRUD<Cliente> {
         List<Cliente> clienteBuscar = clientes.stream().filter(x->x.getDni()==dniCliente).collect(Collectors.toList());
         if(!clienteBuscar.isEmpty()){
             encontrado = clienteBuscar.get(0);
-            return encontrado;
+            return Optional.ofNullable(encontrado);
         }else{
-            return false;
+            return null;
         }
     }
 
