@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class CaloriasRepoImpl implements ICaloriasRepository {
+public class IngredientesRepoImpl implements IIngredientesRepository {
   private List<Ingrediente> databaseIngredientes;
 
-  public CaloriasRepoImpl() {
+  public IngredientesRepoImpl() {
     ObjectMapper mapper = new ObjectMapper();
     try {
       databaseIngredientes = mapper.readValue(getClass().getResourceAsStream("/static/ingredientes.json"), mapper.getTypeFactory().constructCollectionType(List.class, Ingrediente.class));
