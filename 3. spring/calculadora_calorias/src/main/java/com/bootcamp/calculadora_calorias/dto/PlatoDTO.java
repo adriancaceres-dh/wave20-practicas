@@ -12,5 +12,5 @@ import java.util.List;
 public class PlatoDTO {
     private int calorias;
     private List<IngredienteDTO> ingredientes;
-    private IngredienteDTO ingredienteMasCalorias;
+    private String ingredienteMasCalorias;
 }

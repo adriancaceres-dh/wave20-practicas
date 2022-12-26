@@ -31,7 +31,7 @@ public class PlatoServiceImpl implements IPlatoService {
         );
         platoDTO.setIngredienteMasCalorias(
                 plato.getIngredientes().stream().max(Comparator.comparingInt(Ingrediente::getCalorias))
-                .map(ingrediente -> mapper.map(ingrediente, IngredienteDTO.class)).get()
+                .map(Ingrediente::getNombre).get()
         );
 
         return platoDTO;
