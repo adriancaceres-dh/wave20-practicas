@@ -28,4 +28,8 @@ public class PersonajeDTOService {
                 .collect(Collectors.toList());
     }
 
+    public boolean addAll(List<PersonajeEntity> personajes){
+        return repositorio.addAll(personajes);
+    }
+
 }

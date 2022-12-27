@@ -16,8 +16,6 @@ import java.util.List;
 public class PersonajeController {
 
     @Autowired
-    PersonajeRepository repositorio;
-    @Autowired
     PersonajeDTOService servicio;
 
     @GetMapping("/personajes/search")
@@ -32,9 +30,8 @@ public class PersonajeController {
 
     @PostMapping("/personajes")
     public ResponseEntity<String> uploadCharacters(@RequestBody List<PersonajeEntity> personajes){
-        boolean ok = repositorio.addAll(personajes);
-        if (ok) {return new ResponseEntity<>("Se agregaron correctamente!", HttpStatus.OK);}
-        else{return new ResponseEntity<>("No se pudieron agregar :(",HttpStatus.INSUFFICIENT_STORAGE);}
+        servicio.addAll(personajes);
+        return new ResponseEntity<>("Se agregaron correctamente!", HttpStatus.OK);
     }
 
 }
