@@ -27,8 +27,8 @@ public class PlatoController {
         return new ResponseEntity<>(platoService.obtenerIngredientes(name),HttpStatus.OK);
     }
 
-    @GetMapping("/platos/valorCalorias")
-    public ResponseEntity<IngredienteDto> obtenerIngredienteMasCalorico(@RequestParam String name){
+    @GetMapping("/platos/{name}/ingredienteCalorico")
+    public ResponseEntity<IngredienteDto> obtenerIngredienteMasCalorico(@PathVariable String name){
         return new ResponseEntity<>(platoService.obtenerIngredienteMasCalorias(name),HttpStatus.OK);
     }
 

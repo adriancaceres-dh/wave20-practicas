@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PlatoService {
+public class PlatoService implements IPlatoService{
     @Autowired
     PlatoRepository platoRepository;
     public Double calculateTotalCalories(String name, double weight){

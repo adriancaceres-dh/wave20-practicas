@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Repository
-public class IngredientRepository {
+public class IngredientRepository implements IIngredienteRepository{
 
     private List<IngredientEntity> database;
 

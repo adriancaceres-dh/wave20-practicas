@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class PlatoRepository {
-    IngredientRepository ingredientRepository;
-    List<PlatoEntity> listaPlatos;
+    private IngredientRepository ingredientRepository;
+    private List<PlatoEntity> listaPlatos;
 
     public PlatoRepository(){
         ingredientRepository=new IngredientRepository();
