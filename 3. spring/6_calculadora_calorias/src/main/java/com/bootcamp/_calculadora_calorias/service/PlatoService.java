@@ -15,10 +15,14 @@ import java.util.stream.Collectors;
 public class PlatoService implements IPlatoService{
     @Autowired
     PlatoRepository platoRepository;
-    public Double calculateTotalCalories(String name, double weight){
-        PlatoEntity plato=platoRepository.getAll().stream()
+
+    public PlatoEntity getPlatoByName(String name){
+        return platoRepository.getAll().stream()
                 .filter(platoEntity -> platoEntity.getNombre().equalsIgnoreCase(name))
                 .findFirst().orElse(null);
+    }
+    public Double calculateTotalCalories(String name, double weight){
+        PlatoEntity plato=getPlatoByName(name);
         if(plato!=null){
             return plato.getIngredientes().stream()
                     .mapToInt(x->x.getCalories())
@@ -29,9 +33,7 @@ public class PlatoService implements IPlatoService{
     }
 
     public List<IngredienteDto> obtenerIngredientes(String name){
-        PlatoEntity plato=platoRepository.getAll().stream()
-                .filter(platoEntity -> platoEntity.getNombre().equalsIgnoreCase(name))
-                .findFirst().orElse(null);
+        PlatoEntity plato=getPlatoByName(name);
         if(plato!=null){
             return plato.getIngredientes().stream()
                     .map(p->new IngredienteDto(p.getName(),p.getCalories()))
@@ -42,9 +44,7 @@ public class PlatoService implements IPlatoService{
     }
 
     public IngredienteDto obtenerIngredienteMasCalorias(String name){
-        PlatoEntity plato=platoRepository.getAll().stream()
-                .filter(platoEntity -> platoEntity.getNombre().equalsIgnoreCase(name))
-                .findFirst().orElse(null);
+        PlatoEntity plato=getPlatoByName(name);
         if(plato!=null) {
             return plato.getIngredientes().stream()
                     .sorted((x,y)->Integer.compare(y.getCalories(),x.getCalories()))
