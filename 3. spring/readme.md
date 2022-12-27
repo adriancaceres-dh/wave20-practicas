@@ -22,3 +22,7 @@
 [🌌🔫 Star wars](starwars)
 
 ### Ejercicios Prácticos - P2 - VIVO
+
+[🔢🍕 Calculadora calorías](calorias)
+
+[🚗🏍️ Api de autos](autos)
