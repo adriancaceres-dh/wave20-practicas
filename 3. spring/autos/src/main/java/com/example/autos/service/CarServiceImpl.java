@@ -6,7 +6,6 @@ import com.example.autos.model.Car;
 import com.example.autos.repository.CarRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,14 +14,16 @@ import java.util.List;
 public class CarServiceImpl implements CarServiceInterface{
 
     private final CarRepositoryInterface carRepository;
+    private final CarRequestToCarModel carRequestToCarModel;
 
     @Autowired
-    public CarServiceImpl(CarRepositoryInterface carRepository, ModelMapper modelMapper) {
+    public CarServiceImpl(CarRepositoryInterface carRepository, CarRequestToCarModel carRequestToCarModel) {
         this.carRepository = carRepository;
+        this.carRequestToCarModel = carRequestToCarModel;
     }
 
     public long addCar(CarRequestDto carRequestDto) {
-        Car newCar = CarRequestToCarModel.getCarFromCarRequestDto(carRequestDto);
+        Car newCar = carRequestToCarModel.getCarFromCarRequestDto(carRequestDto);
         newCar.setId(idToAdd());
         carRepository.addCar(newCar);
 

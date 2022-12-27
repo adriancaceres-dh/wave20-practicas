@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CarRequestToCarModel {
 
-    public static Car getCarFromCarRequestDto(CarRequestDto carRequestDto) {
+    public Car getCarFromCarRequestDto(CarRequestDto carRequestDto) {
         Car newCar = new Car();
         newCar.setBrand(carRequestDto.getBrand());
         newCar.setModel(carRequestDto.getModel());
@@ -23,7 +23,7 @@ public class CarRequestToCarModel {
         return newCar;
     }
 
-    private static List<CarServiceModel> getServicesFromServiceRequestDto(List<ServiceRequestDto> services) {
+    private List<CarServiceModel> getServicesFromServiceRequestDto(List<ServiceRequestDto> services) {
         List<CarServiceModel> newCarServiceList = new ArrayList<>();
         for(ServiceRequestDto serviceRequestDto: services) {
             CarServiceModel newCarService = new CarServiceModel();
