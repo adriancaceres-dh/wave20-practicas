@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2371a702-f896-4310-b468-70cb0316be0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../4_DTO_Response_Entity_ejercicio/src/main/java/com/bootcamp/ejercicio/controller/PersonajeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../4_DTO_Response_Entity_ejercicio/src/main/java/com/bootcamp/ejercicio/controller/Ping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../4_DTO_Response_Entity_ejercicio/src/main/java/com/bootcamp/ejercicio/model/Personaje.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../4_DTO_Response_Entity_ejercicio/src/main/java/com/bootcamp/ejercicio/service/PersonajesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/edad/EdadApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/edad/controller/PersonaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/edad/model/Persona.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bootcamp/edad/service/PersonaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/bootcamp/edad/EdadApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3_Int_Spring_P2_VIVO_morse/src/main/java/com/bootcamp/morse/controller/Morse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../3_Int_Spring_P2_VIVO_morse/src/main/java/com/bootcamp/morse/controller/Morse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../8_Arquitectura_Multicapa_starwars/src/main/java/com/bootcamp/starwars/controller/BuscarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../8_Arquitectura_Multicapa_starwars/src/main/java/com/bootcamp/starwars/controller/BuscarController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,24 +45,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/anueldiaz/Documents/bootcamp/wave20_backup/3. spring/5_Ejercicios_DTO_Response_edad",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "a25dc04eb38a8cc2161e3d356fb9e9f5",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/anueldiaz/Documents/bootcamp/wave20_backup/3. spring/5_Ejercicios_DTO_Response_edad&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;a25dc04eb38a8cc2161e3d356fb9e9f5&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="EdadApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ENABLE_JMX_AGENT" value="false" />
@@ -106,6 +91,7 @@
       <updated>1671819456276</updated>
       <workItem from="1671819457411" duration="47000" />
       <workItem from="1671819553031" duration="2345000" />
+      <workItem from="1672082559337" duration="21000" />
     </task>
     <servers />
   </component>
