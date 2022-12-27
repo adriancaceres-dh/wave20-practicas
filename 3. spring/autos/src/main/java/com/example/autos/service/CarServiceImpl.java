@@ -15,12 +15,10 @@ import java.util.List;
 public class CarServiceImpl implements CarServiceInterface{
 
     private final CarRepositoryInterface carRepository;
-    private final ModelMapper modelMapper;
 
     @Autowired
     public CarServiceImpl(CarRepositoryInterface carRepository, ModelMapper modelMapper) {
         this.carRepository = carRepository;
-        this.modelMapper = modelMapper;
     }
 
     public long addCar(CarRequestDto carRequestDto) {
