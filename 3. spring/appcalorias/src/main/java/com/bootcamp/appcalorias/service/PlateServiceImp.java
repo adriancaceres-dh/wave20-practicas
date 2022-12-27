@@ -3,6 +3,7 @@ package com.bootcamp.appcalorias.service;
 import com.bootcamp.appcalorias.dto.IngredientDto;
 import com.bootcamp.appcalorias.dto.PlateDto;
 import com.bootcamp.appcalorias.model.Ingredient;
+import com.bootcamp.appcalorias.model.Plate;
 import com.bootcamp.appcalorias.repository.IIngredientRepository;
 import com.bootcamp.appcalorias.repository.IPlateRepository;
 import org.modelmapper.ModelMapper;
@@ -38,6 +39,10 @@ public class PlateServiceImp implements IPlateService {
                 .collect(Collectors.toList()));
         return plateDto;
 
+    }
+
+    public List<PlateDto> calculatePlates(List<Plate> plateList){
+        return plateList.stream().map(plate -> calculatePlate(plate.getName())).collect(Collectors.toList());
     }
 
     public Ingredient getIngredient(int index){

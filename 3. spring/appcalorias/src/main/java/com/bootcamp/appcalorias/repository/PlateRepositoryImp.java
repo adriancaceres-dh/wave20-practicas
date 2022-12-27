@@ -37,4 +37,6 @@ public class PlateRepositoryImp implements IPlateRepository {
         return plateList.stream().filter(plate ->  plate.getName().equals(plateName))
                 .findFirst().get();
     }
+
+
 }
