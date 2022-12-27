@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a448052e-f2a6-4b33-b1e4-941704cbc9a9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../2_Introduccion_JAVA_P2_VIVO_collecciones_selva/collecciones.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3_POO_P1_Vivo/POO_P1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../4_POO_P2_Vivo/POO_P2_Vivo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Clases_Abstr_Inter_Vivo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EjercicioIntCA.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ejercicio1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/clases/Basic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/clases/Cobrador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/clases/Ejecutivo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/clases/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/interfaces/ConsultaSaldo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/interfaces/Deposito.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/interfaces/PagoServicio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/interfaces/RetiroEfec.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/interfaces/Transaccion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bootcamp/interfaces/Transferencia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/Animales.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/src/clases/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/src/clases/Gato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/src/clases/Perro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/src/interfaces/iCarnivoro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Animales/src/interfaces/iHerviboro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/Imprimir.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/src/clases/Curriculum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/src/clases/Informe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/src/clases/Libro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/src/clases/Persona.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ejercicio2/Imprimir/src/interfaces/IImprimible.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../EjercicioIntegrador2_SaveTheRopa/SaveTheRopa.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../EjercicioIntegrador_Supermercado_P1/EjercicioIntegrador.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../EjercicioIntegrador_Supermercado_P2/EjercicioIntegrador.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/Clases_Abstr_Inter_Vivo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/src/ejercicio1/Basic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/src/ejercicio1/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/src/ejercicio1/Cobrador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/src/ejercicio1/Ejecutivo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Clases_Abstr_Inter_Vivo/src/ejercicio1/interfaces/Transaccion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/POO_P1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P1/src/Persona.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/POO_P2_Vivo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/src/ejercicio1/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/src/ejercicio1/PracticaExcepciones.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/src/ejercicio2/Distribuidora.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/src/ejercicio2/NoPerecedero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/src/ejercicio2/Perecedero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO_P2_Vivo/src/ejercicio2/Producto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../collecciones/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../collecciones/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../collecciones/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../collecciones/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../collecciones/collecciones.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../collecciones/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../temperaturas_matrices/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../temperaturas_matrices/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../temperaturas_matrices/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../temperaturas_matrices/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../temperaturas_matrices/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/CalculadoraCaloriasApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/controller/CalculateRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/dto/DishDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/dto/DishResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/dto/IngredientDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/repositories/IngredientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/repositories/IngredientRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/service/DishService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/service/DishServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/resources/food.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/test/java/com/mercadolibre/calculadoracalorias/CalculadoraCaloriasApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/src/main/java/com/bootcamp/calculadoraCalorias/repository/PlatoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/src/main/java/com/bootcamp/calculadoraCalorias/repository/PlatoRepository.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2JVkVIL0GmPLN4iyYQECZOgKKsg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/anueldiaz/Documents/bootcamp/wave20_backup/2. java/5_Clases_Abstr_Inter_Vivo/ejercicio1&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a448052e-f2a6-4b33-b1e4-941704cbc9a9" name="Changes" comment="" />
+      <created>1672170659457</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672170659457</updated>
+    </task>
+    <servers />
+  </component>
+</project>
