@@ -1,6 +1,5 @@
 package com.bootcamp.calculadoraCalorias.controllers;
 import java.util.List;
-import com.bootcamp.calculadoraCalorias.dto.DishDTO;
 import com.bootcamp.calculadoraCalorias.dto.RequestDTO;
 import com.bootcamp.calculadoraCalorias.dto.ResponseDTO;
 import com.bootcamp.calculadoraCalorias.service.IFoodService;
