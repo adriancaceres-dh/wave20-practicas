@@ -1,36 +1,36 @@
 ## Ejercicios
 
 ### Introducción a Spring - P2 - PG
-[🏛️🔢 Conversor de números romanos a arábicos](numerosromanos)
+- [🏛️🔢 Conversor de números romanos a arábicos](numerosromanos)
 
 ### Introducción a Spring - P2 - VIVO
 
-[➖➖ Morse](morse)
+- [➖➖ Morse](morse)
 
 ### Ejercicios, DTO y Response Entity - VIVO
 
-[🤔🔢 Calcular edad personas](edadpersona)
+- [🤔🔢 Calcular edad personas](edadpersona)
 
-[⚽🏈 Personas deportistas](deportistas)
+- [⚽🏈 Personas deportistas](deportistas)
 
 ### DTO y Response Entity - P2 - PG
 
-[🤒🌡 Covid y síntomas](covid)
+- [🤒🌡 Covid y síntomas](covid)
 
 ### Arquitectura Multicapa - P1 - VIVO
 
-[🌌🔫 Star wars](starwars)
+- [🌌🔫 Star wars](starwars)
 
 ### Ejercicios Prácticos - P2 - VIVO
 
-[🔢🍕 Calculadora calorías](calorias)
+- [🔢🍕 Calculadora calorías](calorias)
 
-[🚗🏍️ Api de autos](autos)
+- [🚗🏍️ Api de autos](autos)
 
 ### Manejo de Excepciones - P1 - VIVO
 
-[✍️📜️ Blog](blog)
+- [✍️📜️ Blog](blog)
 
 ### Recapitulando Spring - P2 - VIVO
 
-[🔗️📈️ Link tracker](links)
+- [🔗️📈️ Link tracker](links)
