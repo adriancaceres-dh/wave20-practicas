@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/blogs")
 public class BlogEntryController {
 
     private final BlogEntryServiceInterface blogEntryService;
@@ -21,17 +20,17 @@ public class BlogEntryController {
         this.blogEntryService = blogEntryService;
     }
 
-    @GetMapping
+    @GetMapping("/blogs")
     public ResponseEntity<List<BlogEntryResponseDto>> getBlogEntries() {
         return ResponseEntity.ok().body(blogEntryService.getBlogEntries());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/blog/{id}")
     public ResponseEntity<BlogEntryResponseDto> getBlogEntry(@PathVariable Long id) {
         return ResponseEntity.ok().body(blogEntryService.getBlogEntryById(id));
     }
 
-    @PostMapping
+    @PostMapping("/blog")
     public ResponseEntity<Long> addBlogEntry(@RequestBody BlogEntryRequestDto blogEntry) {
         return ResponseEntity.ok().body(blogEntryService.addBlogEntry(blogEntry));
     }
