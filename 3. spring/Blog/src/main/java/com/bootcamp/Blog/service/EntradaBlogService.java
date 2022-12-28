@@ -17,6 +17,7 @@ import java.util.List;
 public class EntradaBlogService implements IEntradaBlogService{
     @Autowired
     private IBlogRepository blogRepository;
+    @Override
     public EntradaBlog dto2Entity(EntradaBlogRequestDTO dto){
         EntradaBlog entradaBlog = new EntradaBlog();
         entradaBlog.setId(dto.getId());
@@ -24,7 +25,7 @@ public class EntradaBlogService implements IEntradaBlogService{
         entradaBlog.setNombreDelAutor(dto.getNombreDelAutor());
         return entradaBlog;
     }
-
+    @Override
     public EntradaBlogResponseDTO entity2dto(EntradaBlog entity){
         EntradaBlogResponseDTO entradaBlogResponseDTO = new EntradaBlogResponseDTO();
         entradaBlogResponseDTO.setTituloDelBlog(entity.getTituloDelBlog());
@@ -32,6 +33,7 @@ public class EntradaBlogService implements IEntradaBlogService{
         entradaBlogResponseDTO.setFechaDePublicacion(entity.getFechaDePublicacion().toString());
         return entradaBlogResponseDTO;
     }
+    @Override
     public EntradaBlogRequestDTO crearBlog (EntradaBlogRequestDTO dto){
         if (blogRepository.exist(dto.getId())){
             EntradaBlog entradaBlog = blogRepository.findById(dto.getId());
@@ -41,7 +43,7 @@ public class EntradaBlogService implements IEntradaBlogService{
         blogRepository.saveBlog(entradaBlog);
         return dto;
     }
-
+    @Override
     public List<EntradaBlogResponseDTO> buscarBlog (Long id){
         if (id == null){
             List<EntradaBlogResponseDTO> listaTotal = new ArrayList<>();
