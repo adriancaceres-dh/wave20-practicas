@@ -47,7 +47,7 @@ public class LinkController {
         return ResponseEntity.ok().body(new InvalidateLinkResponseDto(linkId));
     }
 
-    @GetMapping("/link/{linkId}")
+    @GetMapping(value = "/link/{linkId}", params = {"password"})
     public void redirectToLink(
             @RequestParam(required = false) String password,
             @PathVariable long linkId,
