@@ -2,8 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f4bf46a-5ccc-4524-9fec-88d98692a164" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/BlogApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/config/ControllerExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/controller/Ping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/dto/BlogExceptionDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/dto/EntradaBlogRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/dto/EntradaBlogResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/dto/MensajeEntradaBlogResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/exception/ExistingIdException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/exception/IdNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/model/EntradaBlog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/repository/BlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/service/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/java/com/bootcamp/blog/service/IBlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3. spring/Excepciones/blog_original/src/test/java/com/bootcamp/blog/BlogApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bootcamp/CarreraSelva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bootcamp/CarreraSelva.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,17 +83,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CarreraSelva" />
@@ -92,7 +100,9 @@
       <workItem from="1671576855877" duration="1810000" />
       <workItem from="1671631644345" duration="560000" />
       <workItem from="1671718936852" duration="937000" />
-      <workItem from="1672005370706" duration="6354000" />
+      <workItem from="1672005370706" duration="6605000" />
+      <workItem from="1672063255983" duration="1570000" />
+      <workItem from="1672241866061" duration="440000" />
     </task>
     <servers />
   </component>
