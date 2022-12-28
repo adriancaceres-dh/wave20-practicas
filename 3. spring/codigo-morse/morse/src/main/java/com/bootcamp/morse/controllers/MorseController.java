@@ -15,8 +15,8 @@ public class MorseController {
 
 
     // Buscar un caracter por su codigo morse
-    @GetMapping("/obtener/{code}")
-    public String getEmpleadoById (@PathVariable String code ){
+    @GetMapping("/{code}")
+    public String decodificarMorse(@PathVariable String code ){
         return codigoService.getCodigo(code);
 
     }
