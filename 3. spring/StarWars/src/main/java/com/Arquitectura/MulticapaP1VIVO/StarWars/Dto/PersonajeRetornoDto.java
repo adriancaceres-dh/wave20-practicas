@@ -1,13 +1,12 @@
 package com.Arquitectura.MulticapaP1VIVO.StarWars.Dto;
 
-public class PersonajeDto {
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class PersonajeRetornoDto {
+
     String name;
     String height;
     String mass;
-    String hair_color;
-    String skin_color;
-    String eye_color;
-    String birth_year;
     String gender;
     String homeworld;
     String species;
@@ -34,38 +33,6 @@ public class PersonajeDto {
 
     public void setMass(String mass) {
         this.mass = mass;
-    }
-
-    public String getHair_color() {
-        return hair_color;
-    }
-
-    public void setHair_color(String hair_color) {
-        this.hair_color = hair_color;
-    }
-
-    public String getSkin_color() {
-        return skin_color;
-    }
-
-    public void setSkin_color(String skin_color) {
-        this.skin_color = skin_color;
-    }
-
-    public String getEye_color() {
-        return eye_color;
-    }
-
-    public void setEye_color(String eye_color) {
-        this.eye_color = eye_color;
-    }
-
-    public String getBirth_year() {
-        return birth_year;
-    }
-
-    public void setBirth_year(String birth_year) {
-        this.birth_year = birth_year;
     }
 
     public String getGender() {

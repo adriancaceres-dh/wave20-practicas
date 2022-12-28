@@ -1,16 +1,35 @@
 package com.Arquitectura.MulticapaP1VIVO.StarWars.Service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.util.json.JSONParser;
-import org.springframework.util.ResourceUtils;
+import com.Arquitectura.MulticapaP1VIVO.StarWars.Dto.PersonajeDto;
+import com.Arquitectura.MulticapaP1VIVO.StarWars.Dto.PersonajeRetornoDto;
+import com.Arquitectura.MulticapaP1VIVO.StarWars.Repository.PersonajeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
 public class PersonajesService {
+    @Autowired
+    PersonajeRepository personajeRepository;
+    PersonajeRetornoDto personajeRetornoDto;
+    public List<PersonajeDto> encontrarTodos()
+    {
+        return personajeRepository.getPersonajes().stream().collect(Collectors.toList());
+    }
+
+    public List<PersonajeRetornoDto> todos()
+    {
+        List<PersonajeRetornoDto> personajes = new ArrayList<>();
+        personajes.add(personajeRepository.getPersonajes().stream().forEach(x -> personajeRetornoDto.setName(x.getName())));
+        return personajes;
+    }
+
+    public PersonajeDto buscarPorNombre(String nombre)
+    {
+        return personajeRepository.getPersonajes().stream().filter(x-> x.getName().startsWith(nombre)).collect(Collectors.toList()).get(0);
+    }
 
 }
