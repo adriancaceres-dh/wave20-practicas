@@ -1,2 +1,9 @@
-package com.example.starwars.service;public interface IPersonajeService {
+package com.example.starwars.service;
+
+import com.example.starwars.dto.PersonajeDTO;
+
+import java.util.List;
+
+public interface IPersonajeService {
+    List<PersonajeDTO> obtenerPersonajesPorNombre(String nombre);
 }

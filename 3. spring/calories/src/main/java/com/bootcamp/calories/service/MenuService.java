@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class MenuService implements IMenuRepository{
     @Autowired
-    MenuRepository menuRepository;
+    private MenuRepository menuRepository;
 
     @Override
     public InfoDTO infoFood(RequestDTO request) {

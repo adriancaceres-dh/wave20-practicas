@@ -1,11 +1,15 @@
 package com.bootcamp.calories.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 @AllArgsConstructor
+@Getter
+@ToString
 public class RequestDTO {
-    String name;
-    double weithgr;
+    private String name;
+    private double weithgr;
 
     public String getName() {
         return name;
