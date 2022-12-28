@@ -1,8 +1,7 @@
 package com.example.starwars.controller;
 
 import com.example.starwars.dto.PersonajeDto;
-import com.example.starwars.service.ServicePersonajes;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.starwars.service.IServicePersonajes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +15,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class ControllerPersonajes {
 
-  private ServicePersonajes servicePersonajes;
+  private final IServicePersonajes servicePersonajes;
 
-  public ControllerPersonajes(ServicePersonajes servicePersonajes) {
+  public ControllerPersonajes(IServicePersonajes servicePersonajes) {
     this.servicePersonajes = servicePersonajes;
   }
 

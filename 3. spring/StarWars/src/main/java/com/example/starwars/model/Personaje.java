@@ -1,28 +1,28 @@
 package com.example.starwars.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class Personaje {
-  @Id
+  @NonNull
   private String name;
+  @NonNull
   private int height;
+  @NonNull
   private int mass;
   private String hair_color;
   private String skin_color;
   private String eye_color;
   private String birth_year;
+  @NonNull
   private String gender;
+  @NonNull
   private String homeworld;
+  @NonNull
   private String species;
 }

@@ -1,6 +1,5 @@
 package com.example.starwars.dao;
 
-import com.example.starwars.dto.PersonajeDto;
 import com.example.starwars.model.Personaje;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
