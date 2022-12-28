@@ -1,5 +1,6 @@
 package com.bootcamp.Blog.Repositories;
 
+import com.bootcamp.Blog.DTO.EntradaDto;
 import com.bootcamp.Blog.Models.EntradaBlog;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,8 @@ public class BlogRespository {
         return entradas;
     }
 
-    public boolean agregarEntradaBlog(EntradaBlog nuevaEntrada) {
+    public boolean agregarEntradaBlog(EntradaDto nuevaEntrada) {
+
         listaEntradasBlog.add(nuevaEntrada);
         return true;
     }

@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class MensajeDto {
-
     private String mensaje;
-
-    private EntradaBlog entradaBlog;
-
+    private EntradaDto entradaBlog;
 }
