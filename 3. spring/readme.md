@@ -26,3 +26,7 @@
 [🔢🍕 Calculadora calorías](calorias)
 
 [🚗🏍️ Api de autos](autos)
+
+### Manejo de Excepciones - P1 - VIVO
+
+[✍️📜️ Blog](blog)
