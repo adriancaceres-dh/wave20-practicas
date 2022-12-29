@@ -4,10 +4,12 @@ import com.bootcamp.starwars.dto.response.CharacterDtoResponse;
 import com.bootcamp.starwars.repository.CharacterRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CharacterServiceImpl implements ICharacterService{
 
     ModelMapper mapper = new ModelMapper();

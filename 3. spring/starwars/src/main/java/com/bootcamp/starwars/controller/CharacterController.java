@@ -4,6 +4,8 @@ import com.bootcamp.starwars.dto.response.CharacterDtoResponse;
 import com.bootcamp.starwars.model.CharacterModel;
 import com.bootcamp.starwars.service.CharacterServiceImpl;
 import com.bootcamp.starwars.service.ICharacterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class CharacterController {
 
-    ICharacterService characterService = new CharacterServiceImpl();
+    @Qualifier("characterServiceImpl")
+    @Autowired
+    ICharacterService characterService;
 
     @GetMapping("/{query}")
     public ResponseEntity<List<CharacterDtoResponse>> findAllCharactersThatMatch(@PathVariable String query) {
