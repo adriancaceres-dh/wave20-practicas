@@ -25,12 +25,12 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public List<UserFollowersDTO> getFollowersList(int userId) {
+    public UserFollowersDTO getFollowersList(int userId) {
         return null;
     }
 
     @Override
-    public List<UserFollowersDTO> getFollowedList(int userId) {
+    public UserFollowersDTO getFollowedList(int userId) {
         return null;
     }
 

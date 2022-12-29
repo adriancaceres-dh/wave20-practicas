@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}/followed/list")
-    public List<UserFollowersDTO> getFollowedList(int userId) {
+    public ResponseEntity<UserFollowersDTO> getFollowedList(@PathVariable int userId) {
         return null;
     }
 
