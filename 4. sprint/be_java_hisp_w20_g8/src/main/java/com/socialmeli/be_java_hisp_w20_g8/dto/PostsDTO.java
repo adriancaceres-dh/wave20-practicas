@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PostsDTO {
 
-
 }
