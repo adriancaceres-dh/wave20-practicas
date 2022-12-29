@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
@@ -32,6 +34,14 @@ public class UserController {
         return null;
     }
 
+    @GetMapping("/users/{userId}/followed/list")
+    public List<UserFollowersDTO> getFollowedList(int userId) {
+        return null;
+    }
 
+    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        return null;
+    }
 
 }
