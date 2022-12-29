@@ -6,4 +6,5 @@ public class User extends Person{
 
 
     private Set<Integer> following;
+
 }

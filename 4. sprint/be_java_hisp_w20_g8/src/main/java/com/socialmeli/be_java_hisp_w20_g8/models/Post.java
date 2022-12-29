@@ -9,4 +9,5 @@ public class Post {
     private Integer category;
     private double price;
 
+
 }

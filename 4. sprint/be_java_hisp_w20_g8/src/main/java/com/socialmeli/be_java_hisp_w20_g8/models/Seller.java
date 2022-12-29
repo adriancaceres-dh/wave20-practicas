@@ -10,4 +10,5 @@ public class Seller extends Person{
     private Set<Integer> post;
 
 
+
 }
