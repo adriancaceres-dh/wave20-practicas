@@ -4,8 +4,8 @@ package com.linktracker.LinkTracker.exceptions;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class DoesntExistLinks extends RuntimeException {
-    public DoesntExistLinks(String message){
+public class DoesntExistLinksException extends RuntimeException {
+    public DoesntExistLinksException(String message){
         super(message);
     }
 

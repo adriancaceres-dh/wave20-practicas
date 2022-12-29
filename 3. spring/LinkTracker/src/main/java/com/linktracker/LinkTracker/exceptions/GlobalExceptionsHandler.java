@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionsHandler {
-    @ExceptionHandler(value = DoesntExistLinks.class)
+    @ExceptionHandler(value = DoesntExistLinksException.class)
     public ResponseEntity<String> doesntExistLink(Exception e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }

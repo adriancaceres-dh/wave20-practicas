@@ -31,7 +31,7 @@ public class LinkTrackerController {
         if (linkService.findLinkHashMap(linkId) != null) {
             httpServletResponse.sendRedirect(linkService.findLinkHashMap(linkId));
         } else {
-            throw new RuntimeException("Error en el link!!");
+            httpServletResponse.sendError(404, "Error en el redireccionamiento!!");
         }
     }
 }

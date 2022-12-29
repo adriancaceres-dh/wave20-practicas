@@ -9,7 +9,7 @@ import java.util.HashMap;
 @Repository
 public class LinkRepositoryImp implements LinkRepository{
 
-    Validators validators;
+    private Validators validators;
     private int autogenerate = 0;
     private HashMap<Integer, LinkDTO> mapLinks = new HashMap<>();
 
@@ -30,8 +30,7 @@ public class LinkRepositoryImp implements LinkRepository{
     @Override
     public String findLinkHashMap(int id) {
         if (mapLinks.containsKey(id)){
-            String idLink = mapLinks.get(id).getLink();
-            return idLink;
+            return mapLinks.get(id).getLink();
         }
         else{
             return null;

@@ -2,7 +2,7 @@ package com.linktracker.LinkTracker.services;
 
 
 import com.linktracker.LinkTracker.dto.LinkDTO;
-import com.linktracker.LinkTracker.exceptions.DoesntExistLinks;
+import com.linktracker.LinkTracker.exceptions.DoesntExistLinksException;
 import com.linktracker.LinkTracker.exceptions.InvalidatedUrlException;
 import com.linktracker.LinkTracker.repositories.LinkRepositoryImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class LinkService {
             return linkRepositoryImp.findLinkHashMap(id);
         }
         else{
-            throw new DoesntExistLinks("No se encontro el link!!");
+            throw new DoesntExistLinksException("No se encontro el link!!");
         }
     }
 }

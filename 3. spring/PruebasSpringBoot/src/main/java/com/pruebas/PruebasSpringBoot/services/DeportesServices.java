@@ -3,7 +3,6 @@ package com.pruebas.PruebasSpringBoot.services;
 
 import com.pruebas.PruebasSpringBoot.dto.DeporteDto;
 import com.pruebas.PruebasSpringBoot.dto.PersonaDto;
-import lombok.Builder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
