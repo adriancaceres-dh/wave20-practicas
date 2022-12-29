@@ -22,11 +22,14 @@ public class Carrera {
         this.vehiculos.remove(vehiculo);
     }
     public void eliminarVehiculoConPatente(String unaPatente){
+        /*
         Vehiculo vehiculo = this.vehiculos
                 .stream()
-                .filter(v -> v.patente == unaPatente)
-                .
+                .filter(v -> v.patente == unaPatente);
+
+
         this.vehiculos.remove(vehiculo);
+        */
     }
 
 
