@@ -8,13 +8,9 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @Data
-
 public class Post {
-    private int userId;
     private LocalDate date;
     private Product product;
     private Category category;
     private double price;
-    private String type;
-
 }
