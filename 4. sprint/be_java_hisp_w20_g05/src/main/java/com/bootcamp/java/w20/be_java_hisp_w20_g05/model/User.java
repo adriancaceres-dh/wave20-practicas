@@ -1,0 +1,20 @@
+package com.bootcamp.java.w20.be_java_hisp_w20_g05.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Set;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class User {
+    private int id;
+    private String userName;
+    private Set<User> followers;
+    private Set<User> following;
+
+}
