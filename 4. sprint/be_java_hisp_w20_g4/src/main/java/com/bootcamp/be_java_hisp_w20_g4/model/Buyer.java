@@ -1,4 +1,4 @@
 package com.bootcamp.be_java_hisp_w20_g4.model;
 
-public class Vendedor {
+public class Buyer extends User{
 }
