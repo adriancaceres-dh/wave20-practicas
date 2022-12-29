@@ -12,6 +12,7 @@ public class Seller extends User{
         if(super.getPublications().containsKey(publicationToAdd)){
             return null; // ya existe la publicacion tiene que lanzar una excepcion
         }else{
+            
             super.getPublications().put(publicationToAdd.getPost_id(), publicationToAdd);
             return publicationToAdd;
         }
