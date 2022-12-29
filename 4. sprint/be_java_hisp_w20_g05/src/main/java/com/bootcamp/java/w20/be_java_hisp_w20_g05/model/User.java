@@ -17,4 +17,8 @@ public class User {
     private Set<User> followers;
     private Set<User> following;
 
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

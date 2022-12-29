@@ -15,4 +15,9 @@ public class Post {
     private double price;
     private double discount;
     private Product product;
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }
