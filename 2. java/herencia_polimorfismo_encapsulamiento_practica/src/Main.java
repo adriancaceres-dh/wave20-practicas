@@ -1,5 +1,18 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+
+        Animal perro = new Perro("Perro" , "Lukas");
+        perro.mostrarEspecie();
+        perro.hacerSonido();
+
+        Gato gato = new Gato("Gato" , "Poker");
+        gato.mostrarEspecie();
+        gato.hacerSonido();
+
+        Animal animal = perro;
+        animal.mostrarEspecie();
+        animal.hacerSonido();
+
     }
 }

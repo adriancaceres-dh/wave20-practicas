@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-
-        System.out.println("Hello world!");
+        PracticaExcepciones calculo = new PracticaExcepciones(0,300);
+        calculo.calcularCociente();
     }
 }
