@@ -41,21 +41,23 @@ public class LinkService implements ILinkService{
         }
         return responseLinkDTOList;
     }
-
-    @Override
-    public RedirectView redirect(int linkId) {
-        Link link = linkRepository.getLinkAndIncrease(linkId);
-        if(link == null) throw new LinkNotFoundException("Link no encontrado.");
-        return new RedirectView(link.getLinkRedirect());
-    }
     @Override
     public RedirectView redirect(int linkId, String password) {
         Link link = linkRepository.getLinkAndIncrease(linkId);
         if(link == null) throw new LinkNotFoundException("Link no encontrado.");
-        if(link.getPassword().equals(password)){
+        if(link.getPassword() == null){
             return new RedirectView(link.getLinkRedirect());
         }else{
-            throw new PasswordNotCorrectException("Contraseña incorrecta");
+            if(password != null){
+                if(link.getPassword().equals(password)){
+                    return new RedirectView(link.getLinkRedirect());
+                }else{
+                    throw new PasswordNotCorrectException("Contraseña incorrecta");
+                }
+            }else{
+                throw new PasswordNotCorrectException("El link requiere contraseña");
+            }
+
         }
     }
 

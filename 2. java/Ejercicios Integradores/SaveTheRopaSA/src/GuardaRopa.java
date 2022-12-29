@@ -7,7 +7,6 @@ public class GuardaRopa {
     private int contadorPrendas;
     public GuardaRopa() {
         casilleros = new HashMap<>();
-        contadorPrendas = 0;
     }
 
 

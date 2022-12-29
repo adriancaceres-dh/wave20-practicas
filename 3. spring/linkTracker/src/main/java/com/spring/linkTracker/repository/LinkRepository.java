@@ -26,7 +26,7 @@ public class LinkRepository {
         int id =  getNextId();
         linkToAdd.setId(id);
         linkToAdd.setCountRedirect(0);
-       // if(!linkToAdd.getPassword().isEmpty()) linkToAdd.setPassword(linkToAdd.getPassword());
+     //   if(linkToAdd.getPassword() != null) linkToAdd.setPassword(linkToAdd.getPassword());
         linkReposity.put(id, linkToAdd);
         return linkToAdd;
     }

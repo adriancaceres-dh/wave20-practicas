@@ -11,8 +11,6 @@ public interface ILinkService {
     ResponseLinkDTO createLink(RequestLinkDTO requestLinkDTO);
 
     List<ResponseLinkDTO> getAllLinks();
-
-    RedirectView redirect(int linkId);
     RedirectView redirect(int linkId, String password);
 
     ResponseLinkDTO getMetricsLink(int linkId);

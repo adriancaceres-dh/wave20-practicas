@@ -27,20 +27,14 @@ public class LinkController {
     public ResponseEntity<List<ResponseLinkDTO>> getAllLinks(){
         return new ResponseEntity<>(iLinkService.getAllLinks(), HttpStatus.OK);
     }
-    @GetMapping("/{linkId}")
-    public RedirectView redirect(@PathVariable int linkId){
-        return iLinkService.redirect(linkId);
-    }
-    @GetMapping("/{linkId}/{password}")
-    public RedirectView redirectPassword(@PathVariable int linkId, @RequestParam String password){
+    @GetMapping(value = {"/{linkId}", "password"})
+    public RedirectView redirect(@PathVariable int linkId, @RequestParam(required = false) String password){
         return iLinkService.redirect(linkId, password);
     }
-
     @GetMapping("/metrics/{linkId}")
     public ResponseEntity<ResponseLinkDTO> getMetricsLink(@PathVariable int linkId){
         return new ResponseEntity<>(iLinkService.getMetricsLink(linkId), HttpStatus.OK);
     }
-
     @PostMapping("/invalidate/{linkId}")
     public ResponseEntity<ResponseLinkDTO> invalidateLink(@PathVariable int linkId){
         return new ResponseEntity<>(iLinkService.invalidateLink(linkId), HttpStatus.OK);
