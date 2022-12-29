@@ -5,29 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a448052e-f2a6-4b33-b1e4-941704cbc9a9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../3. spring/10_ManejoExp_VIVO_blog/8. Ejercicio Manejo de Excepciones.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3. spring/6_Ejercicios_DTO_Response_deportes/4. Ejercicio integrador_ Detectando deportistas.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3. spring/7_DTO_response_entity_covid - v1/4. Ejercicio integrador_ Detectando personas de riesgo.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3. spring/8_Arquitectura_Multicapa_starwars/2. Ejercicio_ Star Wars .docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/2. Ejercicio_ Calculadora de calorías.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../3. spring/5_Ejercicios_DTO_Response_edad/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/CalculadoraCaloriasApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/controller/CalculateRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/dto/DishDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/dto/DishResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/dto/IngredientDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/repositories/IngredientRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/repositories/IngredientRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/service/DishService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/java/com/mercadolibre/calculadoracalorias/service/DishServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/main/resources/food.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/calculadora-calorias/src/test/java/com/mercadolibre/calculadoracalorias/CalculadoraCaloriasApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/src/main/java/com/bootcamp/calculadoraCalorias/repository/PlatoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/src/main/java/com/bootcamp/calculadoraCalorias/repository/PlatoRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
