@@ -5,6 +5,7 @@ import com.bootcamp.appcalorias.model.Ingredient;
 import com.bootcamp.appcalorias.model.Plate;
 import com.bootcamp.appcalorias.service.IPlateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class Restaurant {
     @Autowired
     IPlateService plateService;
     @GetMapping("/plate/{plateName}")
-    public PlateDto platStats(@PathVariable String plateName){
-        return  plateService.calculatePlate(plateName);
+    public ResponseEntity<PlateDto> platStats(@PathVariable String plateName){
+        return  ResponseEntity.ok().body(plateService.calculatePlate(plateName));
     }
 
     @GetMapping("/ingredient/{index}")
@@ -26,8 +27,10 @@ public class Restaurant {
     }
 
     @PostMapping("/plates")
-    public List<PlateDto> platesInfo(@RequestBody List<Plate> plates){
-        return  plateService.calculatePlates(plates);
+    public ResponseEntity<List<PlateDto>> platesInfo(@RequestBody List<Plate> plates){
+
+        return ResponseEntity.status(200).body(plateService.calculatePlates(plates));
+
     }
     /*
     Al no tener una base de datos se deben usar los datos de prueba para que pueda encontrar los datos
