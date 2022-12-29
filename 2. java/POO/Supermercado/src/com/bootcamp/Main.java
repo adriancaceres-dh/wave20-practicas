@@ -20,6 +20,7 @@ public class Main {
                     "1-> Ver lista de clientes\n" +
                     "2-> Registrar cliente\n" +
                     "3-> Eliminar cliente\n" +
+                    "4-> Buscar cliente por dni\n" +
                     "0-> Salir\n");
 
             opcion = teclado.nextInt();
@@ -102,7 +103,8 @@ public class Main {
             clientes.stream()
                     .parallel()
                     .filter(x->x.getDni().equals(finalDni))
-                    .forEach(x-> System.out.println());
+                    .forEach(v->  System.out.println("Nombre:" + v.getNombre()
+                            + ", Apellido:" + v.getApellido() + ", DNI:" + v.getDni()));
 
         }
 
