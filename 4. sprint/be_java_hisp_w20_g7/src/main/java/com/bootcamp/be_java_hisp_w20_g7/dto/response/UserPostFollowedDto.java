@@ -15,4 +15,5 @@ public class UserPostFollowedDto {
     private int userId;
     private List<PostDto> posts;
 
+
 }

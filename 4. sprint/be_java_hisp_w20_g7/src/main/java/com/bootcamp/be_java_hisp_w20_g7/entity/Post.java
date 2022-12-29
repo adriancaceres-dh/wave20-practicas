@@ -19,4 +19,5 @@ public class Post {
     private double price;
     private boolean hasPromo;
     private double discount;
+
 }
