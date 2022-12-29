@@ -1,4 +1,4 @@
-package com.bootcamp.be_java_hisp_w20_g4.dto;
+package com.bootcamp.be_java_hisp_w20_g4.dto.request;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductDTO;
 import lombok.AllArgsConstructor;
