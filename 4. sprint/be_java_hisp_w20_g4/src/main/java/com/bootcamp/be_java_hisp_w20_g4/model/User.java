@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,8 +17,9 @@ public abstract class User {
     private String userName;
     private HashMap<Integer, User> followers = new HashMap<>();
     private HashMap<Integer, User> followed = new HashMap<>();
-    private List<Publication> publicactions = new ArrayList<>();
+    private HashMap<Integer,Publication> publicactions = new HashMap<>();
 
+    // TODO: 29/12/22  
     private User followSeller(User userToFollow){
         if(followers.containsKey(userToFollow.getId())){
             return null; // lanza excepcion porque ya lo sigue
@@ -28,6 +28,8 @@ public abstract class User {
             return userToFollow;
         }
     }
+
+    // TODO: 29/12/22  
     private User unFollowSeller(User userToUnFollow){
         if(followers.containsKey(userToUnFollow.getId())){
             followers.remove(userToUnFollow.getId());
@@ -36,6 +38,7 @@ public abstract class User {
             return null;// lanza excepcion porque no sigue al usuario
         }
     }
+    
 
     private List<Publication> getPublicationLast2Week(){
         return null;
