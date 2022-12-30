@@ -12,8 +12,14 @@ import java.util.List;
 public class FollowRepository implements IFollowRepository{
 
     List<Follow> follows;
+
     public FollowRepository() {
         follows = new ArrayList<>();
+        follows.add(new Follow(1,3));
+        follows.add(new Follow(2,3));
+        follows.add(new Follow(8,3));
+        follows.add(new Follow(4,3));
+        follows.add(new Follow(5,4));
     }
 
     @Override
