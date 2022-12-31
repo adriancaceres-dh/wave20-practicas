@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class PersonRepositoryImp {
+public class PersonRepositoryImp{
 
     private final Map<String, Set<Person>> persons;
 
@@ -19,6 +19,7 @@ public class PersonRepositoryImp {
         }};
 
         loadUsers();
+
     }
 
     private boolean loadUsers() {
@@ -32,4 +33,10 @@ public class PersonRepositoryImp {
         ));
         return true;
     }
+
+    public Map<String,Set<Person>> getPersons(){
+        return persons;
+    }
+
+
 }
