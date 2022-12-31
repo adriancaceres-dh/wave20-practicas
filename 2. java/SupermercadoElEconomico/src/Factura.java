@@ -5,10 +5,9 @@ public class Factura {
     List<Item> listaDeProductos;
     double totalCompra;
 
-    public Factura(Cliente cliente, List<Item> listaDeProductos, double totalCompra) {
+    public Factura(Cliente cliente, List<Item> listaDeProductos, ) {
         this.cliente = cliente;
         this.listaDeProductos = listaDeProductos;
-        this.totalCompra = totalCompra;
     }
 
     public Cliente getCliente() {
@@ -31,8 +30,8 @@ public class Factura {
         return totalCompra;
     }
 
-    public void setTotalCompra(double totalCompra) {
-        this.totalCompra = totalCompra;
+    public int totalCompra() {
+        return (int) this.listaDeProductos.stream().mapToDouble(Item::getCostoUnitario).sum();
     }
 
     @Override
