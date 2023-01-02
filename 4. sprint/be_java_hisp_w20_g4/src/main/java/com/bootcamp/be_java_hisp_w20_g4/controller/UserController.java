@@ -10,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@RequestMapping("/users")
 @RestController
-public class SocialMeliController {
+public class UserController {
 
     @Autowired
     IServicePublication publicationService;
@@ -23,34 +22,24 @@ public class SocialMeliController {
 
 
 
-    @PostMapping("/users/{userId}/follow/{userIdToFollow}")
+    @PostMapping("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<UserDTO> follow(@PathVariable int userId , @PathVariable int userIdToFollow){
         return ResponseEntity.ok().body(usrService.follow(userId, userIdToFollow));
     }
 
-    @GetMapping("/users/{userId}/followers/count")
+    @GetMapping("/{userId}/followers/count")
     public ResponseEntity<UserCountDTO> followersCount(@PathVariable int userId){
         return ResponseEntity.ok().body(usrService.followersCount(userId));
     }
 
-    @GetMapping("/users/{userId}/followers/list")
+    @GetMapping("/{userId}/followers/list")
     public ResponseEntity<UserFollowersDTO> followers(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
         return ResponseEntity.ok().body(usrService.followers(userId));
     }
 
-    @GetMapping("/users/{userId}/followed/list")
+    @GetMapping("/{userId}/followed/list")
     public ResponseEntity<UserFollowedDTO> followed(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
         return ResponseEntity.ok().body(usrService.followed(userId));
-    }
-
-    @PostMapping("/products/post")
-    public ResponseEntity<String> add(@RequestBody String publicationDTO){
-        return ResponseEntity.ok().body("Response del service");
-    }
-
-    @GetMapping("/products/followed/{userId}/list")
-    public ResponseEntity<String> last2WeeksPublications(@PathVariable int userId){
-        return ResponseEntity.ok().body("Response del service");
     }
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
@@ -58,14 +47,5 @@ public class SocialMeliController {
         return ResponseEntity.ok().body("Response del service");
     }
 
-    @PostMapping("/products/promo-post")
-    public ResponseEntity<String> addPromo (@RequestBody String promoProductDTO){
-        return ResponseEntity.ok().body("Response del service");
-    }
-
-    @GetMapping("/products/promo-post/count")
-    public ResponseEntity<String> promoProductsOfSeller(@RequestParam(value="user_id") String userId){
-        return ResponseEntity.ok().body("Response del service");
-    }
 
 }
