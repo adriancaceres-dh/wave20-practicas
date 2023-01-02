@@ -1,4 +1,5 @@
 package com.socialMeli.be_java_hisp_w20_g03.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +14,6 @@ public class Post {
     private int user_id;
     private int category;
     private double price;
-    private boolean has_promo;
-    private double discount;
-    private int product_id;
+    private Product product;
     private LocalDate date;
 }

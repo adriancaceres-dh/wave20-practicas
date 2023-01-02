@@ -1,7 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
-import com.socialMeli.be_java_hisp_w20_g03.repository.PostRepository;
+import com.socialMeli.be_java_hisp_w20_g03.repository.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public class PostService implements IPostService {
 
     @Autowired
-    PostRepository postRepository;
+    IPostRepository postRepository;
 
     @Override
     public boolean addPost(PostDTO postDTO){
