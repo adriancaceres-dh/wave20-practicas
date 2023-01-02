@@ -5,6 +5,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 
@@ -20,7 +21,8 @@ import java.util.stream.Collectors;
 public class PostRepository implements IPostRepository{
     private Set<Post> posts = new HashSet<>();
 
-    public PostRepository() { posts = loadDataBase(); }
+    public PostRepository() {
+        posts = loadDataBase(); }
 
     @Override
     public boolean contains(Post post) {
@@ -63,6 +65,8 @@ public class PostRepository implements IPostRepository{
             e.printStackTrace();
         }
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
         TypeReference<Set<Post>> typeRef = new TypeReference<>() {};
         Set<Post> posts = null;
 
