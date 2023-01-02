@@ -1,7 +1,6 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IUserService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +14,12 @@ public class UserController {
 
     @PostMapping ("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        userService.followUser(int userId, int userIdToFollow);
 
-        if (){
+        boolean followed = userService.followUser(userId, userIdToFollow);
+        if (followed) {
+            return new ResponseEntity<>("Se ha seguido correctamente.", HttpStatus.OK);
+        } else return new ResponseEntity<>("No se ha seguido al usuario.", HttpStatus.BAD_REQUEST);
 
-        }
-
-        return new ResponseEntity<>("El usuario se ha seguido correctamente.", HttpStatus.OK);
     }
 
 }

@@ -7,4 +7,6 @@ public interface IRepository<T> {
     boolean add(T t);
     Set<T> filterBy(String name);
 
+    T getById(int id);
+
 }

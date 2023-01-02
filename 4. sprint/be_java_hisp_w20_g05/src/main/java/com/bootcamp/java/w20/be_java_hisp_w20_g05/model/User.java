@@ -14,11 +14,19 @@ import java.util.Set;
 public class User {
     private int id;
     private String userName;
-    private Set<User> followers;
-    private Set<User> following;
+    private Set<Integer> followers;
+    private Set<Integer> following;
 
     @Override
     public int hashCode() {
         return id;
+    }
+
+    public void addFollower(int idFollower) {
+        followers.add(Integer.valueOf(idFollower))
+    }
+
+    public void followUser(int idUserToFollow) {
+        following.add(Integer.valueOf(idUserToFollow))
     }
 }

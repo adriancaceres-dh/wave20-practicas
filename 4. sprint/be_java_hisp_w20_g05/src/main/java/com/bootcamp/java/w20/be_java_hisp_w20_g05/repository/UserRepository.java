@@ -1,5 +1,6 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.repository;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exception.NotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +28,8 @@ public class UserRepository implements IRepository<User> {
                 .collect(Collectors.toSet());
     }
 
-    public User getUserById(int userId) {
-        return users.stream().filter(user -> user.getId() == userId).findFirst().get();
+    public User getById(int userId) {
+        return users.stream().filter(u -> u.getId()== userId)
+                .findFirst().orElseThrow(() -> new NotFoundException("No se encontro el usuario"));
     }
 }

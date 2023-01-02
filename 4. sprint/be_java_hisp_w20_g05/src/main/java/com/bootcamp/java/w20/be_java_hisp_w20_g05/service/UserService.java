@@ -19,12 +19,18 @@ public class UserService implements IUserService{
         return null;
     }
 
-    public boolean followUser (int userId, int userToFollow){
-        User user1 = userRepository.getUserById(userId);
-        User user2 = userRepository.getUserById(userToFollow);
-        
+    public User getById(int id) {
+        return userRepository.getById(id);
+    }
 
-
+    @Override
+    public boolean followUser(int userId, int userIdToFollow) {
+        User user1 = userRepository.getById(userId);
+        User user2 = userRepository.getById(userIdToFollow);
+        //No es necesario chequear ya que el getById arroja una excepcion si no encuentra el user
+        user1.followUser(user2.getId());
+        user2.addFollower(user1.getId());
+        return true;
     }
 
 }
