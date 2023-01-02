@@ -1,18 +1,14 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.sellers;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.SellerDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.SellerFollowersDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
-import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,24 +18,21 @@ public class SellerService implements ISellerService {
     PersonRepository personRepository;
 
     @Override
-    public Map<SellerDTO, List<UserDTO>> getSellerFollowers(Integer userId) {
-
-        Map<SellerDTO, List<UserDTO>> listaResponse = new HashMap<>();
+    public SellerFollowersDTO getSellerFollowers(Integer userId) {
 
         Seller seller = personRepository.findSellerById(userId);
 
         if(seller!=null) {
 
-            List<User> listaFollowers = seller.getFollowers().stream().map(UserID -> personRepository.findUserById(userId)).collect(Collectors.toList());
-            List<UserDTO> listaFollowersDTO = listaFollowers.stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
-            SellerDTO sellerDTO = modelMapper.map(seller,SellerDTO.class);
-            listaResponse.put(sellerDTO,listaFollowersDTO);
+             SellerFollowersDTO sellerFollowersDTO = new SellerFollowersDTO(seller.getId(),seller.getUser_name(),
+                    seller.getFollowers().stream().map(id -> personRepository.findUserById(id)).collect(Collectors.toList())
+                            .stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList()));
 
-            return listaResponse;
+            return sellerFollowersDTO;
 
         }else{
 
-            throw new NotFoundException("User with id: + " + userId + "not found");
+            throw new NotFoundException("User with id: " + userId + " not found");
         }
 
 

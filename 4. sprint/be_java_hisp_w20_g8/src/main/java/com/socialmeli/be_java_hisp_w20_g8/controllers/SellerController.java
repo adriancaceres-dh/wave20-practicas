@@ -2,6 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.SellerDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.SellerFollowersDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.services.sellers.ISellerService;
@@ -22,10 +23,7 @@ public class SellerController {
     ISellerService sellerService;
 
     @GetMapping("/users/{userId}/followers/list")
-    public ResponseEntity<Map<SellerDTO, List<User>>> getSellerFollowers(@PathVariable Integer userId){
-
+    public ResponseEntity<SellerFollowersDTO> getSellerFollowers(@PathVariable Integer userId){
             return new ResponseEntity<>(sellerService.getSellerFollowers(userId), HttpStatus.OK);
-
-
     }
 }

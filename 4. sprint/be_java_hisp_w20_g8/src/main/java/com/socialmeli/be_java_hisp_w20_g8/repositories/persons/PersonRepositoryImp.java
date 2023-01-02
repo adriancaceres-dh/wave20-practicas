@@ -53,15 +53,14 @@ public class PersonRepositoryImp implements PersonRepository{
     }
 
     private boolean loadUsers() {
+        persons.get("users").addAll(Set.of(
+                new User(1, "user1", new HashSet<>(){{
+                    add(3);
+                }}),
+                new User(2, "user2", new HashSet<>())
+        ));
         persons.get("sellers").addAll(Set.of(
-                new Seller(3, "seller3", new HashSet<>(){{
-                    add(1);
-                    add(2);
-                }}, new HashSet<>(){{
-                    add(9);
-                    add(8);
-                }}
-                ),
+                new Seller(3, "seller3", new HashSet<>(){{add(1);}}, new HashSet<>()),
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>())
         ));
         return true;

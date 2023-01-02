@@ -15,6 +15,6 @@ import java.util.Set;
 public class UserDTO {
 
     private  int id;
-    private  String userName;
+    private  String user_name;
 
 }
