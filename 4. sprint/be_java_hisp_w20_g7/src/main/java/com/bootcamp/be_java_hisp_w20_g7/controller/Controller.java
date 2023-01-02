@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
+import com.bootcamp.be_java_hisp_w20_g7.service.IFollowService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IPostService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class Controller {
     @Autowired
     IPostService postService;
 
+    @Autowired
+    IFollowService followService;
+
     @GetMapping("/users/{userId}/followers/list")
     public ResponseEntity<UserFollowersDto> findAllFollowers(
             @PathVariable int userId
@@ -33,6 +37,16 @@ public class Controller {
             return new ResponseEntity<>("Esta vacio", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
+    }
+
+    @PostMapping("users/{userId}/follow/{userIdToFollow}")
+    ResponseEntity<String> follow(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        return ResponseEntity.ok(followService.follow(userId, userIdToFollow));
+    }
+
+    @PostMapping("users/{userId}/unfollow/{userIdToUnfollow}")
+    ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        return ResponseEntity.ok(followService.unfollow(userId, userIdToUnfollow));
     }
 
     //1) retorna String
