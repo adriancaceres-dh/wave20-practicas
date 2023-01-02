@@ -14,9 +14,11 @@ public interface PersonRepository {
 
     Set<Integer> getAllFollowed(int userId);
 
-    Set<Integer> getAllFollowedSeller(int userId);
+
 
     Seller findSellerById(Integer seller_id);
 
-    User findUserById(Integer user_id);
+
+
+    Seller getById(int id);
 }

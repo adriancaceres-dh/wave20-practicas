@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.config;
 
 
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import org.springframework.http.HttpStatus;
@@ -22,4 +23,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
+    @ExceptionHandler(InvalidArgumentException.class)
+    public ResponseEntity<?> invalidArgumentException(Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 }

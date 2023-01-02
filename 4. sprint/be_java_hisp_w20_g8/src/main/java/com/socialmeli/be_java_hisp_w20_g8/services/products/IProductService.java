@@ -1,4 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.products;
 
+import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
+
 public interface IProductService {
+    boolean createProduct(ProductDTO productDTO);
 }

@@ -79,25 +79,19 @@ public class PersonRepositoryImp implements  PersonRepository{
         return user.getFollowing();
     }
 
-    public Set<Integer> getAllFollowedSeller(int userId){
-        Seller seller = (Seller) persons.get("sellers").stream().filter(p->p.getId()==userId).findAny().orElse(null);
-        return seller.getFollowers();
-    }
+
     public Seller findSellerById(Integer id){
         return (Seller)persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
 
     }
 
-    public User findUserById(Integer id){
-        return (User)persons.get("users").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
 
+
+    public Seller getById(int id){
+        return (Seller) persons.get("sellers").stream().filter(x->x.getId()==id).findFirst().orElse(null);
     }
 
-    public Set<Person> getSellers(){
 
-        Set<Person> sellerFilter = persons.get("sellers");
 
-        return sellerFilter;
-    }
 
 }
