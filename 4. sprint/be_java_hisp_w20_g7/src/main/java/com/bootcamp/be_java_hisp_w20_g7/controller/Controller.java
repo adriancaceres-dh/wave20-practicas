@@ -25,11 +25,15 @@ public class Controller {
 
     @GetMapping("/users/{userId}/followers/list")
     public ResponseEntity<UserFollowersDto> findAllFollowers(
-            @PathVariable int userId
-    ) {
-        UserFollowersDto userFollowersDto = iUserService.userFollowers(userId);
-
-        return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
+            @PathVariable int userId, @RequestParam(required = false) String order
+    ){
+        if(order == null){
+            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId,"");
+            return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
+        } else {
+            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId,order);
+            return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
+        }
     }
 
     @PostMapping("/products/post")

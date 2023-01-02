@@ -22,7 +22,7 @@ public interface IUserService {
      * @param userId: id del ususario
      * @return UserFollowersDto: objeto que trae los datos del usuario y los datos de sus seguidores
      */
-    UserFollowersDto userFollowers(int userId);
+    UserFollowersDto userFollowers(int userId, String order);
 
     /**
      * US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario

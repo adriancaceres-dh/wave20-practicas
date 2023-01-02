@@ -13,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,13 +40,26 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserFollowersDto userFollowers(int userId) {
+    public UserFollowersDto userFollowers(int userId, String order) {
+        Comparator<User> compareByName = Comparator
+                .comparing(User::getUserName);
+
         List<Follow> follows = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList());
-        List<User> followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).collect(Collectors.toList());
-        List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e, UserDto.class)).collect(Collectors.toList());
+
+        List<User> followers = new ArrayList<>();
+
+        if(order.equals("name_asc")){
+            followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).sorted(compareByName).collect(Collectors.toList());
+        }else if(order.equals("name_desc")){
+            followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).sorted(compareByName.reversed()).collect(Collectors.toList());
+        }else {
+            followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).collect(Collectors.toList());
+        }
+
+        List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e,UserDto.class)).collect(Collectors.toList());
         User followed = iUserRepository.findById(userId);
 
-        return new UserFollowersDto(followed.getUserId(), followed.getUserName(), userDtos);
+        return new UserFollowersDto(followed.getUserId(),followed.getUserName(),userDtos);
 
     }
 
