@@ -19,6 +19,7 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
 
+    @Override
     public ResponseEntity<UserFollowedResponseDto> followUser(int userId, int userIdToFollow){
 
         if (userId == userIdToFollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToFollow) )
@@ -42,6 +43,7 @@ public class UserService implements IUserService {
         return ResponseEntity.ok(new UserFollowedResponseDto(user.getId(),user.getName(),userFollowedList));
     }
 
+    @Override
     public ResponseEntity<UserFollowedResponseDto> unfollowUser(int userId, int userIdToUnfollow){
 
         if (userId == userIdToUnfollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToUnfollow) )
