@@ -1,5 +1,13 @@
 [
     {
+        "id": 1,
+        "userName": "usu1",
+        "followers": [
+        ],
+        "following": [
+        ]
+    },
+    {
         "id": 2,
         "userName": "hbowstead0",
         "followers": [
