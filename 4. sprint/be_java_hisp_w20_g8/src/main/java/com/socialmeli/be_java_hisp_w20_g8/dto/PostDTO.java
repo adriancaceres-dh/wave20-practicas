@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 public class PostDTO {

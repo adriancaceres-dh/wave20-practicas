@@ -22,10 +22,14 @@ public class UserService implements IUserService {
     PersonRepository personRepository;
 
     public List<Seller> getAllFollowed(int userId){
+        if (personRepository.checkUser(userId)){
         Set<Integer> followedSellers = personRepository.getAllFollowed(userId);
         List<Seller> sellers = followedSellers.stream().map(seller_id -> personRepository.findSellerById(seller_id)).collect(Collectors.toList());
-        System.out.println(sellers);
         return sellers;
+
+        }else{
+            throw new NotFoundException("Invalid user please check information.");
+        }
     }
 
     public ResponseDto addNewFollow(int userId, int sellerId){
