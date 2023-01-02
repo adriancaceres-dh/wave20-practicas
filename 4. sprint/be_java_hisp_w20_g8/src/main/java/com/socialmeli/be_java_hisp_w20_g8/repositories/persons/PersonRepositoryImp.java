@@ -58,6 +58,8 @@ public class PersonRepositoryImp implements  PersonRepository{
                 new User(1, "user1", new HashSet<>()),
                 new User(2, "user2", new HashSet<>())
         ));
+
+
         persons.get("sellers").addAll(Set.of(
                 new Seller(3, "seller3", new HashSet<>(), new HashSet<>()),
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>())
@@ -68,6 +70,7 @@ public class PersonRepositoryImp implements  PersonRepository{
     public Set<Person> getSellers(){
 
         Set<Person> sellerFilter = persons.get("sellers");
+
         return sellerFilter;
     }
 

@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService implements IUserService{
 
     @Autowired
-    PersonRepository personRepository;
+    private PersonRepository personRepository;
 
     public ResponseDto addNewFollow(int userId, int sellerId){
         if(personRepository.checkUser(userId) && personRepository.checkUser(sellerId)){

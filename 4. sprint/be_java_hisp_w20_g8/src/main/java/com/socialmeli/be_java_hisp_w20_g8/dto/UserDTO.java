@@ -14,12 +14,10 @@ import java.util.Set;
 @Builder
 public class UserDTO {
 
-<<<<<<< HEAD
-    private Integer id;
-=======
+
     private  int id;
     private  String userName;
 
     private Set<Integer> following;
->>>>>>> 2627f9d0cfb73fa843f448f4545647298793adea
+
 }
