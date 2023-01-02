@@ -13,9 +13,9 @@ import java.time.LocalDate;
 @Builder
 public class Post {
     private int id;
+    private String category;
     private int userId;
     private LocalDate date;
-    private String category;
     private double price;
     private double discount;
     private Product product;
