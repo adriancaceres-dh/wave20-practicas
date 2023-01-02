@@ -8,4 +8,5 @@ import java.util.List;
 public interface IUserService extends IService<UserResponseDTO> {
     User getById(int id);
     boolean followUser(int userId, int userIdToFollow);
+    void unfollowUser(int userId, int userIdToUnfollow);
 }

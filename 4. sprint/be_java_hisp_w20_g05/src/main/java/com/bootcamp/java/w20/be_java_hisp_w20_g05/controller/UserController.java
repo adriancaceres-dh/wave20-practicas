@@ -22,4 +22,9 @@ public class UserController {
 
     }
 
+    @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
+    public void unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        userService.followUser(userId, userIdToUnfollow);
+    }
+
 }

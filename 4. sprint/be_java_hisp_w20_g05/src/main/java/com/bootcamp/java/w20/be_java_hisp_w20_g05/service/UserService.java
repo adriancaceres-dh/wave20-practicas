@@ -33,4 +33,13 @@ public class UserService implements IUserService{
         return true;
     }
 
+    @Override
+    public void unfollowUser(int userId, int userIdToUnfollow) {
+        User user1 = userRepository.getById(userId);
+        User user2 = userRepository.getById(userIdToUnfollow);
+        //No es necesario chequear ya que el getById arroja una excepcion si no encuentra el user
+        user1.unfollowUser(user2.getId());
+        user2.removeFollower(user1.getId());
+    }
+
 }
