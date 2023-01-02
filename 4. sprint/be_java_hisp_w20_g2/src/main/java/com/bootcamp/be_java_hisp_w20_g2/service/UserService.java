@@ -1,12 +1,12 @@
 package com.bootcamp.be_java_hisp_w20_g2.service;
 
-
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class UserService implements IUserService {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserFollowersResponseDTO findAllFollowers(int userId) {
@@ -65,5 +65,39 @@ public class UserService implements IUserService {
         userRepository.save(user);
         userRepository.save(userToUnfollow);
     }
+
+    public UserFollowersCountResponseDTO entity2UserResponseDTO (User user){
+        UserFollowersCountResponseDTO userFollowersCountResponseDTO = new UserFollowersCountResponseDTO();
+        userFollowersCountResponseDTO.setUserId(user.getId());
+        userFollowersCountResponseDTO.setUserName(user.getUserName());
+        userFollowersCountResponseDTO.setFollowersCount(user.getFollowers().size());
+        return userFollowersCountResponseDTO;
+    }
+    @Override
+    public boolean follow(Integer idFollower, Integer idFollowed) {
+        if (!userRepository.exists(idFollowed) || !userRepository.exists(idFollower)){
+            throw new BadRequestException("Alguno de los usuarios no existe");
+        }
+        User follower = userRepository.findOne(idFollower);
+        User followed = userRepository.findOne(idFollowed);
+        if (follower.getFollowing().contains(followed)){
+            throw new BadRequestException("Ya esta siguiendo a ese usuario");
+        }
+        if (follower.equals(followed)){
+            throw new BadRequestException("No puedes seguirte a ti mismo");
+        }
+        follower.follow(followed);
+        followed.addFollower(follower);
+        return true;
+    }
+    @Override
+    public UserFollowersCountResponseDTO followerList(Integer id) {
+        if (!userRepository.exists(id)){
+            throw new BadRequestException("El usuario no existe");
+        }
+        User user = userRepository.findOne(id);
+        return entity2UserResponseDTO(user);
+    }
+
 
 }

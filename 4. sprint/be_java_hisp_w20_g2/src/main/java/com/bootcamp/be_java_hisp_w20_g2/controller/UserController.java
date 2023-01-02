@@ -1,8 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g2.controller;
 
-
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +26,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followers/count")
-    public ResponseEntity<UserResponseDTO> countFollowers(@PathVariable int userId) {
+    public ResponseEntity<UserFollowersCountResponseDTO> countFollowers(@PathVariable int userId) {
         return new ResponseEntity<>(userService.followerList(userId), HttpStatus.OK);
     }
 
     @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity<String> postUnfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+    public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         userService.unfollowUser(userId, userIdToUnfollow);
         return ResponseEntity.ok().body("Operación exitosa");
     }

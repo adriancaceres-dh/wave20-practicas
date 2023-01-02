@@ -1,13 +1,14 @@
 package com.bootcamp.be_java_hisp_w20_g2.repository;
 
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 
 @Repository
-public class UserRepository {
+public class UserRepository implements IUserRepository {
     private static int currentId = 0;
     //estas?
     private final HashMap<Integer, User> users;
@@ -39,12 +40,14 @@ public class UserRepository {
         return user;
     }
 
-    public User findOne(int id) {
-        return users.get(id);
+    @Override
+    public User findOne(Integer key) {
+        return users.get(key);
     }
 
-    public boolean exists(int id) {
-        return users.containsKey(id);
+    @Override
+    public boolean exists(Integer key) {
+        return users.containsKey(key);
     }
 
 }
