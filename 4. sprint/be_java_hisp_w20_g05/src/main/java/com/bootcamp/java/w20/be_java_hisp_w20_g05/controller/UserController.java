@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -56,13 +57,7 @@ public class UserController {
 
     @GetMapping("/{userId}/followed/list")
     public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId){
-        User user = userService.getById(userId);
-
-        FollowedListDTO followedList = new FollowedListDTO(user.getId(), user.getUserName());
-
-        Collections.addAll(followedList.followed, new UserResponseDTO(1, "Juan"), new UserResponseDTO(2, "Jota"));
-
-        return new ResponseEntity<>(followedList, HttpStatus.OK);
+        return new ResponseEntity<>(userService.getFollowedListDto(userId), HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/list")
