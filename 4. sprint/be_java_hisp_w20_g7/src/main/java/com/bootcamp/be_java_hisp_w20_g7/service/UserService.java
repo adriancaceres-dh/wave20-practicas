@@ -29,6 +29,9 @@ public class UserService implements IUserService {
 
     ModelMapper modelMapper;
 
+    Comparator<User> compareByName = Comparator
+            .comparing(User::getUserName);
+
     public UserService() {
         modelMapper = new ModelMapper();
 
@@ -41,37 +44,44 @@ public class UserService implements IUserService {
 
     @Override
     public UserFollowersDto userFollowers(int userId, String order) {
-        Comparator<User> compareByName = Comparator
-                .comparing(User::getUserName);
 
         List<Follow> follows = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList());
 
         List<User> followers = new ArrayList<>();
 
-        if(order.equals("name_asc")){
+        if (order.equals("name_asc")) {
             followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).sorted(compareByName).collect(Collectors.toList());
-        }else if(order.equals("name_desc")){
+        } else if (order.equals("name_desc")) {
             followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).sorted(compareByName.reversed()).collect(Collectors.toList());
-        }else {
+        } else {
             followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).collect(Collectors.toList());
         }
 
-        List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e,UserDto.class)).collect(Collectors.toList());
+        List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e, UserDto.class)).collect(Collectors.toList());
         User followed = iUserRepository.findById(userId);
 
-        return new UserFollowersDto(followed.getUserId(),followed.getUserName(),userDtos);
+        return new UserFollowersDto(followed.getUserId(), followed.getUserName(), userDtos);
 
     }
 
     @Override
-    public UserFollowedDto userFollowed(int userId) {
+    public UserFollowedDto userFollowed(int userId, String order) {
 
         List<Follow> followList = iFollowRepository.findAll().stream().filter(follow -> follow.getIdFollower() == userId).collect(Collectors.toList());
-        List<User> userFollowedList = followList.stream().map(follow -> iUserRepository.findById(follow.getIdFollowed())).collect(Collectors.toList());
-        List<UserDto> userFollowedDtoList = userFollowedList.stream().map(f -> modelMapper.map(f, UserDto.class)).collect(Collectors.toList());
-        User followed = iUserRepository.findById(userId);
+        List<User> userFollowedList;
 
-        return new UserFollowedDto(followed.getUserId(), followed.getUserName(), userFollowedDtoList);
+        if (order.equals("name_asc")) {
+            userFollowedList = followList.stream().map(e -> iUserRepository.findById(e.getIdFollowed())).sorted(compareByName).collect(Collectors.toList());
+        } else if (order.equals("name_desc")) {
+            userFollowedList = followList.stream().map(e -> iUserRepository.findById(e.getIdFollowed())).sorted(compareByName.reversed()).collect(Collectors.toList());
+        } else {
+            userFollowedList = followList.stream().map(e -> iUserRepository.findById(e.getIdFollowed())).collect(Collectors.toList());
+        }
+
+        List<UserDto> userFollowedDtoList = userFollowedList.stream().map(f -> modelMapper.map(f, UserDto.class)).collect(Collectors.toList());
+        User follower = iUserRepository.findById(userId);
+
+        return new UserFollowedDto(follower.getUserId(), follower.getUserName(), userFollowedDtoList);
     }
 
     @Override

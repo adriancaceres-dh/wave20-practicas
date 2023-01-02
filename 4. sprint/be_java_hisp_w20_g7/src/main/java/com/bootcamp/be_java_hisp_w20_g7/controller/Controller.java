@@ -26,12 +26,12 @@ public class Controller {
     @GetMapping("/users/{userId}/followers/list")
     public ResponseEntity<UserFollowersDto> findAllFollowers(
             @PathVariable int userId, @RequestParam(required = false) String order
-    ){
-        if(order == null){
-            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId,"");
+    ) {
+        if (order == null) {
+            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId, "");
             return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
         } else {
-            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId,order);
+            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId, order);
             return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
         }
     }
@@ -49,15 +49,22 @@ public class Controller {
         return ResponseEntity.ok(followService.follow(userId, userIdToFollow));
     }
 
+
     @PostMapping("users/{userId}/unfollow/{userIdToUnfollow}")
     ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         return ResponseEntity.ok(followService.unfollow(userId, userIdToUnfollow));
     }
 
     @GetMapping("/users/{userId}/followed/list")
-    public ResponseEntity<UserFollowedDto> findUserFollowedList(@PathVariable int userId){
-        UserFollowedDto userFollowedDto = iUserService.userFollowed(userId);
-        return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
+    public ResponseEntity<UserFollowedDto> findUserFollowedList(@PathVariable int userId, @RequestParam(required = false) String order){
+        UserFollowedDto userFollowedDto;
+            if(order == null){
+                userFollowedDto = iUserService.userFollowed(userId,"");
+                return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
+            } else {
+                userFollowedDto = iUserService.userFollowed(userId,order);
+                return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
+            }
     }
 
     //1) retorna String

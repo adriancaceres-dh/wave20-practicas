@@ -30,7 +30,7 @@ public interface IUserService {
      * @param userId: id del ususario
      * @return UserFollowedDto: objeto que trae los datos del usuario y los usuarios que sigue
      */
-    UserFollowedDto userFollowed(int userId);
+    UserFollowedDto userFollowed(int userId, String order);
 
 
     /**
