@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     public UserFollowersResponseDTO findAllFollowers(int userId) {
         User userFound = userRepository.findOne(userId);
         if(userFound == null) {
-            throw new UserNotFoundException("No se ha encontrado el usuario");
+            throw new UserNotFoundException("User not found");
         } else {
             List<UserResponseDTO> followers = userFound.getFollowers().stream().map(user -> new UserResponseDTO(user.getId(), user.getUserName())).collect(Collectors.toList());
             //^^^^^^ podría hacerse con un mapper ^^^^^^

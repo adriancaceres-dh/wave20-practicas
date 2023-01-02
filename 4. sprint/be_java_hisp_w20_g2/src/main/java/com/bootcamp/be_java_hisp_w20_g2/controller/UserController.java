@@ -1,8 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g2.controller;
 
-
-import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@RestController
+@RestController()
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private IUserService userService;
@@ -25,13 +25,10 @@ public class UserController {
     public ResponseEntity<?> getFollowersById(@PathVariable int userId) {
         UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId);
         return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
-
-        //if(userFollowersResponseDTO!=null) return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
-        //return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); //Se maneja con excepciones, ahora para que no me tire error el IDE
-
     }
+
     @GetMapping("/{userId}/followers/count")
-    public ResponseEntity<UserResponseDTO> countFollowers (@PathVariable int userId){
+    public ResponseEntity<UserResponseDTO> lista (@PathVariable int userId){
         return new ResponseEntity<>(userService.followerList(userId), HttpStatus.OK);
     }
 

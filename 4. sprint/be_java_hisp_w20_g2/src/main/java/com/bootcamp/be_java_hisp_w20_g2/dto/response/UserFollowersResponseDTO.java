@@ -22,4 +22,5 @@ public class UserFollowersResponseDTO extends UserResponseDTO{
         super(userId, userName);
         this.followers = followers;
     }
+
 }
