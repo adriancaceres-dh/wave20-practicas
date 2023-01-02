@@ -10,10 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
-
-
 public class PersonRepositoryImp implements  PersonRepository{
-
 
     private final Map<String, Set<Person>> persons;
 
@@ -24,7 +21,6 @@ public class PersonRepositoryImp implements  PersonRepository{
         }};
 
         loadUsers();
-
     }
 
     @Override
@@ -59,7 +55,9 @@ public class PersonRepositoryImp implements  PersonRepository{
 
     private boolean loadUsers() {
         persons.get("users").addAll(Set.of(
-                new User(1, "user1", new HashSet<>()),
+                new User(1, "user1", new HashSet<>(){{
+                    add(3);
+                }}),
                 new User(2, "user2", new HashSet<>())
         ));
         persons.get("sellers").addAll(Set.of(
@@ -67,11 +65,14 @@ public class PersonRepositoryImp implements  PersonRepository{
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>())
         ));
         return true;
+    }
+    public Set<Integer> getAllFollowed(int userId){
+        User user = (User)persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
+        return user.getFollowing();
+    }
+    public Seller findSellerById(Integer id){
+        return (Seller)persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
 
     }
 
-    public Map getSellerByID(int userId){
-        checkUser(userId);
-        Seller seller = (Seller) persons.get("sellers").stream().filter(person -> persons.get(userId)
-    }
 }

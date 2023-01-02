@@ -9,10 +9,13 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 
+
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 
 public class SellerDTO {
-    private Set<Integer> followers;
-
+    Integer seller_id;
+    String user_name;
 }
