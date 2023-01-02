@@ -24,10 +24,6 @@ public class UserController {
     public ResponseEntity<?> getFollowersById(@PathVariable int userId) {
         UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId);
         return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
-
-        //if(userFollowersResponseDTO!=null) return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
-        //return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); //Se maneja con excepciones, ahora para que no me tire error el IDE
-
     }
 
 }

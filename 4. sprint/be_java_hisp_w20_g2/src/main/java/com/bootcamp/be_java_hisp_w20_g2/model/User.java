@@ -28,7 +28,10 @@ public class User {
         following.add(user);
     }
 
+    public void addFollower(User user) { followers.add(user);}
+
     public void addPost(Post post) {
         posts.add(post);
     }
+
 }

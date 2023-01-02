@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +27,7 @@ public class UserService implements IUserService {
     public UserFollowersResponseDTO findAllFollowers(int userId) {
         User userFound = userRepository.findOne(userId);
         if(userFound == null) {
-            throw new UserNotFoundException("No se ha encontrado el usuario");
+            throw new UserNotFoundException("User not found");
         } else {
             List<UserResponseDTO> followers = userFound.getFollowers().stream().map(user -> new UserResponseDTO(user.getId(), user.getUserName())).collect(Collectors.toList());
             //^^^^^^ podría hacerse con un mapper ^^^^^^
