@@ -38,9 +38,6 @@ public class Controller {
 
     @PostMapping("/products/post")
     ResponseEntity<String> postAdd(@RequestBody PostCreateDto post) {
-        if (post == null) {
-            return new ResponseEntity<>("Esta vacio", HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
     }
 
@@ -56,17 +53,14 @@ public class Controller {
     }
 
     @GetMapping("/users/{userId}/followed/list")
-    public ResponseEntity<UserFollowedDto> findUserFollowedList(@PathVariable int userId, @RequestParam(required = false) String order){
+    public ResponseEntity<UserFollowedDto> findUserFollowedList(@PathVariable int userId, @RequestParam(required = false) String order) {
         UserFollowedDto userFollowedDto;
-            if(order == null){
-                userFollowedDto = iUserService.userFollowed(userId,"");
-                return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
-            } else {
-                userFollowedDto = iUserService.userFollowed(userId,order);
-                return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
-            }
+        if (order == null) {
+            userFollowedDto = iUserService.userFollowed(userId, "");
+            return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
+        } else {
+            userFollowedDto = iUserService.userFollowed(userId, order);
+            return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
+        }
     }
-
-    //1) retorna String
-    //7) retorna String
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/4. sprint/be_java_hisp_w20_g7/be_java_hisp_w20_g7.iml" filepath="$PROJECT_DIR$/4. sprint/be_java_hisp_w20_g7/be_java_hisp_w20_g7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3. spring/demoarquitectura/demoarquitectura.iml" filepath="$PROJECT_DIR$/3. spring/demoarquitectura/demoarquitectura.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3. spring/demospring/demospring.iml" filepath="$PROJECT_DIR$/3. spring/demospring/demospring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3. spring/1.Ejercicio de Romanos/demospring/demospring (1).iml" filepath="$PROJECT_DIR$/3. spring/1.Ejercicio de Romanos/demospring/demospring (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wave20-practicas.iml" filepath="$PROJECT_DIR$/.idea/wave20-practicas.iml" />
+    </modules>
+  </component>
+</project>
