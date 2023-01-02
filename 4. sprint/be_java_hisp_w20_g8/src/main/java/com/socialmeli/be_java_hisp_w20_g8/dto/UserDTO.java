@@ -15,7 +15,7 @@ import java.util.Set;
 public class UserDTO {
 
 
-    private  int id;
+    private  Integer id;
     private  String userName;
 
     private Set<Integer> following;

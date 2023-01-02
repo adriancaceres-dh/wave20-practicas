@@ -29,13 +29,5 @@ public class Seller extends Person{
         this.post = post;
     }
 
-    @Override
-    public String toString() {
-        return "Seller{" +
-                "id: "+ getId() +
-                " name: "+ getUser_name()+
-                " followers=" + followers +
-                ", post=" + post +
-                '}';
-    }
+
 }

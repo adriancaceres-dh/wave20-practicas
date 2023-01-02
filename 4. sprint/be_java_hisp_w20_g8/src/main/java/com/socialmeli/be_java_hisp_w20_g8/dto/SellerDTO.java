@@ -6,18 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class SellerDTO {
-
-    private Integer id;
-    private String user_name;
-
-    private Set<Integer> followers;
-    private Set<Integer> post;
-
+    Integer seller_id;
+    String user_name;
 }
