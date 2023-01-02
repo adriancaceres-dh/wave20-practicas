@@ -22,4 +22,20 @@ public class User {
     public int hashCode() {
         return id;
     }
+
+    public void addFollower(int idFollower) {
+        followers.add(Integer.valueOf(idFollower));
+    }
+
+    public void followUser(int idUserToFollow) {
+        following.add(Integer.valueOf(idUserToFollow));
+    }
+
+    public void removeFollower(int idFollower) {
+        followers.remove(Integer.valueOf(idFollower));
+    }
+
+    public void unfollowUser(int idUserToUnfollow) {
+        following.remove(Integer.valueOf(idUserToUnfollow));
+    }
 }

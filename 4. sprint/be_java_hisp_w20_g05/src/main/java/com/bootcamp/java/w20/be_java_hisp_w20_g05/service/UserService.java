@@ -22,6 +22,7 @@ public class UserService implements IUserService{
         return null;
     }
 
+
     public FollowersCountDTO getFollowersCount (int id){
         User user= userRepository.getAll().stream()
                 .filter(u -> u.getId()==id)
@@ -41,8 +42,28 @@ public class UserService implements IUserService{
             throw new InternalError("Error interno"); //No estoy seguro con esta excepcion quiza se pueda hacer mejor.
         }
     }
+
     public User getById(int id) {
         return userRepository.getById(id);
+    }
+
+    @Override
+    public boolean followUser(int userId, int userIdToFollow) {
+        User user1 = userRepository.getById(userId);
+        User user2 = userRepository.getById(userIdToFollow);
+        //No es necesario chequear ya que el getById arroja una excepcion si no encuentra el user
+        user1.followUser(user2.getId());
+        user2.addFollower(user1.getId());
+        return true;
+    }
+
+    @Override
+    public void unfollowUser(int userId, int userIdToUnfollow) {
+        User user1 = userRepository.getById(userId);
+        User user2 = userRepository.getById(userIdToUnfollow);
+        //No es necesario chequear ya que el getById arroja una excepcion si no encuentra el user
+        user1.unfollowUser(user2.getId());
+        user2.removeFollower(user1.getId());
     }
 
 }
