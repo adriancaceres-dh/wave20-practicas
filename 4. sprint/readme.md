@@ -29,4 +29,4 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 
 - No se cuenta con repositorios estaticos, estos son creados con codigo "quemado" o hardcoded code como datos iniciales.
 
-- Los datos ingresados por pathVariables siempre llegarán con el tipado solicitado por lo que no se tendrá en cuenta errores de este tipo en el controlador
+- Los datos ingresados por `@pathVariables` siempre llegarán con el tipado solicitado por lo que no se tendrá en cuenta errores de este tipo en el controlador
