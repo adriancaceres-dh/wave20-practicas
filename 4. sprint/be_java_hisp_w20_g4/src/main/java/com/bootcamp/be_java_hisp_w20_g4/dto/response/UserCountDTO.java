@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class UserCountDTO {
-    private String user_id;
+    private int user_id;
     private String user_name;
     private Integer followers_count;
 }

@@ -23,10 +23,6 @@ public class ServiceUsr implements IServiceUsr {
 
      ModelMapper mapper = new ModelMapper();
 
-    public UserCountDTO followersCount(int userId){
-        return null;
-    }
-
     public UserDTO followers(int userId){
         return null;
     }
@@ -49,6 +45,15 @@ public class ServiceUsr implements IServiceUsr {
         List<ListedUserDTO> aux = userFollower.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         UserDTO userDto = new UserDTO(userId,userFollower.getUser_name(),aux);
         return userDto;
+    }
+
+    public UserCountDTO followersCount (int userId){
+        User user = userRepository.findById(userId);
+        if (user == null){
+            throw new NotFoundException("No se ha encontrado el usuario");
+        }
+        UserCountDTO userCountDTO = new UserCountDTO(userId,user.getUser_name(),user.getFollowers().size());
+        return userCountDTO;
     }
 
 }

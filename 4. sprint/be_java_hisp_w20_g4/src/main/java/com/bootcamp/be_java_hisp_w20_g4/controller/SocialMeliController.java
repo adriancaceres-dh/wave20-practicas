@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserDTO;
 import com.bootcamp.be_java_hisp_w20_g4.service.IServicePublication;
 import com.bootcamp.be_java_hisp_w20_g4.service.IServiceUsr;
@@ -24,9 +25,8 @@ public class SocialMeliController {
     }
 
     @GetMapping("/users/{userId}/followers/count")
-    public ResponseEntity<String> followersCount(@PathVariable int userId){
-
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<UserCountDTO> followersCount(@PathVariable int userId){
+        return ResponseEntity.ok().body(usrService.followersCount(userId));
     }
 
     @GetMapping("/users/{userId}/followers/list")
