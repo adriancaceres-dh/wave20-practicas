@@ -32,7 +32,19 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserFollowersDTO getFollowersList(int userId) {
+    public UserFollowersDTO getFollowersList(int userId, String order) {
+        //Propuesta: agregar excepcion de user no encontado que responda con bad request asi no se retorna null
+        User user = iUserRepository.getUserById(userId);
+        if (user != null){
+            List<UserDTO> followers = user.getFollowed().stream()
+                    .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
+            if (order != null && order.equals("name_desc")){
+                followers = followers.stream().sorted(Comparator.comparing(x -> x.getUser_name(), Comparator.reverseOrder())).collect(Collectors.toList());
+            }else{
+                followers = followers.stream().sorted(Comparator.comparing(x -> x.getUser_name())).collect(Collectors.toList());
+            }
+            return new UserFollowersDTO(user.getUser_id(),user.getUser_name(),followers);
+        }
         return null;
     }
 

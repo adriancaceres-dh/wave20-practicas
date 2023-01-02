@@ -33,6 +33,7 @@ public class UserRepository implements IUserRepository {
     }
 
     public User getUserById(int userId) {
+        //Aca podriamos tirar una excepcion de usuario no encontrado
         return this.userList.stream()
                 .filter(user -> user.getUser_id() == userId)
                 .findAny()
