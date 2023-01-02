@@ -34,5 +34,24 @@
     "id": 20,
     "name": "basketball"
   }
-}
+},
+  {
+    "post_id": 3,
+    "date": "08-04-2022",
+    "price": 161.55,
+    "hasPromo":true,
+    "discount": 20.0,
+    "product": {
+      "id": 3,
+      "productName": "producto3",
+      "colour": "dark",
+      "notes": "nota3",
+      "type": "tipo3",
+      "brand": "reebook"
+    },
+    "category": {
+      "id": 200,
+      "name": "sports"
+    }
+  }
 ]

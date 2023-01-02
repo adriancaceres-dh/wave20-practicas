@@ -18,4 +18,29 @@
     "followers": {},
     "followed": {},
     "publications": {}
-  }]
+  },{
+  "user_id": 4,
+  "user_name": "gabi",
+  "followers": {},
+  "followed": {},
+  "publications": {}
+},{
+  "user_id": 5,
+  "user_name": "joaco",
+  "followers": {},
+  "followed": {},
+  "publications": {}
+},{
+  "user_id": 6,
+  "user_name": "tammi",
+  "followers": {},
+  "followed": {},
+  "publications": {}
+},{
+  "user_id": 7,
+  "user_name": "martin",
+  "followers": {},
+  "followed": {},
+  "publications": {}
+}
+]
