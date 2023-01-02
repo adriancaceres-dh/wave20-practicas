@@ -17,4 +17,8 @@ public class UserService implements IUserService{
     public List<UserResponseDTO> filterBy(String name) {
         return null;
     }
+    public User getById(int id) {
+        return userRepository.getById(id);
+    }
+
 }
