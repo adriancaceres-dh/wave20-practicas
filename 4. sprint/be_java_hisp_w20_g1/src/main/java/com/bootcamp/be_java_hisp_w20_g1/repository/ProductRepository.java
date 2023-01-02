@@ -40,4 +40,9 @@ public class ProductRepository implements IProductRepository {
         }
         return products;
     }
+
+    @Override
+    public Product getProductById(int id) {
+        return products.stream().filter(product -> product.getId() == id).findFirst().orElse(null);
+    }
 }

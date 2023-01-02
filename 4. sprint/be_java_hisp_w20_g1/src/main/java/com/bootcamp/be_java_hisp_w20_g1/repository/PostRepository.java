@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PostRepository implements IPostRepository {
@@ -22,6 +23,10 @@ public class PostRepository implements IPostRepository {
     public PostRepository() {
         this.posts = buildPostRepository();
 
+    }
+    @Override
+    public List<Post> getPostsByUserId(int userId) {
+        return posts.stream().filter(post -> post.getUserId() == userId).collect(Collectors.toList());
     }
 
     List<Post> buildPostRepository() {
@@ -43,4 +48,5 @@ public class PostRepository implements IPostRepository {
         }
         return posts;
     }
+
 }
