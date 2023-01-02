@@ -1,7 +1,7 @@
 [
   {
     "id":1,
-    "user_id":2,
+    "userId":2,
     "date":"2022-09-28",
     "category":"Medicine",
     "price":930,
@@ -18,7 +18,7 @@
   },
   {
     "id":2,
-    "user_id":1,
+    "userId":1,
     "date":"2022-11-17",
     "category":"Herbal",
     "price":1070,
@@ -35,7 +35,7 @@
   },
   {
     "id":3,
-    "user_id":10,
+    "userId":10,
     "date":"2022-08-08",
     "category":"Medicine",
     "price":540,
@@ -52,7 +52,7 @@
   },
   {
     "id":4,
-    "user_id":14,
+    "userId":14,
     "date":"2022-08-26",
     "category":"Herbal",
     "price":1530,
@@ -69,7 +69,7 @@
   },
   {
     "id":5,
-    "user_id":2,
+    "userId":2,
     "date":"2022-10-12",
     "category":"Medicine",
     "price":1120,
@@ -86,7 +86,7 @@
   },
   {
     "id":6,
-    "user_id":5,
+    "userId":5,
     "date":"2022-11-04",
     "category":"Laboratory",
     "price":970,
@@ -103,7 +103,7 @@
   },
   {
     "id":7,
-    "user_id":2,
+    "userId":2,
     "date":"2022-11-27",
     "category":"Medicine",
     "price":1670,
@@ -120,7 +120,7 @@
   },
   {
     "id":8,
-    "user_id":6,
+    "userId":6,
     "date":"2022-09-09",
     "category":"Medicine",
     "price":1580,
@@ -137,7 +137,7 @@
   },
   {
     "id":9,
-    "user_id":3,
+    "userId":3,
     "date":"2022-08-18",
     "category":"Cosmetics",
     "price":1850,
@@ -154,7 +154,7 @@
   },
     {
     "id":10,
-    "user_id":16,
+    "userId":16,
     "date":"2022-09-03",
     "category":"Cosmetics",
     "price":260,
@@ -171,7 +171,7 @@
   },
     {
     "id":11,
-    "user_id":2,
+    "userId":2,
     "date":"2022-07-12",
     "category":"Cosmetics",
     "price":1030,
@@ -188,7 +188,7 @@
   },
     {
     "id":12,
-    "user_id":15,
+    "userId":15,
     "date":"2022-09-24",
     "category":"Cosmetics",
     "price":1200,
@@ -205,7 +205,7 @@
   },
   {
     "id":13,
-    "user_id":8,
+    "userId":8,
     "date":"2022-08-18",
     "category":"Medicine",
     "price":1160,
@@ -222,7 +222,7 @@
   },
   {
     "id":14,
-    "user_id":11,
+    "userId":11,
     "date":"2022-11-12",
     "category":"Medicine",
     "price":250,
@@ -239,7 +239,7 @@
   },
   {
     "id":15,
-    "user_id":13,
+    "userId":13,
     "date":"2022-07-02",
     "category":"Cosmetics",
     "price":1740,
@@ -256,7 +256,7 @@
   },
   {
     "id":16,
-    "user_id":11,
+    "userId":11,
     "date":"2022-09-20",
     "category":"Medicine",
     "price":430,
@@ -273,7 +273,7 @@
   },
   {
     "id":17,
-    "user_id":9,
+    "userId":9,
     "date":"2022-07-06",
     "category":"Medicine",
     "price":1960,
@@ -290,7 +290,7 @@
   },
   {
     "id":18,
-    "user_id":13,
+    "userId":13,
     "date":"2022-07-31",
     "category":"Medicine",
     "price":270,
@@ -307,7 +307,7 @@
   },
   {
     "id":19,
-    "user_id":6,
+    "userId":6,
     "date":"2022-10-27",
     "category":"Medicine",
     "price":1510,
@@ -324,7 +324,7 @@
   },
   {
     "id":20,
-    "user_id":1,
+    "userId":1,
     "date":"2022-12-21",
     "category":"Medicine",
     "price":1590,
@@ -341,7 +341,7 @@
   },
   {
     "id":21,
-    "user_id":6,
+    "userId":6,
     "date":"2022-10-06",
     "category":"Medicine",
     "price":1340,
@@ -358,7 +358,7 @@
   },
   {
     "id":22,
-    "user_id":2,
+    "userId":2,
     "date":"2022-11-29",
     "category":"Medicine",
     "price":1800,
@@ -375,7 +375,7 @@
   },
   {
     "id":23,
-    "user_id":1,
+    "userId":1,
     "date":"2022-12-10",
     "category":"Medicine",
     "price":1760,
@@ -392,7 +392,7 @@
   },
   {
     "id":24,
-    "user_id":2,
+    "userId":2,
     "date":"2022-07-24",
     "category":"Cosmetics",
     "price":1850,
@@ -409,7 +409,7 @@
   },
   {
     "id":25,
-    "user_id":15,
+    "userId":15,
     "date":"2022-07-02",
     "category":"Cosmetics",
     "price":840,
@@ -426,7 +426,7 @@
   },
   {
     "id":26,
-    "user_id":6,
+    "userId":6,
     "date":"2022-08-24",
     "category":"Laboratory",
     "price":1890,
@@ -443,7 +443,7 @@
   },
   {
     "id":27,
-    "user_id":6,
+    "userId":6,
     "date":"2022-08-28",
     "category":"Medicine",
     "price":1920,
@@ -453,14 +453,14 @@
       "id":2,
       "name":"ARNICA MONTANA",
       "brand":"Remedy Makers",
-      "type":"ARNICA WHOLE PLANT",""
+      "type":"ARNICA WHOLE PLANT",
       "color":"blue",
       "notes":"De-engineered system-worthy algorithm"
     }
   },
   {
     "id":28,
-    "user_id":16,
+    "userId":16,
     "date":"2022-07-04",
     "category":"Medicine",
     "price":720,
@@ -477,7 +477,7 @@
   },
   {
     "id":29,
-    "user_id":13,
+    "userId":13,
     "date":"2022-12-27",
     "category":"Medicine",
     "price":1010,
@@ -487,14 +487,14 @@
       "id":2,
       "name":"ARNICA MONTANA",
       "brand":"Remedy Makers",
-      "type":"ARNICA WHOLE PLANT",""
+      "type":"ARNICA WHOLE PLANT",
       "color":"blue",
       "notes":"De-engineered system-worthy algorithm"
     }
   },
   {
     "id":30,
-    "user_id":15,
+    "userId":15,
     "date":"2022-10-05",
     "category":"Medicine",
     "price":480,
@@ -511,7 +511,7 @@
   },
     {
     "id":31,
-    "user_id":11,
+    "userId":11,
     "date":"2022-10-24",
     "category":"Cosmetics",
     "price":1610,
@@ -528,7 +528,7 @@
   },
   {
     "id":32,
-    "user_id":14,
+    "userId":14,
     "date":"2022-10-07",
     "category":"Medicine",
     "price":260,
@@ -545,7 +545,7 @@
   },
     {
     "id":33,
-    "user_id":1,
+    "userId":1,
     "date":"2022-10-25",
     "category":"Medicine",
     "price":1100,
@@ -562,7 +562,7 @@
   },
   {
     "id":34,
-    "user_id":6,
+    "userId":6,
     "date":"2022-07-26",
     "category":"Medicine",
     "price":1240,
@@ -579,7 +579,7 @@
   },
   {
     "id":35,
-    "user_id":2,
+    "userId":2,
     "date":"2022-08-30",
     "category":"Cosmetics",
     "price":1600,
@@ -596,7 +596,7 @@
   },
   {
     "id":36,
-    "user_id":12,
+    "userId":12,
     "date":"2022-12-22",
     "category":"Medicine",
     "price":600,
