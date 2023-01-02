@@ -10,8 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidOrder;
 
 @Service
 public class ServiceUsr implements IServiceUsr {
@@ -51,14 +56,34 @@ public class ServiceUsr implements IServiceUsr {
         return userCountDTO;
     }
 
-    public UserFollowersDTO followers (int userId){
+    public UserFollowersDTO followers(int userId, String order){
+        if(!isValidOrder(order)){
+            throw new BadRequestException("Parametro de orden incorrecto");
+        }
         User user = userRepository.findById(userId);
         if (user == null){
             throw new NotFoundException("No se ha encontrado el usuario");
         }
+        if(order == null) return followersUnsorted(user);
+        return followedSorted(user, order);
+    }
+
+    private UserFollowersDTO followersUnsorted (User user){
         List<ListedUserDTO> listedUserDTOList = user.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         return new UserFollowersDTO(user.getUser_id(),user.getUser_name(),listedUserDTOList);
     }
+
+    private UserFollowersDTO followedSorted(User user, String order){
+        List<ListedUserDTO> listedUserDTOList = user.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).sorted(Comparator.comparing(ListedUserDTO::getUser_name)).collect(Collectors.toList());
+
+        if(order.equals("name_desc")){
+            Collections.reverse(listedUserDTOList);
+        }
+        return new UserFollowersDTO(user.getUser_id(), user.getUser_name(), listedUserDTOList);
+
+    }
+
+
 
     public UserFollowedDTO followed (int userId){
         User user = userRepository.findById(userId);

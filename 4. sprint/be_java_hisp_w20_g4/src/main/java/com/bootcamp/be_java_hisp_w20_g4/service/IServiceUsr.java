@@ -11,7 +11,7 @@ public interface IServiceUsr {
 
     public UserCountDTO followersCount(int userId);
 
-    public UserFollowersDTO followers(int userId);
+    public UserFollowersDTO followers(int userId, String order);
 
     public UserDTO follow(int userId, int userIdToFollow);
 
