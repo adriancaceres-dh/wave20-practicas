@@ -8,6 +8,8 @@ import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,11 +37,19 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserFollowersDTO getFollowedList(int userId) {
+    public UserFollowersDTO getFollowedList(int userId, String order) {
         User user = iUserRepository.getUserById(userId);
         if (user != null) {
-            return new UserFollowersDTO(user.getUser_id(), user.getUser_name(), user.getFollowed().stream()
-                    .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList()));
+            List<UserDTO> followed = user.getFollowed().stream()
+                    .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
+            if (order != null) {
+                if (order.equals("name_asc")){
+                    followed = followed.stream().sorted(Comparator.comparing(x -> x.getUser_name())).collect(Collectors.toList());
+                }else{
+                    followed = followed.stream().sorted(Comparator.comparing(x -> x.getUser_name(), Comparator.reverseOrder())).collect(Collectors.toList());
+                }
+            }
+            return new UserFollowersDTO(user.getUser_id(), user.getUser_name(), followed);
         }
         return null;
     }
