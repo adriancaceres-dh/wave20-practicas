@@ -1,10 +1,12 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PostResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserPostDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserProductDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUsersPostsResponse;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidPostDataException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
@@ -50,8 +52,9 @@ public class PostService implements IPostService{
                             .build()
                         )
                 .build();
+        if(!postRepository.add(newPost)) throw new InvalidPostDataException(new MessageExceptionDTO("Invalid data"));
+        // --> Pendiente chequear esta excepcion, validar datos para que dispare.
         return newPost;
-        //postRepository.add();
     //Requerimiento 006
     }
     public FollowedUsersPostsResponse getFollowedUsersPosts(int userId) {
