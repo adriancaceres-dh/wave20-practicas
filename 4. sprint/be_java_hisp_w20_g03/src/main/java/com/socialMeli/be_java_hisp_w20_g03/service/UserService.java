@@ -56,12 +56,11 @@ public class UserService implements IUserService{
 
     @Override
     public UserFollowersDTO getFollowersList(int userId, String order) throws NotFoundException{
-        //Propuesta: agregar excepcion de user no encontado que responda con bad request asi no se retorna null
         User user = iUserRepository.getUserById(userId);
         if (user == null){
             throw new NotFoundException("El usuario ingresado no existe.");
         }
-        List<UserDTO> followers = user.getFollowed().stream()
+        List<UserDTO> followers = user.getFollowers().stream()
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
         if (order != null && order.equals("name_desc")){
             followers = followers.stream().sorted(Comparator.comparing(x -> x.getUser_name(), Comparator.reverseOrder())).collect(Collectors.toList());
