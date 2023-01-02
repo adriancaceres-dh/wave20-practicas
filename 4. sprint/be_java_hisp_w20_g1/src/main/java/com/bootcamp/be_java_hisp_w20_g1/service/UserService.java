@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
@@ -66,4 +65,16 @@ public class UserService implements IUserService {
         return ResponseEntity.ok(new UserFollowedResponseDto(user.getId(),user.getName(),userFollowedList));
 
     }
+
+    @Override
+    public boolean alreadyExists(int userId){
+        User user =userRepository.getUserById(userId);
+        return user!=null;
+    }
+
+    @Override
+    public void verifyUser(int userId){
+        userRepository.getUserById(userId)
+    }
 }
+

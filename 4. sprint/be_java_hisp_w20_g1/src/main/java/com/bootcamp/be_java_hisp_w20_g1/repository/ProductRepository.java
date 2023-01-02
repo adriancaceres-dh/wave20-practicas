@@ -40,4 +40,13 @@ public class ProductRepository implements IProductRepository {
         }
         return products;
     }
+    @Override
+    public List<Product> getProducts() {
+        return products;
+    }
+    @Override
+    public void addProduct(Product p) {
+        products.add(p);
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.repository;
 
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
-import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +40,16 @@ public class PostRepository implements IPostRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return posts;
+    }
+
+    @Override
+    public void add(Post post) {
+        posts.add(post);
+    }
+
+    @Override
+    public List<Post> getPosts() {
         return posts;
     }
 }

@@ -14,6 +14,7 @@ public class BeJavaHispW20G1Application {
     }
 
     public static void main(String[] args) {
+
         SpringApplication.run(BeJavaHispW20G1Application.class, args);
     }
 
