@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 
 @Service
 public class PostService implements IPostService{
-    private int post_id = 0;
+    private int post_id = 36;
     @Autowired
     public IPostRepository postRepository;
     @Autowired

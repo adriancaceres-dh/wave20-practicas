@@ -37,15 +37,6 @@ public class UserService implements IUserService{
 
     public List<User> getAll(){return new ArrayList<>(userRepository.getAll());}
 
-    public String addUsers(List<User> users) {
-        try {
-            userRepository.addAll(users);
-            return "Agregados con exito!";
-        } catch (Exception e) {
-            throw new InternalError("Error interno"); //No estoy seguro con esta excepcion quiza se pueda hacer mejor.
-        }
-    }
-
     public User getById(int id) {
         return userRepository.getById(id);
     }

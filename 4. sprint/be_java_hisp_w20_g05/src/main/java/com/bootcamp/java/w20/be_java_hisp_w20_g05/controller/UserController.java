@@ -40,10 +40,6 @@ public class UserController {
             return new ResponseEntity<>("Se ha dejado de seguir correctamente.", HttpStatus.OK);
         } else return new ResponseEntity<>("Error al dejar de seguir al usuario.", HttpStatus.BAD_REQUEST);
     }
-    @PostMapping ("/add")
-    public ResponseEntity<String> addUsers(@RequestBody List<User> users){
-        return new ResponseEntity<>(userService.addUsers(users),HttpStatus.OK);
-    }
 
     @GetMapping ("/list")
     public ResponseEntity<List<User>> getUsers(){
