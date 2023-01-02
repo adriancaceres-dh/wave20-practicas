@@ -4,6 +4,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,5 +27,13 @@ public class PostRepository implements IRepository<Post>{
         return posts.stream().filter(p -> p.getProduct().getName().toLowerCase()
                         .matches("^.*" + productName.toLowerCase() + ".*$"))
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Post> getAll() {
+        return this.posts;
+    }
+
+    public boolean addAll(List<Post> posts){return posts.addAll(posts);
     }
 }
