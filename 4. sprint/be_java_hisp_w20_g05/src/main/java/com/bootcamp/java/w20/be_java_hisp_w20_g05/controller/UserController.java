@@ -64,5 +64,4 @@ public class UserController {
         return new ResponseEntity<>(followedList, HttpStatus.OK);
     }
 
-
 }
