@@ -4,19 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
-
-
-
 @AllArgsConstructor
 @Data
-
-
 public class User {
-    private int userId;
+    private Integer id;
     private String userName;
     private List<User> followers;
     private List<User> following;
     private List<Post> posts;
-
 
 }
