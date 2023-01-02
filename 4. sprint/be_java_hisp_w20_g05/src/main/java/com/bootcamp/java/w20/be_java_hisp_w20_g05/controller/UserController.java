@@ -28,8 +28,11 @@ public class UserController {
     }
 
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
-    public void unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        userService.followUser(userId, userIdToUnfollow);
+    public ResponseEntity<String> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        boolean unfollowed = userService.followUser(userId, userIdToUnfollow);
+        if (unfollowed) {
+            return new ResponseEntity<>("Se ha dejado de seguir correctamente.", HttpStatus.OK);
+        } else return new ResponseEntity<>("Error al dejar de seguir al usuario.", HttpStatus.BAD_REQUEST);
     }
     @PostMapping ("/add")
     public ResponseEntity<String> addUsers(@RequestBody List<User> users){

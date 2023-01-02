@@ -55,7 +55,7 @@ public class UserService implements IUserService{
             User user2 = userRepository.getById(userIdToFollow);
             user1.followUser(user2.getId());
             user2.addFollower(user1.getId());
-        } catch (IdNotFoundException) {
+        } catch (IdNotFoundException exception) {
             return false;
         }
 
@@ -63,12 +63,16 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public void unfollowUser(int userId, int userIdToUnfollow) {
-        User user1 = userRepository.getById(userId);
-        User user2 = userRepository.getById(userIdToUnfollow);
-        //El requerimiento no indica que haya que responder a la request por lo que no se chequean errores
-        user1.unfollowUser(user2.getId());
-        user2.removeFollower(user1.getId());
+    public boolean unfollowUser(int userId, int userIdToUnfollow) {
+        try {
+            User user1 = userRepository.getById(userId);
+            User user2 = userRepository.getById(userIdToUnfollow);
+            user1.unfollowUser(user2.getId());
+            user2.removeFollower(user1.getId());
+        } catch (IdNotFoundException exception) {
+            return false;
+        }
+        return true;
     }
 
 }
