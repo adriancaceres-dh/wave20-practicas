@@ -11,7 +11,9 @@ import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,13 +23,25 @@ public class UserService implements IUserService {
     private UserRepository userRepository;
 
     @Override
-    public UserFollowersResponseDTO findAllFollowers(int userId) {
+    public UserFollowersResponseDTO findAllFollowers(int userId, Optional<String> order) {
         User userFound = userRepository.findOne(userId);
         if (userFound == null) {
             throw new UserNotFoundException("User not found");
         } else {
-            List<UserResponseDTO> followers = userFound.getFollowers().stream().map(user -> new UserResponseDTO(user.getId(), user.getUserName())).collect(Collectors.toList());
-            //^^^^^^ podría hacerse con un mapper ^^^^^^
+            List<UserResponseDTO> followers = userFound.getFollowers().stream()
+                    .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
+                    .collect(Collectors.toList());
+            if(order.isPresent()){
+                Comparator<UserResponseDTO> comparator;
+                if(order.get().equals("name_asc")){
+                    comparator = Comparator.comparing(UserResponseDTO::getUserName);
+                }else{
+                    comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
+                }
+
+                followers = followers.stream().sorted(comparator).collect(Collectors.toList());
+
+            }
             return new UserFollowersResponseDTO(userFound.getId(), userFound.getUserName(), followers);
         }
     }

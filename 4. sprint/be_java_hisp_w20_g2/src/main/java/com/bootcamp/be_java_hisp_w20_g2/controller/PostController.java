@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/products")
 public class PostController {
@@ -21,7 +23,7 @@ public class PostController {
     }
 
     @GetMapping("followed/{userId}/list")
-    public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId) {
-        return postService.sendLastPostOfFollowed(userId);
+    public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
+        return postService.sendLastPostOfFollowed(userId,order);
     }
 }

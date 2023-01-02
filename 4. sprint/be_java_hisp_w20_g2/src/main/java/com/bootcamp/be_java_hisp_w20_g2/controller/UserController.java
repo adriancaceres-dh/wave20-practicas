@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController()
 @RequestMapping("/users")
 public class UserController {
@@ -20,8 +22,8 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followers/list")
-    public ResponseEntity<?> getFollowersById(@PathVariable int userId) {
-        UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId);
+    public ResponseEntity<?> getFollowersById(@PathVariable int userId, @RequestParam Optional<String> order) {
+        UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId,order);
         return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
     }
 

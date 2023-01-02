@@ -9,10 +9,16 @@ import com.bootcamp.be_java_hisp_w20_g2.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.ICategoryRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IPostRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.Optional;
 
 
 @Service
@@ -61,7 +67,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public PostResponseDTO sendLastPostOfFollowed(int userId) {
+    public PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order ) {
         User user = userRepository.findOne(userId);
         if (user == null) {
             throw new BadRequestException("The given userId not exist.");
@@ -69,10 +75,13 @@ public class PostService implements IPostService {
 
         PostResponseDTO postResponse = new PostResponseDTO(userId);
 
+        Comparator<Post> comparator = order.orElse("date_desc").equals("date_desc") ?
+                Comparator.comparing(Post::getDate).reversed()
+                : Comparator.comparing(Post::getDate);
         user.getFollowing()
                 .forEach(followedUser -> {
                     followedUser.getPosts().stream()
-                            .sorted(Comparator.comparing(Post::getDate).reversed())
+                            .sorted(comparator)
                             .filter(post -> post.getDate().isAfter(LocalDate.now().minusWeeks(2)))
                             .forEach(post -> postResponse.addPost(post, followedUser.getId()));
                 });
