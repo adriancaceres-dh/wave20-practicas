@@ -1,18 +1,18 @@
-package com.bootcamp.java.w20.be_java_hisp_w20_g05.model;
+package com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Product {
-    private int id;
-    private String name;
+public class ProductRequestDTO {
+    private int product_id;
+    private String product_name;
+    private String type;
     private String brand;
     private String color;
     private String notes;
-    private String type;
 }

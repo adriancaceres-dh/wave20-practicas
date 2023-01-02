@@ -5,16 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Post {
     private int id;
-    private String category;
+    private int category;
     private double price;
     private double discount;
     private Product product;
+    private LocalDate date;
 
     @Override
     public int hashCode() {
