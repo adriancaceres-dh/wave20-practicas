@@ -17,10 +17,10 @@ import java.util.stream.Stream;
 
 @Service
 public class ProductService implements IProductService {
-    private  final ModelMapper mapper = new ModelMapper();
+    private final ModelMapper mapper = new ModelMapper();
 
     @Autowired
-    IProductRepository productRepository;
+    private IProductRepository productRepository;
 
     public ProductService() {
         mapper.getConfiguration()

@@ -17,10 +17,10 @@ import java.util.stream.Stream;
 
 @Service
 public class PostService implements IPostService {
-    private  final ModelMapper mapper = new ModelMapper();
+    private final ModelMapper mapper = new ModelMapper();
 
     @Autowired
-    IProductService productService;
+    private IProductService productService;
     @Autowired
     private IPostRepository postRepository;
     @Autowired
