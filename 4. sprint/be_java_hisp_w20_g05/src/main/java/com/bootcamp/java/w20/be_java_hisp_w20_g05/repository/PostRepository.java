@@ -1,6 +1,7 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.repository;
 
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exception.NotFoundException;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,7 @@ public class PostRepository implements IPostRepository{
     }
     public Post getById(int userId) {
         return posts.stream().filter(u -> u.getId()== userId)
-                .findFirst().orElseThrow(() -> new NotFoundException("No se encontro el post"));
+                .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("Elemento no encontrado")));
     }
 
     @Override
