@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2.service;
 
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowedResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
@@ -43,6 +44,31 @@ public class UserService implements IUserService {
 
             }
             return new UserFollowersResponseDTO(userFound.getId(), userFound.getUserName(), followers);
+        }
+    }
+
+    @Override
+    public UserFollowedResponseDTO findAllFollowed(int userId, Optional<String> order) {
+        User userFound = userRepository.findOne(userId);
+        if (userFound == null) {
+            throw new UserNotFoundException("User not found");
+        } else {
+            List<UserResponseDTO> followed = userFound.getFollowing().stream()
+                    .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
+                    .collect(Collectors.toList());
+            if(order.isPresent()){
+                if( order.get().equals("name_asc") || order.get().equals("name_desc")){
+                    Comparator<UserResponseDTO> comparator;
+                    if(order.get().equals("name_asc")){
+                        comparator = Comparator.comparing(UserResponseDTO::getUserName);
+                    }else{
+                        comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
+                    }
+                    followed = followed.stream().sorted(comparator).collect(Collectors.toList());
+                }
+
+            }
+            return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed);
         }
     }
 

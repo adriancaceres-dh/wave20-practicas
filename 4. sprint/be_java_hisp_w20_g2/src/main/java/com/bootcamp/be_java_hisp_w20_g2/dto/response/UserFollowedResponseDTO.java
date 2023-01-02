@@ -14,4 +14,8 @@ public class UserFollowedResponseDTO extends UserResponseDTO {
 
     private List<UserResponseDTO> followed;
 
+    public UserFollowedResponseDTO(int userId, String userName, List<UserResponseDTO> followed) {
+        super(userId, userName);
+        this.followed = followed;
+    }
 }
