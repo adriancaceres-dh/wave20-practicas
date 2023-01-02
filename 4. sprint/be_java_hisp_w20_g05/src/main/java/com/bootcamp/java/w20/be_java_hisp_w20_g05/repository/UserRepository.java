@@ -26,4 +26,8 @@ public class UserRepository implements IRepository<User> {
                         .matches("^.*" + name.toLowerCase() + ".*$"))
                 .collect(Collectors.toSet());
     }
+
+    public User getUserById(int userId) {
+        return users.stream().filter(user -> user.getId() == userId).findFirst().get();
+    }
 }

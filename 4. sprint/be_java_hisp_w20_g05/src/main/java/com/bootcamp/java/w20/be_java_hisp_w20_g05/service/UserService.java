@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService implements IUserService{
@@ -17,4 +18,13 @@ public class UserService implements IUserService{
     public List<UserResponseDTO> filterBy(String name) {
         return null;
     }
+
+    public boolean followUser (int userId, int userToFollow){
+        User user1 = userRepository.getUserById(userId);
+        User user2 = userRepository.getUserById(userToFollow);
+        
+
+
+    }
+
 }
