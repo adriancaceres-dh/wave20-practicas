@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidArgumentException.class)
-    public ResponseEntity<?> invalidArgumentsException(Exception e) {
+    public ResponseEntity<?> invalidArgumentException(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }

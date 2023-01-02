@@ -23,13 +23,8 @@ public class SellerController {
 
     @GetMapping("/users/{userId}/followers/list")
     public ResponseEntity<Map<SellerDTO, List<User>>> getSellerFollowers(@PathVariable Integer userId){
-        try{
+
             return new ResponseEntity<>(sellerService.getSellerFollowers(userId), HttpStatus.OK);
-
-        }catch (NumberFormatException e){
-            throw  new OperationFailedException(e.getMessage() + " Please check the information");
-
-        }
 
 
     }

@@ -72,7 +72,7 @@ public class PersonRepositoryImp implements PersonRepository{
         return user.getFollowing();
     }
     public Seller findSellerById(Integer id){
-        return (Seller)persons.get("sellers").stream().filter(seller-> seller.getId().equals(id)).findAny().orElse(null);
+        return (Seller)persons.get("sellers").stream().filter(seller-> seller.getId().equals(id)).findAny().orElse(null); //Mandar throw en vez de null
 
     }
     public User findUserById(Integer id){
