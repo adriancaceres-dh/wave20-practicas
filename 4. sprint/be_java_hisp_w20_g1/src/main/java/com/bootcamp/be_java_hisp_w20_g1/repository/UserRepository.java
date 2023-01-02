@@ -42,10 +42,26 @@ public class UserRepository implements IUserRepository {
         }
     }
 
+    public void removeFollower(int userIdToModify, int userIdOfFollower) {
+        for (User user : users) {
+            if (user.getId() == userIdToModify) {
+                 user.getFollowers().remove(userIdOfFollower);
+            }
+        }
+    }
+
     public void addFollowed(int userIdToModify, int userIdToFollow){
         for (User user : users){
             if (user.getId() == userIdToModify){
                 user.getFollowed().add(userIdToFollow);
+            }
+        }
+    }
+
+    public void removeFollowed(int userIdToModify, int userIdToFollow) {
+        for (User user : users) {
+            if (user.getId() == userIdToModify) {
+                user.getFollowed().remove(userIdToFollow);
             }
         }
     }

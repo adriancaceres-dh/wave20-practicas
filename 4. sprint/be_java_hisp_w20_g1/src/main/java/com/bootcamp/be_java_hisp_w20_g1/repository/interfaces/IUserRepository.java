@@ -9,5 +9,7 @@ public interface IUserRepository {
 
      void addFollowed(int userIdToModify, int userIdToFollow);
      void addFollower(int userIdToModify, int userIdToFollow);
+     void removeFollowed(int userIdToModify, int userIdToFollow) ;
+     void removeFollower(int userIdToModify, int userIdToFollow);
 
 }

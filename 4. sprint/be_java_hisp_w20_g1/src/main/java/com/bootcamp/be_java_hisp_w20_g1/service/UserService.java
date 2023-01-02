@@ -42,4 +42,26 @@ public class UserService implements IUserService {
         return ResponseEntity.ok(new UserFollowedResponseDto(user.getId(),user.getName(),userFollowedList));
     }
 
+    public ResponseEntity<UserFollowedResponseDto> unfollowUser(int userId, int userIdToUnfollow){
+
+        if (userId == userIdToUnfollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToUnfollow) )
+            throw new RuntimeException("Id invalido");
+
+
+        User user = userRepository.getUserById(userId);
+
+        userRepository.removeFollowed(userId,userIdToUnfollow);
+        userRepository.removeFollower(userIdToUnfollow, userId);
+
+        System.out.println(userRepository.getUserById(userId) + " " + userRepository.getUserById(userIdToUnfollow));
+
+        List<UserResponseDto> userFollowedList = new ArrayList<>();
+        for (Integer userFollowedId : user.getFollowed() ){
+            User userFollowed = userRepository.getUserById(userFollowedId);
+            userFollowedList.add(new UserResponseDto(userFollowedId,userFollowed.getName()));
+        }
+
+        return ResponseEntity.ok(new UserFollowedResponseDto(user.getId(),user.getName(),userFollowedList));
+
+    }
 }

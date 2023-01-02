@@ -5,4 +5,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface IUserService {
     ResponseEntity<UserFollowedResponseDto> followUser(int userId, int userIdToFollow);
+    ResponseEntity<UserFollowedResponseDto> unfollowUser(int userId, int userIdToUnfollow);
 }
