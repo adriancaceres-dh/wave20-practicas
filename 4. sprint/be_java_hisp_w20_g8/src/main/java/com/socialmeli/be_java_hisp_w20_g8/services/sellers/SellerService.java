@@ -5,7 +5,7 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.UserDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepositoryImp;
+import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,25 +19,27 @@ import java.util.stream.Collectors;
 public class SellerService implements ISellerService {
     ModelMapper modelMapper= new ModelMapper();
     @Autowired
-    PersonRepositoryImp personRepository;
+    PersonRepository personRepository;
 
     @Override
-    public Map<SellerDTO, List<User>> getSellerFollowers(Integer userId) {
+    public Map<SellerDTO, List<UserDTO>> getSellerFollowers(Integer userId) {
 
-        Map<SellerDTO,List<User>> listaResponse = new HashMap<>();
+        Map<SellerDTO, List<UserDTO>> listaResponse = new HashMap<>();
 
         Seller seller = personRepository.findSellerById(userId);
 
         if(seller!=null) {
 
             List<User> listaFollowers = seller.getFollowers().stream().map(UserID -> personRepository.findUserById(userId)).collect(Collectors.toList());
+            List<UserDTO> listaFollowersDTO = listaFollowers.stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
             SellerDTO sellerDTO = modelMapper.map(seller,SellerDTO.class);
-            listaResponse.put(sellerDTO,listaFollowers);
+            listaResponse.put(sellerDTO,listaFollowersDTO);
 
             return listaResponse;
 
         }else{
-            throw new NotFoundException("usuario no encontrado");
+
+            throw new NotFoundException("User with id: + " + userId + "not found");
         }
 
 
