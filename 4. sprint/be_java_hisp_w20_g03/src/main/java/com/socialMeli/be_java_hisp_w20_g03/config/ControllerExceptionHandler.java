@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.config;
 
 import com.socialMeli.be_java_hisp_w20_g03.exception.DuplicatedPostException;
+import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,10 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(DuplicatedPostException.class)
     public ResponseEntity<String> duplicatedPost(DuplicatedPostException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<?> badRequestException(Exception e) {
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
     }
 
 }

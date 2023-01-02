@@ -3,6 +3,7 @@ package com.socialMeli.be_java_hisp_w20_g03.service;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
@@ -38,14 +39,14 @@ public class UserService implements IUserService{
             User currentUser = iUserRepository.getUserById(userId);
             User followUser = iUserRepository.getUserById(userIdToFollow);
             if(currentUser == null || followUser == null)
-                return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
+               throw new NotFoundException("El usuario ingresado no existe");
             List<User> getFollowersList = followUser.getFollowers();
             if(getFollowersList.contains(currentUser))
-                return new ResponseEntity<>("You are already following the user",HttpStatus.BAD_REQUEST);
+                throw  new BadRequestException("Ya estas siguiendo al usuario: " + followUser.getUser_name());
             getFollowersList.add(currentUser);
-            return new ResponseEntity<>("Following", HttpStatus.OK);
+            return new ResponseEntity<>("Comenzaste a seguir al usuario: " + followUser.getUser_name(), HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
