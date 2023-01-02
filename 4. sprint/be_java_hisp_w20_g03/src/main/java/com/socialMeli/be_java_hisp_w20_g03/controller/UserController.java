@@ -4,6 +4,7 @@ import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +37,7 @@ public class UserController {
 
     @GetMapping("/users/{userId}/followed/list")
     public ResponseEntity<UserFollowersDTO> getFollowedList(@PathVariable int userId) {
-        return null;
+        return new ResponseEntity<>(iUserService.getFollowedList(userId), HttpStatus.OK);
     }
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
