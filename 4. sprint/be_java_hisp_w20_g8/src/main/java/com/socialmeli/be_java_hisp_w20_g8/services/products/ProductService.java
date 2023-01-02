@@ -35,6 +35,7 @@ public class ProductService implements IProductService {
                 .allMatch(Objects::nonNull))
             throw new InvalidArgumentException("All the fields are required");
 
+        // Get the product if exists
         Product product = mapper.map(productDTO, Product.class);
         Optional<Product> existing = productRepository.getProductById(product.getProductId());
 
@@ -43,6 +44,7 @@ public class ProductService implements IProductService {
             throw new OperationFailedException("Another product with the same identifier is already registered");
         }
 
+        // Create the product
         if(existing.isEmpty())
             return productRepository.createProduct(product);
 
