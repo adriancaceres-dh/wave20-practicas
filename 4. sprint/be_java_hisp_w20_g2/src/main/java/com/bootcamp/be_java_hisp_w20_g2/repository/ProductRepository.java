@@ -1,19 +1,21 @@
 package com.bootcamp.be_java_hisp_w20_g2.repository;
 
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IProductRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 
 @Repository
-public class ProductRepository {
-    private final HashMap<Integer, Product> products;
+public class ProductRepository implements IProductRepository {
     private static int currentId = 0;
+    private final HashMap<Integer, Product> products;
 
-    public ProductRepository(){
+    public ProductRepository() {
         products = new HashMap<>();
     }
 
+    @Override
     public Product save(Product product) {
         if (product.getId() == null) {
             product.setId(currentId++);
@@ -22,7 +24,13 @@ public class ProductRepository {
         return product;
     }
 
-    public Product findOne(int id) {
-        return products.get(id);
+    @Override
+    public Product findOne(Integer key) {
+        return products.get(key);
+    }
+
+    @Override
+    public boolean exists(Integer key) {
+        return products.containsKey(key);
     }
 }

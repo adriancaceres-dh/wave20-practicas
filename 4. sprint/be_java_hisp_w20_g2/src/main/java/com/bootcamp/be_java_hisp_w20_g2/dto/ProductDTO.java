@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@Getter @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@Getter
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ProductDTO {
     private int productId;
     private String productName;

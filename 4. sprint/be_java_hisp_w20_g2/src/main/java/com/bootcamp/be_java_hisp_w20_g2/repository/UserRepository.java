@@ -8,14 +8,13 @@ import java.util.HashMap;
 
 @Repository
 public class UserRepository {
-//estas?
-    private final HashMap<Integer, User> users;
     private static int currentId = 0;
-
+    //estas?
+    private final HashMap<Integer, User> users;
     @Autowired
     private PostRepository postRepository;
 
-    public UserRepository(){
+    public UserRepository() {
         users = new HashMap<>();
 
         User diego = new User("Diego");
@@ -40,7 +39,7 @@ public class UserRepository {
         return user;
     }
 
-    public User findOne(int id){
+    public User findOne(int id) {
         return users.get(id);
     }
 

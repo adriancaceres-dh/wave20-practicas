@@ -11,7 +11,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor @Getter
+@NoArgsConstructor
+@Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostResponseDTO {
     private int userId;
@@ -26,7 +27,9 @@ public class PostResponseDTO {
         posts.add(new PostDTO(userId, post));
     }
 
-    @NoArgsConstructor @Getter @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    @NoArgsConstructor
+    @Getter
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     private class PostDTO {
         private int userId;
         private int postId;

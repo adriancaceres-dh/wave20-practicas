@@ -9,32 +9,25 @@ import com.bootcamp.be_java_hisp_w20_g2.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.PostRepository;
-import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.ICategoryService;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.ICategoryRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IPostRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
-import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
 public class PostService implements IPostService {
     @Autowired
-    private PostRepository postRepository;
-
+    private IPostRepository postRepository;
     @Autowired
-    private IUserService userService; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
+    private IUserRepository userRepository; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
     @Autowired
-    private ICategoryService categoryService; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
-
-    public PostService() {
-
-    }
+    private ICategoryRepository categoryRepository; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
 
     @Override
     public void createPost(PostRequestDTO postRequestDTO) {
@@ -60,38 +53,22 @@ public class PostService implements IPostService {
             "price": 1500.50
             }
          */
-        Post newPost = toObject(postRequestDTO);
-        User updatedUser = userService.findUser(postRequestDTO.getUserId());
-        updatedUser.addPost(newPost);
-
-        userService.saveUser(updatedUser);
-    }
-
-    public Post toObject(PostRequestDTO postRequestDTO) {
-        ProductDTO productDTO = postRequestDTO.getProduct();
-        Product product = new Product(
-                productDTO.getProductId(),
-                productDTO.getProductName(),
-                productDTO.getType(),
-                productDTO.getBrand(),
-                productDTO.getColor(),
-                productDTO.getNotes());
-        // Está bien que un Service devuelva un objecto de modelo o solo los repositorios lo hacen?
-        Category category = categoryService.findCategoryByCode(postRequestDTO.getCategory())
-                .orElseThrow(() -> new PostCreationException("Invalid category code"));
-        User user = userService.findUser(postRequestDTO.getUserId());
+        User user = userRepository.findOne(postRequestDTO.getUserId());
         if (user == null) {
             // Tiramos exception sobre que el usuario no es correcto.
-            throw new PostCreationException("The given userId does not exist.");
+            throw new PostCreationException("The given user id does not exist.");
         }
 
-        return new Post(postRequestDTO.getDate(), product, category, postRequestDTO.getPrice());
+        Post newPost = toObject(postRequestDTO);
+        user.addPost(newPost);
+
+        userRepository.save(user);
     }
 
     @Override
-    public PostResponseDTO sendLastPostOfFollowed(int userId){
-        User user = userService.findUser(userId);
-        if(user == null) {
+    public PostResponseDTO sendLastPostOfFollowed(int userId) {
+        User user = userRepository.findOne(userId);
+        if (user == null) {
             throw new BadRequestException("The given userId not exist.");
         }
 
@@ -106,6 +83,22 @@ public class PostService implements IPostService {
                 });
 
         return postResponse;
+    }
+
+    private Post toObject(PostRequestDTO postRequestDTO) {
+        ProductDTO productDTO = postRequestDTO.getProduct();
+        Product product = new Product(
+                productDTO.getProductId(),
+                productDTO.getProductName(),
+                productDTO.getType(),
+                productDTO.getBrand(),
+                productDTO.getColor(),
+                productDTO.getNotes());
+        // Está bien que un Service devuelva un objecto de modelo o solo los repositorios lo hacen?
+        Category category = categoryRepository.findByCode(postRequestDTO.getCategory())
+                .orElseThrow(() -> new PostCreationException("Invalid category code"));
+
+        return new Post(postRequestDTO.getDate(), product, category, postRequestDTO.getPrice());
     }
 
 }

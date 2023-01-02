@@ -7,19 +7,16 @@ import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private IUserService userService;
+
     @PostMapping("/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<Boolean> follow(@PathVariable int userId, @PathVariable int userIdToFollow){
+    public ResponseEntity<Boolean> follow(@PathVariable int userId, @PathVariable int userIdToFollow) {
         return new ResponseEntity<>(userService.follow(userId, userIdToFollow), HttpStatus.OK);
     }
 
@@ -30,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followers/count")
-    public ResponseEntity<UserResponseDTO> countFollowers (@PathVariable int userId){
+    public ResponseEntity<UserResponseDTO> countFollowers(@PathVariable int userId) {
         return new ResponseEntity<>(userService.followerList(userId), HttpStatus.OK);
     }
 
