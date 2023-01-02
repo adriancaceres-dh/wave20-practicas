@@ -20,7 +20,7 @@ public class SellerController {
     @GetMapping("/users/{userId}/followers/count")
     public String countFollowersBySellers(@PathVariable Integer userId){
 
-        return sellerService.buscarVendedor(userId);
+        return sellerService.searhSeller(userId);
     }
 
 }

@@ -25,8 +25,8 @@ public class SellerService {
     }∫
 
 */
-    public String buscarVendedor(Integer sellerId){
-
+    public String searhSeller(Integer sellerId){
+/*
         List<Person> filterSellerId = personRepositoryImp.getSellers().stream().filter(a->a.getId()==sellerId).collect(Collectors.toList());
 
         for (Person foll :filterSellerId){
@@ -36,8 +36,8 @@ public class SellerService {
         }
 
 
-        //Aqui hago el filtro por seller
-        //return personRepositoryImp.getSellers().stream().filter(a->a.getId()==sellerId).collect(Collectors.toList()).toString();
+  */      //Aqui hago el filtro por seller
+        return personRepositoryImp.getSellers().stream().filter(a->a.getId()==sellerId).collect(Collectors.toList()).toString();
 
 
     }
