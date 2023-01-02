@@ -9,11 +9,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
-public class UserDTO {
+public class UserFollowersDTO {
 
     private int user_id;
     private String user_name;
     private List<ListedUserDTO> followers;
-    private List<ListedUserDTO> followed;
 }

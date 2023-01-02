@@ -2,11 +2,15 @@ package com.bootcamp.be_java_hisp_w20_g4.controller;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserFollowedDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserFollowersDTO;
 import com.bootcamp.be_java_hisp_w20_g4.service.IServicePublication;
 import com.bootcamp.be_java_hisp_w20_g4.service.IServiceUsr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class SocialMeliController {
@@ -30,13 +34,13 @@ public class SocialMeliController {
     }
 
     @GetMapping("/users/{userId}/followers/list")
-    public ResponseEntity<String> followers(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<UserFollowersDTO> followers(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
+        return ResponseEntity.ok().body(usrService.followers(userId));
     }
 
     @GetMapping("/users/{userId}/followed/list")
-    public ResponseEntity<String> followed(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<UserFollowedDTO> followed(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
+        return ResponseEntity.ok().body(usrService.followed(userId));
     }
 
     @PostMapping("/products/post")

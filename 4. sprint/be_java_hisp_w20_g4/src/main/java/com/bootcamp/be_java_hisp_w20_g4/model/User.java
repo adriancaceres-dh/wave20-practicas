@@ -13,21 +13,30 @@ public class User {
     private HashMap<Integer, User> followed = new HashMap<>();
     private HashMap<Integer, Publication> publications = new HashMap<>();
 
-    // TODO: 29/12/22  
-    public User followSeller(User userToFollow){
-        if(followers.containsKey(userToFollow.getUser_id())){
+    /**
+     * el propio usuario agrega en su lista de seguidos (followed) la persona a la que siguió
+      * @param userToFollow
+     * @return
+     */
+    public User addUserToMyFollowedList(User userToFollow){
+        if(followed.containsKey(userToFollow.getUser_id())){
             return null; // lanza excepcion porque ya lo sigue
         }else{
-            followers.put(userToFollow.getUser_id(), userToFollow);
+            followed.put(userToFollow.getUser_id(), userToFollow);
             return userToFollow;
         }
     }
 
-    public User followedSeller(User userToFollowed){
-        if(followed.containsKey(userToFollowed.getUser_id())){
+    /**
+     * el propio usuario agrega en su lista de seguidores (followers) la persona que lo siguió
+     * @param userToFollowed
+     * @return
+     */
+    public User addUserToMyFollowersList(User userToFollowed){
+        if(followers.containsKey(userToFollowed.getUser_id())){
             return null; // lanza excepcion porque ya es seguido
         }else{
-            followed.put(userToFollowed.getUser_id(), userToFollowed);
+            followers.put(userToFollowed.getUser_id(), userToFollowed);
             return userToFollowed;
         }
     }
