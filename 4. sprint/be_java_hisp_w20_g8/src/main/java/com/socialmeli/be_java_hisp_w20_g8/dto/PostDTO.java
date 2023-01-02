@@ -6,10 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 public class PostDTO {
+    private int userId;
+    private int postId;
+    private LocalDate date;
+    private ProductDTO productDTO;
+    private int caregory;
+    private double price;
+
 
 }

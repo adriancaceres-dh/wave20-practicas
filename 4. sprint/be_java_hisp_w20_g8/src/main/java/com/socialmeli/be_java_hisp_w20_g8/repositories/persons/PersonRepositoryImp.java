@@ -21,7 +21,7 @@ public class PersonRepositoryImp {
         loadUsers();
     }
 
-    private boolean loadUsers() {
+    public Map<String, Set<Person>> loadUsers() {
         persons.get("users").addAll(Set.of(
                 new User(1, "user1", new HashSet<>()),
                 new User(2, "user2", new HashSet<>())
@@ -30,6 +30,8 @@ public class PersonRepositoryImp {
                 new Seller(3, "seller3", new HashSet<>(), new HashSet<>()),
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>())
         ));
-        return true;
+        return persons;
     }
+
+
 }
