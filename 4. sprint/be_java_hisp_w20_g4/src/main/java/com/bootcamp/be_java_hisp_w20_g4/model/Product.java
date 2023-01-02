@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    private int id;
-    private String productName;
-    private String colour;
+    private int product_id;
+    private String product_name;
+    private String color;
     private String notes;
     private String type;
     private String brand;

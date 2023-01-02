@@ -36,5 +36,10 @@ public class ProductRepository implements IProductRepository{
         return products;
     }
 
+    public boolean productExist(Product product){
+        Product productRepository = products.stream().filter(p -> p.getProduct_id() == product.getProduct_id()).findFirst().orElse(null);
+        if(productRepository == null) return false;
+        return productRepository.equals(product);
+    }
 
 }

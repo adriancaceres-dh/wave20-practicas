@@ -16,10 +16,21 @@ import java.util.Date;
 public class Publication {
     private int post_id;
     @JsonFormat(pattern="dd-MM-yyyy")
-    private Date date;
+    private LocalDate date;
     private double price;
     private boolean hasPromo;
     private double discount;
     private Product product;
     private Category category;
+
+    private int contador = 3;
+
+    public Publication(LocalDate date, double price, Product product, Category category) {
+        this.date = date;
+        this.price = price;
+        this.product = product;
+        this.category = category;
+        contador++;
+        this.post_id = contador;
+    }
 }
