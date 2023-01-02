@@ -1,7 +1,10 @@
 package com.socialMeli.be_java_hisp_w20_g03.controller;
 
+import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.model.User;
+import com.socialMeli.be_java_hisp_w20_g03.repository.UserRepository;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +20,15 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
+
+    @GetMapping("/users")
+    public List<UserDTO> list() {
+        return iUserService.getUsers();
+    }
+
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> addFollower(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        return null;
+        return iUserService.addFollower(userId,userIdToFollow);
     }
 
     @GetMapping("/users/{userId}/followers/count")
