@@ -42,7 +42,8 @@ public class PostService implements IPostService {
                 ProductRequestDto productDto = postDto.getProduct();
                 productService.add(productDto);
                 postRepository.add(convertPost(postDto, productDto.getId()));
-
+                userService.updateUser(postDto.getUserId());
+                
                 return true;
             } else {
                 return false;

@@ -156,6 +156,12 @@ public class UserService implements IUserService {
         return user!=null;
     }
 
-    
+    @Override
+    public void updateUser(int userId){
+        if(!userRepository.isSeller(userId)){
+            userRepository.getUserById(userId).setSeller(true);
+        }
+    }
+
 }
 

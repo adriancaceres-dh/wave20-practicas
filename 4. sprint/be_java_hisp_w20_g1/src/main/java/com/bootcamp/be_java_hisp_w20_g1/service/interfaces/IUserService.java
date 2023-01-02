@@ -15,5 +15,5 @@ public interface IUserService {
 
     boolean alreadyExists(int userId);
 
-    void verifyUser();
+    void updateUser(int userId);
 }
