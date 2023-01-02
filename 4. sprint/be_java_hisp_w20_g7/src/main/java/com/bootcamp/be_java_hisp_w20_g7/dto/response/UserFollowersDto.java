@@ -6,11 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class UserFollowersDto {
-
+    
     private int userId;
     private String userName;
     List<UserDto> followers;

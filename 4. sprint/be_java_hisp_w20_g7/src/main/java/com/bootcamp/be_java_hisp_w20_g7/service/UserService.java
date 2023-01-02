@@ -13,7 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,7 @@ public class UserService implements IUserService {
 
     ModelMapper modelMapper;
 
-    public UserService(){
+    public UserService() {
         modelMapper = new ModelMapper();
 
     }
@@ -42,10 +41,10 @@ public class UserService implements IUserService {
     public UserFollowersDto userFollowers(int userId) {
         List<Follow> follows = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList());
         List<User> followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).collect(Collectors.toList());
-        List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e,UserDto.class)).collect(Collectors.toList());
+        List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e, UserDto.class)).collect(Collectors.toList());
         User followed = iUserRepository.findById(userId);
 
-        return new UserFollowersDto(followed.getUserId(),followed.getUserName(),userDtos);
+        return new UserFollowersDto(followed.getUserId(), followed.getUserName(), userDtos);
 
     }
 

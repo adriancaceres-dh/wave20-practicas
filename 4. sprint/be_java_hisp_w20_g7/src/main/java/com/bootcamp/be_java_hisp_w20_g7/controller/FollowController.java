@@ -18,8 +18,8 @@ public class FollowController {
     IFollowService followService;
 
     @PostMapping("users/{userId}/follow/{userIdToFollow}")
-    ResponseEntity<String> follow(@PathVariable int userId, @PathVariable int userIdToFollow){
-        return ResponseEntity.ok(followService.follow(userId,userIdToFollow));
+    ResponseEntity<String> follow(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        return ResponseEntity.ok(followService.follow(userId, userIdToFollow));
     }
 
 }

@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserFollowersCountDto {
 
-     private int userId;
-     private String userName;
-     private int followersCount;
+    private int userId;
+    private String userName;
+    private int followersCount;
 
 }
