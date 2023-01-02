@@ -20,7 +20,7 @@ public class UserRepository implements IUserRepository {
         users.add(new User(4, "Ronald"));
         users.add(new User(5, "Nathalia"));
         users.add(new User(6, "Tomas"));
-        users.add(new User(7, "Stive"));
+        users.add(new User(7, "Stiven"));
         users.add(new User(8, "Juan"));
     }
 

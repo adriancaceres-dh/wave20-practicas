@@ -50,7 +50,13 @@ public class UserService implements IUserService {
 
     @Override
     public UserFollowedDto userFollowed(int userId) {
-        return null;
+
+        List<Follow> followList = iFollowRepository.findAll().stream().filter(follow -> follow.getIdFollowed() == userId).collect(Collectors.toList());
+        List<User> userFollowedList = followList.stream().map(follow -> iUserRepository.findById(follow.getIdFollower())).collect(Collectors.toList());
+        List<UserDto> userFollowedDtoList = userFollowedList.stream().map(f -> modelMapper.map(f, UserDto.class)).collect(Collectors.toList());
+        User followed = iUserRepository.findById(userId);
+
+        return new UserFollowedDto(followed.getUserId(), followed.getUserName(), userFollowedDtoList);
     }
 
     @Override

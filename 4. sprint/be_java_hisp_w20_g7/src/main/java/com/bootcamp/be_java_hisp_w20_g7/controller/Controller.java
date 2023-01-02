@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g7.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
 import com.bootcamp.be_java_hisp_w20_g7.service.IFollowService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IPostService;
@@ -47,6 +48,12 @@ public class Controller {
     @PostMapping("users/{userId}/unfollow/{userIdToUnfollow}")
     ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         return ResponseEntity.ok(followService.unfollow(userId, userIdToUnfollow));
+    }
+
+    @GetMapping("/users/{userId}/followed/list")
+    public ResponseEntity<UserFollowedDto> findUserFollowedList(@PathVariable int userId){
+        UserFollowedDto userFollowedDto = iUserService.userFollowed(userId);
+        return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
     }
 
     //1) retorna String

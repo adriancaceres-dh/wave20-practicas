@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class UserFollowedDto {
 
-    List<UserDto> followed;
     private int userId;
     private String userName;
+    List<UserDto> followed;
 }
