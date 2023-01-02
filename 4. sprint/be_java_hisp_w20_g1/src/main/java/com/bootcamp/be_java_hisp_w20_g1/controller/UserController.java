@@ -7,10 +7,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -21,8 +18,10 @@ public class UserController {
 
     //US 3
     @GetMapping("/{userId}/followers/list")
-    public ResponseEntity<UserFollowersResponseDto> getSellerFollowers(@PathVariable int userId) {
-        return ResponseEntity.ok().body(userService.getSellerFollowersDto(userId));
+    public ResponseEntity<UserFollowersResponseDto> getSellerFollowers(
+            @PathVariable int userId,
+            @RequestParam(required = false) String order) {
+        return ResponseEntity.ok().body(userService.getSellerFollowersDto(userId, order));
     }
 
     //US 2
@@ -32,8 +31,12 @@ public class UserController {
     }
 
     //us 4
-    @GetMapping("/{userId}/followed/list")
-    public ResponseEntity<UserFollowedResponseDto> getUserFollowed(@PathVariable int userId) {
-        return ResponseEntity.ok().body(userService.getFollowedDto(userId));
+    @GetMapping(value = "/{userId}/followed/list", params = {"order"})
+    public ResponseEntity<UserFollowedResponseDto> getUserFollowed(
+            @PathVariable int userId,
+            @RequestParam(required = false) String order) {
+        return ResponseEntity.ok().body(userService.getFollowedDto(userId, order));
     }
+
+
 }
