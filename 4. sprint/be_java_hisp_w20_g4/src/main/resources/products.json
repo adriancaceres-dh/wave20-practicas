@@ -1,0 +1,32 @@
+[
+  {
+  "id": 1,
+  "productName": "producto1",
+  "colour": "yellow",
+  "notes": "nota",
+  "type": "tipo",
+  "brand": "adidas"
+  },
+  {
+    "id": 2,
+    "productName": "producto2",
+    "colour": "red",
+    "notes": "nota2",
+    "type": "tipo2",
+    "brand": "nike"
+  },{
+  "id": 3,
+  "productName": "producto3",
+  "colour": "blue",
+  "notes": "nota3",
+  "type": "tipo3",
+  "brand": "puma"
+},{
+  "id": 4,
+  "productName": "producto4",
+  "colour": "green",
+  "notes": "nota4",
+  "type": "tipo4",
+  "brand": "adidas"
+}
+]

@@ -1,0 +1,21 @@
+[{
+  "id": 1,
+  "userName": "rodri",
+  "followers": {},
+  "followed": {},
+  "publications": {}
+},
+  {
+    "id": 2,
+    "userName": "ivan",
+    "followers": {},
+    "followed": {},
+    "publications": {}
+  },
+  {
+    "id": 3,
+    "userName": "emi",
+    "followers": {},
+    "followed": {},
+    "publications": {}
+  }]

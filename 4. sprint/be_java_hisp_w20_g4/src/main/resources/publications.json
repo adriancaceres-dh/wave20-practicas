@@ -1,0 +1,38 @@
+[{
+  "post_id": 1,
+  "date": "05-03-2022",
+  "price": 15.55,
+  "hasPromo":false,
+  "discount": 15.0,
+  "product": {
+    "id": 1,
+    "productName": "producto1",
+    "colour": "yellow",
+    "notes": "nota",
+    "type": "tipo",
+    "brand": "adidas"
+  },
+  "category": {
+    "id": 10,
+    "name": "football"
+  }
+},{
+  "post_id": 2,
+  "date": "06-04-2022",
+  "price": 16.55,
+  "hasPromo":true,
+  "discount": 10.0,
+  "product": {
+    "id": 2,
+    "productName": "producto2",
+    "colour": "red",
+    "notes": "nota2",
+    "type": "tipo2",
+    "brand": "nike"
+  },
+  "category": {
+    "id": 20,
+    "name": "basketball"
+  }
+}
+]
