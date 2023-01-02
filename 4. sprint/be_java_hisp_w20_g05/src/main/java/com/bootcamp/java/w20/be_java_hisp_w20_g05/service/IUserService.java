@@ -11,4 +11,5 @@ public interface IUserService extends IService<UserResponseDTO> {
     public FollowersCountDTO getFollowersCount (int id);
     public String addUsers(List<User> users);
     public List<User> getAll();
+    User getById(int id);
 }

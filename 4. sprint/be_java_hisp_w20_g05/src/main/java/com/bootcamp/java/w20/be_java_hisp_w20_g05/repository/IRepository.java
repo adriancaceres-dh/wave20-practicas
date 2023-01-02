@@ -13,4 +13,5 @@ public interface IRepository<T> {
     public Set<T> getAll();
 
     public boolean addAll(List<T> tList);
+    T getById(int id);
 }
