@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
@@ -77,7 +78,7 @@ public class PostService implements IPostService {
     @Override
     public boolean add(PostRequestDto postDto) {
         if (postDto == null || postDto.getUserId()== 0) {
-            return false;
+            throw new BadRequestException("Request body inválido");
         } else {
             if (!productService.alreadyExist(postDto.getProduct().getProductId()) &&
                     userService.alreadyExists(postDto.getUserId())) {
@@ -89,7 +90,7 @@ public class PostService implements IPostService {
                 
                 return true;
             } else {
-                return false;
+                throw new BadRequestException("El producto ya existe");
             }
         }
     }

@@ -3,11 +3,12 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -92,25 +93,30 @@ public class UserService implements IUserService {
 
     private void doValidations(User user) {
         validateUserExist(user);
-        if(user.isSeller()){
-            System.out.println("El usuario no es vendedor");
+        validateUserIsSeller(user);
+    }
+
+    private void validateUserIsSeller(User user) {
+        if(!user.isSeller()){
+            throw new BadRequestException("El usuario no es vendedor");
         }
     }
 
     private void validateUserExist(User user) {
         if (user == null) {
-            System.out.println("el usuario no existe");
+            throw new NotFoundException("El usuario no existe");
         }
     }
 
     @Override
     public UserFollowedResponseDto followUser(int userId, int userIdToFollow){
 
-        if (userId == userIdToFollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToFollow) )
-            throw new RuntimeException("Id invalido");
+        if (userId == userIdToFollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToFollow) ) {
+            throw new NotFoundException("El usuario no existe");
+        }
 
         if(!userRepository.isSeller(userIdToFollow)) {
-            throw new RuntimeException("El usuario a seguir no es un vendedor");
+            throw new BadRequestException("El usuario no es vendedor");
         }
 
         User user = userRepository.getUserById(userId);
@@ -131,7 +137,7 @@ public class UserService implements IUserService {
     public UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow){
 
         if (userId == userIdToUnfollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToUnfollow) )
-            throw new RuntimeException("Id invalido");
+            throw new NotFoundException("El usuario no existe");
 
 
         User user = userRepository.getUserById(userId);

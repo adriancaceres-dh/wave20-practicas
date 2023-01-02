@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IProductRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IProductService;
@@ -33,7 +34,7 @@ public class ProductService implements IProductService {
                     .notes(product.getNotes())
                     .build();
         } else {
-            throw new RuntimeException("produto no existente");
+            throw new NotFoundException("Producto no existente");
         }
     }
 
@@ -42,20 +43,16 @@ public class ProductService implements IProductService {
         if (product.isPresent()) {
             return  true;
         }
-        return false;
+        throw new NotFoundException("Producto no existente");
     }
 
     @Override
     public void add(ProductRequestDto product) {
-
         productRepository.addProduct(convertProduct(product));
-
-
     }
 
     public Product convertProduct(ProductRequestDto product) {
         return mapper.map(product, Product.class);
-
     }
 
 }
