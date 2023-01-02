@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "chanelleHhanelle",
+    "name": "zchanelleHhanelle",
     "followers": [],
-    "followed": [],
+    "followed": [2,3],
     "posts": [
       2
     ],
@@ -11,8 +11,8 @@
   },
   {
     "id": 2,
-    "name": "mohamedDohamed",
-    "followers": [],
+    "name": "zmohamedDohamed",
+    "followers": [1,3,4],
     "followed": [],
     "posts": [
       3
@@ -22,7 +22,7 @@
   {
     "id": 3,
     "name": "kinaMina",
-    "followers": [],
+    "followers": [1],
     "followed": [],
     "posts": [
       4

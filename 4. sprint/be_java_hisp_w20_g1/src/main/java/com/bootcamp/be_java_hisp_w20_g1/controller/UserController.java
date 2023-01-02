@@ -2,6 +2,8 @@ package com.bootcamp.be_java_hisp_w20_g1.controller;
 
 
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersCountResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +20,31 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+<<<<<<< HEAD
 
     @PostMapping("/{userId}/follow/{userIdToFollow}")
+=======
+    @GetMapping("/{userId}/followers/list")
+    public ResponseEntity<UserFollowersResponseDto> getSellerFollowers(
+            @PathVariable int userId,
+            @RequestParam(required = false) String order) {
+        return ResponseEntity.ok().body(userService.getSellerFollowersDto(userId, order));
+    }
 
+    @GetMapping("/{userId}/followers/count")
+    public ResponseEntity<UserFollowersCountResponseDto> getFollowersCount(@PathVariable int userId) {
+        return ResponseEntity.ok().body(userService.getFollowersCountDto(userId));
+    }
+>>>>>>> e166004b9dddbaab24e6f24bd893e67c20ed65ca
+
+    @GetMapping("/{userId}/followed/list")
+    public ResponseEntity<UserFollowedResponseDto> getUserFollowed(
+            @PathVariable int userId,
+            @RequestParam(required = false) String order) {
+        return ResponseEntity.ok().body(userService.getFollowedDto(userId, order));
+    }
+
+    @PostMapping("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<UserFollowedResponseDto> followUser(@PathVariable int userId, @PathVariable int userIdToFollow){
         return userService.followUser(userId,userIdToFollow);
     }
@@ -28,7 +52,11 @@ public class UserController {
     @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<UserFollowedResponseDto> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow){
         return userService.unfollowUser(userId,userIdToUnfollow);
+<<<<<<< HEAD
 
 
+=======
+    }
+>>>>>>> e166004b9dddbaab24e6f24bd893e67c20ed65ca
 }
     }

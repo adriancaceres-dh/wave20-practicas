@@ -20,7 +20,6 @@ public class PostRepository implements IPostRepository {
 
     public PostRepository() {
         this.posts = buildPostRepository();
-
     }
 
     List<Post> buildPostRepository() {

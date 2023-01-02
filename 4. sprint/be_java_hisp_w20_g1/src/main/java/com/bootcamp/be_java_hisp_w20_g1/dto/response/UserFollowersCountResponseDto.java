@@ -15,4 +15,5 @@ import lombok.NoArgsConstructor;
 public class UserFollowersCountResponseDto extends UserResponseBaseDto{
 
     private int followersCount;
+
 }

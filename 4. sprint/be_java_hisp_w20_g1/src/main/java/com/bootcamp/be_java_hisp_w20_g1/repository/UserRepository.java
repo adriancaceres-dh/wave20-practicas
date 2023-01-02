@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserRepository implements IUserRepository {
@@ -20,7 +19,6 @@ public class UserRepository implements IUserRepository {
 
     public UserRepository() {
         this.users = buildUserRepository();
-
     }
 
     @Override
@@ -72,8 +70,6 @@ public class UserRepository implements IUserRepository {
             }
         }
     }
-
-
 
     List<User> buildUserRepository() {
         File file = null;
