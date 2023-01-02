@@ -1,7 +1,8 @@
 package com.bootcamp.be_java_hisp_w20_g2.controller;
 
-import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
+
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController()
 @RequestMapping("/users")
@@ -21,18 +23,18 @@ public class UserController {
         return new ResponseEntity<>(userService.follow(userId, userIdToFollow), HttpStatus.OK);
     }
 
-    @GetMapping("/users/{userId}/followers/list")
+    @GetMapping("/{userId}/followers/list")
     public ResponseEntity<?> getFollowersById(@PathVariable int userId) {
         UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId);
         return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/count")
-    public ResponseEntity<UserResponseDTO> lista (@PathVariable int userId){
+    public ResponseEntity<UserResponseDTO> countFollowers (@PathVariable int userId){
         return new ResponseEntity<>(userService.followerList(userId), HttpStatus.OK);
     }
 
-    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
+    @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> postUnfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         userService.unfollowUser(userId, userIdToUnfollow);
         return ResponseEntity.ok().body("Operación exitosa");
