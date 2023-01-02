@@ -16,6 +16,6 @@ public interface IUserService extends IService<UserResponseDTO> {
     User getById(int id);
     public boolean followUser(int userId, int userIdToFollow);
     public boolean unfollowUser(int userId, int userIdToUnfollow);
-    FollowedListDTO getFollowedListDto(int userId);
-    public FollowersBySellerDTO getFollowersBySeller(int userId);
+    FollowedListDTO getFollowedListDto(int userId, String order);
+    public FollowersBySellerDTO getFollowersBySeller(int userId, String order);
 }
