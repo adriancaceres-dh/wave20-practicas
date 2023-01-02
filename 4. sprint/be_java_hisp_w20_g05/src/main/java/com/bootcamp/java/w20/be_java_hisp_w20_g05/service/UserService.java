@@ -3,6 +3,7 @@ package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IRepository;
@@ -73,6 +74,13 @@ public class UserService implements IUserService{
             return false;
         }
         return true;
+    }
+
+    public FollowedListDTO getFollowedListDto(int userId){
+        User user = getById(userId);
+        FollowedListDTO followedList = new FollowedListDTO(user.getId(), user.getUserName());
+        for(Integer i: user.getFollowing()) followedList.followed.add(new UserResponseDTO(i, getById(i).getUserName()));
+        return followedList;
     }
 
 }
