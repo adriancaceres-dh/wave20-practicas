@@ -11,4 +11,6 @@ public interface IUserService {
 
     void saveUser(User user);
 
+    void unfollowUser(int userId, int userIdToUnfollow);
+
 }
