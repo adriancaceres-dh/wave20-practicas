@@ -40,4 +40,11 @@ public class UserRepository implements IUserRepository {
         }
         return users;
     }
+
+    public User getUserById(int id) {
+        return this.users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }
