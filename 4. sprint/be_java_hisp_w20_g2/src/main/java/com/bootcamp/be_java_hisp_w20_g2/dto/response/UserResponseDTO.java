@@ -11,6 +11,5 @@ import lombok.*;
 public class UserResponseDTO {
     private int userId;
     private String userName;
-    private int followersCount;
 
 }
