@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.repository;
 
-import com.bootcamp.be_java_hisp_w20_g4.model.Publication;
+
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,6 +16,8 @@ import java.util.List;
 public class UserRepository implements IUserRepository{
 
     private List<User> users = loadUsers();
+
+    public UserRepository(){}
 
     private List<User> loadUsers() {
         File file = null;
@@ -33,6 +35,10 @@ public class UserRepository implements IUserRepository{
             e.printStackTrace();
         }
         return users;
+    }
+
+    public User findById(int idUser){
+        return users.stream().filter(x->x.getId() == idUser).findFirst().orElse(null);
     }
 
 }

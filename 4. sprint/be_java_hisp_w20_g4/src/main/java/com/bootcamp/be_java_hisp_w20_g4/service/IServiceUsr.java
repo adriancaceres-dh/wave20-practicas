@@ -9,4 +9,6 @@ public interface IServiceUsr {
 
     public UserDTO followers(int userId);
 
+    public UserDTO follow (int userId, int userIdToFollow);
+
 }

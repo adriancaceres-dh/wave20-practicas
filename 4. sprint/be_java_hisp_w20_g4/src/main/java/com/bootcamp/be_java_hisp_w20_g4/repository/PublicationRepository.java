@@ -17,6 +17,8 @@ public class PublicationRepository implements  IPublicationRepository{
 
     private List<Publication> publications = loadPublications();
 
+    public PublicationRepository(){}
+
     private List<Publication> loadPublications() {
         File file = null;
         try {

@@ -16,6 +16,8 @@ public class ProductRepository implements IProductRepository{
 
     private List<Product> products = loadProducts();
 
+    public ProductRepository(){}
+
     private List<Product> loadProducts() {
         File file = null;
         try {
