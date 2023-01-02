@@ -19,12 +19,20 @@ public class UserController {
     private IUserService userService;
 
     @GetMapping("/users/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<ResponseDto> newFollow(@PathVariable int userId, @PathVariable int sellerId){
-        try{
+    public ResponseEntity<ResponseDto> newFollow(@PathVariable int userId, @PathVariable int sellerId) {
+        try {
             return new ResponseEntity<>(userService.addNewFollow(userId, sellerId), HttpStatus.OK);
+        } catch (NumberFormatException e) {
+            throw new OperationFailedException(e.getMessage() + " Please check the information");
         }
-        catch (NumberFormatException e){
-            throw  new OperationFailedException(e.getMessage() + " Please check the information");
+    }
+
+    @GetMapping("/{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<ResponseDto> unfollowC(@PathVariable int userId, @PathVariable int sellerId) {
+        try {
+            return new ResponseEntity<>(userService.unfollow(userId, sellerId), HttpStatus.OK);
+        } catch (NumberFormatException e) {
+            throw new OperationFailedException(e.getMessage() + " Please check the information");
         }
     }
 }
