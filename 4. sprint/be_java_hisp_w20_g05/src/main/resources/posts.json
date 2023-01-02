@@ -138,7 +138,7 @@
   {
     "id":9,
     "userId":3,
-    "date":"2022-08-18",
+    "date":"2022-12-30",
     "category":"Cosmetics",
     "price":1850,
     "discount":0.25,
@@ -154,8 +154,8 @@
   },
     {
     "id":10,
-    "userId":16,
-    "date":"2022-09-03",
+    "userId":4,
+    "date":"2022-12-26",
     "category":"Cosmetics",
     "price":260,
     "discount":0.05,

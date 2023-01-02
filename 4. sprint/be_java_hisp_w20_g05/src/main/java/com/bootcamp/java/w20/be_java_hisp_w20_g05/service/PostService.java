@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PostService implements IPostService{
@@ -64,6 +65,7 @@ public class PostService implements IPostService{
         try
         {
             Collection<Post> followedUsersPosts = new ArrayList<>();
+
             userInBd.getFollowing()
                     .stream().forEach(followedUsersIds -> followedUsersPosts
                             .addAll(postRepository
@@ -72,15 +74,13 @@ public class PostService implements IPostService{
                                             .getDate()
                                             .isAfter(LocalDate.now().minusDays(14)))
                                     .collect(Collectors.toList())));
+
             Collection<FollowedUserPostDTO> postResults = new ArrayList<>();
 
-            if (order.equalsIgnoreCase("date_asc"))
-                followedUsersPosts.stream().sorted((x,y) -> x.getDate().compareTo(y.getDate()));
-
-            if (order.equalsIgnoreCase("date_desc"))
-                followedUsersPosts.stream().sorted((x,y) -> - x.getDate().compareTo(y.getDate()));
-
-            followedUsersPosts.stream().forEach(post ->
+            int auxSign = (order!= null && order.equalsIgnoreCase("date_asc"))? 1 : -1;
+            followedUsersPosts.stream()
+                    .sorted((x,y) -> auxSign*(x.getDate().compareTo(y.getDate())))
+                    .forEach(post ->
                     postResults.add(new FollowedUserPostDTO(post.getUserId(),
                             post.getId(),
                             post.getDate(),
