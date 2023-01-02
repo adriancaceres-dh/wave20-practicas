@@ -23,6 +23,7 @@ public class User {
         return id;
     }
 
+<<<<<<< Updated upstream
     public void addFollower(int idFollower) {
         followers.add(Integer.valueOf(idFollower));
     }
@@ -38,4 +39,6 @@ public class User {
     public void unfollowUser(int idUserToUnfollow) {
         following.remove(Integer.valueOf(idUserToUnfollow));
     }
+=======
+>>>>>>> Stashed changes
 }

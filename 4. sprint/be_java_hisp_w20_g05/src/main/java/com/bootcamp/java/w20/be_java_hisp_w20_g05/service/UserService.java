@@ -1,7 +1,11 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
+<<<<<<< Updated upstream
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
+=======
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.GetFollowersBySellerDto;
+>>>>>>> Stashed changes
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
@@ -47,6 +51,7 @@ public class UserService implements IUserService{
         return userRepository.getById(id);
     }
 
+<<<<<<< Updated upstream
     @Override
     public boolean followUser(int userId, int userIdToFollow) {
         User user1 = userRepository.getById(userId);
@@ -64,6 +69,14 @@ public class UserService implements IUserService{
         //No es necesario chequear ya que el getById arroja una excepcion si no encuentra el user
         user1.unfollowUser(user2.getId());
         user2.removeFollower(user1.getId());
+=======
+    public GetFollowersBySellerDto getFollowersBySeller(int userId)
+    {
+        User seller = userRepository.getById(userId);
+        List<User> followers = new ArrayList<>();
+        seller.getFollowers().stream().forEach(x -> followers.add(userRepository.getById(x)));
+        return new GetFollowersBySellerDto(seller.getId(), seller.getUserName(), followers);
+>>>>>>> Stashed changes
     }
 
 }
