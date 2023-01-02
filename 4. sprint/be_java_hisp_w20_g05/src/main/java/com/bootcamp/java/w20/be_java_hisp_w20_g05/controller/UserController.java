@@ -1,12 +1,16 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 import java.util.List;
 
 
@@ -45,5 +49,17 @@ public class UserController {
     public ResponseEntity<FollowersCountDTO> getFollowersCount(@PathVariable int userId){
         return new ResponseEntity<>(userService.getFollowersCount(userId), HttpStatus.OK);
     }
+
+    @GetMapping("/{userId}/followed/list")
+    public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId){
+        User user = userService.getById(userId);
+
+        FollowedListDTO followedList = new FollowedListDTO(user.getId(), user.getUserName());
+
+        Collections.addAll(followedList.followed, new UserResponseDTO(1, "Juan"), new UserResponseDTO(2, "Jota"));
+
+        return new ResponseEntity<>(followedList, HttpStatus.OK);
+    }
+
 
 }
