@@ -1,4 +1,3 @@
-//package main.java.com.bootcamp.be_java_hisp_w20_g4.excepcion;
 package com.bootcamp.be_java_hisp_w20_g4.excepcion;
 
 
@@ -10,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(main.java.com.bootcamp.be_java_hisp_w20_g4.excepcion.NotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     public  ResponseEntity<?> NotFoundException(Exception e){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
-    @ExceptionHandler(main.java.com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException.class)
+    @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<?> BadRequestException(Exception e){
         return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
