@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g4.service;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.NotFoundException;
+import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
 import com.bootcamp.be_java_hisp_w20_g4.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
@@ -35,13 +36,14 @@ public class ServiceUsr implements IServiceUsr {
         if(userFollower == null || userFollowed == null){
             throw new NotFoundException("No se ha encontrado el usuario");
         }
+        if(!(userFollowed instanceof Seller)) throw new BadRequestException("No se puede seguir a un comprador.");
         if(userFollower.addUserToMyFollowedList(userFollowed) == null){
             throw new NotFoundException("El usuario ya es seguido por el seguidor");
         }
-        if(userFollowed.addUserToMyFollowersList(userFollower) == null){
+        if(((Seller)userFollowed).addUserToMyFollowersList(userFollower) == null){
             throw new NotFoundException("El seguidor ya sigue al usuario");
         }
-        List<ListedUserDTO> followers = userFollowed.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
+        List<ListedUserDTO> followers = ((Seller) userFollowed).getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         List<ListedUserDTO> followed = userFollowed.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         UserDTO userDto = new UserDTO(userIdToFollow,userFollowed.getUser_name(),followers,followed);
         return userDto;
@@ -52,7 +54,8 @@ public class ServiceUsr implements IServiceUsr {
         if (user == null){
             throw new NotFoundException("No se ha encontrado el usuario");
         }
-        UserCountDTO userCountDTO = new UserCountDTO(userId,user.getUser_name(),user.getFollowers().size());
+        if(!(user instanceof Seller)) throw new BadRequestException("Un comprador no tiene seguidores");
+        UserCountDTO userCountDTO = new UserCountDTO(userId,user.getUser_name(),((Seller) user).getFollowers().size());
         return userCountDTO;
     }
 
@@ -69,12 +72,12 @@ public class ServiceUsr implements IServiceUsr {
     }
 
     private UserFollowersDTO followersUnsorted (User user){
-        List<ListedUserDTO> listedUserDTOList = user.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
+        List<ListedUserDTO> listedUserDTOList = ((Seller) user).getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         return new UserFollowersDTO(user.getUser_id(),user.getUser_name(),listedUserDTOList);
     }
 
     private UserFollowersDTO followedSorted(User user, String order){
-        List<ListedUserDTO> listedUserDTOList = user.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).sorted(Comparator.comparing(ListedUserDTO::getUser_name)).collect(Collectors.toList());
+        List<ListedUserDTO> listedUserDTOList = ((Seller) user).getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).sorted(Comparator.comparing(ListedUserDTO::getUser_name)).collect(Collectors.toList());
 
         if(order.equals("name_desc")){
             Collections.reverse(listedUserDTOList);

@@ -28,19 +28,16 @@
   "user_id": 5,
   "user_name": "joaco",
   "followers": {},
-  "followed": {},
-  "publications": {}
+  "followed": {}
 },{
   "user_id": 6,
   "user_name": "tammi",
   "followers": {},
-  "followed": {},
-  "publications": {}
+  "followed": {}
 },{
   "user_id": 7,
   "user_name": "martin",
   "followers": {},
-  "followed": {},
-  "publications": {}
+  "followed": {}
 }
 ]
