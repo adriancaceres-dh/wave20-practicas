@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,7 +20,8 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
 
-    public UserFollowersResponseDto getSellerFollowers(int id){
+    //US 3
+    public UserFollowersResponseDto getSellerFollowersDto(int id){
         UserFollowersResponseDto userResponse = new UserFollowersResponseDto();
         User user = userRepository.getUserById(id);
         doValidations(user);
@@ -29,19 +31,38 @@ public class UserService implements IUserService {
         return userResponse;
     }
 
-    public UserFollowersCountResponseDto getFollowersCount(int id) {
+    private List<UserResponseDto> getFollowersDto(User user) {
+        return getUserListDto(user.getFollowers());
+    }
+
+    //US 2
+    public UserFollowersCountResponseDto getFollowersCountDto(int id) {
         User user = userRepository.getUserById(id);
         doValidations(user);
         UserFollowersCountResponseDto userFollowersCountResponse = new UserFollowersCountResponseDto();
         userFollowersCountResponse.setUserId(user.getId());
         userFollowersCountResponse.setUserName(user.getName());
-        userFollowersCountResponse.setFollowersCount(user.getFollowed().size());
+        userFollowersCountResponse.setFollowersCount(user.getFollowers().size());
         return userFollowersCountResponse;
     }
 
-    private List<UserResponseDto> getFollowersDto(User user) {
-        return user.getFollowed()
-                .stream()
+    //US 4
+    public UserFollowedResponseDto getFollowedDto(int id) {
+        User user = userRepository.getUserById(id);
+        validateUserExist(user);
+        UserFollowedResponseDto userFollowedResponseDto = new UserFollowedResponseDto();
+        userFollowedResponseDto.setUserId(user.getId());
+        userFollowedResponseDto.setUserName(user.getName());
+        userFollowedResponseDto.setFollowed(getFollowedDto(user));
+        return userFollowedResponseDto;
+    }
+
+    private List<UserResponseDto> getFollowedDto(User user) {
+        return getUserListDto(user.getFollowed());
+    }
+
+    private List<UserResponseDto> getUserListDto(Set<Integer> users) {
+        return users.stream()
                 .map(userId -> {
                     User follower = this.userRepository.getUserById(userId);
                     return new UserResponseDto(follower.getId(), follower.getName());
@@ -50,11 +71,15 @@ public class UserService implements IUserService {
     }
 
     private void doValidations(User user) {
-        if(user == null){
-            System.out.println("el usuario no existe");
-        }
+        validateUserExist(user);
         if(user.isSeller()){
             System.out.println("El usuario no es vendedor");
+        }
+    }
+
+    private void validateUserExist(User user) {
+        if(user == null){
+            System.out.println("el usuario no existe");
         }
     }
 }

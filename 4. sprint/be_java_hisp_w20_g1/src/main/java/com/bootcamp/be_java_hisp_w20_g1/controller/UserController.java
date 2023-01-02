@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g1.controller;
 
 
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
@@ -18,13 +19,21 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    //US 3
     @GetMapping("/{userId}/followers/list")
     public ResponseEntity<UserFollowersResponseDto> getSellerFollowers(@PathVariable int userId) {
-        return ResponseEntity.ok().body(userService.getSellerFollowers(userId));
+        return ResponseEntity.ok().body(userService.getSellerFollowersDto(userId));
     }
 
+    //US 2
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<UserFollowersCountResponseDto> getFollowersCount(@PathVariable int userId) {
-        return ResponseEntity.ok().body(userService.getFollowersCount(userId));
+        return ResponseEntity.ok().body(userService.getFollowersCountDto(userId));
+    }
+
+    //us 4
+    @GetMapping("/{userId}/followed/list")
+    public ResponseEntity<UserFollowedResponseDto> getUserFollowed(@PathVariable int userId) {
+        return ResponseEntity.ok().body(userService.getFollowedDto(userId));
     }
 }

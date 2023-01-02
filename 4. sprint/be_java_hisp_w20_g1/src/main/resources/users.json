@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "chanelleHhanelle",
-    "followers": [2,3],
-    "followed": [],
+    "followers": [],
+    "followed": [2,3],
     "posts": [
       2
     ],
@@ -12,8 +12,8 @@
   {
     "id": 2,
     "name": "mohamedDohamed",
-    "followers": [],
-    "followed": [1],
+    "followers": [1],
+    "followed": [],
     "posts": [
       3
     ],
@@ -22,8 +22,8 @@
   {
     "id": 3,
     "name": "kinaMina",
-    "followers": [],
-    "followed": [1],
+    "followers": [1],
+    "followed": [],
     "posts": [
       4
     ],
