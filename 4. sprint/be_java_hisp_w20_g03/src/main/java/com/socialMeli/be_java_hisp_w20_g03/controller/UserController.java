@@ -6,12 +6,10 @@ import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.UserRepository;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -44,8 +42,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}/followed/list")
-    public List<UserFollowersDTO> getFollowedList(int userId) {
-        return null;
+    public ResponseEntity<UserFollowersDTO> getFollowedList(@PathVariable int userId,
+                                                            @RequestParam (required = false) String order) {
+        return new ResponseEntity<>(iUserService.getFollowedList(userId, order), HttpStatus.OK);
     }
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")

@@ -13,7 +13,7 @@ public class PostService implements IPostService {
     PostRepository postRepository;
 
     @Override
-    public boolean addPost(PostDTO postDTO) {
+    public boolean addPost(PostDTO postDTO){
         return false;
     }
 
