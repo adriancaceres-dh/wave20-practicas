@@ -1,0 +1,52 @@
+[
+  {
+    "id": 2,
+    "userId": 1,
+    "productId": 1,
+    "creationDate": "10-02-2022",
+    "categoryId": 5,
+    "price": 14.0,
+    "hasPromo": true,
+    "discount": 0.10
+  },
+  {
+    "id": 3,
+    "userId": 2,
+    "productId": 2,
+    "creationDate": "01-02-2023",
+    "categoryId": 4,
+    "price": 19.0,
+    "hasPromo": false,
+    "discount": 0.0
+  },
+  {
+    "id": 4,
+    "userId": 3,
+    "productId": 3,
+    "creationDate": "12-09-2022",
+    "categoryId": 3,
+    "price": 56.0,
+    "hasPromo": false,
+    "discount": 0.0
+  },
+  {
+    "id": 5,
+    "userId": 4,
+    "productId": 4,
+    "creationDate": "01-01-2023",
+    "categoryId": 1,
+    "price": 61.0,
+    "hasPromo": true,
+    "discount": 0.25
+  },
+  {
+    "id": 6,
+    "userId": 5,
+    "productId": 5,
+    "creationDate": "01-02-2023",
+    "categoryId": 2,
+    "price": 31.0,
+    "hasPromo": false,
+    "discount": 0.0
+  }
+]
