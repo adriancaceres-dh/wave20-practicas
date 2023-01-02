@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserRepository implements IUserRepository {
@@ -20,20 +19,23 @@ public class UserRepository implements IUserRepository {
 
     public UserRepository() {
         this.users = buildUserRepository();
-
     }
 
+    @Override
     public boolean isValidId(int id){
-        return users.stream().anyMatch(u -> u.getId() == id);
+        return getUserById(id) != null;
     }
 
+    @Override
     public boolean isSeller(int id){
         return getUserById(id).isSeller();
     }
+    @Override
     public User getUserById(int id){
         return users.stream().filter(u -> id == u.getId()).findFirst().orElse(null);
     }
 
+    @Override
     public void addFollower(int userIdToModify, int userIdOfFollower){
         for (User user : users){
             if (user.getId() == userIdToModify){
@@ -42,6 +44,7 @@ public class UserRepository implements IUserRepository {
         }
     }
 
+    @Override
     public void removeFollower(int userIdToModify, int userIdOfFollower) {
         for (User user : users) {
             if (user.getId() == userIdToModify) {
@@ -50,6 +53,7 @@ public class UserRepository implements IUserRepository {
         }
     }
 
+    @Override
     public void addFollowed(int userIdToModify, int userIdToFollow){
         for (User user : users){
             if (user.getId() == userIdToModify){
@@ -58,6 +62,7 @@ public class UserRepository implements IUserRepository {
         }
     }
 
+    @Override
     public void removeFollowed(int userIdToModify, int userIdToFollow) {
         for (User user : users) {
             if (user.getId() == userIdToModify) {
@@ -65,8 +70,6 @@ public class UserRepository implements IUserRepository {
             }
         }
     }
-
-
 
     List<User> buildUserRepository() {
         File file = null;

@@ -17,8 +17,8 @@ public class Post {
     private int userId;
     private int productId;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
-    private LocalDate creationDate;
-    private int categoryId;
+    private LocalDate date;
+    private int category;
     private double price;
     private boolean hasPromo;
     private double discount;

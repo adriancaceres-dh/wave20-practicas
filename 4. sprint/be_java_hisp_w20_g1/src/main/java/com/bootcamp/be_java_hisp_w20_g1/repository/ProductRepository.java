@@ -45,4 +45,13 @@ public class ProductRepository implements IProductRepository {
     public Product getProductById(int id) {
         return products.stream().filter(product -> product.getId() == id).findFirst().orElse(null);
     }
+    @Override
+    public List<Product> getProducts() {
+        return products;
+    }
+    @Override
+    public void addProduct(Product p) {
+        products.add(p);
+    }
+
 }
