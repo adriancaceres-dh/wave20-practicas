@@ -21,28 +21,40 @@ public class UserService implements IUserService {
     @Autowired
     PersonRepository personRepository;
 
-    public List<Seller> getAllFollowed(int userId){
-        if (personRepository.checkUser(userId)){
-        Set<Integer> followedSellers = personRepository.getAllFollowed(userId);
-        List<Seller> sellers = followedSellers.stream().map(seller_id -> personRepository.findSellerById(seller_id)).collect(Collectors.toList());
-        return sellers;
+    public List<Seller> getAllFollowed(int userId) {
+        if (personRepository.checkUser(userId)) {
+            Set<Integer> followedSellers = personRepository.getAllFollowed(userId);
+            List<Seller> sellers = followedSellers.stream().map(seller_id -> personRepository.findSellerById(seller_id)).collect(Collectors.toList());
+            return sellers;
 
-        }else{
+        } else {
             throw new NotFoundException("Invalid user please check information.");
         }
     }
 
-    public ResponseDto addNewFollow(int userId, int sellerId){
-        if(personRepository.checkUser(userId) && personRepository.checkUser(sellerId)){
-            personRepository.addFollowing(userId,sellerId);
-            personRepository.addFollower(sellerId,userId);
+    public ResponseDto addNewFollow(int userId, int sellerId) {
+        if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
+            personRepository.addFollowing(userId, sellerId);
+            personRepository.addFollower(sellerId, userId);
             return ResponseDto.builder()
                     .ok(true)
                     .message("New Follower add successfully").build();
-        }
-        else {
+        } else {
             throw new NotFoundException("Invalid users please check information.");
         }
 
+    }
+
+    @Override
+    public ResponseDto unfollow(int userid, int sellerId) {
+        if (personRepository.checkUser(userid) && personRepository.checkUser(sellerId)) {
+            personRepository.unfollowing(userid, sellerId);
+            personRepository.unfollower(sellerId, userid);
+            return ResponseDto.builder()
+                    .ok(true)
+                    .message("you have unfollowed the user").build();
+        } else {
+            throw new NotFoundException("Invalid users please check information.");
+        }
     }
 }
