@@ -20,18 +20,18 @@ public class PostRepository implements IPostRepository {
         Product producto1 = new Product(1,"Silla Gamer", "Gamer", "Racer", "Red & Black", "Special Edition");
         Product producto62 = new Product(62,"Headset RGB Inalámbrico", "Gamer", "Razer", "Green with RGB", "Sin Batería");
 
-        postsList.add(new Post(1, 1, 1000, false, 100, 1,LocalDate.parse("2022-12-03") ));
-        postsList.add(new Post(1, 2, 1500, true, 500, 2,LocalDate.parse("2022-12-03") ));
-        postsList.add(new Post(1, 1, 1000, false, 100, 1,LocalDate.parse("2022-12-03") ));
-        postsList.add(new Post(1, 1, 1000, false, 100, 1,LocalDate.parse("2022-12-03") ));
-        postsList.add(new Post(1, 1, 1000, false, 100, 1,LocalDate.parse("2022-12-03") ));
-        postsList.add(new Post(1, 1, 1000, false, 100, 1,LocalDate.parse("2022-12-03") ));
-
+        postsList.add(new Post(1, 1, 1000, producto1,LocalDate.parse("2022-12-03") ));
+        postsList.add(new Post(1, 2, 1500, producto62,LocalDate.parse("2022-12-03") ));
+        postsList.add(new Post(1, 1, 1000, producto1,LocalDate.parse("2022-12-03") ));
+        postsList.add(new Post(1, 1, 1000, producto1,LocalDate.parse("2022-12-03") ));
+        postsList.add(new Post(1, 1, 1000, producto1,LocalDate.parse("2022-12-03") ));
+        postsList.add(new Post(1, 1, 1000, producto1,LocalDate.parse("2022-12-03") ));
 
     }
 
     public boolean addPost(Post post) {
-        return false;
+        postsList.add(post);
+        return true;
     }
 
     public List<Post> getPosts() {

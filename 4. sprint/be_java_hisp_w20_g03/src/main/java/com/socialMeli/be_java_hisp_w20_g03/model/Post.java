@@ -13,8 +13,6 @@ public class Post {
     private int user_id;
     private int category;
     private double price;
-    private boolean has_promo;
-    private double discount;
-    private int product_id;
+    private Product product;
     private LocalDate date;
 }
