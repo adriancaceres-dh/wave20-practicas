@@ -1,5 +1,6 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
@@ -63,5 +64,12 @@ public class UserController {
 
         return new ResponseEntity<>(followedList, HttpStatus.OK);
     }
+
+    @GetMapping("/{userId}/followers/list")
+    public FollowersBySellerDTO getFollowersBySellerDto(@PathVariable int userId)
+    {
+        return userService.getFollowersBySeller(userId);
+    }
+
 
 }

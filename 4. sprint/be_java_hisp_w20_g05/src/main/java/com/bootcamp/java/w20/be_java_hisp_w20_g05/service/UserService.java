@@ -1,6 +1,7 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService{
@@ -73,6 +75,20 @@ public class UserService implements IUserService{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public FollowersBySellerDTO getFollowersBySeller(int userId)
+    {
+        User seller = userRepository.getById(userId);
+
+        List<User> followers = new ArrayList<>();
+        seller.getFollowers().stream().forEach(x -> followers.add(userRepository.getById(x)));
+
+        List<UserResponseDTO> followersDto = new ArrayList<>();
+        followers.stream().forEach(f -> followersDto.add(new UserResponseDTO(f.getId(),f.getUserName())));
+
+        return new FollowersBySellerDTO(seller.getId(), seller.getUserName(), followersDto);
     }
 
 }
