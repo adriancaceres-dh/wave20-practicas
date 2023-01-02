@@ -10,6 +10,7 @@ import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.PostRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.ICategoryService;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
@@ -18,15 +19,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
 public class PostService implements IPostService {
     @Autowired
     private PostRepository postRepository;
-
+    // Esto lo vamos a cambiar como dijo adri y dejar los repos directamente?
     @Autowired
     private IUserService userService; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
     @Autowired
