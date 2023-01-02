@@ -12,10 +12,8 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -56,9 +54,10 @@ public class PostService implements IPostService{
         if(!postRepository.add(newPost)) throw new InvalidPostDataException(new MessageExceptionDTO("Invalid data"));
         // --> Pendiente chequear esta excepcion, validar datos para que dispare.
         return newPost;
-    //Requerimiento 006
     }
-    public FollowedUsersPostsResponse getFollowedUsersPosts(int userId) {
+
+    //Requerimiento 006 + 009
+    public FollowedUsersPostsResponse getFollowedUsersPosts(int userId, String order){
         User userInBd = userService.getById(userId);
         FollowedUsersPostsResponse result = new FollowedUsersPostsResponse();
 
@@ -75,6 +74,12 @@ public class PostService implements IPostService{
                                     .collect(Collectors.toList())));
             Collection<FollowedUserPostDTO> postResults = new ArrayList<>();
 
+            if (order.equalsIgnoreCase("date_asc"))
+                followedUsersPosts.stream().sorted((x,y) -> x.getDate().compareTo(y.getDate()));
+
+            if (order.equalsIgnoreCase("date_desc"))
+                followedUsersPosts.stream().sorted((x,y) -> - x.getDate().compareTo(y.getDate()));
+
             followedUsersPosts.stream().forEach(post ->
                     postResults.add(new FollowedUserPostDTO(post.getUserId(),
                             post.getId(),
@@ -85,7 +90,7 @@ public class PostService implements IPostService{
 
             result = new FollowedUsersPostsResponse(userInBd.getId(), postResults);
 
-        }catch (IdNotFoundException ex){
+        } catch (IdNotFoundException ex){
 
         }
 

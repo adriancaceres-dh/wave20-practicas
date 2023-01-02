@@ -5,6 +5,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,8 @@ public class PostController {
         return new ResponseEntity<>(postService.newPost(postRequestDTO), HttpStatus.OK);
     }
     @GetMapping("/products/followed/{userId}/list")
-    public FollowedUsersPostsResponse getFollowedUsersPosts(@PathVariable int userId){
-        return postService.getFollowedUsersPosts(userId);
+    public FollowedUsersPostsResponse getFollowedUsersPosts(@PathVariable int userId,
+                                                            @RequestParam(required = false) String order){
+        return postService.getFollowedUsersPosts(userId, order);
     }
 }

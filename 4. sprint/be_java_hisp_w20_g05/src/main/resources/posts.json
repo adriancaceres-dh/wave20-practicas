@@ -1,0 +1,614 @@
+[
+  {
+    "id":1,
+    "user_id":2,
+    "date":"2022-09-28",
+    "category":"Medicine",
+    "price":930,
+    "discount":0.35,
+    "product":
+    {
+      "id":13,
+      "name":"azelastine hcl nasal",
+      "brand":"Perrigo New York Inc",
+      "type":"Azelastine HCl",
+      "color":"green",
+      "notes":"Progressive 5th generation pricing structure"
+    }
+  },
+  {
+    "id":2,
+    "user_id":1,
+    "date":"2022-11-17",
+    "category":"Herbal",
+    "price":1070,
+    "discount":0.25,
+    "product":
+    {
+      "id":14,
+      "name":"Stool Softener",
+      "brand":"Dolgencorp, Inc. (DOLLAR GENERAL & REXALL)",
+      "type":"DOCUSATE SODIUM",
+      "color":"red",
+      "notes":"Synergized system-worthy emulation"
+    }
+  },
+  {
+    "id":3,
+    "user_id":10,
+    "date":"2022-08-08",
+    "category":"Medicine",
+    "price":540,
+    "discount":0.4,
+    "product":
+    {
+      "id":8,
+      "name":"Vaginitis",
+      "brand":"Liddell Laboratories, Inc.",
+      "type":"Baptisia tinctoria, Kreosotum, Mercurius iodatus ruber, Mercurius sulphuratus ruber, Nitricum acidum, Platinum metallicum",
+      "color":"blue",
+      "notes":"Quality-focused coherent database"
+    }
+  },
+  {
+    "id":4,
+    "user_id":14,
+    "date":"2022-08-26",
+    "category":"Herbal",
+    "price":1530,
+    "discount":0.25,
+    "product":
+    {
+      "id":4,
+      "name":"Shingles Control",
+      "brand":"Forces of Nature",
+      "type":"CALENDULA OFFICINALIS FLOWERING TOP, GERANIUM MACULATUM ROOT, SODIUM CHLORIDE, and RANUNCULUS BULBOSUS",
+      "color":"yellow",
+      "notes":"Mandatory high-level application"
+    }
+  },
+  {
+    "id":5,
+    "user_id":2,
+    "date":"2022-10-12",
+    "category":"Medicine",
+    "price":1120,
+    "discount":0.3,
+    "product":
+    {
+      "id":12,
+      "name":"Ultra Tuss DM",
+      "brand":"Ultra Seal Corporation",
+      "type":"guaifenesin dextromethorphan HBr",
+      "color":"orange",
+      "notes":"Organic uniform core"
+    }
+  },
+  {
+    "id":6,
+    "user_id":5,
+    "date":"2022-11-04",
+    "category":"Laboratory",
+    "price":970,
+    "discount":0.05,
+    "product":
+    {
+      "id":5,
+      "name":"Modesa",
+      "brand":"Shanghai Weierya Daily Chemicals Factory",
+      "type":"Ethyl Alcohol",
+      "color":"orange",
+      "notes":"Fundamental modular extranet"
+    }
+  },
+  {
+    "id":7,
+    "user_id":2,
+    "date":"2022-11-27",
+    "category":"Medicine",
+    "price":1670,
+    "discount":0.1,
+    "product":
+    {
+      "id":13,
+      "name":"azelastine hcl nasal",
+      "brand":"Perrigo New York Inc",
+      "type":"Azelastine HCl",
+      "color":"green",
+      "notes":"Progressive 5th generation pricing structure"
+    }
+  },
+  {
+    "id":8,
+    "user_id":6,
+    "date":"2022-09-09",
+    "category":"Medicine",
+    "price":1580,
+    "discount":0.2,
+    "product":
+    {
+      "id":14,
+      "name":"Stool Softener",
+      "brand":"Dolgencorp, Inc. (DOLLAR GENERAL & REXALL)",
+      "type":"DOCUSATE SODIUM",
+      "color":"red",
+      "notes":"Synergized system-worthy emulation"
+    }
+  },
+  {
+    "id":9,
+    "user_id":3,
+    "date":"2022-08-18",
+    "category":"Cosmetics",
+    "price":1850,
+    "discount":0.25,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  },
+    {
+    "id":10,
+    "user_id":16,
+    "date":"2022-09-03",
+    "category":"Cosmetics",
+    "price":260,
+    "discount":0.05,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  },
+    {
+    "id":11,
+    "user_id":2,
+    "date":"2022-07-12",
+    "category":"Cosmetics",
+    "price":1030,
+    "discount":0.25,
+    "product":
+    {
+      "id":10,
+      "name":"Pure Petroleum",
+      "brand":"Pan Aromas LLC",
+      "type":"White Petroleum",
+      "color":"orange",
+      "notes":"Front-line dedicated instruction set"
+    }
+  },
+    {
+    "id":12,
+    "user_id":15,
+    "date":"2022-09-24",
+    "category":"Cosmetics",
+    "price":1200,
+    "discount":0.05,
+    "product":
+    {
+      "id":10,
+      "name":"Pure Petroleum",
+      "brand":"Pan Aromas LLC",
+      "type":"White Petroleum",
+      "color":"orange",
+      "notes":"Front-line dedicated instruction set"
+    }
+  },
+  {
+    "id":13,
+    "user_id":8,
+    "date":"2022-08-18",
+    "category":"Medicine",
+    "price":1160,
+    "discount":0.1,
+    "product":
+    {
+      "id":14,
+      "name":"Stool Softener",
+      "brand":"Dolgencorp, Inc. (DOLLAR GENERAL & REXALL)",
+      "type":"DOCUSATE SODIUM",
+      "color":"red",
+      "notes":"Synergized system-worthy emulation"
+    }
+  },
+  {
+    "id":14,
+    "user_id":11,
+    "date":"2022-11-12",
+    "category":"Medicine",
+    "price":250,
+    "discount":0.2,
+    "product":
+    {
+      "id":3,
+      "name":"antacid",
+      "brand":"Meijer Distribution Inc",
+      "type":"Calcium carbonate",
+      "color":"blue",
+      "notes":"Profound heuristic firmware"
+    }
+  },
+  {
+    "id":15,
+    "user_id":13,
+    "date":"2022-07-02",
+    "category":"Cosmetics",
+    "price":1740,
+    "discount":0.05,
+    "product":
+    {
+      "id":10,
+      "name":"Pure Petroleum",
+      "brand":"Pan Aromas LLC",
+      "type":"White Petroleum",
+      "color":"orange",
+      "notes":"Front-line dedicated instruction set"
+    }
+  },
+  {
+    "id":16,
+    "user_id":11,
+    "date":"2022-09-20",
+    "category":"Medicine",
+    "price":430,
+    "discount":0.05,
+    "product":
+    {
+      "id":8,
+      "name":"Vaginitis",
+      "brand":"Liddell Laboratories, Inc.",
+      "type":"Baptisia tinctoria, Kreosotum, Mercurius iodatus ruber, Mercurius sulphuratus ruber, Nitricum acidum, Platinum metallicum",
+      "color":"blue",
+      "notes":"Quality-focused coherent database"
+    }
+  },
+  {
+    "id":17,
+    "user_id":9,
+    "date":"2022-07-06",
+    "category":"Medicine",
+    "price":1960,
+    "discount":0.0,
+    "product":
+    {
+      "id":9,
+      "name":"Diltiazem Hydrochloride",
+      "brand":"Rebel Distributors Corp",
+      "type":"Diltiazem Hydrochloride",
+      "color":"green",
+      "notes":"Configurable bifurcated policy"
+    }
+  },
+  {
+    "id":18,
+    "user_id":13,
+    "date":"2022-07-31",
+    "category":"Medicine",
+    "price":270,
+    "discount":0.4,
+    "product":
+    {
+      "id":12,
+      "name":"Ultra Tuss DM",
+      "brand":"Ultra Seal Corporation",
+      "type":"guaifenesin dextromethorphan HBr",
+      "color":"orange",
+      "notes":"Organic uniform core"
+    }
+  },
+  {
+    "id":19,
+    "user_id":6,
+    "date":"2022-10-27",
+    "category":"Medicine",
+    "price":1510,
+    "discount":0.15,
+    "product":
+    {
+      "id":1,
+      "name":"Antibiotic and pain relief",
+      "brand":"CVS Pharmacy",
+      "type":"Neomycin, Polymyxin B, Pramoxine HCl",
+      "color":"green",
+      "notes":"Diverse uniform process improvement"
+    }
+  },
+  {
+    "id":20,
+    "user_id":1,
+    "date":"2022-12-21",
+    "category":"Medicine",
+    "price":1590,
+    "discount":0.15,
+    "product":
+    {
+      "id":5,
+      "name":"Modesa",
+      "brand":"Shanghai Weierya Daily Chemicals Factory",
+      "type":"Ethyl Alcohol",
+      "color":"orange",
+      "notes":"Fundamental modular extranet"
+    }
+  },
+  {
+    "id":21,
+    "user_id":6,
+    "date":"2022-10-06",
+    "category":"Medicine",
+    "price":1340,
+    "discount":0.0,
+    "product":
+    {
+      "id":8,
+      "name":"Vaginitis",
+      "brand":"Liddell Laboratories, Inc.",
+      "type":"Baptisia tinctoria, Kreosotum, Mercurius iodatus ruber, Mercurius sulphuratus ruber, Nitricum acidum, Platinum metallicum",
+      "color":"blue",
+      "notes":"Quality-focused coherent database"
+    }
+  },
+  {
+    "id":22,
+    "user_id":2,
+    "date":"2022-11-29",
+    "category":"Medicine",
+    "price":1800,
+    "discount":0.15,
+    "product":
+    {
+      "id":7,
+      "name":"Prednisolone Sodium Phosphate",
+      "brand":"Hi-Tech Pharmacal Co., Inc.",
+      "type":"Prednisolone Sodium Phosphate",
+      "color":"orange",
+      "notes":"Reverse-engineered intermediate Graphic Interface"
+    }
+  },
+  {
+    "id":23,
+    "user_id":1,
+    "date":"2022-12-10",
+    "category":"Medicine",
+    "price":1760,
+    "discount":0.2,
+    "product":
+    {
+      "id":3,
+      "name":"antacid",
+      "brand":"Meijer Distribution Inc",
+      "type":"Calcium carbonate",
+      "color":"blue",
+      "notes":"Profound heuristic firmware"
+    }
+  },
+  {
+    "id":24,
+    "user_id":2,
+    "date":"2022-07-24",
+    "category":"Cosmetics",
+    "price":1850,
+    "discount":0.25,
+    "product":
+    {
+      "id":10,
+      "name":"Pure Petroleum",
+      "brand":"Pan Aromas LLC",
+      "type":"White Petroleum",
+      "color":"orange",
+      "notes":"Front-line dedicated instruction set"
+    }
+  },
+  {
+    "id":25,
+    "user_id":15,
+    "date":"2022-07-02",
+    "category":"Cosmetics",
+    "price":840,
+    "discount":0.25,
+    "product":
+    {
+      "id":8,
+      "name":"Vaginitis",
+      "brand":"Liddell Laboratories, Inc.",
+      "type":"Baptisia tinctoria, Kreosotum, Mercurius iodatus ruber, Mercurius sulphuratus ruber, Nitricum acidum, Platinum metallicum",
+      "color":"blue",
+      "notes":"Quality-focused coherent database"
+    }
+  },
+  {
+    "id":26,
+    "user_id":6,
+    "date":"2022-08-24",
+    "category":"Laboratory",
+    "price":1890,
+    "discount":0.2,
+    "product":
+    {
+      "id":9,
+      "name":"Diltiazem Hydrochloride",
+      "brand":"Rebel Distributors Corp",
+      "type":"Diltiazem Hydrochloride",
+      "color":"green",
+      "notes":"Configurable bifurcated policy"
+    }
+  },
+  {
+    "id":27,
+    "user_id":6,
+    "date":"2022-08-28",
+    "category":"Medicine",
+    "price":1920,
+    "discount":0.15,
+    "product":
+    {
+      "id":2,
+      "name":"ARNICA MONTANA",
+      "brand":"Remedy Makers",
+      "type":"ARNICA WHOLE PLANT",""
+      "color":"blue",
+      "notes":"De-engineered system-worthy algorithm"
+    }
+  },
+  {
+    "id":28,
+    "user_id":16,
+    "date":"2022-07-04",
+    "category":"Medicine",
+    "price":720,
+    "discount":0.2,
+    "product":
+    {
+      "id":7,
+      "name":"Prednisolone Sodium Phosphate",
+      "brand":"Hi-Tech Pharmacal Co., Inc.",
+      "type":"Prednisolone Sodium Phosphate",
+      "color":"orange",
+      "notes":"Reverse-engineered intermediate Graphic Interface"
+    }
+  },
+  {
+    "id":29,
+    "user_id":13,
+    "date":"2022-12-27",
+    "category":"Medicine",
+    "price":1010,
+    "discount":0.2,
+    "product":
+    {
+      "id":2,
+      "name":"ARNICA MONTANA",
+      "brand":"Remedy Makers",
+      "type":"ARNICA WHOLE PLANT",""
+      "color":"blue",
+      "notes":"De-engineered system-worthy algorithm"
+    }
+  },
+  {
+    "id":30,
+    "user_id":15,
+    "date":"2022-10-05",
+    "category":"Medicine",
+    "price":480,
+    "discount":0.25,
+    "product":
+    {
+      "id":8,
+      "name":"Vaginitis",
+      "brand":"Liddell Laboratories, Inc.",
+      "type":"Baptisia tinctoria, Kreosotum, Mercurius iodatus ruber, Mercurius sulphuratus ruber, Nitricum acidum, Platinum metallicum",
+      "color":"blue",
+      "notes":"Quality-focused coherent database"
+    }
+  },
+    {
+    "id":31,
+    "user_id":11,
+    "date":"2022-10-24",
+    "category":"Cosmetics",
+    "price":1610,
+    "discount":0.25,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  },
+  {
+    "id":32,
+    "user_id":14,
+    "date":"2022-10-07",
+    "category":"Medicine",
+    "price":260,
+    "discount":0.05,
+    "product":
+    {
+      "id":13,
+      "name":"azelastine hcl nasal",
+      "brand":"Perrigo New York Inc",
+      "type":"Azelastine HCl",
+      "color":"green",
+      "notes":"Progressive 5th generation pricing structure"
+    }
+  },
+    {
+    "id":33,
+    "user_id":1,
+    "date":"2022-10-25",
+    "category":"Medicine",
+    "price":1100,
+    "discount":0.25,
+    "product":
+    {
+      "id":12,
+      "name":"Ultra Tuss DM",
+      "brand":"Ultra Seal Corporation",
+      "type":"guaifenesin dextromethorphan HBr",
+      "color":"orange",
+      "notes":"Organic uniform core"
+    }
+  },
+  {
+    "id":34,
+    "user_id":6,
+    "date":"2022-07-26",
+    "category":"Medicine",
+    "price":1240,
+    "discount":0.2,
+    "product":
+    {
+      "id":11,
+      "name":"healthy accents complete lice treatment",
+      "brand":"DZA Brands LLC",
+      "type":"Piperonyl Butoxide, Pyrethrum Extract",
+      "color":"red",
+      "notes":"Phased heuristic standardization"
+    }
+  },
+  {
+    "id":35,
+    "user_id":2,
+    "date":"2022-08-30",
+    "category":"Cosmetics",
+    "price":1600,
+    "discount":0.25,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  },
+  {
+    "id":36,
+    "user_id":12,
+    "date":"2022-12-22",
+    "category":"Medicine",
+    "price":600,
+    "discount":0.4,
+    "product":
+    {
+      "id":1,
+      "name":"Antibiotic and pain relief",
+      "brand":"CVS Pharmacy",
+      "type":"Neomycin, Polymyxin B, Pramoxine HCl",
+      "color":"green",
+      "notes":"Diverse uniform process improvement"
+    }
+  }
+]
