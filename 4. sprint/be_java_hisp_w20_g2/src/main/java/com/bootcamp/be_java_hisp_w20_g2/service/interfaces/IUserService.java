@@ -11,8 +11,8 @@ public interface IUserService {
 
     void unfollowUser(int userId, int userIdToUnfollow);
 
-    public boolean follow(Integer idFollower, Integer idFollowed);
+    boolean follow(Integer idFollower, Integer idFollowed);
 
-    public UserFollowersCountResponseDTO followerList(Integer id);
+    UserFollowersCountResponseDTO followerList(Integer id);
 
 }

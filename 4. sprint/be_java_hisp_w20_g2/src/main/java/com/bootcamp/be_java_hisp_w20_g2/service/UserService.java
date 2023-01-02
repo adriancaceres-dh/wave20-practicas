@@ -6,7 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Override
     public UserFollowersResponseDTO findAllFollowers(int userId, Optional<String> order) {
