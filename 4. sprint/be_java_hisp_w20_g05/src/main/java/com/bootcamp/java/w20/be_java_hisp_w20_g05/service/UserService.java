@@ -1,11 +1,15 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +20,26 @@ public class UserService implements IUserService{
     @Override
     public List<UserResponseDTO> filterBy(String name) {
         return null;
+    }
+
+    public FollowersCountDTO getFollowersCount (int id){
+        User user= userRepository.getAll().stream()
+                .filter(u -> u.getId()==id)
+                .findFirst()
+                .orElse(null);
+        if(user==null) throw new IdNotFoundException(new MessageExceptionDTO("USER NOT FOUND"));
+        return new FollowersCountDTO(user.getId(),user.getFollowers().size(),user.getUserName());
+    }
+
+    public List<User> getAll(){return new ArrayList<>(userRepository.getAll());}
+
+    public String addUsers(List<User> users) {
+        try {
+            userRepository.addAll(users);
+            return "Agregados con exito!";
+        } catch (Exception e) {
+            throw new InternalError("Error interno"); //No estoy seguro con esta excepcion quiza se pueda hacer mejor.
+        }
     }
     public User getById(int id) {
         return userRepository.getById(id);
