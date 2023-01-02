@@ -1,12 +1,21 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
+import com.bootcamp.be_java_hisp_w20_g4.service.IServicePublication;
+import com.bootcamp.be_java_hisp_w20_g4.service.IServiceUsr;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SocialMeliController {
 
-    //agregar autowired del service
+    @Autowired
+    IServicePublication publicationService;
+
+    @Autowired
+    IServiceUsr usrService;
+
+
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> follow(@PathVariable int userId , @PathVariable int userIdToFollow){
@@ -15,6 +24,7 @@ public class SocialMeliController {
 
     @GetMapping("/users/{userId}/followers/count")
     public ResponseEntity<String> followersCount(@PathVariable int userId){
+
         return ResponseEntity.ok().body("Response del service");
     }
 
@@ -38,7 +48,7 @@ public class SocialMeliController {
         return ResponseEntity.ok().body("Response del service");
     }
 
-    @GetMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
+    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollow(@PathVariable int userId , @PathVariable int userIdToUnfollow){
         return ResponseEntity.ok().body("Response del service");
     }

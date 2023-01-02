@@ -14,5 +14,11 @@ public class ServicePublication implements  IServicePublication{
     @Autowired
     IProductRepository productRepository;
 
+    public String addPublication(String publication){
+        return "";
+    }
+
+
+
 
 }
