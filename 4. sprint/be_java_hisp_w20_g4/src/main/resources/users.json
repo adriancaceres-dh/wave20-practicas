@@ -1,20 +1,20 @@
 [{
-  "id": 1,
-  "userName": "rodri",
+  "user_id": 1,
+  "user_name": "rodri",
   "followers": {},
   "followed": {},
   "publications": {}
 },
   {
-    "id": 2,
-    "userName": "ivan",
+    "user_id": 2,
+    "user_name": "ivan",
     "followers": {},
     "followed": {},
     "publications": {}
   },
   {
-    "id": 3,
-    "userName": "emi",
+    "user_id": 3,
+    "user_name": "emi",
     "followers": {},
     "followed": {},
     "publications": {}

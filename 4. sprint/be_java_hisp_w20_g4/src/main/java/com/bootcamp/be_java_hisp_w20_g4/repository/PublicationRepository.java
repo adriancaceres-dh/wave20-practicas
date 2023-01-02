@@ -22,7 +22,7 @@ public class PublicationRepository implements  IPublicationRepository{
     private List<Publication> loadPublications() {
         File file = null;
         try {
-            file = ResourceUtils.getFile("classpath:publication.json");
+            file = ResourceUtils.getFile("classpath:publications.json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

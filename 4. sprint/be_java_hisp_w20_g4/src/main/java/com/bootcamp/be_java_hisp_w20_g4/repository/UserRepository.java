@@ -22,7 +22,7 @@ public class UserRepository implements IUserRepository{
     private List<User> loadUsers() {
         File file = null;
         try {
-            file = ResourceUtils.getFile("classpath:publication.json");
+            file = ResourceUtils.getFile("classpath:users.json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class UserRepository implements IUserRepository{
     }
 
     public User findById(int idUser){
-        return users.stream().filter(x->x.getId() == idUser).findFirst().orElse(null);
+        return users.stream().filter(x->x.getUser_id() == idUser).findFirst().orElse(null);
     }
 
 }

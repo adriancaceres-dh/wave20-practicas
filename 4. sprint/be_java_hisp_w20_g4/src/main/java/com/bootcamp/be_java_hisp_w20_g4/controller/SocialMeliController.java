@@ -20,7 +20,7 @@ public class SocialMeliController {
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<UserDTO> follow(@PathVariable int userId , @PathVariable int userIdToFollow){
-        return usrService.follow(userId, userIdToFollow);
+        return ResponseEntity.ok().body(usrService.follow(userId, userIdToFollow));
     }
 
     @GetMapping("/users/{userId}/followers/count")

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Data
-public abstract class User {
+public class User {
     private int user_id;
     private String user_name;
     private HashMap<Integer, User> followers = new HashMap<>();

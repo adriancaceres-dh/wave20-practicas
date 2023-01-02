@@ -47,7 +47,7 @@ public class ServiceUsr implements IServiceUsr {
             throw new NotFoundException("El seguidor ya sigue al usuario");
         }
         List<ListedUserDTO> aux = userFollower.getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
-        UserDTO userDto = new UserDTO(userIdToFollow,userFollowed.getUser_name(),aux);
+        UserDTO userDto = new UserDTO(userId,userFollower.getUser_name(),aux);
         return userDto;
     }
 
