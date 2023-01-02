@@ -13,7 +13,7 @@ public class PersonRepositoryImp {
     private final Map<String, Set<Person>> persons;
 
     public PersonRepositoryImp() {
-        persons = new HashMap<>(){{
+        persons = new HashMap<>() {{
             put("users", new HashSet<>());
             put("sellers", new HashSet<>());
         }};

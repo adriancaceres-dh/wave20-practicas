@@ -8,11 +8,11 @@
         <version>2.7.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.socialmeli</groupId>
-    <artifactId>be_java_hisp_w20_g8</artifactId>
+    <groupId>com.bootcamp</groupId>
+    <artifactId>cars</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>be_java_hisp_w20_g8</name>
-    <description>Demo project for Spring Boot</description>
+    <name>cars</name>
+    <description>Exercise cars</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -37,11 +37,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>3.1.0</version>
         </dependency>
     </dependencies>
 
