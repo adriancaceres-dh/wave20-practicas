@@ -12,6 +12,7 @@ public class Product {
     private int id;
     private String name;
     private String brand;
+    private String type;
     private String color;
     private String notes;
     private String type;

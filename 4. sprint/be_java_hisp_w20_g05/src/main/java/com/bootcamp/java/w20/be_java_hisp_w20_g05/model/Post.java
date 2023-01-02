@@ -13,11 +13,12 @@ import java.time.LocalDate;
 @Builder
 public class Post {
     private int id;
-    private int category;
+    private String category;
+    private int userId;
+    private LocalDate date;
     private double price;
     private double discount;
     private Product product;
-    private LocalDate date;
 
     @Override
     public int hashCode() {
