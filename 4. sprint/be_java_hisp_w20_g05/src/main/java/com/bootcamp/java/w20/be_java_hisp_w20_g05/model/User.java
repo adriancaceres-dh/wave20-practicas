@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -14,8 +15,8 @@ import java.util.Set;
 public class User {
     private int id;
     private String userName;
-    private Set<User> followers;
-    private Set<User> following;
+    private Set<Integer> followers;
+    private Set<Integer> following;
 
     @Override
     public int hashCode() {
