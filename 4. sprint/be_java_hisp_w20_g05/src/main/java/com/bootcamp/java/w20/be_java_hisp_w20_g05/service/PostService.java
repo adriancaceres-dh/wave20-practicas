@@ -30,8 +30,8 @@ public class PostService implements IPostService{
         return null;
     }
 
-    //Requerimiento 006
-    public FollowedUsersPostsResponse getFollowedUsersPosts(int userId){
+    //Requerimiento 006 + 009
+    public FollowedUsersPostsResponse getFollowedUsersPosts(int userId, String order){
         User userInBd = userService.getById(userId);
 
         Collection<Post> followedUsersPosts = new ArrayList<>();
@@ -43,6 +43,12 @@ public class PostService implements IPostService{
                                         .getDate()
                                         .isAfter(LocalDate.now().minusDays(14)))
                                 .collect(Collectors.toList())));
+
+        if (order.equalsIgnoreCase("date_asc"))
+            followedUsersPosts.stream().sorted((x,y) -> x.getDate().compareTo(y.getDate()));
+
+        if (order.equalsIgnoreCase("date_desc"))
+            followedUsersPosts.stream().sorted((x,y) -> - x.getDate().compareTo(y.getDate()));
 
         Collection<FollowedUserPostDTO> postResults = new ArrayList<>();
 

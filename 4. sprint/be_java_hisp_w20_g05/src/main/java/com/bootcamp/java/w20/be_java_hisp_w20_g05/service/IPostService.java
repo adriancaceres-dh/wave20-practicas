@@ -5,5 +5,5 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_po
 import org.springframework.web.bind.annotation.PathVariable;
 
 public interface IPostService extends IService<PostResponseDTO> {
-    FollowedUsersPostsResponse getFollowedUsersPosts(int userId);
+    FollowedUsersPostsResponse getFollowedUsersPosts(int userId, String order);
 }
