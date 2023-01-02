@@ -21,6 +21,7 @@ public class UserRepository {
         User diego = new User("Diego");
         User flavio = new User("Flavio");
         diego.follow(flavio);
+        flavio.addFollower(diego);
 
         save(diego);
         save(flavio);
