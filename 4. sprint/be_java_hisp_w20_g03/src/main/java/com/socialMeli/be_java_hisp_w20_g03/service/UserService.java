@@ -26,10 +26,10 @@ public class UserService implements IUserService{
     IUserRepository iUserRepository;
     ModelMapper mapper = new ModelMapper();
 
-   /* @Override
+    @Override
     public List<UserDTO> getUsers() {
-        return iUserRepository.getUsers();
-    }*/
+        return iUserRepository.getUsers().stream().map(u-> mapper.map(u,UserDTO.class)).collect(Collectors.toList());
+    }
 
     @Override
     public ResponseEntity<String> addFollower(int userId, int userIdToFollow) {

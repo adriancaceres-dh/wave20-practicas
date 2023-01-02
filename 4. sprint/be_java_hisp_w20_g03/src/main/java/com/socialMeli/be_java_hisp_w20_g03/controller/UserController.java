@@ -1,5 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.controller;
 
+import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
@@ -18,12 +19,11 @@ public class UserController {
 
     @Autowired
     private IUserService iUserService;
-    @Autowired
-    private UserRepository userRepository;
+
 
     @GetMapping("/users")
-    public List<User> list() {
-        return userRepository.getUsers();
+    public List<UserDTO> list() {
+        return iUserService.getUsers();
     }
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")

@@ -6,9 +6,11 @@ import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 
 public interface IUserService {
-    //List<UserDTO> getUsers();
+    List<UserDTO> getUsers();
     public ResponseEntity<String> addFollower(int userId, int userIdToFollow);
     public UserFollowerCountDTO getFollowerCount(int userId);
     public UserFollowersDTO getFollowersList(int userId);
