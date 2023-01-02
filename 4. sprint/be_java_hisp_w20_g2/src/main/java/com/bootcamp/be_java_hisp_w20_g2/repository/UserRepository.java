@@ -1,34 +1,46 @@
 package com.bootcamp.be_java_hisp_w20_g2.repository;
 
-import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.HashMap;
 
 @Repository
 public class UserRepository {
+//estas?
+    private final HashMap<Integer, User> users;
+    private static int currentId = 0;
 
-    private List<User> userList;
+    @Autowired
+    private PostRepository postRepository;
 
     public UserRepository(){
-        userList = new ArrayList<>();
-        List<User> listaFollower1 = new ArrayList<>();
-        List<User> listaFollowing1 = new ArrayList<>();
-        List<User> listaFollower2 = new ArrayList<>();
-        List<User> listaFollowing2 = new ArrayList<>();
-        List<Post> postList1 = new ArrayList<>();
-        List<Post> postList2 = new ArrayList<>();
+        users = new HashMap<>();
 
+        User diego = new User("Diego");
+        User flavio = new User("Flavio");
+        diego.follow(flavio);
 
-        userList.add(new User(1, "Diego", listaFollower1, listaFollowing1, postList1));
-        userList.add(new User(2, "Flavio", listaFollower2, listaFollowing2, postList2));
+        save(diego);
+        save(flavio);
     }
-    public User findUserById(int id){
-        Optional<User> user = userList.stream().filter(user1 -> user1.getUserId() == id).findAny();
-        return user.get();
+
+    public User save(User user) {
+        if (user.getId() == null) {
+            user.setId(currentId++);
+        }
+        users.put(user.getId(), user);
+        user.getPosts().forEach(p -> postRepository.save(p));
+        return user;
+    }
+
+    public User findOne(int id){
+        return users.get(id);
+    }
+
+    public boolean exists(int id) {
+        return users.containsKey(id);
     }
 
 }

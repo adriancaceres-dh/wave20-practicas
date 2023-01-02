@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2.service;
 
+
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
@@ -26,14 +27,24 @@ public class UserService implements IUserService {
 
     @Override
     public UserFollowersResponseDTO findAllFollowers(int userId) {
-        User userFound = userRepository.findUserById(userId);
+        User userFound = userRepository.findOne(userId);
         if(userFound == null) {
             throw new UserNotFoundException("No se ha encontrado el usuario");
         } else {
-            List<UserResponseDTO> followers = userFound.getFollowers().stream().map(user -> new UserResponseDTO(user.getUserId(), user.getUserName())).collect(Collectors.toList());
+            List<UserResponseDTO> followers = userFound.getFollowers().stream().map(user -> new UserResponseDTO(user.getId(), user.getUserName())).collect(Collectors.toList());
             //^^^^^^ podría hacerse con un mapper ^^^^^^
-            return new UserFollowersResponseDTO(userFound.getUserId(), userFound.getUserName(), followers);
+            return new UserFollowersResponseDTO(userFound.getId(), userFound.getUserName(), followers);
         }
+    }
+
+    public User findUser(int userIdFind){
+        User userFind = userRepository.findOne(userIdFind);
+        return userFind;
+    }
+
+    @Override
+    public void saveUser(User user){
+        userRepository.save(user);
     }
 
 }
