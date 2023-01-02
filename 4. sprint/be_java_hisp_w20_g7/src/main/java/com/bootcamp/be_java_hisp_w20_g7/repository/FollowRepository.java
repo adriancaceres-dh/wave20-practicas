@@ -20,6 +20,7 @@ public class FollowRepository implements IFollowRepository {
         follows.add(new Follow(8, 3));
         follows.add(new Follow(4, 3));
         follows.add(new Follow(5, 4));
+        follows.add(new Follow(5, 2));
     }
 
     @Override
