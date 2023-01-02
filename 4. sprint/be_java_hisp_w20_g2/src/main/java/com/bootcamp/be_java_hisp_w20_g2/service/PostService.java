@@ -9,14 +9,9 @@ import com.bootcamp.be_java_hisp_w20_g2.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.ICategoryRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IPostRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 
