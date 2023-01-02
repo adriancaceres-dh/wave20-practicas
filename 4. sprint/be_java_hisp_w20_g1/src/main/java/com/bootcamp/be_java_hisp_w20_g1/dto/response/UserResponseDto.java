@@ -7,6 +7,8 @@ import lombok.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserResponseDto extends UserResponseBaseDto {
-
+    public UserResponseDto(int userId, String userName) {
+        super(userId, userName);
+    }
 
 }

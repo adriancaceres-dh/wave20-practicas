@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class UserRepository implements IUserRepository {
@@ -21,6 +22,35 @@ public class UserRepository implements IUserRepository {
         this.users = buildUserRepository();
 
     }
+
+    public boolean isValidId(int id){
+        return users.stream().anyMatch(u -> u.getId() == id);
+    }
+
+    public boolean isSeller(int id){
+        return getUserById(id).isSeller();
+    }
+    public User getUserById(int id){
+        return users.stream().filter(u -> id == u.getId()).findFirst().orElse(null);
+    }
+
+    public void addFollower(int userIdToModify, int userIdOfFollower){
+        for (User user : users){
+            if (user.getId() == userIdToModify){
+                user.getFollowers().add(userIdOfFollower);
+            }
+        }
+    }
+
+    public void addFollowed(int userIdToModify, int userIdToFollow){
+        for (User user : users){
+            if (user.getId() == userIdToModify){
+                user.getFollowed().add(userIdToFollow);
+            }
+        }
+    }
+
+
 
     List<User> buildUserRepository() {
         File file = null;
@@ -34,6 +64,7 @@ public class UserRepository implements IUserRepository {
         };
         List<User> users = null;
         try {
+
             users = objectMapper.readValue(file, typeRef);
         } catch (IOException e) {
             e.printStackTrace();
