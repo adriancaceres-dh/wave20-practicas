@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PostDTO {
 
+    private Integer id;
 }

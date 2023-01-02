@@ -32,4 +32,11 @@ public class PersonRepositoryImp {
         ));
         return true;
     }
+
+    public Set<Person> getSellers(){
+
+        Set<Person> sellerFilter = persons.get("sellers");
+        return sellerFilter;
+    }
+
 }

@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class ProductDTO {
+    private Integer id;
 }
