@@ -16,7 +16,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    //US 3
     @GetMapping("/{userId}/followers/list")
     public ResponseEntity<UserFollowersResponseDto> getSellerFollowers(
             @PathVariable int userId,
@@ -24,19 +23,25 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getSellerFollowersDto(userId, order));
     }
 
-    //US 2
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<UserFollowersCountResponseDto> getFollowersCount(@PathVariable int userId) {
         return ResponseEntity.ok().body(userService.getFollowersCountDto(userId));
     }
 
-    //us 4
-    @GetMapping(value = "/{userId}/followed/list", params = {"order"})
+    @GetMapping("/{userId}/followed/list")
     public ResponseEntity<UserFollowedResponseDto> getUserFollowed(
             @PathVariable int userId,
             @RequestParam(required = false) String order) {
         return ResponseEntity.ok().body(userService.getFollowedDto(userId, order));
     }
 
+    @PostMapping("/{userId}/follow/{userIdToFollow}")
+    public ResponseEntity<UserFollowedResponseDto> followUser(@PathVariable int userId, @PathVariable int userIdToFollow){
+        return userService.followUser(userId,userIdToFollow);
+    }
 
+    @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<UserFollowedResponseDto> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow){
+        return userService.unfollowUser(userId,userIdToUnfollow);
+    }
 }

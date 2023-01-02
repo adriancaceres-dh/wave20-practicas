@@ -16,4 +16,9 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserFollowedResponseDto extends UserResponseBaseDto{
     private List<UserResponseDto> followed;
+
+    public UserFollowedResponseDto(int id, String name, List<UserResponseDto> userFollowedList) {
+        super(id,name);
+        followed = userFollowedList;
+    }
 }

@@ -19,7 +19,56 @@ public class UserRepository implements IUserRepository {
 
     public UserRepository() {
         this.users = buildUserRepository();
+    }
 
+    @Override
+    public boolean isValidId(int id){
+        return getUserById(id) != null;
+    }
+
+    @Override
+    public boolean isSeller(int id){
+        return getUserById(id).isSeller();
+    }
+    @Override
+    public User getUserById(int id){
+        return users.stream().filter(u -> id == u.getId()).findFirst().orElse(null);
+    }
+
+    @Override
+    public void addFollower(int userIdToModify, int userIdOfFollower){
+        for (User user : users){
+            if (user.getId() == userIdToModify){
+                user.getFollowers().add(userIdOfFollower);
+            }
+        }
+    }
+
+    @Override
+    public void removeFollower(int userIdToModify, int userIdOfFollower) {
+        for (User user : users) {
+            if (user.getId() == userIdToModify) {
+                 user.getFollowers().remove(userIdOfFollower);
+            }
+        }
+    }
+
+    @Override
+    public void addFollowed(int userIdToModify, int userIdToFollow){
+        for (User user : users){
+            if (user.getId() == userIdToModify){
+                user.getFollowed().add(userIdToFollow);
+            }
+        }
+    }
+
+    @Override
+    public void removeFollowed(int userIdToModify, int userIdToFollow) {
+        for (User user : users) {
+            if (user.getId() == userIdToModify) {
+                user.getFollowed().remove(userIdToFollow);
+            }
+        }
     }
 
     List<User> buildUserRepository() {
@@ -34,17 +83,11 @@ public class UserRepository implements IUserRepository {
         };
         List<User> users = null;
         try {
+
             users = objectMapper.readValue(file, typeRef);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return users;
-    }
-
-    public User getUserById(int id) {
-        return this.users.stream()
-                .filter(user -> user.getId() == id)
-                .findFirst()
-                .orElse(null);
     }
 }
