@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/users")
@@ -16,12 +16,30 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @PostMapping
+
+    @PostMapping ("/{userId}/follow/{userIdToFollow}")
+    public ResponseEntity<String> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
+
+        boolean followed = userService.followUser(userId, userIdToFollow);
+        if (followed) {
+            return new ResponseEntity<>("Se ha seguido correctamente.", HttpStatus.OK);
+        } else return new ResponseEntity<>("No se ha seguido al usuario.", HttpStatus.BAD_REQUEST);
+
+    }
+
+    @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<String> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        boolean unfollowed = userService.followUser(userId, userIdToUnfollow);
+        if (unfollowed) {
+            return new ResponseEntity<>("Se ha dejado de seguir correctamente.", HttpStatus.OK);
+        } else return new ResponseEntity<>("Error al dejar de seguir al usuario.", HttpStatus.BAD_REQUEST);
+    }
+    @PostMapping ("/add")
     public ResponseEntity<String> addUsers(@RequestBody List<User> users){
         return new ResponseEntity<>(userService.addUsers(users),HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping ("/list")
     public ResponseEntity<List<User>> getUsers(){
         return new ResponseEntity<>(userService.getAll(),HttpStatus.OK);
     }
