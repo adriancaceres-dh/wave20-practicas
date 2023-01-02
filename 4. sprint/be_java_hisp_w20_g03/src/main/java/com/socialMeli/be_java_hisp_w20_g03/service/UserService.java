@@ -3,6 +3,7 @@ package com.socialMeli.be_java_hisp_w20_g03.service;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
@@ -51,7 +52,7 @@ public class UserService implements IUserService{
             }
             return new UserFollowersDTO(user.getUser_id(), user.getUser_name(), followed);
         }
-        return null;
+        throw new NotFoundException("El usuario ingresado no existe.");
     }
 
     @Override
