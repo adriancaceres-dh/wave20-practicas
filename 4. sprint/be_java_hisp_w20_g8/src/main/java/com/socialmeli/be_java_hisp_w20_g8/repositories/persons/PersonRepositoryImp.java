@@ -58,8 +58,10 @@ public class PersonRepositoryImp implements PersonRepository {
         Set<Person> personSet = persons.get("users");
         User person = (User) personSet.stream().filter(p -> p.getId() == userId)
                 .findAny().orElseThrow(() -> new OperationFailedException("follower removal failed"));
-        person.getFollowing().remove(sellerId);
-        return true;
+        if (person.getFollowing().contains(sellerId)) {
+            person.getFollowing().remove(sellerId);
+            return true;
+        } else return false;
     }
 
     @Override
@@ -67,13 +69,15 @@ public class PersonRepositoryImp implements PersonRepository {
         Set<Person> personSet = persons.get("sellers");
         Seller person = (Seller) personSet.stream().filter(p -> p.getId() == sellerId)
                 .findAny().orElseThrow(() -> new OperationFailedException("follower removal failed"));
-        person.getFollowers().remove(userId);
-        return true;
+        if (person.getFollowers().contains(userId)) {
+            person.getFollowers().remove(userId);
+            return true;
+        } else return false;
     }
 
     private boolean loadUsers() {
         persons.get("users").addAll(Set.of(
-                new User(1, "user1", new HashSet<>(){{
+                new User(1, "user1", new HashSet<>() {{
                     add(3);
                 }}),
                 new User(2, "user2", new HashSet<>())
@@ -84,12 +88,14 @@ public class PersonRepositoryImp implements PersonRepository {
         ));
         return true;
     }
-    public Set<Integer> getAllFollowed(int userId){
-        User user = (User)persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
+
+    public Set<Integer> getAllFollowed(int userId) {
+        User user = (User) persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
         return user.getFollowing();
     }
-    public Seller findSellerById(Integer id){
-        return (Seller)persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+
+    public Seller findSellerById(Integer id) {
+        return (Seller) persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
 
     }
 }
