@@ -1,11 +1,14 @@
-package com.bootcamp.be_java_hisp_w20_g4.service;
+package com.bootcamp.be_java_hisp_w20_g4.service.user;
 
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.*;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.ListedUserDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserCountDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowedDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowersDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
-import com.bootcamp.be_java_hisp_w20_g4.repository.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

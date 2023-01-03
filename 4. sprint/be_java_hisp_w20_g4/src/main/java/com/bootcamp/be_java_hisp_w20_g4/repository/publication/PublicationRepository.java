@@ -1,8 +1,7 @@
-package com.bootcamp.be_java_hisp_w20_g4.repository;
+package com.bootcamp.be_java_hisp_w20_g4.repository.publication;
 
-import com.bootcamp.be_java_hisp_w20_g4.model.Product;
 import com.bootcamp.be_java_hisp_w20_g4.model.Publication;
-import com.bootcamp.be_java_hisp_w20_g4.model.User;
+import com.bootcamp.be_java_hisp_w20_g4.repository.publication.IPublicationRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -15,11 +14,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
-public class PublicationRepository implements  IPublicationRepository{
+public class PublicationRepository implements IPublicationRepository {
     private List<Publication> publications = loadPublications();
 
     public PublicationRepository(){}

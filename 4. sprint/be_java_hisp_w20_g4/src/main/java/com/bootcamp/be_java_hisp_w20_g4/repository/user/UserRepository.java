@@ -1,22 +1,17 @@
-package com.bootcamp.be_java_hisp_w20_g4.repository;
+package com.bootcamp.be_java_hisp_w20_g4.repository.user;
 
 
 import com.bootcamp.be_java_hisp_w20_g4.model.Buyer;
 import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserRepository implements IUserRepository{
+public class UserRepository implements IUserRepository {
 
     private List<User> users;
 

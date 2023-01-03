@@ -1,7 +1,6 @@
-package com.bootcamp.be_java_hisp_w20_g4.repository;
+package com.bootcamp.be_java_hisp_w20_g4.repository.category;
 
 import com.bootcamp.be_java_hisp_w20_g4.model.Category;
-import com.bootcamp.be_java_hisp_w20_g4.model.Product;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Repository
-public class CategoryRepository implements ICategoryRepository{
+public class CategoryRepository implements ICategoryRepository {
 
     public List<Category> categories = loadCategories();
 

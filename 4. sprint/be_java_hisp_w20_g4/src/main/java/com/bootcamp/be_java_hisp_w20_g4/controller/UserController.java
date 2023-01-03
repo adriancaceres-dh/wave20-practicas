@@ -1,11 +1,10 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserCountDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserFollowedDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.UserFollowersDTO;
-import com.bootcamp.be_java_hisp_w20_g4.service.IServicePublication;
-import com.bootcamp.be_java_hisp_w20_g4.service.IServiceUsr;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserCountDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowedDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowersDTO;
+import com.bootcamp.be_java_hisp_w20_g4.service.publication.IServicePublication;
+import com.bootcamp.be_java_hisp_w20_g4.service.user.IServiceUsr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

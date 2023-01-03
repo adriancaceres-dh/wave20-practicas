@@ -1,8 +1,8 @@
-package com.bootcamp.be_java_hisp_w20_g4.service;
+package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 
 public interface IServicePublication {
 

@@ -1,4 +1,4 @@
-package com.bootcamp.be_java_hisp_w20_g4.repository;
+package com.bootcamp.be_java_hisp_w20_g4.repository.category;
 
 import com.bootcamp.be_java_hisp_w20_g4.model.Category;
 

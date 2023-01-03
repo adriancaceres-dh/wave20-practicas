@@ -1,16 +1,16 @@
-package com.bootcamp.be_java_hisp_w20_g4.service;
+package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.ListedPostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
-import com.bootcamp.be_java_hisp_w20_g4.repository.ICategoryRepository;
-import com.bootcamp.be_java_hisp_w20_g4.repository.IProductRepository;
-import com.bootcamp.be_java_hisp_w20_g4.repository.IPublicationRepository;
-import com.bootcamp.be_java_hisp_w20_g4.repository.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
+import com.bootcamp.be_java_hisp_w20_g4.repository.product.IProductRepository;
+import com.bootcamp.be_java_hisp_w20_g4.repository.publication.IPublicationRepository;
+import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrd
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
 
 @Service
-public class ServicePublication implements  IServicePublication{
+public class ServicePublication implements IServicePublication {
 
     @Autowired
     IPublicationRepository publicationRepository;
