@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IPostService {
     PostListResponseDto lastTwoWeeksPostsFromFollowers(int id, String order);
-    List<PostResponseDto> lastTwoWeeksPostsFromUserId (int id);
+    // List<PostResponseDto> lastTwoWeeksPostsFromUserId (int id);
     boolean add(PostRequestDto postDto);
 }

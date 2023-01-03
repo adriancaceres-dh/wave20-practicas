@@ -48,15 +48,22 @@ public class PostService implements IPostService {
     public PostListResponseDto lastTwoWeeksPostsFromFollowers(int id, String order) {
         userService.validateUserExistById(id);
         Set<Integer> followedByuserId = userService.getUserFollowed(id);
-        List<PostResponseDto> posts = new ArrayList<>();
 
-        for (Integer followed : followedByuserId) {
-            posts.addAll(lastTwoWeeksPostsFromUserId(followed));
-        }
+        List<PostResponseDto> posts = followedByuserId.stream() // Stream every seller followed by parameter id
+                .map(postRepository::getPostsByUserId) // Get the List of Posts from each seller.
+                .flatMap(List::stream) // Get a flat List with every Post
+                .filter(post -> LocalDate.now().minusDays(14).isBefore(post.getDate()))
+                .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
+                        .postId(post.getId())
+                        .date(post.getDate())
+                        .product(productService.getProductById(post.getProductId()))
+                        .category(post.getCategory())
+                        .price(post.getPrice())
+                        .build()).collect(Collectors.toList());
 
         return new PostListResponseDto(id, sortPostByDate(posts, order));
     }
-
+/*
     @Override
     public List<PostResponseDto> lastTwoWeeksPostsFromUserId(int id) {
         return postRepository.getPostsByUserId(id).stream().filter(post -> LocalDate.now().minusDays(14).isBefore(post.getDate())).
@@ -69,7 +76,7 @@ public class PostService implements IPostService {
                         .build()).collect(Collectors.toList());
 
     }
-
+*/
     @Override
     public boolean add(PostRequestDto postDto) {
         if (postDto == null || postDto.getUserId() == 0) {
