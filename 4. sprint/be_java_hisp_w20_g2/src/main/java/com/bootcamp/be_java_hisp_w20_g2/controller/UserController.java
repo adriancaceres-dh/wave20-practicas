@@ -26,6 +26,11 @@ public class UserController {
         UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId,order);
         return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
     }
+    @GetMapping("/{userId}/followed/list")
+    public ResponseEntity<?> getFollowedById(@PathVariable int userId, @RequestParam Optional<String> order) {
+        UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId,order);
+        return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
+    }
 
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<UserFollowersCountResponseDTO> countFollowers(@PathVariable int userId) {

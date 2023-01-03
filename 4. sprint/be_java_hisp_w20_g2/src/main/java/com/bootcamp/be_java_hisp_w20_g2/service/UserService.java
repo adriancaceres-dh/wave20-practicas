@@ -1,12 +1,13 @@
 package com.bootcamp.be_java_hisp_w20_g2.service;
 
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowedResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Override
     public UserFollowersResponseDTO findAllFollowers(int userId, Optional<String> order) {
@@ -43,6 +44,31 @@ public class UserService implements IUserService {
 
             }
             return new UserFollowersResponseDTO(userFound.getId(), userFound.getUserName(), followers);
+        }
+    }
+
+    @Override
+    public UserFollowedResponseDTO findAllFollowed(int userId, Optional<String> order) {
+        User userFound = userRepository.findOne(userId);
+        if (userFound == null) {
+            throw new UserNotFoundException("User not found");
+        } else {
+            List<UserResponseDTO> followed = userFound.getFollowing().stream()
+                    .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
+                    .collect(Collectors.toList());
+            if(order.isPresent()){
+                if( order.get().equals("name_asc") || order.get().equals("name_desc")){
+                    Comparator<UserResponseDTO> comparator;
+                    if(order.get().equals("name_asc")){
+                        comparator = Comparator.comparing(UserResponseDTO::getUserName);
+                    }else{
+                        comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
+                    }
+                    followed = followed.stream().sorted(comparator).collect(Collectors.toList());
+                }
+
+            }
+            return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed);
         }
     }
 
