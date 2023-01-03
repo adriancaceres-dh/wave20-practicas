@@ -44,7 +44,7 @@ public class PostService implements IPostService{
                 .userId(postRequestDTO.getUserId())
                 .discount(0)
                 .date(postRequestDTO.getDate())
-                .userId(postRequestDTO.getUser_id())
+                .userId(postRequestDTO.getUserId())
                 .product(Product.builder()
                             .id(postRequestDTO.getProduct().getProduct_id())
                             .name(postRequestDTO.getProduct().getProduct_name())
