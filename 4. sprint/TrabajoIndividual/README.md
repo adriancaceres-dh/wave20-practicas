@@ -283,6 +283,15 @@ Obtener la cantidad de productos en promoción de un determinado vendedor
 | METHOD | SIGN                                          |
 |:-------|:----------------------------------------------|
 | `POST` | `/products/promo-post/count?user_id={userId}` |
+
+RESPONSE: 
+```json
+{  
+   "user_id" : 234,
+   "user_name": "vendedor1",
+   "promo_products_count": 23
+}
+```
 ***
 **US0012**:
 Obtener un listado de todos los productos en promoción de un determinado vendedor
@@ -290,6 +299,7 @@ Obtener un listado de todos los productos en promoción de un determinado vended
 | METHOD | SIGN                                         |
 |:-------|:---------------------------------------------|
 | GET    | `/products/promo-post/list?user_id={userId}` |
+
 RESPONSE:
 ```json
 {
