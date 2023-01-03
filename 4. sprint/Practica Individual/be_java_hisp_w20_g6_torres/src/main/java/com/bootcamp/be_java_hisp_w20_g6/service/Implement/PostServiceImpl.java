@@ -8,8 +8,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostPromoCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,4 +81,19 @@ public class PostServiceImpl implements IPostService {
         return new PostListResponseDTO(user_id,followedPost );
     }
 
+    @Override
+    public PostPromoCountResponseDto postPromoCount(int user_id) {
+        try{
+            UserModel user = userService.getUserById(user_id);
+            int post_promo = (int)postRepository.getPostList()
+                    .stream()
+                    .filter(p -> p.isHas_promo())
+                    .filter(p -> p.getUser_id() == user_id)
+                    .count();
+            return new PostPromoCountResponseDto(user_id, user.getUser_name(), post_promo);
+
+        }catch(UserNotFoundException e){
+            throw new UserNotFoundException("Usuario no existe");
+        }
+    }
 }
