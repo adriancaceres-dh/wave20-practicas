@@ -22,10 +22,11 @@ public class PostController {
     private IPostService postService;
 
     @PostMapping("/post")
-    public ResponseEntity<Post> newPost(@RequestBody PostRequestDTO postRequestDTO) {
-        return new ResponseEntity<>(postService.newPost(postRequestDTO), HttpStatus.OK);
+    public ResponseEntity newPost(@RequestBody PostRequestDTO postRequestDTO) {
+        postService.newPost(postRequestDTO);
+        return new ResponseEntity("todo OK",HttpStatus.OK);
     }
-    @GetMapping("/products/followed/{userId}/list")
+    @GetMapping("/followed/{userId}/list")
     public FollowedUsersPostsResponse getFollowedUsersPosts(@PathVariable int userId,
                                                             @RequestParam(required = false) String order){
         return postService.getFollowedUsersPosts(userId, order);

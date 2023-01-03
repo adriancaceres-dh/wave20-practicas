@@ -40,15 +40,6 @@ public class UserController {
             return new ResponseEntity<>("Se ha dejado de seguir correctamente.", HttpStatus.OK);
         } else return new ResponseEntity<>("Error al dejar de seguir al usuario.", HttpStatus.BAD_REQUEST);
     }
-    @PostMapping ("/add")
-    public ResponseEntity<String> addUsers(@RequestBody List<User> users){
-        return new ResponseEntity<>(userService.addUsers(users),HttpStatus.OK);
-    }
-
-    @GetMapping ("/list")
-    public ResponseEntity<List<User>> getUsers(){
-        return new ResponseEntity<>(userService.getAll(),HttpStatus.OK);
-    }
 
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<FollowersCountDTO> getFollowersCount(@PathVariable int userId){
@@ -56,14 +47,15 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followed/list")
-    public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId){
-        return new ResponseEntity<>(userService.getFollowedListDto(userId), HttpStatus.OK);
+    public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId,
+                                                           @RequestParam(required = false) String order){
+        return new ResponseEntity<>(userService.getFollowedListDto(userId, order), HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/list")
-    public FollowersBySellerDTO getFollowersBySellerDto(@PathVariable int userId)
-    {
-        return userService.getFollowersBySeller(userId);
+    public ResponseEntity<FollowersBySellerDTO> getFollowersBySellerDto(@PathVariable int userId,
+                                                                        @RequestParam(required = false) String order) {
+        return new ResponseEntity<>(userService.getFollowersBySeller(userId,order),HttpStatus.OK);
     }
 
 
