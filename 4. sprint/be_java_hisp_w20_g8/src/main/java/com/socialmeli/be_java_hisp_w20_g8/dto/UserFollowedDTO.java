@@ -1,6 +1,5 @@
 package com.socialmeli.be_java_hisp_w20_g8.dto;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.SellerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -7,10 +7,11 @@ import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
-public class PersonRepositoryImp implements  PersonRepository {
+
+public class PersonRepositoryImp implements IPersonRepository {
+
 
     private final Map<String, Set<Person>> persons;
 
@@ -47,7 +48,9 @@ public class PersonRepositoryImp implements  PersonRepository {
     @Override
     public boolean checkUser(int userId) {
         for (Map.Entry<String, Set<Person>> user : persons.entrySet()) {
-            return user.getValue().stream().anyMatch(currentUser -> currentUser.getId() == userId);
+            if (user.getValue().stream().anyMatch(currentUser -> currentUser.getId() == userId)){
+                return true;
+            }
 
         }
         return false;
@@ -61,7 +64,14 @@ public class PersonRepositoryImp implements  PersonRepository {
                 new User(2, "user2", new HashSet<>())
         ));
         persons.get("sellers").addAll(Set.of(
-                new Seller(3, "seller3", new HashSet<>(), new HashSet<>()),
+                new Seller(3, "seller3", new HashSet<>(){{
+                    add(1);
+                    add(2);
+                }}, new HashSet<>(){{
+                    add(9);
+                    add(8);
+                }}
+                ),
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>())
         ));
         return true;
@@ -72,14 +82,28 @@ public class PersonRepositoryImp implements  PersonRepository {
         return user.getFollowing();
     }
 
+
     public Seller findSellerById(Integer id) {
         return (Seller) persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
 
     }
 
     @Override
-    public User findUserbyId(Integer id) {
+    public User findUserById(Integer id) {
         return (User) persons.get("users").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+    }
+
+    public Seller getById(int id){
+        return (Seller) persons.get("sellers").stream().filter(x->x.getId()==id).findFirst().orElse(null);
+    }
+
+    public Set<Integer> GetSellerFollowers(int userId){
+        Seller seller = findSellerById(userId);
+        if(seller==null){
+            return null;
+        }else{
+            return seller.getFollowers();
+        }
     }
 
 }

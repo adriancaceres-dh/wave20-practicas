@@ -2,7 +2,6 @@ package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
-import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

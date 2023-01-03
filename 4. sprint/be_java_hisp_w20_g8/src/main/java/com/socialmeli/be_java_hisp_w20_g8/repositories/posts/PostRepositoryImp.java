@@ -4,10 +4,8 @@ package com.socialmeli.be_java_hisp_w20_g8.repositories.posts;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Repository
 public class PostRepositoryImp implements IPostRepository {
@@ -20,8 +18,9 @@ public class PostRepositoryImp implements IPostRepository {
     }
 
     @Override
-    public boolean createPost(Post post) {
+    public int createPost(Post post) {
         post.setId(++postCount);
-        return this.posts.add(post);
+        posts.add(post);
+        return postCount;
     }
 }

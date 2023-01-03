@@ -28,4 +28,6 @@ public class Seller extends Person{
     public void setPost(Set<Integer> post) {
         this.post = post;
     }
+
+
 }

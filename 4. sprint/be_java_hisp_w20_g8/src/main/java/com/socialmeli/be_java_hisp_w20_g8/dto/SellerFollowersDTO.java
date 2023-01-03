@@ -1,17 +1,17 @@
 package com.socialmeli.be_java_hisp_w20_g8.dto;
 
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
-public class SellerDTO {
-    private int id;
-    private String user_name;
+import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
+public class SellerFollowersDTO {
+    Integer seller_id;
+    String user_name;
+    List<UserDTO> followers;
 }
