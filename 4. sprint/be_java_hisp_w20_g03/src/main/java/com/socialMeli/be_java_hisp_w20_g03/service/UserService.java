@@ -50,7 +50,15 @@ public class UserService implements IUserService{
 
     @Override
     public UserFollowerCountDTO getFollowerCount(int userId) {
-        return null;
+        
+        User user = this.iUserRepository.getUserById(userId);
+
+        if(user != null){
+            int count = user.getFollowers().size();
+            return new UserFollowerCountDTO(user.getUser_id(),user.getUser_name(),count);
+        }
+
+        throw new NotFoundException("El usuario ingresado no existe.");
     }
 
     @Override
