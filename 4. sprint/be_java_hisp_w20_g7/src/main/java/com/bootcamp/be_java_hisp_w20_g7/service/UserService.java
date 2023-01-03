@@ -7,6 +7,7 @@ import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
+import com.bootcamp.be_java_hisp_w20_g7.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IFollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
@@ -87,5 +88,19 @@ public class UserService implements IUserService {
     @Override
     public UserPostFollowedDto userPostFollowed(int userId) {
         return null;
+    }
+
+    @Override
+    public UserFollowersCountDto countFollowers(int userId) {
+
+        User user = iUserRepository.findById(userId);
+
+        if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
+
+        int followerCount = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList()).size();
+
+        return new UserFollowersCountDto(userId,user.getUserName(),followerCount);
+
+
     }
 }

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Data
 public class PostCreateDto {
 
-    @JsonProperty("user_id")
+
     private int userId;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;

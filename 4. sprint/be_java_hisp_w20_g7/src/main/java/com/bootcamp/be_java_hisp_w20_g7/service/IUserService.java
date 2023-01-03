@@ -42,4 +42,13 @@ public interface IUserService {
     UserPostFollowedDto userPostFollowed(int userId);
 
 
+    /**
+     * US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
+     *
+     * @param userId : id del usuario
+     * @return UserFollowerCountDto : retorna la información del ususario mas el numero de seguidores que tiene
+     */
+    UserFollowersCountDto countFollowers(int userId);
+
+
 }
