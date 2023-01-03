@@ -96,7 +96,7 @@ public class UserService implements IUserService {
 
     private void validateUserIsSeller(User user) {
         if (!user.isSeller()) {
-            throw new BadRequestException(Parameter.getString("EX_NotACostumer"));
+            throw new BadRequestException(Parameter.getString("EX_NotASeller"));
         }
     }
 
