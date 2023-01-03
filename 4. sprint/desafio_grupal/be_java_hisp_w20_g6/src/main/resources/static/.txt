@@ -1,5 +1,5 @@
 US0001: localhost:8080/users/3/follow/3 - POST
-US0002: localhost:8080/1/followers/count/ - GET
+US0002: localhost:8080/users/1/followers/count - GET
 US0003: localhost:8080/users/3/followers/list - GET
 US0004: localhost:8080/users/3/followed/list - GET
 US0005: localhost:8080/products/post - POST
