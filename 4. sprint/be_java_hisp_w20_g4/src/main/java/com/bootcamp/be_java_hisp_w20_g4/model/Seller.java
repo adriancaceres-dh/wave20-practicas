@@ -27,7 +27,7 @@ public class Seller extends User{
     }
 
     // TODO: 29/12/22
-    private Publication addPublication(Publication publicationToAdd){
+    public Publication addPublication(Publication publicationToAdd){
         if(this.publications.containsKey(publicationToAdd)){
             return null; // ya existe la publicacion tiene que lanzar una excepcion
         }else{
@@ -50,7 +50,7 @@ public class Seller extends User{
     }
 
     // TODO: 29/12/22
-    private User unFollowSeller(User userToUnFollow){
+    public User unFollowSeller(User userToUnFollow){
         if(followers.containsKey(userToUnFollow.getUser_id())){
             followers.remove(userToUnFollow.getUser_id());
             return userToUnFollow;

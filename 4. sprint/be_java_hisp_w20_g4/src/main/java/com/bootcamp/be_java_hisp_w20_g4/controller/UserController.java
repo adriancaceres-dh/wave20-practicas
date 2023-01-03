@@ -39,7 +39,7 @@ public class UserController {
 
     @GetMapping("/{userId}/followed/list")
     public ResponseEntity<UserFollowedDTO> followed(@PathVariable int userId , @RequestParam(value="order",required = false) String order){
-        return ResponseEntity.ok().body(usrService.followed(userId));
+        return ResponseEntity.ok().body(usrService.followed(userId, order));
     }
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
