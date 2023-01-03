@@ -1,23 +1,19 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Implement;
 
 import java.time.LocalDate;
-import java.time.Period;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoCountResponseDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.PostRepository;
@@ -48,13 +44,13 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     public boolean save(PostRequestDto postRequestDto) {
-            userService.getUserById(postRequestDto.getUser_id());
-            PostModel postModel = mapper.map(postRequestDto, PostModel.class);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            postModel.setDate(LocalDate.parse(postRequestDto.getDate(),formatter));
-            postModel.setId(postRepository.idGenerator());
-            postRepository.save(postModel);
-            return true;
+        userService.getUserById(postRequestDto.getUser_id());
+        PostModel postModel = mapper.map(postRequestDto, PostModel.class);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        postModel.setDate(LocalDate.parse(postRequestDto.getDate(),formatter));
+        postModel.setId(postRepository.idGenerator());
+        postRepository.save(postModel);
+        return true;
     }
 
     @Override
@@ -65,7 +61,7 @@ public class PostServiceImpl implements IPostService {
             postRepository.getPostList()
                     .stream()
                     .filter(p->p.getUser_id()==id)
-                    .filter(p-> Period.between(p.getDate(),dateNow).getDays()<=15)
+                    .filter(p-> DAYS.between(p.getDate(),dateNow)<=15)
                     .forEach(p->followedPost.add(
                             new PostResponseDTO(p.getUser_id(),p.getId(),p.getDate()
                                     ,p.getProduct(),p.getCategory(),p.getPrice())
@@ -84,14 +80,26 @@ public class PostServiceImpl implements IPostService {
     @Override
     public PromoCountResponseDto countPromoProducts(int user_id) {
         UserModel user = userService.getUserById(user_id);
-        if(user == null) throw new UserNotFoundException("Usuario no encontrado");
 
         int total_promo_products = (int) postRepository.getPostList()
                 .stream()
                 .filter(p -> p.getUser_id() == user_id)
-                .filter(p -> p.isHas_promo())
+                .filter(PostModel::isHas_promo)
                 .count();
 
         return new PromoCountResponseDto(user_id, user.getUser_name(), total_promo_products);
+    }
+
+    @Override
+    public PromoPostListResponseDto getPromoProducts(int user_id) {
+        UserModel user = userService.getUserById(user_id);
+
+        List<PromoPostResponseDto> posts = postRepository.getPostList()
+                .stream()
+                .filter(p -> p.getUser_id() == user_id)
+                .map(p -> mapper.map(p, PromoPostResponseDto.class))
+                .collect(Collectors.toList());
+
+        return new PromoPostListResponseDto(user.getUser_id(), user.getUser_name(), posts);
     }
 }

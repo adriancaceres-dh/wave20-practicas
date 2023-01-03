@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g6.controller;
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoCountResponseDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoPostListResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,10 @@ public class PostController {
     @GetMapping("/promo-post/count")
     public ResponseEntity<PromoCountResponseDto> countPromoProducts(@RequestParam int user_id) {
         return new ResponseEntity<>(postService.countPromoProducts(user_id), HttpStatus.OK);
+    }
+
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<PromoPostListResponseDto> getPromoProducts(@RequestParam int user_id) {
+        return new ResponseEntity<>(postService.getPromoProducts(user_id), HttpStatus.OK);
     }
 }
