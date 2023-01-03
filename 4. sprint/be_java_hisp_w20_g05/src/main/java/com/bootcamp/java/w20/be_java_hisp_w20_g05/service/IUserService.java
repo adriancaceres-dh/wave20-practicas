@@ -11,7 +11,6 @@ import java.util.List;
 public interface IUserService extends IService<UserResponseDTO> {
 
     public FollowersCountDTO getFollowersCount (int id);
-    public List<User> getAll();
     User getById(int id);
     public boolean followUser(int userId, int userIdToFollow);
     public boolean unfollowUser(int userId, int userIdToUnfollow);

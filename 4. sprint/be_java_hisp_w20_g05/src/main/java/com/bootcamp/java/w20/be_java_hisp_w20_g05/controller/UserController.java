@@ -41,11 +41,6 @@ public class UserController {
         } else return new ResponseEntity<>("Error al dejar de seguir al usuario.", HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping ("/list")
-    public ResponseEntity<List<User>> getUsers(){
-        return new ResponseEntity<>(userService.getAll(),HttpStatus.OK);
-    }
-
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<FollowersCountDTO> getFollowersCount(@PathVariable int userId){
         return new ResponseEntity<>(userService.getFollowersCount(userId), HttpStatus.OK);
