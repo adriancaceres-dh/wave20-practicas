@@ -22,14 +22,9 @@ public abstract class User {
      * @return
      */
     public User addUserToMyFollowedList(User userToFollow){
-        if(followed.containsKey(userToFollow.getUser_id())){
-            return null; // lanza excepcion porque ya lo sigue
-        }else{
-            followed.put(userToFollow.getUser_id(), userToFollow);
-            return userToFollow;
-        }
+            return followed.put(userToFollow.getUser_id(), userToFollow);
     }
-
-
-
+    public User removeUserFromMyFollowedList(int userIdToUnfollow){
+        return followed.remove(userIdToUnfollow);
+    }
 }

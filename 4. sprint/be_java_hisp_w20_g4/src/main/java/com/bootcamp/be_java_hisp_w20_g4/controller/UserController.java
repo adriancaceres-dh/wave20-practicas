@@ -42,9 +42,9 @@ public class UserController {
         return ResponseEntity.ok().body(usrService.followed(userId, order));
     }
 
-    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity<String> unfollow(@PathVariable int userId , @PathVariable int userIdToUnfollow){
-        return ResponseEntity.ok().body("Response del service");
+    @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<UserFollowedDTO> unfollow(@PathVariable int userId , @PathVariable int userIdToUnfollow){
+        return ResponseEntity.ok().body(usrService.unfollow(userId, userIdToUnfollow));
     }
 
 

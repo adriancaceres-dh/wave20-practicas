@@ -63,4 +63,8 @@ public class Seller extends User{
     private List<Product> obtainProductsWithDiscount(){
         return null;
     }
+
+    public User removeUserFromMyFollowersList(int userId) {
+        return followers.remove(userId);
+    }
 }

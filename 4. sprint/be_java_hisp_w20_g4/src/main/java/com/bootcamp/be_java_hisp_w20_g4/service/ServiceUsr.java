@@ -28,21 +28,21 @@ public class ServiceUsr implements IServiceUsr {
      ModelMapper mapper = new ModelMapper();
 
     public UserDTO follow (int userId, int userIdToFollow){
-        if(userId == userIdToFollow){
-            throw new BadRequestException("El usuario no puede ser seguido por el mismo");
-        }
+        isNotSameUser(userId, userIdToFollow);
         User userFollower = userRepository.findById(userId);
         User userFollowed = userRepository.findById(userIdToFollow);
-        if(userFollower == null || userFollowed == null){
-            throw new NotFoundException("No se ha encontrado el usuario");
-        }
-        if(!(userFollowed instanceof Seller)) throw new BadRequestException("No se puede seguir a un comprador.");
-        if(userFollower.addUserToMyFollowedList(userFollowed) == null){
-            throw new NotFoundException("El usuario ya es seguido por el seguidor");
-        }
-        if(((Seller)userFollowed).addUserToMyFollowersList(userFollower) == null){
-            throw new NotFoundException("El seguidor ya sigue al usuario");
-        }
+        isValidUser(userFollower);
+        isValidUser(userFollowed);
+        isSeller(userFollowed);
+
+        if(userFollower.getFollowed().containsKey(userIdToFollow)) throw new BadRequestException("este usuario ya forma parte de sus seguidos");
+        userFollower.addUserToMyFollowedList(userFollowed);
+
+        if(((Seller) userFollowed).getFollowers().containsKey(userId)) throw new BadRequestException("Este usuario ya forma parte de tus seguidores");
+
+        ((Seller)userFollowed).addUserToMyFollowersList(userFollower);
+
+
         List<ListedUserDTO> followers = ((Seller) userFollowed).getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         List<ListedUserDTO> followed = userFollowed.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
         UserDTO userDto = new UserDTO(userIdToFollow,userFollowed.getUser_name(),followers,followed);
@@ -117,12 +117,16 @@ public class ServiceUsr implements IServiceUsr {
 
         isValidUser(user);
         isValidUser(unfollowUser);
+        isSeller(unfollowUser);
+        if(!(user.getFollowed().containsKey(userIdToUnfollow))) throw new BadRequestException("No forma parte de sus seguidos");
 
-        if(user.getFollowed().containsKey(userIdToUnfollow)) throw new BadRequestException("El usuario ");
-        List<ListedUserDTO> followed = user.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
+        user.removeUserFromMyFollowedList(userIdToUnfollow);
 
+        if(!(((Seller) unfollowUser).getFollowers().containsKey(userId))) throw new BadRequestException("Este usuario no forma parte de tus seguidores");
+        ((Seller)unfollowUser).removeUserFromMyFollowersList(userId);
 
-        UserFollowedDTO userFollowedDTO= new UserFollowedDTO(userIdToUnfollow,unfollowUser.getUser_name(),followed);
+        List<ListedUserDTO> followeds = user.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
+        UserFollowedDTO userFollowedDTO= new UserFollowedDTO(userId,user.getUser_name(),followeds);
         return userFollowedDTO;
     }
 
