@@ -43,8 +43,6 @@ public class UserRepository implements IRepository<User> {
                 .collect(Collectors.toSet());
     }
 
-    public boolean addAll(List<User> users){ return this.users.addAll(users);}
-
     public User getById(int userId) {
         return users.stream().filter(u -> u.getId()== userId)
                 .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("No se encontro el usuario")));

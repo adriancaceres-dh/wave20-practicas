@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService{
@@ -28,15 +27,9 @@ public class UserService implements IUserService{
 
 
     public FollowersCountDTO getFollowersCount (int id){
-        User user= userRepository.getAll().stream()
-                .filter(u -> u.getId()==id)
-                .findFirst()
-                .orElse(null);
-        if(user==null) throw new IdNotFoundException(new MessageExceptionDTO("USER NOT FOUND"));
+        User user= getById(id);
         return new FollowersCountDTO(user.getId(),user.getFollowers().size(),user.getUserName());
     }
-
-    public List<User> getAll(){return new ArrayList<>(userRepository.getAll());}
 
     public User getById(int id) {
         return userRepository.getById(id);

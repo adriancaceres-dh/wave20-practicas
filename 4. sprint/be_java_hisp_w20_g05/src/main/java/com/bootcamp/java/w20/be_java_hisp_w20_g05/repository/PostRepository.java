@@ -50,8 +50,6 @@ public class PostRepository implements IPostRepository{
         return this.posts;
     }
 
-    public boolean addAll(List<Post> posts){return posts.addAll(posts);}
-
     public Set<Post> filterByUserId(int userId) {
         return posts.stream().filter(p -> p.getUserId()== userId)
                 .collect(Collectors.toSet());
