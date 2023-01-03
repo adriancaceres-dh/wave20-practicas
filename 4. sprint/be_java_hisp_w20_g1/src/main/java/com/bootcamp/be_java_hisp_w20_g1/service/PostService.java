@@ -89,20 +89,21 @@ public class PostService implements IPostService {
 
                 throw new BadRequestException("Usuario invalido.");
             }
-
             ProductRequestDto productDto = postDto.getProduct();
             productService.add(productDto);
-            postRepository.add(convertPost(postDto, productDto.getProductId()));
+            postRepository.add(buildPost(postDto, productDto.getProductId()));
+            //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
             userService.updateUser(postDto.getUserId());
 
             return true;
-
         }
     }
 
-    public Post convertPost(PostRequestDto postDto, int productId) {
+    public Post buildPost(PostRequestDto postDto, int productId) {
         Post post = mapper.map(postDto, Post.class);
         post.setProductId(productId);
+        //Si se trata del primer posteo que realiza el usuario se le setea id 1, de lo contrario, se coloca como id el número
+        //inmediatamente posterior al del último posteo realizado.
         if (postRepository.getPosts().isEmpty()) {
             post.setId(initialId);
         } else {
