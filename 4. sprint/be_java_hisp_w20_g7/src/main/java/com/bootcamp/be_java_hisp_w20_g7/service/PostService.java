@@ -43,6 +43,9 @@ public class PostService implements IPostService {
 
     @Override
     public String createPost(PostCreateDto postCreateDto) {
+
+        User user = iUserRepository.findById(postCreateDto.getUserId());
+        if(user == null) throw new UserNotFoundException("User with id " + postCreateDto.getUserId() + " not found");
         if (postCreateDto == null) {
             throw new PostEmptyException("La publicación esta vacía");
         }
@@ -68,7 +71,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public UserPostFollowedDto postUsersFollowed(int userId) {
+    public UserPostFollowedDto postUsersFollowed(int userId,String order) {
 
         User user = iUserRepository.findById(userId);
 
@@ -77,9 +80,17 @@ public class PostService implements IPostService {
         List<Integer> followedIds = iFollowRepository.findAll().stream().filter(e -> e.getIdFollower() == userId).
                 map(Follow::getIdFollowed).collect(Collectors.toList());
 
-        List<Post> posts = iPostRepository.findAll().stream()
-                .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15) ))
-                .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
+        List<Post> posts;
+        if(order == null) order = "";
+        if(order.equals("date_desc")) {
+            posts = iPostRepository.findAll().stream()
+                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
+                    .sorted(Comparator.comparing(Post::getDate)).collect(Collectors.toList());
+        }else{
+            posts = iPostRepository.findAll().stream()
+                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
+                    .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
+        }
 
 
 
