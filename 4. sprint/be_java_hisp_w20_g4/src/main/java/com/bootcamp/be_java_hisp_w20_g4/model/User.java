@@ -16,7 +16,6 @@ public abstract class User {
     private String user_name;
     private HashMap<Integer, User> followed = new HashMap<>();
 
-
     /**
      * el propio usuario agrega en su lista de seguidos (followed) la persona a la que siguió
       * @param userToFollow

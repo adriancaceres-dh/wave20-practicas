@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 
 public class UserDTO {
-
     private int user_id;
     private String user_name;
     private List<ListedUserDTO> followers;
