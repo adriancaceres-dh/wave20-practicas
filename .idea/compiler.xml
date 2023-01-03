@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demospring" />
+        <module name="be_java_hisp_w20_g7" />
+        <module name="demospring (1)" />
+        <module name="demoarquitectura" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="be_java_hisp_w20_g7" target="11" />
+      <module name="demoarquitectura" target="17" />
+      <module name="demospring" target="17" />
+      <module name="demospring (1)" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="be_java_hisp_w20_g7" options="-parameters" />
+      <module name="demoarquitectura" options="-parameters" />
+      <module name="demospring" options="-parameters" />
+      <module name="demospring (1)" options="-parameters" />
+    </option>
+  </component>
+</project>
