@@ -14,5 +14,5 @@ public class Main {
         partido.marcarGolVisitante();
 
         System.out.println(qatar.cantidadPartidos()+ " Cantidad de goles: "+ qatar.cantidadDeGolesTotales());
-    }
+    } 
 }
