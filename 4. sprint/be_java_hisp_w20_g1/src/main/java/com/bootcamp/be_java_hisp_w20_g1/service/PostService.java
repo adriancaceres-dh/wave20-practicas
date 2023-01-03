@@ -63,20 +63,7 @@ public class PostService implements IPostService {
 
         return new PostListResponseDto(id, sortPostByDate(posts, order));
     }
-/*
-    @Override
-    public List<PostResponseDto> lastTwoWeeksPostsFromUserId(int id) {
-        return postRepository.getPostsByUserId(id).stream().filter(post -> LocalDate.now().minusDays(Parameter.getInteger("CantidadDias")).isBefore(post.getDate())).
-                map(post -> PostResponseDto.builder().userId(id)
-                        .postId(post.getId())
-                        .date(post.getDate())
-                        .product(productService.getProductById(post.getProductId()))
-                        .category(post.getCategory())
-                        .price(post.getPrice())
-                        .build()).collect(Collectors.toList());
 
-    }
-*/
     @Override
     public boolean add(PostRequestDto postDto) {
         if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
