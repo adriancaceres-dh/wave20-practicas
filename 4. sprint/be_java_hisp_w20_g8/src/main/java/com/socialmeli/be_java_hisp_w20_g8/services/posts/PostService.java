@@ -5,7 +5,7 @@ import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepository;
+import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import org.modelmapper.ModelMapper;
@@ -25,7 +25,7 @@ public class PostService implements IPostService {
     @Autowired
     private IPostRepository postRepository;
     @Autowired
-    private PersonRepository personRepository;
+    private IPersonRepository IPersonRepository;
 
     public PostService() {
         mapper.getConfiguration()
@@ -44,7 +44,7 @@ public class PostService implements IPostService {
             throw new InvalidArgumentException("All the fields are required");
 
         // Get the seller
-        Seller seller = personRepository.findSellerById(postRequestDTO.getUserId());
+        Seller seller = IPersonRepository.findSellerById(postRequestDTO.getUserId());
 
         // Check if the seller exists
         if(seller == null)
