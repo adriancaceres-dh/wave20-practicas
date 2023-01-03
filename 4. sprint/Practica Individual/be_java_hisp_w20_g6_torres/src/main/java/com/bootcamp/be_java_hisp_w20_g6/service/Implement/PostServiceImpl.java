@@ -87,7 +87,7 @@ public class PostServiceImpl implements IPostService {
             UserModel user = userService.getUserById(user_id);
             int post_promo = (int)postRepository.getPostList()
                     .stream()
-                    .filter(p -> p.isHas_promo())
+                    .filter(PostModel::isHas_promo)
                     .filter(p -> p.getUser_id() == user_id)
                     .count();
             return new PostPromoCountResponseDto(user_id, user.getUser_name(), post_promo);
