@@ -49,8 +49,9 @@ public class PostRepository implements IPostRepository {
     }
 
     @Override
-    public void add(Post post) {
+    public Post add(Post post) {
         posts.add(post);
+        return post;
     }
 
     @Override

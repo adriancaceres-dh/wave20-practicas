@@ -37,39 +37,47 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void addFollower(int userIdToModify, int userIdOfFollower){
+    public User addFollower(int userIdToModify, int userIdOfFollower){
         for (User user : users){
             if (user.getId() == userIdToModify){
                 user.getFollowers().add(userIdOfFollower);
+                return user;
             }
         }
+        return null;
     }
 
     @Override
-    public void removeFollower(int userIdToModify, int userIdOfFollower) {
+    public User removeFollower(int userIdToModify, int userIdOfFollower) {
         for (User user : users) {
             if (user.getId() == userIdToModify) {
                  user.getFollowers().remove(userIdOfFollower);
+                 return user;
             }
         }
+        return null;
     }
 
     @Override
-    public void addFollowed(int userIdToModify, int userIdToFollow){
+    public User addFollowed(int userIdToModify, int userIdToFollow){
         for (User user : users){
             if (user.getId() == userIdToModify){
                 user.getFollowed().add(userIdToFollow);
+                return user;
             }
         }
+        return null;
     }
 
     @Override
-    public void removeFollowed(int userIdToModify, int userIdToFollow) {
+    public User removeFollowed(int userIdToModify, int userIdToFollow) {
         for (User user : users) {
             if (user.getId() == userIdToModify) {
                 user.getFollowed().remove(userIdToFollow);
+                return user;
             }
         }
+        return null;
     }
 
     List<User> buildUserRepository() {

@@ -51,8 +51,9 @@ public class ProductRepository implements IProductRepository {
         return products;
     }
     @Override
-    public void addProduct(Product p) {
+    public Product addProduct(Product p) {
         products.add(p);
+        return p;
     }
 
 }

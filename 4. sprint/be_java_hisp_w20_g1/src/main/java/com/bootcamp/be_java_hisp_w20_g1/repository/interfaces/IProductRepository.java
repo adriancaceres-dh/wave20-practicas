@@ -8,5 +8,5 @@ public interface IProductRepository {
 
     List<Product> getProducts();
 
-    void addProduct(Product p);
+    Product addProduct(Product p);
 }
