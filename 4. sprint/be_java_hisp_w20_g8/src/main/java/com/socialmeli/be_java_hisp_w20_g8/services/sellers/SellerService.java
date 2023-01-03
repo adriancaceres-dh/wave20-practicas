@@ -25,7 +25,7 @@ public class SellerService implements ISellerService{
 
     public UserCountDTO followersCount(int userId){
         Seller seller = personRepository.getById(userId);
-        if (seller == null){throw new NotFoundException("User not found:: "+userId);}
+        if (seller == null){throw new NotFoundException("User not found: "+userId);}
 
         UserCountDTO userCountDTO = new UserCountDTO(userId,seller.getUser_name(),((Seller) seller).getFollowers().size());
         return userCountDTO;
