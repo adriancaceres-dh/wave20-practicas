@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class UserFollowersDto {
-    
+
     private int userId;
     private String userName;
     List<UserDto> followers;
