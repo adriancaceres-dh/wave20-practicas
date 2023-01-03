@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IdNotFoundException.class)
     public ResponseEntity<MessageExceptionDTO> IdNotFoundException(IdNotFoundException e){
-        return new ResponseEntity<>(e.getMessageExceptionDto(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessageExceptionDto(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidPostDataException.class)

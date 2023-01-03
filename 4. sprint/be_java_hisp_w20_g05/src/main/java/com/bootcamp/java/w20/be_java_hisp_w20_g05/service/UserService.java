@@ -45,9 +45,8 @@ public class UserService implements IUserService{
             user1.followUser(user2.getId());
             user2.addFollower(user1.getId());
         } catch (IdNotFoundException exception) {
-            return false;
+            throw new IdNotFoundException(new MessageExceptionDTO("Bad Request"));
         }
-
         return true;
     }
 
@@ -59,7 +58,7 @@ public class UserService implements IUserService{
             user1.unfollowUser(user2.getId());
             user2.removeFollower(user1.getId());
         } catch (IdNotFoundException exception) {
-            return false;
+            throw new IdNotFoundException(new MessageExceptionDTO("Bad Request"));
         }
         return true;
     }
