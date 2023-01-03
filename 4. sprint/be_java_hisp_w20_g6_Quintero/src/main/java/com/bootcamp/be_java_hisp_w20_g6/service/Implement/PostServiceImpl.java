@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.DiscountPostCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
 import org.modelmapper.ModelMapper;
@@ -76,6 +77,16 @@ public class PostServiceImpl implements IPostService {
         }
         
         return new PostListResponseDTO(user_id,followedPost );
+    }
+
+    @Override
+    public DiscountPostCountResponseDTO countDiscountPost(int sellerId) {
+        String user_name=userService.getUserById(sellerId).getUser_name();
+        int countPost=postRepository.getPostList().stream()
+                        .filter(p->p.isHas_promo()==true)
+                        .mapToInt(p-> p.getUser_id()!=sellerId ?0:1).sum();
+
+        return new DiscountPostCountResponseDTO(sellerId,user_name,countPost);
     }
 
 }
