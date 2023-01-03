@@ -23,7 +23,7 @@ public class FollowedUserPostDTO {
     @JsonProperty("product")
     private FollowedUserProductDTO product;
     @JsonProperty("category")
-    private String category;
+    private int category;
     @JsonProperty("price")
     private double price;
 

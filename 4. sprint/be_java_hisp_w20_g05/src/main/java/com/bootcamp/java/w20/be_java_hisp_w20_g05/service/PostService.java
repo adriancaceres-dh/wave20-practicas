@@ -38,8 +38,9 @@ public class PostService implements IPostService{
     public Post newPost(PostRequestDTO postRequestDTO) {
         Post newPost = Post.builder()
                 .id(++post_id)
-                .category(String.valueOf(postRequestDTO.getCategory()))
+                .category(postRequestDTO.getCategory())
                 .price(postRequestDTO.getPrice())
+                .userId(postRequestDTO.getUserId())
                 .discount(0)
                 .date(postRequestDTO.getDate())
                 .product(Product.builder()
