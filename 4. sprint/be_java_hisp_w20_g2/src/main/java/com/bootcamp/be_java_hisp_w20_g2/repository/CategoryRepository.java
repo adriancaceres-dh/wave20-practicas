@@ -15,10 +15,6 @@ public class CategoryRepository implements ICategoryRepository {
 
     public CategoryRepository() {
         categories = new HashMap<>();
-        save(new Category(12, "Pelotas"));
-        save(new Category(13, "Armas"));
-        save(new Category(125, "Manzanas"));
-        save(new Category(200, "Teteras"));
     }
 
 
