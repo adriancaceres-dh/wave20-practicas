@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService{
@@ -25,7 +26,7 @@ public class UserService implements IUserService{
         return null;
     }
 
-
+    @Override
     public FollowersCountDTO getFollowersCount (int id){
         User user= getById(id);
         return new FollowersCountDTO(user.getId(),user.getFollowers().size(),user.getUserName());
@@ -65,24 +66,20 @@ public class UserService implements IUserService{
 
     @Override
     public FollowedListDTO getFollowedListDto(int userId, String order){
-        if(order!=null && !order.equalsIgnoreCase("name_asc") && !order.equalsIgnoreCase("name_desc")){
-            throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));}
+        validateOrder(order);
 
         User user = getById(userId);
         List<UserResponseDTO> followed = new ArrayList<>();
         for(Integer i: user.getFollowing()) followed.add(new UserResponseDTO(i, getById(i).getUserName()));
 
-        if (order!=null)
-            followed.sort((x,y)->(order.equalsIgnoreCase("name_asc"))?String.CASE_INSENSITIVE_ORDER.compare(x.getUserName(), y.getUserName()) : String.CASE_INSENSITIVE_ORDER.compare(y.getUserName(), x.getUserName()));
+        orderList(followed,order);
 
         return new FollowedListDTO(user.getId(), user.getUserName(), followed);
     }
 
     @Override
-    public FollowersBySellerDTO getFollowersBySeller(int userId, String order)
-    {
-        if(order!=null && !order.equalsIgnoreCase("name_asc") && !order.equalsIgnoreCase("name_desc")){
-            throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));}
+    public FollowersBySellerDTO getFollowersBySeller(int userId, String order) {
+        validateOrder(order);
 
         User seller = userRepository.getById(userId);
         List<User> followers = new ArrayList<>();
@@ -91,10 +88,25 @@ public class UserService implements IUserService{
         List<UserResponseDTO> followersDto = new ArrayList<>();
         followers.stream().forEach(f -> followersDto.add(new UserResponseDTO(f.getId(),f.getUserName())));
 
-        if (order!=null)
-            followersDto.sort((x,y)->(order.equalsIgnoreCase("name_asc"))?String.CASE_INSENSITIVE_ORDER.compare(x.getUserName(), y.getUserName()) : String.CASE_INSENSITIVE_ORDER.compare(y.getUserName(), x.getUserName()));
+        orderList(followersDto,order);
 
         return new FollowersBySellerDTO(seller.getId(), seller.getUserName(), followersDto);
+    }
+
+    public boolean orderList(List<UserResponseDTO> userResponseDTOList, String order){
+        if (order!=null) {
+            userResponseDTOList.sort((x, y) -> (order.equalsIgnoreCase("name_asc")) ?
+                    String.CASE_INSENSITIVE_ORDER.compare(x.getUserName(), y.getUserName()) :
+                    String.CASE_INSENSITIVE_ORDER.compare(y.getUserName(), x.getUserName()));
+            return true;
+        }else return false;
+    }
+
+    public boolean validateOrder(String order){
+        if(order!=null && !order.equalsIgnoreCase("name_asc") && !order.equalsIgnoreCase("name_desc")){
+            throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));}
+        else return true;
+
     }
 
 }

@@ -3,7 +3,7 @@
     "id":1,
     "userId":2,
     "date":"2022-09-28",
-    "category":"Medicine",
+    "category":20,
     "price":930,
     "discount":0.35,
     "product":
@@ -20,7 +20,7 @@
     "id":2,
     "userId":1,
     "date":"2022-11-17",
-    "category":"Herbal",
+    "category":23,
     "price":1070,
     "discount":0.25,
     "product":
@@ -37,7 +37,7 @@
     "id":3,
     "userId":10,
     "date":"2022-08-08",
-    "category":"Medicine",
+    "category":20,
     "price":540,
     "discount":0.4,
     "product":
@@ -54,7 +54,7 @@
     "id":4,
     "userId":14,
     "date":"2022-08-26",
-    "category":"Herbal",
+    "category":23,
     "price":1530,
     "discount":0.25,
     "product":
@@ -71,7 +71,7 @@
     "id":5,
     "userId":2,
     "date":"2022-10-12",
-    "category":"Medicine",
+    "category":20,
     "price":1120,
     "discount":0.3,
     "product":
@@ -88,7 +88,7 @@
     "id":6,
     "userId":5,
     "date":"2022-11-04",
-    "category":"Laboratory",
+    "category":21,
     "price":970,
     "discount":0.05,
     "product":
@@ -105,7 +105,7 @@
     "id":7,
     "userId":2,
     "date":"2022-11-27",
-    "category":"Medicine",
+    "category":20,
     "price":1670,
     "discount":0.1,
     "product":
@@ -122,7 +122,7 @@
     "id":8,
     "userId":6,
     "date":"2022-09-09",
-    "category":"Medicine",
+    "category":20,
     "price":1580,
     "discount":0.2,
     "product":
@@ -139,7 +139,7 @@
     "id":9,
     "userId":3,
     "date":"2022-12-30",
-    "category":"Cosmetics",
+    "category":22,
     "price":1850,
     "discount":0.25,
     "product":
@@ -156,7 +156,7 @@
     "id":10,
     "userId":4,
     "date":"2022-12-26",
-    "category":"Cosmetics",
+    "category":22,
     "price":260,
     "discount":0.05,
     "product":
@@ -173,7 +173,7 @@
     "id":11,
     "userId":2,
     "date":"2022-07-12",
-    "category":"Cosmetics",
+    "category":22,
     "price":1030,
     "discount":0.25,
     "product":
@@ -190,7 +190,7 @@
     "id":12,
     "userId":15,
     "date":"2022-09-24",
-    "category":"Cosmetics",
+    "category":22,
     "price":1200,
     "discount":0.05,
     "product":
@@ -207,7 +207,7 @@
     "id":13,
     "userId":8,
     "date":"2022-08-18",
-    "category":"Medicine",
+    "category":20,
     "price":1160,
     "discount":0.1,
     "product":
@@ -224,7 +224,7 @@
     "id":14,
     "userId":11,
     "date":"2022-11-12",
-    "category":"Medicine",
+    "category":20,
     "price":250,
     "discount":0.2,
     "product":
@@ -241,7 +241,7 @@
     "id":15,
     "userId":13,
     "date":"2022-07-02",
-    "category":"Cosmetics",
+    "category":22,
     "price":1740,
     "discount":0.05,
     "product":
@@ -258,7 +258,7 @@
     "id":16,
     "userId":11,
     "date":"2022-09-20",
-    "category":"Medicine",
+    "category":20,
     "price":430,
     "discount":0.05,
     "product":
@@ -275,7 +275,7 @@
     "id":17,
     "userId":9,
     "date":"2022-07-06",
-    "category":"Medicine",
+    "category":20,
     "price":1960,
     "discount":0.0,
     "product":
@@ -292,7 +292,7 @@
     "id":18,
     "userId":13,
     "date":"2022-07-31",
-    "category":"Medicine",
+    "category":20,
     "price":270,
     "discount":0.4,
     "product":
@@ -309,7 +309,7 @@
     "id":19,
     "userId":6,
     "date":"2022-10-27",
-    "category":"Medicine",
+    "category":20,
     "price":1510,
     "discount":0.15,
     "product":
@@ -326,7 +326,7 @@
     "id":20,
     "userId":1,
     "date":"2022-12-21",
-    "category":"Medicine",
+    "category":20,
     "price":1590,
     "discount":0.15,
     "product":
@@ -343,7 +343,7 @@
     "id":21,
     "userId":6,
     "date":"2022-10-06",
-    "category":"Medicine",
+    "category":20,
     "price":1340,
     "discount":0.0,
     "product":
@@ -360,7 +360,7 @@
     "id":22,
     "userId":2,
     "date":"2022-11-29",
-    "category":"Medicine",
+    "category":20,
     "price":1800,
     "discount":0.15,
     "product":
@@ -377,7 +377,7 @@
     "id":23,
     "userId":1,
     "date":"2022-12-10",
-    "category":"Medicine",
+    "category":20,
     "price":1760,
     "discount":0.2,
     "product":
@@ -394,7 +394,7 @@
     "id":24,
     "userId":2,
     "date":"2022-07-24",
-    "category":"Cosmetics",
+    "category":22,
     "price":1850,
     "discount":0.25,
     "product":
@@ -411,7 +411,7 @@
     "id":25,
     "userId":15,
     "date":"2022-07-02",
-    "category":"Cosmetics",
+    "category":22,
     "price":840,
     "discount":0.25,
     "product":
@@ -428,7 +428,7 @@
     "id":26,
     "userId":6,
     "date":"2022-08-24",
-    "category":"Laboratory",
+    "category":21,
     "price":1890,
     "discount":0.2,
     "product":
@@ -445,7 +445,7 @@
     "id":27,
     "userId":6,
     "date":"2022-08-28",
-    "category":"Medicine",
+    "category":20,
     "price":1920,
     "discount":0.15,
     "product":
@@ -462,7 +462,7 @@
     "id":28,
     "userId":16,
     "date":"2022-07-04",
-    "category":"Medicine",
+    "category":20,
     "price":720,
     "discount":0.2,
     "product":
@@ -479,7 +479,7 @@
     "id":29,
     "userId":13,
     "date":"2022-12-27",
-    "category":"Medicine",
+    "category":20,
     "price":1010,
     "discount":0.2,
     "product":
@@ -496,7 +496,7 @@
     "id":30,
     "userId":15,
     "date":"2022-10-05",
-    "category":"Medicine",
+    "category":20,
     "price":480,
     "discount":0.25,
     "product":
@@ -513,7 +513,7 @@
     "id":31,
     "userId":11,
     "date":"2022-10-24",
-    "category":"Cosmetics",
+    "category":22,
     "price":1610,
     "discount":0.25,
     "product":
@@ -530,7 +530,7 @@
     "id":32,
     "userId":14,
     "date":"2022-10-07",
-    "category":"Medicine",
+    "category":20,
     "price":260,
     "discount":0.05,
     "product":
@@ -547,7 +547,7 @@
     "id":33,
     "userId":1,
     "date":"2022-10-25",
-    "category":"Medicine",
+    "category":20,
     "price":1100,
     "discount":0.25,
     "product":
@@ -564,7 +564,7 @@
     "id":34,
     "userId":6,
     "date":"2022-07-26",
-    "category":"Medicine",
+    "category":20,
     "price":1240,
     "discount":0.2,
     "product":
@@ -581,7 +581,7 @@
     "id":35,
     "userId":2,
     "date":"2022-08-30",
-    "category":"Cosmetics",
+    "category":22,
     "price":1600,
     "discount":0.25,
     "product":
@@ -598,7 +598,7 @@
     "id":36,
     "userId":12,
     "date":"2022-12-22",
-    "category":"Medicine",
+    "category":20,
     "price":600,
     "discount":0.4,
     "product":
