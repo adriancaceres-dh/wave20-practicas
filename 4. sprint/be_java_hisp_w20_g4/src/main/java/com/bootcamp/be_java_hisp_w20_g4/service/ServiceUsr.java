@@ -27,7 +27,7 @@ public class ServiceUsr implements IServiceUsr {
 
      ModelMapper mapper = new ModelMapper();
 
-    public UserDTO follow (int userId, int userIdToFollow){
+    public UserFollowedDTO follow (int userId, int userIdToFollow){
         isNotSameUser(userId, userIdToFollow);
         User userFollower = userRepository.findById(userId);
         User userFollowed = userRepository.findById(userIdToFollow);
@@ -42,10 +42,9 @@ public class ServiceUsr implements IServiceUsr {
 
         ((Seller)userFollowed).addUserToMyFollowersList(userFollower);
 
+        List<ListedUserDTO> followed = userFollower.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
 
-        List<ListedUserDTO> followers = ((Seller) userFollowed).getFollowers().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
-        List<ListedUserDTO> followed = userFollowed.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
-        UserDTO userDto = new UserDTO(userIdToFollow,userFollowed.getUser_name(),followers,followed);
+        UserFollowedDTO userDto = new UserFollowedDTO(userId,userFollower.getUser_name(),followed);
         return userDto;
     }
 
