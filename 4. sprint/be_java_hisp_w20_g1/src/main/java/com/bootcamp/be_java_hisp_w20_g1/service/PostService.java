@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService implements IPostService {
-    private final int initialId = 1;
 
     @Autowired
     private IPostRepository postRepository;
@@ -37,7 +37,7 @@ public class PostService implements IPostService {
     private ModelMapper mapper;
 
     public List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
-        if (order.equalsIgnoreCase("date_asc")) {
+        if (order.equalsIgnoreCase(Parameter.getString("date_order"))) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));
         } else {
             posts.sort(Comparator.comparing(PostResponseDto::getDate).reversed());
@@ -66,7 +66,7 @@ public class PostService implements IPostService {
 /*
     @Override
     public List<PostResponseDto> lastTwoWeeksPostsFromUserId(int id) {
-        return postRepository.getPostsByUserId(id).stream().filter(post -> LocalDate.now().minusDays(14).isBefore(post.getDate())).
+        return postRepository.getPostsByUserId(id).stream().filter(post -> LocalDate.now().minusDays(Parameter.getInteger("CantidadDias")).isBefore(post.getDate())).
                 map(post -> PostResponseDto.builder().userId(id)
                         .postId(post.getId())
                         .date(post.getDate())
@@ -80,14 +80,14 @@ public class PostService implements IPostService {
     @Override
     public boolean add(PostRequestDto postDto) {
         if (postDto == null || postDto.getUserId() == 0) {
-            throw new BadRequestException("Request body inválido");
+            throw new BadRequestException(Parameter.getString("EX_RqBody"));
         } else {
             if (productService.alreadyExist(postDto.getProduct().getProductId())) {
-                throw new BadRequestException("El producto ya existe");
+                throw new BadRequestException(Parameter.getString("EX_ProductoExistente"));
             }
             if (!userService.alreadyExists(postDto.getUserId())) {
 
-                throw new BadRequestException("Usuario invalido.");
+                throw new BadRequestException(Parameter.getString("EX_UsuarioInvalido"));
             }
             ProductRequestDto productDto = postDto.getProduct();
             productService.add(productDto);
@@ -105,7 +105,7 @@ public class PostService implements IPostService {
         //Si se trata del primer posteo que realiza el usuario se le setea id 1, de lo contrario, se coloca como id el número
         //inmediatamente posterior al del último posteo realizado.
         if (postRepository.getPosts().isEmpty()) {
-            post.setId(initialId);
+            post.setId(Parameter.getInteger("InitialId"));
         } else {
             Optional<Integer> lastId = postRepository.getPosts().stream().map(p -> p.getId()).max(Comparator.comparing(Integer::valueOf));
             if (lastId.isPresent()) {

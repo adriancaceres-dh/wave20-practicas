@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
@@ -95,13 +96,13 @@ public class UserService implements IUserService {
 
     private void validateUserIsSeller(User user) {
         if (!user.isSeller()) {
-            throw new BadRequestException("El usuario no es vendedor");
+            throw new BadRequestException(Parameter.getString("EX_UsuarioNoVendedor"));
         }
     }
 
     private void validateUserExist(User user) {
         if (user == null) {
-            throw new NotFoundException("El usuario no existe");
+            throw new NotFoundException(Parameter.getString("EX_UsuarioInexistente"));
         }
     }
 
@@ -109,7 +110,7 @@ public class UserService implements IUserService {
     public UserFollowedResponseDto followUser(int userId, int userIdToFollow) {
 
         if (userId == userIdToFollow) {
-            throw new BadRequestException("Usuario invalido.");
+            throw new BadRequestException(Parameter.getString("EX_UsuarioInvalido"));
         }
         User user = userRepository.getUserById(userId);
         User userToFollow = userRepository.getUserById(userIdToFollow);
@@ -134,7 +135,7 @@ public class UserService implements IUserService {
     public UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow) {
 
         if (userId == userIdToUnfollow) {
-            throw new BadRequestException("Usuario invalido.");
+            throw new BadRequestException(Parameter.getString("EX_UsuarioInvalido"));
         }
         User user = userRepository.getUserById(userId);
         User userToFollow = userRepository.getUserById(userIdToUnfollow);

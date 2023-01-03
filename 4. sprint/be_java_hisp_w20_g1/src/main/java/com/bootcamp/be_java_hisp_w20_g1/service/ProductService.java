@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
@@ -34,7 +35,7 @@ public class ProductService implements IProductService {
                     .notes(product.getNotes())
                     .build();
         } else {
-            throw new NotFoundException("Producto no existente");
+            throw new NotFoundException(Parameter.getString("EX_ProductoInexistente"));
         }
     }
 

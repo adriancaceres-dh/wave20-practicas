@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.repository;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -30,7 +31,7 @@ public class PostRepository implements IPostRepository {
     List<Post> buildPostRepository() {
         File file = null;
         try {
-            file = ResourceUtils.getFile("classpath:posts.json");
+            file = ResourceUtils.getFile(Parameter.getString("PostJsonPath"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

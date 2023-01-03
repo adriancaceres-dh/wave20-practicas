@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.repository;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -74,7 +75,7 @@ public class UserRepository implements IUserRepository {
     List<User> buildUserRepository() {
         File file = null;
         try {
-            file = ResourceUtils.getFile("classpath:users.json");
+            file = ResourceUtils.getFile(Parameter.getString("UserJsonPath"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

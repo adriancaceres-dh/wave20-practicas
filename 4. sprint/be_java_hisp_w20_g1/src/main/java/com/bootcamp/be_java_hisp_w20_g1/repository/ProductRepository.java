@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.repository;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IProductRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -25,7 +26,7 @@ public class ProductRepository implements IProductRepository {
     List<Product> buildProductRepository() {
         File file = null;
         try {
-            file = ResourceUtils.getFile("classpath:products.json");
+            file = ResourceUtils.getFile(Parameter.getString("ProductJsonPath"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
