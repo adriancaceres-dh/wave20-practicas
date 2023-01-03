@@ -14,7 +14,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,7 +47,7 @@ public class UserService implements IUserService {
 
         List<Follow> follows = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList());
 
-        List<User> followers = new ArrayList<>();
+        List<User> followers;
 
         if (order.equals("name_asc")) {
             followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).sorted(compareByName).collect(Collectors.toList());
@@ -97,7 +96,7 @@ public class UserService implements IUserService {
 
         if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
 
-        int followerCount = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList()).size();
+        int followerCount = (int) iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).count();
 
         return new UserFollowersCountDto(userId,user.getUserName(),followerCount);
 
