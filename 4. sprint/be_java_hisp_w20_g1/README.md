@@ -19,10 +19,12 @@ Mercado Libre sigue creciendo y para el año que viene  tiene como objetivo empe
 La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación de una versión Beta de lo que va a ser conocido como “SocialMeli”, en donde los compradores van a poder seguir a sus vendedores favoritos y enterarse de todas las novedades que los mismos posteen.
 
 
-## Tecnologias usadas.
+### Tecnologias usadas.
 - Java 11
 - JDK 11
 - SpringBoot 2.7.7
+- Postman
+- Maven
 
 ### Convenciones.
 
@@ -34,11 +36,19 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 - Lombok.
 - Spring Boot DevTools.
 - Spring Web.
+- Faker (para generar los Json)
+- Model Mapper
 
 ### Decisiones de Equipo.
 
-- Un vendedor se refleja con...
-- Un usuario no puede seguirse a si mismo como vendedor.
+- Un usuario no puede seguirse a si mismo.
+- Solo se puede seguir a vendedores.
+- Cada post genera un nuevo producto con id único.
+- Hay una relación 1-1 de post y producto.
+- No se puede tener productos con mismo id
+- Se acordó para el próximo sprint implementar el modelo de _Categoria_, utilizando por el momento solo sus Ids.
+- Consideramos que un usuario es vendedor si tiene al menos una publicación.
+- Al lanzarse excepciones, se mostrará su descripción, código de error y timestamp.
 
 ### Endpoints (Grupales)
 
