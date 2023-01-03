@@ -94,6 +94,7 @@ public class UserService implements IUserService {
     private void doValidations(User user) {
         validateUserExist(user);
         validateUserIsSeller(user);
+
     }
 
     private void validateUserIsSeller(User user) {
@@ -119,10 +120,10 @@ public class UserService implements IUserService {
             throw new BadRequestException("El usuario no es vendedor");
         }
 
-        User user = userRepository.getUserById(userId);
-
         userRepository.addFollowed(userId,userIdToFollow);
         userRepository.addFollower(userIdToFollow, userId);
+
+        User user = userRepository.getUserById(userId);
 
         List<UserResponseDto> userFollowedList = new ArrayList<>();
         for (Integer userFollowedId : user.getFollowed() ){
@@ -145,8 +146,6 @@ public class UserService implements IUserService {
         userRepository.removeFollowed(userId,userIdToUnfollow);
         userRepository.removeFollower(userIdToUnfollow, userId);
 
-        System.out.println(userRepository.getUserById(userId) + " " + userRepository.getUserById(userIdToUnfollow));
-
         List<UserResponseDto> userFollowedList = new ArrayList<>();
         for (Integer userFollowedId : user.getFollowed() ){
             User userFollowed = userRepository.getUserById(userFollowedId);
@@ -167,6 +166,10 @@ public class UserService implements IUserService {
         if(!userRepository.isSeller(userId)){
             userRepository.getUserById(userId).setSeller(true);
         }
+    }
+
+    public Set<Integer> getUserFollowed(int id){
+        return userRepository.getUserById(id).getFollowed();
     }
 
 }
