@@ -16,7 +16,7 @@ public class PostController {
     @Autowired
     private IPostService postService;
 
-    @PostMapping("/post")
+    @PostMapping(value={"/post", "/promo-post"})
     public ResponseEntity<Boolean> save(@RequestBody PostRequestDto requestDto) {
         return new ResponseEntity<Boolean>(postService.save(requestDto), HttpStatus.OK);
     }
