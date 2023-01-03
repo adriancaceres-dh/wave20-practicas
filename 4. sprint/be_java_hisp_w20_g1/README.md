@@ -42,6 +42,8 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 
 ### Endpoints (Grupales)
 
+[Colección de request para importar en Postman](SCRUM%201.postman_collection.json)
+
 Responsables de cada User Story
 
 | User Story | Responsables |
