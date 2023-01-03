@@ -6,20 +6,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostPromoCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
-import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.PostRepository;
@@ -27,6 +21,8 @@ import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IPostService;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
 
 import org.modelmapper.config.Configuration;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class PostServiceImpl implements IPostService {
@@ -65,7 +61,7 @@ public class PostServiceImpl implements IPostService {
         List<PostResponseDTO> followedPost=new ArrayList<>();
         for(int id : userService.getUserById(user_id).getFollowed()){
             postRepository.getPostList().stream().filter(p->p.getUser_id()==id)
-                    .filter(p-> Period.between(p.getDate(),dateNow).getDays()<=15)
+                    .filter(p-> DAYS.between(p.getDate(),dateNow)<=15)
                     .forEach(p->followedPost.add(
                             new PostResponseDTO(p.getUser_id(),p.getId(),p.getDate()
                                     ,p.getProduct(),p.getCategory(),p.getPrice())
