@@ -110,8 +110,9 @@ public class UserService implements IUserService {
             //Actualizo los usuarios en el repo con los cambios hechos
             userRepository.save(user);
             userRepository.save(userToUnfollow);
+        } else {
+            throw new BadRequestException("You can't unfollow yourself");
         }
-        throw new BadRequestException("You can't unfollow yourself");
     }
 
     public UserFollowersCountResponseDTO entity2UserResponseDTO (User user){
