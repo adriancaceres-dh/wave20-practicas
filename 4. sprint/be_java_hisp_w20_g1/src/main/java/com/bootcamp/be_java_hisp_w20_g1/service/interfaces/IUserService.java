@@ -13,8 +13,9 @@ public interface IUserService {
     UserFollowedResponseDto getFollowedDto(int id, String order);
     UserFollowedResponseDto followUser(int userId, int userIdToFollow);
     UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow);
+    void validateUserExistById(int id);
 
-    public Set<Integer> getUserFollowed(int id);
+    Set<Integer> getUserFollowed(int id);
     boolean alreadyExists(int userId);
 
     void updateUser(int userId);

@@ -46,6 +46,7 @@ public class PostService implements IPostService {
     }
 
     public PostListResponseDto lastTwoWeeksPostsFromFollowers(int id, String order) {
+        userService.validateUserExistById(id);
         Set<Integer> followedByuserId = userService.getUserFollowed(id);
         List<PostResponseDto> posts = new ArrayList<>();
 
