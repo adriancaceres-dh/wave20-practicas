@@ -55,9 +55,9 @@ public class PostService implements IPostService {
             throw new DataIsnotCorrectException("Coloque un precio mayor a 0");
         }
         if (iPostRepository.save(post)) {
-            return "Se ha registrado el Post de ID " + post.getPostId();
+            return "Post registered successfully";
         } else {
-            return "No se logro registrar el No. " + post.getPostId();
+            return "Could no register post";
         }
     }
 
