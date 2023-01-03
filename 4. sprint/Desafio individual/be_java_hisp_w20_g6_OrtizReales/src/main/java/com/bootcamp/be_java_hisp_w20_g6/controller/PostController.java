@@ -16,10 +16,12 @@ public class PostController {
     @Autowired
     private IPostService postService;
 
-    @PostMapping("/post")
+    @PostMapping(value= {"/post","/promo-post"})
     public ResponseEntity<Boolean> save(@RequestBody PostRequestDto requestDto) {
         return new ResponseEntity<Boolean>(postService.save(requestDto), HttpStatus.OK);
     }
+
+
     @GetMapping("/followed/{userId}/list")
     public ResponseEntity<PostListResponseDTO> getPost(@PathVariable int userId, @RequestParam(required = false) String order) {
         return new ResponseEntity<>(postService.postFollowedLastWeeks(userId, order), HttpStatus.OK); 

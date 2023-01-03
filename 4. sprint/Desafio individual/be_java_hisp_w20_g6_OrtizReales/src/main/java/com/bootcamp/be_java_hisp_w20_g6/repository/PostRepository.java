@@ -2,6 +2,8 @@ package com.bootcamp.be_java_hisp_w20_g6.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
@@ -28,6 +30,10 @@ public class PostRepository {
 
     public int idGenerator(){
         return postList.size()+1;
+    }
+
+    public List<PostModel> getPostsByUserId(int user_id){
+        return postList.stream().filter(p -> p.getUser_id() == user_id).collect(Collectors.toList());
     }
 
 }

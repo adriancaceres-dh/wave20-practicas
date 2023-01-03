@@ -9,5 +9,6 @@ public class BeJavaHispW20G6Application {
 	public static void main(String[] args) {
 		SpringApplication.run(BeJavaHispW20G6Application.class, args);
 	}
+	
 
 }
