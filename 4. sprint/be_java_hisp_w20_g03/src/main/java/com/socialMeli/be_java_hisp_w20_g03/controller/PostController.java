@@ -3,6 +3,7 @@ package com.socialMeli.be_java_hisp_w20_g03.controller;
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class PostController {
     @PostMapping("/products/post")
     public ResponseEntity<String> addPost(@RequestBody PostDTO postDto) {
         iPostService.addPost(postDto);
-        return ResponseEntity.ok("Post added");
+        return new ResponseEntity<>("Post added", HttpStatus.OK);
     }
 
     @GetMapping("/products/followed/{userId}/list")
