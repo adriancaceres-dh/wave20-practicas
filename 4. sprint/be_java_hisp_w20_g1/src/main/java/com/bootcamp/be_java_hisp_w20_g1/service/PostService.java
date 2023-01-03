@@ -37,7 +37,7 @@ public class PostService implements IPostService {
     private ModelMapper mapper;
 
     public List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
-        if (order.equalsIgnoreCase(Parameter.getString("date_order"))) {
+        if (order.equalsIgnoreCase(Parameter.getString("DateOrder"))) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));
         } else {
             posts.sort(Comparator.comparing(PostResponseDto::getDate).reversed());
@@ -52,7 +52,7 @@ public class PostService implements IPostService {
         List<PostResponseDto> posts = followedByuserId.stream() // Stream every seller followed by parameter id
                 .map(postRepository::getPostsByUserId) // Get the List of Posts from each seller.
                 .flatMap(List::stream) // Get a flat List with every Post
-                .filter(post -> LocalDate.now().minusDays(14).isBefore(post.getDate()))
+                .filter(post -> LocalDate.now().minusDays(Parameter.getInteger("NumberOfDays")).isBefore(post.getDate()))
                 .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
                         .postId(post.getId())
                         .date(post.getDate())
@@ -79,15 +79,15 @@ public class PostService implements IPostService {
 */
     @Override
     public boolean add(PostRequestDto postDto) {
-        if (postDto == null || postDto.getUserId() == 0) {
-            throw new BadRequestException(Parameter.getString("EX_RqBody"));
+        if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
+            throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         } else {
             if (productService.alreadyExist(postDto.getProduct().getProductId())) {
-                throw new BadRequestException(Parameter.getString("EX_ProductoExistente"));
+                throw new BadRequestException(Parameter.getString("EX_ExistingProduct"));
             }
             if (!userService.alreadyExists(postDto.getUserId())) {
 
-                throw new BadRequestException(Parameter.getString("EX_UsuarioInvalido"));
+                throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
             }
             ProductRequestDto productDto = postDto.getProduct();
             productService.add(productDto);

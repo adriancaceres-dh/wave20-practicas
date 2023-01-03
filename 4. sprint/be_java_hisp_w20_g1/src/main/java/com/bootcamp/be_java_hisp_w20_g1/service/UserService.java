@@ -73,7 +73,7 @@ public class UserService implements IUserService {
     }
 
     private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
-        List<String> orders = Arrays.asList("name_asc", "name_desc");
+        List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
 
         if (!orders.contains(order)) {
             return users;
@@ -96,13 +96,13 @@ public class UserService implements IUserService {
 
     private void validateUserIsSeller(User user) {
         if (!user.isSeller()) {
-            throw new BadRequestException(Parameter.getString("EX_UsuarioNoVendedor"));
+            throw new BadRequestException(Parameter.getString("EX_NotACostumer"));
         }
     }
 
     private void validateUserExist(User user) {
         if (user == null) {
-            throw new NotFoundException(Parameter.getString("EX_UsuarioInexistente"));
+            throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
         }
     }
 
@@ -110,7 +110,7 @@ public class UserService implements IUserService {
     public UserFollowedResponseDto followUser(int userId, int userIdToFollow) {
 
         if (userId == userIdToFollow) {
-            throw new BadRequestException(Parameter.getString("EX_UsuarioInvalido"));
+            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
         }
         User user = userRepository.getUserById(userId);
         User userToFollow = userRepository.getUserById(userIdToFollow);
@@ -135,7 +135,7 @@ public class UserService implements IUserService {
     public UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow) {
 
         if (userId == userIdToUnfollow) {
-            throw new BadRequestException(Parameter.getString("EX_UsuarioInvalido"));
+            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
         }
         User user = userRepository.getUserById(userId);
         User userToFollow = userRepository.getUserById(userIdToUnfollow);

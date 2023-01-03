@@ -35,7 +35,7 @@ public class ProductService implements IProductService {
                     .notes(product.getNotes())
                     .build();
         } else {
-            throw new NotFoundException(Parameter.getString("EX_ProductoInexistente"));
+            throw new NotFoundException(Parameter.getString("EX_NotExistentProduct"));
         }
     }
 

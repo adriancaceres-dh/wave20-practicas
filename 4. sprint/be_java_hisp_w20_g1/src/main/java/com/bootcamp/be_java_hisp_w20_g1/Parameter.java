@@ -10,22 +10,25 @@ public class Parameter {
             put("PostJsonPath", "classpath:posts.json");
             put("ProductJsonPath", "classpath:products.json");
             put("UserJsonPath", "classpath:users.json");
-            put("date_order", "date_asc");
+            put("DateOrder", "date_asc");
+            put("NameAsc", "name_asc");
+            put("NameDesc", "name_desc");
 
             put("EX_Path","Path variable incorrecta");
-            put("EX_RqBody","Request body inválido");
-            put("EX_ProductoExistente","El producto ya existe");
-            put("EX_UsuarioInvalido","Usuario invalido.");
-            put("EX_ProductoInexistente","Producto no existente");
-            put("EX_UsuarioNoVendedor","El usuario no es vendedor");
-            put("EX_UsuarioInexistente","El usuario no existe");
+            put("EX_InvalidRequestBody","Request body inválido");
+            put("EX_ExistingProduct","El producto ya existe");
+            put("EX_InvalidUser","Usuario invalido.");
+            put("EX_NotExistentProduct","Producto no existente");
+            put("EX_NotACustomer","El usuario no es vendedor");
+            put("EX_NotExistentUser","El usuario no existe");
         }
     };
 
     private static Map<String, Integer> integerValues = new HashMap<>(){
         {
             put("InitialId", 1);
-            put("CantidadDias", 14);
+            put("InvalidId", 0);
+            put("NumberOfDays", 14);
         }
     };
     public static String getString(String key){
