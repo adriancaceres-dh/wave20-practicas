@@ -16,7 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidOrder;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.*;
 
 @Service
 public class ServiceUsr implements IServiceUsr {
@@ -59,14 +59,13 @@ public class ServiceUsr implements IServiceUsr {
     }
 
     public UserFollowersDTO followers(int userId, String order){
-        if(!isValidOrder(order)){
-            throw new BadRequestException("Parametro de orden incorrecto");
-        }
+        isValidOrder(order);
+
         User user = userRepository.findById(userId);
-        if (user == null){
-            throw new NotFoundException("No se ha encontrado el usuario");
-        }
-        if(!(user instanceof Seller)) throw  new BadRequestException("No se puede consultar los seguidores de un comprador");
+        isValidUser(user);
+
+        isSeller(user);
+
         if(order == null) return followersUnsorted(user);
         return followersSorted(user, order);
 
@@ -100,18 +99,13 @@ public class ServiceUsr implements IServiceUsr {
 
     }
     public UserFollowedDTO followed (int userId, String order){
+        isValidOrder(order);
 
-        if(!isValidOrder(order)){
-            throw new BadRequestException("Parametro de orden incorrecto");
-        }
         User user = userRepository.findById(userId);
-        if (user == null){
-            throw new NotFoundException("No se ha encontrado el usuario");
-        }
+        isValidUser(user);
+
         if(order == null) return followedUnsorted(user);
         return followedSorted(user, order);
-
-
     }
 
 }

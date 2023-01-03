@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.repository.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4.service.IServicePublication;
@@ -20,8 +21,8 @@ public class PublicationController {
     }
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<String> last2WeeksPublications(@PathVariable int userId){
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<ProductTwoWeeksResponseDTO> last2WeeksPublications(@PathVariable int userId, @RequestParam(value="order",required = false) String order){
+        return ResponseEntity.ok().body(servicePublication.getLastTwoWeeksPublications(userId, order));
     }
 
     @PostMapping("/promo-post")

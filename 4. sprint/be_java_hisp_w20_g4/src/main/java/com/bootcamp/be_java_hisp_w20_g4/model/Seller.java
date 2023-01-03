@@ -35,6 +35,7 @@ public class Seller extends User{
             return publicationToAdd;
         }
     }
+
     /**
      * el propio usuario agrega en su lista de seguidores (followers) la persona que lo siguió
      * @param userToFollowed
@@ -57,9 +58,6 @@ public class Seller extends User{
         }else{
             return null;// lanza excepcion porque no sigue al usuario
         }
-    }
-    private List<Publication> getPublicationLast2Week(){
-        return null;
     }
 
     private List<Product> obtainProductsWithDiscount(){

@@ -1,6 +1,7 @@
 [{
+  "user_id": 2,
   "post_id": 1,
-  "date": "05-03-2022",
+  "date": "31-12-2022",
   "price": 15.55,
   "hasPromo":false,
   "discount": 15.0,
@@ -17,8 +18,9 @@
     "name": "football"
   }
 },{
+  "user_id": 2,
   "post_id": 2,
-  "date": "06-04-2022",
+  "date": "26-12-2022",
   "price": 16.55,
   "hasPromo":true,
   "discount": 10.0,
@@ -36,8 +38,9 @@
   }
 },
   {
+    "user_id": 3,
     "post_id": 3,
-    "date": "08-04-2022",
+    "date": "01-01-2023",
     "price": 161.55,
     "hasPromo":true,
     "discount": 20.0,

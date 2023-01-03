@@ -1,7 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g4.service;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
@@ -12,6 +14,13 @@ import com.bootcamp.be_java_hisp_w20_g4.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.*;
 
 @Service
 public class ServicePublication implements  IServicePublication{
@@ -38,7 +47,7 @@ public class ServicePublication implements  IServicePublication{
         if(category == null) throw new BadRequestException("La categoria ingresa no es válida.");
         Product product = mapper.map(publicationDto.getProduct(), Product.class);
         if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
-        Publication publication = new Publication(publicationDto.getDate(), publicationDto.getPrice(), product, category);
+        Publication publication = new Publication(publicationDto.getDate(), publicationDto.getPrice(), product, category, user.getUser_id());
 
         if(publicationRepository.addPublication(publication)){
             ((Seller) user).addPublication(publication);
@@ -48,7 +57,22 @@ public class ServicePublication implements  IServicePublication{
         return null;
     }
 
+    public ProductTwoWeeksResponseDTO getLastTwoWeeksPublications(int userId, String order) {
+        isValidDateOrder(order);
 
+        User user = userRepository.findById(userId);
+        isValidUser(user);
+
+        List<Integer> followedIds = user.getFollowed().values().stream().map(u -> u.getUser_id()).collect(Collectors.toList());
+
+        List<Publication> publications = publicationRepository.getPublicationLastNDays(followedIds, 15);
+
+        List<ListedPostDTO> listedPostDTO = publications.stream().map(p -> mapper.map(p, ListedPostDTO.class)).collect(Collectors.toList());
+
+        if(order == null || order.equals("date_desc")) Collections.reverse(listedPostDTO);
+
+        return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
+    }
 
 
 }

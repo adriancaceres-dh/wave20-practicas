@@ -12,8 +12,5 @@ import java.util.List;
 @Data
 public class ProductTwoWeeksResponseDTO {
     private Integer user_id;
-    private List<PostDTO> postDTOList;
-    private Integer category;
-    private Double price;
-
+    private List<ListedPostDTO> postDTOList;
 }
