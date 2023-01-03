@@ -2,7 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
-import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -48,7 +48,7 @@ public class PostService implements IPostService {
 
         // Check if the seller exists
         if(seller == null)
-            throw new OperationFailedException("The specified seller does not exist in the database");
+            throw new NotFoundException("The specified seller does not exist in the database");
 
         // Create the product if it doesn't exist
         productService.createProduct(postRequestDTO.getProductDTO());
