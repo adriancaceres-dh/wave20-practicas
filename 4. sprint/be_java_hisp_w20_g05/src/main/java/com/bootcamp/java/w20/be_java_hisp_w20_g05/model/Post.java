@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Builder
 public class Post {
     private int id;
-    private String category;
+    private int category;
     private int userId;
     private LocalDate date;
     private double price;

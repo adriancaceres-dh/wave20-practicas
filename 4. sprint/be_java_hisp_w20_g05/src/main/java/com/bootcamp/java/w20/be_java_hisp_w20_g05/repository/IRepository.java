@@ -11,8 +11,6 @@ public interface IRepository<T> {
     Set<T> filterBy(String name);
 
     public Set<T> getAll();
-
-    public boolean addAll(List<T> tList);
     T getById(int id);
 
 }

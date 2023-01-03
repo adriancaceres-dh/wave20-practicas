@@ -14,6 +14,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Objects;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,10 +39,12 @@ public class PostService implements IPostService{
     public Post newPost(PostRequestDTO postRequestDTO) {
         Post newPost = Post.builder()
                 .id(++post_id)
-                .category(String.valueOf(postRequestDTO.getCategory()))
+                .category(postRequestDTO.getCategory())
                 .price(postRequestDTO.getPrice())
+                .userId(postRequestDTO.getUserId())
                 .discount(0)
                 .date(postRequestDTO.getDate())
+                .userId(postRequestDTO.getUserId())
                 .product(Product.builder()
                             .id(postRequestDTO.getProduct().getProduct_id())
                             .name(postRequestDTO.getProduct().getProduct_name())

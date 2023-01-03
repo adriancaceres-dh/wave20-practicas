@@ -25,25 +25,15 @@ public class UserController {
 
     @PostMapping ("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
-
-        boolean followed = userService.followUser(userId, userIdToFollow);
-        if (followed) {
-            return new ResponseEntity<>("Se ha seguido correctamente.", HttpStatus.OK);
-        } else return new ResponseEntity<>("No se ha seguido al usuario.", HttpStatus.BAD_REQUEST);
+        userService.followUser(userId, userIdToFollow);
+        return new ResponseEntity<>("todo OK", HttpStatus.OK);
 
     }
 
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        boolean unfollowed = userService.unfollowUser(userId, userIdToUnfollow);
-        if (unfollowed) {
-            return new ResponseEntity<>("Se ha dejado de seguir correctamente.", HttpStatus.OK);
-        } else return new ResponseEntity<>("Error al dejar de seguir al usuario.", HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping ("/list")
-    public ResponseEntity<List<User>> getUsers(){
-        return new ResponseEntity<>(userService.getAll(),HttpStatus.OK);
+        userService.unfollowUser(userId, userIdToUnfollow);
+        return new ResponseEntity<>("todo OK", HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/count")
@@ -52,14 +42,15 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followed/list")
-    public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId){
-        return new ResponseEntity<>(userService.getFollowedListDto(userId), HttpStatus.OK);
+    public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId,
+                                                           @RequestParam(required = false) String order){
+        return new ResponseEntity<>(userService.getFollowedListDto(userId, order), HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/list")
-    public FollowersBySellerDTO getFollowersBySellerDto(@PathVariable int userId)
-    {
-        return userService.getFollowersBySeller(userId);
+    public ResponseEntity<FollowersBySellerDTO> getFollowersBySellerDto(@PathVariable int userId,
+                                                                        @RequestParam(required = false) String order) {
+        return new ResponseEntity<>(userService.getFollowersBySeller(userId,order),HttpStatus.OK);
     }
 
 
