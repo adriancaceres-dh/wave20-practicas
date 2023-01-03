@@ -61,6 +61,8 @@ Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
+#### *Asignado: Matias Federico Segovia*
+
 &nbsp;
 #### US0002 
 Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
@@ -82,6 +84,8 @@ Obtener el resultado de la cantidad de usuarios que siguen a un determinado vend
 }
 
 ```
+
+#### *Asignado: Franco Andres Alvarez Alvarado*
 
 &nbsp;
 #### US0003
@@ -117,6 +121,9 @@ Obtener un listado de todos los usuarios que siguen a un determinado vendedor (�
 }
 
 ```
+
+#### *Asignado: Ignacio Tornati*
+
 &nbsp;
 #### US0004
 Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
@@ -151,6 +158,8 @@ Obtener un listado de todos los vendedores a los cuales sigue un determinado usu
 }
 
 ```
+
+#### *Asignado: Efrain Francisco Ruiz*
 
 &nbsp;
 #### US0005
@@ -196,6 +205,10 @@ Dar de alta una nueva publicación
 | :-------- | 
 | **Status Code 200** (todo OK)| 
 | **Status Code 400** (Bad Request)| 
+
+
+#### *Asignado: Amalia Lucia Balestrazzi Silveira & Florencia Sicre*
+
 
 &nbsp;
 #### US0006
@@ -246,6 +259,9 @@ Obtener un listado de las publicaciones realizadas por los vendedores que un usu
     ]
 }
 ```
+
+#### *Asignado: Cindy Micaela Ortega Palma*
+
 &nbsp;
 #### US0007
 Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
@@ -263,6 +279,9 @@ Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado v
 | :-------- | 
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
+
+
+#### *Asignado: Ivan Amaro*
 
 &nbsp;
 #### US0008
