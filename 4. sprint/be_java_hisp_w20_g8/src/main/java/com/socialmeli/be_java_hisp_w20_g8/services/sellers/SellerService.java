@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +34,7 @@ public class SellerService implements ISellerService{
 
 
     @Override
-    public SellerFollowersDTO getSellerFollowers(Integer userId) {
+    public SellerFollowersDTO getSellerFollowers(Integer userId, String order) {
 
         Seller seller = IPersonRepository.findSellerById(userId);
 
@@ -41,6 +43,17 @@ public class SellerService implements ISellerService{
              SellerFollowersDTO sellerFollowersDTO = new SellerFollowersDTO(seller.getId(),seller.getUser_name(),
                     seller.getFollowers().stream().map(id -> IPersonRepository.findUserById(id)).collect(Collectors.toList())
                             .stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList()));
+
+             String orderType = order != null ? order : "";
+
+             switch (orderType) {
+                 case "name_asc":
+                     sellerFollowersDTO.setFollowers(sellerFollowersDTO.getFollowers().stream().sorted(Comparator.comparing(UserDTO::getUser_name)).collect(Collectors.toList()));
+                     break;
+                 case "name_desc":
+                     sellerFollowersDTO.setFollowers(sellerFollowersDTO.getFollowers().stream().sorted((a,b) -> b.getUser_name().compareTo(a.getUser_name())).collect(Collectors.toList()));
+                     break;
+             }
 
             return sellerFollowersDTO;
 

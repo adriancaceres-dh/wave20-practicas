@@ -6,6 +6,6 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.UserFollowedDTO;
 public interface IUserService {
 
     public ResponseDto addNewFollow(int userId, int sellerId);
-    public UserFollowedDTO getAllFollowed(int userId);
+    public UserFollowedDTO getAllFollowed(int userId, String order);
 
 }

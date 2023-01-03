@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,7 +26,7 @@ public class SellerController {
 
 
     @GetMapping("/users/{userId}/followers/list")
-    public ResponseEntity<SellerFollowersDTO> getSellerFollowers(@PathVariable Integer userId){
-            return new ResponseEntity<>(sellerService.getSellerFollowers(userId), HttpStatus.OK);
+    public ResponseEntity<SellerFollowersDTO> getSellerFollowers(@PathVariable Integer userId, @RequestParam(required = false) String order){
+            return new ResponseEntity<>(sellerService.getSellerFollowers(userId, order), HttpStatus.OK);
     }
 }

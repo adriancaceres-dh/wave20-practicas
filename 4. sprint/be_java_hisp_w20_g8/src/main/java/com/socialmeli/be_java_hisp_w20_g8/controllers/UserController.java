@@ -9,10 +9,7 @@ import com.socialmeli.be_java_hisp_w20_g8.services.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -20,8 +17,8 @@ public class UserController {
     @Autowired
     private IUserService userService;
     @GetMapping("/{userId}/followed/list")
-    public UserFollowedDTO getFollowed(@PathVariable int userId){
-            return userService.getAllFollowed(userId);
+    public UserFollowedDTO getFollowed(@PathVariable int userId, @RequestParam(required = false) String order){
+            return userService.getAllFollowed(userId, order);
     }
 
     @GetMapping("/users/{userId}/follow/{userIdToFollow}")
