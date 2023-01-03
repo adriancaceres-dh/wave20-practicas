@@ -40,10 +40,7 @@ public class ProductService implements IProductService {
 
     public boolean alreadyExist(int id) {
         Optional<Product> product = productRepository.getProducts().stream().filter(p -> p.getId() == id).findAny();
-        if (product.isPresent()) {
-            return  true;
-        }
-        throw new NotFoundException("Producto no existente");
+        return product.isPresent();
     }
 
     @Override

@@ -18,9 +18,11 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService implements IPostService {
+    private final int initialId = 1;
 
     @Autowired
     private IPostRepository postRepository;
@@ -34,10 +36,8 @@ public class PostService implements IPostService {
     @Autowired
     private ModelMapper mapper;
 
-    private final int initialId = 1;
-
     public List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
-        if (Objects.equals(order, "date_asc")) {
+        if (order.equalsIgnoreCase("date_asc")) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));
         } else {
             posts.sort(Comparator.comparing(PostResponseDto::getDate).reversed());
@@ -58,40 +58,37 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostResponseDto> lastTwoWeeksPostsFromUserId(int id) {
-        List<PostResponseDto> posts = new ArrayList<>();
-        for (Post post : postRepository.getPostsByUserId(id)) {
-            if (LocalDate.now().minusDays(14).isBefore(post.getDate())) {
-                posts.add(PostResponseDto.builder()
-                        .userId(id)
+        return postRepository.getPostsByUserId(id).stream().filter(post -> LocalDate.now().minusDays(14).isBefore(post.getDate())).
+                map(post -> PostResponseDto.builder().userId(id)
                         .postId(post.getId())
                         .date(post.getDate())
                         .product(productService.getProductById(post.getProductId()))
                         .category(post.getCategory())
                         .price(post.getPrice())
-                        .build()
-                );
-            }
-        }
-        return posts;
+                        .build()).collect(Collectors.toList());
+
     }
 
     @Override
     public boolean add(PostRequestDto postDto) {
-        if (postDto == null || postDto.getUserId()== 0) {
+        if (postDto == null || postDto.getUserId() == 0) {
             throw new BadRequestException("Request body inválido");
         } else {
-            if (!productService.alreadyExist(postDto.getProduct().getProductId()) &&
-                    userService.alreadyExists(postDto.getUserId())) {
-
-                ProductRequestDto productDto = postDto.getProduct();
-                productService.add(productDto);
-                postRepository.add(convertPost(postDto, productDto.getProductId()));
-                userService.updateUser(postDto.getUserId());
-                
-                return true;
-            } else {
+            if (productService.alreadyExist(postDto.getProduct().getProductId())) {
                 throw new BadRequestException("El producto ya existe");
             }
+            if (!userService.alreadyExists(postDto.getUserId())) {
+
+                throw new BadRequestException("Usuario invalido.");
+            }
+
+            ProductRequestDto productDto = postDto.getProduct();
+            productService.add(productDto);
+            postRepository.add(convertPost(postDto, productDto.getProductId()));
+            userService.updateUser(postDto.getUserId());
+
+            return true;
+
         }
     }
 

@@ -11,11 +11,8 @@ import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
 
 @Service
 public class UserService implements IUserService {
@@ -24,7 +21,7 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
-    public UserFollowersResponseDto getSellerFollowersDto(int id, String order){
+    public UserFollowersResponseDto getSellerFollowersDto(int id, String order) {
         UserFollowersResponseDto userResponse = new UserFollowersResponseDto();
         User user = userRepository.getUserById(id);
         doValidations(user);
@@ -75,7 +72,7 @@ public class UserService implements IUserService {
     }
 
     private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
-        if(order == null){
+        /*if(order == null){
             return users;
         } else if(order.equalsIgnoreCase("name_asc")) {
             return users
@@ -89,6 +86,21 @@ public class UserService implements IUserService {
                     .collect(Collectors.toList());
         }
         return users;
+
+         */
+        List<String> orders = Arrays.asList("name_asc", "name_desc");
+
+        if (!orders.contains(order)) {
+            return users;
+        }
+
+        Comparator<UserResponseBaseDto> comparator = Comparator.comparing(UserResponseBaseDto::getUserName);
+        Comparator<UserResponseBaseDto> selectedOrder = orders.get(0).equalsIgnoreCase(order) ? comparator : comparator.reversed();
+
+        return users
+                .stream()
+                .sorted(selectedOrder)
+                .collect(Collectors.toList());
     }
 
     private void doValidations(User user) {
@@ -98,7 +110,7 @@ public class UserService implements IUserService {
     }
 
     private void validateUserIsSeller(User user) {
-        if(!user.isSeller()){
+        if (!user.isSeller()) {
             throw new BadRequestException("El usuario no es vendedor");
         }
     }
@@ -110,65 +122,68 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserFollowedResponseDto followUser(int userId, int userIdToFollow){
+    public UserFollowedResponseDto followUser(int userId, int userIdToFollow) {
 
-        if (userId == userIdToFollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToFollow) ) {
-            throw new NotFoundException("El usuario no existe");
+        if (userId == userIdToFollow) {
+            throw new BadRequestException("Usuario invalido.");
         }
+        User user = userRepository.getUserById(userId);
+        User userToFollow = userRepository.getUserById(userIdToFollow);
 
-        if(!userRepository.isSeller(userIdToFollow)) {
-            throw new BadRequestException("El usuario no es vendedor");
-        }
+        validateUserExist(user);
+        validateUserExist(userToFollow);
+        validateUserIsSeller(userToFollow);
 
-        userRepository.addFollowed(userId,userIdToFollow);
+        userRepository.addFollowed(userId, userIdToFollow);
         userRepository.addFollower(userIdToFollow, userId);
 
-        User user = userRepository.getUserById(userId);
-
         List<UserResponseDto> userFollowedList = new ArrayList<>();
-        for (Integer userFollowedId : user.getFollowed() ){
+        for (Integer userFollowedId : user.getFollowed()) {
             User userFollowed = userRepository.getUserById(userFollowedId);
-            userFollowedList.add(new UserResponseDto(userFollowedId,userFollowed.getName()));
+            userFollowedList.add(new UserResponseDto(userFollowedId, userFollowed.getName()));
         }
 
-        return new UserFollowedResponseDto(user.getId(),user.getName(),userFollowedList);
+        return new UserFollowedResponseDto(user.getId(), user.getName(), userFollowedList);
     }
 
     @Override
-    public UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow){
+    public UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow) {
 
-        if (userId == userIdToUnfollow || !userRepository.isValidId(userId) || !userRepository.isValidId(userIdToUnfollow) )
-            throw new NotFoundException("El usuario no existe");
-
-
+        if (userId == userIdToUnfollow) {
+            throw new BadRequestException("Usuario invalido.");
+        }
         User user = userRepository.getUserById(userId);
+        User userToFollow = userRepository.getUserById(userIdToUnfollow);
 
-        userRepository.removeFollowed(userId,userIdToUnfollow);
+        validateUserExist(user);
+        validateUserExist(userToFollow);
+
+        userRepository.removeFollowed(userId, userIdToUnfollow);
         userRepository.removeFollower(userIdToUnfollow, userId);
 
         List<UserResponseDto> userFollowedList = new ArrayList<>();
-        for (Integer userFollowedId : user.getFollowed() ){
+        for (Integer userFollowedId : user.getFollowed()) {
             User userFollowed = userRepository.getUserById(userFollowedId);
-            userFollowedList.add(new UserResponseDto(userFollowedId,userFollowed.getName()));
+            userFollowedList.add(new UserResponseDto(userFollowedId, userFollowed.getName()));
         }
 
-        return new UserFollowedResponseDto(user.getId(),user.getName(),userFollowedList);
+        return new UserFollowedResponseDto(user.getId(), user.getName(), userFollowedList);
     }
 
     @Override
-    public boolean alreadyExists(int userId){
-        User user =userRepository.getUserById(userId);
-        return user!=null;
+    public boolean alreadyExists(int userId) {
+        User user = userRepository.getUserById(userId);
+        return user != null;
     }
 
     @Override
-    public void updateUser(int userId){
-        if(!userRepository.isSeller(userId)){
+    public void updateUser(int userId) {
+        if (!userRepository.isSeller(userId)) {
             userRepository.getUserById(userId).setSeller(true);
         }
     }
 
-    public Set<Integer> getUserFollowed(int id){
+    public Set<Integer> getUserFollowed(int id) {
         return userRepository.getUserById(id).getFollowed();
     }
 
