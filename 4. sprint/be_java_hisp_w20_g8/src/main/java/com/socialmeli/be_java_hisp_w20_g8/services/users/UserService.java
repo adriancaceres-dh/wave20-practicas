@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements IUserService{
 
     @Autowired
     PersonRepository personRepository;
@@ -42,7 +42,6 @@ public class UserService implements IUserService {
         } else {
             throw new NotFoundException("Invalid users please check information.");
         }
-
     }
 
     @Override

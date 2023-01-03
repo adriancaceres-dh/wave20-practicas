@@ -1,6 +1,8 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.PostService;

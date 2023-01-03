@@ -10,12 +10,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
-public class PersonRepositoryImp implements PersonRepository {
+public class PersonRepositoryImp implements PersonRepository{
 
     private final Map<String, Set<Person>> persons;
 
     public PersonRepositoryImp() {
-        persons = new HashMap<>() {{
+        persons = new HashMap<>(){{
             put("users", new HashSet<>());
             put("sellers", new HashSet<>());
         }};
@@ -24,29 +24,29 @@ public class PersonRepositoryImp implements PersonRepository {
     }
 
     @Override
-    public boolean addFollowing(int userId, int sellerId) {
+    public boolean addFollowing(int userId,int sellerId){
 
         Set<Person> personSet = persons.get("users");
-        User person = (User) personSet.stream().filter(p -> p.getId() == userId)
-                .findAny().orElseThrow(() -> new OperationFailedException("try to add new follow failed"));
-        person.getFollowing().add(sellerId);
+           User person =(User)personSet.stream().filter(p->p.getId()==userId)
+                 .findAny().orElseThrow(()-> new OperationFailedException("try to add new follow failed"));
+           person.getFollowing().add(sellerId);
 
         return true;
     }
 
     @Override
-    public boolean addFollower(int sellerId, int userId) {
+    public boolean addFollower(int sellerId, int userId){
 
         Set<Person> personSet = persons.get("sellers");
-        Seller person = (Seller) personSet.stream().filter(p -> p.getId() == sellerId)
-                .findAny().orElseThrow(() -> new OperationFailedException("try to add new follower failed"));
+        Seller person =(Seller)personSet.stream().filter(p->p.getId()==sellerId)
+                .findAny().orElseThrow(()-> new OperationFailedException("try to add new follower failed"));
         person.getFollowers().add(userId);
         return true;
     }
 
     @Override
-    public boolean checkUser(int userId) {
-        for (Map.Entry<String, Set<Person>> user : persons.entrySet()) {
+    public boolean checkUser(int userId){
+        for (Map.Entry<String, Set<Person>> user : persons.entrySet() ) {
             return user.getValue().stream().anyMatch(currentUser -> currentUser.getId() == userId);
 
         }
@@ -77,25 +77,49 @@ public class PersonRepositoryImp implements PersonRepository {
 
     private boolean loadUsers() {
         persons.get("users").addAll(Set.of(
-                new User(1, "user1", new HashSet<>() {{
+                new User(1, "user1", new HashSet<>(){{
                     add(3);
                 }}),
                 new User(2, "user2", new HashSet<>())
         ));
         persons.get("sellers").addAll(Set.of(
-                new Seller(3, "seller3", new HashSet<>(), new HashSet<>()),
+                new Seller(3, "seller3", new HashSet<>(){{
+                    add(1);
+                    add(2);
+                }}, new HashSet<>(){{
+                    add(9);
+                    add(8);
+                }}
+                ),
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>())
         ));
         return true;
     }
-
-    public Set<Integer> getAllFollowed(int userId) {
-        User user = (User) persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
+    public Set<Integer> getAllFollowed(int userId){
+        User user = (User)persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
         return user.getFollowing();
     }
-
-    public Seller findSellerById(Integer id) {
-        return (Seller) persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+    public Seller findSellerById(Integer id){
+        return (Seller)persons.get("sellers").stream().filter(seller-> seller.getId().equals(id)).findAny().orElse(null); //Mandar throw en vez de null
 
     }
+
+    public Seller getById(int id) {
+        return (Seller) persons.get("sellers").stream().filter(x -> x.getId() == id).findFirst().orElse(null);
+
+    }
+
+
+    public User findUserById(Integer id){
+        return (User) persons.get("users").stream().filter(user -> user.getId().equals(id)).findAny().orElse(null);
+    }
+    public Set<Integer> GetSellerFollowers(int userId){
+        Seller seller = findSellerById(userId);
+        if(seller==null){
+            return null;
+        }else{
+            return seller.getFollowers();
+        }
+    }
+
 }

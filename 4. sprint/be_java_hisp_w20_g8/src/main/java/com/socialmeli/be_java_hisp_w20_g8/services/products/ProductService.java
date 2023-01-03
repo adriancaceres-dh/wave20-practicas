@@ -1,7 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.products;
 
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.ProductRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Product;
@@ -17,10 +17,10 @@ import java.util.stream.Stream;
 
 @Service
 public class ProductService implements IProductService {
-    private  final ModelMapper mapper = new ModelMapper();
+    private final ModelMapper mapper = new ModelMapper();
 
     @Autowired
-    IProductRepository productRepository;
+    private IProductRepository productRepository;
 
     public ProductService() {
         mapper.getConfiguration()
@@ -29,13 +29,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean createProduct(ProductRequestDTO productRequestDTO) {
+    public boolean createProduct(ProductDTO productDTO) {
         // Check if all the product fields are present
-        if(!Stream.of(productRequestDTO.getProductId(), productRequestDTO.getProductName(), productRequestDTO.getType(), productRequestDTO.getBrand(), productRequestDTO.getColor(), productRequestDTO.getNotes())
+        if(!Stream.of(productDTO.getProductId(), productDTO.getProductName(), productDTO.getType(), productDTO.getBrand(), productDTO.getColor(), productDTO.getNotes())
                 .allMatch(Objects::nonNull))
             throw new InvalidArgumentException("All the fields are required");
 
-        Product product = mapper.map(productRequestDTO, Product.class);
+        // Get the product if exists
+        Product product = mapper.map(productDTO, Product.class);
         Optional<Product> existing = productRepository.getProductById(product.getProductId());
 
         // Check if the product is valid
@@ -43,6 +44,7 @@ public class ProductService implements IProductService {
             throw new OperationFailedException("Another product with the same identifier is already registered");
         }
 
+        // Create the product
         if(existing.isEmpty())
             return productRepository.createProduct(product);
 
