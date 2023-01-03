@@ -72,22 +72,6 @@ public class UserService implements IUserService {
     }
 
     private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
-        /*if(order == null){
-            return users;
-        } else if(order.equalsIgnoreCase("name_asc")) {
-            return users
-                    .stream()
-                    .sorted(Comparator.comparing(UserResponseBaseDto::getUserName))
-                    .collect(Collectors.toList());
-        } else if(order.equalsIgnoreCase("name_desc")){
-            return users
-                    .stream()
-                    .sorted(Comparator.comparing(UserResponseBaseDto::getUserName).reversed())
-                    .collect(Collectors.toList());
-        }
-        return users;
-
-         */
         List<String> orders = Arrays.asList("name_asc", "name_desc");
 
         if (!orders.contains(order)) {
