@@ -1,7 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;

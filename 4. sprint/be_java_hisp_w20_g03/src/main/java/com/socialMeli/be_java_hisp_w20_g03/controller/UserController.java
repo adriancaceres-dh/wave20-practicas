@@ -3,8 +3,6 @@ package com.socialMeli.be_java_hisp_w20_g03.controller;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
-import com.socialMeli.be_java_hisp_w20_g03.model.User;
-import com.socialMeli.be_java_hisp_w20_g03.repository.UserRepository;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,7 +48,7 @@ public class UserController {
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        return null;
+        return iUserService.unfollow(userId, userIdToUnfollow);
     }
 
 }

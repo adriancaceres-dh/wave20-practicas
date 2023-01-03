@@ -6,7 +6,6 @@ import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
-import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Optional;
 
 
 @Service
@@ -90,7 +88,21 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public boolean unfollow(int userId, int UserIdToUnfollow) {
-        return false;
+    public ResponseEntity<String> unfollow(int userId, int userIdToUnfollow) {
+        try {
+            User user = iUserRepository.getUserById(userId);
+            User userToUnfollow = iUserRepository.getUserById(userIdToUnfollow);
+            if(user == null || userToUnfollow == null)
+                throw new NotFoundException("El usuario ingresado no existe");
+            List<User> userFollowedList = user.getFollowed();
+            List<User> unfollowedUserFollowerList = userToUnfollow.getFollowers();
+            if(!userFollowedList.contains(userToUnfollow) || !unfollowedUserFollowerList.contains(user))
+                throw new BadRequestException("No esta siguiendo a " + userToUnfollow);
+            userFollowedList.remove(userToUnfollow);
+            unfollowedUserFollowerList.remove(user);
+            return new ResponseEntity<>("Dejaste de seguir al usuario: " + userToUnfollow.getUser_name(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
