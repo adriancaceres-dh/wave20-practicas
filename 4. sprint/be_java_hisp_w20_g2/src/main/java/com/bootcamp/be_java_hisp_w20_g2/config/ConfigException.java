@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class ConfigException {
@@ -31,5 +32,10 @@ public class ConfigException {
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<String> jsonDeserializing(InvalidFormatException exception) {
         return ResponseEntity.badRequest().body("Invalid JSON in request body");
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> methodArgumentMismatch(MethodArgumentTypeMismatchException exception) {
+        return ResponseEntity.badRequest().body("Invalid query or path parameter");
     }
 }
