@@ -16,6 +16,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+
     @PostMapping("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<Boolean> follow(@PathVariable int userId, @PathVariable int userIdToFollow) {
         return new ResponseEntity<>(userService.follow(userId, userIdToFollow), HttpStatus.OK);
