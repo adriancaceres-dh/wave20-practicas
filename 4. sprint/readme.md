@@ -272,6 +272,8 @@ Ordenamiento alfabético ascendente y descendente.
 ```http
   GET /users/{UserID}/followers/list?order=name_asc
   GET /users/{UserID}/followers/list?order=name_desc
+  GET /users/{UserID}/followed/list?order=name_asc
+  GET /users/{UserID}/followed/list?order=name_desc
 ```
 
 | Parameter | Type     | Description                |
