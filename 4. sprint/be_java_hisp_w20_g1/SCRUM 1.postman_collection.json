@@ -15,7 +15,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/users/1/follow/3",
+							"raw": "localhost:8080/users/1/follow/2",
 							"host": [
 								"localhost"
 							],
@@ -24,7 +24,7 @@
 								"users",
 								"1",
 								"follow",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -71,19 +71,14 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "US 0002 - Follower Count",
-			"item": [
+				},
 				{
-					"name": "follower count of user id 1",
+					"name": "User to follow isn't seller",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/users/1/followers/count",
+							"raw": "localhost:8080/users/1/follow/8",
 							"host": [
 								"localhost"
 							],
@@ -91,6 +86,32 @@
 							"path": [
 								"users",
 								"1",
+								"follow",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 0002 - Follower Count",
+			"item": [
+				{
+					"name": "follower count of user id 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/2/followers/count",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"2",
 								"followers",
 								"count"
 							]
@@ -125,19 +146,19 @@
 			"name": "US 0003 - List Followers",
 			"item": [
 				{
-					"name": "List followers of user id 1",
+					"name": "List followers of user id 2",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/users/1/followers/list",
+							"raw": "localhost:8080/users/2/followers/list",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"users",
-								"1",
+								"2",
 								"followers",
 								"list"
 							]
@@ -585,14 +606,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/users/2/followed/list?order=test",
+							"raw": "localhost:8080/users/1/followed/list?order=test",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"users",
-								"2",
+								"1",
 								"followed",
 								"list"
 							],
@@ -752,7 +773,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/products/followed/1/list?order=date_desc",
+							"raw": "localhost:8080/products/followed/100/list?order=date_desc",
 							"host": [
 								"localhost"
 							],
@@ -760,7 +781,7 @@
 							"path": [
 								"products",
 								"followed",
-								"1",
+								"100",
 								"list"
 							],
 							"query": [
