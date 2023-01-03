@@ -19,7 +19,7 @@ public class PostService implements IPostService {
     IUserRepository userRepository;
 
     @Override
-    public boolean addPost(PostDTO postDTO){
+    public String addPost(PostDTO postDTO){
 
         if (userRepository.getUserById(postDTO.getUser_id()) != null) {
             Product product = Product.builder()
@@ -37,9 +37,10 @@ public class PostService implements IPostService {
                     .product(product)
                     .date(postDTO.getDate())
                     .build();
-            return postRepository.addPost(post);
+            postRepository.addPost(post);
+            return "Publicacion agregada";
         } else {
-            throw new NotFoundException("User not found");
+            throw new NotFoundException("El usuario ingresado no existe");
         }
     }
 

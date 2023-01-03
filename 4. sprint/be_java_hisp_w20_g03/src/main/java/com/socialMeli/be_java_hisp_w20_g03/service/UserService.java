@@ -31,7 +31,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public ResponseEntity<String> addFollower(int userId, int userIdToFollow) {
+    public String addFollower(int userId, int userIdToFollow) {
 
         try{
             User currentUser = iUserRepository.getUserById(userId);
@@ -39,12 +39,14 @@ public class UserService implements IUserService{
             if(currentUser == null || followUser == null)
                throw new NotFoundException("El usuario ingresado no existe");
             List<User> getFollowersList = followUser.getFollowers();
-            if(getFollowersList.contains(currentUser))
+            List<User> getCurrentUserList = currentUser.getFollowed();
+            if(getFollowersList.contains(currentUser) || getCurrentUserList.contains(followUser))
                 throw  new BadRequestException("Ya estas siguiendo al usuario: " + followUser.getUser_name());
             getFollowersList.add(currentUser);
-            return new ResponseEntity<>("Comenzaste a seguir al usuario: " + followUser.getUser_name(), HttpStatus.OK);
+            getCurrentUserList.add(followUser);
+            return "Comenzaste a seguir al usuario: " + followUser.getUser_name();
         }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            throw new BadRequestException(e.getMessage());
         }
     }
 
@@ -62,7 +64,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserFollowersDTO getFollowersList(int userId, String order) throws NotFoundException{
+    public UserFollowersDTO getFollowersList(int userId, String order) {
         User user = iUserRepository.getUserById(userId);
         if (user == null){
             throw new NotFoundException("El usuario ingresado no existe.");
@@ -96,7 +98,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public ResponseEntity<String> unfollow(int userId, int userIdToUnfollow) {
+    public String unfollow(int userId, int userIdToUnfollow) {
         try {
             User user = iUserRepository.getUserById(userId);
             User userToUnfollow = iUserRepository.getUserById(userIdToUnfollow);
@@ -108,9 +110,9 @@ public class UserService implements IUserService{
                 throw new BadRequestException("No esta siguiendo a " + userToUnfollow);
             userFollowedList.remove(userToUnfollow);
             unfollowedUserFollowerList.remove(user);
-            return new ResponseEntity<>("Dejaste de seguir al usuario: " + userToUnfollow.getUser_name(), HttpStatus.OK);
+            return "Dejaste de seguir al usuario: " + userToUnfollow.getUser_name();
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            throw new BadRequestException("");
         }
     }
 }

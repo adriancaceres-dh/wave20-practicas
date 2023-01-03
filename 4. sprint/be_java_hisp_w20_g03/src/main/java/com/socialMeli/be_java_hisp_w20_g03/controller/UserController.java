@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> addFollower(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        return iUserService.addFollower(userId,userIdToFollow);
+        return new ResponseEntity<>(iUserService.addFollower(userId,userIdToFollow), HttpStatus.OK);
     }
 
     @GetMapping("/users/{userId}/followers/count")
@@ -35,9 +35,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}/followers/list")
-    public ResponseEntity <UserFollowersDTO> getFollowersList(@PathVariable String userId,
+    public ResponseEntity <UserFollowersDTO> getFollowersList(@PathVariable int userId,
                                                               @RequestParam (required = false) String order) {
-        return new ResponseEntity<>(iUserService.getFollowersList(Integer.parseInt(userId), order), HttpStatus.OK);
+        return new ResponseEntity<>(iUserService.getFollowersList(userId, order), HttpStatus.OK);
     }
 
     @GetMapping("/users/{userId}/followed/list")
@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        return iUserService.unfollow(userId, userIdToUnfollow);
+        return new ResponseEntity<>(iUserService.unfollow(userId, userIdToUnfollow), HttpStatus.OK);
     }
 
 }

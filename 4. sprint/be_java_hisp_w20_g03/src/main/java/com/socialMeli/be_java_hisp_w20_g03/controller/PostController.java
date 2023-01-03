@@ -17,8 +17,7 @@ public class PostController {
 
     @PostMapping("/products/post")
     public ResponseEntity<String> addPost(@RequestBody PostDTO postDto) {
-        iPostService.addPost(postDto);
-        return new ResponseEntity<>("Post added", HttpStatus.OK);
+        return new ResponseEntity<>(iPostService.addPost(postDto), HttpStatus.OK);
     }
 
     @GetMapping("/products/followed/{userId}/list")
