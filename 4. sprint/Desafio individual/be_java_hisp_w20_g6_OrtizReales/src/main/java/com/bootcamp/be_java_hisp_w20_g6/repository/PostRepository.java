@@ -33,7 +33,7 @@ public class PostRepository {
     }
 
     public List<PostModel> getPostsByUserId(int user_id){
-        return postList.stream().filter(p -> p.getUser_id() == user_id).collect(Collectors.toList());
+        return postList.stream().filter(p -> (p.getUser_id() == user_id && p.isHas_promo())).collect(Collectors.toList());
     }
 
 }

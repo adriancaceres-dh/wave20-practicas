@@ -9,7 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostPromoResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
+
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,7 @@ import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
+import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IPostService;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
@@ -54,8 +58,16 @@ public class PostServiceImpl implements IPostService {
             postRepository.save(postModel);
             return true;
     }
-
-    
+    @Override
+    public PostPromoResponseDto getCountPostPromo(int user_id){
+        try {
+            UserModel user = userService.getUserById(user_id);
+            List<PostModel> postsPromoUsers = postRepository.getPostsByUserId(user_id);  
+            return new PostPromoResponseDto(user.getUser_id(), user.getUser_name(), postsPromoUsers.size());
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException("Usuario no existe");
+        }
+    }
 
     @Override
     public PostListResponseDTO postFollowedLastWeeks(int user_id, String orderBy) {
