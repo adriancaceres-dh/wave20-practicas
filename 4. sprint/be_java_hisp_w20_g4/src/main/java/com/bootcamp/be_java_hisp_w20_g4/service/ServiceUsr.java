@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.*;
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.*;
 
 @Service
@@ -106,6 +107,23 @@ public class ServiceUsr implements IServiceUsr {
 
         if(order == null) return followedUnsorted(user);
         return followedSorted(user, order);
+    }
+
+    @Override
+    public UserFollowedDTO unfollow(int userId, int userIdToUnfollow) {
+        isNotSameUser(userId, userIdToUnfollow);
+        User user = userRepository.findById(userId);
+        User unfollowUser = userRepository.findById(userIdToUnfollow);
+
+        isValidUser(user);
+        isValidUser(unfollowUser);
+
+        if(user.getFollowed().containsKey(userIdToUnfollow)) throw new BadRequestException("El usuario ");
+        List<ListedUserDTO> followed = user.getFollowed().values().stream().map(u->mapper.map(u, ListedUserDTO.class)).collect(Collectors.toList());
+
+
+        UserFollowedDTO userFollowedDTO= new UserFollowedDTO(userIdToUnfollow,unfollowUser.getUser_name(),followed);
+        return userFollowedDTO;
     }
 
 }

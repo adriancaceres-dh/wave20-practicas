@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.*;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrder;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
 
 @Service
 public class ServicePublication implements  IServicePublication{

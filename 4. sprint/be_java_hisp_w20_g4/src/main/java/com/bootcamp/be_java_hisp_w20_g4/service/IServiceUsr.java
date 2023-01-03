@@ -16,6 +16,6 @@ public interface IServiceUsr {
     public UserDTO follow(int userId, int userIdToFollow);
 
     public UserFollowedDTO followed(int userId, String order);
-
+    public UserFollowedDTO unfollow(int userId, int userIdToUnfollow);
 
 }
