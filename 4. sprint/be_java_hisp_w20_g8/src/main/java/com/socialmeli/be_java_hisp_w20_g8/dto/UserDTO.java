@@ -14,10 +14,7 @@ import java.util.Set;
 @Builder
 public class UserDTO {
 
-
-    private  Integer id;
-    private  String userName;
-
-    private Set<Integer> following;
+    private  int id;
+    private  String user_name;
 
 }

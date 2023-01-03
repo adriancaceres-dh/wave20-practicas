@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
-public class PersonRepositoryImp implements  PersonRepository{
+public class PersonRepositoryImp implements PersonRepository{
 
     private final Map<String, Set<Person>> persons;
 
@@ -57,7 +57,6 @@ public class PersonRepositoryImp implements  PersonRepository{
         persons.get("users").addAll(Set.of(
                 new User(1, "user1", new HashSet<>(){{
                     add(3);
-                    add(4);
                 }}),
                 new User(2, "user2", new HashSet<>())
         ));
@@ -78,14 +77,10 @@ public class PersonRepositoryImp implements  PersonRepository{
         User user = (User)persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
         return user.getFollowing();
     }
-
-
     public Seller findSellerById(Integer id){
-        return (Seller)persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+        return (Seller)persons.get("sellers").stream().filter(seller-> seller.getId().equals(id)).findAny().orElse(null); //Mandar throw en vez de null
 
     }
-
-
 
     public Seller getById(int id){
         return (Seller) persons.get("sellers").stream().filter(x->x.getId()==id).findFirst().orElse(null);
@@ -93,5 +88,16 @@ public class PersonRepositoryImp implements  PersonRepository{
 
 
 
+    public User findUserById(Integer id){
+        return (User) persons.get("users").stream().filter(user -> user.getId().equals(id)).findAny().orElse(null);
+    }
+    public Set<Integer> GetSellerFollowers(int userId){
+        Seller seller = findSellerById(userId);
+        if(seller==null){
+            return null;
+        }else{
+            return seller.getFollowers();
+        }
+    }
 
 }
