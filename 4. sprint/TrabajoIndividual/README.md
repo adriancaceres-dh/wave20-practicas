@@ -256,6 +256,7 @@ Llevar a cabo la publicación de un nuevo producto en promoción
 | METHOD | SIGN                   |
 |:-------|:-----------------------|
 | `POST` | `/products/promo-post` |
+
 PAYLOAD:
 ```json
 {
