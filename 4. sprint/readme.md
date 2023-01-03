@@ -150,27 +150,74 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 ____
 #### US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
 
+_**Sign:**_
+
+|     Method     | SIGN                                        |
+|:--------------:|---------------------------------------------|
+|    **POST**    | /users/{userId}/follow/{userIdToFollow}     |
+|                | Ejemplo: /users/123/follow/234              |
+|  **Response**  | Status Code 200 (todo OK) - bodyless or dto |
+ |                | Status Code 400 (Bad Request) -  bodyless or dto |
+
+_**Filtros/Parámetros:**_
+
+| Parámetros     |                       Tipo                       | Descripción/Ejemplo                         |
+|----------------|:------------------------------------------------:|---------------------------------------------|
+| **userId**         |                       int                        | Número que identifica al usuario actual     |
+| **userIdToFollow** |                       int                        | Número que identifica al usuario a seguir   | 
+
+
 Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) y [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)_
 
 #### US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
+
+_**Sign:**_
+
+|     Method     | SIGN                                                                |
+|:--------------:|---------------------------------------------------------------------|
+|    **GET**     | /users/{userId}/followers/count                                     |
+|                | Ejemplo: /users/234/followers/count/                                |
+|  **Response**  | {<br/> "user_id": 234, <br/>"user_name": "vendedor1", <br/>"followers_count": 35 <br/>} |
+
+
+_**Filtros/Parámetros:**_
+
+| Parámetros |                       Tipo                       | Descripción/Ejemplo                |
+|------------|:------------------------------------------------:|------------------------------------|
+| **userId** |                       int                        | Número que identifica al usuario   | 
 
 Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) y [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)_
 
 #### US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
 
-Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli) y [Alejadra Espindola](https://github.com/ale-espindola)_
+_**Sign:**_
+
+|     Method     | SIGN                                                                                                                                                                                                                                                                         |
+|:--------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    **GET**     | /users/{userId}/followers/list                                                                                                                                                                                                                                               |
+|                | Ejemplo: /users/234/followers/list                                                                                                                                                                                                                                           |
+|  **Response**  | {<br/> "user_id": 234,<br/>"user_name": "vendedor1",<br/>"followers": [<br/>{<br/>"user_id": 4698,<br/>"user_name": "usuario1"<br/>},<br/>{<br/>"user_id": 1536,<br/>"user_name": "usuario2"<br/>},<br/>{<br/>"user_id": 2236,<br/>"user_name": "usuario3"<br/>}<br/>]<br/>} |
+
+
+_**Filtros/Parámetros:**_
+
+| Parámetros |                       Tipo                       | Descripción/Ejemplo                  |
+|------------|:------------------------------------------------:|--------------------------------------|
+| **userId** |                       int                        | Número que identifica a cada usuario | 
+
+Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli) y [Alejandra Espindola](https://github.com/ale-espindola)_
 
 #### US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
 
-Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli) y [Alejadra Espindola](https://github.com/ale-espindola)_
+Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli) y [Alejandra Espindola](https://github.com/ale-espindola)_
 
 #### US 0005: Dar de alta una nueva publicación
 
-Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml) y [Franciso Idalgo](https://github.com/franidalgoml)_
+Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml) y [Emanuel Fonseca](https://github.com/Emanoide47)_
 
 #### US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
 
-Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml) y [Franciso Idalgo](https://github.com/franidalgoml)_
+Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml) y [Emanuel Fonseca](https://github.com/Emanoide47)_
 
 #### US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
 
@@ -178,13 +225,13 @@ Fue desarrollado por: _[Federico Javier Veron](https://github.com/fedeveron) y [
 
 #### US 0008: Ordenamiento alfabético ascendente y descendente
 
-Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejadra Espindola](https://github.com/ale-espindola),
+Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
 [Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
 #### US 0009: Ordenamiento por fecha ascendente y descendente
 
-Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejadra Espindola](https://github.com/ale-espindola),
+Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
 [Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
@@ -193,7 +240,7 @@ ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
 - [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete)
-- [Alejadra Espindola](https://github.com/ale-espindola)
+- [Alejandra Espindola](https://github.com/ale-espindola)
 - [Federico Javier Veron](https://github.com/fedeveron)
 - [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)
 - [Francisco Liz Mardones](https://github.com/FranLizMeli)
@@ -207,4 +254,8 @@ ____
 - Postman
 - Intellij IDEA
 - Spring
+- Maven
+- Git
+- Git Hub
+- Lombok
 
