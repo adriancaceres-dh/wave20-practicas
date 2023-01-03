@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService implements IPostService{
-    private int post_id = 0;
+    private int post_id = 37;
     @Autowired
     public IPostRepository postRepository;
     @Autowired
@@ -41,6 +41,7 @@ public class PostService implements IPostService{
                 .price(postRequestDTO.getPrice())
                 .discount(0)
                 .date(postRequestDTO.getDate())
+                .userId(postRequestDTO.getUser_id())
                 .product(Product.builder()
                             .id(postRequestDTO.getProduct().getProduct_id())
                             .name(postRequestDTO.getProduct().getProduct_name())
