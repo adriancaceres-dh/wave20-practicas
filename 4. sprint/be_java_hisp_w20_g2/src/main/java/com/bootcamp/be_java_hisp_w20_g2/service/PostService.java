@@ -26,13 +26,11 @@ public class PostService implements IPostService {
     @Autowired
     private IPostRepository postRepository;
     @Autowired
-    private IUserRepository userRepository; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
+    private IUserRepository userRepository;
     @Autowired
-    private ICategoryRepository categoryRepository; // Por principio SOLID se da la responsabilidad de acceder al repo al servicio de usuarios.
+    private ICategoryRepository categoryRepository;
 
-    @Override
-    public void createPost(PostRequestDTO postRequestDTO) {
-        /*
+    /*
          * Validar que exista el userId. Si está no existe no es posible crearla, ya que no debería crearse un nuevo
          * usuario desde una nueva publicación.
          * Validar que exista la categoria. Si está no existe no es posible crearla, ya que no debería crearse una nueva
@@ -54,9 +52,10 @@ public class PostService implements IPostService {
             "price": 1500.50
             }
          */
+    @Override
+    public void createPost(PostRequestDTO postRequestDTO) {
         User user = userRepository.findOne(postRequestDTO.getUserId());
         if (user == null) {
-            // Tiramos exception sobre que el usuario no es correcto.
             throw new PostCreationException("The given user id does not exist.");
         }
 
@@ -67,7 +66,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order ) {
+    public PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order) {
         User user = userRepository.findOne(userId);
         if (user == null) {
             throw new BadRequestException("The given userId not exist.");
@@ -75,18 +74,21 @@ public class PostService implements IPostService {
 
         PostResponseDTO postResponse = new PostResponseDTO(userId);
 
-        Comparator<Post> comparator = order.orElse("date_desc").equals("date_desc") ?
-                Comparator.comparing(Post::getDate).reversed()
-                : Comparator.comparing(Post::getDate);
         user.getFollowing()
                 .forEach(followedUser -> {
                     followedUser.getPosts().stream()
-                            .sorted(comparator)
+                            .sorted(this.getDateComparator(order))
                             .filter(post -> post.getDate().isAfter(LocalDate.now().minusWeeks(2)))
                             .forEach(post -> postResponse.addPost(post, followedUser.getId()));
                 });
 
         return postResponse;
+    }
+
+    private Comparator<Post> getDateComparator(Optional<String> order) {
+        return order.orElse("date_desc").equals("date_desc") ?
+                Comparator.comparing(Post::getDate).reversed()
+                : Comparator.comparing(Post::getDate);
     }
 
     private Post toObject(PostRequestDTO postRequestDTO) {
@@ -98,7 +100,7 @@ public class PostService implements IPostService {
                 productDTO.getBrand(),
                 productDTO.getColor(),
                 productDTO.getNotes());
-        // Está bien que un Service devuelva un objecto de modelo o solo los repositorios lo hacen?
+
         Category category = categoryRepository.findByCode(postRequestDTO.getCategory())
                 .orElseThrow(() -> new PostCreationException("Invalid category code"));
 
