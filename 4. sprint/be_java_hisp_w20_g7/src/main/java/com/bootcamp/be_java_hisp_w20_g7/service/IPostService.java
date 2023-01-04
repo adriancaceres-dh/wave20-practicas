@@ -25,7 +25,7 @@ public interface IPostService {
      * US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
      *
      * @param userId : body id del usuario
-     * @param order : String que especifica el orden por fecha en el que se despliegan los posts
+     * @param order  : String que especifica el orden por fecha en el que se despliegan los posts
      * @return UserPostFollowedDto: retorna el id del ususario y una lista de los post de los usuarios seguidos en las ultimas 2 semanas oredeandos por fecha
      */
     UserPostFollowedDto postUsersFollowed(int userId, String order);

@@ -25,11 +25,11 @@ public class FollowService implements IFollowService {
         //Se valida si ya se esta siguiendo
         if (exists) {
             throw new FollowAlreadyExistException("User is already followed");
-        //Ahora se valida que no se intente seguir a si mismo
+            //Ahora se valida que no se intente seguir a si mismo
         } else if (userIdFollower == userIdFollowed) {
             throw new FollowAlreadyExistException("User cannot be followed by himself");
-        //Ahora se valida que tanto el que va a seguir como el que se va a seguir existan
-        } else if(userRepository.findById(userIdFollower) == null || userRepository.findById(userIdFollowed) == null){
+            //Ahora se valida que tanto el que va a seguir como el que se va a seguir existan
+        } else if (userRepository.findById(userIdFollower) == null || userRepository.findById(userIdFollowed) == null) {
             throw new UserNotFoundException("Followed user or Foller user not found");
         } else {
             followRepository.save(follow);
@@ -42,10 +42,10 @@ public class FollowService implements IFollowService {
         Follow follow = new Follow(userIdFollower, userIdFollowed);
         boolean exists = alreadyExists(follow);
 
-        if(exists){
+        if (exists) {
             followRepository.findAll().remove(follow);
             return "the user was unfollowed successfully";
-        }else{
+        } else {
             throw new UnfollowNotExistException("The user is not currently followed");
         }
     }

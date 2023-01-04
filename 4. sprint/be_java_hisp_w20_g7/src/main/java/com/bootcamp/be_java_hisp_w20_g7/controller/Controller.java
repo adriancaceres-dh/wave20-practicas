@@ -67,16 +67,16 @@ public class Controller {
     }
 
     @GetMapping("/users/{userId}/followers/count")
-    public ResponseEntity<UserFollowersCountDto> countFollowers(@PathVariable int userId){
-        return new ResponseEntity<>(iUserService.countFollowers(userId),HttpStatus.OK);
+    public ResponseEntity<UserFollowersCountDto> countFollowers(@PathVariable int userId) {
+        return new ResponseEntity<>(iUserService.countFollowers(userId), HttpStatus.OK);
     }
 
     @GetMapping("/products/followed/{userId}/list")
     public ResponseEntity<UserPostFollowedDto> postUsersFollowed(
             @PathVariable int userId,
-            @RequestParam(required = false) String order){
+            @RequestParam(required = false) String order) {
 
-        return new ResponseEntity<>(postService.postUsersFollowed(userId, order),HttpStatus.OK);
+        return new ResponseEntity<>(postService.postUsersFollowed(userId, order), HttpStatus.OK);
 
     }
 

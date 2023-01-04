@@ -15,10 +15,9 @@ import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.*;
+
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,14 +44,14 @@ public class PostService implements IPostService {
     public String createPost(PostCreateDto postCreateDto) {
 
         User user = iUserRepository.findById(postCreateDto.getUserId());
-        if(user == null) throw new UserNotFoundException("User with id " + postCreateDto.getUserId() + " not found");
+        if (user == null) throw new UserNotFoundException("User with id " + postCreateDto.getUserId() + " not found");
         if (postCreateDto == null) {
-            throw new PostEmptyException("La publicación esta vacía");
+            throw new PostEmptyException("Post is empty");
         }
         Post post = modelMapper.map(postCreateDto, Post.class);
         calculateId(post);
         if (post.getPrice() <= 0) {
-            throw new DataIsnotCorrectException("Coloque un precio mayor a 0");
+            throw new DataIsnotCorrectException("Price incorrect, it should be greater than 0");
         }
         if (iPostRepository.save(post)) {
             return "Post registered successfully";
@@ -67,39 +66,27 @@ public class PostService implements IPostService {
                 .sorted(Comparator.reverseOrder())
                 .findFirst()
                 .orElseGet(() -> 0) + 1);
-
     }
 
     @Override
-    public UserPostFollowedDto postUsersFollowed(int userId,String order) {
+    public UserPostFollowedDto postUsersFollowed(int userId, String order) {
 
         User user = iUserRepository.findById(userId);
-
-        if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
-
-        List<Integer> followedIds = iFollowRepository.findAll().stream().filter(e -> e.getIdFollower() == userId).
-                map(Follow::getIdFollowed).collect(Collectors.toList());
-
+        if (user == null) throw new UserNotFoundException("user with id " + userId + " not found");
+        List<Integer> followedIds = iFollowRepository.findAll().stream().filter(e -> e.getIdFollower() == userId).map(Follow::getIdFollowed).collect(Collectors.toList());
         List<Post> posts;
-        if(order == null) order = "";
-        if(order.equals("date_desc")) {
+        if (order == null) order = "";
+        if (order.equals("date_desc")) {
             posts = iPostRepository.findAll().stream()
                     .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
                     .sorted(Comparator.comparing(Post::getDate)).collect(Collectors.toList());
-        }else{
+        } else {
             posts = iPostRepository.findAll().stream()
                     .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
                     .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
         }
 
-
-
-        List<PostDto> postDtos = posts.stream().map( e -> modelMapper.map(e , PostDto.class)).collect(Collectors.toList());
-
-        return new UserPostFollowedDto(userId,postDtos);
-
-
-
-
+        List<PostDto> postDtos = posts.stream().map(e -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
+        return new UserPostFollowedDto(userId, postDtos);
     }
 }

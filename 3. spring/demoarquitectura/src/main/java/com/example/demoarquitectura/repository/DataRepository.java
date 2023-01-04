@@ -21,8 +21,8 @@ public class DataRepository {
         this.database = loadDataBase();
     }
 
-    public List<CharacterDTO> nameStarWars(String name){
-            return database.stream().filter(characterDTO -> characterDTO.getName().contains(name)).collect(Collectors.toList());
+    public List<CharacterDTO> nameStarWars(String name) {
+        return database.stream().filter(characterDTO -> characterDTO.getName().contains(name)).collect(Collectors.toList());
     }
 
     private boolean matchWith(String query, CharacterDTO characterDTO) {
@@ -37,7 +37,8 @@ public class DataRepository {
             e.printStackTrace();
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        TypeReference<List<CharacterDTO>> typeRef = new TypeReference<>() {};
+        TypeReference<List<CharacterDTO>> typeRef = new TypeReference<>() {
+        };
         List<CharacterDTO> characters = null;
         try {
             characters = objectMapper.readValue(file, typeRef);

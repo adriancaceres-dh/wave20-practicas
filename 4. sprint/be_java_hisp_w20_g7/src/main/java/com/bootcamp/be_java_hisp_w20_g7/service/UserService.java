@@ -61,7 +61,7 @@ public class UserService implements IUserService {
         List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e, UserDto.class)).collect(Collectors.toList());
         User followed = iUserRepository.findById(userId);
 
-        return new UserFollowersDto(followed.getUserId(), followed.getUserName(), userDtos);
+        return new UserFollowersDto(userDtos, followed.getUserId(), followed.getUserName());
 
     }
 
@@ -82,7 +82,7 @@ public class UserService implements IUserService {
         List<UserDto> userFollowedDtoList = userFollowedList.stream().map(f -> modelMapper.map(f, UserDto.class)).collect(Collectors.toList());
         User follower = iUserRepository.findById(userId);
 
-        return new UserFollowedDto(follower.getUserId(), follower.getUserName(), userFollowedDtoList);
+        return new UserFollowedDto(userFollowedDtoList, follower.getUserId(), follower.getUserName());
     }
 
     @Override
@@ -95,11 +95,11 @@ public class UserService implements IUserService {
 
         User user = iUserRepository.findById(userId);
 
-        if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
+        if (user == null) throw new UserNotFoundException("user with id " + userId + " not found");
 
         int followerCount = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList()).size();
 
-        return new UserFollowersCountDto(userId,user.getUserName(),followerCount);
+        return new UserFollowersCountDto(userId, user.getUserName(), followerCount);
 
 
     }

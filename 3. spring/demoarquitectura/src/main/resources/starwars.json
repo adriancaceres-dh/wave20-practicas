@@ -470,7 +470,7 @@
   {
     "name": "Quarsh Panaka",
     "height": 183,
-    "mass":100,
+    "mass": 100,
     "hair_color": "black",
     "skin_color": "dark",
     "eye_color": "brown",
@@ -974,7 +974,7 @@
   {
     "name": "Finn",
     "height": 100,
-    "mass":100,
+    "mass": 100,
     "hair_color": "black",
     "skin_color": "dark",
     "eye_color": "dark",

@@ -1,6 +1,5 @@
 package com.example.demoarquitectura.controller;
 
-import com.example.demoarquitectura.dto.CharacterDTO;
 import com.example.demoarquitectura.service.StarWarsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,9 @@ public class StarWarsController {
         this.starWarsService = starWarsService;
     }
 
-    @GetMapping(path="/search/{name}")
-    public ResponseEntity<List<String>> names(@PathVariable String name){
-        return new ResponseEntity<List<String>> (starWarsService.names(name), HttpStatus.OK);
+    @GetMapping(path = "/search/{name}")
+    public ResponseEntity<List<String>> names(@PathVariable String name) {
+        return new ResponseEntity<List<String>>(starWarsService.names(name), HttpStatus.OK);
     }
 
 }
