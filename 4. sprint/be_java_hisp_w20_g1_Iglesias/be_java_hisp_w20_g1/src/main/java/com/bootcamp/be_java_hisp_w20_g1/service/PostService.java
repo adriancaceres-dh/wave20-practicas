@@ -3,6 +3,8 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.postResponsePromoDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
@@ -88,7 +90,50 @@ public class PostService implements IPostService {
         }
     }
 
+    @Override
+    public postResponsePromoDto addWithPromo (PostPromoRequestDto postDto) {
+        ProductRequestDto productDto = postDto.getProduct();
+        if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
+            throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
+        } else {
+            if (!productService.alreadyExist(postDto.getProduct().getProductId())) {
+                productService.add(productDto);
+            }
+            if (!userService.alreadyExists(postDto.getUserId())) {
+
+                throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
+            }
+
+
+            Post post = buildPostWithPromo (postDto, productDto.getProductId());
+            postRepository.add(post);
+            //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
+            userService.updateUser(postDto.getUserId());
+            postResponsePromoDto  PostResponsePromoDto  = mapper.map(postDto, postResponsePromoDto.class);
+            PostResponsePromoDto .setPostId(post.getId());
+            return PostResponsePromoDto;
+        }
+    }
+
     public Post buildPost(PostRequestDto postDto, int productId) {
+        Post post = mapper.map(postDto, Post.class);
+        post.setProductId(productId);
+        //Si se trata del primer posteo que realiza el usuario se le setea id 1, de lo contrario, se coloca como id el número
+        //inmediatamente posterior al del último posteo realizado.
+        if (postRepository.getPosts().isEmpty()) {
+            post.setId(Parameter.getInteger("InitialId"));
+        } else {
+            Optional<Integer> lastId = postRepository.getPosts().stream().map(p -> p.getId()).max(Comparator.comparing(Integer::valueOf));
+            if (lastId.isPresent()) {
+                Integer aux = lastId.get();
+                post.setId(++aux);
+            }
+        }
+        return post;
+    }
+    
+    
+    public Post buildPostWithPromo (PostPromoRequestDto postDto, int productId) {
         Post post = mapper.map(postDto, Post.class);
         post.setProductId(productId);
         //Si se trata del primer posteo que realiza el usuario se le setea id 1, de lo contrario, se coloca como id el número
