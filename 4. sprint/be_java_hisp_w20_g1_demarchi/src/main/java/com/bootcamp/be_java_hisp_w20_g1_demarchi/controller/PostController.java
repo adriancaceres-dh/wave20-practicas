@@ -30,6 +30,6 @@ public class PostController {
 
     @PostMapping("/promo-post")
     public ResponseEntity<PostPromoResponseDto> addPromotionPost(@RequestBody PostPromoRequestDto postPromoRequestDto) {
-
+        return ResponseEntity.ok().body(postService.add(postPromoRequestDto));
     }
 }

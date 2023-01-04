@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g1_demarchi.service;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostListResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostPromoResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.ProductRequestDto;
@@ -91,26 +92,8 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public boolean add(PostPromoRequestDto postDto) {
-        if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
-            throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
-        } else {
-            if (productService.alreadyExist(postDto.getProduct().getProductId())) {
-                //
-                throw new BadRequestException(Parameter.getString("EX_ExistingProduct"));
-            }
-            if (!userService.alreadyExists(postDto.getUserId())) {
-
-                throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
-            }
-            ProductRequestDto productDto = postDto.getProduct();
-            productService.add(productDto);
-            postRepository.add(buildPost(postDto, productDto.getProductId()));
-            //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
-            userService.updateUser(postDto.getUserId());
-
-            return true;
-        }
+    public PostPromoResponseDto add(PostPromoRequestDto postDto) {
+        //
     }
 
 
