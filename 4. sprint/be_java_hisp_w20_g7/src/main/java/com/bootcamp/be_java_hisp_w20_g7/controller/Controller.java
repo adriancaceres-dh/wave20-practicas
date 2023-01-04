@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g7.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
@@ -80,7 +81,10 @@ public class Controller {
 
     }
 
-    //@GetMapping("/products/followed/{userId}/list")
+    @PostMapping("/products/promo-post")
+    ResponseEntity<String> addPromoPost(@RequestBody PromoPostCreateDto promoPost) {
+        return new ResponseEntity<>(postService.createPromoPost(promoPost), HttpStatus.OK);
+    }
 
     //ser menos desscriptivos en los errores
     //un solo idioma pls

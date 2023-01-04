@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -89,4 +90,28 @@ public class PostService implements IPostService {
         List<PostDto> postDtos = posts.stream().map(e -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
         return new UserPostFollowedDto(userId, postDtos);
     }
+
+    @Override
+    public String createPromoPost(PromoPostCreateDto promoPostCreateDto) {
+        User user = iUserRepository.findById(promoPostCreateDto.getUserId());
+
+        if (user == null)
+            throw new UserNotFoundException("User with id " + promoPostCreateDto.getUserId() + " not found");
+        if (promoPostCreateDto == null) {
+            throw new PostEmptyException("Post is empty");
+        }
+
+        Post post = modelMapper.map(promoPostCreateDto, Post.class);
+        calculateId(post);
+
+        if (post.getPrice() <= 0) {
+            throw new DataIsnotCorrectException("Price incorrect, it should be greater than 0");
+        }
+        if (iPostRepository.save(post)) {
+            return "Post with promo registered successfully";
+        } else {
+            return "Could no register post with promo";
+        }
+    }
+
 }

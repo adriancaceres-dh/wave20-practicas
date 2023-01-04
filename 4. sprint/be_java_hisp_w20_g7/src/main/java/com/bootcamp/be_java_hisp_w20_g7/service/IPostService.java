@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 
@@ -29,5 +30,13 @@ public interface IPostService {
      * @return UserPostFollowedDto: retorna el id del ususario y una lista de los post de los usuarios seguidos en las ultimas 2 semanas oredeandos por fecha
      */
     UserPostFollowedDto postUsersFollowed(int userId, String order);
+
+    /**
+     * US 00010: Llevar a cabo la publicación de un nuevo producto en promoción
+     *
+     * @param promoPostCreateDto : body request para crear el post en promoción
+     * @return String
+     */
+    String createPromoPost(PromoPostCreateDto promoPostCreateDto);
 
 }
