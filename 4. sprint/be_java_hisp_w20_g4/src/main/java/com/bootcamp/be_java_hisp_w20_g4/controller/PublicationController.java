@@ -18,7 +18,6 @@ public class PublicationController {
     public ResponseEntity<PublicationDTO> add(@RequestBody PostDTO publicationDTO){
         return ResponseEntity.ok().body(servicePublication.addPublication(publicationDTO));
     }
-
     @GetMapping("/followed/{userId}/list")
     public ResponseEntity<ProductTwoWeeksResponseDTO> last2WeeksPublications(@PathVariable int userId, @RequestParam(value="order",required = false) String order){
         return ResponseEntity.ok().body(servicePublication.getLastTwoWeeksPublications(userId, order));
