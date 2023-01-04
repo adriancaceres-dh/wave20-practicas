@@ -246,7 +246,55 @@ Ordenamiento por fecha ascendente y descendente
 **NOTA**: Este ordenamiento solo aplica para **US0006**
 
 Responsable: Juan Carlos Ortiz
+
 ***
+**US0010**:
+Llevar a cabo la publicación de un nuevo producto en promoción
+
+| METHOD | SIGN             |
+|:-------|:-----------------|
+| `POST` | `/products/promo-post` |
+
+PAYLOAD:
+```json
+{
+    "user_id": 234,
+    "date": "29-04-2021",
+    "product": {
+        "product_id": 1,
+        "product_name": "Silla Gamer",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1500.50,
+    "has_promo": true,
+    "discount": 0.25
+}
+
+```
+RESPONSE: Status code 200 (OK) | Status code 400 (Bad request)
+***
+**US0011**:
+Obtener la cantidad de productos en promoción de un determinado vendedor
+
+| METHOD | SIGN                              | EJEMPLO                    | 
+|:-------|:----------------------------------|:---------------------------|
+| `GET`  | `/products/promo-post/count?user_id={userId}` | `/products/promo-post/count?user_id=1` |
+
+
+
+RESPONSE:
+~~~json
+{
+    "user_id" : 1,
+   "user_name": "vendedor1",
+   "promo_products_count": 23
+
+}
+~~~
 ## Colección de Postman 
 
 Para el testeo de esta api colocamos a disposición una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
