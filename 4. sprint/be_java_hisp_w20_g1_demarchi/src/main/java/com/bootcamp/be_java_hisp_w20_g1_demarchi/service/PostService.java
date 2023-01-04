@@ -75,10 +75,7 @@ public class PostService implements IPostService {
             if (productService.alreadyExist(postDto.getProduct().getProductId())) {
                 throw new BadRequestException(Parameter.getString("EX_ExistingProduct"));
             }
-            if (!userService.alreadyExists(postDto.getUserId())) {
-
-                throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
-            }
+            validateUserExistsOrEnd(postDto.getUserId());
             ProductRequestDto productDto = postDto.getProduct();
             productService.add(productDto);
             Post post = buildPost(postDto, productDto.getProductId());
@@ -97,10 +94,7 @@ public class PostService implements IPostService {
         if (postDto.getUserId() == Parameter.getInteger("InvalidId")) {
             throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         }
-
-        if (!userService.alreadyExists(postDto.getUserId())) {
-            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
-        }
+        validateUserExistsOrEnd(postDto.getUserId());
         validateProductsAreExactlyEqualOrEnd(postDto);
 
         ProductRequestDto productRequestDto = postDto.getProduct();
@@ -137,13 +131,17 @@ public class PostService implements IPostService {
     }
 
     private User getUserIfValid(int id) {
-        if (!userService.alreadyExists(id)) {
-            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
-        }
+        validateUserExistsOrEnd(id);
         if (!userService.isSeller(id)) {
             throw new BadRequestException(Parameter.getString("EX_NotASeller"));
         }
         return userService.getUserById(id);
+    }
+
+    private void validateUserExistsOrEnd(int id) {
+        if (!userService.alreadyExists(id)) {
+            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
+        }
     }
 
     @Override
