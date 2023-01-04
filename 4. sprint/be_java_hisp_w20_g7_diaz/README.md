@@ -376,6 +376,10 @@ Java, Spring Boot
 
 #### B. Requerimientos Incrementales (Desarrollo INDIVIDUAL)
 
+```http
+  US 0010: Llevar a cabo la publicación de un nuevo producto en promoción
+```
+
 #### Sign:
 
 | Method. | SIGN                 |
