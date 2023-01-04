@@ -1,8 +1,10 @@
 package com.bootcamp.be_java_hisp_w20_g4_pereyra.controller;
 
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.service.publication.IServicePublication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,8 @@ public class PublicationController {
     }
 
     @PostMapping("/promo-post")
-    public ResponseEntity<String> addPromo (@RequestBody String promoProductDTO){
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<PublicationDiscountDTO> addPromo (@RequestBody(required = false) PostDiscountDTO postDiscountDTO){
+        return ResponseEntity.ok().body(servicePublication.addPromoPublication(postDiscountDTO));
     }
 
     @GetMapping("/promo-post/count")
