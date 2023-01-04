@@ -295,6 +295,43 @@ RESPONSE:
 
 }
 ~~~
+***
+**US0012**:
+Obtener un listado de todos los productos en promoción de un determinado vendedor
+
+| METHOD | SIGN                              | EJEMPLO                    | 
+|:-------|:----------------------------------|:---------------------------|
+| `GET`  | `/products/promo-post/list?user_id={userId}` | `/products/promo-post/list?user_id=3` |
+
+
+
+RESPONSE:
+~~~json
+{
+    "user_id": 3,
+    "user_name": "vendedor1",
+    "posts": [
+        {
+            "user_id": 123,
+            "post_id": 18,
+            "date": "29-04-2021",
+            "product": {
+                "product_id": 1,
+                "product_name": "Silla Gamer",
+                "type": "Gamer",
+                "brand": "Racer",
+                "color": "Red & Black",
+                "notes": "Special Edition"
+            },
+            "category": "100",
+            "price": 15000.50,
+            "has_promo": true,
+            "discount": 0.25
+        }
+    ]
+}
+
+~~~
 ## Colección de Postman 
 
 Para el testeo de esta api colocamos a disposición una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
