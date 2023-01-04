@@ -21,7 +21,7 @@ public class PostController {
     }
 
     @GetMapping("/products/followed/{userId}/list")
-    public List<PostDTO> getPosts(@PathVariable int userId, @RequestParam(required = false) String order) {
-        return null;
+    public ResponseEntity <List<PostDTO>> getPosts(@PathVariable int userId, @RequestParam(required = false) String order) {
+        return new ResponseEntity<>(iPostService.getPost(userId, order), HttpStatus.OK);
     }
 }

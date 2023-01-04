@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IPostService {
     String addPost(PostDTO postDTO);
-    List<PostDTO> getPost(int userId);
+    List<PostDTO> getPost(int userId, String order);
 }
