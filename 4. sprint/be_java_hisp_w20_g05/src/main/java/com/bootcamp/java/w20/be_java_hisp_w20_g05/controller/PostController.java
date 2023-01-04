@@ -28,16 +28,16 @@ public class PostController {
         return new ResponseEntity<>("La publicación ha sido realizada con éxito", HttpStatus.OK);
     }
 
-    @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<FollowingUsersPostsResponseDTO> getFollowedUsersPosts(@PathVariable int userId,
-                                                                @RequestParam(required = false) String order){
-        return new ResponseEntity<>(postService.getFollowingUsersPosts(userId, order), HttpStatus.OK);
-    }
-
     @PostMapping("/promo-post")
     public ResponseEntity<String> newPromoPost(@RequestBody PostRequestDTO postRequestDTO) {
         postService.newPost(postRequestDTO);
         return new ResponseEntity<>("La publicación ha sido realizada con éxito", HttpStatus.OK);
+    }
+
+    @GetMapping("/followed/{userId}/list")
+    public ResponseEntity<FollowingUsersPostsResponseDTO> getFollowedUsersPosts(@PathVariable int userId,
+                                                                @RequestParam(required = false) String order){
+        return new ResponseEntity<>(postService.getFollowingUsersPosts(userId, order), HttpStatus.OK);
     }
 
     @GetMapping("/promo-post/count")
