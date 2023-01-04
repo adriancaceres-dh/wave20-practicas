@@ -39,7 +39,7 @@ public class UserServiceImpl implements IUserService {
                 throw new FollowerExistsException("Usuario ya esta siguiendo al vendedor.");
             }
         }catch(NullPointerException e){
-            throw new UserExistsException("Usuario no existe.");
+            throw new UserNotFoundException("Usuario no existe.");
         }
     }
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements IUserService {
             return new FollowersCountResponseDto(id, user.getUser_name(), user.getFollowers().size());
 
         }catch(NullPointerException e){
-            throw new UserExistsException("Usuario no existe.");
+            throw new UserNotFoundException("Usuario no existe.");
         }
     }
 
@@ -68,7 +68,7 @@ public class UserServiceImpl implements IUserService {
             if(order == null)   return new FollowersListResponseDto(id, user.getUser_name(), followers);
             return new FollowersListResponseDto(id, user.getUser_name(), orderReturnValues(followers, order));
         }catch(NullPointerException e){
-            throw new UserExistsException("Usuario no existe.");
+            throw new UserNotFoundException("Usuario no existe.");
         }
     }
 
@@ -80,7 +80,7 @@ public class UserServiceImpl implements IUserService {
             if(order == null)   return new FollowedListResponseDto(id, user.getUser_name(), followers);
             return new FollowedListResponseDto(id, user.getUser_name(), orderReturnValues(followers, order));
         }catch(NullPointerException e){
-            throw new UserExistsException("Usuario no existe.");
+            throw new UserNotFoundException("Usuario no existe.");
         }
     }
 
@@ -107,7 +107,7 @@ public class UserServiceImpl implements IUserService {
                 throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
             }
         }catch(NullPointerException e){
-            throw new UserExistsException("Usuario no existe.");
+            throw new UserNotFoundException("Usuario no existe.");
         }
     }
 
