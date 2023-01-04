@@ -4,6 +4,7 @@ import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
