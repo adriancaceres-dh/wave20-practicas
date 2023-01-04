@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="162ce0d7-4084-41a7-9d2d-2233650e830a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../2. java/5_Clases_Abstr_Inter_Vivo/ejercicio1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../2. java/5_Clases_Abstr_Inter_Vivo/ejercicio1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../3. spring/11_excepciones_Book/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2. b. W20 - Consigna Sprint Nº 1 - Spring.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3. b. W20 - Esp. de Req. técnicos funcionales - Sprint Nº 1 - Spring.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPRINT-1 API-USER.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/BeJavaHispW20G7Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/controller/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/PostDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/ProductDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/UserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/request/PostCreateDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/request/PostPromoCreateDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/response/PostPromoCountByVendorDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/response/UserFollowedDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/response/UserFollowersCountDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/response/UserFollowersDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/dto/response/UserPostFollowedDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/entity/Follow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/entity/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/entity/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/exception/DataIsnotCorrectException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/exception/FollowAlreadyExistException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/exception/PostEmptyException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/exception/UnfollowNotExistException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/exception/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/repository/FollowRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/repository/IFollowRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/repository/IPostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/repository/IUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/repository/PostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/service/FollowService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/service/IFollowService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/service/IPostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/service/IUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/service/PostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bootcamp/be_java_hisp_w20_g7/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/BeJavaHispW20G7ApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JbMnd3sQ8NqiIsWQ8QeS1xCldW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/anueldiaz/Documents/bootcamp/wave20_backup/4. sprint/be_java_hisp_w20_g7",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "spring.configuration.checksum": "fa3e775d030af1285c0f2487124d395a",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.BeJavaHispW20G7Application">
+    <configuration name="All in be_java_hisp_w20_g7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7_diaz" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="be_java_hisp_w20_g7_diaz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="be_java_hisp_w20_g7_diaz" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BeJavaHispW20G7Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ENABLE_JMX_AGENT" value="false" />
+      <module name="be_java_hisp_w20_g7_diaz" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bootcamp.be_java_hisp_w20_g7.BeJavaHispW20G7Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in be_java_hisp_w20_g7" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="162ce0d7-4084-41a7-9d2d-2233650e830a" name="Changes" comment="" />
+      <created>1672342498292</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672342498292</updated>
+      <workItem from="1672342499690" duration="17288000" />
+      <workItem from="1672666549476" duration="8983000" />
+      <workItem from="1672680330709" duration="16256000" />
+      <workItem from="1672799218112" duration="1539000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
