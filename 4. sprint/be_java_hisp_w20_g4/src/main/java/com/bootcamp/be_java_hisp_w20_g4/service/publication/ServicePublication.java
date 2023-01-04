@@ -1,10 +1,10 @@
 package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
@@ -37,6 +37,11 @@ public class ServicePublication implements IServicePublication {
 
     ModelMapper mapper = new ModelMapper();
 
+    /**
+     * Este método crea una nueva publicación y la enlaza con el vendedor que la creó
+     * @param publicationDto - Son los datos de la publicación
+     * @return PublicationDTO - Se devuelve un dto de la publicación creada
+     */
     public PublicationDTO addPublication(PostDTO publicationDto){
         User user =  userRepository.findById(publicationDto.getUser_id());
         if(user == null) throw new BadRequestException("El usuario no es válido");
@@ -57,6 +62,12 @@ public class ServicePublication implements IServicePublication {
         return null;
     }
 
+    /**
+     * Este método obtiene las publicaciones de las últimas dos semanas de los vendedores que sigue el usuario recibido
+     * @param userId - Id del que obtendrá la lista de seguidos para buscar las publicaciones
+     * @param order - Especifica el tipo de ordenamiento que se desea (Opciones aceptadas: "date_asc" , "date_desc", null)
+     * @return ProductTwoWeeksResponseDTO - Se devuelve la información de las publicaciones requeridas
+     */
     public ProductTwoWeeksResponseDTO getLastTwoWeeksPublications(int userId, String order) {
         isValidDateOrder(order);
 

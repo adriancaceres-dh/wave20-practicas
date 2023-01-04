@@ -31,6 +31,12 @@ public class UserRepository implements IUserRepository {
         return users;
     }
 
+    /**
+     * Este método busca un usuario que coincida con el id recibido
+     * Si ninguno coincide se devuelve null
+     * @param idUser - Id del usuario que se desea buscar
+     * @return User - Se devuelve la informacion del usuario buscado
+     */
     public User findById(int idUser){
         return users.stream().filter(x->x.getUser_id() == idUser).findFirst().orElse(null);
     }

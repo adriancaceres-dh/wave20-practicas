@@ -37,6 +37,11 @@ public class ProductRepository implements IProductRepository {
         return products;
     }
 
+    /**
+     * Este método se encarga de verificar que un producto exista
+     * @param product - Es el producto que hay que verificar si existe
+     * @return boolean - Devuelve true si el producto existe
+     */
     public boolean productExist(Product product){
         Product productRepository = products.stream().filter(p -> p.getProduct_id() == product.getProduct_id()).findFirst().orElse(null);
         if(productRepository == null) return false;

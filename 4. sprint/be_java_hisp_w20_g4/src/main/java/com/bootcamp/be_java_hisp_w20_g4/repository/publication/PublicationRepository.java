@@ -41,11 +41,27 @@ public class PublicationRepository implements IPublicationRepository {
         return publications;
     }
 
+    /**
+     * Este método agrega una publicación al repositorio
+     * @param publication - Es la publicación que se va a agregar
+     * @return boolean - Devuelve true si la publicacion fue agregada correctamente
+     */
     public boolean addPublication(Publication publication){
-        publications.add(publication);
-        return true;
+        try{
+            publications.add(publication);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+
     }
 
+    /**
+     * Este método obtiene las publicaciones de los ultimos N días
+     * @param followedIds - Son los ids de las personas a las que hay que buscarles las publicaciones
+     * @param nDays - Es el rango de días a buscar
+     * @return List<Publication> - Se devuelve la lista de publicaciones que fueron requeridas
+     */
     @Override
     public List<Publication> getPublicationLastNDays(List<Integer> followedIds, int nDays) {
 
