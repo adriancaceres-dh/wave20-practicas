@@ -1,10 +1,10 @@
 package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
