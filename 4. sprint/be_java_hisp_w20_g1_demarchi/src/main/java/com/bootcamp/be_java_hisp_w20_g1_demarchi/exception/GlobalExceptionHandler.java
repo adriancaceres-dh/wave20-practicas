@@ -33,8 +33,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<?> missingQueryParameterException(Exception e) {
-        System.out.println("entra");
-
         return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED)
                 .body(new MessageException(
                         Parameter.getString("EX_QueryParameterMissing"),
