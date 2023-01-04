@@ -24,14 +24,17 @@ classDiagram-v2
         findOne(key : ID)T
         exists(key : ID)boolean
     }
-    
-    <<interface>> IPostRepository
-    
+        
     <<interface>> IProductRepository
     
     <<interface>> IProductTypeRepository
     
     <<interface>> IUserRepository
+    
+    class IPostRepository {
+        <<interface>>
+        findByHasPromo(hasPromo : boolean)List~Post~
+    }
     
     class ICategoryRepository {
         <<interface>>

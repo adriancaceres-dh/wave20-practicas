@@ -4,10 +4,10 @@
 %%{init: {'theme': 'dark'}}%%
 classDiagram
     User --> "0..*" User
-    User "1" --> "0..*" Post
-    Post "0..*" --> "1" PostCategory
+    User --> "0..*" Post
+    Post --> "1" User
+    Post "0..*" --> "1" Category
     Post "0..*" --> "1" Product
-    Product "0..*" --> "1" ProductType
     
     class User {
         -id : Integer
@@ -24,6 +24,7 @@ classDiagram
     
     class Post {
         -id : Integer
+        -author : User
         -date : LocalDate
         -product : Product
         -postCategory : Category
@@ -32,7 +33,7 @@ classDiagram
         -discount : double
     }
     
-    class PostCategory {
+    class Category {
         -id : Integer
         -code : int
         -name : String
@@ -45,12 +46,6 @@ classDiagram
         -brand : String
         -color : String
         -notes : String
-    }
-    
-    class ProductType {
-        -id : Integer
-        -name : String
-        -description : String
     }
         
 ```
