@@ -28,6 +28,11 @@ public class PostRepository implements IPostRepository {
         return posts.stream().filter(post -> post.getUserId() == userId).collect(Collectors.toList());
     }
 
+    @Override
+    public List<Post> getPostOnPromotionByUserId(int id) {
+        return posts.stream().filter(Post::isHasPromo).collect(Collectors.toList());
+    }
+
     List<Post> buildPostRepository() {
         File file = null;
         try {

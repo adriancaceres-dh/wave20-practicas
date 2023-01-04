@@ -40,4 +40,6 @@ public class PostController {
     ) {
         return ResponseEntity.ok().body(postService.getAmountOfPostsOnPromotion(userId));
     }
+
+
 }

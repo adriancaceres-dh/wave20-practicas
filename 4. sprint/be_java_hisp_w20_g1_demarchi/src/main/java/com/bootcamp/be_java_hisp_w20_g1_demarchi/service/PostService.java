@@ -117,32 +117,49 @@ public class PostService implements IPostService {
 
         PostPromoResponseDto postPromoResponseDto = mapper.map(postDto, PostPromoResponseDto.class);
         postPromoResponseDto.setPostId(newPost.getId());
-        postPromoResponseDto.setPriceWithDiscount(getPriceWithDiscount(newPost.getPrice() , newPost.getDiscount()));
+        postPromoResponseDto.setPriceWithDiscount(getPriceWithDiscount(newPost.getPrice(), newPost.getDiscount()));
 
-        return  postPromoResponseDto;
+        return postPromoResponseDto;
     }
 
     @Override
     public PostPromoListCountResponseDto getAmountOfPostsOnPromotion(int id) {
+        User userFound = getUserIfValid(id);
+        return PostPromoListCountResponseDto.builder()
+                .userId(id)
+                .userName(userFound.getName())
+                .promoProductsCount(postRepository.getPostOnPromotionByUserId(id).size())
+                .build();
+    }
+
+    private User getUserIfValid(int id) {
         if (!userService.alreadyExists(id)) {
             throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
         }
         if (!userService.isSeller(id)) {
             throw new BadRequestException(Parameter.getString("EX_NotASeller"));
         }
+        return userService.getUserById(id);
+    }
 
-        User userFound = userService.getUserById(id);
-        int amountOfPostOnPromotion = (int) postRepository
-                .getPostsByUserId(id)
+    @Override
+    public SellerWithProductsOnPromoListResponseDto getProductsOnPromotionByUser(int id) {
+        User userFound = getUserIfValid(id);
+
+        List<PostPromoResponseDto> postsOnPromotionDto = postRepository.getPostOnPromotionByUserId(id)
                 .stream()
-                .filter(Post::isHasPromo)
-                .count();
+                .map(p -> {
+                            PostPromoResponseDto post = mapper.map(p, PostPromoResponseDto.class);
+                            post.setPriceWithDiscount(getPriceWithDiscount(p.getPrice(), p.getDiscount()));
+                            return post;
+                        }
+                ).collect(Collectors.toList());
 
-        return PostPromoListCountResponseDto.builder()
-                .userId(id)
-                .userName(userFound.getName())
-                .promoProductsCount(amountOfPostOnPromotion)
-                .build();
+        return new SellerWithProductsOnPromoListResponseDto(
+                userFound.getId(),
+                userFound.getName(),
+                postsOnPromotionDto
+        );
     }
 
     private double getPriceWithDiscount(double postPrice, double discount) {
@@ -159,12 +176,10 @@ public class PostService implements IPostService {
                     .map(Post::getId)
                     .max(Comparator.comparing(Integer::valueOf))
                     .get();
-            newPromoPost.setId(lastId+1);
+            newPromoPost.setId(lastId + 1);
         }
         return newPromoPost;
     }
-
-
 
 
     public Post buildPost(PostRequestDto postDto, int productId) {

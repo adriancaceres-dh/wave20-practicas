@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IPostRepository {
     List<Post> getPostsByUserId(int id);
-
+    List<Post> getPostOnPromotionByUserId(int id);
     Post add(Post post);
 
     List<Post> getPosts();
