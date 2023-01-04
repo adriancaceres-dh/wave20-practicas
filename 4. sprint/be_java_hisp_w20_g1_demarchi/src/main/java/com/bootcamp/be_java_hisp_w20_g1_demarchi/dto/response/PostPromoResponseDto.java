@@ -25,4 +25,5 @@ public class PostPromoResponseDto {
     private double price;
     private boolean hasPromo;
     private double discount;
+    private double priceWithDiscount;
 }
