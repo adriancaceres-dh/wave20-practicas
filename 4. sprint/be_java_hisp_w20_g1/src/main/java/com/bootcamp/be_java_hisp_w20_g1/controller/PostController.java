@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostPromoCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostPromoListResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,13 @@ public class PostController {
 
     @PostMapping("/post")
     public ResponseEntity<PostRequestDto> addPost(@RequestBody PostRequestDto post) {
-        postService.add(post);
+        postService.add(post, false);
+        return ResponseEntity.ok(post);
+    }
+
+    @PostMapping("/promo-post")
+    public ResponseEntity<PostRequestDto> addPromoPost(@RequestBody PostRequestDto post) {
+        postService.add(post, true);
         return ResponseEntity.ok(post);
     }
 }

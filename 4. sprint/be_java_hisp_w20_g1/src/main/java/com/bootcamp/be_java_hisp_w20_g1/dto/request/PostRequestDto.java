@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g1.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,10 @@ public class PostRequestDto {
     private ProductRequestDto product;
     private int category;
     private double price;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean hasPromo;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Double discount;
 
 
 }

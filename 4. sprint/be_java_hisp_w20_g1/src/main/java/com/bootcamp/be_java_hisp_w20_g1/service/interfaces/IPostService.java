@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IPostService {
     PostListResponseDto lastTwoWeeksPostsFromFollowers(int id, String order);
-    boolean add(PostRequestDto postDto);
+    boolean add(PostRequestDto postDto, boolean isPromoPost);
     PostPromoCountResponseDto promoPostCountByUser(int userId);
     PostListResponseDto promoPostListByUser(int userId);
 }

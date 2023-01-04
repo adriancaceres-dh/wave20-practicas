@@ -69,7 +69,11 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public boolean add(PostRequestDto postDto) {
+    public boolean add(PostRequestDto postDto, boolean isPromoPost) {
+
+        if(isPromoPost && (postDto.getHasPromo() == null || postDto.getDiscount() == null))
+            throw new BadRequestException(Parameter.getString("EX_Need_Promo"));
+
         if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
             throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         } else {
@@ -98,7 +102,11 @@ public class PostService implements IPostService {
         if (postRepository.getPosts().isEmpty()) {
             post.setId(Parameter.getInteger("InitialId"));
         } else {
-            Optional<Integer> lastId = postRepository.getPosts().stream().map(p -> p.getId()).max(Comparator.comparing(Integer::valueOf));
+            Optional<Integer> lastId = postRepository
+                    .getPosts()
+                    .stream()
+                    .map(p -> p.getId())
+                    .max(Comparator.comparing(Integer::valueOf));
             if (lastId.isPresent()) {
                 Integer aux = lastId.get();
                 post.setId(++aux);

@@ -21,6 +21,7 @@ public class Parameter {
             put("EX_NotExistentProduct","Producto no existente");
             put("EX_NotASeller","El usuario no es vendedor");
             put("EX_NotExistentUser","El usuario no existe");
+            put("EX_Need_Promo","El post debe estar en promo");
         }
     };
 
@@ -31,6 +32,7 @@ public class Parameter {
             put("NumberOfDays", 14);
         }
     };
+
     public static String getString(String key){
        return stringValues.get(key);
     }
