@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g1_demarchi.controller;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.*;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.pojo.PostFilter;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +41,16 @@ public class PostController {
 
     @GetMapping("/promo-post/list")
     public ResponseEntity<SellerWithProductsOnPromoListResponseDto> getListOfProductsOnPromotionBySeller(
-        @RequestParam int userId
+        @RequestParam int userId,
+        @RequestParam (required = false, defaultValue = "0.0") double minPrice,
+        @RequestParam (required = false, defaultValue = "0.0") double maxPrice,
+        @RequestParam (required = false, defaultValue = "0.0") double minDiscount,
+        @RequestParam (required = false, defaultValue = "-1") int category
     ) {
-        return ResponseEntity.ok().body(postService.getProductsOnPromotionByUser(userId));
+        return ResponseEntity.ok().body(postService.getProductsOnPromotionByUser(
+                userId,
+                new PostFilter(minPrice, maxPrice, minDiscount, category)
+                )
+        );
     }
 }

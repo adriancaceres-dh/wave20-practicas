@@ -9,6 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.User;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.pojo.PostFilter;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IProductService;
@@ -143,7 +144,9 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public SellerWithProductsOnPromoListResponseDto getProductsOnPromotionByUser(int id) {
+    public SellerWithProductsOnPromoListResponseDto getProductsOnPromotionByUser(
+            int id,
+            PostFilter postFilter) {
         User userFound = getUserIfValid(id);
 
         List<PostPromoResponseDto> postsOnPromotionDto = postRepository.getPostOnPromotionByUserId(id)
@@ -154,7 +157,12 @@ public class PostService implements IPostService {
                             post.setPriceWithDiscount(getPriceWithDiscount(p.getPrice(), p.getDiscount()));
                             return post;
                         }
-                ).collect(Collectors.toList());
+                )
+                .filter(postFilter.getMaxPrice() > 0 ? p -> p.getPriceWithDiscount() <= postFilter.getMaxPrice(): p -> true)
+                .filter(postFilter.getMinPrice() > 0 ? p -> p.getPriceWithDiscount() >= postFilter.getMinPrice(): p -> true)
+                .filter(postFilter.getCategory() > 0 ? p -> p.getCategory() == postFilter.getCategory(): p -> true)
+                .filter(postFilter.getMinDiscount() > 0.0 ? p -> p.getDiscount() >= postFilter.getMinDiscount(): p -> true)
+                .collect(Collectors.toList());
 
         return new SellerWithProductsOnPromoListResponseDto(
                 userFound.getId(),
