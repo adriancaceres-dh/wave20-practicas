@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostWithPromoCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 
@@ -13,6 +14,14 @@ public interface IPostService {
      * @return String
      */
     String createPost(PostCreateDto postCreateDto);
+
+    /**
+     * US 0005: Dar de alta una nueva publicación
+     *
+     * @param postWithPromoCreateDto : body request para crear el post con descuento
+     * @return String
+     */
+    String createPost(PostWithPromoCreateDto postWithPromoCreateDto);
 
     /**
      * US 0005: Calcula el id de una nueva publicacion

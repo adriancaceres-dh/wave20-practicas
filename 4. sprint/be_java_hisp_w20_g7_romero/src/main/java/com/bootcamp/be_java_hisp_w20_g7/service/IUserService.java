@@ -11,10 +11,10 @@ public interface IUserService {
     /**
      * US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
      *
-     * @param userId id del usuario
-     * @return UserFollowersCountDto : usuario mas el numero de seguidores
+     * @param userId : id del usuario
+     * @return UserFollowerCountDto : retorna la información del ususario mas el numero de seguidores que tiene
      */
-    UserFollowersCountDto userFollowersCount(int userId);
+    UserFollowersCountDto countFollowers(int userId);
 
     /**
      * US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor
@@ -39,16 +39,10 @@ public interface IUserService {
      * @param userId : id del usuario
      * @return UserPostFollowedDto : retorna una lista de post de los usuarios que sigue el ususario
      */
-    UserPostFollowedDto userPostFollowed(int userId);
+    //UserPostFollowedDto userPostFollowed(int userId);
 
 
-    /**
-     * US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
-     *
-     * @param userId : id del usuario
-     * @return UserFollowerCountDto : retorna la información del ususario mas el numero de seguidores que tiene
-     */
-    UserFollowersCountDto countFollowers(int userId);
+
 
 
 }

@@ -38,10 +38,7 @@ public class UserService implements IUserService {
 
     }
 
-    @Override
-    public UserFollowersCountDto userFollowersCount(int userId) {
-        return null;
-    }
+
 
     @Override
     public UserFollowersDto userFollowers(int userId, String order) {
@@ -85,10 +82,7 @@ public class UserService implements IUserService {
         return new UserFollowedDto(userFollowedDtoList, follower.getUserId(), follower.getUserName());
     }
 
-    @Override
-    public UserPostFollowedDto userPostFollowed(int userId) {
-        return null;
-    }
+
 
     @Override
     public UserFollowersCountDto countFollowers(int userId) {

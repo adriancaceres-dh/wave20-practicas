@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostWithPromoCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -49,6 +50,8 @@ public class PostService implements IPostService {
             throw new PostEmptyException("Post is empty");
         }
         Post post = modelMapper.map(postCreateDto, Post.class);
+        System.out.println(post.isHasPromo());
+        System.out.println(post.getDiscount());
         calculateId(post);
         if (post.getPrice() <= 0) {
             throw new DataIsnotCorrectException("Price incorrect, it should be greater than 0");
@@ -58,6 +61,29 @@ public class PostService implements IPostService {
         } else {
             return "Could no register post";
         }
+
+    }
+
+    public String createPost(PostWithPromoCreateDto postWithPromoCreateDto) {
+
+        User user = iUserRepository.findById(postWithPromoCreateDto.getUserId());
+        if (user == null) throw new UserNotFoundException("User with id " + postWithPromoCreateDto.getUserId() + " not found");
+        if (postWithPromoCreateDto == null) {
+            throw new PostEmptyException("Post is empty");
+        }
+        Post post = modelMapper.map(postWithPromoCreateDto, Post.class);
+        System.out.println(post.isHasPromo());
+        System.out.println(post.getDiscount());
+        calculateId(post);
+        if (post.getPrice() <= 0) {
+            throw new DataIsnotCorrectException("Price incorrect, it should be greater than 0");
+        }
+        if (iPostRepository.save(post)) {
+            return "Post registered successfully";
+        } else {
+            return "Could no register post";
+        }
+
     }
 
     public void calculateId(Post post) {

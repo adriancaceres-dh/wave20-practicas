@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g7.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostWithPromoCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
@@ -77,6 +78,14 @@ public class Controller {
             @RequestParam(required = false) String order) {
 
         return new ResponseEntity<>(postService.postUsersFollowed(userId, order), HttpStatus.OK);
+
+    }
+
+    @PostMapping("/products/promo-post")
+    public ResponseEntity<String> createPostWithDiscount(
+            @RequestBody PostWithPromoCreateDto postWithPromoCreateDto){
+
+        return new ResponseEntity<>(postService.createPost(postWithPromoCreateDto),HttpStatus.OK);
 
     }
 
