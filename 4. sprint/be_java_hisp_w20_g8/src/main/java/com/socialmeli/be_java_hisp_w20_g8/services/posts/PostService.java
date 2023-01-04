@@ -106,12 +106,11 @@ public class PostService implements IPostService {
                                .collect(Collectors.toList()))
                        .build();
            case "date_desc":
+            default:
                return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller.stream()
                                .sorted((a,b)->b.getDate().compareTo(a.getDate()))
                                .collect(Collectors.toList()))
                        .build();
-           default:
-               return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller).build();
 
         }
 
