@@ -14,7 +14,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IPostService;
@@ -48,7 +47,7 @@ public class PostServiceImpl implements IPostService {
         PostModel postModel = mapper.map(postRequestDto, PostModel.class);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         postModel.setDate(LocalDate.parse(postRequestDto.getDate(),formatter));
-        postModel.setId(postRepository.idGenerator());
+        postModel.setPost_id(postRepository.idGenerator());
         postRepository.save(postModel);
         return true;
     }
@@ -63,7 +62,7 @@ public class PostServiceImpl implements IPostService {
                     .filter(p->p.getUser_id()==id)
                     .filter(p-> DAYS.between(p.getDate(),dateNow)<=15)
                     .forEach(p->followedPost.add(
-                            new PostResponseDTO(p.getUser_id(),p.getId(),p.getDate()
+                            new PostResponseDTO(p.getUser_id(),p.getPost_id(),p.getDate()
                                     ,p.getProduct(),p.getCategory(),p.getPrice())
                     ));
         }
@@ -97,6 +96,7 @@ public class PostServiceImpl implements IPostService {
         List<PromoPostResponseDto> posts = postRepository.getPostList()
                 .stream()
                 .filter(p -> p.getUser_id() == user_id)
+                .filter(PostModel::isHas_promo)
                 .map(p -> mapper.map(p, PromoPostResponseDto.class))
                 .collect(Collectors.toList());
 

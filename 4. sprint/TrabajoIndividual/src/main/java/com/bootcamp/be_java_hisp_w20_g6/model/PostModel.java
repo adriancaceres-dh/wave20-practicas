@@ -9,13 +9,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostModel {
-    private int id;
+    private int post_id;
     private int user_id;
     private LocalDate date;
     private int category;
     private ProductModel product;
     private double price;
     private boolean has_promo;
-    private double disccount;
+    private double discount;
 
 }

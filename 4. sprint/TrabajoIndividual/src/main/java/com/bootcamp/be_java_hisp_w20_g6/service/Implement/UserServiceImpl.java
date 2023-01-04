@@ -27,8 +27,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean followUser( int user_id,int userToFollow_id) {
         try{
-            UserModel userToFollow = userRepository.getUserById(userToFollow_id);
-            UserModel user = userRepository.getUserById(user_id);
+            UserModel userToFollow = getUserById(userToFollow_id);
+            UserModel user = getUserById(user_id);
 
             ArrayList<Integer> userFollowedList = user.getFollowed();
             if(!userFollowedList.contains(userToFollow_id)){
@@ -52,7 +52,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public FollowersCountResponseDto getFollowersCount(int id) {
         try{
-            UserModel user = userRepository.getUserById(id);
+            UserModel user = getUserById(id);
             return new FollowersCountResponseDto(id, user.getUser_name(), user.getFollowers().size());
 
         }catch(NullPointerException e){
@@ -63,7 +63,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public FollowersListResponseDto getFollowersList(int id, String order) {
         try{
-            UserModel user = userRepository.getUserById(id);
+            UserModel user = getUserById(id);
             List<UserResponseDto> followers = getUserResponseDtos(user.getFollowers());
             if(order == null)   return new FollowersListResponseDto(id, user.getUser_name(), followers);
             return new FollowersListResponseDto(id, user.getUser_name(), orderReturnValues(followers, order));
@@ -75,7 +75,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public FollowedListResponseDto getFollowedList(int id, String order) {
         try{
-            UserModel user = userRepository.getUserById(id);
+            UserModel user = getUserById(id);
             List<UserResponseDto> followers = getUserResponseDtos(user.getFollowed());
             if(order == null)   return new FollowedListResponseDto(id, user.getUser_name(), followers);
             return new FollowedListResponseDto(id, user.getUser_name(), orderReturnValues(followers, order));
@@ -87,27 +87,23 @@ public class UserServiceImpl implements IUserService {
     private List<UserResponseDto> getUserResponseDtos(List<Integer> userList) {
         List<UserResponseDto> followers = userList
                 .stream()
-                .map(u -> new UserResponseDto(u , userRepository.getUserById(u).getUser_name())).collect(Collectors.toList());
+                .map(u -> new UserResponseDto(u , getUserById(u).getUser_name())).collect(Collectors.toList());
         return followers;
     }
 
     @Override
     public boolean unFollowUser(int user_id, int userToUnfollow_id) {
-        try{
-            UserModel userToUnfollow = userRepository.getUserById(userToUnfollow_id);
-            UserModel user = userRepository.getUserById(user_id);
+        UserModel userToUnfollow = getUserById(userToUnfollow_id);
+        UserModel user = getUserById(user_id);
 
-            ArrayList<Integer> fanFollowedList = user.getFollowed();
-            int followIndex = fanFollowedList.indexOf(userToUnfollow_id);
-            if(followIndex >= 0){
-                user.getFollowed().remove(followIndex);
-                userToUnfollow.getFollowers().remove((Integer) user_id);
-                return true;
-            }else{
-                throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
-            }
-        }catch(NullPointerException e){
-            throw new UserExistsException("Usuario no existe.");
+        ArrayList<Integer> fanFollowedList = user.getFollowed();
+        int followIndex = fanFollowedList.indexOf(userToUnfollow_id);
+        if(followIndex >= 0){
+            user.getFollowed().remove(followIndex);
+            userToUnfollow.getFollowers().remove((Integer) user_id);
+            return true;
+        }else{
+            throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
         }
     }
 
