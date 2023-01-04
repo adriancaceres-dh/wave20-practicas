@@ -22,9 +22,8 @@ public class Publication {
     private double discount;
     private Product product;
     private Category category;
-
     private int user_id;
-    private int contador = 3;
+    private static int contador = 0;
 
     public Publication(LocalDate date, double price, Product product, Category category, int user_id) {
         this.user_id = user_id;
