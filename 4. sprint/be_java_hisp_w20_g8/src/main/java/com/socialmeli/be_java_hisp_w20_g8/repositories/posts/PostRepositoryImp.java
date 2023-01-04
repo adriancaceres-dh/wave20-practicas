@@ -45,20 +45,20 @@ public class PostRepositoryImp implements IPostRepository {
     public Map<Integer, PostDTO> loadPost(){
         posts.add(new Post(1, 5, LocalDate.of(2022, 12, 29), 1, 2, 2000));
         posts.add(new Post(2, 5, LocalDate.of(2022, 12, 28), 2, 2, 2000));
-        posts.add(new Post(3, 7, LocalDate.of(2022, 12, 29), 3, 2, 2000));
-        posts.add(new Post(4, 6, LocalDate.of(2022, 12, 27), 4, 2, 2000));
+        posts.add(new Post(3, 7, LocalDate.of(2022, 11, 29), 3, 2, 2000));
+        posts.add(new Post(4, 6, LocalDate.of(2022, 11, 27), 4, 2, 2000));
 
         mapPosts.put(1, PostDTO.builder().post_id(1).user_id(5).date(LocalDate.of(2022, 12, 29)).product(
-                ProductDTO.builder().product_id(1).product_name("Televisor").type("Tecnologia").brand("Samsung").color("Negro").notes("TV 58 pulgadas").build()
+                ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()
         ).category(2).price(2000).build());
         mapPosts.put(2, PostDTO.builder().post_id(2).user_id(5).date(LocalDate.of(2022, 12, 28)).product(
-                ProductDTO.builder().product_id(1).product_name("Nevera").type("Tecnologia").brand("Samsung").color("Negro").notes("nevera").build()
+                ProductDTO.builder().product_id(1).product_name("Freezer").type("Technology").brand("Samsung").color("Black").notes("Freezer").build()
         ).category(2).price(2000).build());
         mapPosts.put(3, PostDTO.builder().post_id(3).user_id(7).date(LocalDate.of(2022, 11, 29)).product(
-                ProductDTO.builder().product_id(1).product_name("Licuadora").type("Tecnologia").brand("Samsung").color("Negro").notes("9 litros").build()
+                ProductDTO.builder().product_id(1).product_name("Blender").type("Technology").brand("Samsung").color("Black").notes("9 liters").build()
         ).category(2).price(2000).build());
         mapPosts.put(4, PostDTO.builder().post_id(4).user_id(6).date(LocalDate.of(2022, 11, 27)).product(
-                ProductDTO.builder().product_id(1).product_name("Camisetas").type("Ropa").brand("Woft").color("Negro").notes("tela fria").build()
+                ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
         ).category(2).price(2000).build());
 
        return mapPosts;

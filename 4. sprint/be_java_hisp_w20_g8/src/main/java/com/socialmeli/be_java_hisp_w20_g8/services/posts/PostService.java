@@ -89,18 +89,19 @@ public class PostService implements IPostService {
 
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
-       List<PostDTO> listPostSeller = new ArrayList<>();
-       sellers.forEach(seller -> {
+        List<PostDTO> listPostSeller = new ArrayList<>();
+        System.out.println(sellers);
+        sellers.forEach(seller -> {
            if (seller == null)
-               throw new DoesntExistSellerException("The seller doesn't follow any sellers");
+               throw new DoesntExistSellerException("The user doesn't follow any sellers");
            postRepository.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x));
-           });
+        });
 
-       String orderType = order==null ? "" : order;
+        String orderType = order==null ? "" : order;
         if (!Validators.checkValidatorOptionDate(orderType)) {
             throw new InvalidArgumentException("Invalid sorting option");
         }
-       switch(orderType){
+        switch(orderType){
            case "date_asc":
                return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller.stream()
                                .sorted((a,b)->a.getDate().compareTo(b.getDate()))
@@ -114,7 +115,7 @@ public class PostService implements IPostService {
            default:
                return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller).build();
 
-       }
+        }
 
     }
 }
