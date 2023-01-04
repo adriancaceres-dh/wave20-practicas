@@ -169,15 +169,16 @@ _**Filtros/Parámetros:**_
 
 Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) y [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)_
 
+-------
 #### US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
 
 _**Sign:**_
 
-|     Method     | SIGN                                                                |
-|:--------------:|---------------------------------------------------------------------|
-|    **GET**     | /users/{userId}/followers/count                                     |
-|                | Ejemplo: /users/234/followers/count/                                |
-|  **Response**  | {<br/> "user_id": 234, <br/>"user_name": "vendedor1", <br/>"followers_count": 35 <br/>} |
+|     Method     | SIGN                                                                                              |
+|:--------------:|---------------------------------------------------------------------------------------------------|
+|    **GET**     | /users/{userId}/followers/count                                                                   |
+|                | Ejemplo: /users/234/followers/count/                                                              |
+|  **Response**  | <pre>{<br/>  "user_id": 234, <br/>  "user_name": "vendedor1", <br/>  "followers_count": 35 <br/>} |
 
 
 _**Filtros/Parámetros:**_
@@ -188,15 +189,16 @@ _**Filtros/Parámetros:**_
 
 Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) y [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)_
 
+-------
 #### US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
 
 _**Sign:**_
 
-|     Method     | SIGN                                                                                                                                                                                                                                                                         |
-|:--------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|    **GET**     | /users/{userId}/followers/list                                                                                                                                                                                                                                               |
-|                | Ejemplo: /users/234/followers/list                                                                                                                                                                                                                                           |
-|  **Response**  | {<br/> "user_id": 234,<br/>"user_name": "vendedor1",<br/>"followers": [<br/>{<br/>"user_id": 4698,<br/>"user_name": "usuario1"<br/>},<br/>{<br/>"user_id": 1536,<br/>"user_name": "usuario2"<br/>},<br/>{<br/>"user_id": 2236,<br/>"user_name": "usuario3"<br/>}<br/>]<br/>} |
+|     Method     | SIGN                                                                                                                                                                                                                                                                                                                       |
+|:--------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    **GET**     | /users/{userId}/followers/list                                                                                                                                                                                                                                                                                             |
+|                | Ejemplo: /users/234/followers/list                                                                                                                                                                                                                                                                                         |
+|  **Response**  | <pre>{<br/>  "user_id": 234,<br/>  "user_name": "vendedor1",<br/>  "followers":[<br/>  {<br/>    "user_id": 4698,<br/>    "user_name": "usuario1"<br/>  },<br/>  {<br/>    "user_id": 1536,<br/>    "user_name": "usuario2"<br/>  },<br/>  {<br/>    "user_id": 2236,<br/>    "user_name": "usuario3"<br/>  }<br/> ]<br/>} |
 
 
 _**Filtros/Parámetros:**_
@@ -207,29 +209,138 @@ _**Filtros/Parámetros:**_
 
 Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli) y [Alejandra Espindola](https://github.com/ale-espindola)_
 
+-------
 #### US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
+
+_**Sign:**_
+
+|     Method     | SIGN                                                                                                                                                                                                                                                                                                                        |
+|:--------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    **GET**     | /users/{userId}/followed/list                                                                                                                                                                                                                                                                                               |
+|                | Ejemplo: /users/4698/followed/list                                                                                                                                                                                                                                                                                          | 
+|  **Response**  | <pre>{<br/>  "user_id": 4698,<br/>  "user_name": "usuario1",<br/>  "followed":[<br/>  {<br/>    "user_id": 234,<br/>    "user_name": "vendedor1"<br/>  },<br/>  {<br/>    "user_id": 6932,<br/>    "user_name": "vendedor2"<br/>  },<br/>  {<br/>    "user_id": 6631,<br/>    "user_name": "vendedor3"<br/>  }<br/> ]<br/>} |
+
+
+_**Filtros/Parámetros:**_
+
+| Parámetros |                       Tipo                       | Descripción/Ejemplo                  |
+|------------|:------------------------------------------------:|--------------------------------------|
+| **userId** |                       int                        | Número que identifica a cada usuario | 
 
 Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli) y [Alejandra Espindola](https://github.com/ale-espindola)_
 
+-------
 #### US 0005: Dar de alta una nueva publicación
 
+_**Sign:**_
+
+|    Method    | SIGN                                                                                                                                                                                                                                                                                                                                |
+|:------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   **POST**   | products/post                                                                                                                                                                                                                                                                                                                       | 
+| **PAYLOAD**  | <pre>{<br/>  "user_id": 123,<br/>  "date": "29-04-2021",<br/>  "product":{<br/>     "product_id": 1,<br/>     "product_name": "Silla Gamer",<br/>     "type": "Gamer",<br/>     "brand": "Racer",<br/>     "color": "Red & Black",<br/>     "notes": "Special Edition"<br/>  },<br/>  "category": 100,<br/>  "price": 1500.50<br/>} |
+| **RESPONSE** | Status Code 200 (todo OK)                                                                                                                                                                                                                                                                                                           |
+|              | Status Code 400 (Bad Request)                                                                                                                                                                                                                                                                                                       |
+
+_**Filtros/Parámetros:**_
+
+| Parámetros       |   Tipo   | Descripción/Ejemplo                                                                                                      |
+|------------------|:--------:|--------------------------------------------------------------------------------------------------------------------------|
+| **userId**       |   int    | Número que identifica a cada usuario                                                                                     | 
+| **date**         | Localate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **product_id**   |   int    | Número identificatorio de un producto asociado a una publicación                                                         |
+| **product_name** |  String  | Cadena de caracteres que representa el nombre de un producto                                                             |
+| **type**         |  String  | Cadena de caracteres que representa el tipo de un producto                                                               |
+| **brand**        |  String  | Cadena de caracteres que representa la marca de un producto                                                              |
+| **color**        |  String  | Cadena de caracteres que representa el color de un producto                                                              |
+| **notes**        |  String  | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| **category**     |   int    | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**        |  double  | Precio del producto                                                                                                      |
+
 Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml) y [Emanuel Fonseca](https://github.com/Emanoide47)_
 
+-------
 #### US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
 
+_**Sign:**_
+
+|     Method     | SIGN                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|:--------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    **GET**     | /products/followed/{userId}/list                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|                | Ejemplo: /products/followed/4698/list                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
+|  **Response**  | <pre>{<br/>  "user_id": 4698,<br/>  "posts":[<br/>  {<br/>    “user_id”: 123,<br/>    "post_id": 32,<br/>    "date": "01-05-2021",<br/>    "product":{<br/>        "product_id": 62,<br/>        "product_name": "Headset RGB Inalámbrico",<br/>        "type": "Gamer",<br/>        "brand": "Razer",<br/>        "color": "Green with RGB",<br/>        "notes": "Sin Batería"<br/>    },<br/>    "category": 120,<br/>    "price": 2800.69<br/>  },<br/>  {<br/>    “user_id”: 234,<br/>    "post_id": 18,<br/>    "date": "29-04-2021",<br/>    "product":{<br/>        "product_id": 1,<br/>        "productName": "Silla Gamer",<br/>        "type": "Gamer",<br/>        "brand": "Racer",<br/>        "color": "Red & Black",<br/>        "notes": "Special Edition"<br/>   },<br/>   "category": 100,<br/>   "price": 15000.50 <br/>   }<br/>  ]<br/>} |
+
+_**Filtros/Parámetros:**_
+
+| Parámetros |                       Tipo                       | Descripción/Ejemplo                  |
+|------------|:------------------------------------------------:|--------------------------------------|
+| **userId** |                       int                        | Número que identifica a cada usuario | 
+
 Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml) y [Emanuel Fonseca](https://github.com/Emanoide47)_
 
+-------
 #### US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
+
+_**Sign:**_
+
+|  Method  | SIGN                                        |
+|:--------:|---------------------------------------------|
+| **POST** | /users/{userId}/unfollow/{userIdToUnfollow} |
+|          | Ejemplo:  /users/234/unfollow/123           |
+
+_**Filtros/Parámetros:**_
+
+| Parámetros           | Tipo | Descripción/Ejemplo                                |
+|----------------------|:----:|----------------------------------------------------|
+| **userId**           | int  | Número que identifica al usuario actual            |
+| **userIdToUnfollow** | int  | Número que identifica al usuario a dejar de seguir |
 
 Fue desarrollado por: _[Federico Javier Veron](https://github.com/fedeveron) y [Lorenzo Pedro Podio](https://github.com/lpodio)_
 
+-------
 #### US 0008: Ordenamiento alfabético ascendente y descendente
+
+_**Sign:**_
+
+| Method  | SIGN                                           |
+|:-------:|------------------------------------------------|
+| **GET** | Ejemplos:                                      |
+|         | /users/{UserID}/followers/list?order=name_asc  |
+|         | /users/{UserID}/followers/list?order=name_desc |
+|         | /users/{UserID}/followed/list?order=name_asc   |
+|         | /users/{UserID}/followed/list?order=name_desc  |
+
+_**Filtros/Parámetros:**_
+
+| order         | Descripción/Ejemplo     |
+|---------------|-------------------------|
+| **name_asc**  | Alfabético ascendente.  |
+| **name_desc** | Alfabético descendente. |
+
+***Nota**: Este ordenamiento aplica solo para US-003 y US-004.
 
 Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
 [Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
+-------
 #### US 0009: Ordenamiento por fecha ascendente y descendente
+
+_**Sign:**_
+
+| Method  | SIGN                                               |
+|:-------:|----------------------------------------------------|
+| **GET** | Ejemplos:                                          |
+|         | /products/followed/{userId}/list?order=date_asc    |
+|         | /products/followed/{userId}/list?order=date_desc   |
+
+_**Filtros/Parámetros:**_
+
+| order         | Descripción/Ejemplo                             |
+|---------------|-------------------------------------------------|
+| **date_asc**  | Fecha ascendente (de más antigua a más nueva)   |
+| **date_desc** | Fecha descendente (de más nueva a más antigua)  |
+
+***Nota**: Este ordenamiento aplica solo para US-003 y US-004.
 
 Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
 [Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
