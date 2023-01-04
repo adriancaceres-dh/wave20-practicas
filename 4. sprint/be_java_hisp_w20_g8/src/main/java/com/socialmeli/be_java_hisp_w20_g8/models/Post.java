@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Post {
     private int id;
+    private int userId;
     private LocalDate date;
     private int productId;
     private int categoryId;
@@ -26,6 +27,14 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public LocalDate getDate() {
