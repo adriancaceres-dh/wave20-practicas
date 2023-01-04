@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPromoPostCountDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPromoPostListDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.Post;
 
 public interface IPostService {
@@ -47,4 +48,12 @@ public interface IPostService {
      * @return la canctidad de post con promoción del usuario
      */
     UserPromoPostCountDto countPromoPost(int userId);
+
+    /**
+     * US 00012: Obtener el listado de post con promoción de un usuario
+     *
+     * @param userId id del usuario
+     * @return lista de post con promoción del usuario
+     */
+    UserPromoPostListDto getPostPromoList(int userId);
 }

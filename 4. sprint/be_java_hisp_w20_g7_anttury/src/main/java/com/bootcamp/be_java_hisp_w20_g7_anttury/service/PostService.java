@@ -1,10 +1,13 @@
 package com.bootcamp.be_java_hisp_w20_g7_anttury.service;
 
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.PostDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.PostPromoDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.UserDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPromoPostCountDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPromoPostListDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.Post;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.User;
@@ -113,9 +116,20 @@ public class PostService implements IPostService {
         User user = iUserRepository.findById(userId);
         if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
 
-        int countPromoPost = (int) iPostRepository.findAll().stream().filter(u -> u.getUserId() == userId).filter(p -> p.isHasPromo()).count();
+        int countPromoPost = (int) iPostRepository.findAll().stream().filter(p -> p.getUserId() == userId && p.isHasPromo()).count();
 
         return new UserPromoPostCountDto(user.getUserId(), user.getUserName(), countPromoPost);
+    }
+
+    public UserPromoPostListDto getPostPromoList(int userId) {
+
+        User user = iUserRepository.findById(userId);
+        if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
+
+        List<Post> postList = iPostRepository.findAll().stream().filter(p -> p.getUserId() == userId && p.isHasPromo()).collect(Collectors.toList());
+        List<PostPromoDto> postPromoDtoList = postList.stream().map(p -> modelMapper.map(p, PostPromoDto.class)).collect(Collectors.toList());
+
+        return new UserPromoPostListDto(user.getUserId(), user.getUserName(), postPromoDtoList);
     }
 
 }

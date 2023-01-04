@@ -24,9 +24,7 @@ public class Controller {
     IFollowService followService;
 
     @GetMapping("/users/{userId}/followers/list")
-    public ResponseEntity<UserFollowersDto> findAllFollowers(
-            @PathVariable int userId, @RequestParam(required = false) String order
-    ) {
+    public ResponseEntity<UserFollowersDto> findAllFollowers(@PathVariable int userId, @RequestParam(required = false) String order) {
         if (order == null) {
             UserFollowersDto userFollowersDto = iUserService.userFollowers(userId, "");
             return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
@@ -70,12 +68,8 @@ public class Controller {
     }
 
     @GetMapping("/products/followed/{userId}/list")
-    public ResponseEntity<UserPostFollowedDto> postUsersFollowed(
-            @PathVariable int userId,
-            @RequestParam(required = false) String order) {
-
+    public ResponseEntity<UserPostFollowedDto> postUsersFollowed(@PathVariable int userId, @RequestParam(required = false) String order) {
         return new ResponseEntity<>(postService.postUsersFollowed(userId, order), HttpStatus.OK);
-
     }
 
     @PostMapping("/products/promo-post")
@@ -89,8 +83,8 @@ public class Controller {
     }
 
     @GetMapping("/products/promo-post/list")
-    public ResponseEntity<?> listPromoPost(@RequestParam(name = "user_id") int userId) {
-        return null;
+    public ResponseEntity<?> getPromoPostList(@RequestParam(name = "user_id") int userId) {
+        return new ResponseEntity<>(postService.getPostPromoList(userId), HttpStatus.OK);
     }
 
     //ser menos desscriptivos en los errores
