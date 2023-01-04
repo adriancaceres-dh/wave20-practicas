@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.*;
+import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,8 +72,10 @@ public class PostServiceImpl implements IPostService {
 
         if(orderBy != null && orderBy.equals("date_asc")) {
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate));
-        }else{
+        }else if(orderBy == null || orderBy.equals("date_desc")){
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate).reversed());
+        }else{
+            throw new InvalidParamException("Argumento invalido");
         }
         
         return new PostListResponseDTO(user_id,followedPost );

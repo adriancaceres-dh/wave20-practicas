@@ -1,10 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Implement;
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.*;
-import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerExistsException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerNotFoundException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6.exception.*;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
@@ -25,21 +22,17 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public boolean followUser( int idFollower,int idFollowed) {
-        try{
-            UserModel followed = userRepository.getUserById(idFollowed);
-            UserModel follower = userRepository.getUserById(idFollower);
+    public boolean followUser( int userId,int userToFollowId) {
+        UserModel userToFollow = getUserById(userToFollowId);
+        UserModel user = getUserById(userId);
 
-            ArrayList<Integer> fanFollowedList = follower.getFollowed();
-            if(!fanFollowedList.contains(idFollowed)){
-                fanFollowedList.add(idFollowed);
-                followed.getFollowers().add(idFollower);
-                return true;
-            }else{
-                throw new FollowerExistsException("Usuario ya esta siguiendo al vendedor.");
-            }
-        }catch(NullPointerException e){
-            throw new UserNotFoundException("Usuario no existe.");
+        ArrayList<Integer> userFollowedList = user.getFollowed();
+        if (!userFollowedList.contains(userToFollowId)) {
+            user.getFollowed().add(userToFollowId);
+            userToFollow.getFollowers().add(userId);
+            return true;
+        } else {
+            throw new FollowerExistsException("Usuario ya esta siguiendo al vendedor.");
         }
     }
 
@@ -62,14 +55,11 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public FollowersListResponseDto getFollowersList(int id, String order) {
-        try{
-            UserModel user = userRepository.getUserById(id);
-            List<UserResponseDto> followers = getUserResponseDtos(user.getFollowers());
-            if(order == null)   return new FollowersListResponseDto(id, user.getUser_name(), followers);
-            return new FollowersListResponseDto(id, user.getUser_name(), orderReturnValues(followers, order));
-        }catch(NullPointerException e){
-            throw new UserNotFoundException("Usuario no existe.");
-        }
+        UserModel user = getUserById(id);
+        List<UserResponseDto> followers = getUserResponseDtos(user.getFollowers());
+        if (order == null)
+            return new FollowersListResponseDto(id, user.getUser_name(), followers);
+        return new FollowersListResponseDto(id, user.getUser_name(), orderReturnValues(followers, order));
     }
 
     @Override
@@ -92,22 +82,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean unFollowUser(int idFollower, int idFollowed) {
-        try{
-            UserModel unFollowed = userRepository.getUserById(idFollowed);
-            UserModel unFollower = userRepository.getUserById(idFollower);
+    public boolean unFollowUser(int userId, int userToUnfollowId) {
+        UserModel userToUnfollow = getUserById(userToUnfollowId);
+        UserModel user = getUserById(userId);
 
-            ArrayList<Integer> fanFollowedList = unFollower.getFollowed();
-            int followIndex = fanFollowedList.indexOf(idFollowed);
-            if(followIndex >= 0){
-                fanFollowedList.remove(followIndex);
-                unFollowed.getFollowers().remove((Integer) idFollower);
-                return true;
-            }else{
-                throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
-            }
-        }catch(NullPointerException e){
-            throw new UserNotFoundException("Usuario no existe.");
+        ArrayList<Integer> fanFollowedList = user.getFollowed();
+        int followIndex = fanFollowedList.indexOf(userToUnfollowId);
+        if (followIndex >= 0) {
+            user.getFollowed().remove(followIndex);
+            userToUnfollow.getFollowers().remove((Integer) userId);
+            return true;
+        } else {
+            throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
         }
     }
 
@@ -121,6 +107,8 @@ public class UserServiceImpl implements IUserService {
             case "name_desc":
                 listToOrder.sort(Comparator.comparing(UserResponseDto::getUser_name).reversed());
                 break;
+            default:
+                throw new InvalidParamException("Argumento invalido");
 
         }
         return listToOrder;
