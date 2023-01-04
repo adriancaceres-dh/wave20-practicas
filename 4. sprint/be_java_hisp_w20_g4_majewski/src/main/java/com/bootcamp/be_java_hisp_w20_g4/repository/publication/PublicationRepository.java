@@ -75,7 +75,7 @@ public class PublicationRepository implements IPublicationRepository {
     }
 
     @Override
-    public List<Publication> getPublicationsWithPromo(){
+    public List<Publication> getPublicationsPromo(){
         return publications.stream().filter(p -> p.isHasPromo()).collect(Collectors.toList());
     }
 
