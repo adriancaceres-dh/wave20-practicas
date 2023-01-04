@@ -101,14 +101,7 @@ public class PostService implements IPostService {
         if (!userService.alreadyExists(postDto.getUserId())) {
             throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
         }
-
-        if (productService.alreadyExist(postDto.getProduct().getProductId())) {
-            Product oldProduct = productService.getProductById(postDto.getProduct().getProductId());
-            Product currentProduct = mapper.map(postDto.getProduct(), Product.class);
-            if (!oldProduct.equals(currentProduct)) {
-                throw new BadRequestException(Parameter.getString("EX_WrongProductValues"));
-            }
-        }
+        validateProductsAreExactlyEqualOrEnd(postDto);
 
         ProductRequestDto productRequestDto = postDto.getProduct();
         productService.add((productRequestDto));
@@ -121,6 +114,16 @@ public class PostService implements IPostService {
         postPromoResponseDto.setPriceWithDiscount(getPriceWithDiscount(newPost.getPrice(), newPost.getDiscount()));
 
         return postPromoResponseDto;
+    }
+
+    private void validateProductsAreExactlyEqualOrEnd(PostPromoRequestDto postDto) {
+        if (productService.alreadyExist(postDto.getProduct().getProductId())) {
+            Product oldProduct = productService.getProductById(postDto.getProduct().getProductId());
+            Product currentProduct = mapper.map(postDto.getProduct(), Product.class);
+            if (!oldProduct.equals(currentProduct)) {
+                throw new BadRequestException(Parameter.getString("EX_WrongProductValues"));
+            }
+        }
     }
 
     @Override
