@@ -1,4 +1,4 @@
 package com.bootcamp.deportistas.dto;
 
-public class DeportistasDto {
+public class DeportistasDTO {
 }
