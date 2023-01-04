@@ -12,24 +12,24 @@ public class Post {
     private Integer id;
     private LocalDate date;
     private Product product;
-    private PostCategory postCategory;
+    private Category category;
     private double price;
     private boolean hasPromo;
     private double discount;
 
-    public Post(LocalDate date, Product product, PostCategory postCategory, double price) {
+    public Post(LocalDate date, Product product, Category category, double price) {
         this.date = date;
         this.product = product;
-        this.postCategory = postCategory;
+        this.category = category;
         this.price = price;
         hasPromo = false;
         discount = 0;
     }
 
-    public Post(LocalDate date, Product product, PostCategory postCategory, double price, boolean hasPromo, double discount) {
+    public Post(LocalDate date, Product product, Category category, double price, boolean hasPromo, double discount) {
         this.date = date;
         this.product = product;
-        this.postCategory = postCategory;
+        this.category = category;
         this.price = price;
         this.hasPromo = hasPromo;
         this.discount = discount;

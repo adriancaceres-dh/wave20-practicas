@@ -16,18 +16,20 @@ public class PostController {
     @Autowired
     private IPostService postService;
 
+    // US-0005
     @PostMapping(path = "/post")
     @ResponseStatus(HttpStatus.OK)
-    public void addNewPost(@RequestBody PostDTO newPost) {
-        // Validar que las fechas esten correctas al ingresar. ¿Qué pasa si se le poné algo mal desde el comienzo?
+    public void addNewProduct(@RequestBody PostDTO newPost) {
         postService.createPost(newPost);
     }
 
-    @GetMapping("/followed/{userId}/list")
+    // US-0006 - US-0009
+    @GetMapping("followed/{userId}/list")
     public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
         return postService.sendLastPostOfFollowed(userId, order);
     }
 
+    // US-0010
     @PostMapping("/promo-post")
     @ResponseStatus(HttpStatus.OK)
     public void addNewPromoPost(@RequestBody PromoPostRequestDTO postRequestDTO) {

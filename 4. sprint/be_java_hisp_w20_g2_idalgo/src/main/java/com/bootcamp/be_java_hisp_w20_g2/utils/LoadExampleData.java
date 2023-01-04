@@ -1,12 +1,12 @@
 package com.bootcamp.be_java_hisp_w20_g2.utils;
 
+import com.bootcamp.be_java_hisp_w20_g2.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
-import com.bootcamp.be_java_hisp_w20_g2.model.PostCategory;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.custom.CategoryRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.custom.PostRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.custom.UserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.CategoryRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.PostRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +38,10 @@ public class LoadExampleData {
     }
 
     private void initializeCategories() {
-        categoryRepository.save(new PostCategory(13, "Armas"));
-        categoryRepository.save(new PostCategory(12, "Pelotas"));
-        categoryRepository.save(new PostCategory(125, "Manzanas"));
-        categoryRepository.save(new PostCategory(200, "Teteras"));
+        categoryRepository.save(new Category(13, "Armas"));
+        categoryRepository.save(new Category(12, "Pelotas"));
+        categoryRepository.save(new Category(125, "Manzanas"));
+        categoryRepository.save(new Category(200, "Teteras"));
     }
 
     private void initializePostsAndProducts() {

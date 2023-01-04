@@ -4,10 +4,10 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.request.PromoPostRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.PostCreationException;
+import com.bootcamp.be_java_hisp_w20_g2.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
-import com.bootcamp.be_java_hisp_w20_g2.model.PostCategory;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
-import com.bootcamp.be_java_hisp_w20_g2.repository.custom.CategoryRepository;
+import com.bootcamp.be_java_hisp_w20_g2.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class PostMapper {
     public Post toPost(PostDTO postDTO) {
         Product product = productMapper.toProduct(postDTO.getProduct());
 
-        PostCategory postCategory = getPostCategoryByCodeOrThrow(postDTO.getCategory());
+        Category postCategory = getPostCategoryByCodeOrThrow(postDTO.getCategory());
 
         return new Post(postDTO.getDate(), product, postCategory, postDTO.getPrice());
     }
@@ -29,7 +29,7 @@ public class PostMapper {
     public Post toPost(PromoPostRequestDTO postDTO) {
         Product product = productMapper.toProduct(postDTO.getProduct());
 
-        PostCategory postCategory = getPostCategoryByCodeOrThrow(postDTO.getCategory());
+        Category postCategory = getPostCategoryByCodeOrThrow(postDTO.getCategory());
 
         return new Post(postDTO.getDate(),
                 product,
@@ -43,7 +43,7 @@ public class PostMapper {
         return new PostDTO(userId,
                 post.getDate(),
                 productMapper.toDTO(post.getProduct()),
-                post.getPostCategory().getCode(),
+                post.getCategory().getCode(),
                 post.getPrice());
     }
 
@@ -51,12 +51,12 @@ public class PostMapper {
         return new PostWithIdDTO(userId,
                 post.getDate(),
                 productMapper.toDTO(post.getProduct()),
-                post.getPostCategory().getCode(),
+                post.getCategory().getCode(),
                 post.getPrice(),
                 post.getId());
     }
 
-    private PostCategory getPostCategoryByCodeOrThrow(int code) {
+    private Category getPostCategoryByCodeOrThrow(int code) {
         return categoryRepository.findByCode(code)
                 .orElseThrow(() -> new PostCreationException("Invalid category code"));
     }

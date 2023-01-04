@@ -30,11 +30,10 @@ public class PostService implements IPostService {
     @Autowired
     private PostMapper postMapper;
 
-    /*
-     * Validar que exista el userId. Si está no existe no es posible crearla, ya que no debería crearse un nuevo
-     * usuario desde una nueva publicación.
-     * Validar que exista la categoria. Si está no existe no es posible crearla, ya que no debería crearse una nueva
-     * categoria desde una nueva publicación.
+    /**
+     * Creates a post and saves it in a user posts list.
+     *
+     * @param postRequestDTO has the data for the post to be created.
      */
     @Override
     public void createPost(PostDTO postRequestDTO) {
