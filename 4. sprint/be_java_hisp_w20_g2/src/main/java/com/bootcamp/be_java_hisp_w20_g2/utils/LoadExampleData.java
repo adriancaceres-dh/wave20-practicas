@@ -30,7 +30,7 @@ public class LoadExampleData {
     private final User ale = new User("Ale");
 
 
-    Logger logger = LoggerFactory.getLogger(LoadExampleData.class);
+    private final Logger logger = LoggerFactory.getLogger(LoadExampleData.class);
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadDataToRepositories() {

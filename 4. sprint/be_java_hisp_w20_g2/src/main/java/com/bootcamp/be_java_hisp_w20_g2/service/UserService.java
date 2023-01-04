@@ -39,15 +39,16 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if(order.isPresent()){
-                Comparator<UserResponseDTO> comparator;
-                if(order.get().equals("name_asc")){
-                    comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                }else{
-                    comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
+                if(order.get().equals("name_asc") || order.get().equals("name_desc")) {
+                    Comparator<UserResponseDTO> comparator;
+                    if (order.get().equals("name_asc")) {
+                        comparator = Comparator.comparing(UserResponseDTO::getUserName);
+                    } else {
+                        comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
+                    }
+
+                    followers = followers.stream().sorted(comparator).collect(Collectors.toList());
                 }
-
-                followers = followers.stream().sorted(comparator).collect(Collectors.toList());
-
             }
             return new UserFollowersResponseDTO(userFound.getId(), userFound.getUserName(), followers);
         }
@@ -69,11 +70,11 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if(order.isPresent()){
-                if( order.get().equals("name_asc") || order.get().equals("name_desc")){
+                if(order.get().equals("name_asc") || order.get().equals("name_desc")){
                     Comparator<UserResponseDTO> comparator;
                     if(order.get().equals("name_asc")){
                         comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                    }else{
+                    } else {
                         comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
                     }
                     followed = followed.stream().sorted(comparator).collect(Collectors.toList());
@@ -92,13 +93,10 @@ public class UserService implements IUserService {
     @Override
     public void unfollowUser(int userId, int userIdToUnfollow) {
 
-        //Check if the user to be unfollowed is no the same unfollowing
         if (userId != userIdToUnfollow){
             User user = userRepository.findOne(userId);
             User userToUnfollow = userRepository.findOne(userIdToUnfollow);
 
-            //Check the existance of both users.
-            //If one of them doesn't exist, throws the corresponging exception.
             if (user == null) {
                 throw new BadRequestException("User not found");
             }
@@ -106,27 +104,22 @@ public class UserService implements IUserService {
                 throw new BadRequestException("User to unfollow not found");
             }
 
-            // Aux. Lists.
             List<User> userFollowing = user.getFollowing();
             List<User> userFollowers = userToUnfollow.getFollowers();
 
-            // Check that the lists are not empty. Throws exception if they are.
             if (userFollowing.size() == 0) {
                 throw new BadRequestException("This User don't have followings");
             }
             if (userFollowers.size() == 0) {
                 throw new BadRequestException("This User don't have followings");
             }
-            // If the lists aren't empty and the user follows the userToUnfollow:
-            // it removes the following from user.
-            // it removes the follower from userToUnfollow.
+
             if (!userFollowing.contains(userToUnfollow) && !userFollowers.contains(user)){
                 throw new BadRequestException("Users no longer follow each other");
             }
             user.removeFollowing(userToUnfollow);
             userToUnfollow.removeFollower(user);
 
-            // Updates user and userToUnfollow in userRepository with the new changes.
             userRepository.save(user);
             userRepository.save(userToUnfollow);
         } else {

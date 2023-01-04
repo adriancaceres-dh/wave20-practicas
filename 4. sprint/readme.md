@@ -1,12 +1,29 @@
-# ❗️📜 Bootcamp backend Java Sprint N°1 - Spring 📜❗️
+# ❗️📜 Bootcamp backend Java Sprint N°1 - Spring ❗️📜
 ______
+## 🔍🧮 Índice 🧮🔍
+1. _**[Objetivo](#-objetivo-)**_
+2. _**[Putas para la actividad](#-pautas-para-la-actividad-)**_
+3. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)**_
+4. _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)**_
+5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
+6. _**[Bitácora](#-bitácora-)**_
+   1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
+   2. _**[Repository](#-repository-)**_
+   3. _**[Model](#-model-)**_
+   4. _**[DTO](#-dto-)**_
+   5. _**[Service](#-service-)**_
+   6. _**[Controller](#-controller-)**_
+   7. _**[Exception y config](#-exception-y-config-)**_
+7. _**[Endpoints](#-endpoints-)**_
+8. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
+9. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
 
 ## 📌 Objetivo 📌
 El objetivo de este sprint es aplicar los contenidos dados hasta el momento durante el BOOTCAMP MeLi (Git, Java y Spring), 
 con la finalidad de poder implementar una API REST a partir de un enunciado propuesto, una especificación de requisitos y 
 documentación anexada.
 
-## 🛠 Putas para la actividad 🛠
+## 🛠 Pautas para la actividad 🛠
 A. **Desarrollar una API para un escenario determinado de manera grupal**. En el punto A de la siguiente sección se 
 encuentra una descripción detallada del escenario y cada uno de los requerimientos solicitados. La idea es que puedan trabajar 
 en equipo, haciendo la correspondiente división de tareas para lograr la resolución en conjunto del escenario correspondiente.
@@ -148,7 +165,7 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 
 # 📌 _Endpoints_ 📌
 ____
-#### US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
+#### US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor 
 
 _**Sign:**_
 
@@ -361,12 +378,12 @@ ____
 
 ## 💻 Tecnologías utilizadas 💻
 
-- Java
-- Postman
-- Intellij IDEA
-- Spring
-- Maven
+- Java 11
+- Postman 
+- Intellij IDEA 
+- Spring Boot 2.7.7
+- Maven 
 - Git
 - Git Hub
-- Lombok
+- Lombok 
 
