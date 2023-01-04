@@ -10,25 +10,25 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
 
 Endpoints: Responsable Emiliano Asprea
 US 001: POST
-/users/{userId}/follow/{userIdToFollow}
+- /users/{userId}/follow/{userIdToFollow}
 
 US 002: GET
-/users/{userId}/followers/count
+- /users/{userId}/followers/count
 
 US 003: GET
-/users/{userId}/followers/list
+- /users/{userId}/followers/list
 
 US 004: GET
-/users/{userId}/followed/list
+- /users/{userId}/followed/list
 
 US 005: POST
-/products/post
+- /products/post
 
 US 006: GET
-/products/followed/{userId}/list
+- /products/followed/{userId}/list
 
 US 007: POST
-/users/{userId}/unfollow/{userIdToUnfollow}
+- /users/{userId}/unfollow/{userIdToUnfollow}
 
 USS 08: GET
 - /users/{UserID}/followers/list?order=name_asc
@@ -41,13 +41,13 @@ USS 009: GET
 - /products/followed/{userId}/list?order=date_desc
 
 USS 0010: POST
-/products/promo-post
+- /products/promo-post
 
 USS 0011: GET
-/products/promo-post/count?user_id={userId}
+- /products/promo-post/count?user_id={userId}
 
 US 0012: GET
-/products/promo-post/list?user_id={userId}
+- /products/promo-post/list?user_id={userId}
 
 
 Diagrama UML sprint 1
