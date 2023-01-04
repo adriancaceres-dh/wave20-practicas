@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4e12c69a-f424-4fa8-8c30-5167b068e7c0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/BeJavaHispW20G6Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/config/ControllerExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/request/PostRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/FollowedListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/FollowedProductListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/FollowersCountResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/FollowersListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/PostListResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/PostResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/dto/response/UserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/exception/FollowerExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/exception/FollowerNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/exception/UserExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/exception/UserNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/model/PostModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/model/ProductModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/model/UserModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/repository/PostRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/service/Implement/PostServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/service/Implement/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/service/Interface/IPostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/java/com/bootcamp/be_java_hisp_w20_g6/service/Interface/IUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/resources/static/.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/main/resources/static/User_test.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../be_java_hisp_w20_g6_angel/src/test/java/com/bootcamp/be_java_hisp_w20_g6/BeJavaHispW20G6ApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JrkpP1VirW4CFQ7uIL22eg53hC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/danierojas/Desktop/repo_meli/wave20-practicas/4. sprint/Copia de be_java_hisp_w_20_g6_grupal"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="be_java_hisp_w_20_g6_grupal" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="be_java_hisp_w_20_g6_grupal" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e12c69a-f424-4fa8-8c30-5167b068e7c0" name="Changes" comment="" />
+      <created>1672843772667</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672843772667</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
