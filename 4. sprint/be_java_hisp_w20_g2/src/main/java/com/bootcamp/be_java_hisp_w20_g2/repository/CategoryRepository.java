@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public class CategoryRepository implements ICategoryRepository {
     private static int currentId = 0;
-    private HashMap<Integer, Category> categories; // Se crea por tema de búsqueda, de actualización y eliminación.
+    private HashMap<Integer, Category> categories;
 
     public CategoryRepository() {
         categories = new HashMap<>();
