@@ -92,9 +92,9 @@ public class PostService implements IPostService {
                     .map(u -> mapper.map(u, PostDTO.class)).collect(Collectors.toList()));
         }
         if (order != null && order.equals("date_desc")) {
-            postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate(), Comparator.reverseOrder())).collect(Collectors.toList());
+            postList = postList.stream().sorted(Comparator.comparing(PostDTO::getDate, Comparator.reverseOrder())).collect(Collectors.toList());
         } else {
-            postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate())).collect(Collectors.toList());
+            postList = postList.stream().sorted(Comparator.comparing(PostDTO::getDate)).collect(Collectors.toList());
         }
         return postList;
     }
