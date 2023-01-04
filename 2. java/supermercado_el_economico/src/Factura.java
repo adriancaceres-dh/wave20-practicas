@@ -2,6 +2,7 @@ import java.util.List;
 
 public class Factura {
 
+
     private List<Item> items;
     private Cliente cliente;
     private double total;
@@ -9,9 +10,17 @@ public class Factura {
     public Factura(List<Item> items, Cliente cliente, double total) {
         this.items = items;
         this.cliente = cliente;
-        this.total = total;
+        this.total = calcular();
+
     }
 
+    private double calcular(){
+        double total = 0;
+        for(Item i : items){
+            total += i.getPrecioUnitario()*i.getCantidad();
+        }
+        return total;
+    }
     public List<Item> getItems() {
         return items;
     }

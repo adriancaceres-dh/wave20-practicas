@@ -26,6 +26,7 @@ public class BlogController {
     }
 
     @PostMapping("/blog")
+    
     public ResponseEntity<MensajeEntradaBlogResponseDto> addEntrada(
             @RequestBody EntradaBlogRequestDto entradaBlogRequestDto) {
         return new ResponseEntity<>(blogService.addEntrada(entradaBlogRequestDto), HttpStatus.OK);

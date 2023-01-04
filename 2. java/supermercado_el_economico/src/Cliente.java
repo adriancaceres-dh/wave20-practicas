@@ -1,10 +1,10 @@
 public class Cliente {
 
     private String nombre;
-    private String dni;
+    private long dni;
     private String apellido;
 
-    public Cliente(String nombre, String dni, String apellido) {
+    public Cliente(String nombre, long dni, String apellido) {
         this.nombre = nombre;
         this.dni = dni;
         this.apellido = apellido;
@@ -18,11 +18,11 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getDni() {
+    public long getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(long dni) {
         this.dni = dni;
     }
 
