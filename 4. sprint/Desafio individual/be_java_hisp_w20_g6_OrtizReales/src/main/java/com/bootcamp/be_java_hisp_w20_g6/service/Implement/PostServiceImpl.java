@@ -1,7 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Implement;
 
 import java.time.LocalDate;
-import java.time.Period;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -75,7 +75,7 @@ public class PostServiceImpl implements IPostService {
         List<PostResponseDTO> followedPost=new ArrayList<>();
         for(int id : userService.getUserById(user_id).getFollowed()){
             postRepository.getPostList().stream().filter(p->p.getUser_id()==id)
-                    .filter(p-> Period.between(p.getDate(),dateNow).getDays()<=15)
+                    .filter(p-> DAYS.between(p.getDate(),dateNow)<=15)
                     .forEach(p->followedPost.add(
                             new PostResponseDTO(p.getUser_id(),p.getId(),p.getDate()
                                     ,p.getProduct(),p.getCategory(),p.getPrice())

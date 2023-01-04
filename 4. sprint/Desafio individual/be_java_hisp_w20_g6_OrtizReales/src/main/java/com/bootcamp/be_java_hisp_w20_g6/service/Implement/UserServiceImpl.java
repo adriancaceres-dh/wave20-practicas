@@ -25,15 +25,15 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public boolean followUser( int idFollower,int idFollowed) {
+    public boolean followUser( int user_id,int userIdToFollow) {
         try{
-            UserModel followed = userRepository.getUserById(idFollowed);
-            UserModel follower = userRepository.getUserById(idFollower);
+            UserModel userToFollow = userRepository.getUserById(userIdToFollow);
+            UserModel user = userRepository.getUserById(user_id);
 
-            ArrayList<Integer> fanFollowedList = follower.getFollowed();
-            if(!fanFollowedList.contains(idFollowed)){
-                fanFollowedList.add(idFollowed);
-                followed.getFollowers().add(idFollower);
+            ArrayList<Integer> userFollowedList = user.getFollowed();
+            if(!userFollowedList.contains(userIdToFollow)){
+                user.getFollowed().add(userIdToFollow);
+                userToFollow.getFollowers().add(user_id);
                 return true;
             }else{
                 throw new FollowerExistsException("Usuario ya esta siguiendo al vendedor.");
@@ -98,10 +98,10 @@ public class UserServiceImpl implements IUserService {
             UserModel unFollower = userRepository.getUserById(idFollower);
 
             ArrayList<Integer> fanFollowedList = unFollower.getFollowed();
-            int followIndex = fanFollowedList.indexOf(idFollower);
+            int followIndex = fanFollowedList.indexOf(idFollowed);
             if(followIndex >= 0){
-                fanFollowedList.remove(followIndex);
-                unFollowed.getFollowers().remove((Integer) idFollowed);
+                unFollower.getFollowed().remove(followIndex);
+                unFollowed.getFollowers().remove((Integer) idFollower);
                 return true;
             }else{
                 throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
