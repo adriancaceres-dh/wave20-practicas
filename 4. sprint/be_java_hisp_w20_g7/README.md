@@ -15,6 +15,7 @@
 - [@JuanSHenao](https://github.com/JuanSHenao)
 - [@RonaldRosero](https://github.com/RonaldRosero)
 - [@SoriGonzalezR](https://github.com/SoriGonzalezR)
+- [@steveng45](https://github.com/steveng45)
 
 ## Documentación
 
