@@ -6,7 +6,6 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepositoryImp;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
@@ -89,13 +88,12 @@ public class PostService implements IPostService {
 
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
-        List<PostDTO> listPostSeller = new ArrayList<>();
-        System.out.println(sellers);
-        sellers.forEach(seller -> {
+       List<PostDTO> listPostSeller = new ArrayList<>();
+       sellers.forEach(seller -> {
            if (seller == null)
-               throw new DoesntExistSellerException("The user doesn't follow any sellers");
-           postRepository.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x));
-        });
+               throw new DoesntExistSellerException("The seller doesn't follow any sellers");
+           listPostSeller.addAll(postRepository.findPostsById(seller.getPost()));
+           });
 
         String orderType = order==null ? "" : order;
         if (!Validators.checkValidatorOptionDate(orderType)) {
