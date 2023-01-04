@@ -39,11 +39,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserFollowersCountDto userFollowersCount(int userId) {
-        return null;
-    }
-
-    @Override
     public UserFollowersDto userFollowers(int userId, String order) {
 
         List<Follow> follows = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList());
@@ -94,13 +89,12 @@ public class UserService implements IUserService {
     public UserFollowersCountDto countFollowers(int userId) {
 
         User user = iUserRepository.findById(userId);
-
         if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
 
-        int followerCount = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList()).size();
+        int followerCount = (int) iFollowRepository.findAll().stream()
+                .filter(e -> e.getIdFollowed() == userId)
+                .count();
 
         return new UserFollowersCountDto(userId,user.getUserName(),followerCount);
-
-
     }
 }

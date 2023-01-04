@@ -25,12 +25,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DataIsnotCorrectException.class)
-    public ResponseEntity<?> dataIsNotCorrect(Exception e) {
+    public ResponseEntity<?> DataIsNotCorrect(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
     @ExceptionHandler(PostEmptyException.class)
-    public ResponseEntity<?> postEmpty(Exception e) {
+    public ResponseEntity<?> PostEmpty(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 

@@ -2,6 +2,8 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostPromoCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.PostPromoCountByVendorDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -15,10 +17,8 @@ import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.*;
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,14 +45,36 @@ public class PostService implements IPostService {
     public String createPost(PostCreateDto postCreateDto) {
 
         User user = iUserRepository.findById(postCreateDto.getUserId());
+
         if(user == null) throw new UserNotFoundException("User with id " + postCreateDto.getUserId() + " not found");
         if (postCreateDto == null) {
-            throw new PostEmptyException("La publicación esta vacía");
+            throw new PostEmptyException("Post is empty");
         }
         Post post = modelMapper.map(postCreateDto, Post.class);
         calculateId(post);
         if (post.getPrice() <= 0) {
-            throw new DataIsnotCorrectException("Coloque un precio mayor a 0");
+            throw new DataIsnotCorrectException("Price must be greater than 0");
+        }
+        if (iPostRepository.save(post)) {
+            return "Post registered successfully";
+        } else {
+            return "Could no register post";
+        }
+    }
+
+    @Override
+    public String createPostPromo(PostPromoCreateDto postPromoCreateDto) {
+
+        User user = iUserRepository.findById(postPromoCreateDto.getUserId());
+
+        if(user == null) throw new UserNotFoundException("User with id " + postPromoCreateDto.getUserId() + " not found");
+        if (postPromoCreateDto == null) {
+            throw new PostEmptyException("Post is empty");
+        }
+        Post post = modelMapper.map(postPromoCreateDto, Post.class);
+        calculateId(post);
+        if (post.getPrice() <= 0) {
+            throw new DataIsnotCorrectException("Price must be greater than 0");
         }
         if (iPostRepository.save(post)) {
             return "Post registered successfully";
@@ -74,7 +96,6 @@ public class PostService implements IPostService {
     public UserPostFollowedDto postUsersFollowed(int userId,String order) {
 
         User user = iUserRepository.findById(userId);
-
         if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
 
         List<Integer> followedIds = iFollowRepository.findAll().stream().filter(e -> e.getIdFollower() == userId).
@@ -92,14 +113,23 @@ public class PostService implements IPostService {
                     .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
         }
 
-
-
         List<PostDto> postDtos = posts.stream().map( e -> modelMapper.map(e , PostDto.class)).collect(Collectors.toList());
 
         return new UserPostFollowedDto(userId,postDtos);
+    }
 
+    @Override
+    public PostPromoCountByVendorDto postPromoCountByVendor(int userId){
 
+        User user = iUserRepository.findById(userId);
+        if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
 
+        int countPromo = (int) iPostRepository.findAll().stream()
+                .filter(p -> p.getUserId() == userId)
+                .filter(Post::isHasPromo)
+                .count();
+
+        return new PostPromoCountByVendorDto(user.getUserId(),user.getUserName(),countPromo);
 
     }
 }
