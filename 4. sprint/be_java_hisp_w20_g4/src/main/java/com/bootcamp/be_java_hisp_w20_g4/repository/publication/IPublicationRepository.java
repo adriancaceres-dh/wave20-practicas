@@ -10,4 +10,5 @@ import java.util.Map;
 public interface IPublicationRepository {
     public boolean addPublication(Publication publication);
     public List<Publication> getPublicationLastNDays(List<Integer> followedIds, int nDays);
+    public List<Publication> getPromoPublications(int userId);
 }

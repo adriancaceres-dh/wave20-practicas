@@ -1,10 +1,13 @@
 package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromoPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromoPublicationCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromoPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
@@ -20,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrder;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isSeller;
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
 
 @Service
@@ -86,4 +90,34 @@ public class ServicePublication implements IServicePublication {
     }
 
 
+    @Override
+    public PromoPublicationDTO addPromoPublication(PromoPostDTO promoPostDTO) {
+        User user =  userRepository.findById(promoPostDTO.getUser_id());
+        isValidUser(user);
+        isSeller(user);
+
+        Category category = categoryRepository.findById(promoPostDTO.getCategory());
+        if(category == null) throw new BadRequestException("La categoria ingresa no es válida.");
+        Product product = mapper.map(promoPostDTO.getProduct(), Product.class);
+        if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
+
+        Publication publication = new Publication(promoPostDTO.getDate(), promoPostDTO.getPrice(), product, category, user.getUser_id(),promoPostDTO.isHas_promo(),promoPostDTO.getDiscount());
+
+        if(publicationRepository.addPublication(publication)) {
+            ((Seller) user).addPublication(publication);
+            return new PromoPublicationDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), category.getId(), publication.getPrice(), publication.isHasPromo(), publication.getDiscount());
+
+        }
+        return null;
+    }
+
+    @Override
+    public PromoPublicationCountDTO getCountPromoPublications(Integer userId) {
+        User user = userRepository.findById(userId);
+        isValidUser(user);
+        isSeller(user);
+        List<Publication> publications = publicationRepository.getPromoPublications(userId);
+        PromoPublicationCountDTO promoPublicationCountDTO = new PromoPublicationCountDTO(userId,user.getUser_name(),publications.size());
+        return promoPublicationCountDTO;
+    }
 }
