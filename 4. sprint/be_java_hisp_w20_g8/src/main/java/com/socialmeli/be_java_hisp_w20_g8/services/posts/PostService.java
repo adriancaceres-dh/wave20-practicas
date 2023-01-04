@@ -6,7 +6,6 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepositoryImp;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
@@ -96,11 +95,11 @@ public class PostService implements IPostService {
            listPostSeller.addAll(postRepository.findPostsById(seller.getPost()));
            });
 
-       String orderType = order==null ? "" : order;
+        String orderType = order==null ? "" : order;
         if (!Validators.checkValidatorOptionDate(orderType)) {
             throw new InvalidArgumentException("Invalid sorting option");
         }
-       switch(orderType){
+        switch(orderType){
            case "date_asc":
                return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller.stream()
                                .sorted((a,b)->a.getDate().compareTo(b.getDate()))
@@ -114,7 +113,7 @@ public class PostService implements IPostService {
            default:
                return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller).build();
 
-       }
+        }
 
     }
 }
