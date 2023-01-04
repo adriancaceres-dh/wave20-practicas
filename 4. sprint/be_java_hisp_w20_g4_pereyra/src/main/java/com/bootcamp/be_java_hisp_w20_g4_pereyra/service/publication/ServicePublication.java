@@ -128,6 +128,7 @@ public class ServicePublication implements IServicePublication {
     public PromoProductsCountDTO getCountProductsWithDiscount(int user_id) {
         User user = userRepository.findById(user_id);
         isValidUser(user);
+        isSeller(user);
         return new PromoProductsCountDTO(user_id, user.getUser_name(), publicationRepository.getPublicationUser(user_id).size());
     }
 
