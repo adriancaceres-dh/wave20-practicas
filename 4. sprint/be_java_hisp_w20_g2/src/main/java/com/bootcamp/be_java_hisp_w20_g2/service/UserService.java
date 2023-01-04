@@ -40,9 +40,9 @@ public class UserService implements IUserService {
                     .collect(Collectors.toList());
             if(order.isPresent()){
                 Comparator<UserResponseDTO> comparator;
-                if(order.get().equals("name_asc")){
+                if(order.get().equals("name_asc") || order.get().equals("name_desc")){
                     comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                }else{
+                } else {
                     comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
                 }
 
@@ -69,11 +69,11 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if(order.isPresent()){
-                if( order.get().equals("name_asc") || order.get().equals("name_desc")){
+                if(order.get().equals("name_asc") || order.get().equals("name_desc")){
                     Comparator<UserResponseDTO> comparator;
                     if(order.get().equals("name_asc")){
                         comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                    }else{
+                    } else {
                         comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
                     }
                     followed = followed.stream().sorted(comparator).collect(Collectors.toList());
