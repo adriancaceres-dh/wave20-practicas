@@ -23,17 +23,10 @@ public class ProductService implements IProductService {
     private IProductRepository productRepository;
 
     @Override
-    public ProductResponseDto getProductById(int id) {
+    public Product getProductById(int id) {
         Product product = productRepository.getProductById(id);
         if (product != null) {
-            return ProductResponseDto.builder()
-                    .productId(id)
-                    .productName(product.getName())
-                    .type(product.getType())
-                    .brand(product.getBrand())
-                    .color(product.getColor())
-                    .notes(product.getNotes())
-                    .build();
+            return product;
         } else {
             throw new NotFoundException(Parameter.getString("EX_NotExistentProduct"));
         }

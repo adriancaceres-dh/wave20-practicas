@@ -59,7 +59,7 @@ public class PostService implements IPostService {
                 .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
                         .postId(post.getId())
                         .date(post.getDate())
-                        .product(productService.getProductById(post.getProductId()))
+                        .product(mapper.map(productService.getProductById(post.getProductId()), ProductResponseDto.class))
                         .category(post.getCategory())
                         .price(post.getPrice())
                         .build()).collect(Collectors.toList());
