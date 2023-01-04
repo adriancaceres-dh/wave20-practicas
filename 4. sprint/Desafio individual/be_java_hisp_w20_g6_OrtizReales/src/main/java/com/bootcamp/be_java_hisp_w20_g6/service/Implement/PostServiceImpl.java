@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
@@ -93,10 +94,12 @@ public class PostServiceImpl implements IPostService {
 
         if(orderBy != null && orderBy.equals("date_asc")) {
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate));
-        }else{
+        }else if(orderBy == null || orderBy.equals("date_desc")){
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate).reversed());
+        }else{
+            throw new InvalidParamException("Argumento invalido");
         }
-        
+
         return new PostListResponseDTO(user_id,followedPost );
     }
 

@@ -364,7 +364,7 @@ Responsable: Juan Carlos Ortiz
 ***
 ## Colección de Postman 
 
-Para el testeo de esta api colocamos a disposición una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
+Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/be_java_hisp_w20_g6/blob/main/src/main/resources/static/User_test.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
 
 ## Repositorio original
 [Enlace al repo grupal](https://github.com/alejandrotm20/be_java_hisp_w20_g6)
