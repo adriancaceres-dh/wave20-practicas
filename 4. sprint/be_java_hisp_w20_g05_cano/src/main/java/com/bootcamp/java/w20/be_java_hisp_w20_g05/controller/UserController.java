@@ -11,6 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 
 @RestController
 @RequestMapping("/users")
@@ -29,11 +33,13 @@ public class UserController {
         return userService.unfollowUser(userId, userIdToUnfollow);
     }
 
+    //Cuenta la cantidad de seguidores que tiene un determinado usuario buscándolo por su id. En caso de no encontrarlo devuelve una excepción IdNotFoundException.
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<FollowersCountDTO> getFollowersCount(@PathVariable int userId){
         return new ResponseEntity<>(userService.getFollowersCount(userId), HttpStatus.OK);
     }
 
+    //Retorna un dto con  los username y userid de los de los usuarios seguidos por un usuario según su id
     @GetMapping("/{userId}/followed/list")
     public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId,
                                                            @RequestParam(required = false) String order){
