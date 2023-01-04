@@ -150,6 +150,7 @@ public class PostService implements IPostService {
                 .stream()
                 .map(p -> {
                             PostPromoResponseDto post = mapper.map(p, PostPromoResponseDto.class);
+                            post.setProduct(mapper.map(productService.getProductById(p.getProductId()), ProductRequestDto.class));
                             post.setPriceWithDiscount(getPriceWithDiscount(p.getPrice(), p.getDiscount()));
                             return post;
                         }
