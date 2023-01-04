@@ -1,15 +1,15 @@
 # Sprint1- wave20- SocialMeli
 
-Sprint 1 del bootcamp de la wave 20 de Java se requiere crear un servidor backend mediante el framework Spring de java que cumpla con los requisitos funcionales solicitados por los analistas.
+Mercado Libre sigue creciendo y tiene como objetivo empezar a implementar una serie de herramientas, en donde los compradores van a poder seguir a sus vendedores favoritos y enterarse de todas las novedades que los mismos posteen.
 
 ## proyecto realizado por:
 - Juan Camilo Arango Valle **github: jcamiloarangov**
-- Luis Francisco López **github:**
-- Julian Atehortua Zapata **github:**
-- Diego Alejandro Malagon Ruiz **github:**
-- John Edward Garcia Saavedra **github:**
-- Adrian Isaac Gomez **github:**
-- Dimas Hernandez Mendoza **github:**
+- Luis Francisco López **github: luis-lopezgomez**
+- Julian Atehortua Zapata **github: juatehortua**
+- Diego Alejandro Malagon Ruiz **github: DiegoAlejandroMalagon**
+- John Edward Garcia Saavedra **github: EdwardGs1702**
+- Adrian Isaac Gomez **github: IsaacGmz**
+- Dimas Hernandez Mendoza **github: dimashernandez14**
 
 # Requisitos para el correcto funcionamiento del proyecto
 Este proyecto fue realizado mediante **Spring initializr** con la siguiente configuracion:
@@ -30,3 +30,6 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 - No se cuenta con repositorios estaticos, estos son creados con codigo "quemado" o hardcoded code como datos iniciales.
 
 - Los datos ingresados por `@pathVariables` siempre llegarán con el tipado solicitado por lo que no se tendrá en cuenta errores de este tipo en el controlador
+
+# Consideraciones especificas
+- 
