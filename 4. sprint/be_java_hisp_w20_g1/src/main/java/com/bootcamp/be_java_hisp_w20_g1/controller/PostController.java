@@ -8,6 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostPromoListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,12 +38,12 @@ public class PostController {
     @PostMapping("/post")
     public ResponseEntity<PostRequestDto> addPost(@RequestBody PostRequestDto post) {
         postService.add(post, false);
-        return ResponseEntity.ok(post);
+        return new ResponseEntity<>(post,HttpStatus.CREATED);
     }
 
     @PostMapping("/promo-post")
     public ResponseEntity<PostRequestDto> addPromoPost(@RequestBody PostRequestDto post) {
         postService.add(post, true);
-        return ResponseEntity.ok(post);
+        return new ResponseEntity<>(post,HttpStatus.CREATED);
     }
 }
