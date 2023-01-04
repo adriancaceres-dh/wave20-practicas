@@ -10,6 +10,7 @@ import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Post;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IProductService;
@@ -98,12 +99,20 @@ public class PostService implements IPostService {
             throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         }
 
+        if (!userService.alreadyExists(postDto.getUserId())) {
+            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
+        }
+
         if (productService.alreadyExist(postDto.getProduct().getProductId())) {
-            //
+            Product oldProduct = productService.getProductById(postDto.getProduct().getProductId());
+            Product currentProduct = mapper.map(postDto.getProduct(), Product.class);
+            if (!oldProduct.equals(currentProduct)) {
+                throw new BadRequestException(Parameter.getString("EX_WrongProductValues"));
+            }
         }
 
         ProductRequestDto productRequestDto = postDto.getProduct();
-        productService.add((productRequestDto)); //no tendria q agregarlo si ya existe. Logica para el repositorio
+        productService.add((productRequestDto));
         Post newPost = buildPromoPost(postDto);
         postRepository.add(newPost);
         userService.updateUser(postDto.getUserId());

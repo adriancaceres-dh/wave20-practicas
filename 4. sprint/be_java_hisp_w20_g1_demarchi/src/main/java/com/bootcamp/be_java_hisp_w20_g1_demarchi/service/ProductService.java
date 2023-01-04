@@ -39,7 +39,9 @@ public class ProductService implements IProductService {
 
     @Override
     public void add(ProductRequestDto product) {
-        productRepository.addProduct(convertProduct(product));
+        if (!alreadyExist(product.getProductId())) {
+            productRepository.addProduct(convertProduct(product));
+        }
     }
 
     public Product convertProduct(ProductRequestDto product) {
