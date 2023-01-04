@@ -1,20 +1,19 @@
 package com.socialMeli.be_java_hisp_w20_g03.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserExtendedDTO {
+public class PostPromoCountDTO {
     @JsonProperty("user_id")
     private int userId;
     @JsonProperty("user_name")
     private String userName;
-    private List<UserDTO> followers;
-    private List<UserDTO> followed;
+    private int promo_products_count;
+
 }

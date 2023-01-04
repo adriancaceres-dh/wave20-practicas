@@ -64,6 +64,9 @@ public class UserRepository implements IUserRepository {
         usuario1.getFollowers().add(usuario3);
         usuario3.getFollowed().add(usuario1);
 
+        usuario3.getFollowers().add(usuario1);
+        usuario1.getFollowed().add(usuario3);
+
         usuario1.getFollowers().add(usuario4);
         usuario4.getFollowed().add(usuario1);
 
