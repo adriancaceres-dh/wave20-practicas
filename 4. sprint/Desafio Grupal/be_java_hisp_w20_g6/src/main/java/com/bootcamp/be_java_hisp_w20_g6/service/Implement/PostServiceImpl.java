@@ -1,18 +1,23 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Implement;
 
 import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
+
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IPostService;
@@ -44,13 +49,13 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     public boolean save(PostRequestDto postRequestDto) {
-            userService.getUserById(postRequestDto.getUser_id());
-            PostModel postModel = mapper.map(postRequestDto, PostModel.class);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            postModel.setDate(LocalDate.parse(postRequestDto.getDate(),formatter));
-            postModel.setId(postRepository.idGenerator());
-            postRepository.save(postModel);
-            return true;
+        userService.getUserById(postRequestDto.getUser_id());
+        PostModel postModel = mapper.map(postRequestDto, PostModel.class);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        postModel.setDate(LocalDate.parse(postRequestDto.getDate(),formatter));
+        postModel.setId(postRepository.idGenerator());
+        postRepository.save(postModel);
+        return true;
     }
 
     @Override
@@ -68,10 +73,12 @@ public class PostServiceImpl implements IPostService {
 
         if(orderBy != null && orderBy.equals("date_asc")) {
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate));
-        }else{
+        }else if(orderBy == null || orderBy.equals("date_desc")){
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate).reversed());
+        }else{
+            throw new InvalidParamException("Argumento invalido");
         }
-        
+
         return new PostListResponseDTO(user_id,followedPost );
     }
 
