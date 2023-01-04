@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2.controller;
 
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowedResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
@@ -35,8 +36,8 @@ public class UserController {
     // US-0004 - US-0009
     @GetMapping("/{userId}/followed/list")
     public ResponseEntity<?> getFollowedById(@PathVariable int userId, @RequestParam Optional<String> order) {
-        UserFollowersResponseDTO userFollowersResponseDTO = userService.findAllFollowers(userId,order);
-        return new ResponseEntity<>(userFollowersResponseDTO, HttpStatus.OK);
+        UserFollowedResponseDTO userFollowedResponseDTO = userService.findAllFollowed(userId,order);
+        return new ResponseEntity<>(userFollowedResponseDTO, HttpStatus.OK);
     }
     // US-0007
     @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
