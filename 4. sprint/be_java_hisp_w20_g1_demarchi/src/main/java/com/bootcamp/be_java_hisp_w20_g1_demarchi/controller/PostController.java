@@ -2,10 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g1_demarchi.controller;
 
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostRequestDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostListResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostPromoListCountResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostPromoResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +17,7 @@ public class PostController {
     private IPostService postService;
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<PostListResponseDto> lastTwoWeeksPostsFromFollowers (@PathVariable int userId, @RequestParam(defaultValue = "date_desc") String order) {
+    public ResponseEntity<PostListResponseDto> lastTwoWeeksPostsFromFollowers(@PathVariable int userId, @RequestParam(defaultValue = "date_desc") String order) {
         return ResponseEntity.ok(postService.lastTwoWeeksPostsFromFollowers(userId, order));
     }
 
@@ -41,5 +38,10 @@ public class PostController {
         return ResponseEntity.ok().body(postService.getAmountOfPostsOnPromotion(userId));
     }
 
-
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<SellerWithProductsOnPromoListResponseDto> getListOfProductsOnPromotionBySeller(
+        @RequestParam int userId
+    ) {
+        return ResponseEntity.ok().body(postService.getProductsOnPromotionByUser(userId));
+    }
 }
