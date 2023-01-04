@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    IServicePublication publicationService;
-
-    @Autowired
     IServiceUsr usrService;
-
 
 
     @PostMapping("/{userId}/follow/{userIdToFollow}")

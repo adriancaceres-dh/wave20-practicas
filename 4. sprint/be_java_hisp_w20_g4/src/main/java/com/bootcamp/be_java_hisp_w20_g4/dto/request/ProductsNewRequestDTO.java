@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductsNewRequestDTO {
     private Integer user_id;
     private LocalDate date;
-    private List<ProductDTO> productDTOList;
+    private List<ProductDTO> posts;
     private Integer category;
     private Double price;
 

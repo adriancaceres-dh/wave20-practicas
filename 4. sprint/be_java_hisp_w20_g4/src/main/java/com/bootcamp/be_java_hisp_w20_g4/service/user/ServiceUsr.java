@@ -66,7 +66,6 @@ public class ServiceUsr implements IServiceUsr {
 
         User user = userRepository.findById(userId);
         isValidUser(user);
-
         isSeller(user);
 
         if(order == null) return followersUnsorted(user);
