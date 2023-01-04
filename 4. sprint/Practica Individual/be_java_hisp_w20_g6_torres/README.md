@@ -17,8 +17,12 @@ Para poder realizar esto, un analista funcional relevó una serie de requerimien
 ## Tecnologías
 * Java 11
 * SpringBoot 2.7.7
+* LucidaChart
+* Postman
 ## Decisiones de equipo
-
+1. El modelado de las entidades fue realizado previamente al desarrollo en una reunión grupal donde todos aportamos y estuvimos de acuerdo con el resultado final.
+2. En el repositorio de usuarios optamos por implementar un HashMap para almacenar el mock destinado a las pruebas de la api por una cuestión de eficiencia en el acceso de datos.
+3. Para los response que podían ser bodyless optamos por dejarlos así ya que concluimos que no era necesario implementar un DTO.
 
 ## Modelado
 
@@ -31,16 +35,13 @@ Para poder realizar esto, un analista funcional relevó una serie de requerimien
 ### Publicación
 ![Modelado de la clase publicación](https://i.ibb.co/t4xHWZH/Diagrama-Sprint1-Pa-gina-1-5.jpg)
 
-<!---[Enlace al repo original](https://github.com/alejandrotm20/be_java_hisp_w20_g6)-->
-
 ## Endpoints
 **US0001**:
 Poder realizar la acción de "Follow" (seguir) a un determinado vendedor
 
-| METHOD | SIGN | EJEMPLO |
-|:------- | :------- | :-------|
-|`POST`| `/users/{userId}/follow/{userIdToFollow}` | `/users/1/followers/count`
-
+| METHOD | SIGN                                      | EJEMPLO                    |
+|:-------|:------------------------------------------|:---------------------------|
+| `POST` | `/users/{userId}/follow/{userIdToFollow}` | `/users/1/followers/count` |
 
 RESPONSE: Status code 200 - Bodyless | Status code 400 - Bodyless
 
@@ -49,9 +50,9 @@ RESPONSABLE: Daniela Villamizar
 **US0002**:
 Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
 
-| METHOD | SIGN | EJEMPLO | 
-|:-------|:-------|:-------|
-|`GET`| `/users/{userId}/followers/count` | `/users/1/followers/count` |
+| METHOD | SIGN                              | EJEMPLO                    | 
+|:-------|:----------------------------------|:---------------------------|
+| `GET`  | `/users/{userId}/followers/count` | `/users/1/followers/count` |
 
 
 
@@ -69,9 +70,9 @@ Responsable: Alejandro Torres
 **US0003**:
 Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
 
-| METHOD | SIGN | EJEMPLO|
-|:-------|:---------------|:--------------------|
-|`GET`| `/users/{userId}/followers/list` | `/users/1/followers/list`|
+| METHOD | SIGN                             | EJEMPLO                   |
+|:-------|:---------------------------------|:--------------------------|
+| `GET`  | `/users/{userId}/followers/list` | `/users/1/followers/list` |
 
 
 
@@ -101,9 +102,9 @@ RESPONSABLE: Daniel Andres Angel Rojas
 **US0004**: 
 Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
 
-| METHOD | SIGN | EJEMPLO|
-|:--------|:----------|:----------|
-|`POST` | `/users/{userId}/followed/list`| `/users/1/followed/list` |
+| METHOD | SIGN                            | EJEMPLO                  |
+|:-------|:--------------------------------|:-------------------------|
+| `POST` | `/users/{userId}/followed/list` | `/users/1/followed/list` |
 
 RESPONSE:
 ```json
@@ -131,9 +132,10 @@ RESPONSABLE: Augusto Díaz
 ***
 **US0005**: 
 Dar de alta una nueva publicación
-|METHOD | SIGN |
-|:-------|:------|
-|`POST` | `/products/post`|
+
+| METHOD | SIGN             |
+|:-------|:-----------------|
+| `POST` | `/products/post` |
 
 PAYLOAD:
 ```json
@@ -159,9 +161,9 @@ Responsable: Juan Carlos Ortiz
 **US0006**: 
 Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
 
-| METHOD | SIGN | EJEMPLO |
-|:--------|:--------|:----------|
-|`GET` | `/products/followed/{userId}/list` | `/products/followed/1/list`|
+| METHOD | SIGN                               | EJEMPLO                     |
+|:-------|:-----------------------------------|:----------------------------|
+| `GET`  | `/products/followed/{userId}/list` | `/products/followed/1/list` |
 
 RESPONSE:
 ```json
@@ -205,9 +207,9 @@ RESPOSANBLE: David Nuñez
 **US0007**: 
 Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
 
-|METHOD | SIGN | EJEMPLO |
-|:-----|:--------|:--------|
-|`POST` | `/users/{userId}/unfollow/{userIdToUnfollow}` | ` /users/234/unfollow/123`|
+| METHOD | SIGN                                          | EJEMPLO                    |
+|:-------|:----------------------------------------------|:---------------------------|
+| `POST` | `/users/{userId}/unfollow/{userIdToUnfollow}` | ` /users/234/unfollow/123` |
 
 RESPONSE: Status code 200 (OK) - Bodyless | Status code 400 (Bad request) - Bodyless
 
@@ -216,14 +218,14 @@ RESPONSABLE: Diana Parra
 **US0008**:
 Ordenamiento alfabético ascendente y descendente
 
-|METHOD | EJEMPLOS|
-|:--------- | :--------|
-|`GET`  |`/users/{UserID}/followers/list?order=name_asc`<br>`/users/{UserID}/followers/list?order=name_desc`<br>`/users/{UserID}/followed/list?order=name_asc`<br>`/users/{UserID}/followed/list?order=name_desc`
+| METHOD | EJEMPLOS                                                                                                                                                                                                 |
+|:-------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GET`  | `/users/{UserID}/followers/list?order=name_asc`<br>`/users/{UserID}/followers/list?order=name_desc`<br>`/users/{UserID}/followed/list?order=name_asc`<br>`/users/{UserID}/followed/list?order=name_desc` |
 
-|ORDER | DESCRIPTION |
-|:------| :--------|
-|`name_asc` | Alfabético ascendente |
-|`name_desc` | Alfabético descendente |
+| ORDER       | DESCRIPTION            |
+|:------------|:-----------------------|
+| `name_asc`  | Alfabético ascendente  |
+| `name_desc` | Alfabético descendente |
 
 **NOTA**: Este ordenamiento solo aplica para **US0003** y **US0004**
 
@@ -232,15 +234,54 @@ RESPONSABLE: Daniela Villamizar
 **US0009**:
 Ordenamiento por fecha ascendente y descendente
 
-|METHOD|EJEMPLOS|
-|:-------|:-------|
-|`GET`|`/products/followed/{userId}/list?order=date_asc`<br>`/products/followed/{userId}/list?order=date_desc`|
+| METHOD | EJEMPLOS                                                                                                |
+|:-------|:--------------------------------------------------------------------------------------------------------|
+| `GET`  | `/products/followed/{userId}/list?order=date_asc`<br>`/products/followed/{userId}/list?order=date_desc` |
 
-|ORDER|DESCRIPTION|
-|:------|:--------|
-|`date_asc`|Fecha ascendente (de más antigua a más nueva)|
-|`date_desc` |Fecha descendente (de más nueva a más antigua)| 
+| ORDER       | DESCRIPTION                                    |
+|:------------|:-----------------------------------------------|
+| `date_asc`  | Fecha ascendente (de más antigua a más nueva)  |
+| `date_desc` | Fecha descendente (de más nueva a más antigua) | 
 
 **NOTA**: Este ordenamiento solo aplica para **US0006**
 
+Responsable: Juan Carlos Ortiz
+***
+## Practica Individual
 
+**US0010**:
+Llevar a cabo la publicación de un nuevo producto en promoción
+
+| METHOD  | EJEMPLOS               |
+|:--------|:-----------------------|
+| `POST`  | `/products/promo-post` |
+
+RESPONSE: Status code 200 (OK) - Bodyless | Status code 400 (Bad request) - Bodyless
+
+Responsable: Alejandro Torres Muñoz 
+
+**US0011**:
+Obtener la cantidad de productos en promoción de un determinado vendedor
+
+| METHOD | SIGN                              | EJEMPLO                    |
+|:-------|:----------------------------------|:---------------------------|
+| `GET`  | `/users/{userId}/followers/count` | `/users/1/followers/count` |
+
+RESPONSE:
+```json
+{
+  "user_id": 1,
+  "user_name": "pablito1",
+  "followers_count": 0
+}
+```
+
+Responsable: Alejandro Torres Muñoz
+
+***
+## Colección de Postman
+Para el testeo de esta api colocamos a disposición una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
+
+## Repositorio original
+[Enlace al repo original](https://github.com/alejandrotm20/be_java_hisp_w20_g6)
+***
