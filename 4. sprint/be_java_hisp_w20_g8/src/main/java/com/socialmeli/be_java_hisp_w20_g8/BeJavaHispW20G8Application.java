@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BeJavaHispW20G8Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BeJavaHispW20G8Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BeJavaHispW20G8Application.class, args);
+    }
 
 }

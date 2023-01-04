@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class SellerDTO {
-    Integer seller_id;
-    String user_name;
+    private int id;
+    private String user_name;
+
 }

@@ -1,18 +1,18 @@
 package com.socialmeli.be_java_hisp_w20_g8.models;
 
-import lombok.Data;
-
 import java.time.LocalDate;
 
 public class Post {
     private Integer id;
+    private int userId;
     private LocalDate date;
     private Integer idProduct;
     private Integer category;
     private double price;
 
-    public Post(Integer id, LocalDate date, Integer idProduct, Integer category, double price) {
+    public Post(Integer id, int userId, LocalDate date, Integer idProduct, Integer category, double price) {
         this.id = id;
+        this.userId = userId;
         this.date = date;
         this.idProduct = idProduct;
         this.category = category;
@@ -24,6 +24,14 @@ public class Post {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public LocalDate getDate() {
@@ -38,7 +46,7 @@ public class Post {
         return idProduct;
     }
 
-    public void setProduct(Integer idProduct) {
+    public void setProductId(Integer idProduct) {
         this.idProduct = idProduct;
     }
 

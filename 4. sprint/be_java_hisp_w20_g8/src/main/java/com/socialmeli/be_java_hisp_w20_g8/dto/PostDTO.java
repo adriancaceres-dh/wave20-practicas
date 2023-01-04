@@ -14,9 +14,9 @@ import java.time.LocalDate;
 @Builder
 public class PostDTO {
     private int userId;
-    private int postId;
+    private int post_id;
     private LocalDate date;
-    private ProductDTO productDTO;
+    private ProductDTO product;
     private int caregory;
     private double price;
 
