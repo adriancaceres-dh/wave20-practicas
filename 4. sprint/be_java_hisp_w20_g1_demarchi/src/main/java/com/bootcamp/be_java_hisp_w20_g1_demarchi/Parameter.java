@@ -22,6 +22,7 @@ public class Parameter {
             put("EX_NotASeller","El usuario no es vendedor");
             put("EX_NotExistentUser","El usuario no existe");
             put("EX_WrongProductValues", "El producto tiene características distintas");
+            put("EX_QueryParameterMissing", "Se esperaban query parameters, verifique documentacion");
         }
     };
 
