@@ -6,9 +6,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class ProductDTO {
+
+    private Integer idProduct;
+    private String nameProduct;
+    private String type;
+    private String brand;
+    private String color;
+    private String note;
 }
