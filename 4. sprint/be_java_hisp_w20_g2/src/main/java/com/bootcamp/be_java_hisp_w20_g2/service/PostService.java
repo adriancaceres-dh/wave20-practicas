@@ -30,28 +30,6 @@ public class PostService implements IPostService {
     @Autowired
     private ICategoryRepository categoryRepository;
 
-    /*
-         * Validar que exista el userId. Si está no existe no es posible crearla, ya que no debería crearse un nuevo
-         * usuario desde una nueva publicación.
-         * Validar que exista la categoria. Si está no existe no es posible crearla, ya que no debería crearse una nueva
-         * categoria desde una nueva publicación.
-         *
-         * Funciona lo siguiente en postman localhost:8080/products/post:
-         * {
-            "user_id": 1,
-            "date": "29-04-2021",
-            "product": {
-                "product_id": 1,
-                "product_name": "Silla Gamer",
-                "type": "Gamer",
-                "brand": "Racer",
-                "color": "Red & Black",
-                "notes": "Special Edition"
-            },
-            "category": 12,
-            "price": 1500.50
-            }
-         */
     /**
      * Creates a post and saves it in a user posts list.
      * @param postRequestDTO has the data for the post to be created.

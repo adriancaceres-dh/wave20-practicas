@@ -18,7 +18,6 @@ public class PostController {
     @PostMapping(path = "/post")
     @ResponseStatus(HttpStatus.OK)
     public void addNewProduct(@RequestBody PostRequestDTO newPost) {
-        // Validar que las fechas esten correctas al ingresar. ¿Qué pasa si se le poné algo mal desde el comienzo?
         postService.createPost(newPost);
     }
     // US-0006 - US-0009
