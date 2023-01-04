@@ -1,0 +1,125 @@
+[
+    {
+        "id": 1,
+        "userName": "usu1",
+        "followers": [
+        ],
+        "following": [
+        ]
+    },
+    {
+        "id": 2,
+        "userName": "hbowstead0",
+        "followers": [
+            3,
+            4
+        ],
+        "following": [
+            3,
+            4
+        ]
+    },
+    {
+        "id": 3,
+        "userName": "qropcke1",
+        "followers": [
+            12, 
+            2
+        ],
+        "following": [
+            2
+        ]
+    },
+    {
+        "id": 4,
+        "userName": "jmedcraft2",
+        "followers": [
+            2, 
+            12
+        ],
+        "following": [
+            2
+        ]
+    },
+    {
+        "id": 5,
+        "userName": "cpollastrone3",
+        "followers": [
+            13,
+            14,
+            15,
+            11,
+            6
+        ],
+        "following": []
+    },
+    {
+        "id": 6,
+        "userName": "tblasetti4",
+        "followers": [8],
+        "following": [5]
+    },
+    {
+        "id": 7,
+        "userName": "dbrandli5",
+        "followers": [8],
+        "following": []
+    },
+    {
+        "id": 8,
+        "userName": "pemblow6",
+        "followers": [],
+        "following": [7,6,9,10]
+    },
+    {
+        "id": 9,
+        "userName": "lcolt7",
+        "followers": [8],
+        "following": []
+    },
+    {
+        "id": 10,
+        "userName": "mstandering8",
+        "followers": [8],
+        "following": []
+    },
+    {
+        "id": 11,
+        "userName": "tstroton9",
+        "followers": [],
+        "following": [5]
+    },
+    {
+        "id": 12,
+        "userName": "wduffielda",
+        "followers": [],
+        "following": [
+            3,
+            4
+        ]
+    },
+    {
+        "id": 13,
+        "userName": "maslenb",
+        "followers": [],
+        "following": [5]
+    },
+    {
+        "id": 14,
+        "userName": "dbuckettc",
+        "followers": [],
+        "following": [5]
+    },
+    {
+        "id": 15,
+        "userName": "agrelakd",
+        "followers": [],
+        "following": [5]
+    },
+    {
+        "id": 234,
+        "userName": "rpostlee",
+        "followers": [],
+        "following": []
+    }
+]
