@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class PostModel {
     private int id;
@@ -17,5 +18,11 @@ public class PostModel {
     private double price;
     private boolean has_promo;
     private double disccount;
+    private List<Integer> likes;
+
+    public PostModel() {
+        super();
+        likes = new ArrayList<>();
+    }
 
 }

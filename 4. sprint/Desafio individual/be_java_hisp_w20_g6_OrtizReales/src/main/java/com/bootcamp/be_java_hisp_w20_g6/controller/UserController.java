@@ -39,4 +39,8 @@ public class UserController {
         return new ResponseEntity<>(userService.unFollowUser(userId, userIdToUnfollow), HttpStatus.OK);
     }
 
+    @PostMapping("/{userId}/like/{post_id}")
+    public ResponseEntity<Boolean> like(@PathVariable int userId, @PathVariable int post_id){
+        return new ResponseEntity<>(userService.like(userId, post_id), HttpStatus.OK);
+    }
 }

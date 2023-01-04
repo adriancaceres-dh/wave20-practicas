@@ -297,6 +297,69 @@ RESPONSE:
 
 ```
 
+**US0011**:
+Obtener la cantidad de productos en promoción de un determinado vendedor
+
+| METHOD | SIGN                                          | EJEMPLO                    |
+|:-------|:----------------------------------------------|:---------------------------|
+| `GET` | `/user` | `/products/promo-post/count?user_id=234` |
+
+RESPONSE:
+```json
+{  
+   "user_id" : 234,
+   "user_name": "vendedor1",
+   "promo_products_count": 23
+}
+
+```
+
+**Requerimiento Bonus**
+
+**US0012**:
+Poder reaccionar a una publicacion 
+
+| METHOD | SIGN                                          | EJEMPLO                    |
+|:-------|:----------------------------------------------|:---------------------------|
+| `POST` | `/user/{user_id}/like/{post_id}` | `/user/1/like/23` |
+
+RESPONSE: Status code 200 (OK) - Bodyless | Status code 400 (Bad request) - Bodyless
+
+Responsable: Juan Carlos Ortiz
+***
+
+**US0013**:
+Poder consultar un post indicando su id 
+
+| METHOD | SIGN                                          | EJEMPLO                    |
+|:-------|:----------------------------------------------|:---------------------------|
+| `GET` | `/user/post/{post_id}` | `/user/post/1` |
+
+RESPONSE:
+```json
+{
+    "id": 1,
+    "user_id": 1,
+    "date": "2023-12-12",
+    "category": 100,
+    "product": {
+        "product_id": 1,
+        "product_name": "Silla Gamer",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "price": 1500.5,
+    "has_promo": false,
+    "disccount": 0.0,
+    "likes": [
+        2,
+        1,
+        4
+    ]
+}
+```
 Responsable: Juan Carlos Ortiz
 ***
 ## Colección de Postman 

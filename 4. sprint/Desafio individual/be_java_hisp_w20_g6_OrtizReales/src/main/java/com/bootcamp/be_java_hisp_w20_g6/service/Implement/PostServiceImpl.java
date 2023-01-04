@@ -6,13 +6,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostPromoResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
 
 import org.apache.catalina.User;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +70,12 @@ public class PostServiceImpl implements IPostService {
         } catch (UserNotFoundException e) {
             throw new UserNotFoundException("Usuario no existe");
         }
+    }
+
+    @Override
+    public PostModel getPostById(int post_id){
+        Optional<PostModel> post = postRepository.getPostById(post_id);
+        return post.isPresent() ? post.get():null;
     }
 
     @Override

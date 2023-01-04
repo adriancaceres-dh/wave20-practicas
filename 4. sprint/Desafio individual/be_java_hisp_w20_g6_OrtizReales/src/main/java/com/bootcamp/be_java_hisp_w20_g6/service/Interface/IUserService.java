@@ -24,4 +24,6 @@ public interface IUserService{
     boolean unFollowUser(int idFollower, int idFollowed);
 
     public List<UserResponseDto> orderReturnValues(List<UserResponseDto> listToOrder, String orderBy);
+
+    public Boolean like(int user_id, int post_id);
 }
