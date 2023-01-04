@@ -13,8 +13,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(int id, LocalDate date, int productId, int categoryId, double price) {
+    public Post(int id, int userId, LocalDate date, int productId, int categoryId, double price) {
         this.id = id;
+        this.userId = userId;
         this.date = date;
         this.productId = productId;
         this.categoryId = categoryId;
