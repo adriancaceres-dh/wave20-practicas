@@ -483,7 +483,7 @@ Java, Spring Boot
     "user_name": "vendedor1",
     "posts": [
         {
-            “user_id”: 123
+            “user_id”: 123,
             "post_id": 18,
             "date": "29-04-2021",
             "product": {
