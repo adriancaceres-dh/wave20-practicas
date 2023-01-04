@@ -2,10 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7_anttury.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PromoPostCreateDto;
-import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserFollowedDto;
-import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserFollowersCountDto;
-import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserFollowersDto;
-import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPostFollowedDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.service.IFollowService;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.service.IPostService;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.service.IUserService;
@@ -82,8 +79,18 @@ public class Controller {
     }
 
     @PostMapping("/products/promo-post")
-    ResponseEntity<String> addPromoPost(@RequestBody PromoPostCreateDto promoPost) {
+    public ResponseEntity<String> addPromoPost(@RequestBody PromoPostCreateDto promoPost) {
         return new ResponseEntity<>(postService.createPromoPost(promoPost), HttpStatus.OK);
+    }
+
+    @GetMapping("/products/promo-post/count")
+    public ResponseEntity<UserPromoPostCountDto> countPromoPost(@RequestParam(name = "user_id") int userId) {
+        return new ResponseEntity<>(postService.countPromoPost(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity<?> listPromoPost(@RequestParam(name = "user_id") int userId) {
+        return null;
     }
 
     //ser menos desscriptivos en los errores

@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPostFollowedDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPromoPostCountDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.Post;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.User;
@@ -62,11 +63,7 @@ public class PostService implements IPostService {
     }
 
     public void calculateId(Post post) {
-        post.setPostId(iPostRepository.findAll().stream().filter(post1 -> post.getUserId() == post1.getUserId())
-                .map(Post::getPostId)
-                .sorted(Comparator.reverseOrder())
-                .findFirst()
-                .orElseGet(() -> 0) + 1);
+        post.setPostId(iPostRepository.findAll().stream().filter(post1 -> post.getUserId() == post1.getUserId()).map(Post::getPostId).sorted(Comparator.reverseOrder()).findFirst().orElseGet(() -> 0) + 1);
     }
 
     @Override
@@ -78,13 +75,9 @@ public class PostService implements IPostService {
         List<Post> posts;
         if (order == null) order = "";
         if (order.equals("date_desc")) {
-            posts = iPostRepository.findAll().stream()
-                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
-                    .sorted(Comparator.comparing(Post::getDate)).collect(Collectors.toList());
+            posts = iPostRepository.findAll().stream().filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15))).sorted(Comparator.comparing(Post::getDate)).collect(Collectors.toList());
         } else {
-            posts = iPostRepository.findAll().stream()
-                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
-                    .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
+            posts = iPostRepository.findAll().stream().filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15))).sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
         }
 
         List<PostDto> postDtos = posts.stream().map(e -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
@@ -112,6 +105,17 @@ public class PostService implements IPostService {
         } else {
             return "Could no register post with promo";
         }
+    }
+
+    @Override
+    public UserPromoPostCountDto countPromoPost(int userId) {
+
+        User user = iUserRepository.findById(userId);
+        if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
+
+        int countPromoPost = (int) iPostRepository.findAll().stream().filter(u -> u.getUserId() == userId).filter(p -> p.isHasPromo()).count();
+
+        return new UserPromoPostCountDto(user.getUserId(), user.getUserName(), countPromoPost);
     }
 
 }

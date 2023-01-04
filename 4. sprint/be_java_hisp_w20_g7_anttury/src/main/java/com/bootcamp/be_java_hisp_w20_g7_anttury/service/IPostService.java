@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g7_anttury.service;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.request.PromoPostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPostFollowedDto;
+import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPromoPostCountDto;
 import com.bootcamp.be_java_hisp_w20_g7_anttury.entity.Post;
 
 public interface IPostService {
@@ -39,4 +40,11 @@ public interface IPostService {
      */
     String createPromoPost(PromoPostCreateDto promoPostCreateDto);
 
+    /**
+     * US 00011: Contar la cantidad de post en promoción de un vendedor
+     *
+     * @param userId id del usuario
+     * @return la canctidad de post con promoción del usuario
+     */
+    UserPromoPostCountDto countPromoPost(int userId);
 }

@@ -25,11 +25,15 @@ public class PostRepository implements IPostRepository {
         Post post2 = new Post(3, 2, LocalDate.parse("2022-11-30"), product2, 100, 2, false, 22.0);
         Post post3 = new Post(3, 3, LocalDate.parse("2023-01-01"), product2, 100, 2, false, 22.0);
         Post post4 = new Post(1, 4, LocalDate.parse("2023-01-02"), product3, 100, 1500.50, true, 0.25);
+        Post post5 = new Post(1, 4, LocalDate.parse("2023-01-02"), product2, 100, 1200, true, 0.15);
+        Post post6 = new Post(3, 4, LocalDate.parse("2023-01-02"), product3, 100, 500.50, true, 0.10);
+
         posts.add(post);
         posts.add(post2);
         posts.add(post3);
         posts.add(post4);
-
+        posts.add(post5);
+        posts.add(post6);
     }
 
     @Override
