@@ -7,3 +7,6 @@ US0006: localhost:8080/products/followed/1/list - GET
 US0007: localhost:8080/users/3/unfollow/3 - POST
 US0008: localhost:8080/users/3/followers/list?order=name_asc - GET
 US0009: localhost:8080/products/followed/3/list?order=date_asc - GET
+US00010: localhost:8080/products/promo-post - POST
+US00011: localhost:8080/products/promo-post/count?user_id=2 - GET
+US00012: localhost:8080/products/promo-post/list?user_id=2 - GET

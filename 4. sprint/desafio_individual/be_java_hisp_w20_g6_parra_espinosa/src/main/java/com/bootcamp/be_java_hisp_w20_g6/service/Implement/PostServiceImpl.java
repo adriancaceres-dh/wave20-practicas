@@ -6,10 +6,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoCountResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoListResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,5 +82,34 @@ public class PostServiceImpl implements IPostService {
 
         return new PostListResponseDTO(user_id,followedPost );
     }
-
+    @Override
+    public PromoCountResponseDTO promoCount(int userId){
+        try {
+            UserModel user = userService.getUserById(userId);
+            String userName = user.getUser_name();
+            List<PostModel> itemPromo = this.getPromoListByUser(userId);
+            int totalPromo = itemPromo.size();
+            return new PromoCountResponseDTO(userId, userName, totalPromo);
+        } catch (UserNotFoundException e){
+            throw new UserNotFoundException("Usuario no existe");
+        }
+    }
+    private List<PostModel> getPromoListByUser(int userId){
+        List<PostModel> listPromo = (List<PostModel>) postRepository.getPostList()
+                .stream()
+                .filter(post -> post.isHas_promo() && post.getUser_id() == userId)
+                .collect(Collectors.toList());
+        return listPromo;
+    }
+    @Override
+    public PromoListResponseDTO promoListDiscount(int userId){
+        try {
+            UserModel user = userService.getUserById(userId);
+            String userName = user.getUser_name();
+            List<PostModel> itemPromo = this.getPromoListByUser(userId);
+            return new PromoListResponseDTO(userId, userName, itemPromo);
+        } catch (UserNotFoundException e){
+            throw new UserNotFoundException("Usuario no existe");
+        }
+    }
 }

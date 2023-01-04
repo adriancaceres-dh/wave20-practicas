@@ -1,6 +1,8 @@
 package com.bootcamp.be_java_hisp_w20_g6.controller;
 
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoCountResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PromoListResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +18,20 @@ public class PostController {
     @Autowired
     private IPostService postService;
 
-    @PostMapping("/post")
+    @PostMapping(value = {"/post", "/promo-post"})
     public ResponseEntity<Boolean> save(@RequestBody PostRequestDto requestDto) {
         return new ResponseEntity<Boolean>(postService.save(requestDto), HttpStatus.OK);
     }
     @GetMapping("/followed/{userId}/list")
     public ResponseEntity<PostListResponseDTO> getPost(@PathVariable int userId, @RequestParam(required = false) String order) {
         return new ResponseEntity<>(postService.postFollowedLastWeeks(userId, order), HttpStatus.OK); 
+    }
+    @GetMapping("/promo-post/count")
+    public ResponseEntity<PromoCountResponseDTO> getPromoCount(@RequestParam(required = true) int user_id){
+        return new ResponseEntity<>(postService.promoCount(user_id), HttpStatus.OK);
+    }
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<PromoListResponseDTO> getPromoList(@RequestParam(required = true) int user_id){
+        return new ResponseEntity<>(postService.promoListDiscount(user_id), HttpStatus.OK);
     }
 }
