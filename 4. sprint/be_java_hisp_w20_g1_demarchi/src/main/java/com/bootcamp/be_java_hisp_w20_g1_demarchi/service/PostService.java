@@ -66,7 +66,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public boolean add(PostRequestDto postDto) {
+    public PostResponseDto add(PostRequestDto postDto) {
         if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
             throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         } else {
@@ -79,11 +79,14 @@ public class PostService implements IPostService {
             }
             ProductRequestDto productDto = postDto.getProduct();
             productService.add(productDto);
-            postRepository.add(buildPost(postDto, productDto.getProductId()));
+            Post post = buildPost(postDto, productDto.getProductId());
+            postRepository.add(post);
             //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
             userService.updateUser(postDto.getUserId());
 
-            return true;
+            PostResponseDto postResponseDto = mapper.map(postDto, PostResponseDto.class);
+            postResponseDto.setPostId(post.getId());
+            return postResponseDto;
         }
     }
 
