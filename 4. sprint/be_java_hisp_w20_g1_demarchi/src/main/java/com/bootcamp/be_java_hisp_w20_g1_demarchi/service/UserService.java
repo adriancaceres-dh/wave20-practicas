@@ -162,6 +162,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserById(int id) {
+        return userRepository.getUserById(id);
+    }
+
+    @Override
     public boolean alreadyExists(int userId) {
         User user = userRepository.getUserById(userId);
         return user != null;
@@ -172,6 +177,11 @@ public class UserService implements IUserService {
         if (!userRepository.isSeller(userId)) {
             userRepository.getUserById(userId).setSeller(true);
         }
+    }
+
+    @Override
+    public boolean isSeller(int id) {
+        return userRepository.getUserById(id).isSeller();
     }
 
     public Set<Integer> getUserFollowed(int id) {

@@ -2,15 +2,13 @@ package com.bootcamp.be_java_hisp_w20_g1_demarchi.service;
 
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostPromoRequestDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostListResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostPromoResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.ProductRequestDto;
-import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Product;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.User;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IProductService;
@@ -122,6 +120,29 @@ public class PostService implements IPostService {
         postPromoResponseDto.setPriceWithDiscount(getPriceWithDiscount(newPost.getPrice() , newPost.getDiscount()));
 
         return  postPromoResponseDto;
+    }
+
+    @Override
+    public PostPromoListCountResponseDto getAmountOfPostsOnPromotion(int id) {
+        if (!userService.alreadyExists(id)) {
+            throw new BadRequestException(Parameter.getString("EX_InvalidUser"));
+        }
+        if (!userService.isSeller(id)) {
+            throw new BadRequestException(Parameter.getString("EX_NotASeller"));
+        }
+
+        User userFound = userService.getUserById(id);
+        int amountOfPostOnPromotion = (int) postRepository
+                .getPostsByUserId(id)
+                .stream()
+                .filter(Post::isHasPromo)
+                .count();
+
+        return PostPromoListCountResponseDto.builder()
+                .userId(id)
+                .userName(userFound.getName())
+                .promoProductsCount(amountOfPostOnPromotion)
+                .build();
     }
 
     private double getPriceWithDiscount(double postPrice, double discount) {
