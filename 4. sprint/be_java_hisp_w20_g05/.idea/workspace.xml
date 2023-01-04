@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4ccda047-524a-4673-9177-df82bde03874" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/controller/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/controller/CalculatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/repository/PlateRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/repository/PlateRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/service/CalculatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/service/CalculatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/service/IngredientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/service/IngredientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/service/PlateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/java/com/bootcamp/calculadora_de_calorias/calculadora_de_calorias/service/PlateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../3. spring/calculadora_de_calorias/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JmfN3MoUKqY9M67yuieHGkDS1I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/LUBENAVIDES/Desktop/wave20-practicas/4. sprint/be_java_hisp_w20_g05"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ccda047-524a-4673-9177-df82bde03874" name="Changes" comment="" />
+      <created>1672688136032</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672688136032</updated>
+    </task>
+    <servers />
+  </component>
+</project>

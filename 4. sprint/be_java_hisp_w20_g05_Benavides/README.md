@@ -31,7 +31,9 @@ Se plantea creación de una API Rest que permita:
 5. Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
 6. Dar de alta una nueva publicación.
 7. Obtener un listado de las publicaciones realizadas en las últimas dos semanas, por los vendedores que un usuario sigue (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
-
+8. (Individual) Agregar un producto con descuento
+9. (individual) Retornar la cantidad de productos con descuento de un determinado usuario.
+10. (Individual) Retornar los posteos de un usuario con descuentos.
 ## Metodología de trabajo
 
 El trabajo consistió de 2 estapas claramente diferentes:
