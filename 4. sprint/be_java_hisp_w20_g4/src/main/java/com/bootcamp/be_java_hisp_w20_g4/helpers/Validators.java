@@ -22,4 +22,12 @@ public class Validators {
         if (! ((order == null) || order.toLowerCase().equals("date_asc") || order.toLowerCase().equals("date_desc"))) throw new BadRequestException("Parametro de orden incorrecto");
     }
 
+    /**
+     * Este método controla que el String recibido cumpla las condiciones requeridas
+     * @param param - Es el String que especifica el id del usuario
+     */
+    public static void isValidUserParam(Integer param){
+        if (param == null) throw new BadRequestException("Parametro de usuario incorrecto.");
+    }
+
 }

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrder;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidUserParam;
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isSeller;
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
 
@@ -113,6 +114,7 @@ public class ServicePublication implements IServicePublication {
 
     @Override
     public PromoPublicationCountDTO getCountPromoPublications(Integer userId) {
+        isValidUserParam(userId);
         User user = userRepository.findById(userId);
         isValidUser(user);
         isSeller(user);
