@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g4_pereyra.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDiscountDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
@@ -13,6 +14,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.category.ICategoryRep
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.product.IProductRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.publication.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.user.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.user.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,7 +84,7 @@ public class ServicePublication implements IServicePublication {
     /**
      * Este método crea una nueva publicación con descuento y la enlaza con el vendedor que la creó
      * @param postDiscountDTO
-     * @return
+     * @return PublicationDiscountDTO - Se devuelve el dto de la publicación con descuento creada
      */
     @Override
     public PublicationDiscountDTO addPromoPublication(PostDiscountDTO postDiscountDTO) {
@@ -94,7 +96,6 @@ public class ServicePublication implements IServicePublication {
         }
         return null;
     }
-
     /**
      * Método que se encarga de crear una publicación y hacer las validaciones necesarias.
      * Para crear la publicación utiliza los datos enviados en el payload de la request
@@ -105,7 +106,7 @@ public class ServicePublication implements IServicePublication {
      * @param price Precio de la publicación
      * @param has_promo Indica si tiene descuento
      * @param discount Descuento de la publicación
-     * @return
+     * @return Devuelve una publicación
      */
     private Publication createPublication(User user, int category_id, ProductDTO productDTO, LocalDate date, double price, boolean has_promo, double discount){
         isValidUser(user);
@@ -116,6 +117,18 @@ public class ServicePublication implements IServicePublication {
         if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
         if(!has_promo) return new Publication(date, price, product, category, user.getUser_id());
         else return new Publication(user.getUser_id(), date, price, has_promo, discount, product, category);
+    }
+
+    /**
+     * Este método devuelve la cantidad de productos con descuento que tiene un usuario
+     * @param user_id - id del usuario
+     * @return PromoProductsCountDTO - devuelve el dto de con la cantidad de productos con descuento
+     */
+    @Override
+    public PromoProductsCountDTO getCountProductsWithDiscount(int user_id) {
+        User user = userRepository.findById(user_id);
+        isValidUser(user);
+        return new PromoProductsCountDTO(user_id, user.getUser_name(), publicationRepository.getPublicationUser(user_id).size());
     }
 
 }

@@ -71,5 +71,18 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Devuelve una lista con las publicaciones de un determinado usuario que tienen descuento
+     * @param user_id id del usuario del cual se va a buscar las publicaciones
+     * @return Liste de publicaciones
+     */
+    @Override
+    public List<Publication> getPublicationUser(int user_id) {
+        return publications.stream()
+                .filter(p -> p.getUser_id() == user_id)
+                .filter(p -> p.isHasPromo())
+                .collect(Collectors.toList());
+    }
+
 
 }
