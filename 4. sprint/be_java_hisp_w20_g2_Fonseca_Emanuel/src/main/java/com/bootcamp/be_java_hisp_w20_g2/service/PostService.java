@@ -94,7 +94,6 @@ public class PostService implements IPostService {
         return postResponse;
     }
 
-
     /**
      * It returns a PostPromoCountResponseDTO.
      * @param userId the id of the user to check the number of their Posts in Promo.
@@ -127,5 +126,4 @@ public class PostService implements IPostService {
                 Comparator.comparing(Post::getDate).reversed()
                 : Comparator.comparing(Post::getDate);
     }
-
 }

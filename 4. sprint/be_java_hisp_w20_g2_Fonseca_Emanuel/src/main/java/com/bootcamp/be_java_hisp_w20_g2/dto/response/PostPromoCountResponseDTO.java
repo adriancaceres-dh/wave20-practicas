@@ -15,5 +15,5 @@ import lombok.Setter;
 public class PostPromoCountResponseDTO {
     private int userId;
     private String userName;
-    private int productPromoCount;
+    private int promoProductCount;
 }

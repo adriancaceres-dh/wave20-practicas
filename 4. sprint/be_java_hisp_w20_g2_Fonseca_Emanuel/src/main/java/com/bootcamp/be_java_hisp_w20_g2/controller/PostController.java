@@ -29,14 +29,12 @@ public class PostController {
     public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
         return postService.sendLastPostOfFollowed(userId,order);
     }
-
     // US-0010
     @PostMapping(path = "/promo-post")
     @ResponseStatus(HttpStatus.OK)
     public void addNewPromoProduct(@RequestBody PostPromoDTO newPost){
         postService.createPromoPost(newPost);
     }
-
     // US-0011
     @GetMapping("/promo-post/count")
     public ResponseEntity<?> getCountProductPromo(@RequestParam Optional<Integer> user_id) {
