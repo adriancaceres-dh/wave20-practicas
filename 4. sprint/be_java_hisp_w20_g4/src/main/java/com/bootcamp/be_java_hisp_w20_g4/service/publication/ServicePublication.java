@@ -37,6 +37,11 @@ public class ServicePublication implements IServicePublication {
 
     ModelMapper mapper = new ModelMapper();
 
+    /**
+     * Este método crea una nueva publicación y la enlaza con el vendedor que la creó
+     * @param publicationDto - Son los datos de la publicación
+     * @return PublicationDTO - Se devuelve un dto de la publicación creada
+     */
     public PublicationDTO addPublication(PostDTO publicationDto){
         User user =  userRepository.findById(publicationDto.getUser_id());
         if(user == null) throw new BadRequestException("El usuario no es válido");
@@ -57,6 +62,12 @@ public class ServicePublication implements IServicePublication {
         return null;
     }
 
+    /**
+     * Este método obtiene las publicaciones de las últimas dos semanas de los vendedores que sigue el usuario recibido
+     * @param userId - Id del que obtendrá la lista de seguidos para buscar las publicaciones
+     * @param order - Especifica el tipo de ordenamiento que se desea (Opciones aceptadas: "date_asc" , "date_desc", null)
+     * @return
+     */
     public ProductTwoWeeksResponseDTO getLastTwoWeeksPublications(int userId, String order) {
         isValidDateOrder(order);
 
