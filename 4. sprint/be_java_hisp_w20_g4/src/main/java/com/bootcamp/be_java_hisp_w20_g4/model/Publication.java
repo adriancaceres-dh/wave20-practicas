@@ -24,7 +24,7 @@ public class Publication {
     private Category category;
 
     private int user_id;
-    private int contador = 3;
+    private static int contador;
 
     public Publication(LocalDate date, double price, Product product, Category category, int user_id) {
         this.user_id = user_id;
@@ -32,7 +32,20 @@ public class Publication {
         this.price = price;
         this.product = product;
         this.category = category;
-        contador++;
-        this.post_id = contador;
+        this.contador++;
+        this.post_id = this.contador;
     }
+
+    public Publication(LocalDate date, double price, boolean hasPromo, double discount, Product product, Category category, int user_id) {
+        this.date = date;
+        this.price = price;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
+        this.product = product;
+        this.category = category;
+        this.user_id = user_id;
+        this.contador++;
+        this.post_id = this.contador;
+    }
+
 }

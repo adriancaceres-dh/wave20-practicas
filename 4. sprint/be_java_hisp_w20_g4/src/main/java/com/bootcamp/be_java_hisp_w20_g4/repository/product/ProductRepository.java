@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.repository.product;
 
 import com.bootcamp.be_java_hisp_w20_g4.model.Product;
-import com.bootcamp.be_java_hisp_w20_g4.repository.product.IProductRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;

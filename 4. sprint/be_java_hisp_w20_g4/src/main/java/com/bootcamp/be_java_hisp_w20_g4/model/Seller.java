@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -73,9 +75,12 @@ public class Seller extends User{
         }
     }
 
-
-    private List<Product> obtainProductsWithDiscount(){
-        return null;
+    /**
+     * Este metodo busca las publicaciones de los productos que estan en promocion
+     * @return
+     */
+    public List<Publication> obtainPublicationHasPromotion(){
+       return  publications.values().stream().filter(p->p.isHasPromo() == true).collect(Collectors.toList());
     }
 
     public User removeUserFromMyFollowersList(int userId) {

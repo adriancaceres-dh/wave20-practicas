@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.repository.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.model.Publication;
-import com.bootcamp.be_java_hisp_w20_g4.repository.publication.IPublicationRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -54,6 +53,13 @@ public class PublicationRepository implements IPublicationRepository {
             return false;
         }
 
+    }
+
+    public List<Publication> getPublicationHasPromotion(int userId){
+        return publications.stream()
+                .filter(p -> p.getUser_id() == userId)
+                .filter(p -> p.isHasPromo())
+                .collect(Collectors.toList());
     }
 
     /**
