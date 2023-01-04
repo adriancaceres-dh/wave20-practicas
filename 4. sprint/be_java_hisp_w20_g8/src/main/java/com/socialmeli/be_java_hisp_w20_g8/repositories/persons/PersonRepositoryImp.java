@@ -106,8 +106,14 @@ public class PersonRepositoryImp implements IPersonRepository {
                     add(8);
                 }}
                 ),
-                new Seller(6, "zxc", new HashSet<>(), new HashSet<>()),
-                new Seller(7, "hjf", new HashSet<>(), new HashSet<>())
+                new Seller(6, "zxc", new HashSet<>(){{
+                    add(1);
+                    add(2);
+                    add(3);
+                }}, new HashSet<>()),
+                new Seller(7, "hjf", new HashSet<>(){{
+                    add(2);
+                }}, new HashSet<>())
         ));
         return true;
     }

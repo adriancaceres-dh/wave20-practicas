@@ -41,16 +41,16 @@ public class IPostRepositoryImp implements IPostRepository {
     }
 
     public Map<Integer, PostDTO> loadPost(){
-        mapPosts.put(1, PostDTO.builder().post_id(1).userId(1).date(LocalDate.of(2022, 12, 29)).product(
+        mapPosts.put(1, PostDTO.builder().post_id(1).userId(5).date(LocalDate.of(2022, 12, 29)).product(
                 ProductDTO.builder().product_id(1).product_name("Televisor").type("Tecnologia").brand("Samsung").color("Negro").notes("TV 58 pulgadas").build()
         ).caregory(2).price(2.000).build());
-        mapPosts.put(2, PostDTO.builder().post_id(2).userId(2).date(LocalDate.of(2022, 12, 28)).product(
+        mapPosts.put(2, PostDTO.builder().post_id(2).userId(5).date(LocalDate.of(2022, 12, 28)).product(
                 ProductDTO.builder().product_id(1).product_name("Nevera").type("Tecnologia").brand("Samsung").color("Negro").notes("nevera").build()
         ).caregory(2).price(2.000).build());
-        mapPosts.put(3, PostDTO.builder().post_id(3).userId(3).date(LocalDate.of(2022, 11, 29)).product(
+        mapPosts.put(3, PostDTO.builder().post_id(3).userId(7).date(LocalDate.of(2022, 11, 29)).product(
                 ProductDTO.builder().product_id(1).product_name("Licuadora").type("Tecnologia").brand("Samsung").color("Negro").notes("9 litros").build()
         ).caregory(2).price(2.000).build());
-        mapPosts.put(4, PostDTO.builder().post_id(4).userId(4).date(LocalDate.of(2022, 11, 27)).product(
+        mapPosts.put(4, PostDTO.builder().post_id(4).userId(6).date(LocalDate.of(2022, 11, 27)).product(
                 ProductDTO.builder().product_id(1).product_name("Camisetas").type("Ropa").brand("Woft").color("Negro").notes("tela fria").build()
         ).caregory(2).price(2.000).build());
 

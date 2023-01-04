@@ -3,8 +3,8 @@ package com.socialmeli.be_java_hisp_w20_g8.models;
 import java.util.Objects;
 
 public class Product {
-    private int productId;
-    private String productName;
+    private int product_id;
+    private String product_name;
     private String type;
     private String brand;
     private String color;
@@ -14,29 +14,29 @@ public class Product {
 
     }
 
-    public Product(int productId, String productName, String type, String brand, String color, String notes) {
-        this.productId = productId;
-        this.productName = productName;
+    public Product(int product_id, String product_name, String type, String brand, String color, String notes) {
+        this.product_id = product_id;
+        this.product_name = product_name;
         this.type = type;
         this.brand = brand;
         this.color = color;
         this.notes = notes;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
     public String getType() {
@@ -76,11 +76,11 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return productId == product.productId && productName.equals(product.productName) && type.equals(product.type) && brand.equals(product.brand) && color.equals(product.color) && notes.equals(product.notes);
+        return product_id == product.product_id && product_name.equals(product.product_name) && type.equals(product.type) && brand.equals(product.brand) && color.equals(product.color) && notes.equals(product.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productName, type, brand, color, notes);
+        return Objects.hash(product_id, product_name, type, brand, color, notes);
     }
 }

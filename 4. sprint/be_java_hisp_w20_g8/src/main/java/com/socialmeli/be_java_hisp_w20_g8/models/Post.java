@@ -6,18 +6,23 @@ public class Post {
     private Integer id;
     private int userId;
     private LocalDate date;
-    private Integer idProduct;
+    private Integer product_id;
     private Integer category;
     private double price;
 
-    public Post(Integer id, int userId, LocalDate date, Integer idProduct, Integer category, double price) {
+    public Post(Integer id, int userId, LocalDate date, Integer product_id, Integer category, double price) {
         this.id = id;
         this.userId = userId;
         this.date = date;
-        this.idProduct = idProduct;
+        this.product_id = product_id;
         this.category = category;
         this.price = price;
     }
+
+    public Post(){
+
+    }
+
     public Integer getId() {
         return id;
     }
@@ -42,12 +47,12 @@ public class Post {
         this.date = date;
     }
 
-    public Integer getIdProduct() {
-        return idProduct;
+    public Integer getProduct_id() {
+        return product_id;
     }
 
     public void setProductId(Integer idProduct) {
-        this.idProduct = idProduct;
+        this.product_id = idProduct;
     }
 
     public Integer getCategory() {

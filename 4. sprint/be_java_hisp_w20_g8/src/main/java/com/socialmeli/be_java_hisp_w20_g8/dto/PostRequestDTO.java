@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 public class PostRequestDTO {
     @JsonProperty("user_id")
-    private Integer userId;
+    private Integer user_id;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
     @JsonProperty("product")

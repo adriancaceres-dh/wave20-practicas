@@ -37,7 +37,7 @@ public class ProductService implements IProductService {
 
         // Get the product if exists
         Product product = mapper.map(productDTO, Product.class);
-        Optional<Product> existing = productRepository.getProductById(product.getProductId());
+        Optional<Product> existing = productRepository.getProductById(product.getProduct_id());
 
         // Check if the product is valid
         if(existing.isPresent() && !product.equals(existing.get())) {

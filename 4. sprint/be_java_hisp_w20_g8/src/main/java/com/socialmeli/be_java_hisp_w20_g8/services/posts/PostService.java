@@ -55,12 +55,12 @@ public class PostService implements IPostService {
     @Override
     public boolean createPost(PostRequestDTO postRequestDTO) {
         // Check if all the fields are present
-        if(!Stream.of(postRequestDTO.getUserId(), postRequestDTO.getDate(), postRequestDTO.getProductDTO(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
+        if(!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(), postRequestDTO.getProductDTO(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
                 .allMatch(Objects::nonNull))
             throw new InvalidArgumentException("All the fields are required");
 
         // Get the seller
-        Seller seller = IPersonRepository.findSellerById(postRequestDTO.getUserId());
+        Seller seller = IPersonRepository.findSellerById(postRequestDTO.getUser_id());
 
         // Check if the seller exists
         if(seller == null)
