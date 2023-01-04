@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/be_java_hisp_w20_g4.iml" filepath="$PROJECT_DIR$/be_java_hisp_w20_g4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/be_java_hisp_w20_g4_stocco.iml" filepath="$PROJECT_DIR$/be_java_hisp_w20_g4_stocco.iml" />
+    </modules>
+  </component>
+</project>
