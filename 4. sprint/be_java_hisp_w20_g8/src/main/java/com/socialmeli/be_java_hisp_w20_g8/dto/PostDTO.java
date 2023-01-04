@@ -13,15 +13,15 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class PostDTO {
-    private int userId;
+    private int user_id;
     private int post_id;
     private LocalDate date;
     private ProductDTO product;
     private int category;
     private double price;
 
-    public PostDTO(int userId, LocalDate date, ProductDTO product, int category, double price) {
-        this.userId = userId;
+    public PostDTO(int user_id, LocalDate date, ProductDTO product, int category, double price) {
+        this.user_id = user_id;
         this.date = date;
         this.product = product;
         this.category = category;

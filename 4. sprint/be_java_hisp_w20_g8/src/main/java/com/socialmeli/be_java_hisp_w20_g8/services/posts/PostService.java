@@ -79,7 +79,7 @@ public class PostService implements IPostService {
             Set<Integer> followedSellers = personRepository.getAllFollowed(id);
             Set<Seller> sellers = followedSellers.stream().map(seller_id -> personRepository.findSellerById(seller_id)).collect(Collectors.toSet());
             if(sellers.isEmpty())
-                throw new DoesntExistSellerException("The user doesn't follow any sellers");
+                throw new DoesntExistSellerException("The seller doesn't follow any sellers");
             return findPostByIdSeller(sellers, id,order);
         }
         else {
@@ -90,12 +90,12 @@ public class PostService implements IPostService {
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
        List<PostDTO> listPostSeller = new ArrayList<>();
-       sellers.forEach(seller -> postRepository.findPostsById(seller.getPost()).forEach(x-> {
-           if(x != null)
-               listPostSeller.add(x);
-           else
-               throw new DoesntExistSellerException("The user doesn't follow any sellers");
-       }));
+       sellers.forEach(seller -> {
+           if (seller == null)
+               throw new DoesntExistSellerException("The seller doesn't follow any sellers");
+           postRepository.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x));
+           });
+
        String orderType = order==null ? "" : order;
         if (!Validators.checkValidatorOptionDate(orderType)) {
             throw new InvalidArgumentException("Invalid sorting option");

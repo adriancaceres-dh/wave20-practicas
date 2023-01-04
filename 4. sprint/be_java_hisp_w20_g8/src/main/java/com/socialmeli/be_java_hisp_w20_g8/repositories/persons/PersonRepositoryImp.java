@@ -1,5 +1,6 @@
 package com.socialmeli.be_java_hisp_w20_g8.repositories.persons;
 
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Person;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
@@ -82,8 +83,8 @@ public class PersonRepositoryImp implements IPersonRepository {
         persons.get("users").addAll(Set.of(
 
                 new User(1, "user1", new HashSet<>(){{
-                    add(3);
-                    add(4);
+                    add(5);
+                    add(6);
                 }}),
                 new User(2, "user2", new HashSet<>()),
                 new User(3, "ghds", new HashSet<>()),
@@ -118,23 +119,23 @@ public class PersonRepositoryImp implements IPersonRepository {
     }
 
     public Set<Integer> getAllFollowed(int userId) {
-        User user = (User) persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElse(null);
+        User user = (User) persons.get("users").stream().filter(u -> u.getId().equals(userId)).findAny().orElseThrow(()-> new NotFoundException("Doesn't exist user"));
         return user.getFollowing();
     }
 
 
     public Seller findSellerById(Integer id) {
-        return (Seller) persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+        return (Seller) persons.get("sellers").stream().filter(u -> u.getId().equals(id)).findAny().orElseThrow(()-> new NotFoundException("Doesn't exist seller"));
 
     }
 
     @Override
     public User findUserById(Integer id) {
-        return (User) persons.get("users").stream().filter(u -> u.getId().equals(id)).findAny().orElse(null);
+        return (User) persons.get("users").stream().filter(u -> u.getId().equals(id)).findAny().orElseThrow(()-> new NotFoundException("Doesn't exist user"));
     }
 
     public Seller getById(int id){
-        return (Seller) persons.get("sellers").stream().filter(x->x.getId()==id).findFirst().orElse(null);
+        return (Seller) persons.get("sellers").stream().filter(x->x.getId()==id).findFirst().orElseThrow(()-> new NotFoundException("Doesn't exist id"));
     }
 
     public Set<Integer> GetSellerFollowers(int userId){
