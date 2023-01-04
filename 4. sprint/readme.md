@@ -31,14 +31,14 @@ US 007: POST
 /users/{userId}/unfollow/{userIdToUnfollow}
 
 USS 08: GET
-/users/{UserID}/followers/list?order=name_asc
-/users/{UserID}/followers/list?order=name_desc
-/users/{UserID}/followed/list?order=name_asc
-/users/{UserID}/followed/list?order=name_desc
+- /users/{UserID}/followers/list?order=name_asc
+- /users/{UserID}/followers/list?order=name_desc
+- /users/{UserID}/followed/list?order=name_asc
+- /users/{UserID}/followed/list?order=name_desc
 
 USS 009: GET
-/products/followed/{userId}/list?order=date_asc
-/products/followed/{userId}/list?order=date_desc
+- /products/followed/{userId}/list?order=date_asc
+- /products/followed/{userId}/list?order=date_desc
 
 USS 0010: POST
 /products/promo-post
