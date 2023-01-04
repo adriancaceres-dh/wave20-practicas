@@ -29,7 +29,7 @@ public class UserRepository implements IUserRepository {
         User user = users.stream().filter(e -> e.getUserId() == id).findFirst().orElse(null);
 
         if (user == null) {
-            throw new UserNotFoundException("user with id " + id + " not found");
+            throw new UserNotFoundException("user not found");
         }
 
         return user;

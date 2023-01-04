@@ -82,4 +82,7 @@ public class Controller {
 
     //@GetMapping("/products/followed/{userId}/list")
 
+    //ser menos desscriptivos en los errores
+    //un solo idioma pls
+
 }
