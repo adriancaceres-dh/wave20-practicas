@@ -2,6 +2,7 @@ package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.PromoPostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.UserPromoPostCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
@@ -100,7 +101,7 @@ public class PostService implements IPostService {
                 .price(promoPostDTO.getPrice())
                 .product(product)
                 .date(promoPostDTO.getDate())
-                .hasPromo(true)
+                .hasPromo(promoPostDTO.isHasPromo())
                 .discount(promoPostDTO.getDiscount())
                 .build();
         postRepository.addPost(post);
@@ -109,8 +110,22 @@ public class PostService implements IPostService {
         return "Publicacion agregada";
     }
 
+    @Override
+    public UserPromoPostCountDTO getUserPromoPostCount(int userId) {
+        User user = userRepository.getUserById(userId);
+        if (user == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+
+        List<Post> userPromoPosts = postRepository.getPosts().stream()
+                .filter(p -> p.getUserId() == userId && p.isHasPromo())
+                .collect(Collectors.toList());
+
+        return new UserPromoPostCountDTO(userId, user.getUserName(),userPromoPosts.size());
+    }
+
 /*    //DEV
-    public List<PromoPostDTO> getAllPostFromUser() {
+    public List<PromoPostDTO> getAllPosts() {
         return postRepository.getPosts().stream().map(u -> mapper.map(u, PromoPostDTO.class)).collect(Collectors.toList());
     }
 
