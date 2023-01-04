@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostWithPromoCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostWithPromoCountDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostWithPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 
 public interface IPostService {
@@ -47,5 +48,13 @@ public interface IPostService {
      * @return UserPostWithPromoCountDto: retorna el id del ususario y nombre del usuario junto con el numero de posts con descuento que tiene
      */
     UserPostWithPromoCountDto countUserPostsWithPromo(int userId);
+
+    /**
+     * US 0012: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
+     *
+     * @param userId : id del usuario
+     * @return UserPostWithPromoCountDto: retorna el id del usuario y nombre del usuario junto con los posts con descuento que tiene
+     */
+    UserPostWithPromoDto getUserPostsWithPromo(int userId);
 
 }

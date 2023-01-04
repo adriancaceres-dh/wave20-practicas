@@ -1,10 +1,12 @@
 package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.PostWithPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostWithPromoCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostWithPromoCountDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostWithPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
@@ -126,5 +128,19 @@ public class PostService implements IPostService {
                 collect(Collectors.toList()).size();
 
         return new UserPostWithPromoCountDto(userId,user.getUserName(),postCount);
+    }
+
+    @Override
+    public UserPostWithPromoDto getUserPostsWithPromo(int userId) {
+
+        User user = iUserRepository.findById(userId);
+
+        if(user == null) throw new UserNotFoundException("User not found");
+
+        List<Post> posts = iPostRepository.findAll().stream().filter(e -> e.isHasPromo() && e.getUserId() == userId).collect(Collectors.toList());
+
+        List<PostWithPromoDto> postWithPromoDtos = posts.stream().map(e -> modelMapper.map(e, PostWithPromoDto.class)).collect(Collectors.toList());
+
+        return new UserPostWithPromoDto(userId,user.getUserName(),postWithPromoDtos);
     }
 }

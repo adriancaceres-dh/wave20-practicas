@@ -93,6 +93,13 @@ public class Controller {
         return new ResponseEntity<>(postService.countUserPostsWithPromo(user_id),HttpStatus.OK);
     }
 
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity<UserPostWithPromoDto> userPostWithPromo(
+            @RequestParam int user_id
+    ){
+        return new ResponseEntity<>(postService.getUserPostsWithPromo(user_id),HttpStatus.OK);
+    }
+
     //@GetMapping("/products/followed/{userId}/list")
 
     //ser menos desscriptivos en los errores
