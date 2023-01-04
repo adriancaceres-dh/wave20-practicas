@@ -2,7 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
-import com.socialmeli.be_java_hisp_w20_g8.services.posts.PostService;
+import com.socialmeli.be_java_hisp_w20_g8.services.posts.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 public class ProductController {
     @Autowired
-    private PostService postService;
+    private IPostService postService;
 
     @PostMapping("/post")
     public ResponseEntity<?> postPost(@RequestBody PostRequestDTO postRequestDTO) {
