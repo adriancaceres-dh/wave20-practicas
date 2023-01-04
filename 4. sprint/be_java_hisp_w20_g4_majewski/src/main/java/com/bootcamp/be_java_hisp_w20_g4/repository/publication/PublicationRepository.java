@@ -18,9 +18,11 @@ import java.util.stream.Collectors;
 
 @Repository
 public class PublicationRepository implements IPublicationRepository {
-    private List<Publication> publications = loadPublications();
+    private List<Publication> publications;
 
-    public PublicationRepository(){}
+    public PublicationRepository(){
+        this.publications = loadPublications();
+    }
 
     private List<Publication> loadPublications() {
         File file = null;
@@ -70,6 +72,11 @@ public class PublicationRepository implements IPublicationRepository {
                 .filter(p -> p.getDate().isAfter(LocalDate.now().minusDays(nDays)))
                 .sorted(Comparator.comparing(Publication::getDate))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Publication> getPublicationsWithPromo(){
+        return publications.stream().filter(p -> p.isHasPromo()).collect(Collectors.toList());
     }
 
 
