@@ -263,9 +263,9 @@ Responsable: Alejandro Torres Muñoz
 **US0011**:
 Obtener la cantidad de productos en promoción de un determinado vendedor
 
-| METHOD | SIGN                              | EJEMPLO                    |
-|:-------|:----------------------------------|:---------------------------|
-| `GET`  | `/users/{userId}/followers/count` | `/users/1/followers/count` |
+| METHOD | SIGN                                           | EJEMPLO                    -           |
+|:-------|:-----------------------------------------------|:---------------------------------------|
+| `GET`  | `/products/promo-post/count?user_id={userId}`  | `/products/promo-post/count?user_id=1` |
 
 RESPONSE:
 ```json
@@ -273,6 +273,42 @@ RESPONSE:
   "user_id": 1,
   "user_name": "pablito1",
   "followers_count": 0
+}
+```
+
+Responsable: Alejandro Torres Muñoz
+
+**US0012 BONUS**:
+Obtener un listado de todos los productos en promoción de un determinado vendedor.
+
+| METHOD | SIGN                                            | EJEMPLO                    -          |
+|:-------|:------------------------------------------------|:--------------------------------------|
+| `GET`  | `/products/promo-post/list?user_id={userId}`    | `/products/promo-post/list?user_id=1` |
+
+RESPONSE:
+```json
+{
+  "user_id": 1,
+  "user_name": "pablito1",
+  "posts": [
+    {
+      "user_id": 1,
+      "post_id": 2,
+      "date": "2023-02-04",
+      "product": {
+        "product_id": 1,
+        "product_name": "Silla Gamer 2",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+      },
+      "category": 100,
+      "price": 1500.5,
+      "has_promo": true,
+      "discount": 0.95
+    }
+  ]
 }
 ```
 
