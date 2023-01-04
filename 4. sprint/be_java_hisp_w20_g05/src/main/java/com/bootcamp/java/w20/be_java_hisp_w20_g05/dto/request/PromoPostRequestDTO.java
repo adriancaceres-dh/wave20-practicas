@@ -8,14 +8,8 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-public class PromoPostRequestDTO {
+public class PromoPostRequestDTO extends PostRequestDTO{
 
-    private int user_id;
-    @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
-    private LocalDate date;
-    private ProductRequestDTO product;
-    private int category;
-    private double price;
     private boolean has_promo;
     private double discount;
 }

@@ -2,9 +2,8 @@ package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PromoPostRequestDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoProductCountDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoProductListDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promotion_dtos.PromoProductCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promotion_dtos.PromoProductListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;

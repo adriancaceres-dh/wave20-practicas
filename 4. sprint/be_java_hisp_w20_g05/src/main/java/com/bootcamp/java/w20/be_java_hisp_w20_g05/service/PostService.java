@@ -7,6 +7,10 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserPostDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserProductDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUsersPostsResponse;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promotion_dtos.PromoPostResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promotion_dtos.PromoProductCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promotion_dtos.PromoProductListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promotion_dtos.PromoProductResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.AlreadyPostedPromoException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidPostDataException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
@@ -17,22 +21,19 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Objects;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class PostService implements IPostService{
-    private int post_id = 36;
     @Autowired
-    public IPostRepository postRepository;
+    private IPostRepository postRepository;
     @Autowired
-    public IUserService userService;
+    private IUserService userService;
     @Override
     public List<PostResponseDTO> filterBy(String name) {
         return null;
@@ -42,7 +43,7 @@ public class PostService implements IPostService{
         User user = userService.getById(id);
 
         List<PromoPostResponseDTO> productList= postRepository.getAll().stream()
-                .filter(post -> post.getId()==id && post.getDiscount()>0)
+                .filter(post -> post.getUserId()==id && post.getDiscount()>0)
                 .map(post -> PromoPostResponseDTO.builder()
                         .user_id(post.getUserId())
                         .post_id(post.getId())
@@ -57,7 +58,7 @@ public class PostService implements IPostService{
                                 .build())
                         .category(post.getCategory())
                         .price(post.getPrice())
-                        .has_promo(post.getDiscount()>0)
+                        .has_promo(true)
                         .discount(post.getDiscount())
                         .build())
                 .collect(Collectors.toList());
@@ -71,19 +72,12 @@ public class PostService implements IPostService{
     }
 
     public String addPromoPost(PromoPostRequestDTO post){
-        if(!post.isHas_promo()){
+        if(!post.isHas_promo() || !(post.getDiscount()>0)){
             throw new NotPromotionException(new MessageExceptionDTO("No esta promocionado."));
         }else if(isPosted(post)){
             throw new AlreadyPostedPromoException(new MessageExceptionDTO("Promocion ya publicada."));
         }else{
-            /* Para crear el id tuve inconvenientes, ya que los posts al estar en un Set no se puede
-            acceder al ultimo elemento agregado directamente para sumarle 1 a su id. No me parecia bien
-            usar el .size() por si llegara a haber elementos borrados. Podia usar un metodo que itere el set
-            y consiga el maximo para sumarle 1 pero me parecio ineficiente y generaba conflicto con la
-            solucion que encontro un compañero de usar el post_id que esta aca en el service, aunque no
-            estoy convencido de que sea una buena solucion. Quiza haya que haber planeado mejor el repositorio
-            desde el inicio. */
-            postRepository.add(new Post(++post_id,post.getCategory(),post.getUser_id(),post.getDate(),post.getPrice(),post.getDiscount(),new Product(post.getProduct().getProduct_id(),post.getProduct().getProduct_name(),post.getProduct().getBrand(),post.getProduct().getType(),post.getProduct().getColor(),post.getProduct().getNotes())));
+            postRepository.add(new Post(postRepository.incrementId(),post.getCategory(),post.getUserId(),post.getDate(),post.getPrice(),post.getDiscount(),new Product(post.getProduct().getProduct_id(),post.getProduct().getProduct_name(),post.getProduct().getBrand(),post.getProduct().getType(),post.getProduct().getColor(),post.getProduct().getNotes())));
             return "Añadido con exito!";
         }
     }
@@ -91,7 +85,7 @@ public class PostService implements IPostService{
     public PromoProductCountDTO countPromoByUser (int id){
         User user = userService.getById(id);
         int count = (int) postRepository.getAll().stream()
-                .filter(post -> post.getId()==id && post.getDiscount()>0)
+                .filter(post -> post.getUserId()==id && post.getDiscount()>0)
                 .count();
         return new PromoProductCountDTO(id, count, user.getUserName());
     }
@@ -99,7 +93,7 @@ public class PostService implements IPostService{
     @Override
     public Post newPost(PostRequestDTO postRequestDTO) {
         Post newPost = Post.builder()
-                .id(++post_id)
+                .id(postRepository.incrementId())
                 .category(postRequestDTO.getCategory())
                 .price(postRequestDTO.getPrice())
                 .userId(postRequestDTO.getUserId())

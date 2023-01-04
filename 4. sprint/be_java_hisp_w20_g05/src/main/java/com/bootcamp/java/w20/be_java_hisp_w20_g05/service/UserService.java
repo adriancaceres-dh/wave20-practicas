@@ -92,20 +92,18 @@ public class UserService implements IUserService{
         return new FollowersBySellerDTO(seller.getId(), seller.getUserName(), followersDto);
     }
 
-    public boolean orderList(List<UserResponseDTO> userResponseDTOList, String order){
-        if (order!=null) {
+    public List<UserResponseDTO> orderList(List<UserResponseDTO> userResponseDTOList, String order){
+        if (order!=null)
             userResponseDTOList.sort((x, y) -> (order.equalsIgnoreCase("name_asc")) ?
                     String.CASE_INSENSITIVE_ORDER.compare(x.getUserName(), y.getUserName()) :
                     String.CASE_INSENSITIVE_ORDER.compare(y.getUserName(), x.getUserName()));
-            return true;
-        }else return false;
+        return userResponseDTOList;
     }
 
     public boolean validateOrder(String order){
         if(order!=null && !order.equalsIgnoreCase("name_asc") && !order.equalsIgnoreCase("name_desc")){
             throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));}
         else return true;
-
     }
 
 }

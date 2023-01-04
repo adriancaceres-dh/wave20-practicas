@@ -20,9 +20,17 @@ import java.util.stream.Collectors;
 @Repository
 public class PostRepository implements IPostRepository{
     private Set<Post> posts = new HashSet<>();
+    private int currentId;
 
     public PostRepository() {
-        posts = loadDataBase(); }
+        posts = loadDataBase();
+        currentId = posts.stream()
+                .map(Post::getId)
+                .max(Integer::compare)
+                .orElse(0);
+    }
+
+    public int incrementId(){return ++currentId;}
 
     @Override
     public boolean contains(Post post) {
