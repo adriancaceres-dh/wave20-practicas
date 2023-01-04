@@ -55,6 +55,12 @@ public class PublicationRepository implements IPublicationRepository {
 
     }
 
+    /**
+     * Este método obtiene las publicaciones en promocion del usuario
+     * @param userId -Id del vendedor del que se consulta la cantidad de publicaciones en promoción
+     * @return List<Publication> - Se devuelve la lista de publicaciones en promocion
+     */
+
     public List<Publication> getPublicationHasPromotion(int userId){
         return publications.stream()
                 .filter(p -> p.getUser_id() == userId)

@@ -89,7 +89,11 @@ public class ServicePublication implements IServicePublication {
         return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
     }
 
-
+    /**
+     * Este método agrega publicaciones que pueden o no, estar en promoción
+     * @param publicationPromotionDto - Son los datos de la publicación, con el producto
+     * @return PublicationDTO - Se devuelve un dto de la publicación
+     */
     public PublicationDTO addPublicationHasPromotion(PostPromotionDTO publicationPromotionDto) {
         User userFinder = userRepository.findById(publicationPromotionDto.getUser_id());
         if (userFinder == null) throw new BadRequestException("El usuario no es válido");
@@ -101,14 +105,26 @@ public class ServicePublication implements IServicePublication {
         Product product = mapper.map(publicationPromotionDto.getProduct(), Product.class);
         if (!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
         Publication publication = new Publication(publicationPromotionDto.getDate(), publicationPromotionDto.getPrice(),publicationPromotionDto.isHas_promo(),publicationPromotionDto.getDiscount(),product, category, userFinder.getUser_id());
+        List<Publication> publicationsForUser = publicationRepository.getPublicationHasPromotion(userFinder.getUser_id());
+        if(publicationsForUser != null){
+            if(publicationsForUser.stream().filter(p->p.getProduct().getProduct_id() == publicationPromotionDto.getProduct().getProduct_id()).collect(Collectors.toList()).size() > 0)
+                throw new BadRequestException("Ya hay una publicacion igual.");
+        }
+
+
 
         if (publicationRepository.addPublication(publication)) {
             ((Seller) userFinder).addPublication(publication);
             return new PublicationDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), category.getId(), publication.getPrice());
-
         }
         return null;
     }
+
+    /**
+     * Este metodo busca la cantidad de publicaciones en promoción que tiene el vendedor
+     * @param userId - Id del vendedor del que se consulta la cantidad de publicaciones
+     * @return ProductCountDTO - Se devuelve los datos y la cantidad de publicaciones del vendedor solicitado
+     */
 
     public ProductCountDTO countPublicationHasPromo(int userId){
         User userFinder = userRepository.findById(userId);
