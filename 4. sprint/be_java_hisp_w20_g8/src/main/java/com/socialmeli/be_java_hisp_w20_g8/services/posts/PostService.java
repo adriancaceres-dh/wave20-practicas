@@ -93,7 +93,7 @@ public class PostService implements IPostService {
        sellers.forEach(seller -> {
            if (seller == null)
                throw new DoesntExistSellerException("The seller doesn't follow any sellers");
-           postRepository.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x));
+           listPostSeller.addAll(postRepository.findPostsById(seller.getPost()));
            });
 
        String orderType = order==null ? "" : order;
