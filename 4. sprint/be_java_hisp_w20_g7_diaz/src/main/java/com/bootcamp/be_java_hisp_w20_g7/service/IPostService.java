@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostPromoCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.PostPromoByVendorDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.PostPromoCountByVendorDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -44,9 +45,17 @@ public interface IPostService {
     /**
      * US 0011: Obtener la cantidad de productos en promoción de un determinado vendedor
      *
-     * @param userId : body id del usuario
+     * @param userId : id del usuario
      * @return PostPromoCountByVendorDto: retorna el id del usuario, el user name del usuario y la cantidad de productos en promocion que tiene;
      */
     PostPromoCountByVendorDto postPromoCountByVendor(int userId);
+
+    /**
+     * US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
+     *
+     * @param userId : id del usuario
+     * @return PostPromoByVendorDto: retorna el id del usuario, el user name del usuario y los productos en promocion que tiene;
+     */
+    PostPromoByVendorDto postPromoByVendor(int userId);
 
 }

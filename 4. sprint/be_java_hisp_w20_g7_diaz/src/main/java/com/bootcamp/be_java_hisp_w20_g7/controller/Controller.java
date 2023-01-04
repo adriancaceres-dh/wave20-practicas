@@ -40,13 +40,13 @@ public class Controller {
     @GetMapping("/users/{userId}/followers/list")
     public ResponseEntity<UserFollowersDto> findAllFollowers(@PathVariable int userId, @RequestParam(required = false) String order
     ) {
+        UserFollowersDto userFollowersDto;
         if (order == null) {
-            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId, "");
-            return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
+            userFollowersDto = iUserService.userFollowers(userId, "");
         } else {
-            UserFollowersDto userFollowersDto = iUserService.userFollowers(userId, order);
-            return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
+            userFollowersDto = iUserService.userFollowers(userId, order);
         }
+        return new ResponseEntity<>(userFollowersDto, HttpStatus.OK);
     }
 
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
@@ -56,11 +56,10 @@ public class Controller {
         UserFollowedDto userFollowedDto;
         if (order == null) {
             userFollowedDto = iUserService.userFollowed(userId, "");
-            return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
         } else {
             userFollowedDto = iUserService.userFollowed(userId, order);
-            return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
         }
+        return new ResponseEntity<>(userFollowedDto, HttpStatus.OK);
     }
 
     //US 0005: Dar de alta una nueva publicación
@@ -93,5 +92,11 @@ public class Controller {
     @GetMapping("/products/promo-post/count")
     public ResponseEntity<PostPromoCountByVendorDto> postPromoCountByVendor(@RequestParam(name = "user_id") int userId){
         return new ResponseEntity<>(postService.postPromoCountByVendor(userId),HttpStatus.OK);
+    }
+
+    //US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity<PostPromoByVendorDto> postPromoByVendor(@RequestParam(name = "user_id") int userId){
+        return new ResponseEntity<>(postService.postPromoByVendor(userId),HttpStatus.OK);
     }
 }

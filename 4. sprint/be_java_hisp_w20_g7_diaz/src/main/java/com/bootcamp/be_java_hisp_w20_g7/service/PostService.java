@@ -1,9 +1,11 @@
 package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.PostPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostPromoCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.PostPromoCountByVendorDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.PostPromoByVendorDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -130,6 +132,20 @@ public class PostService implements IPostService {
                 .count();
 
         return new PostPromoCountByVendorDto(user.getUserId(),user.getUserName(),countPromo);
+    }
 
+    @Override
+    public PostPromoByVendorDto postPromoByVendor(int userId){
+
+        User user = iUserRepository.findById(userId);
+        if(user == null) throw new UserNotFoundException("user with id " + userId + " not found");
+
+        List<PostPromoDto> productsPromo = iPostRepository.findAll().stream()
+                .filter(p -> p.getUserId() == userId)
+                .filter(Post::isHasPromo)
+                .map(p -> modelMapper.map(p, PostPromoDto.class))
+                .collect(Collectors.toList());
+
+        return new PostPromoByVendorDto(user.getUserId(),user.getUserName(),productsPromo);
     }
 }
