@@ -1,6 +1,5 @@
 package com.socialmeli.be_java_hisp_w20_g8.repositories.products;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.models.Product;
 import org.springframework.stereotype.Repository;
 
