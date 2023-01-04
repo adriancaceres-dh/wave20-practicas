@@ -2,10 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostWithPromoCreateDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g7.service.IFollowService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IPostService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IUserService;
@@ -87,6 +84,13 @@ public class Controller {
 
         return new ResponseEntity<>(postService.createPost(postWithPromoCreateDto),HttpStatus.OK);
 
+    }
+
+    @GetMapping("/products/promo-post/count")
+    public ResponseEntity<UserPostWithPromoCountDto> countUserPostsWithPromo(
+            @RequestParam int user_id
+    ){
+        return new ResponseEntity<>(postService.countUserPostsWithPromo(user_id),HttpStatus.OK);
     }
 
     //@GetMapping("/products/followed/{userId}/list")
