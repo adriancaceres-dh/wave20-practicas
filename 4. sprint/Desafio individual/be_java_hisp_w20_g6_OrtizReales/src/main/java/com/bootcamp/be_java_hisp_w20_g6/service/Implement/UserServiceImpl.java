@@ -139,24 +139,15 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Boolean like(int user_id, int post_id) {
-        try {
-            Optional<PostModel> post = postRepository.getPostById(post_id);
-            if (!post.isPresent()) throw new PostNotFoundException("No existe una publicacion con el id ingresado");
-            getUserById(user_id);
-            if(!post.get().getLikes().contains(user_id)) {
-                post.get().getLikes().add(user_id);
-                return true;
-            }else{
-                throw new UserReactionExistException("Usuario ya reacciono a esta publicacion");
-            }
-            
-        } catch (PostNotFoundException e) {
-           throw new PostNotFoundException(e.getMessage());
-        }catch(UserNotFoundException e){
-            throw new UserNotFoundException(e.getMessage());
-        }catch(UserReactionExistException e){
-            throw new UserReactionExistException(e.getMessage());
+        Optional<PostModel> post = postRepository.getPostById(post_id);
+        if (!post.isPresent())
+            throw new PostNotFoundException("No existe una publicacion con el id ingresado");
+        getUserById(user_id);
+        if (!post.get().getLikes().contains(user_id)) {
+            post.get().getLikes().add(user_id);
+            return true;
+        } else {
+            throw new UserReactionExistException("Usuario ya reacciono a esta publicacion");
         }
-
     }
 }
