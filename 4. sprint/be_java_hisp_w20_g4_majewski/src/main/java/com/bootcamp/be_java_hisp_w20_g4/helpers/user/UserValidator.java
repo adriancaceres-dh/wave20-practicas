@@ -21,7 +21,7 @@ public class UserValidator {
      * @param user - Es el usuario que hay que validar
      */
     public static void isSeller(User user){
-        if(!(user instanceof Seller)) throw new BadRequestException("No se puede consultar los datos de un comprador");
+        if(!(user instanceof Seller)) throw new BadRequestException("Se necesita ser vendedor para esta funcion");
     }
 
     /**
