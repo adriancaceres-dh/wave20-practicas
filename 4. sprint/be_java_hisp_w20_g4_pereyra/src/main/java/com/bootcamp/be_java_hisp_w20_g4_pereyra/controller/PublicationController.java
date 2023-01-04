@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProductsCountDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.service.publication.IServicePublication;
@@ -33,9 +34,13 @@ public class PublicationController {
     }
 
     @GetMapping("/promo-post/count")
-    public ResponseEntity<PromoProductsCountDTO> promoProductsOfSeller(@RequestParam(value="user_id") int userId){
+    public ResponseEntity<PromoProductsCountDTO> promoProductsOfSellerCount(@RequestParam(value="user_id") int userId){
         return ResponseEntity.ok().body(servicePublication.getCountProductsWithDiscount(userId));
     }
 
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<ListedPublicationDiscountDTO> promoProductsOfSeller(@RequestParam(value="user_id") int userId){
+        return ResponseEntity.ok().body(servicePublication.getProductsWithDiscount(userId));
+    }
 
 }

@@ -6,6 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProduc
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.excepcion.BadRequestException;
@@ -92,7 +93,7 @@ public class ServicePublication implements IServicePublication {
         Publication publication = this.createPublication(user, postDiscountDTO.getCategory(), postDiscountDTO.getProduct(), postDiscountDTO.getDate(), postDiscountDTO.getPrice(), postDiscountDTO.isHas_promo(), postDiscountDTO.getDiscount());
         if(publicationRepository.addPublication(publication)){
             ((Seller) user).addPublication(publication);
-            return new PublicationDiscountDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), publication.getCategory().getId(), publication.getPrice(), publication.isHasPromo(),publication.getDiscount());
+            return new PublicationDiscountDTO(publication.getPost_id(),publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), publication.getCategory(), publication.getPrice(), publication.isHasPromo(),publication.getDiscount());
         }
         return null;
     }
@@ -130,6 +131,18 @@ public class ServicePublication implements IServicePublication {
         isValidUser(user);
         isSeller(user);
         return new PromoProductsCountDTO(user_id, user.getUser_name(), publicationRepository.getPublicationUser(user_id).size());
+    }
+
+    @Override
+    public ListedPublicationDiscountDTO getProductsWithDiscount(int user_id) {
+        User user = userRepository.findById(user_id);
+        isValidUser(user);
+        isSeller(user);
+        List<PublicationDiscountDTO> publicationDiscountDTOS = publicationRepository.getPublicationUser(user_id).stream()
+                .map(p ->  new PublicationDiscountDTO(p.getPost_id(), p.getDate(), mapper.map(p.getProduct(), ProductDTO.class),
+                        p.getCategory(), p.getPrice(), p.isHasPromo(),p.getDiscount()))
+                .collect(Collectors.toList());
+        return new ListedPublicationDiscountDTO(user_id, user.getUser_name(), publicationDiscountDTOS);
     }
 
 }
