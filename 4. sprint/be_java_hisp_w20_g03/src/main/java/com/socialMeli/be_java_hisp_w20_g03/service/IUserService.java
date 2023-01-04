@@ -1,10 +1,8 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
