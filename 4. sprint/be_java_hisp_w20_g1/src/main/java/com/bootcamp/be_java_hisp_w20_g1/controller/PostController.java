@@ -6,6 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,10 @@ public class PostController {
         return ResponseEntity.ok(postService.lastTwoWeeksPostsFromFollowers(userId, order));
     }
 
+
     @PostMapping("/post")
-    public ResponseEntity<PostResponseDto> addPost(@RequestBody PostRequestDto post) {
-        return ResponseEntity.ok(postService.add(post));
-    }
+    public ResponseEntity<PostResponseDto> addPost(@RequestBody PostRequestDto post) { 
+    return new ResponseEntity<>(postService.add(post), HttpStatus.CREATED); 
+    //return ResponseEntity.ok(postService.add(post)); 
+    }    
 }
