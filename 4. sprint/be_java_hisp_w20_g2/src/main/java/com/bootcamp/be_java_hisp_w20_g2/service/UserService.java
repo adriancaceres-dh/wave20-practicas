@@ -23,6 +23,12 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
 
+    /**
+     * Finds and lists all users following a given user.
+     * @param userId the id of the user we are displaying.
+     * @param order indicates the order of the followers list of the user ("name_asc" or "name_desc").
+     * @return UserFollowersResponseDTO.
+     */
     @Override
     public UserFollowersResponseDTO findAllFollowers(int userId, Optional<String> order) {
         User userFound = userRepository.findOne(userId);
@@ -47,6 +53,12 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * Finds and lists all users being followed by a given user.
+     * @param userId the id of the user we are displaying.
+     * @param order indicates the order of the followers list of the user ("name_asc" or "name_desc").
+     * @return UserFollowedResponseDTO.
+     */
     @Override
     public UserFollowedResponseDTO findAllFollowed(int userId, Optional<String> order) {
         User userFound = userRepository.findOne(userId);
@@ -72,15 +84,22 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * Removes a user from the following list of another user.
+     * Removes a user from the followers list of another user.
+     * @param userId the id of the user who is unfollowing the other.
+     * @param userIdToUnfollow the id of the user who is being unfollowed.
+     */
     @Override
     public void unfollowUser(int userId, int userIdToUnfollow) {
 
-        //checkeo que el usario a dejar de seguir no sea el mismo que el que quiere realizar la accion
+        //Check if the user to be unfollowed is no the same unfollowing
         if (userId != userIdToUnfollow){
             User user = userRepository.findOne(userId);
             User userToUnfollow = userRepository.findOne(userIdToUnfollow);
 
-            //Checkeo que existan los usuarios, si alguno no existe lanzo la excepcion correspondiente
+            //Check the existance of both users.
+            //If one of them doesn't exist, throws the corresponging exception.
             if (user == null) {
                 throw new BadRequestException("User not found");
             }
@@ -88,26 +107,27 @@ public class UserService implements IUserService {
                 throw new BadRequestException("User to unfollow not found");
             }
 
-            // Listas Auxiliares
+            // Aux. Lists.
             List<User> userFollowing = user.getFollowing();
             List<User> userFollowers = userToUnfollow.getFollowers();
 
-            //Checkeo que las listas no esten vacias, lanzo excepcion en caso que lo estén
+            // Check that the lists are not empty. Throws exception if they are.
             if (userFollowing.size() == 0) {
                 throw new BadRequestException("This User don't have followings");
             }
             if (userFollowers.size() == 0) {
                 throw new BadRequestException("This User don't have followings");
             }
-
-            //Si las listan no están vacias, controlo que los usuarios se sigan y hago las modificaciones correspondiente
+            // If the lists aren't empty and the user follows the userToUnfollow:
+            // it removes the following from user.
+            // it removes the follower from userToUnfollow.
             if (!userFollowing.contains(userToUnfollow) && !userFollowers.contains(user)){
                 throw new BadRequestException("Users no longer follow each other");
             }
             user.removeFollowing(userToUnfollow);
             userToUnfollow.removeFollower(user);
 
-            //Actualizo los usuarios en el repo con los cambios hechos
+            // Updates user and userToUnfollow in userRepository with the new changes.
             userRepository.save(user);
             userRepository.save(userToUnfollow);
         } else {
@@ -115,6 +135,11 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * Sets the user attribute values into the UserFollowersCountResponseDTO.
+     * @param user is the user to get the attribute values from.
+     * @return UserFollowersCountResponseDTO.
+     */
     public UserFollowersCountResponseDTO entity2UserResponseDTO (User user){
         UserFollowersCountResponseDTO userFollowersCountResponseDTO = new UserFollowersCountResponseDTO();
         userFollowersCountResponseDTO.setUserId(user.getId());
@@ -122,6 +147,14 @@ public class UserService implements IUserService {
         userFollowersCountResponseDTO.setFollowersCount(user.getFollowers().size());
         return userFollowersCountResponseDTO;
     }
+
+    /**
+     * Adds a follower into a user followers list.
+     * Adds a followed into another user following list.
+     * @param idFollower the id of the user who is following the other.
+     * @param idFollowed the id of the user who is being followed.
+     * @return boolean.
+     */
     @Override
     public boolean follow(Integer idFollower, Integer idFollowed) {
         if (!userRepository.exists(idFollowed) || !userRepository.exists(idFollower)){
@@ -139,6 +172,13 @@ public class UserService implements IUserService {
         followed.addFollower(follower);
         return true;
     }
+
+    /**
+     * Takes an id, finds the user of the given id and uses the entity2UserResponseDTO() method
+     * to return a UserFollowersCountResponseDTO.
+     * @param id the id of the user who is unfollowing the other.
+     * @return UserFollowersCountResponseDTO.
+     */
     @Override
     public UserFollowersCountResponseDTO followerList(Integer id) {
         if (!userRepository.exists(id)){

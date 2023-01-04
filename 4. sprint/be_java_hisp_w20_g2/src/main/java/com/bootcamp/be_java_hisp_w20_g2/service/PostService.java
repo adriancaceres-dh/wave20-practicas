@@ -52,6 +52,10 @@ public class PostService implements IPostService {
             "price": 1500.50
             }
          */
+    /**
+     * Creates a post and saves it in a user posts list.
+     * @param postRequestDTO has the data for the post to be created.
+     */
     @Override
     public void createPost(PostRequestDTO postRequestDTO) {
         User user = userRepository.findOne(postRequestDTO.getUserId());
@@ -64,7 +68,12 @@ public class PostService implements IPostService {
 
         userRepository.save(user);
     }
-
+    /**
+     * It returns a list of all the posts made by users that a given user (userId) follows in the last two weeks.
+     * @param userId the id of the user to check.
+     * @param order receives a String ("date_asc" or "date_desc") to order the list of posts.
+     * @return PostResponseDTO.
+     */
     @Override
     public PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order) {
         User user = userRepository.findOne(userId);
@@ -90,7 +99,11 @@ public class PostService implements IPostService {
                 Comparator.comparing(Post::getDate).reversed()
                 : Comparator.comparing(Post::getDate);
     }
-
+    /**
+     * It takes the product data from postRequestDTO to return a Post object.
+     * @param postRequestDTO has the product data to build the Post.
+     * @return Post.
+     */
     private Post toObject(PostRequestDTO postRequestDTO) {
         ProductDTO productDTO = postRequestDTO.getProduct();
         Product product = new Product(

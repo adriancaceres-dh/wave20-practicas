@@ -14,14 +14,14 @@ import java.util.Optional;
 public class PostController {
     @Autowired
     private IPostService postService;
-
+    // US-0005
     @PostMapping(path = "/post")
     @ResponseStatus(HttpStatus.OK)
     public void addNewProduct(@RequestBody PostRequestDTO newPost) {
         // Validar que las fechas esten correctas al ingresar. ¿Qué pasa si se le poné algo mal desde el comienzo?
         postService.createPost(newPost);
     }
-
+    // US-0006 - US-0009
     @GetMapping("followed/{userId}/list")
     public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
         return postService.sendLastPostOfFollowed(userId,order);
