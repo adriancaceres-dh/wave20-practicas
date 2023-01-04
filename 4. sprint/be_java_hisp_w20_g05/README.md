@@ -7,7 +7,7 @@
 - Iván Cano
 - Nicolás Chiesa
 - José Drozd
-- Andrea Ruiz
+- Andrea Ruiz Zorrilla
 - Santiago Valdez
 
 ## Breve Descripción
@@ -61,6 +61,18 @@ La siguiente figura muestra el diagrama UML:
 Una vez acordado el modelo, se implementó el scaffolding del proyecto, el cual incluyó los paquetes y las clases base. Se crearon los paquetes *controller*, *service*, *repository*, *model*, *dto* y *exception*.
 
 Se crearon clases de Usuario y Servicio para las capas de controlador, servicio y repositorio, así como las clases de Usuario, Publicación y Producto. A medida que se fueron implementando las API solicitadas se fueron creando los DTO necesarios para su correcto funcionamiento.
+
+### Responsables de cada User Story
+
+- US 001 - Ivan
+- US 002 - Jose
+- US 003 - Santiago
+- US 004 - Nicolas
+- US 005 - Luciano
+- US 006 - Andrea
+- US 007 - Ivan
+- US 008 - Jose
+- US 002 - Gonzalo
 
 ### Pruebas
 
