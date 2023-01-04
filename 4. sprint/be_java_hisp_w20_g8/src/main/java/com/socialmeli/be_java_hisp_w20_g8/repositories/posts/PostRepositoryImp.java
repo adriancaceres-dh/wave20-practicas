@@ -28,6 +28,7 @@ public class PostRepositoryImp implements IPostRepository {
         this.postCount = posts.size();
     }
 
+
     @Override
     public Set<PostDTO> findPostsById(Set<Integer> listPostId) {
         return listPostId.stream().map(mapPosts::get).filter(post -> ChronoUnit.WEEKS.between(post.getDate(), LocalDate.now()) <= 2).collect(Collectors.toSet());
