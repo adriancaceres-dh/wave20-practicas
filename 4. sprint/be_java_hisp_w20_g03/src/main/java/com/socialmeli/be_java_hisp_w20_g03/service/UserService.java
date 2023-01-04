@@ -68,9 +68,9 @@ public class UserService implements IUserService {
         List<UserDTO> followers = user.getFollowers().stream()
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
         if (order != null && order.equals("name_desc")) {
-            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder())).collect(Collectors.toList());
+            followers = followers.stream().sorted(Comparator.comparing(UserDTO::getUserName, Comparator.reverseOrder())).collect(Collectors.toList());
         } else {
-            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName())).collect(Collectors.toList());
+            followers = followers.stream().sorted(Comparator.comparing(UserDTO::getUserName)).collect(Collectors.toList());
         }
         return new UserFollowersDTO(user.getUserId(), user.getUserName(), followers);
     }
@@ -86,9 +86,9 @@ public class UserService implements IUserService {
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
         if (order != null) {
             if (order.equals("name_asc")) {
-                followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName())).collect(Collectors.toList());
+                followed = followed.stream().sorted(Comparator.comparing(UserDTO::getUserName)).collect(Collectors.toList());
             } else {
-                followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder())).collect(Collectors.toList());
+                followed = followed.stream().sorted(Comparator.comparing(UserDTO::getUserName, Comparator.reverseOrder())).collect(Collectors.toList());
             }
         }
         return new UserFollowersDTO(user.getUserId(), user.getUserName(), followed);
@@ -105,7 +105,7 @@ public class UserService implements IUserService {
         List<User> userFollowedList = user.getFollowed();
         List<User> unfollowedUserFollowerList = userToUnfollow.getFollowers();
         if (!userFollowedList.contains(userToUnfollow) || !unfollowedUserFollowerList.contains(user)) {
-            throw new BadRequestException("No esta siguiendo a " + userToUnfollow);
+            throw new BadRequestException("No esta siguiendo a " + userToUnfollow.getUserName());
         }
         userFollowedList.remove(userToUnfollow);
         unfollowedUserFollowerList.remove(user);
