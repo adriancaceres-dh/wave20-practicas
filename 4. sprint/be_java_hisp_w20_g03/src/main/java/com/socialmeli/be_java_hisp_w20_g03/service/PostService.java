@@ -55,6 +55,42 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public SellerPromoCountDTO getPromoPostCount(int userId) {
+        if (userRepository.getUserById(userId) == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+        int count = (int) postRepository.getPosts().stream()
+                .filter(post -> post.getUserId() == userId)
+                .filter(Post::isHasPromo)
+                .count();
+        return SellerPromoCountDTO.builder()
+                .userId(userId)
+                .userName(userRepository.getUserById(userId).getUserName())
+                .promoCount(count)
+                .build();
+    }
+
+    @Override
+    public SellerPromoListDTO getPromoPostList(int userId) {
+        if (userRepository.getUserById(userId) == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+        List<Post> posts = postRepository.getPosts().stream()
+                .filter(post -> post.getUserId() == userId)
+                .filter(Post::isHasPromo)
+                .collect(Collectors.toList());
+        List<PromoPostDTO> postDTOS = new ArrayList<>();
+        for (Post post : posts) {
+            postDTOS.add(mapper.map(post, PromoPostDTO.class));
+        }
+        return SellerPromoListDTO.builder()
+                .userId(userId)
+                .userName(userRepository.getUserById(userId).getUserName())
+                .posts(postDTOS)
+                .build();
+    }
+
+    @Override
     public List<PostDTO> getPost(int userId, String order) {
         LocalDate dateNow = LocalDate.now();
         List<PostDTO> postList = new ArrayList<>();
