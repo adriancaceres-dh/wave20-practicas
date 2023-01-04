@@ -2,6 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,11 @@ public class ProductController {
 
     @PostMapping("/post")
     public ResponseEntity<?> postPost(@RequestBody PostRequestDTO postRequestDTO) {
-        postService.createPost(postRequestDTO);
-        return ResponseEntity.status(HttpStatus.OK).body("The post was published");
+        try {
+            postService.createPost(postRequestDTO);
+            return ResponseEntity.status(HttpStatus.OK).body("The post was published");
+        } catch(Exception e) {
+            throw new OperationFailedException(e.getMessage() + " Please check the information");
+        }
     }
 }
