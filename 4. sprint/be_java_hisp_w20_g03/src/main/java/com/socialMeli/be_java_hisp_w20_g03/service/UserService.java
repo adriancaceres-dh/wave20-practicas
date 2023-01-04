@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
@@ -26,8 +27,8 @@ public class UserService implements IUserService{
     ModelMapper mapper = new ModelMapper();
 
     @Override
-    public List<UserDTO> getUsers() {
-        return iUserRepository.getUsers().stream().map(u-> mapper.map(u,UserDTO.class)).collect(Collectors.toList());
+    public List<UserExtendedDTO> getUsers() {
+        return iUserRepository.getUsers().stream().map(u-> mapper.map(u,UserExtendedDTO.class)).collect(Collectors.toList());
     }
 
     @Override
