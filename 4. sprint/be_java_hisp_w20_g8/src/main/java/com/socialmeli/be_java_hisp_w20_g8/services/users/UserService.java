@@ -40,7 +40,7 @@ public class UserService implements IUserService {
                     .collect(Collectors.toList());
 
             String orderType = order != null ? order : "";
-            if (!Validators.checkValidatorOption(orderType)) {
+            if (!Validators.checkValidatorOptionName(orderType)) {
                 throw new InvalidArgumentException("Invalid sorting option");
             }
             switch (orderType) {

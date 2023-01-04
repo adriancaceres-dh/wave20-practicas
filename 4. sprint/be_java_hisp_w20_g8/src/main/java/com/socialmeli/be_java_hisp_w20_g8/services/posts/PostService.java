@@ -9,6 +9,7 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepositoryI
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepositoryImp;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
+import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
@@ -18,9 +19,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -78,11 +77,11 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public ResponsePostDTO findSellersByIdUser(int id) {
+    public ResponsePostDTO findSellersByIdUser(int id, String order) {
         if (personRepositoryImp.checkUser(id)) {
             Set<Integer> followedSellers = personRepositoryImp.getAllFollowed(id);
             Set<Seller> sellers = followedSellers.stream().map(seller_id -> personRepositoryImp.findSellerById(seller_id)).collect(Collectors.toSet());
-            return findPostByIdSeller(sellers, id);
+            return findPostByIdSeller(sellers, id,order);
         }
         else {
             return null;
@@ -90,10 +89,28 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser) {
-       Set<PostDTO> setPostSeller = new HashSet<>();
-       sellers.stream().forEach(seller -> postRepositoryImp.findPostsById(seller.getPost()).forEach(x-> setPostSeller.add(x)));
+    public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
+       List<PostDTO> listPostSeller = new ArrayList<>();
+       sellers.stream().forEach(seller -> postRepositoryImp.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x)));
+       String orderType = order==null ? "" : order;
+        if (!Validators.checkValidatorOptionDate(orderType)) {
+            throw new InvalidArgumentException("Invalid sorting option");
+        }
+       switch(orderType){
+           case "date_asc":
+               return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller.stream()
+                               .sorted((a,b)->a.getDate().compareTo(b.getDate()))
+                               .collect(Collectors.toList()))
+                       .build();
+           case "date_desc":
+               return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller.stream()
+                               .sorted((a,b)->b.getDate().compareTo(a.getDate()))
+                               .collect(Collectors.toList()))
+                       .build();
+           default:
+               return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller).build();
 
-       return ResponsePostDTO.builder().id_user(idUser).posts(setPostSeller).build();
+       }
+
     }
 }

@@ -11,7 +11,7 @@ public interface IPostService {
 
     boolean createPost(PostRequestDTO postRequestDTO);
 
-    ResponsePostDTO findSellersByIdUser(int id);
+    ResponsePostDTO findSellersByIdUser(int id, String order);
 
-    ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser);
+    ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser, String order);
 }

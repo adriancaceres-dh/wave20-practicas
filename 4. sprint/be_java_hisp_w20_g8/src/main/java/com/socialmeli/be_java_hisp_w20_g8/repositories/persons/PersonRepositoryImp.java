@@ -80,6 +80,7 @@ public class PersonRepositoryImp implements IPersonRepository {
 
     private boolean loadUsers() {
         persons.get("users").addAll(Set.of(
+
                 new User(1, "user1", new HashSet<>(){{
                     add(3);
                     add(4);
@@ -96,16 +97,14 @@ public class PersonRepositoryImp implements IPersonRepository {
                 new Seller(4, "seller4", new HashSet<>(), new HashSet<>(){{
                     add(2);
                 }}),
-                new Seller(5, "seller3", new HashSet<>(){{
+                new Seller(3, "seller3", new HashSet<>(), new HashSet<>(){{
                     add(1);
-                    add(2);
                     add(3);
-                    add(4);
-                }}, new HashSet<>(){{
-                    add(9);
-                    add(8);
-                }}
-                ),
+                }}),
+                new Seller(4, "seller4", new HashSet<>(), new HashSet<>(){{
+                    add(2);
+                }}),
+
                 new Seller(6, "zxc", new HashSet<>(){{
                     add(1);
                     add(2);

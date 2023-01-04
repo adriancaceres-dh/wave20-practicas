@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,5 +15,5 @@ import java.util.Set;
 public class ResponsePostDTO {
 
     private Integer id_user;
-    private Set<PostDTO> posts;
+    private List<PostDTO> posts;
 }

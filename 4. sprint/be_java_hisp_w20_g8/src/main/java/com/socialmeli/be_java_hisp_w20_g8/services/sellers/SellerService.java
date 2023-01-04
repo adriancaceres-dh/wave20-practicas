@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -50,7 +49,7 @@ public class SellerService implements ISellerService {
 
             String orderType = order != null ? order : "";
 
-            if (!Validators.checkValidatorOption(orderType)) {
+            if (!Validators.checkValidatorOptionName(orderType)) {
                 throw new InvalidArgumentException("Invalid sorting option");
             }
 
