@@ -180,34 +180,26 @@ public class PostService implements IPostService {
 
     private Post buildPromoPost(PostPromoRequestDto postPromoRequestDto) {
         Post newPromoPost = mapper.map(postPromoRequestDto, Post.class);
+        return getPostAfterAddingId(newPromoPost);
+    }
+
+    public Post buildPost(PostRequestDto postDto, int productId) {
+        Post post = mapper.map(postDto, Post.class);
+        post.setProductId(productId);
+        return getPostAfterAddingId(post);
+    }
+
+    private Post getPostAfterAddingId(Post newPost) {
         if (postRepository.getPosts().isEmpty()) {
-            newPromoPost.setId(Parameter.getInteger("InitialId"));
+            newPost.setId(Parameter.getInteger("InitialId"));
         } else {
             Integer lastId = postRepository.getPosts()
                     .stream()
                     .map(Post::getId)
                     .max(Comparator.comparing(Integer::valueOf))
                     .get();
-            newPromoPost.setId(lastId + 1);
+            newPost.setId(lastId + 1);
         }
-        return newPromoPost;
-    }
-
-
-    public Post buildPost(PostRequestDto postDto, int productId) {
-        Post post = mapper.map(postDto, Post.class);
-        post.setProductId(productId);
-        //Si se trata del primer posteo que realiza el usuario se le setea id 1, de lo contrario, se coloca como id el número
-        //inmediatamente posterior al del último posteo realizado.
-        if (postRepository.getPosts().isEmpty()) {
-            post.setId(Parameter.getInteger("InitialId"));
-        } else {
-            Optional<Integer> lastId = postRepository.getPosts().stream().map(p -> p.getId()).max(Comparator.comparing(Integer::valueOf));
-            if (lastId.isPresent()) {
-                Integer aux = lastId.get();
-                post.setId(++aux);
-            }
-        }
-        return post;
+        return newPost;
     }
 }
