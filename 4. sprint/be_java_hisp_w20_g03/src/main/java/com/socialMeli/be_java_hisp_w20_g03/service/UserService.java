@@ -105,7 +105,7 @@ public class UserService implements IUserService {
         List<User> userFollowedList = user.getFollowed();
         List<User> unfollowedUserFollowerList = userToUnfollow.getFollowers();
         if (!userFollowedList.contains(userToUnfollow) || !unfollowedUserFollowerList.contains(user)) {
-            throw new BadRequestException("No esta siguiendo a " + userToUnfollow);
+            throw new BadRequestException("No esta siguiendo a " + userToUnfollow.getUserName());
         }
         userFollowedList.remove(userToUnfollow);
         unfollowedUserFollowerList.remove(user);

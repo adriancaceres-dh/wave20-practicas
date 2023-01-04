@@ -3,6 +3,7 @@ package com.socialMeli.be_java_hisp_w20_g03.controller;
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.PromoPostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.UserPromoPostCountDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.UserPromoPostsDTO;
 import com.socialMeli.be_java_hisp_w20_g03.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,11 @@ public class PostController {
     @GetMapping("/products/promo-post/count")
     public ResponseEntity <UserPromoPostCountDTO> getUserPromoPostCount(@RequestParam(name = "user_id") int userId) {
         return new ResponseEntity<>(iPostService.getUserPromoPostCount(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity <UserPromoPostsDTO> getUserPromoPosts(@RequestParam(name = "user_id") int userId) {
+        return new ResponseEntity<>(iPostService.getUserPromoPosts(userId), HttpStatus.OK);
     }
 
 /*    //DEV
