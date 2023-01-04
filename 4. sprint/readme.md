@@ -9,7 +9,9 @@ Teccnologias Utilizadas: Java 11, Spring Framework(Web, DevTools, Lombok) y Gith
 Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en equipo, recibiendo recomendaciones y feedback constante.
 
 Endpoints: Responsable Emiliano Asprea
-US 001: POST
+
+US 001: 
+POST
 - /users/{userId}/follow/{userIdToFollow}
 
 US 002: GET
