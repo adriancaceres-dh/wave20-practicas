@@ -93,13 +93,10 @@ public class UserService implements IUserService {
     @Override
     public void unfollowUser(int userId, int userIdToUnfollow) {
 
-        //Check if the user to be unfollowed is no the same unfollowing
         if (userId != userIdToUnfollow){
             User user = userRepository.findOne(userId);
             User userToUnfollow = userRepository.findOne(userIdToUnfollow);
 
-            //Check the existance of both users.
-            //If one of them doesn't exist, throws the corresponging exception.
             if (user == null) {
                 throw new BadRequestException("User not found");
             }
@@ -107,27 +104,22 @@ public class UserService implements IUserService {
                 throw new BadRequestException("User to unfollow not found");
             }
 
-            // Aux. Lists.
             List<User> userFollowing = user.getFollowing();
             List<User> userFollowers = userToUnfollow.getFollowers();
 
-            // Check that the lists are not empty. Throws exception if they are.
             if (userFollowing.size() == 0) {
                 throw new BadRequestException("This User don't have followings");
             }
             if (userFollowers.size() == 0) {
                 throw new BadRequestException("This User don't have followings");
             }
-            // If the lists aren't empty and the user follows the userToUnfollow:
-            // it removes the following from user.
-            // it removes the follower from userToUnfollow.
+
             if (!userFollowing.contains(userToUnfollow) && !userFollowers.contains(user)){
                 throw new BadRequestException("Users no longer follow each other");
             }
             user.removeFollowing(userToUnfollow);
             userToUnfollow.removeFollower(user);
 
-            // Updates user and userToUnfollow in userRepository with the new changes.
             userRepository.save(user);
             userRepository.save(userToUnfollow);
         } else {
