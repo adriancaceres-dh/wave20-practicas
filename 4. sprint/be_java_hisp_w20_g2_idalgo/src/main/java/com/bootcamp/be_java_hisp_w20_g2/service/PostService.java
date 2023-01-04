@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g2.service;
 import com.bootcamp.be_java_hisp_w20_g2.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.request.PromoPostRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.PromosAmountDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
@@ -31,7 +32,7 @@ public class PostService implements IPostService {
     private PostMapper postMapper;
 
     /**
-     * Creates a post and saves it in a user posts list.
+     * Creates a post and persists it.
      *
      * @param postRequestDTO has the data for the post to be created.
      */
@@ -45,16 +46,12 @@ public class PostService implements IPostService {
         userRepository.save(user);
     }
 
-    @Override
-    public void createPromoPost(PromoPostRequestDTO postRequestDTO) {
-        User user = getUserOrThrow(postRequestDTO.getUserId());
-
-        Post post = postMapper.toPost(postRequestDTO);
-        user.addPost(post);
-
-        userRepository.save(user);
-    }
-
+    /**
+     * Creates a post and saves it in a user posts list.
+     *
+     * @param userId is the id of the user whose followers' posts will be taken into account.
+     * @param order  is the string representing the sorting criteria that will be used
+     */
     @Override
     public PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order) {
         User user = getUserOrThrow(userId);
@@ -71,6 +68,37 @@ public class PostService implements IPostService {
 
         return postResponse;
     }
+
+    /**
+     * Creates a post with a promotion and persists it.
+     *
+     * @param postRequestDTO has the data for the post to be created.
+     */
+    @Override
+    public void createPromoPost(PromoPostRequestDTO postRequestDTO) {
+        User user = getUserOrThrow(postRequestDTO.getUserId());
+
+        Post post = postMapper.toPost(postRequestDTO);
+        user.addPost(post);
+
+        userRepository.save(user);
+    }
+
+    /**
+     * Get the amount of posts in promotion the user has.
+     *
+     * @param userId id of the user.
+     * @return amount of posts.
+     */
+    @Override
+    public PromosAmountDTO getAmountOfPromos(int userId) {
+        User user = getUserOrThrow(userId);
+
+        long amountOfPromos = user.getPosts().stream().filter(Post::isHasPromo).count();
+
+        return new PromosAmountDTO(userId, user.getUserName(), amountOfPromos);
+    }
+
 
     private User getUserOrThrow(int userId) {
         User user = userRepository.findOne(userId);

@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g2.controller;
 import com.bootcamp.be_java_hisp_w20_g2.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.request.PromoPostRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.PromosAmountDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,12 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public void addNewPromoPost(@RequestBody PromoPostRequestDTO postRequestDTO) {
         postService.createPromoPost(postRequestDTO);
+    }
+
+    // US-0011
+    @GetMapping("/promo-post/count")
+    public PromosAmountDTO getAmountOfPromos(@RequestParam int user_id) {
+        return postService.getAmountOfPromos(user_id);
     }
 
 }

@@ -38,25 +38,30 @@ public class LoadExampleData {
     }
 
     private void initializeCategories() {
-        categoryRepository.save(new Category(13, "Armas"));
-        categoryRepository.save(new Category(12, "Pelotas"));
-        categoryRepository.save(new Category(125, "Manzanas"));
-        categoryRepository.save(new Category(200, "Teteras"));
+        categoryRepository.save(new Category(13, "Sillas"));
+        categoryRepository.save(new Category(12, "Mesas"));
+        categoryRepository.save(new Category(125, "Periféricos"));
+        categoryRepository.save(new Category(200, "CPUs"));
     }
 
     private void initializePostsAndProducts() {
         Product silla = new Product(1000, "Silla gamer", "Gamer", "Redragon", "Negro", "");
         Product mesa = new Product(1001, "Mesa", "Mueble", "Vaca mistica", "Blanco", "");
+        Product mouse = new Product(1001, "Mouse", "Gamer", "Logitech", "Negro", "");
 
-        Post primerPost = new Post(LocalDate.now(), mesa, categoryRepository.findByCode(13).get(), 100000);
-        Post segundoPost = new Post(LocalDate.of(2021, 5, 25), silla, categoryRepository.findByCode(200).get(), 120000);
+        Post primerPost = new Post(LocalDate.now(), mesa, categoryRepository.findByCode(12).get(), 100000);
+        Post segundoPost = new Post(LocalDate.of(2021, 5, 25), silla, categoryRepository.findByCode(13).get(), 120000);
+        Post postConPromo = new Post(LocalDate.now(), mouse, categoryRepository.findByCode(125).get(), 7000, true, 0.07);
 
         postRepository.save(primerPost);
         postRepository.save(segundoPost);
+        postRepository.save(postConPromo);
 
         flavio.addPost(primerPost);
         flavio.addPost(segundoPost);
+        ale.addPost(postConPromo);
         userRepository.save(flavio);
+        userRepository.save(ale);
     }
 
 
