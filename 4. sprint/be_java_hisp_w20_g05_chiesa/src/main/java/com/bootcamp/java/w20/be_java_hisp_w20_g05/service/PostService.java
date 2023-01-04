@@ -5,6 +5,8 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostPromoRequestDT
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PostResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoPostDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserPostDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserProductDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUsersPostsResponse;
@@ -14,22 +16,32 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class PostService implements IPostService{
+    private final ModelMapper mapper;
     private int post_id = 36;
     @Autowired
     public IPostRepository postRepository;
     @Autowired
     public IUserService userService;
+
+    public PostService() {
+        mapper = new ModelMapper();
+        mapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
+    }
+
+
     @Override
     public List<PostResponseDTO> filterBy(String name) {
         return null;
@@ -131,9 +143,21 @@ public class PostService implements IPostService{
         return result;
     }
 
+    @Override
     public PromoCountDTO getPromoCountByUserId(int userId){
         int count = 0;
         for (Post post: postRepository.filterByUserId(userId)) if (post.getDiscount() > 0) count++;
         return new PromoCountDTO(userId, userService.getById(userId).getUserName(), count);
     }
+
+    @Override
+    public PromoListDTO getPromoProductsByUserId(int userId){
+        Set<PromoPostDTO> promo = new HashSet<>();
+        for (Post post: postRepository.filterByUserId(userId)) if (post.getDiscount() > 0) {
+            PromoPostDTO postDTO = mapper.map(post, PromoPostDTO.class);
+            promo.add(postDTO);
+        }
+        return new PromoListDTO(userId, userService.getById(userId).getUserName(), promo);
+    }
+
 }

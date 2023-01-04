@@ -4,6 +4,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostPromoRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidPostDataException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
@@ -41,6 +42,12 @@ public class PostController {
     @GetMapping("/promo-post/count")
     public ResponseEntity<PromoCountDTO> getPromoCountByUserId(@RequestParam int user_id) {
         return new ResponseEntity(postService.getPromoCountByUserId(user_id), HttpStatus.OK);
+    }
+
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<PromoListDTO> getPromoProductsByUserId(@RequestParam int user_id){
+        return new ResponseEntity(postService.getPromoProductsByUserId(user_id), HttpStatus.OK);
+        //return new ResponseEntity(user_id, HttpStatus.OK);
     }
 
     //Obtiene los posts hechos post hechos en las ultimas dos semanas por los usuarios que sigue el usuario {userId}.
