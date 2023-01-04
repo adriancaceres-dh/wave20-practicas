@@ -1,9 +1,11 @@
 package com.socialmeli.be_java_hisp_w20_g03.service;
 
 import com.socialmeli.be_java_hisp_w20_g03.dto.PostDTO;
+import com.socialmeli.be_java_hisp_w20_g03.dto.PromoPostDTO;
+import com.socialmeli.be_java_hisp_w20_g03.dto.SellerPromoCountDTO;
+import com.socialmeli.be_java_hisp_w20_g03.dto.SellerPromoListDTO;
 import com.socialmeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g03.model.Post;
-import com.socialmeli.be_java_hisp_w20_g03.model.Product;
 import com.socialmeli.be_java_hisp_w20_g03.repository.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import com.socialmeli.be_java_hisp_w20_g03.model.User;
@@ -30,26 +32,11 @@ public class PostService implements IPostService {
 
     @Override
     public String addPost(PostDTO postDTO) {
-
         if (userRepository.getUserById(postDTO.getUserId()) == null) {
             throw new NotFoundException("El usuario ingresado no existe");
         }
-        Product product = Product.builder()
-                .productId(postDTO.getProduct().getProductId())
-                .productName(postDTO.getProduct().getProductName())
-                .type(postDTO.getProduct().getType())
-                .brand(postDTO.getProduct().getBrand())
-                .color(postDTO.getProduct().getColor())
-                .notes(postDTO.getProduct().getNotes())
-                .build();
-        Post post = Post.builder()
-                .postId(postRepository.getPosts().size() + 1)
-                .userId(postDTO.getUserId())
-                .category(postDTO.getCategory())
-                .price(postDTO.getPrice())
-                .product(product)
-                .date(postDTO.getDate())
-                .build();
+        Post post = mapper.map(postDTO, Post.class);
+        post.setPostId(postRepository.getPosts().size() + 1);
         postRepository.addPost(post);
         return "Publicacion agregada";
     }
