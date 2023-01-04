@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.config;
 
 
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
@@ -26,5 +27,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidArgumentException.class)
     public ResponseEntity<?> invalidArgumentException(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+    @ExceptionHandler(DoesntExistSellerException.class)
+    public ResponseEntity<?> doesntExistSellerException(Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 }

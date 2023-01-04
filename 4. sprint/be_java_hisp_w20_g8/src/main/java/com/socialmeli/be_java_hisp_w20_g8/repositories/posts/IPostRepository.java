@@ -8,6 +8,6 @@ import java.util.Set;
 public interface IPostRepository {
     Set<PostDTO> findPostsById(Set<Integer> id);
 
-    int createPost(Post post);
+    int createPost(Post post, PostDTO postDTO);
 
 }

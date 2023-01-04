@@ -20,5 +20,11 @@ public class PostDTO {
     private int category;
     private double price;
 
-
+    public PostDTO(int userId, LocalDate date, ProductDTO product, int category, double price) {
+        this.userId = userId;
+        this.date = date;
+        this.product = product;
+        this.category = category;
+        this.price = price;
+    }
 }

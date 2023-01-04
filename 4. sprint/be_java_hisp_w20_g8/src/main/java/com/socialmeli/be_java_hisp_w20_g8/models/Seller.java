@@ -1,11 +1,18 @@
 package com.socialmeli.be_java_hisp_w20_g8.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Seller extends Person {
 
     private Set<Integer> followers;
     private Set<Integer> post;
+
+    public Seller(Integer id, String user_name) {
+        super(id, user_name);
+        followers = new HashSet<>();
+        post = new HashSet<>();
+    }
 
     public Seller(Integer id, String user_name, Set<Integer> followers, Set<Integer> post) {
         super(id, user_name);

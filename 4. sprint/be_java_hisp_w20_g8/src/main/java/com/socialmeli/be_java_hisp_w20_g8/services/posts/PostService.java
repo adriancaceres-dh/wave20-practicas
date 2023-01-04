@@ -3,11 +3,11 @@ package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.PersonRepositoryImp;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepositoryImp;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +28,12 @@ import java.util.stream.Stream;
 public class PostService implements IPostService {
 
     private final ModelMapper mapper = new ModelMapper();
-
-    @Autowired
-    PersonRepositoryImp personRepositoryImp;
-
-    @Autowired
-    IPostRepositoryImp postRepositoryImp;
-
     @Autowired
     private IProductService productService;
     @Autowired
-    private IPostRepository IPostRepository;
+    private IPostRepository postRepository;
     @Autowired
-    private IPersonRepository IPersonRepository;
+    private IPersonRepository personRepository;
 
     public PostService() {
         mapper.getConfiguration()
@@ -59,7 +52,7 @@ public class PostService implements IPostService {
             throw new InvalidArgumentException("All the fields are required");
 
         // Get the seller
-        Seller seller = IPersonRepository.findSellerById(postRequestDTO.getUser_id());
+        Seller seller = personRepository.findSellerById(postRequestDTO.getUser_id());
 
         // Check if the seller exists
         if(seller == null)
@@ -70,7 +63,11 @@ public class PostService implements IPostService {
 
         // Create the post
         Post post = mapper.map(postRequestDTO, Post.class);
-        int postId = IPostRepository.createPost(post);
+
+        // Create the post DTO
+        PostDTO postDTO = new PostDTO(post.getUserId(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+
+        int postId = postRepository.createPost(post, postDTO);
 
         // Add the post to the seller's list
         return seller.getPost().add(postId);
@@ -78,20 +75,27 @@ public class PostService implements IPostService {
 
     @Override
     public ResponsePostDTO findSellersByIdUser(int id, String order) {
-        if (personRepositoryImp.checkUser(id)) {
-            Set<Integer> followedSellers = personRepositoryImp.getAllFollowed(id);
-            Set<Seller> sellers = followedSellers.stream().map(seller_id -> personRepositoryImp.findSellerById(seller_id)).collect(Collectors.toSet());
+        if (personRepository.checkUser(id)) {
+            Set<Integer> followedSellers = personRepository.getAllFollowed(id);
+            Set<Seller> sellers = followedSellers.stream().map(seller_id -> personRepository.findSellerById(seller_id)).collect(Collectors.toSet());
+            if(sellers.isEmpty())
+                throw new DoesntExistSellerException("The user doesn't follow any sellers");
             return findPostByIdSeller(sellers, id,order);
         }
         else {
-            return null;
+            throw new NotFoundException("The specified user does not exist in the database");
         }
     }
 
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
        List<PostDTO> listPostSeller = new ArrayList<>();
-       sellers.stream().forEach(seller -> postRepositoryImp.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x)));
+       sellers.forEach(seller -> postRepository.findPostsById(seller.getPost()).forEach(x-> {
+           if(x != null)
+               listPostSeller.add(x);
+           else
+               throw new DoesntExistSellerException("The user doesn't follow any sellers");
+       }));
        String orderType = order==null ? "" : order;
         if (!Validators.checkValidatorOptionDate(orderType)) {
             throw new InvalidArgumentException("Invalid sorting option");

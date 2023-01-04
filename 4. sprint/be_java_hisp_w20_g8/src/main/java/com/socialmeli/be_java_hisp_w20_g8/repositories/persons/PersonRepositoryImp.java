@@ -90,27 +90,27 @@ public class PersonRepositoryImp implements IPersonRepository {
                 new User(4, "zdsfg", new HashSet<>())
         ));
         persons.get("sellers").addAll(Set.of(
-                new Seller(3, "seller3", new HashSet<>(), new HashSet<>(){{
+                new Seller(5, "seller3", new HashSet<>(), new HashSet<>(){{
                     add(1);
                     add(3);
                 }}),
-                new Seller(4, "seller4", new HashSet<>(), new HashSet<>(){{
+                new Seller(6, "seller4", new HashSet<>(), new HashSet<>(){{
                     add(2);
                 }}),
-                new Seller(3, "seller3", new HashSet<>(), new HashSet<>(){{
+                new Seller(7, "seller3", new HashSet<>(), new HashSet<>(){{
                     add(1);
                     add(3);
                 }}),
-                new Seller(4, "seller4", new HashSet<>(), new HashSet<>(){{
+                new Seller(8, "seller4", new HashSet<>(), new HashSet<>(){{
                     add(2);
                 }}),
 
-                new Seller(6, "zxc", new HashSet<>(){{
+                new Seller(9, "zxc", new HashSet<>(){{
                     add(1);
                     add(2);
                     add(3);
                 }}, new HashSet<>()),
-                new Seller(7, "hjf", new HashSet<>(){{
+                new Seller(10, "hjf", new HashSet<>(){{
                     add(2);
                 }}, new HashSet<>())
         ));

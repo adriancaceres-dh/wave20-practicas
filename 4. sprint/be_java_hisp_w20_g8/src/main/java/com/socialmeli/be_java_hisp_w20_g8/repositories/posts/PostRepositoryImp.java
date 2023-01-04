@@ -4,6 +4,9 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
+import com.socialmeli.be_java_hisp_w20_g8.repositories.products.IProductRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -15,17 +18,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Repository
-public class IPostRepositoryImp implements IPostRepository {
+public class PostRepositoryImp implements IPostRepository {
 
     private final Map<Integer, PostDTO> mapPosts;
     private final Set<Post> posts;
     private int postCount;
 
-    public IPostRepositoryImp(Map<Integer, PostDTO> mapPosts) {
+    public PostRepositoryImp(Map<Integer, PostDTO> mapPosts) {
         this.mapPosts = mapPosts;
         this.posts = new HashSet<>();
-        this.postCount = 0;
         loadPost();
+        this.postCount = posts.size();
     }
 
     @Override
@@ -34,25 +37,32 @@ public class IPostRepositoryImp implements IPostRepository {
     }
 
     @Override
-    public int createPost(Post post) {
+    public int createPost(Post post, PostDTO postDTO) {
         post.setId(++postCount);
         posts.add(post);
+        postDTO.setPost_id(postCount);
+        mapPosts.put(post.getId(), postDTO);
         return postCount;
     }
 
     public Map<Integer, PostDTO> loadPost(){
+        posts.add(new Post(1, 5, LocalDate.of(2022, 12, 29), 1, 2, 2000));
+        posts.add(new Post(2, 5, LocalDate.of(2022, 12, 28), 2, 2, 2000));
+        posts.add(new Post(3, 7, LocalDate.of(2022, 12, 29), 3, 2, 2000));
+        posts.add(new Post(4, 6, LocalDate.of(2022, 12, 27), 4, 2, 2000));
+
         mapPosts.put(1, PostDTO.builder().post_id(1).userId(5).date(LocalDate.of(2022, 12, 29)).product(
                 ProductDTO.builder().product_id(1).product_name("Televisor").type("Tecnologia").brand("Samsung").color("Negro").notes("TV 58 pulgadas").build()
-        ).category(2).price(2.000).build());
+        ).category(2).price(2000).build());
         mapPosts.put(2, PostDTO.builder().post_id(2).userId(5).date(LocalDate.of(2022, 12, 28)).product(
                 ProductDTO.builder().product_id(1).product_name("Nevera").type("Tecnologia").brand("Samsung").color("Negro").notes("nevera").build()
-        ).category(2).price(2.000).build());
+        ).category(2).price(2000).build());
         mapPosts.put(3, PostDTO.builder().post_id(3).userId(7).date(LocalDate.of(2022, 11, 29)).product(
                 ProductDTO.builder().product_id(1).product_name("Licuadora").type("Tecnologia").brand("Samsung").color("Negro").notes("9 litros").build()
-        ).category(2).price(2.000).build());
+        ).category(2).price(2000).build());
         mapPosts.put(4, PostDTO.builder().post_id(4).userId(6).date(LocalDate.of(2022, 11, 27)).product(
                 ProductDTO.builder().product_id(1).product_name("Camisetas").type("Ropa").brand("Woft").color("Negro").notes("tela fria").build()
-        ).category(2).price(2.000).build());
+        ).category(2).price(2000).build());
 
        return mapPosts;
     }

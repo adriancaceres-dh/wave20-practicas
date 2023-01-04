@@ -50,4 +50,14 @@ public class ProductService implements IProductService {
 
         return false;
     }
+
+    @Override
+    public ProductDTO getProductById(int productId) {
+        Optional<Product> product = productRepository.getProductById(productId);
+
+        if(product.isEmpty())
+            throw new OperationFailedException("The product does not exist in the repository");
+
+        return mapper.map(product, ProductDTO.class);
+    }
 }
