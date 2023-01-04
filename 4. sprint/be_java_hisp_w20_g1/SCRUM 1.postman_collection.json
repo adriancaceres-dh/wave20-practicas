@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "fabf13dd-c5c6-4d77-bcb7-7bf4e872fab7",
+		"_postman_id": "62b49c8a-43fc-47f4-a3dd-ab4115e02f2c",
 		"name": "SCRUM 1",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25045576"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -139,6 +138,15 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "User to get count isn't seller",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
 				}
 			]
 		},
@@ -184,6 +192,15 @@
 								"list"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "User to get follower's list isn't seller",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
 					},
 					"response": []
 				}
