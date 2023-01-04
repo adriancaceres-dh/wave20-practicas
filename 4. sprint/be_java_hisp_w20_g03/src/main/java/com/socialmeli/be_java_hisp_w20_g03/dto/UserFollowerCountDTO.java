@@ -13,5 +13,5 @@ public class UserFollowerCountDTO {
     private int userId;
     @JsonProperty("user_name")
     private String userName;
-    private int followers_count;
+    private int followersCount;
 }
