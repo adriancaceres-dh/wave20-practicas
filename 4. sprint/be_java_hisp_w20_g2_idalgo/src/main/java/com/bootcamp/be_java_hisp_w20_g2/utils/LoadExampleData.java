@@ -49,9 +49,9 @@ public class LoadExampleData {
         Product mesa = new Product(1001, "Mesa", "Mueble", "Vaca mistica", "Blanco", "");
         Product mouse = new Product(1001, "Mouse", "Gamer", "Logitech", "Negro", "");
 
-        Post primerPost = new Post(LocalDate.now(), mesa, categoryRepository.findByCode(12).get(), 100000);
-        Post segundoPost = new Post(LocalDate.of(2021, 5, 25), silla, categoryRepository.findByCode(13).get(), 120000);
-        Post postConPromo = new Post(LocalDate.now(), mouse, categoryRepository.findByCode(125).get(), 7000, true, 0.07);
+        Post primerPost = new Post(LocalDate.now(), mesa, categoryRepository.findByCode(12).get(), 100000, flavio);
+        Post segundoPost = new Post(LocalDate.of(2021, 5, 25), silla, categoryRepository.findByCode(13).get(), 120000, flavio);
+        Post postConPromo = new Post(LocalDate.now(), mouse, categoryRepository.findByCode(125).get(), 7000, ale, true, 0.07);
 
         postRepository.save(primerPost);
         postRepository.save(segundoPost);
