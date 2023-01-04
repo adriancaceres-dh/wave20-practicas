@@ -7,6 +7,7 @@ import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostPromoResponseD
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.ProductRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IPostRepository;
@@ -93,8 +94,47 @@ public class PostService implements IPostService {
 
     @Override
     public PostPromoResponseDto add(PostPromoRequestDto postDto) {
-        //
+        if (postDto.getUserId() == Parameter.getInteger("InvalidId")) {
+            throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
+        }
+
+        if (productService.alreadyExist(postDto.getProduct().getProductId())) {
+            //
+        }
+
+        ProductRequestDto productRequestDto = postDto.getProduct();
+        productService.add((productRequestDto)); //no tendria q agregarlo si ya existe. Logica para el repositorio
+        Post newPost = buildPromoPost(postDto);
+        postRepository.add(newPost);
+        userService.updateUser(postDto.getUserId());
+
+        PostPromoResponseDto postPromoResponseDto = mapper.map(postDto, PostPromoResponseDto.class);
+        postPromoResponseDto.setPostId(newPost.getId());
+        postPromoResponseDto.setPriceWithDiscount(getPriceWithDiscount(newPost.getPrice() , newPost.getDiscount()));
+
+        return  postPromoResponseDto;
     }
+
+    private double getPriceWithDiscount(double postPrice, double discount) {
+        return postPrice * (1 - discount);
+    }
+
+    private Post buildPromoPost(PostPromoRequestDto postPromoRequestDto) {
+        Post newPromoPost = mapper.map(postPromoRequestDto, Post.class);
+        if (postRepository.getPosts().isEmpty()) {
+            newPromoPost.setId(Parameter.getInteger("InitialId"));
+        } else {
+            Integer lastId = postRepository.getPosts()
+                    .stream()
+                    .map(Post::getId)
+                    .max(Comparator.comparing(Integer::valueOf))
+                    .get();
+            newPromoPost.setId(lastId+1);
+        }
+        return newPromoPost;
+    }
+
+
 
 
     public Post buildPost(PostRequestDto postDto, int productId) {
