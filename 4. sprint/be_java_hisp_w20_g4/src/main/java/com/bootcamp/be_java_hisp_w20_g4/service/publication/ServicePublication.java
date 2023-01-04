@@ -66,7 +66,7 @@ public class ServicePublication implements IServicePublication {
      * Este método obtiene las publicaciones de las últimas dos semanas de los vendedores que sigue el usuario recibido
      * @param userId - Id del que obtendrá la lista de seguidos para buscar las publicaciones
      * @param order - Especifica el tipo de ordenamiento que se desea (Opciones aceptadas: "date_asc" , "date_desc", null)
-     * @return
+     * @return ProductTwoWeeksResponseDTO - Se devuelve la información de las publicaciones requeridas
      */
     public ProductTwoWeeksResponseDTO getLastTwoWeeksPublications(int userId, String order) {
         isValidDateOrder(order);
