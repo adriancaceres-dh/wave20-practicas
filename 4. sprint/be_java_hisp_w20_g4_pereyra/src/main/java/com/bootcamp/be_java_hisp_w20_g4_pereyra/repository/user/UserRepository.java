@@ -29,7 +29,6 @@ public class UserRepository implements IUserRepository {
         users.add(new Seller(7,"martin"));
         return users;
     }
-
     /**
      * Este método busca un usuario que coincida con el id recibido
      * Si ninguno coincide se devuelve null

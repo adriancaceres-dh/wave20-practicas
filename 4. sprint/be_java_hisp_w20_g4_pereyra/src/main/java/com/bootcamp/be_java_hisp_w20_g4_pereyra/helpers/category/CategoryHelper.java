@@ -1,4 +1,4 @@
-package com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers;
+package com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.category;
 
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.Category;

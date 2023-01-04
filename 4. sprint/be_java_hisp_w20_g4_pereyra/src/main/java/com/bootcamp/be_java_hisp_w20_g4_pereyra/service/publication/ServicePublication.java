@@ -15,7 +15,6 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.category.ICategoryRep
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.product.IProductRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.publication.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.user.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.user.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.CategoryHelper.isValidCategory;
+import static com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.category.CategoryHelper.isValidCategory;
 import static com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.Validators.isValidDateOrder;
 import static com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.user.UserValidator.isSeller;
 import static com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.user.UserValidator.isValidUser;
@@ -133,6 +132,11 @@ public class ServicePublication implements IServicePublication {
         return new PromoProductsCountDTO(user_id, user.getUser_name(), publicationRepository.getPublicationUser(user_id).size());
     }
 
+    /**
+     * El método devuelve todos los productos con descuento de un determinado usuario
+     * @param user_id id del usuario
+     * @return ListedPublicationDiscountDTO - devuelve los dto de la publicaciones con descuento
+     */
     @Override
     public ListedPublicationDiscountDTO getProductsWithDiscount(int user_id) {
         User user = userRepository.findById(user_id);
