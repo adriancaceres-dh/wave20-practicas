@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.PromoPostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
@@ -49,6 +50,8 @@ public class PostService implements IPostService {
                 .price(postDTO.getPrice())
                 .product(product)
                 .date(postDTO.getDate())
+                .hasPromo(false)
+                .discount(0)
                 .build();
         postRepository.addPost(post);
         return "Publicacion agregada";
@@ -75,4 +78,41 @@ public class PostService implements IPostService {
         }
         return postList;
     }
+
+    @Override
+    public String addPromoPost(PromoPostDTO promoPostDTO) {
+        if (userRepository.getUserById(promoPostDTO.getUserId()) == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+
+        Product product = Product.builder()
+                .productId(promoPostDTO.getProduct().getProductId())
+                .productName(promoPostDTO.getProduct().getProductName())
+                .type(promoPostDTO.getProduct().getType())
+                .brand(promoPostDTO.getProduct().getBrand())
+                .color(promoPostDTO.getProduct().getColor())
+                .notes(promoPostDTO.getProduct().getNotes())
+                .build();
+        Post post = Post.builder()
+                .postId(postRepository.getPosts().size() + 1)
+                .userId(promoPostDTO.getUserId())
+                .category(promoPostDTO.getCategory())
+                .price(promoPostDTO.getPrice())
+                .product(product)
+                .date(promoPostDTO.getDate())
+                .hasPromo(true)
+                .discount(promoPostDTO.getDiscount())
+                .build();
+        postRepository.addPost(post);
+
+
+        return "Publicacion agregada";
+    }
+
+/*    //DEV
+    public List<PromoPostDTO> getAllPostFromUser() {
+        return postRepository.getPosts().stream().map(u -> mapper.map(u, PromoPostDTO.class)).collect(Collectors.toList());
+    }
+
+    //FIN*/
 }
