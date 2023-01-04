@@ -25,21 +25,22 @@ public class UserController {
 
     @PostMapping ("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        return userService.followUser(userId, userIdToFollow);
+        userService.followUser(userId, userIdToFollow);
+        return new ResponseEntity<>("todo OK", HttpStatus.OK);
+
     }
 
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        return userService.unfollowUser(userId, userIdToUnfollow);
+        userService.unfollowUser(userId, userIdToUnfollow);
+        return new ResponseEntity<>("todo OK", HttpStatus.OK);
     }
 
-    //Cuenta la cantidad de seguidores que tiene un determinado usuario buscándolo por su id. En caso de no encontrarlo devuelve una excepción IdNotFoundException.
     @GetMapping("/{userId}/followers/count")
     public ResponseEntity<FollowersCountDTO> getFollowersCount(@PathVariable int userId){
         return new ResponseEntity<>(userService.getFollowersCount(userId), HttpStatus.OK);
     }
 
-    //Retorna un dto con  los username y userid de los de los usuarios seguidos por un usuario según su id
     @GetMapping("/{userId}/followed/list")
     public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId,
                                                            @RequestParam(required = false) String order){

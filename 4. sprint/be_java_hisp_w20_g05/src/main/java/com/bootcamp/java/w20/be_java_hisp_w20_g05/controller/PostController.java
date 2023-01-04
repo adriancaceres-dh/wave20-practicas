@@ -1,6 +1,9 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PromoPostRequestDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoProductCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoProductListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IPostService;
@@ -26,12 +29,24 @@ public class PostController {
         postService.newPost(postRequestDTO);
         return new ResponseEntity("todo OK",HttpStatus.OK);
     }
-
-    //Obtiene los posts hechos post hechos en las ultimas dos semanas por los usuarios que sigue el usuario {userId}.
-    //Ordenados por default con fecha descendiente, se puede incluir "order=asc" en el queryString para ordenar por fecha ascendiente
     @GetMapping("/followed/{userId}/list")
     public FollowedUsersPostsResponse getFollowedUsersPosts(@PathVariable int userId,
                                                             @RequestParam(required = false) String order){
         return postService.getFollowedUsersPosts(userId, order);
+    }
+
+    @PostMapping("/promo-post")
+    public ResponseEntity<String> addPromoPost(@RequestBody PromoPostRequestDTO promoPostRequestDTO){
+        return new ResponseEntity<>(postService.addPromoPost(promoPostRequestDTO),HttpStatus.OK);
+    }
+
+    @GetMapping("/promo-post/count")
+    public ResponseEntity<PromoProductCountDTO> countPromoByUser(@RequestParam int user_id){
+        return new ResponseEntity<>(postService.countPromoByUser(user_id),HttpStatus.OK);
+    }
+
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<PromoProductListDTO> listPromosByUser(@RequestParam int user_id){
+        return new ResponseEntity<>(postService.listPromoByUser(user_id),HttpStatus.OK);
     }
 }

@@ -10,8 +10,6 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.WrongRequestParamEx
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public ResponseEntity<String> followUser(int userId, int userIdToFollow) {
+    public boolean followUser(int userId, int userIdToFollow) {
 
         try {
             User user1 = userRepository.getById(userId);
@@ -47,22 +45,22 @@ public class UserService implements IUserService{
             user1.followUser(user2.getId());
             user2.addFollower(user1.getId());
         } catch (IdNotFoundException exception) {
-            return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
+            throw new IdNotFoundException(new MessageExceptionDTO("Bad Request"));
         }
-        return new ResponseEntity<>("todo OK", HttpStatus.OK);
+        return true;
     }
 
     @Override
-    public ResponseEntity<String> unfollowUser(int userId, int userIdToUnfollow) {
+    public boolean unfollowUser(int userId, int userIdToUnfollow) {
         try {
             User user1 = userRepository.getById(userId);
             User user2 = userRepository.getById(userIdToUnfollow);
             user1.unfollowUser(user2.getId());
             user2.removeFollower(user1.getId());
         } catch (IdNotFoundException exception) {
-            return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
+            throw new IdNotFoundException(new MessageExceptionDTO("Bad Request"));
         }
-        return new ResponseEntity<>("todo OK", HttpStatus.OK);
+        return true;
     }
 
     @Override
