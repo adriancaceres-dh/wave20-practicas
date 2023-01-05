@@ -133,15 +133,15 @@ Cada miembro del equipo fue responsable por la implementación de una US, y por 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `userId`      | `int` | Número que identifica a cada usuario |
-| `date`      | `LocalDate` | Número que identifica a cada usuario |
-| `product_id`      | `int` | Número que identifica a cada usuario |
-| `product_name`      | `String` | Número que identifica a cada usuario |
-| `type`      | `String` | Número que identifica a cada usuario |
-| `brand`      | `String` | Número que identifica a cada usuario |
-| `color`      | `String` | Número que identifica a cada usuario |
-| `notes`      | `String` | Número que identifica a cada usuario |
-| `category`      | `int` | Número que identifica a cada usuario |
-| `price`      | `double` | Número que identifica a cada usuario |
+| `date`      | `LocalDate` | Fecha de la publicación en formato dd-MM-yyyy |
+| `product_id`      | `int` | Número identificatorio de un producto asociado a una publicación |
+| `product_name`      | `String` | Cadena de caracteres que representa el nombre de un producto |
+| `type`      | `String` | Cadena de caracteres que representa el tipo de un producto |
+| `brand`      | `String` | Cadena de caracteres que representa la marca de un producto |
+| `color`      | `String` | Cadena de caracteres que representa el color de un producto |
+| `notes`      | `String` | Cadena de caracteres para colocar notas u observaciones de un producto |
+| `category`      | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| `price`      | `double` | Precio del producto |
 
 #### US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas
 
