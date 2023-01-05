@@ -329,7 +329,7 @@ Responsable: Juan Carlos Ortiz
 ***
 
 **US0013**:
-Poder consultar un post indicando su id 
+Poder consultar un post indicando su id (Requerimiento incluido para verificar el requerimiento US0012)
 
 | METHOD | SIGN                                          | EJEMPLO                    |
 |:-------|:----------------------------------------------|:---------------------------|

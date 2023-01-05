@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.PostNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6.exception.SameUserException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserReactionExistException;
@@ -51,4 +52,10 @@ public class ControllerExceptionHandler {
     public ResponseEntity<String> invalidParam(InvalidParamException invalidParamException){
         return new ResponseEntity<>(invalidParamException.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(SameUserException.class)
+    public ResponseEntity<String> invalidParam(SameUserException sameUserException){
+        return new ResponseEntity<>(sameUserException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }
