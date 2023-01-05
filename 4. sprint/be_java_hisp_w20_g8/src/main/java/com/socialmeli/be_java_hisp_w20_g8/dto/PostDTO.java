@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @Builder
+@JsonPropertyOrder(value = {"user_id", "post_id", "date", "product", "category", "price"})
 public class PostDTO {
     private int user_id;
     private int post_id;
@@ -23,6 +25,7 @@ public class PostDTO {
 
     public PostDTO(Post post, ProductDTO productDTO) {
         this.user_id = post.getUser_id();
+        this.post_id = post.getId() != null? post.getId() : 0;
         this.date = post.getDate();
         this.product = productDTO;
         this.category = post.getCategory();

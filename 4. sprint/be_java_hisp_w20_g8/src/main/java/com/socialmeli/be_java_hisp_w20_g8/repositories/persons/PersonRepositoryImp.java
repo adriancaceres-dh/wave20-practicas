@@ -91,34 +91,34 @@ public class PersonRepositoryImp implements IPersonRepository {
                     add(9);
                     add(10);
                 }}),
-                new User(3, "ghds", new HashSet<>(){{
+                new User(3, "user3", new HashSet<>(){{
                     add(9);
                 }}),
-                new User(4, "zdsfg", new HashSet<>())
+                new User(4, "user4", new HashSet<>())
         ));
         persons.get("sellers").addAll(Set.of(
-                new Seller(5, "seller3", new HashSet<>(){{
+                new Seller(5, "seller5", new HashSet<>(){{
                     add(1);
                 }}, new HashSet<>(){{
                     add(1);
                     add(2);
                 }}),
-                new Seller(6, "seller4", new HashSet<>(){{
+                new Seller(6, "seller6", new HashSet<>(){{
                     add(1);
                 }}, new HashSet<>(){{
                     add(4);
                 }}),
-                new Seller(7, "seller3", new HashSet<>(), new HashSet<>(){{
+                new Seller(7, "seller7", new HashSet<>(), new HashSet<>(){{
                     add(3);
                 }}),
-                new Seller(8, "seller4", new HashSet<>(), new HashSet<>()),
+                new Seller(8, "seller8", new HashSet<>(), new HashSet<>()),
 
-                new Seller(9, "zxc", new HashSet<>(){{
+                new Seller(9, "seller9", new HashSet<>(){{
                     add(1);
                     add(2);
                     add(3);
                 }}, new HashSet<>()),
-                new Seller(10, "hjf", new HashSet<>(){{
+                new Seller(10, "seller10", new HashSet<>(){{
                     add(2);
                 }}, new HashSet<>())
         ));
