@@ -4,25 +4,22 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PromoPostRequest;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PostResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoPostCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserPostDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserProductDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUsersPostsResponse;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidPostDataException;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.*;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Objects;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class PostService implements IPostService{
@@ -86,6 +83,15 @@ public class PostService implements IPostService{
         if(!postRepository.add(newPost)) throw new InvalidPostDataException(new MessageExceptionDTO("Invalid data"));
 
 
+    }
+
+    @Override
+    public PromoPostCountDTO getPromoPostCount(int userId) {
+        User userInBd = userService.getById(userId);
+        long postCount = postRepository
+                .filterByUserId(userId).stream().filter(post->post.isIsDiscounted() && post.getDiscount()!=0).count();
+
+        return new PromoPostCountDTO(userId, postCount, userInBd.getUserName());
     }
 
     //Requerimiento 006 + 009

@@ -2,6 +2,7 @@ package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PromoPostRequest;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoPostCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IPostService;
@@ -37,10 +38,18 @@ public class PostController {
     }
 
     //Creates post with a discount.
-    @PostMapping("promo-post")
+    @PostMapping("/promo-post")
     public ResponseEntity newPromoPost(@RequestBody PromoPostRequest request){
         postService.newPromoPost(request);
         return new ResponseEntity(HttpStatus.OK);
 
     }
+
+    @GetMapping("/promo-post/count")
+    public PromoPostCountDTO countPromoPost(@RequestParam(name = "user_id") int userId){
+
+        return postService.getPromoPostCount(userId);
+
+    }
+
 }

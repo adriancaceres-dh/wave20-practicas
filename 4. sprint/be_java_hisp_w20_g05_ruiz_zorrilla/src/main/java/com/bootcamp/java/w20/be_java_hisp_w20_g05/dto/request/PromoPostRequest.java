@@ -23,7 +23,7 @@ public class PromoPostRequest {
     private ProductRequestDTO product;
     private int category;
     private double price;
-    @JsonProperty("has_discount")
+    @JsonProperty("has_promo")
     private boolean hasDiscount;
     private double discount;
 
