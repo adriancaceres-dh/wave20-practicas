@@ -88,6 +88,8 @@ public class ServicePublication implements IServicePublication {
     @Override
     public PublicationDiscountDTO addPromoPublication(PostDiscountDTO postDiscountDTO) {
         User user =  userRepository.findById(postDiscountDTO.getUser_id());
+        if(!postDiscountDTO.isHas_promo()) throw new BadRequestException("El producto tiene que tener un descuento.");
+        if(postDiscountDTO.getDiscount() <= 0d) throw new BadRequestException("El descuento del producto tiene que ser mayor a 0.");
         Publication publication = this.createPublication(user, postDiscountDTO.getCategory(), postDiscountDTO.getProduct(), postDiscountDTO.getDate(), postDiscountDTO.getPrice(), postDiscountDTO.isHas_promo(), postDiscountDTO.getDiscount());
         if(publicationRepository.addPublication(publication)){
             ((Seller) user).addPublication(publication);
