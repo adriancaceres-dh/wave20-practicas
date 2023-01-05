@@ -1,8 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g6.dto.request;
 
-
+import java.time.LocalDate;
 
 import com.bootcamp.be_java_hisp_w20_g6.model.ProductModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
