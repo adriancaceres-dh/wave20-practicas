@@ -13,12 +13,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
 public class PostRepository implements IPostRepository{
-    private Set<Post> posts;
+    private Set<Post> posts = new HashSet<>();
 
     public PostRepository() {
         posts = loadDataBase(); }
@@ -29,9 +30,10 @@ public class PostRepository implements IPostRepository{
     }
     @Override
     public boolean add(Post post) {
+        if (contains(post)) return false;
         return posts.add(post);
     }
-    public Post getBy(int userId) {
+    public Post getById(int userId) {
         return posts.stream().filter(u -> u.getId()== userId)
                 .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("Elemento no encontrado")));
     }

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -18,27 +18,24 @@ public class User {
     private Set<Integer> followers;
     private Set<Integer> following;
 
-    public User(int id, String userName) {
-        this.id = id;
-        this.userName = userName;
-        followers = new HashSet<>();
-        following = new HashSet<>();
-    }
-
     @Override
     public int hashCode() {
         return id;
     }
 
-    public boolean addFollower(int idFollower) { return followers.add(idFollower); }
-
-    public boolean followUser(int idUserToFollow) { return following.add(idUserToFollow); }
-
-    public boolean removeFollower(int idFollower) {
-        return followers.remove(idFollower);
+    public void addFollower(int idFollower) {
+        followers.add(Integer.valueOf(idFollower));
     }
 
-    public boolean unfollowUser(int idUserToUnfollow) {
-        return following.remove(idUserToUnfollow);
+    public void followUser(int idUserToFollow) {
+        following.add(Integer.valueOf(idUserToFollow));
+    }
+
+    public void removeFollower(int idFollower) {
+        followers.remove(Integer.valueOf(idFollower));
+    }
+
+    public void unfollowUser(int idUserToUnfollow) {
+        following.remove(Integer.valueOf(idUserToUnfollow));
     }
 }

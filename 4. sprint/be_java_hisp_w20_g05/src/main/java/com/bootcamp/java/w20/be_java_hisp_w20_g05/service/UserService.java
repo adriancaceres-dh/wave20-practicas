@@ -1,11 +1,11 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowingListDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidFollowUnfollowException;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.WrongRequestParamException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IRepository;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService{
@@ -21,71 +22,90 @@ public class UserService implements IUserService{
     private IRepository<User> userRepository;
 
     @Override
+    public List<UserResponseDTO> filterBy(String name) {
+        return null;
+    }
+
+    @Override
     public FollowersCountDTO getFollowersCount (int id){
-        User user = userRepository.getBy(id);
-        return new FollowersCountDTO(user.getId(), user.getUserName(), user.getFollowers().size());
+        User user= getById(id);
+        return new FollowersCountDTO(user.getId(),user.getFollowers().size(),user.getUserName());
+    }
+
+    public User getById(int id) {
+        return userRepository.getById(id);
     }
 
     @Override
     public boolean followUser(int userId, int userIdToFollow) {
-        if (userId == userIdToFollow)
-            throw new InvalidFollowUnfollowException(new MessageExceptionDTO("No puedes seguirte a tí mismo"));
 
-        User user1 = userRepository.getBy(userId);
-        User user2 = userRepository.getBy(userIdToFollow);
-
-        if (!user1.followUser(user2.getId()))
-            throw new InvalidFollowUnfollowException(new MessageExceptionDTO(String.format("Ya sigues al usuario %d", userIdToFollow)));
-        return user2.addFollower(user1.getId());
+        try {
+            User user1 = userRepository.getById(userId);
+            User user2 = userRepository.getById(userIdToFollow);
+            user1.followUser(user2.getId());
+            user2.addFollower(user1.getId());
+        } catch (IdNotFoundException exception) {
+            throw new IdNotFoundException(new MessageExceptionDTO("Bad Request"));
+        }
+        return true;
     }
 
     @Override
     public boolean unfollowUser(int userId, int userIdToUnfollow) {
-        User user1 = userRepository.getBy(userId);
-        User user2 = userRepository.getBy(userIdToUnfollow);
-
-        if (!user1.unfollowUser(user2.getId()))
-            throw new InvalidFollowUnfollowException(new MessageExceptionDTO(String.format("Actualmente no sigues al usuario %d", userIdToUnfollow)));
-        return user2.removeFollower(user1.getId());
+        try {
+            User user1 = userRepository.getById(userId);
+            User user2 = userRepository.getById(userIdToUnfollow);
+            user1.unfollowUser(user2.getId());
+            user2.removeFollower(user1.getId());
+        } catch (IdNotFoundException exception) {
+            throw new IdNotFoundException(new MessageExceptionDTO("Bad Request"));
+        }
+        return true;
     }
 
     @Override
-    public FollowingListDTO getFollowingList(int userId, String order){
-        User user = userRepository.getBy(userId);
+    public FollowedListDTO getFollowedListDto(int userId, String order){
+        validateOrder(order);
+
+        User user = getById(userId);
         List<UserResponseDTO> followed = new ArrayList<>();
-        for(Integer i: user.getFollowing()) followed.add(new UserResponseDTO(i, userRepository.getBy(i).getUserName()));
+        for(Integer i: user.getFollowing()) followed.add(new UserResponseDTO(i, getById(i).getUserName()));
 
         orderList(followed,order);
 
-        return new FollowingListDTO(user.getId(), user.getUserName(), followed);
+        return new FollowedListDTO(user.getId(), user.getUserName(), followed);
     }
 
     @Override
-    public FollowersListDTO getFollowersList(int userId, String order) {
-        User seller = userRepository.getBy(userId);
+    public FollowersBySellerDTO getFollowersBySeller(int userId, String order) {
+        validateOrder(order);
+
+        User seller = userRepository.getById(userId);
         List<User> followers = new ArrayList<>();
-        seller.getFollowers().forEach(x -> followers.add(userRepository.getBy(x)));
+        seller.getFollowers().stream().forEach(x -> followers.add(userRepository.getById(x)));
 
         List<UserResponseDTO> followersDto = new ArrayList<>();
-        followers.forEach(f -> followersDto.add(new UserResponseDTO(f.getId(),f.getUserName())));
+        followers.stream().forEach(f -> followersDto.add(new UserResponseDTO(f.getId(),f.getUserName())));
 
         orderList(followersDto,order);
 
-        return new FollowersListDTO(seller.getId(), seller.getUserName(), followersDto);
+        return new FollowersBySellerDTO(seller.getId(), seller.getUserName(), followersDto);
     }
 
-    public void orderList(List<UserResponseDTO> userResponseDTOList, String order){
-        if (order != null) {
-            validateOrder(order);
+    public boolean orderList(List<UserResponseDTO> userResponseDTOList, String order){
+        if (order!=null) {
             userResponseDTOList.sort((x, y) -> (order.equalsIgnoreCase("name_asc")) ?
                     String.CASE_INSENSITIVE_ORDER.compare(x.getUserName(), y.getUserName()) :
                     String.CASE_INSENSITIVE_ORDER.compare(y.getUserName(), x.getUserName()));
-        }
+            return true;
+        }else return false;
     }
 
-    public void validateOrder(String order){
-        if (!order.equalsIgnoreCase("name_asc") && !order.equalsIgnoreCase("name_desc"))
-            throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));
+    public boolean validateOrder(String order){
+        if(order!=null && !order.equalsIgnoreCase("name_asc") && !order.equalsIgnoreCase("name_desc")){
+            throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));}
+        else return true;
+
     }
 
 }

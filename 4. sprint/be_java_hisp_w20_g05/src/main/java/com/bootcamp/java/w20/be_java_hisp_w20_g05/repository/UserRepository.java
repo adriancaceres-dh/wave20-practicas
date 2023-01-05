@@ -12,12 +12,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-public class UserRepository implements IUserRepository {
-    private Set<User> users;
+public class UserRepository implements IRepository<User> {
+    private Set<User> users= new HashSet<>();
 
     public UserRepository(){
         users = loadDataBase();
@@ -42,9 +43,9 @@ public class UserRepository implements IUserRepository {
                 .collect(Collectors.toSet());
     }
 
-    public User getBy(int userId) {
+    public User getById(int userId) {
         return users.stream().filter(u -> u.getId()== userId)
-                .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO(String.format("No se encontró el usuario %d", userId))));
+                .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("No se encontro el usuario")));
     }
 
     private static Set<User> loadDataBase() {

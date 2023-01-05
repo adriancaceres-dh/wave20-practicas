@@ -7,8 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FollowersCountDTO {
 
-    private int userId;
-    private String userName;
-    private long followersCount;
+    private int user_id, followers_count;
+    private String user_name;
 
 }

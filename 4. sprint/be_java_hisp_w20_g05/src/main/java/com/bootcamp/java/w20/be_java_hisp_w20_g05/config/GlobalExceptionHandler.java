@@ -2,7 +2,6 @@ package com.bootcamp.java.w20.be_java_hisp_w20_g05.config;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.MessageExceptionDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidFollowUnfollowException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidPostDataException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.WrongRequestParamException;
 import org.springframework.http.HttpStatus;
@@ -15,11 +14,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IdNotFoundException.class)
     public ResponseEntity<MessageExceptionDTO> IdNotFoundException(IdNotFoundException e){
-        return new ResponseEntity<>(e.getMessageExceptionDto(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(InvalidFollowUnfollowException.class)
-    public ResponseEntity<MessageExceptionDTO> InvalidFollowUnfollowException(InvalidFollowUnfollowException e){
         return new ResponseEntity<>(e.getMessageExceptionDto(), HttpStatus.BAD_REQUEST);
     }
 

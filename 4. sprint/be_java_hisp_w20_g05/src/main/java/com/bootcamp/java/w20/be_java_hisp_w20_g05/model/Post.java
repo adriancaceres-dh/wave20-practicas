@@ -17,13 +17,8 @@ public class Post {
     private int userId;
     private LocalDate date;
     private double price;
-    private boolean hasPromo;
     private double discount;
     private Product product;
-
-    public boolean getHasPromo() {
-        return discount > 0;
-    }
 
     @Override
     public int hashCode() {

@@ -1,13 +1,19 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowingListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -20,13 +26,14 @@ public class UserController {
     @PostMapping ("/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<String> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
         userService.followUser(userId, userIdToFollow);
-        return new ResponseEntity<>(String.format("Estás siguiendo al usuario %d", userIdToFollow), HttpStatus.OK);
+        return new ResponseEntity<>("todo OK", HttpStatus.OK);
+
     }
 
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         userService.unfollowUser(userId, userIdToUnfollow);
-        return new ResponseEntity<>(String.format("Has dejado de seguir al usuario %d", userIdToUnfollow), HttpStatus.OK);
+        return new ResponseEntity<>("todo OK", HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/count")
@@ -35,15 +42,15 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followed/list")
-    public ResponseEntity<FollowingListDTO> getFollowingList(@PathVariable int userId,
-                                                             @RequestParam(required = false) String order){
-        return new ResponseEntity<>(userService.getFollowingList(userId, order), HttpStatus.OK);
+    public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable int userId,
+                                                           @RequestParam(required = false) String order){
+        return new ResponseEntity<>(userService.getFollowedListDto(userId, order), HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/list")
-    public ResponseEntity<FollowersListDTO> getFollowersList(@PathVariable int userId,
-                                                             @RequestParam(required = false) String order) {
-        return new ResponseEntity<>(userService.getFollowersList(userId,order),HttpStatus.OK);
+    public ResponseEntity<FollowersBySellerDTO> getFollowersBySellerDto(@PathVariable int userId,
+                                                                        @RequestParam(required = false) String order) {
+        return new ResponseEntity<>(userService.getFollowersBySeller(userId,order),HttpStatus.OK);
     }
 
 

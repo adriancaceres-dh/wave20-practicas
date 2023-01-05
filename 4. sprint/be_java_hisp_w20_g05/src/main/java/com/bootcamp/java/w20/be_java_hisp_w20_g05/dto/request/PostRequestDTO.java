@@ -22,5 +22,4 @@ public class PostRequestDTO {
     private ProductRequestDTO product;
     private int category;
     private double price;
-    private double discount;
 }

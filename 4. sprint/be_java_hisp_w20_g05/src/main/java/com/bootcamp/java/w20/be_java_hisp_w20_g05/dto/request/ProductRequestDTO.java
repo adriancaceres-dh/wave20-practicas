@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ProductRequestDTO {
-    private int id;
-    private String name;
-    private String brand;
+    private int product_id;
+    private String product_name;
     private String type;
+    private String brand;
     private String color;
     private String notes;
 }
