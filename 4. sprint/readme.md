@@ -92,8 +92,7 @@ USS 0011: GET
 US 0012: GET
 - /products/promo-post/list?user_id={userId}
 
-### [Endpoints individuales]([Documentación técnica bonus.pdf](https://github.com/adriancaceres-dh/wave20-practicas/files/10354890/Documentacion.tecnica.bonus.pdf)
-)
+### [Endpoints individuales](https://github.com/adriancaceres-dh/wave20-practicas/files/10354890/Documentacion.tecnica.bonus.pdf)
 
 US 0013: POST
 - /products/post_product
