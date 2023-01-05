@@ -1,7 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.request.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.response.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class PostController {
         try {
             postService.createPost(postRequestDTO);
             return ResponseEntity.status(HttpStatus.OK).body("The post was published");
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new OperationFailedException(e.getMessage() + " Please check the information");
         }
     }

@@ -1,4 +1,4 @@
-package com.socialmeli.be_java_hisp_w20_g8.dto;
+package com.socialmeli.be_java_hisp_w20_g8.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class ResponseDto {
+public class ResponseMessageDTO {
     private boolean ok;
     private String message;
 }

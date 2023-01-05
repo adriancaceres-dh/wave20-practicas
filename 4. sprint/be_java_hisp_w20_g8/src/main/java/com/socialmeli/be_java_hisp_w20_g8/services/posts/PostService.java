@@ -2,7 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.response.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -10,7 +10,7 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.request.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
@@ -40,13 +40,13 @@ public class PostService implements IPostService {
                 .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
 
         mapper.createTypeMap(PostRequestDTO.class, Post.class)
-                .addMapping(src -> src.getProductDTO().getProduct_id(), Post::setProductId);
+                .addMapping(src -> src.getProduct().getProduct_id(), Post::setProductId);
     }
 
     @Override
     public boolean createPost(PostRequestDTO postRequestDTO) {
         // Check if all the fields are present
-        if(!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(), postRequestDTO.getProductDTO(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
+        if(!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(), postRequestDTO.getProduct(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
                 .allMatch(Objects::nonNull))
             throw new InvalidArgumentException("All the fields are required");
 
@@ -58,18 +58,25 @@ public class PostService implements IPostService {
             throw new NotFoundException("The specified seller does not exist in the database");
 
         // Create the product if it doesn't exist
-        productService.createProduct(postRequestDTO.getProductDTO());
+        productService.createProduct(postRequestDTO.getProduct());
 
         // Create the post
         Post post = mapper.map(postRequestDTO, Post.class);
+        PostDTO postDTO;
+        int postId;
 
         // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUserId(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
-
-        int postId = postRepository.createPost(post, postDTO);
-
-        // Add the post to the seller's list
+        if (!postRequestDTO.isHas_promo() && postRequestDTO.getDiscount() == null){
+            postDTO = new PostDTO(postRequestDTO.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+        }
+        else{
+            postDTO = PostDTO.builder().user_id(postRequestDTO.getUser_id()).date(post.getDate()).product(postRequestDTO.getProduct()).category(post.getCategory())
+                    .price(post.getPrice()).has_promo(postRequestDTO.isHas_promo()).discount(postRequestDTO.getDiscount()).build();
+        }
+        postId = postRepository.createPost(post, postDTO);
         return seller.getPost().add(postId);
+
+
     }
 
     @Override

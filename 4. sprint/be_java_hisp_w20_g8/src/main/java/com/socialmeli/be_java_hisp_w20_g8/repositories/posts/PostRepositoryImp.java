@@ -3,7 +3,9 @@ package com.socialmeli.be_java_hisp_w20_g8.repositories.posts;
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 
+import com.socialmeli.be_java_hisp_w20_g8.dto.request.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -40,6 +42,9 @@ public class PostRepositoryImp implements IPostRepository {
         posts.add(post);
         postDTO.setPost_id(postCount);
         mapPosts.put(post.getId(), postDTO);
+
+        System.out.println(mapPosts);
+
         return postCount;
     }
 
@@ -48,6 +53,7 @@ public class PostRepositoryImp implements IPostRepository {
         posts.add(new Post(2, 5, LocalDate.of(2022, 12, 28), 2, 2, 2000));
         posts.add(new Post(3, 7, LocalDate.of(2022, 11, 29), 3, 2, 2000));
         posts.add(new Post(4, 6, LocalDate.of(2022, 11, 27), 4, 2, 2000));
+
 
         mapPosts.put(1, PostDTO.builder().post_id(1).user_id(5).date(LocalDate.of(2022, 12, 29)).product(
                 ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()
