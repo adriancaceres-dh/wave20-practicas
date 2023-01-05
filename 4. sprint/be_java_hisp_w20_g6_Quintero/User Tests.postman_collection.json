@@ -71,6 +71,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "US-0001 invalid same person follow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/1/follow/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
