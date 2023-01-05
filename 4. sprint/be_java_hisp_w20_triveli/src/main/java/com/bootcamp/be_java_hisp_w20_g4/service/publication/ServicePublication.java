@@ -137,6 +137,7 @@ public class ServicePublication implements IServicePublication {
         return userProductCountDTO;
     }
 
+
     /**
      * Este método busca las publicaciones en promoción y las muestra
      * @param userId - Id del vendedor del que se le consultada las publicaciones en promoción
