@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(SameUserException.class)
-    public ResponseEntity<String> invalidParam(SameUserException sameUserException){
-        return new ResponseEntity<>(sameUserException.getMessage(), HttpStatus.BAD_REQUEST);
-    }
+
 
     @ExceptionHandler(UserExistsException.class)
     public ResponseEntity<String> checkUserExists(UserExistsException userExistsException){
@@ -33,6 +30,11 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(FollowerNotFoundException.class)
     public ResponseEntity<String> followerNotFound(FollowerNotFoundException followerNotFoundException){
         return new ResponseEntity<>(followerNotFoundException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SameUserException.class)
+    public ResponseEntity<String> invalidParam(SameUserException sameUserException){
+        return new ResponseEntity<>(sameUserException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }
