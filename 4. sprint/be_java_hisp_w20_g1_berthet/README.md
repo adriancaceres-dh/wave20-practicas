@@ -58,7 +58,7 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 - No se pueden publicar las mismas promociones más de una vez.
 - Se puede publicar una promoción sobre el mismo producto si se cambia el valor del precio o del descuento.
 
-### Endpoints (Grupales)
+### Endpoints
 
 [Colección de request para importar en Postman](User%20Stories.postman_collection.json)
 
