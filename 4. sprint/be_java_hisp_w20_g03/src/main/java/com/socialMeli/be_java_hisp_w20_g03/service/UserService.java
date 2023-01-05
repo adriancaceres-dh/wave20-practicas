@@ -10,8 +10,6 @@ import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class UserService implements IUserService{
+public class UserService implements IUserService {
 
     @Autowired
     IUserRepository iUserRepository;
@@ -28,92 +26,89 @@ public class UserService implements IUserService{
 
     @Override
     public List<UserExtendedDTO> getUsers() {
-        return iUserRepository.getUsers().stream().map(u-> mapper.map(u,UserExtendedDTO.class)).collect(Collectors.toList());
+        return iUserRepository.getUsers().stream().map(u -> mapper.map(u, UserExtendedDTO.class)).collect(Collectors.toList());
     }
 
     @Override
     public String addFollower(int userId, int userIdToFollow) {
+        User currentUser = iUserRepository.getUserById(userId);
+        User followUser = iUserRepository.getUserById(userIdToFollow);
 
-        try{
-            User currentUser = iUserRepository.getUserById(userId);
-            User followUser = iUserRepository.getUserById(userIdToFollow);
-            if(currentUser == null || followUser == null)
-               throw new NotFoundException("El usuario ingresado no existe");
-            List<User> getFollowersList = followUser.getFollowers();
-            List<User> getCurrentUserList = currentUser.getFollowed();
-            if(getFollowersList.contains(currentUser) || getCurrentUserList.contains(followUser))
-                throw  new BadRequestException("Ya estas siguiendo al usuario: " + followUser.getUser_name());
-            getFollowersList.add(currentUser);
-            getCurrentUserList.add(followUser);
-            return "Comenzaste a seguir al usuario: " + followUser.getUser_name();
-        }catch (Exception e){
-            throw new BadRequestException(e.getMessage());
+        if (currentUser == null || followUser == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
         }
+        List<User> getFollowersList = followUser.getFollowers();
+        List<User> getCurrentUserList = currentUser.getFollowed();
+        if (getFollowersList.contains(currentUser) || getCurrentUserList.contains(followUser)) {
+            throw new BadRequestException("Ya estas siguiendo al usuario: " + followUser.getUserName());
+        }
+        getFollowersList.add(currentUser);
+        getCurrentUserList.add(followUser);
+        return "Comenzaste a seguir al usuario: " + followUser.getUserName();
     }
 
     @Override
     public UserFollowerCountDTO getFollowerCount(int userId) {
-        
         User user = this.iUserRepository.getUserById(userId);
 
-        if(user != null){
-            int count = user.getFollowers().size();
-            return new UserFollowerCountDTO(user.getUser_id(),user.getUser_name(),count);
+        if (user == null) {
+            throw new NotFoundException("El usuario ingresado no existe.");
         }
-
-        throw new NotFoundException("El usuario ingresado no existe.");
+        int count = user.getFollowers().size();
+        return new UserFollowerCountDTO(user.getUserId(), user.getUserName(), count);
     }
 
     @Override
     public UserFollowersDTO getFollowersList(int userId, String order) {
         User user = iUserRepository.getUserById(userId);
-        if (user == null){
+
+        if (user == null) {
             throw new NotFoundException("El usuario ingresado no existe.");
         }
         List<UserDTO> followers = user.getFollowers().stream()
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
-        if (order != null && order.equals("name_desc")){
-            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUser_name(), Comparator.reverseOrder())).collect(Collectors.toList());
-        }else{
-            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUser_name())).collect(Collectors.toList());
+        if (order != null && order.equals("name_desc")) {
+            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder())).collect(Collectors.toList());
+        } else {
+            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName())).collect(Collectors.toList());
         }
-        return new UserFollowersDTO(user.getUser_id(),user.getUser_name(),followers);
+        return new UserFollowersDTO(user.getUserId(), user.getUserName(), followers);
     }
 
     @Override
     public UserFollowersDTO getFollowedList(int userId, String order) {
         User user = iUserRepository.getUserById(userId);
-        if (user != null) {
-            List<UserDTO> followed = user.getFollowed().stream()
-                    .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
-            if (order != null) {
-                if (order.equals("name_asc")){
-                    followed = followed.stream().sorted(Comparator.comparing(x -> x.getUser_name())).collect(Collectors.toList());
-                }else{
-                    followed = followed.stream().sorted(Comparator.comparing(x -> x.getUser_name(), Comparator.reverseOrder())).collect(Collectors.toList());
-                }
-            }
-            return new UserFollowersDTO(user.getUser_id(), user.getUser_name(), followed);
+
+        if (user == null) {
+            throw new NotFoundException("El usuario ingresado no existe.");
         }
-        throw new NotFoundException("El usuario ingresado no existe.");
+        List<UserDTO> followed = user.getFollowed().stream()
+                .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
+        if (order != null) {
+            if (order.equals("name_asc")) {
+                followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName())).collect(Collectors.toList());
+            } else {
+                followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder())).collect(Collectors.toList());
+            }
+        }
+        return new UserFollowersDTO(user.getUserId(), user.getUserName(), followed);
     }
 
     @Override
     public String unfollow(int userId, int userIdToUnfollow) {
-        try {
-            User user = iUserRepository.getUserById(userId);
-            User userToUnfollow = iUserRepository.getUserById(userIdToUnfollow);
-            if(user == null || userToUnfollow == null)
-                throw new NotFoundException("El usuario ingresado no existe");
-            List<User> userFollowedList = user.getFollowed();
-            List<User> unfollowedUserFollowerList = userToUnfollow.getFollowers();
-            if(!userFollowedList.contains(userToUnfollow) || !unfollowedUserFollowerList.contains(user))
-                throw new BadRequestException("No esta siguiendo a " + userToUnfollow);
-            userFollowedList.remove(userToUnfollow);
-            unfollowedUserFollowerList.remove(user);
-            return "Dejaste de seguir al usuario: " + userToUnfollow.getUser_name();
-        } catch (Exception e) {
-            throw new BadRequestException("");
+        User user = iUserRepository.getUserById(userId);
+        User userToUnfollow = iUserRepository.getUserById(userIdToUnfollow);
+
+        if (user == null || userToUnfollow == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
         }
+        List<User> userFollowedList = user.getFollowed();
+        List<User> unfollowedUserFollowerList = userToUnfollow.getFollowers();
+        if (!userFollowedList.contains(userToUnfollow) || !unfollowedUserFollowerList.contains(user)) {
+            throw new BadRequestException("No esta siguiendo a " + userToUnfollow.getUserName());
+        }
+        userFollowedList.remove(userToUnfollow);
+        unfollowedUserFollowerList.remove(user);
+        return "Dejaste de seguir al usuario: " + userToUnfollow.getUserName();
     }
 }

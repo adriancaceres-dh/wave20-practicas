@@ -1,5 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserFollowerCountDTO {
-    private int user_id;
-    private String user_name;
+    @JsonProperty("user_id")
+    private int userId;
+    @JsonProperty("user_name")
+    private String userName;
     private int followers_count;
 }
