@@ -1,17 +1,17 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.sellers;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.*;
+import com.socialmeli.be_java_hisp_w20_g8.dto.SellerFollowersDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.UserDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -19,12 +19,11 @@ import java.util.stream.Collectors;
 public class SellerService implements ISellerService {
 
     @Autowired
-    IPersonRepository personRepository;
-    @Autowired
-    IPostRepository postRepository;
+    IPersonRepository IPersonRepository;
+
 
     public UserCountDTO followersCount(int userId) {
-        Seller seller = personRepository.getById(userId);
+        Seller seller = IPersonRepository.getById(userId);
         if (seller == null) {
             throw new NotFoundException("User not found: " + userId);
         }
@@ -40,12 +39,12 @@ public class SellerService implements ISellerService {
     @Override
     public SellerFollowersDTO getSellerFollowers(Integer userId, String order) {
 
-        Seller seller = personRepository.findSellerById(userId);
+        Seller seller = IPersonRepository.findSellerById(userId);
 
         if (seller != null) {
 
             SellerFollowersDTO sellerFollowersDTO = new SellerFollowersDTO(seller.getId(), seller.getUser_name(),
-                    seller.getFollowers().stream().map(id -> personRepository.findUserById(id)).collect(Collectors.toList())
+                    seller.getFollowers().stream().map(id -> IPersonRepository.findUserById(id)).collect(Collectors.toList())
                             .stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList()));
 
             String orderType = order != null ? order : "";
@@ -71,27 +70,5 @@ public class SellerService implements ISellerService {
         }
 
 
-    }
-
-    @Override
-    public PromosBySellerDto countPromos(int sellerId) {
-        Seller seller = personRepository.findSellerById(sellerId);
-        return PromosBySellerDto.builder()
-                .userId(sellerId)
-                .userName(seller.getUser_name())
-                .promoProductsCount((int)postRepository.findPostsById(seller.getPost()).stream()
-                        .filter(PostDTO::isHasPromo)
-                        .count())
-                .build();
-    }
-
-    @Override
-    public ResponsePostDTO getAllPromoPostBySeller(int sellerId) {
-        Seller seller = personRepository.findSellerById(sellerId);
-        return ResponsePostDTO.builder()
-                .id_user(sellerId)
-                .posts(postRepository.findPostsById(seller.getPost()).stream()
-                        .filter(PostDTO::isHasPromo).collect(Collectors.toList()))
-                .build();
     }
 }

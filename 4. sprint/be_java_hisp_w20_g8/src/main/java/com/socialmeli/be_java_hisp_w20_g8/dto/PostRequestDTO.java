@@ -17,8 +17,4 @@ public class PostRequestDTO {
     private ProductDTO productDTO;
     private Integer category;
     private Double price;
-    @JsonProperty("has_promo")
-    private boolean hasPromo;
-
-    private double discount;
 }

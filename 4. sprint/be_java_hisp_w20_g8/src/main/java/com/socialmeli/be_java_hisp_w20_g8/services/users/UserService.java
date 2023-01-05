@@ -61,8 +61,7 @@ public class UserService implements IUserService {
     }
 
     public ResponseDto addNewFollow(int userId, int sellerId) {
-        if(userId == sellerId) throw new OperationFailedException("An user can't follow himself");
-
+        if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (IPersonRepository.checkUser(userId) && IPersonRepository.checkUser(sellerId)) {
             IPersonRepository.addFollowing(userId, sellerId);
             IPersonRepository.addFollower(sellerId, userId);

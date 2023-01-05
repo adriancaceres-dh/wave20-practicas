@@ -10,7 +10,6 @@ import java.util.Set;
 public interface IPostService {
 
     boolean createPost(PostRequestDTO postRequestDTO);
-    boolean createPostPromo(PostRequestDTO postRequestDTO);
 
     ResponsePostDTO findSellersByIdUser(int id, String order);
 

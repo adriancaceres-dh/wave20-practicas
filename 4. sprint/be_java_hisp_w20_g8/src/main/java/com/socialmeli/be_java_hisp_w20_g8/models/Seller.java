@@ -20,6 +20,7 @@ public class Seller extends Person {
         this.post = post;
     }
 
+
     public Set<Integer> getFollowers() {
         return followers;
     }

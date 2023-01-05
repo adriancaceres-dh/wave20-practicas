@@ -64,7 +64,7 @@ public class PostService implements IPostService {
         Post post = mapper.map(postRequestDTO, Post.class);
 
         // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUserId(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+        PostDTO postDTO = new PostDTO(post.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
 
         int postId = postRepository.createPost(post, postDTO);
 
@@ -72,39 +72,6 @@ public class PostService implements IPostService {
         return seller.getPost().add(postId);
     }
 
-    @Override
-    public boolean createPostPromo(PostRequestDTO postRequestDTO) {
-        // Check if all the fields are present
-        if (!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(),
-                        postRequestDTO.getProductDTO(),
-                        postRequestDTO.getCategory(), postRequestDTO.getPrice()
-                        , postRequestDTO.getDiscount(), postRequestDTO.isHasPromo())
-                .allMatch(Objects::nonNull))
-            throw new InvalidArgumentException("All the fields are required");
-
-        // Get the seller
-        Seller seller = personRepository.findSellerById(postRequestDTO.getUser_id());
-
-        // Check if the seller exists
-        if (seller == null)
-            throw new NotFoundException("The specified seller does not exist in the database");
-
-        // Create the product if it doesn't exist
-        productService.createProduct(postRequestDTO.getProductDTO());
-
-        // Create the post
-        Post post = mapper.map(postRequestDTO, Post.class);
-
-        // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUserId(), post.getDate(),
-                productService.getProductById(post.getProduct_id()),
-                post.getCategory(), post.getPrice(),post.isHasPromo(),post.getDiscount());
-
-        int postId = postRepository.createPost(post, postDTO);
-
-        // Add the post to the seller's list
-        return seller.getPost().add(postId);
-    }
     @Override
     public ResponsePostDTO findSellersByIdUser(int id, String order) {
         if (personRepository.checkUser(id)) {
@@ -121,13 +88,12 @@ public class PostService implements IPostService {
 
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
-        List<PostDTO> listPostSeller = new ArrayList<>();
-        System.out.println(sellers);
-        sellers.forEach(seller -> {
+       List<PostDTO> listPostSeller = new ArrayList<>();
+       sellers.forEach(seller -> {
            if (seller == null)
-               throw new DoesntExistSellerException("The user doesn't follow any sellers");
-           postRepository.findPostsById(seller.getPost()).forEach(x-> listPostSeller.add(x));
-        });
+               throw new DoesntExistSellerException("The seller doesn't follow any sellers");
+           listPostSeller.addAll(postRepository.findPostsById(seller.getPost()));
+           });
 
         String orderType = order==null ? "" : order;
         if (!Validators.checkValidatorOptionDate(orderType)) {
@@ -140,12 +106,11 @@ public class PostService implements IPostService {
                                .collect(Collectors.toList()))
                        .build();
            case "date_desc":
+            default:
                return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller.stream()
                                .sorted((a,b)->b.getDate().compareTo(a.getDate()))
                                .collect(Collectors.toList()))
                        .build();
-           default:
-               return ResponsePostDTO.builder().id_user(idUser).posts(listPostSeller).build();
 
         }
 

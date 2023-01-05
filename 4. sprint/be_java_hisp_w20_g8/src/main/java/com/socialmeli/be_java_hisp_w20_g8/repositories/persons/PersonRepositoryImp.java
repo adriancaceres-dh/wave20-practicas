@@ -1,6 +1,5 @@
 package com.socialmeli.be_java_hisp_w20_g8.repositories.persons;
 
-import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Person;
@@ -32,7 +31,6 @@ public class PersonRepositoryImp implements IPersonRepository {
         Set<Person> personSet = persons.get("users");
         User person = (User) personSet.stream().filter(p -> p.getId() == userId)
                 .findAny().orElseThrow(() -> new OperationFailedException("try to add new follow failed"));
-        if(person.getFollowing().contains(sellerId)) throw new InvalidArgumentException("User already following this seller");
         person.getFollowing().add(sellerId);
 
         return true;
@@ -44,7 +42,6 @@ public class PersonRepositoryImp implements IPersonRepository {
         Set<Person> personSet = persons.get("sellers");
         Seller person = (Seller) personSet.stream().filter(p -> p.getId() == sellerId)
                 .findAny().orElseThrow(() -> new OperationFailedException("try to add new follower failed"));
-        if(person.getFollowers().contains(userId)) throw new InvalidArgumentException("User already followed by this user");
         person.getFollowers().add(userId);
         return true;
     }
@@ -80,14 +77,6 @@ public class PersonRepositoryImp implements IPersonRepository {
             person.getFollowers().remove(userId);
             return true;
         } else return false;
-    }
-    @Override
-    public boolean addPostSeller(int sellerId,int postId){
-        Set<Person> personSet = persons.get("sellers");
-        Seller person =(Seller)personSet.stream().filter(p->p.getId()==sellerId)
-                .findAny().orElseThrow(()-> new OperationFailedException("try to add new post failed"));
-        person.getPost().add(postId);
-        return true;
     }
 
     private boolean loadUsers() {

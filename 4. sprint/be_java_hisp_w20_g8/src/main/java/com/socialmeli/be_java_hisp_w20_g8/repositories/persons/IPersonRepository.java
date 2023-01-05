@@ -9,8 +9,6 @@ public interface IPersonRepository {
 
     public boolean addFollowing(int userId,int sellerId);
     public boolean addFollower(int sellerId, int userId);
-    public boolean addPostSeller(int sellerId, int postId);
-
     public boolean checkUser(int userId);
 
     public boolean unfollowing(int userId, int sellerId);
