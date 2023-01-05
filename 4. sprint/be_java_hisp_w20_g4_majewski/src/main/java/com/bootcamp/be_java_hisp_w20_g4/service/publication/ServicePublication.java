@@ -152,4 +152,17 @@ public class ServicePublication implements IServicePublication {
     }
 
 
+    /**
+     * Este método obtiene todas las publicaciones realizadas que tengan un producto determinado
+     * @param id - Es el id del producto que deben tener las publicaciones
+     * @return ListedPostDTO - Devuelve una lista con la información de los posts obtenidos
+     */
+    public List<ListedPostDTO> getProductPublications(int id){
+        List<Publication> publications = publicationRepository.getPublications();
+        List<ListedPostDTO> publicationsDto = publications.stream().filter(p -> p.getProduct().getProduct_id() == id)
+                .map(p -> mapper.map(p, ListedPostDTO.class)).collect(Collectors.toList());
+        return publicationsDto;
+    }
+
+
 }
