@@ -1,419 +1,492 @@
 {
-  "info": {
-    "_postman_id": "f2f261d8-f8e7-449f-b5e9-b8d1d94357c4",
-    "name": "Sprint 1",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "US 001",
-      "item": [
-        {
-          "name": "Existing user follows existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/2",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        },
-        {
-          "name": "Non existing user follows existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/250000",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        },
-        {
-          "name": "Non existing user follows non existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/250000",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        },
-        {
-          "name": "Existing user follows non existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/250000",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 002",
-      "item": [
-        {
-          "name": "followers count",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": "localhost:8080/users/3/followers/count"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 003",
-      "item": [
-        {
-          "name": "http://localhost:8080/users/4/followers/list",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/users/4/followers/list",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "users",
-                "4",
-                "followers",
-                "list"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 004",
-      "item": [
-        {
-          "name": "Test 1 - List followed users",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": "localhost:8080/users/2/followed/list"
-          },
-          "response": []
-        },
-        {
-          "name": "Test 3 - User not found",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": "localhost:8080/users/0/followed/list"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 005",
-      "item": [
-        {
-          "name": "200 OK",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": \"321\",\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": "localhost:8080/products/post"
-          },
-          "response": []
-        },
-        {
-          "name": "400 Bad Request",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/products/post"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 006",
-      "item": [
-        {
-          "name": "Test 1 - Usuario sigue 2 usuarios con posts el 26 y el 30",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": "localhost:8080/products/followed/2/list"
-          },
-          "response": []
-        },
-        {
-          "name": "Test 2 - Usuario no existe",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": "localhost:8080/products/followed/0/list"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 007",
-      "item": [
-        {
-          "name": "Non existing user unfollows existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/250000",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        },
-        {
-          "name": "Existing user unfollows existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/2",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        },
-        {
-          "name": "Non existing user unfollows non existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/250000",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        },
-        {
-          "name": "Existing user unfollows non existing user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": "localhost:8080/users/1/follow/250000",
-            "description": "Existing user follows another existing user"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 009",
-      "item": [
-        {
-          "name": "Test 1 - Posts el 26 y el 30, descendiente",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/products/followed/2/list?order=date_desc",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "products",
-                "followed",
-                "2",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "date_desc"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Test 2 - Posts el 26 y el 30, ascendiente",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/products/followed/2/list?order=date_asc",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "products",
-                "followed",
-                "2",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "date_asc"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "US 008",
-      "item": [
-        {
-          "name": "lista followers ordenada asc",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:8080/users/5/followers/list?order=name_asc",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "users",
-                "5",
-                "followers",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "name_asc"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "lista followers ordenada desc",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:8080/users/5/followers/list?order=name_desc",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "users",
-                "5",
-                "followers",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "name_desc"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "lista followed ordenada asc",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:8080/users/8/followed/list?order=name_asc",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "users",
-                "8",
-                "followed",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "name_asc"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "lista followed ordenada desc",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:8080/users/8/followed/list?order=name_desc",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "users",
-                "8",
-                "followed",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "name_desc"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "lista followed exception",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:8080/users/8/followed/list?order=namasd",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "users",
-                "8",
-                "followed",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "order",
-                  "value": "namasd"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "06581bd6-a3c6-4de2-b236-4c92f9acea54",
+		"name": "Sprint 1 Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "US 001",
+			"item": [
+				{
+					"name": "Existing user follows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/2",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user follows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/250000",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user follows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/250000",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Existing user follows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/250000",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 002",
+			"item": [
+				{
+					"name": "followers count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/users/3/followers/count"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 003",
+			"item": [
+				{
+					"name": "http://localhost:8080/users/4/followers/list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users/4/followers/list"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 004",
+			"item": [
+				{
+					"name": "Test 1 - List followed users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/users/2/followed/list"
+					},
+					"response": []
+				},
+				{
+					"name": "Test 3 - User not found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/users/0/followed/list"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 005",
+			"item": [
+				{
+					"name": "200 OK",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": \"321\",\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/products/post"
+					},
+					"response": []
+				},
+				{
+					"name": "400 Bad Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/products/post"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 006",
+			"item": [
+				{
+					"name": "Test 1 - Usuario sigue 2 usuarios con posts el 26 y el 30",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/products/followed/2/list"
+					},
+					"response": []
+				},
+				{
+					"name": "Test 2 - Usuario no existe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/products/followed/0/list"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 007",
+			"item": [
+				{
+					"name": "Non existing user unfollows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/250000",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Existing user unfollows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/2",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user unfollows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/250000",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Existing user unfollows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8080/users/1/follow/250000",
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 009",
+			"item": [
+				{
+					"name": "Test 1 - Posts el 26 y el 30, descendiente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/followed/2/list?order=date_desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"followed",
+								"2",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "date_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 2 - Posts el 26 y el 30, ascendiente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/followed/2/list?order=date_asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"followed",
+								"2",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "date_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 008",
+			"item": [
+				{
+					"name": "lista followers ordenada asc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5/followers/list?order=name_asc",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5",
+								"followers",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista followers ordenada desc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5/followers/list?order=name_desc",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5",
+								"followers",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista followed ordenada asc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/8/followed/list?order=name_asc",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"8",
+								"followed",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista followed ordenada desc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/8/followed/list?order=name_desc",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"8",
+								"followed",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista followed exception",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/8/followed/list?order=namasd",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"8",
+								"followed",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "namasd"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 010",
+			"item": [
+				{
+					"name": "200 Ok",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": \"321\",\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/products/post"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 011",
+			"item": [
+				{
+					"name": "Count ok",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "User does not exist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/promo-post/count?user_id=0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"count"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 012",
+			"item": [
+				{
+					"name": "Count ok",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "User does not exist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
