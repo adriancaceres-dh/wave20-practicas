@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostPromoCountResponseDTO {
-
-    private int userId;
-
-    private String userName;
-
+public class PostPromoCountResponseDTO extends UserResponseDTO{
     private int promoProductsCount;
+
+    public PostPromoCountResponseDTO(int userId, String userName, int promoProductsCount) {
+        super(userId, userName);
+        this.promoProductsCount = promoProductsCount;
+    }
 
 }

@@ -7,20 +7,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostPromoListResponseDTO {
-
-    private int userId;
-
-    private String userName;
+public class PostPromoListResponseDTO extends UserResponseDTO{
 
     private List<PostPromoDTO> posts;
 
+    public PostPromoListResponseDTO(int userId, String userName, List<PostPromoDTO> posts) {
+        super(userId, userName);
+        this.posts = posts;
+    }
 
 }
