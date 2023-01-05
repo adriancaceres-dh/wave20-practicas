@@ -199,3 +199,56 @@ Cada miembro del equipo fue responsable por la implementación de una US, y por 
 En primer lugar, los miembros argentinos del grupo agradecen a Lionel Messi por traer la copa.
 
 En segunda instancia, agradecer a nuestro Scrum Master, Adrián Cáceres, así como a Johanna Tabella y el resto del equipo de Digital House por su disposición y paciencia a lo largo del Bootcamp.
+
+# Desarollo incremental individual
+
+Se añadieron al proyecto respetando el desarrollo grupal 3 nuevos endpoints.
+
+#### US 0010: Llevar a cabo la publicación de un nuevo producto en promoción.
+
+```http
+  POST /products/promo-post
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+| `date`      | `LocalDate` | Fecha de la publicación en formato dd-MM-yyyy |
+| `product_id`      | `int` | Número identificatorio de un producto asociado a una publicación |
+| `product_name`      | `String` | Cadena de caracteres que representa el nombre de un producto |
+| `type`      | `String` | Cadena de caracteres que representa el tipo de un producto |
+| `brand`      | `String` | Cadena de caracteres que representa la marca de un producto |
+| `color`      | `String` | Cadena de caracteres que representa el color de un producto |
+| `notes`      | `String` | Cadena de caracteres para colocar notas u observaciones de un producto |
+| `category`      | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| `price`      | `double` | Precio del producto |
+| `has_promo`      | `boolean` | Campo true o false para determinar si un producto está en promoción o no |
+| `discount`      | `double` | En caso de que un producto estuviese en promoción, establece el monto de descuento. |
+
+
+
+#### US 0011: Obtener la cantidad de productos en promoción de un determinado vendedor
+
+```http
+  GET /products/promo-post/count?user_id={userId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+
+
+#### US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
+
+```http
+  GET /products/promo-post/list?user_id={userId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+
+
+
+
+
