@@ -1,49 +1,55 @@
-Social Meli -- Desarrollado por Equipo 4
-Joaquin Pereyra, Martin Gonzalez, Tammara Trivelli, Emiliano Asprea, Ivan Majewski, Gabriela Stocco, Rodrigo Cabrera // Scrum Master Andres Bolognesi
+# Social Meli
 
+
+## Scrum Master: 
+Andres Bolognesi
+## Participantes: 
+Joaquin Pereyra, Martin Gonzalez, Tammara Trivelli, Emiliano Asprea, Ivan Majewski, Gabriela Stocco, Rodrigo Cabrera
+
+## Tecnologías Utilizadas: 
+Java 11, Maven, Spring Framework(Web, DevTools, Lombok) y Github.
+
+## Descripción de la API
 Desarrollo de una API REST para mejorar la experiencia entre compradores y vendedores.
 Los compradores podran seguir a sus vendedores favoritos y enterarse de sus posteos de nuevos productos.
 
-Teccnologias Utilizadas: Java 11, Spring Framework(Web, DevTools, Lombok) y Github.
-
 Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en equipo, recibiendo recomendaciones y feedback constante.
 
-- Deciciones funcionales: 
-- Req 1:
--- Un usuario no se puede seguir a sí mismo.
--- Un vendedor puede seguir a un vendedor.
--- Un vendedor puede seguir a un comprador.
--- Un comprador puede seguir a un comprador.
--- Retorna el dto del usuario al que siguió con estado 200.
+## Decisiones funcionales: 
+*     Req 1:
+    * Un usuario no se puede seguir a sí mismo.
+    * Un vendedor puede seguir a un vendedor.
+    * Un vendedor puede seguir a un comprador.
+    * Un comprador puede seguir a un comprador.
+    * Retorna el dto del usuario al que siguió con estado 200.
 
-- Req 2:
--- Es un count a la lista de followers del vendedor.
+*     Req 2:
+     * Es un count a la lista de followers del vendedor.
 
-- Req 3:
--- En caso de que no tenga seguidores devuelve una lista vacía.
+*     Req 3:
+     * En caso de que no tenga seguidores devuelve una lista vacía.
 
-- Req 4:
--- En caso de no tener seguidos devuelve una lista vacía.
+*    Req 4:
+     * En caso de no tener seguidos devuelve una lista vacía.
 
-- Req 5:
--- Un vendedor tiene una lista de publicaciones.
--- Un vendedor puede no tener publicaciones.
--- Una publicación si o si tiene un producto únicamente.
--- Categoría es una entidad aparte.
--- Una publicación tiene una categoría, precio, si tiene promo y el descuento correspondiente.
--- Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
--- En caso de que un producto no exista o el id sea incorrecto devuelve un 400
+*     Req 5:
+     * Un vendedor tiene una lista de publicaciones.
+     * Un vendedor puede no tener publicaciones.
+     * Una publicación si o si tiene un producto únicamente.
+     * Categoría es una entidad aparte.
+     * Una publicación tiene una categoría, precio, si tiene promo y el descuento correspondiente.
+     * Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
+* En caso de que un producto no exista o el id sea incorrecto devuelve un 400
 
-- Req 7:
--- No se puede dejar de seguirte a ti mismo.
--- No se puede dejar de seguir a un usuario que no existes
+*     Req 7:
+    * No se puede dejar de seguirte a ti mismo.
+    * No se puede dejar de seguir a un usuario que no existes
 
-- Req 8 & Req 9:
--- Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
+*     Req 8 & Req 9:
+    * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
 
-
-Endpoints: Responsable Emiliano Asprea
+*     Endpoints: Responsable Emiliano Asprea
 
 US 001: 
 POST
@@ -91,3 +97,4 @@ Diagrama UML sprint 1
 <img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
 
 Agradecimientos para el equipo de Digital House y los coordinadores del Bootcamp Backend JAVA
+
