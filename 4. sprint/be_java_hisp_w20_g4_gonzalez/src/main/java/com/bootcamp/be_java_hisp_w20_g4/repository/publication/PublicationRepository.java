@@ -78,5 +78,10 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    public List<Publication> getPublicationsByPrice(double min, double max) {
+        return publications.stream()
+                .filter(p -> (p.getPrice() >= min) && (p.getPrice() <= max) )
+                .collect(Collectors.toList());
+    }
 
 }

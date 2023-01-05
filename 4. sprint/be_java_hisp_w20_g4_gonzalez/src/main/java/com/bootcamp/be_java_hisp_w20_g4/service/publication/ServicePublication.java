@@ -2,12 +2,9 @@ package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromotionPostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.*;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationCountDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
@@ -119,6 +116,14 @@ public class ServicePublication implements IServicePublication {
         List<Publication> publications = publicationRepository.getPromoPublications(userId);
 
         return new PromotionPublicationCountDTO(userId, user.getUser_name(), publications.size());
+    }
+
+    public List<FilteredPostDTO> getPublicationsByPrice(Double min, Double max) {
+        if (min == null) min = 0.0;
+        if (max == null) max = Double.POSITIVE_INFINITY;
+        List<Publication> publications = publicationRepository.getPublicationsByPrice(min, max);
+
+        return publications.stream().map(p -> mapper.map(p, FilteredPostDTO.class)).collect(Collectors.toList());
     }
 
 }
