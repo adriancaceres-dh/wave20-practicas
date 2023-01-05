@@ -64,7 +64,7 @@ public class PostService implements IPostService {
         Post post = mapper.map(postRequestDTO, Post.class);
 
         // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUserId(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+        PostDTO postDTO = new PostDTO(post.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
 
         int postId = postRepository.createPost(post, postDTO);
 

@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class Post {
     private Integer id;
-    private int userId;
+    private int user_id;
     private LocalDate date;
     private Integer product_id;
     private Integer category;
     private double price;
 
-    public Post(Integer id, int userId, LocalDate date, Integer product_id, Integer category, double price) {
+    public Post(Integer id, int user_id, LocalDate date, Integer product_id, Integer category, double price) {
         this.id = id;
-        this.userId = userId;
+        this.user_id = user_id;
         this.date = date;
         this.product_id = product_id;
         this.category = category;
@@ -31,12 +31,12 @@ public class Post {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public LocalDate getDate() {
