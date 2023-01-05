@@ -32,10 +32,6 @@ public class UserService implements IUserService {
         return userResponse;
     }
 
-    private List<UserResponseDto> getFollowersDto(User user, String order) {
-        return getUserListDto(user.getFollowers(), order);
-    }
-
     @Override
     public UserFollowersCountResponseDto getFollowersCountDto(int id) {
         User user = userRepository.getUserById(id);
@@ -58,53 +54,6 @@ public class UserService implements IUserService {
         return userFollowedResponseDto;
     }
 
-    private List<UserResponseDto> getFollowedDto(User user, String order) {
-        return getUserListDto(user.getFollowed(), order);
-    }
-
-    private List<UserResponseDto> getUserListDto(Set<Integer> users, String order) {
-        List<UserResponseDto> filteredUsers = users.stream()
-                .map(userId -> {
-                    User follower = this.userRepository.getUserById(userId);
-                    return new UserResponseDto(follower.getId(), follower.getName());
-                })
-                .collect(Collectors.toList());
-        return trySortOrderAlphabetically(filteredUsers, order);
-    }
-
-    private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
-        List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
-
-        if (!orders.contains(order)) {
-            return users;
-        }
-
-        Comparator<UserResponseBaseDto> comparator = Comparator.comparing(UserResponseBaseDto::getUserName);
-        Comparator<UserResponseBaseDto> selectedOrder = orders.get(0).equalsIgnoreCase(order) ? comparator : comparator.reversed();
-
-        return users
-                .stream()
-                .sorted(selectedOrder)
-                .collect(Collectors.toList());
-    }
-
-    private void doValidations(User user) {
-        validateUserExist(user);
-        validateUserIsSeller(user);
-
-    }
-
-    private void validateUserIsSeller(User user) {
-        if (!user.isSeller()) {
-            throw new BadRequestException(Parameter.getString("EX_NotASeller"));
-        }
-    }
-
-    private void validateUserExist(User user) {
-        if (user == null) {
-            throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
-        }
-    }
 
     @Override
     public UserFollowedResponseDto followUser(int userId, int userIdToFollow) {
@@ -156,6 +105,15 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserById(int userId){
+        return userRepository.getUserById(userId);
+    }
+    @Override
+    public String getUserNameByUserId(int id){
+        return userRepository.getUserById(id).getName();
+    }
+
+    @Override
     public void validateUserExistById(int id) {
         User user = userRepository.getUserById(id);
         validateUserExist(user);
@@ -174,8 +132,60 @@ public class UserService implements IUserService {
         }
     }
 
+    private List<UserResponseDto> getFollowersDto(User user, String order) {
+        return getUserListDto(user.getFollowers(), order);
+    }
+
     public Set<Integer> getUserFollowed(int id) {
         return userRepository.getUserById(id).getFollowed();
+    }
+
+    private List<UserResponseDto> getFollowedDto(User user, String order) {
+        return getUserListDto(user.getFollowed(), order);
+    }
+
+    private List<UserResponseDto> getUserListDto(Set<Integer> users, String order) {
+        List<UserResponseDto> filteredUsers = users.stream()
+                .map(userId -> {
+                    User follower = this.userRepository.getUserById(userId);
+                    return new UserResponseDto(follower.getId(), follower.getName());
+                })
+                .collect(Collectors.toList());
+        return trySortOrderAlphabetically(filteredUsers, order);
+    }
+
+    private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
+        List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
+
+        if (!orders.contains(order)) {
+            return users;
+        }
+
+        Comparator<UserResponseBaseDto> comparator = Comparator.comparing(UserResponseBaseDto::getUserName);
+        Comparator<UserResponseBaseDto> selectedOrder = orders.get(0).equalsIgnoreCase(order) ? comparator : comparator.reversed();
+
+        return users
+                .stream()
+                .sorted(selectedOrder)
+                .collect(Collectors.toList());
+    }
+
+    private void doValidations(User user) {
+        validateUserExist(user);
+        validateUserIsSeller(user);
+
+    }
+
+    private void validateUserIsSeller(User user) {
+        if (!user.isSeller()) {
+            throw new BadRequestException(Parameter.getString("EX_NotASeller"));
+        }
+    }
+
+    private void validateUserExist(User user) {
+        if (user == null) {
+            throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
+        }
     }
 
 }

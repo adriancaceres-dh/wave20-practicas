@@ -21,6 +21,7 @@ public class Parameter {
             put("EX_NotExistentProduct","Producto no existente");
             put("EX_NotASeller","El usuario no es vendedor");
             put("EX_NotExistentUser","El usuario no existe");
+            put("EX_InvalidProduct", "Producto invalido");
         }
     };
 

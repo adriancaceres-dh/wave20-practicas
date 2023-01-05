@@ -39,14 +39,27 @@ public class ProductService implements IProductService {
         }
     }
 
-    public boolean alreadyExist(int id) {
-        Optional<Product> product = productRepository.getProducts().stream().filter(p -> p.getId() == id).findAny();
-        return product.isPresent();
+    @Override
+    public boolean checkIfIsIdentical(ProductRequestDto product) {
+        var productToCompare = getProductById(product.getProductId());
+        if (product.getProductName().equals(productToCompare.getProductName()) &&
+                product.getType().equals(productToCompare.getType()) &&
+                product.getBrand().equals(productToCompare.getBrand()) &&
+                product.getColor().equals(productToCompare.getColor()) &&
+                product.getNotes().equals(productToCompare.getNotes())) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void add(ProductRequestDto product) {
         productRepository.addProduct(convertProduct(product));
+    }
+
+    public boolean alreadyExist(int id) {
+        Optional<Product> product = productRepository.getProducts().stream().filter(p -> p.getId() == id).findAny();
+        return product.isPresent();
     }
 
     public Product convertProduct(ProductRequestDto product) {
