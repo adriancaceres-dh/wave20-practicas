@@ -117,7 +117,8 @@ public class PostService implements IPostService {
         return new PromoPostCountDTO(user.getUserId(), user.getUserName(), count);
     }
 
-    @Override
+    //Falta mejorar bonus
+   /* @Override
     public List<PromoPostDTO> getPromoPostById(int userId, String order) {
         User user = userRepository.getUserById(userId);
         if (user == null) {
@@ -127,5 +128,5 @@ public class PostService implements IPostService {
                 .filter(p -> p.getUserId() == userId && p.isHasPromo()).map(p -> mapper.map(p, PromoPostDTO.class))
                 .sorted(Comparator.comparing(x -> x.getDate()))
                 .collect(Collectors.toList());
-    }
+    } */
 }

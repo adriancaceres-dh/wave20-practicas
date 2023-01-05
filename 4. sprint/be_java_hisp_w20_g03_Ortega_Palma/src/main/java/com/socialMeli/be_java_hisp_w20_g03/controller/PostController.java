@@ -40,8 +40,8 @@ public class PostController {
     }
 
     //US 0012
-    @GetMapping("/products/promo-post/list")
+  /*  @GetMapping("/products/promo-post/list")
     public ResponseEntity<List<PromoPostDTO>> getPostPromoByUser(@RequestParam int userId, @RequestParam(required = false) String order) {
         return new ResponseEntity<>(iPostService.getPromoPostById(userId, order), HttpStatus.OK);
-    }
+    }*/
 }
