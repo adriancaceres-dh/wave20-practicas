@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "77fe473c-6a02-4d83-bea6-86ccbeabd656",
+		"_postman_id": "761c8999-790f-414e-80a1-c29fba360f50",
 		"name": "SPRINT-1 API-USER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/users/80/follow/56",
+					"raw": "http://localhost:8080/users/{userId}/follow/{userIdToFollow}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -19,16 +19,16 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"80",
+						"{userId}",
 						"follow",
-						"56"
+						"{userIdToFollow}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "US 0002 - Followers-count",
+			"name": "US 0002 - Followers-Count",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -55,7 +55,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/users/3/followers/list",
+					"raw": "http://localhost:8080/users/{userId}/followers/list",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -63,7 +63,7 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"3",
+						"{userId}",
 						"followers",
 						"list"
 					]
@@ -72,7 +72,7 @@
 			"response": []
 		},
 		{
-			"name": "US 0004 - Followed -List",
+			"name": "US 0004 - Followed-List",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -328,6 +328,89 @@
 						{
 							"key": "order",
 							"value": "date_desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 0010 - Create-Promo-Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 3,\n    \"date\": \"02-01-2023\",\n    \"product\": {\n        \"product_id\": 3,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 0.25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/promo-post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"promo-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 0011 - Promo-Post-Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/promo-post/count?user_id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"promo-post",
+						"count"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 0012 - Promo-Post-List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/promo-post/list?user_id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"promo-post",
+						"list"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "3"
 						}
 					]
 				}
