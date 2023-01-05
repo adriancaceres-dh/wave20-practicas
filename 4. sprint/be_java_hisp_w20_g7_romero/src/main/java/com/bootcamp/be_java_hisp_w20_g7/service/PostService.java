@@ -48,7 +48,7 @@ public class PostService implements IPostService {
     public String createPost(PostCreateDto postCreateDto) {
 
         User user = iUserRepository.findById(postCreateDto.getUserId());
-        if (user == null) throw new UserNotFoundException("User with id " + postCreateDto.getUserId() + " not found");
+        if (user == null) throw new UserNotFoundException("User not found");
         if (postCreateDto == null) {
             throw new PostEmptyException("Post is empty");
         }
@@ -69,7 +69,7 @@ public class PostService implements IPostService {
     public String createPost(PostWithPromoCreateDto postWithPromoCreateDto) {
 
         User user = iUserRepository.findById(postWithPromoCreateDto.getUserId());
-        if (user == null) throw new UserNotFoundException("User with id " + postWithPromoCreateDto.getUserId() + " not found");
+        if (user == null) throw new UserNotFoundException("User not found");
         if (postWithPromoCreateDto == null) {
             throw new PostEmptyException("Post is empty");
         }
