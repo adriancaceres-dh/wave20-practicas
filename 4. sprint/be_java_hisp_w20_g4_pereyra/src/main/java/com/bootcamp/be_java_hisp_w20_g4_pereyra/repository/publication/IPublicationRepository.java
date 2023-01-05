@@ -8,4 +8,5 @@ public interface IPublicationRepository {
     boolean addPublication(Publication publication);
     List<Publication> getPublicationLastNDays(List<Integer> followedIds, int nDays);
     List<Publication> getPublicationUser(int user_id);
+    List<Publication> getAllPublications();
 }

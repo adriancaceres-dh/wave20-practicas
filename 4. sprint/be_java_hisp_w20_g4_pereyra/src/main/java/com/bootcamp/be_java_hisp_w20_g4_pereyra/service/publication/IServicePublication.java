@@ -7,6 +7,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationDiscountDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationsDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDiscountDTO;
 
@@ -18,4 +19,6 @@ public interface IServicePublication {
     ListedPublicationDiscountDTO getProductsWithDiscount(int user_id);
 
     ProductDTO createProduct(ProductDTORequest productDTORequest);
+
+    ListedPublicationsDTO getAllPublications();
 }

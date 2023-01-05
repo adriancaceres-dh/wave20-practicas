@@ -84,5 +84,10 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Publication> getAllPublications() {
+        return publications;
+    }
+
 
 }

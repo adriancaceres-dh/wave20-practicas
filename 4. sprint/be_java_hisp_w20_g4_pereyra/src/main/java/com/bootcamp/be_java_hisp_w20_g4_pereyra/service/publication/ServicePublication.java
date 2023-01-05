@@ -4,12 +4,9 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.product.ProductDTORe
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProductsCountDTO;
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.*;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationDiscountDTO;
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.InternalServerErrorException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.*;
@@ -159,6 +156,13 @@ public class ServicePublication implements IServicePublication {
         }else{
             throw new InternalServerErrorException("Error al crear el producto");
         }
+    }
+
+    @Override
+    public ListedPublicationsDTO getAllPublications() {
+        List<PublicationDiscountDTO> publicationDTOS = publicationRepository.getAllPublications().stream()
+                .map(p -> mapper.map(p, PublicationDiscountDTO.class)).collect(Collectors.toList());
+        return new ListedPublicationsDTO(publicationDTOS);
     }
 
 }
