@@ -72,5 +72,11 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    public List<Publication> getPromoPublications(int userId) {
+        return publications.stream()
+                .filter(p -> (p.getUser_id() == userId) && p.isHasPromo())
+                .collect(Collectors.toList());
+    }
+
 
 }

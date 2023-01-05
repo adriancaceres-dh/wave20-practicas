@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromotionPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
@@ -106,8 +107,17 @@ public class ServicePublication implements IServicePublication {
 
         ((Seller) user).addPublication(promoPublication);
         return new PromotionPublicationDTO(post.getDate(), mapper.map(post.getProduct(), ProductDTO.class), category.getId(), post.getPrice(), post.isHas_promo(), post.getDiscount());
-
     }
 
+    public PromotionPublicationCountDTO getPromoPublications(int userId) {
+        User user =  userRepository.findById(userId);
+
+        isValidUser(user);
+        isSeller(user);
+
+        List<Publication> publications = publicationRepository.getPromoPublications(userId);
+
+        return new PromotionPublicationCountDTO(userId, user.getUser_name(), publications.size());
+    }
 
 }
