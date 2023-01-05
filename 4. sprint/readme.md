@@ -62,3 +62,5 @@
 
 
     Link con pruebas de POSTMAN, click aqui.
+    [siguiente archivo.](Sprint 1 - Individual.postman_collection.json)
+    
