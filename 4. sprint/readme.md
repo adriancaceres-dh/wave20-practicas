@@ -2,7 +2,7 @@
 ______
 ## 🔍🧮 Índice 🧮🔍
 1. _**[Objetivo](#-objetivo-)**_
-2. _**[Putas para la actividad](#-pautas-para-la-actividad-)**_
+2. _**[Pautas para la actividad](#-pautas-para-la-actividad-)**_
 3. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)**_
 4. _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)**_
 5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
@@ -273,7 +273,7 @@ _**Filtros/Parámetros:**_
 | Parámetros       |   Tipo   | Descripción/Ejemplo                                                                                                      |
 |------------------|:--------:|--------------------------------------------------------------------------------------------------------------------------|
 | **userId**       |   int    | Número que identifica a cada usuario                                                                                     | 
-| **date**         | Localate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
 | **product_id**   |   int    | Número identificatorio de un producto asociado a una publicación                                                         |
 | **product_name** |  String  | Cadena de caracteres que representa el nombre de un producto                                                             |
 | **type**         |  String  | Cadena de caracteres que representa el tipo de un producto                                                               |
