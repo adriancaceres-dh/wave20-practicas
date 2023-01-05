@@ -97,9 +97,7 @@ public class PostService implements IPostService {
 
         User user = iUserRepository.findById(productPromoDto.getUserId());
         if (user == null) throw new UserNotFoundException("User not found");
-        if (productPromoDto == null) {
-            throw new PostEmptyException("Post is empty");
-        }
+
 
         Post post = modelMapper.map(productPromoDto, Post.class);
 

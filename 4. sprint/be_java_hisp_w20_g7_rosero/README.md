@@ -521,5 +521,3 @@ Java, Spring Boot
 | `discount`     | `double`    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.
 |
 ###
-
-
