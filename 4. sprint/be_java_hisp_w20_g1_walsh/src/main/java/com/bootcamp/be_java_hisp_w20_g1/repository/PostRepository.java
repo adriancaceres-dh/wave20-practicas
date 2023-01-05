@@ -58,4 +58,9 @@ public class PostRepository implements IPostRepository {
     public List<Post> getPosts() {
         return posts;
     }
+
+    @Override
+    public Post getPostById(int postId){
+        return posts.stream().filter(post->post.getId()==postId).findFirst().get();
+    }
 }

@@ -126,10 +126,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(int userId) {
+    public void updateUser(int userId, int postId) {
         if (!userRepository.isSeller(userId)) {
             userRepository.getUserById(userId).setSeller(true);
         }
+        userRepository.getUserById(userId).getPosts().add(postId);
     }
 
     private List<UserResponseDto> getFollowersDto(User user, String order) {

@@ -14,7 +14,7 @@ public interface IUserService {
     User getUserById(int userId);
     String getUserNameByUserId(int id);
     Set<Integer> getUserFollowed(int id);
-    void updateUser(int userId);
+    void updateUser(int userId, int postId);
     UserFollowersResponseDto getSellerFollowersDto(int id, String order);
     UserFollowersCountResponseDto getFollowersCountDto(int id);
     UserFollowedResponseDto getFollowedDto(int id, String order);

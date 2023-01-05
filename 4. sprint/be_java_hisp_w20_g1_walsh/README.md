@@ -761,3 +761,80 @@ Filtros / Parámetros
 | **user_id**              | int    | Número que identifica a cada usuario                                  |
 | **user_name**            | String | Cadena de caracteres que representa el nombre del usuario             |
 | **promo_products_count** | int    | Cantidad numérica de productos en promoción de un determinado usuario |
+
+----
+**US 0012**
+
+_Obtener un listado de todos los productos en promocion de un determinado vendedor_
+
+| Method | Sign                                      | Ejemplo                            |
+| --- |-------------------------------------------|------------------------------------|
+| **GET** | /products/promo-post/list?userId={userId} | /products/promo-post/list?userId=1 |
+
+
+
+<table>
+<tbody>
+<tr style="height: 23.5px;">
+<td style="height: 23.5px;">Status Code</td>
+<td style="height: 23.5px;">Response / Dto</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>200</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+    "user_id": 1,
+    "user_name": "zchanelleHhanelle",
+    "posts": [
+        {
+            "date": "10-02-2022",
+            "user_id": 1,
+            "product": {
+                "product_id": 1,
+                "product_name": "Durable Steel Bottle",
+                "type": "Steel",
+                "brand": "Pagac, Lemke and Langosh",
+                "color": "green",
+                "notes": "Labore explicabo accusamus a."
+            },
+            "category": 5,
+            "price": 14.0,
+            "post_id": 2,
+            "has_promo": true,
+            "discount": 0.1
+        }
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+    "message": "El usuario no existe",
+    "status": 404,
+    "timestamp": "2023-01-05T15:58:25.924329"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Filtros / Parámetros
+
+| Parámetros        | Tipo      | Descripción / Ejemplo                                                              |
+|-------------------|-----------|------------------------------------------------------------------------------------|
+| **user\_Id**      | int       | Número que identifica a cada usuario                                               |
+| **user\_name**    | int       | Cadena de caracteres que representa el nombre del usuario                          |
+| **Post\_Id**      | int       | Número identificatorio de cada una de las publicaciones                            |
+| **date**          | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                      |
+| **product\_id**   | int       | Número identificatorio de un producto asociado a una publicación                   |
+| **product\_name** | String    | Cadena de caracteres que representa el nombre de un producto                       |
+| **type**          | String    | Cadena de caracteres que representa el tipo de un producto                         |
+| **brand**         | String    | Cadena de caracteres que representa la marca de un producto                        |
+| **color**         | String    | Cadena de caracteres que representa el color de un producto                        |
+| **notes**         | String    | Cadena de caracteres para colocar notas u observaciones de un producto             |
+| **category**      | int       | Identificador que sirve para conocer la categoria a la que pertenece un producto   |
+| **price**         | double    | Precio del producto                                                                |
+| **has_promo**     | boolean   | Campo true o false para determinar si un producto esta en promocion o no           |
+| **discount**      | double    | En caso de que un producto estuviese en promocion, establece el monto de descuento |

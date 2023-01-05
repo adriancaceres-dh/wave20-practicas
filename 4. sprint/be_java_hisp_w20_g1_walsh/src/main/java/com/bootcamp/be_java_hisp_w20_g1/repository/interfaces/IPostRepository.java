@@ -10,4 +10,6 @@ public interface IPostRepository {
     Post add(Post post);
 
     List<Post> getPosts();
+
+    Post getPostById(int postId);
 }

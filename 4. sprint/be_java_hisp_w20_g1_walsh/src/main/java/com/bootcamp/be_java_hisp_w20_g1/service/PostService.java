@@ -3,12 +3,9 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostBaseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostPromoResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserPromoPostsCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
@@ -59,7 +56,7 @@ public class PostService implements IPostService {
             Post post = buildPost(postDto, productDto.getProductId());
             postRepository.add(post);
             //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
-            userService.updateUser(postDto.getUserId());
+            userService.updateUser(postDto.getUserId(), post.getId());
             PostResponseDto postResponseDto = mapper.map(postDto, PostResponseDto.class);
             postResponseDto.setPostId(post.getId());
             return postResponseDto;
@@ -71,15 +68,13 @@ public class PostService implements IPostService {
         if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
             throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         } else {
-            if(userService.getUserById(postDto.getUserId()) == null){
-                throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
-            }
+            userService.validateUserExistById(postDto.getUserId());
             if (productService.alreadyExist(postDto.getProduct().getProductId())) {
                 if (productService.checkIfIsIdentical(postDto.getProduct())) {
                     makeDiscount(postDto);
                     Post post = postRepository.add(buildPost(postDto, postDto.getProduct().getProductId()));
                     //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
-                    userService.updateUser(postDto.getUserId());
+                    userService.updateUser(postDto.getUserId(), post.getId());
                     PostPromoResponseDto postResponseDto = mapper.map(postDto, PostPromoResponseDto.class);
                     postResponseDto.setPostId(post.getId());
                     return postResponseDto;
@@ -91,7 +86,7 @@ public class PostService implements IPostService {
                 productService.add(productDto);
                 Post post = postRepository.add(buildPost(postDto, productDto.getProductId()));
                 //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
-                userService.updateUser(postDto.getUserId());
+                userService.updateUser(postDto.getUserId(), post.getId());
                 PostPromoResponseDto postResponseDto = mapper.map(postDto, PostPromoResponseDto.class);
                 postResponseDto.setPostId(post.getId());
                 return postResponseDto;
@@ -111,10 +106,39 @@ public class PostService implements IPostService {
         return promoPosts;
     }
 
+    @Override
+    public PostPromoListResponseDto promoProductsByUserId(int userId) {
+        userService.validateUserExistById(userId);
+        List<PostPromoResponseDto> posts = getPostPromoDtos(userId);
+
+        PostPromoListResponseDto postResponse = new PostPromoListResponseDto();
+        postResponse.setUserId(userId);
+        postResponse.setUserName(userService.getUserNameByUserId(userId));
+        postResponse.setPosts(posts);
+
+        return postResponse;
+    }
+
+    private List<PostPromoResponseDto> getPostPromoDtos(int userId) {
+        var postDtos = userService.getUserById(userId)                       //usuario
+                .getPosts().stream()                                        //post ids
+                .map(postId -> postRepository.getPostById(postId))           //posts
+                .filter(Post::isHasPromo)                                   //posts con promo
+                .map(this::asignarProducto)                                 //Dtos
+                .collect(Collectors.toList());
+
+        return postDtos;
+    }
+
+    public PostPromoResponseDto asignarProducto(Post post) {
+        PostPromoResponseDto postDto = mapper.map(post, PostPromoResponseDto.class);
+        postDto.setProduct(mapper.map(productService.getProductById(post.getProductId()), ProductRequestDto.class));
+        return postDto;
+    }
+
     private void makeDiscount(PostPromoRequestDto postDto) {
         postDto.setPrice(postDto.getPrice() * postDto.getDiscount());
     }
-
 
     public Post buildPost(PostBaseDto postDto, int productId) {
         Post post = mapper.map(postDto, Post.class);
