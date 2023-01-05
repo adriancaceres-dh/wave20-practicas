@@ -9,6 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResp
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.PromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4.excepcion.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
 import com.bootcamp.be_java_hisp_w20_g4.repository.product.IProductRepository;
@@ -83,6 +84,7 @@ public class ServicePublication implements IServicePublication {
         User user = userRepository.findById(promoPost.getUser_id());
         isValidUser(user);
         isSeller(user);
+        if(promoPost.getHas_promo().equals(false)) throw new BadRequestException("No se puede agregar un producto sin promocion");
         Category category = categoryRepository.findById(promoPost.getCategory());
         isValidCategory(category);
         Product product = mapper.map(promoPost.getProduct(), Product.class);
@@ -121,6 +123,13 @@ public class ServicePublication implements IServicePublication {
                         publication.isHasPromo(),
                         publication.getDiscount())).collect(Collectors.toList());
         return new ListProductsInPromoDTO(userId, user.getUser_name(), promoPostDTOList1 );
+    }
+
+    @Override
+    public List<ProductDTO> listProducts() {
+        List<ProductDTO> productDTOList = productRepository.listAllProducts().stream().map(product -> mapper.map(product, ProductDTO.class)).collect(Collectors.toList());
+        if(productDTOList.isEmpty()) throw new NotFoundException("La lista de productos esta vacia");
+        return productDTOList;
     }
 
 }

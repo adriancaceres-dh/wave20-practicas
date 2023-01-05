@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository implements IProductRepository {
@@ -41,6 +42,11 @@ public class ProductRepository implements IProductRepository {
         Product productRepository = products.stream().filter(p -> p.getProduct_id() == product.getProduct_id()).findFirst().orElse(null);
         if(productRepository == null) return false;
         return productRepository.equals(product);
+    }
+
+    @Override
+    public List<Product> listAllProducts() {
+        return products;
     }
 
 }

@@ -3,9 +3,12 @@ package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromoPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ListProductsInPromoDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.PromoProductsCountDTO;
+
+import java.util.List;
 
 public interface IServicePublication {
 
@@ -15,4 +18,5 @@ public interface IServicePublication {
     PromoPostDTO addPromo(PromoPostDTO promoPost);
     PromoProductsCountDTO countPromos(int userId);
     ListProductsInPromoDTO listPromos(int userId);
+    List<ProductDTO> listProducts();
 }

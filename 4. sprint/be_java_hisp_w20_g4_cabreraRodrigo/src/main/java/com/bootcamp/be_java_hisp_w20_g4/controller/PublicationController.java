@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g4.controller;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromoPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ListProductsInPromoDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.PromoProductsCountDTO;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/products")
 @RestController
@@ -42,5 +45,8 @@ public class PublicationController {
     public ResponseEntity<ListProductsInPromoDTO> listProductsInPromo(@RequestParam(value = "user_id", required = true) int userId){
         return ResponseEntity.ok().body(servicePublication.listPromos(userId));
     }
-
+    @GetMapping("/list")
+    public ResponseEntity<List<ProductDTO>> listAllPorducts(){
+        return ResponseEntity.ok().body(servicePublication.listProducts());
+    }
 }
