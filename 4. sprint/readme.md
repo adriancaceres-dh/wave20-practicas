@@ -39,7 +39,7 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
      * Categoría es una entidad aparte.
      * Una publicación tiene una categoría, precio, si tiene promo y el descuento correspondiente.
      * Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
-* En caso de que un producto no exista o el id sea incorrecto devuelve un 400
+     * En caso de que un producto no exista o el id sea incorrecto devuelve un 400
 
 *     Req 7:
     * No se puede dejar de seguirte a ti mismo.
