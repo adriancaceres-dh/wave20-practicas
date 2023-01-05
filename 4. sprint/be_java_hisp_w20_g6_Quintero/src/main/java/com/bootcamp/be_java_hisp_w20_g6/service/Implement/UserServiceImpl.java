@@ -23,6 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean followUser( int userId,int userToFollowId) {
+        if(userId == userToFollowId) throw new SameUserException("El usuario no se puede seguir a si mismo.");
         UserModel userToFollow = getUserById(userToFollowId);
         UserModel user = getUserById(userId);
 
