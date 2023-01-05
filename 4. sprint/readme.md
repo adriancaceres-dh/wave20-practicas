@@ -375,6 +375,8 @@ Ordenamiento alfabético ascendente y descendente.
 | **Status Code 200** (todo OK)| 
 | **Status Code 400** (Bad Request)|
 
+#### *Asignado: Efrain Francisco Ruiz*
+
 &nbsp;
 #### US0011
 Obtener la cantidad de productos en promoción de un determinado vendedor
@@ -398,6 +400,8 @@ Obtener la cantidad de productos en promoción de un determinado vendedor
 | `user_id` | `int` | Número que identifica a cada usuario |
 | `user_name` | `String` | Cadena de caracteres que representa el nombre del usuario |
 | `promo_products_count` | `int` | Cantidad numérica de productos en promoción de un determinado usuario. |
+
+#### *Asignado: Efrain Francisco Ruiz*
 
 &nbsp;
 #### US0012
@@ -452,6 +456,7 @@ Obtener un listado de todos los productos en promoción de un determinado vended
 | `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no |
 | `discount` | `double` | En caso de que un producto estuviese en promoción ,establece el monto de descuento. |
 
+#### *Asignado: Efrain Francisco Ruiz*
 
 &nbsp;
 #### US0013
@@ -511,6 +516,8 @@ Obtener un listado de todos los usuarios. Ordenamiento alfabético ascendente y 
    ]
 ```
 
+#### *Asignado: Efrain Francisco Ruiz*
+
 &nbsp;
 #### US0014
 Dar de alta un nuevo usuario
@@ -538,3 +545,5 @@ Dar de alta un nuevo usuario
 | :-------- | 
 | **Status Code 200** (todo OK)| 
 | **Status Code 400** (Bad Request)| 
+
+#### *Asignado: Efrain Francisco Ruiz*
