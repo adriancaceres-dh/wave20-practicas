@@ -47,8 +47,10 @@ public class Publication {
         this.product = product;
         this.category_id = category;
         this.user_id = user_id;
-        //this.contador = contador;
+        contador++;
+        this.contador = contador;
     }
+
 
     public Integer getCategory_id() {
         return category_id;

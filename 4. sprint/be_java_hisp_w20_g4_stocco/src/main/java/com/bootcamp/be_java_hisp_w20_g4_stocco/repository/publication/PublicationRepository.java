@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4_stocco.repository.publication;
 
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PromoCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.model.Publication;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,6 +72,15 @@ public class PublicationRepository implements IPublicationRepository {
                 .sorted(Comparator.comparing(Publication::getDate))
                 .collect(Collectors.toList());
     }
+    public int countPromos(int user_id){
 
+        int promos = 0;
+        promos = (int) publications.stream()
+                .filter(p->p.getUser_id() == user_id)
+                .filter(p-> p.isHasPromo())
+                .count();
+        return promos;
+
+    }
 
 }

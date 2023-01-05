@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.request.PostPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PromoCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.excepcion.BadRequestException;
@@ -17,6 +18,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -109,8 +111,17 @@ public class ServicePublication implements IServicePublication {
             return new PublicationPromoDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), category.getId(), publication.getPrice(), publication.isHasPromo(), publication.getDiscount());
 
         }
-
          return null;
+    }
+
+    @Override
+    public PromoCountDTO countPublicationPromo(int user_id) {
+        User user = userRepository.findById(user_id);
+        isValidUser(user);
+        isSeller(user);
+       int count = publicationRepository.countPromos(user_id);
+         PromoCountDTO promoCountDTO = new PromoCountDTO(user_id, user.getUser_name(),count);
+        return promoCountDTO;
     }
 
 
