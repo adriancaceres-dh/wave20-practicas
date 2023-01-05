@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.service.publication.IServicePublication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,13 @@ public class PublicationController {
     }
 
     @GetMapping("/promo-post/count")
-    public ResponseEntity<UserPromoProductsCountDTO> promoProductsOfSeller(@RequestParam(value="user_id", required = true) int userId){
+    public ResponseEntity<UserPromoProductsCountDTO> CountPromoProductsOfSeller(@RequestParam(value="user_id", required = true) int userId){
         return ResponseEntity.ok().body(servicePublication.promoPublicationsCount(userId));
+    }
+
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<UserPostPromotionDTO> promoProductsOfSeller(@RequestParam(value="user_id", required = true) int userId){
+        return ResponseEntity.ok().body(servicePublication.getPromoPublications(userId));
     }
 
 
