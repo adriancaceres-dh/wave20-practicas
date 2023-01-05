@@ -89,6 +89,12 @@ public class Controller {
         return new ResponseEntity<>(postService.createPruductPromo(productPromoDto), HttpStatus.OK);
     }
 
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity<UserProductsPromoDto> getUserProductsPromo(@RequestParam int userId) {
+        return new ResponseEntity<>(postService.getUserProductsPromo(userId), HttpStatus.OK);
+    }
+
+
     //@GetMapping("/products/followed/{userId}/list")
 
     //ser menos desscriptivos en los errores

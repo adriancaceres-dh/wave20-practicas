@@ -38,10 +38,6 @@ public class UserService implements IUserService {
 
     }
 
-    @Override
-    public UserFollowersCountDto userFollowersCount(int userId) {
-        return null;
-    }
 
     @Override
     public UserFollowersDto userFollowers(int userId, String order) {

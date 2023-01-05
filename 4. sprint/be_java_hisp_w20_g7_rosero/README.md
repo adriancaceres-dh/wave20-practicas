@@ -8,13 +8,8 @@
 
 ## Miembros del Proyecto
 
-- [@manueldiazmeli](https://github.com/manueldiazmeli)
-- [@TomasGonzalezDev](https://github.com/TomasGonzalezDev)
-- [@santtury](https://github.com/santtury)
-- [@NathamgML](https://github.com/NathamgML)
-- [@JuanSHenao](https://github.com/JuanSHenao)
 - [@RonaldRosero](https://github.com/RonaldRosero)
-- [@SoriGonzalezR](https://github.com/SoriGonzalezR)
+
 
 ## Documentación
 
@@ -373,3 +368,158 @@ Java, Spring Boot
 | date_desc | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006. 
+
+
+**B. Requerimientos incrementales (Desarrollo INDIVIDUAL):** 
+
+**Responsable:** Ronald Esteban Rosero.
+
+```http
+  US 0010: Llevar a cabo la publicación de un nuevo producto en promoción
+```
+#### Sign:
+
+| Method. | SIGN           |
+|---------|----------------|
+| `POST`  | /products/promo-post |
+
+`PAYLOAD:`
+
+```http
+{
+    "user_id": 234,
+    "date": "29-04-2021",
+    "product": {
+        "product_id": 1,
+        "product_name": "Silla Gamer",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1500.50,
+    "has_promo": true,
+    "discount": 0.25
+}
+```
+| RESPONSE | Status Code 200 (todo OK)     |
+|----------|-------------------------------|
+|          | Status Code 400 (Bad Request) 
+
+### Filtros/Parámetros:
+
+| Parámetros     | Tipo        | Descripción/Ejemplo                                                                                                      |
+|:---------------|:------------|:-------------------------------------------------------------------------------------------------------------------------|
+| `userId`       | `int`       | Número que identifica a cantidad usuario                                                                                 |
+| `date`         | `LocalDate` | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| `product_id`   | `int`       | Número identificatorio de un producto asociado a una publicación                                                         |
+| `product_name` | `String`    | Cadena de caracteres que representa el nombre de un producto                                                             |
+| `type`         | `String`    | Cadena de caracteres que representa el tipo de un producto                                                               |
+| `brand`        | `String`    | Cadena de caracteres que representa la marca de un producto                                                              |
+| `color`        | `String`    | Cadena de caracteres que representa el color de un producto                                                              |
+| `notes`        | `String`    | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| `category`     | `int`       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| `price`        | `double`    | Precio del producto
+| `has_promo`    | `boolean`    | Campo true o false para determinar si un producto está en promoción o no
+| `discount`     | `double`    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.
+|
+###
+
+**Responsable:** Ronald Esteban Rosero.
+
+```http
+  US 0011: Obtener la cantidad de productos en promoción de un determinado vendedor
+```
+
+#### Sign:
+
+| Method.  | SIGN                            |
+|----------|---------------------------------|
+| `GET`    | /products/promo-post/count?user_id={userId} |
+
+
+`Response`
+
+```http
+{  
+   "user_id" : 234,
+   "user_name": "vendedor1",
+   "promo_products_count": 23
+}
+```
+
+#### Filtros/Parámetros:
+
+| Parámetros               | Tipo     | Descripción/Ejemplo                      |
+|:-----------|:------|:-----------------------------------------|
+| `userId`                 | `int`    | Número que identifica a cada usuario |
+| `user_name`              | `String` | Cadena de caracteres que representa el nombre del usuario |
+| `promo_products_count`   | `int`    | Cantidad numérica de productos en promoción de un determinado usuario |
+
+## 
+
+**C. Ejemplo Requerimiento Bonus (Desarrollo INDIVIDUAL)**
+
+**Responsable:** Ronald Esteban Rosero.
+
+```http
+  US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
+```
+
+#### Sign:
+
+| Method.  | SIGN                            |
+|----------|---------------------------------|
+| `GET`    | /products/promo-post/list?user_id={userId} |
+
+
+
+`Response`
+
+```http
+{
+    "user_id": 234,
+    "user_name": "vendedor1",
+    "posts": [
+        {
+            “user_id”: 234
+            "post_id": 18,
+            "date": "29-04-2021",
+            "product": {
+                "product_id": 1,
+                "product_name": "Silla Gamer",
+                "type": "Gamer",
+                "brand": "Racer",
+                "color": "Red & Black",
+                "notes": "Special Edition"
+            },
+            "category": "100",
+            "price": 15000.50,
+            "has_promo": true,
+            "discount": 0.25
+        }
+    ]
+}
+```
+
+### Filtros/Parámetros:
+
+| Parámetros     | Tipo        | Descripción/Ejemplo                                                                                                      |
+|:---------------|:------------|:-------------------------------------------------------------------------------------------------------------------------|
+| `userId`       | `int`       | Número que identifica a cantidad usuario                                                                                 |
+| `date`         | `LocalDate` | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| `product_id`   | `int`       | Número identificatorio de un producto asociado a una publicación                                                         |
+| `product_name` | `String`    | Cadena de caracteres que representa el nombre de un producto                                                             |
+| `type`         | `String`    | Cadena de caracteres que representa el tipo de un producto                                                               |
+| `brand`        | `String`    | Cadena de caracteres que representa la marca de un producto                                                              |
+| `color`        | `String`    | Cadena de caracteres que representa el color de un producto                                                              |
+| `notes`        | `String`    | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| `category`     | `int`       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| `price`        | `double`    | Precio del producto
+| `has_promo`    | `boolean`    | Campo true o false para determinar si un producto está en promoción o no
+| `discount`     | `double`    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.
+|
+###
+
+

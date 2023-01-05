@@ -8,13 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 public interface IUserService {
 
 
-    /**
-     * US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
-     *
-     * @param userId id del usuario
-     * @return UserFollowersCountDto : usuario mas el numero de seguidores
-     */
-    UserFollowersCountDto userFollowersCount(int userId);
+
 
     /**
      * US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor
