@@ -1,9 +1,6 @@
 package com.socialmeli.be_java_hisp_w20_g03.service;
 
-import com.socialmeli.be_java_hisp_w20_g03.dto.PostDTO;
-import com.socialmeli.be_java_hisp_w20_g03.dto.PromoPostDTO;
-import com.socialmeli.be_java_hisp_w20_g03.dto.SellerPromoCountDTO;
-import com.socialmeli.be_java_hisp_w20_g03.dto.SellerPromoListDTO;
+import com.socialmeli.be_java_hisp_w20_g03.dto.*;
 import com.socialmeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g03.model.Post;
 import com.socialmeli.be_java_hisp_w20_g03.repository.IPostRepository;
@@ -62,23 +59,21 @@ public class PostService implements IPostService {
         if (userRepository.getUserById(userId) == null) {
             throw new NotFoundException("El usuario ingresado no existe");
         }
-        List<Post> posts = postRepository.getPosts().stream()
+        List<PromoPostDTO> posts = postRepository.getPosts().stream()
                 .filter(post -> post.getUserId() == userId)
                 .filter(Post::isHasPromo)
+                .map(post -> mapper.map(post, PromoPostDTO.class))
                 .collect(Collectors.toList());
-        List<PromoPostDTO> postDTOS = new ArrayList<>();
-        for (Post post : posts) {
-            postDTOS.add(mapper.map(post, PromoPostDTO.class));
-        }
+
         return SellerPromoListDTO.builder()
                 .userId(userId)
                 .userName(userRepository.getUserById(userId).getUserName())
-                .posts(postDTOS)
+                .posts(posts)
                 .build();
     }
 
     @Override
-    public List<PostDTO> getPost(int userId, String order) {
+    public FavoritePostsListDTO getPost(int userId, String order) {
         LocalDate dateNow = LocalDate.now();
         List<PostDTO> postList = new ArrayList<>();
         User userEx = userRepository.getUserById(userId);
@@ -96,6 +91,9 @@ public class PostService implements IPostService {
         } else {
             postList = postList.stream().sorted(Comparator.comparing(PostDTO::getDate)).collect(Collectors.toList());
         }
-        return postList;
+        return FavoritePostsListDTO.builder()
+                .userId(userId)
+                .posts(postList)
+                .build();
     }
 }
