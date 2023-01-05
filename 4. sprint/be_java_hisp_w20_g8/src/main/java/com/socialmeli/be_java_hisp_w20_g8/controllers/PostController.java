@@ -22,12 +22,8 @@ public class PostController {
         return new ResponseEntity<>(postService.findSellersByIdUser(userId,order), HttpStatus.OK);
     }
     @PostMapping("/post")
-    public ResponseEntity<?> postPost(@RequestBody PostRequestDTO postRequestDTO) {
-        try {
+    public ResponseEntity<String> postPost(@RequestBody PostRequestDTO postRequestDTO) {
             postService.createPost(postRequestDTO);
             return ResponseEntity.status(HttpStatus.OK).body("The post was published");
-        } catch(Exception e) {
-            throw new OperationFailedException(e.getMessage() + " Please check the information");
-        }
     }
 }
