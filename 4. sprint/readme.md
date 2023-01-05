@@ -49,6 +49,17 @@ Los requerimientos 10,11,12 y BONUS fueron desarrollados individualmente
 *     Req 8 & Req 9:
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
+*     Req 10:
+    * Un comprador no puede crear una publicacion en promocion
+    * No se puede crear una publicacion en promocion cuyo id de producto no se encuentra en el sistema
+
+*     Req 11 y 12:
+    * Solo se pueden consultar las publicaciones a un usuario de tipo vendedor.
+
+*     Req BONUS:
+    * Los 4 parametros indicados son obligatorios
+    * El parametro FROM no puede ser menor que el parametro TO
+
 
 *     Endpoints: Responsable Emiliano Asprea
 
@@ -92,6 +103,9 @@ USS 0011: GET
 
 US 0012: GET
 - /products/promo-post/list?user_id={userId}
+
+US BONUS: GET
+- /products/promo-post/promo-publications-in-range-price?from={fromPrice}&to={toPrice}&user_id={userId}&order={dateOrder}
 
 
 Diagrama UML sprint 1
