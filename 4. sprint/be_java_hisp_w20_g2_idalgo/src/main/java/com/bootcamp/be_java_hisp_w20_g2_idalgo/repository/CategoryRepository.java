@@ -4,13 +4,15 @@ import com.bootcamp.be_java_hisp_w20_g2_idalgo.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.repository.interfaces.ICategoryRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class CategoryRepository implements ICategoryRepository {
     private static int currentId = 0;
-    private HashMap<Integer, Category> categories; // Se crea por tema de búsqueda, de actualización y eliminación.
+    private final HashMap<Integer, Category> categories; // Se crea por tema de búsqueda, de actualización y eliminación.
 
     public CategoryRepository() {
         categories = new HashMap<>();
@@ -41,6 +43,10 @@ public class CategoryRepository implements ICategoryRepository {
     @Override
     public boolean exists(Integer key) {
         return categories.containsKey(key);
+    }
+
+    public List<Category> findAll() {
+        return new ArrayList<>(categories.values());
     }
 
 }

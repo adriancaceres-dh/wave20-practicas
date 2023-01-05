@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2_idalgo.service.interfaces;
 
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.CategoryDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithPromoDTO;
@@ -22,4 +23,6 @@ public interface IProductService {
     UserIdentifiedListDTO<PostWithPromoDTO> listPromosFromUser(int userId, Optional<String> order);
 
     List<PostWithPromoDTO> listPromos(Optional<String> order);
+
+    List<CategoryDTO> listCategories();
 }

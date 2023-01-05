@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2_idalgo.controller;
 
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.CategoryDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithPromoDTO;
@@ -56,5 +57,10 @@ public class ProductController {
     @GetMapping("/promo-post/list")
     public List<PostWithPromoDTO> listPromos(@RequestParam Optional<String> order) {
         return productService.listPromos(order);
+    }
+
+    @GetMapping("/categories/list")
+    public List<CategoryDTO> listCategories() {
+        return productService.listCategories();
     }
 }

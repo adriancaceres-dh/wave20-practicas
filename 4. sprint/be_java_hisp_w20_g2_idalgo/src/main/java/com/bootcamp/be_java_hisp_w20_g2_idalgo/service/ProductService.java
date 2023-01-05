@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2_idalgo.service;
 
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.CategoryDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithPromoDTO;
@@ -125,6 +126,8 @@ public class ProductService implements IProductService {
     }
 
     /**
+     * List posts in promotion
+     *
      * @param order optional string representing the sorting criteria
      * @return list of posts that have promotions
      */
@@ -136,6 +139,17 @@ public class ProductService implements IProductService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * List valid categories with their respective codes
+     *
+     * @return list of categories
+     */
+    @Override
+    public List<CategoryDTO> listCategories() {
+        return categoryRepository.findAll().stream()
+                .map(c -> new CategoryDTO(c.getCode(), c.getName()))
+                .collect(Collectors.toList());
+    }
 
     private User getUserOrThrow(int userId) {
         User user = userRepository.findOne(userId);

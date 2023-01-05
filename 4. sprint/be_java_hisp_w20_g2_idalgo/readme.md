@@ -651,7 +651,40 @@ _**Filtros/Parámetros:**_
 
 ----
 
-#### US 0014: Opciones de ordenamiento extra para los Posts
+#### US 0014: Listar las categorías
+
+_**Sign:**_
+
+| Method  | SIGN                      |
+|:-------:|---------------------------|
+| **GET** | /products/categories/list |
+
+_**Response**_
+
+```json
+[
+   {
+      "code": 13,
+      "name": "Sillas"
+   },
+   {
+      "code": 12,
+      "name": "Mesas"
+   },
+   {
+      "code": 125,
+      "name": "Periféricos"
+   },
+   {
+      "code": 200,
+      "name": "CPUs"
+   }
+]
+```
+
+----
+
+#### US 0015: Opciones de ordenamiento extra para los Posts
 
 Ahora se pueden ordenar por precio de la siguiente forma:
 
@@ -667,6 +700,8 @@ GET /products/{userId}/followers/list
 
 GET /products/{userId}/followed/list
 ```
+
+----
 
 ### Extras
 
