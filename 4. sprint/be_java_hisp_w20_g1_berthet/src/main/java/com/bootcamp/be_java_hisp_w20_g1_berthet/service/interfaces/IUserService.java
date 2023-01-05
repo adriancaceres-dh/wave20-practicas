@@ -21,4 +21,8 @@ public interface IUserService {
 
     String getUsername(int id);
     void updateUser(int userId);
+
+    boolean validateUserIsSeller(User user);
+    boolean validateUserIsSeller(int id);
+
 }

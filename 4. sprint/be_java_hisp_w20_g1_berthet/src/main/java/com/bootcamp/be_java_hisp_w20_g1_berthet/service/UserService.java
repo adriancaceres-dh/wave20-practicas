@@ -94,10 +94,18 @@ public class UserService implements IUserService {
 
     }
 
-    private void validateUserIsSeller(User user) {
+    public boolean validateUserIsSeller(User user) {
         if (!user.isSeller()) {
             throw new BadRequestException(Parameter.getString("EX_NotASeller"));
         }
+        return true;
+    }
+
+    public boolean validateUserIsSeller(int id) {
+        if (!userRepository.getUserById(id).isSeller()) {
+            throw new BadRequestException(Parameter.getString("EX_NotASeller"));
+        }
+        return true;
     }
 
     private void validateUserExist(User user) {

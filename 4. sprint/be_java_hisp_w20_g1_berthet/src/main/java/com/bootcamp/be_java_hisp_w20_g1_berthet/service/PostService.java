@@ -170,6 +170,7 @@ public class PostService implements IPostService {
 
     public PostPromoListResponseDto getPromoPosts(int id){
         userService.validateUserExistById(id);
+        userService.validateUserIsSeller(id);
 
         List<PostResponseDto> promoPostsOfUser = getListPromoPostsByUserId(id).stream()
                 .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
