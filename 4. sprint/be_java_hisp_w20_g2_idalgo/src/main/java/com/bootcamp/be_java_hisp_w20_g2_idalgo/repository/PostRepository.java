@@ -41,7 +41,7 @@ public class PostRepository implements IPostRepository {
     }
 
     @Override
-    public List<Post> findByHasPromo(boolean hasPromo) {
+    public List<Post> findAllByHasPromo(boolean hasPromo) {
         return posts.values().stream()
                 .filter(Post::isHasPromo)
                 .collect(Collectors.toList());

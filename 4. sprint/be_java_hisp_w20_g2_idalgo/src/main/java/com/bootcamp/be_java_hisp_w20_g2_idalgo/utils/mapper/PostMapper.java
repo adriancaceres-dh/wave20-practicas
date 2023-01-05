@@ -35,15 +35,15 @@ public class PostMapper {
     }
 
     public Post toPost(PromoPostRequestDTO postDTO) {
-        Product product = productMapper.toProduct(postDTO.getProduct());
+        Product product = productMapper.toProduct(postDTO.getPost().getProduct());
 
-        Category postCategory = getPostCategoryByCodeOrThrow(postDTO.getCategory());
+        Category postCategory = getPostCategoryByCodeOrThrow(postDTO.getPost().getCategory());
 
-        return new Post(postDTO.getDate(),
+        return new Post(postDTO.getPost().getDate(),
                 product,
                 postCategory,
-                postDTO.getPrice(),
-                userRepository.findOne(postDTO.getUserId()),
+                postDTO.getPost().getPrice(),
+                userRepository.findOne(postDTO.getPost().getUserId()),
                 postDTO.isHasPromo(),
                 postDTO.getDiscount());
     }

@@ -14,11 +14,11 @@ import com.bootcamp.be_java_hisp_w20_g2_idalgo.repository.interfaces.IPostReposi
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.service.interfaces.IProductService;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.utils.mapper.PostMapper;
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.utils.sort.PostStreamSorter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -65,7 +65,7 @@ public class ProductService implements IProductService {
         List<PostWithIdDTO> posts = user.getFollowing().stream()
                 .map(User::getPosts)
                 .flatMap(Collection::stream)
-                .sorted(getDateComparator(order))
+                .sorted(PostStreamSorter.getSortCriteria(order.orElse("date_desc")))
                 .map(postMapper::toWithIdDTO)
                 .collect(Collectors.toList());
 
@@ -80,7 +80,7 @@ public class ProductService implements IProductService {
      */
     @Override
     public String createPromoPost(PromoPostRequestDTO postRequestDTO) {
-        User user = getUserOrThrow(postRequestDTO.getUserId());
+        User user = getUserOrThrow(postRequestDTO.getPost().getUserId());
 
         Post post = postMapper.toPost(postRequestDTO);
         user.addPost(post);
@@ -117,7 +117,7 @@ public class ProductService implements IProductService {
 
         List<PostWithPromoDTO> posts = user.getPosts().stream()
                 .filter(Post::isHasPromo)
-                .sorted(getDateComparator(order))
+                .sorted(PostStreamSorter.getSortCriteria(order.orElse("date_desc")))
                 .map(postMapper::toWithPromoDTO)
                 .collect(Collectors.toList());
 
@@ -130,8 +130,8 @@ public class ProductService implements IProductService {
      */
     @Override
     public List<PostWithPromoDTO> listPromos(Optional<String> order) {
-        return postRepository.findByHasPromo(true).stream()
-                .sorted(getDateComparator(order))
+        return postRepository.findAllByHasPromo(true).stream()
+                .sorted(PostStreamSorter.getSortCriteria(order.orElse("date_desc")))
                 .map(postMapper::toWithPromoDTO)
                 .collect(Collectors.toList());
     }
@@ -144,11 +144,6 @@ public class ProductService implements IProductService {
         }
 
         return user;
-    }
-
-    private Comparator<Post> getDateComparator(Optional<String> order) {
-        Comparator<Post> comparator = Comparator.comparing(Post::getDate);
-        return order.orElse("date_desc").equals("date_desc") ? comparator.reversed() : comparator;
     }
 
 }
