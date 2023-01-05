@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.dto;
 
 
+import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +21,11 @@ public class PostDTO {
     private int category;
     private double price;
 
-    public PostDTO(int user_id, LocalDate date, ProductDTO product, int category, double price) {
-        this.user_id = user_id;
-        this.date = date;
-        this.product = product;
-        this.category = category;
-        this.price = price;
+    public PostDTO(Post post, ProductDTO productDTO) {
+        this.user_id = post.getUser_id();
+        this.date = post.getDate();
+        this.product = productDTO;
+        this.category = post.getCategory();
+        this.price = post.getPrice();
     }
 }

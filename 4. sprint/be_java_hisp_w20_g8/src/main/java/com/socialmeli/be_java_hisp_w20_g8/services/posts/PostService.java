@@ -1,9 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.PromoPostRequestDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.*;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -11,7 +9,6 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
@@ -69,7 +66,9 @@ public class PostService implements IPostService {
         Post post = mapper.map(postRequestDTO, Post.class);
 
         // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+        PostDTO postDTO = postRequestDTO instanceof PromoPostRequestDTO
+                ? new PromoPostResponseDTO(post, productService.getProductById(post.getProduct_id()), post.isHasPromo(), post.getDiscount())
+                : new PostDTO(post, productService.getProductById(post.getProduct_id()));
 
         int postId = postRepository.createPost(post, postDTO);
 
