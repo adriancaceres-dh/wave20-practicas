@@ -112,7 +112,7 @@ public class PostService implements IPostService {
         if (user == null) {
             throw new NotFoundException("El usuario ingresado no existe");
         }
-        int count = postRepository.getPosts().stream().filter(p -> p.getUserId() == userId)
+        int count = postRepository.getPosts().stream().filter(p -> p.getUserId() == userId && p.isHasPromo())
                 .collect(Collectors.toList()).size();
         return new PostPromoCountDTO(user.getUserId(), user.getUserName(), count);
     }
@@ -124,7 +124,7 @@ public class PostService implements IPostService {
             throw new NotFoundException("El usuario ingresado no existe");
         }
         List<PostPromoDTO> postPromoList = postRepository.getPosts().stream()
-                .filter(p -> p.getUserId() == userId).map(pf -> mapper.map(pf, PostPromoDTO.class))
+                .filter(p -> p.getUserId() == userId && p.isHasPromo()).map(pf -> mapper.map(pf, PostPromoDTO.class))
                 .collect(Collectors.toList());
         if (order != null && order.equals("date_desc")) {
             postPromoList = postPromoList.stream().sorted(Comparator.comparing(x -> x.getDate(), Comparator.reverseOrder()))

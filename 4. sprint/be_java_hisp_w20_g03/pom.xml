@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.socialMeli</groupId>
-	<artifactId>be_java_hisp_w20_g03</artifactId>
+	<artifactId>be_java_hisp_w20_g03_ruiz</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>be_java_hisp_w20_g03</name>
 	<description>Demo project for Spring Boot</description>

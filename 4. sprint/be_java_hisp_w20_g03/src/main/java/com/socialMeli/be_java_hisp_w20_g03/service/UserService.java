@@ -25,9 +25,19 @@ public class UserService implements IUserService {
     ModelMapper mapper = new ModelMapper();
 
     @Override
-    public List<UserExtendedDTO> getUsers() {
-        return iUserRepository.getUsers().stream().map(u -> mapper.map(u, UserExtendedDTO.class))
+    public List<UserExtendedDTO> getUsers(String order) {
+        List<UserExtendedDTO> userList = iUserRepository.getUsers().stream().map(u -> mapper.map(u, UserExtendedDTO.class))
                 .collect(Collectors.toList());
+        if (order != null) {
+            if (order.equals("name_asc")) {
+                userList = userList.stream().sorted(Comparator.comparing(x -> x.getUserName()))
+                        .collect(Collectors.toList());
+            } else {
+                userList = userList.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder()))
+                        .collect(Collectors.toList());
+            }
+        }
+        return userList;
     }
 
     @Override
@@ -115,5 +125,18 @@ public class UserService implements IUserService {
         userFollowedList.remove(userToUnfollow);
         unfollowedUserFollowerList.remove(user);
         return "Dejaste de seguir al usuario: " + userToUnfollow.getUserName();
+    }
+
+    @Override
+    public String addUser(UserDTO userDTO) {
+        if (iUserRepository.getUserById(userDTO.getUserId()) != null) {
+            throw new NotFoundException("El usuario ingresado ya existe");
+        }
+        User user = User.builder()
+                .userId(userDTO.getUserId())
+                .userName(userDTO.getUserName())
+                .build();
+        iUserRepository.addUser(user);
+        return "Usuario agregado";
     }
 }

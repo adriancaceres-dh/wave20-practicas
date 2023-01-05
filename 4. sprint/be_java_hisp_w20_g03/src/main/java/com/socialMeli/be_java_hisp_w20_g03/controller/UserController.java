@@ -1,9 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.controller;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.*;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +18,8 @@ public class UserController {
 
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserExtendedDTO>> list() {
-        return new ResponseEntity<>(iUserService.getUsers(), HttpStatus.OK);
+    public ResponseEntity<List<UserExtendedDTO>> list(@RequestParam(required = false) String order) {
+        return new ResponseEntity<>(iUserService.getUsers(order), HttpStatus.OK);
     }
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
@@ -50,6 +47,11 @@ public class UserController {
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         return new ResponseEntity<>(iUserService.unfollow(userId, userIdToUnfollow), HttpStatus.OK);
+    }
+
+    @PostMapping("/users/user")
+    public ResponseEntity<String> addUser(@RequestBody UserDTO userDTO) {
+        return new ResponseEntity<>(iUserService.addUser(userDTO), HttpStatus.OK);
     }
 
 }

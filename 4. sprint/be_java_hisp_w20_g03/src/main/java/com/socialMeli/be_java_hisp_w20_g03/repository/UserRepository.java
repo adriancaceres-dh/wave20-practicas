@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import org.springframework.stereotype.Repository;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 
@@ -95,6 +96,11 @@ public class UserRepository implements IUserRepository {
                 .filter(user -> user.getUserId() == userId)
                 .findAny()
                 .orElse(null);
+    }
+
+    public boolean addUser(User user) {
+        userList.add(user);
+        return true;
     }
 
 }
