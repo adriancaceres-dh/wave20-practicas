@@ -31,5 +31,17 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 
 - Los datos ingresados por `@pathVariables` siempre llegarán con el tipado solicitado por lo que no se tendrá en cuenta errores de este tipo en el controlador
 
+# Rutas de la aplicacion
+| User Story  | Method   | Route   | Description |   By     |
+| :---        |    :----:|    :---: |     :---:    |    ---: |
+| SU0001 | POST  | /users/{userId}/follow/{userIdToFollow}  |Poder realizar la acción de “Follow” (seguir) a un determinado vendedor|Juan Camilo Arango Valle  |
+| SU0002      | GET     | /users/{userId}/followers/count  |Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor|Julian Atehortua Zapata  |
+| SU0003  | GET  | /users/{userId}/followers/list  |Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)|Diego Alejandro Malagon Ruiz  |
+| SU0004  | GET  | /users/{userId}/followed/list  |Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)|Adrian Isaac Gomez|
+| SU0005  | POST  | /products/post  |Dar de alta una publicación|Luis Francisco Lopez|
+| SU0006  | GET  | /products/followed/{userId}/list | Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas|John Edward Garcia Saavedra|
+| SU0007 | POST  | /users/{userId}/unfollow/{userIdToUnfollow} | Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor|Dimas Hernandez Mendoza|
+| SU0008 | GET  | /users/{UserID}/followers/list?order=name_asc  /users/{UserID}/followed/list?order=name_desc | Ordenamiento alfabético ascendente y descendente|Grupal|
+| SU0009 | GET  | /products/followed/{userId}/list?order=date_asc /products/followed/{userId}/list?order=date_desc| Ordenamiento por fecha ascendente y descendente|Grupal|
 # Consideraciones especificas
 - 
