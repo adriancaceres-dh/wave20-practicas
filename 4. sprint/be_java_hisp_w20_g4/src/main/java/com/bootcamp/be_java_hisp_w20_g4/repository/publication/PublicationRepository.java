@@ -79,4 +79,13 @@ public class PublicationRepository implements IPublicationRepository {
                 .filter(p -> p.isHasPromo())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Publication> getPromoPublicationsInRangePrice(List<Integer> followedIds, Double from, Double to) {
+        return publications.stream()
+                .filter(p -> followedIds.contains(p.getUser_id()))
+                .filter(p -> p.getPrice() >= from && p.getPrice() <= to)
+                .sorted(Comparator.comparing(Publication::getDate))
+                .collect(Collectors.toList());
+    }
 }

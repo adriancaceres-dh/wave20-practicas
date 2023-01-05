@@ -2,12 +2,9 @@ package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromoPostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.*;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromoPublicationCountDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromoPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
@@ -22,10 +19,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrder;
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidUserParam;
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isSeller;
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.*;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.category.CategoryValidator.isValidCategory;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.*;;
 
 @Service
 public class ServicePublication implements IServicePublication {
@@ -49,12 +45,9 @@ public class ServicePublication implements IServicePublication {
      */
     public PublicationDTO addPublication(PostDTO publicationDto){
         User user =  userRepository.findById(publicationDto.getUser_id());
-        if(user == null) throw new BadRequestException("El usuario no es válido");
-
-        if(!(user instanceof Seller))throw new BadRequestException("Este usuario no puede generar una publicación");
-
+        isValidSeller(user);
         Category category = categoryRepository.findById(publicationDto.getCategory());
-        if(category == null) throw new BadRequestException("La categoria ingresa no es válida.");
+        isValidCategory(category);
         Product product = mapper.map(publicationDto.getProduct(), Product.class);
         if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
         Publication publication = new Publication(publicationDto.getDate(), publicationDto.getPrice(), product, category, user.getUser_id());
@@ -62,7 +55,6 @@ public class ServicePublication implements IServicePublication {
         if(publicationRepository.addPublication(publication)){
             ((Seller) user).addPublication(publication);
             return new PublicationDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), category.getId(), publication.getPrice());
-
         }
         return null;
     }
@@ -75,18 +67,12 @@ public class ServicePublication implements IServicePublication {
      */
     public ProductTwoWeeksResponseDTO getLastTwoWeeksPublications(int userId, String order) {
         isValidDateOrder(order);
-
         User user = userRepository.findById(userId);
         isValidUser(user);
-
         List<Integer> followedIds = user.getFollowed().values().stream().map(u -> u.getUser_id()).collect(Collectors.toList());
-
         List<Publication> publications = publicationRepository.getPublicationLastNDays(followedIds, 15);
-
         List<ListedPostDTO> listedPostDTO = publications.stream().map(p -> mapper.map(p, ListedPostDTO.class)).collect(Collectors.toList());
-
         if(order == null || order.equals("date_desc")) Collections.reverse(listedPostDTO);
-
         return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
     }
 
@@ -94,11 +80,12 @@ public class ServicePublication implements IServicePublication {
     @Override
     public PromoPublicationDTO addPromoPublication(PromoPostDTO promoPostDTO) {
         User user =  userRepository.findById(promoPostDTO.getUser_id());
-        isValidUser(user);
-        isSeller(user);
 
+        //isValidUser(user);
+        //isSeller(user);
+        isValidSeller(user);
         Category category = categoryRepository.findById(promoPostDTO.getCategory());
-        if(category == null) throw new BadRequestException("La categoria ingresa no es válida.");
+        isValidCategory(category);
         Product product = mapper.map(promoPostDTO.getProduct(), Product.class);
         if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
 
@@ -121,5 +108,31 @@ public class ServicePublication implements IServicePublication {
         List<Publication> publications = publicationRepository.getPromoPublications(userId);
         PromoPublicationCountDTO promoPublicationCountDTO = new PromoPublicationCountDTO(userId,user.getUser_name(),publications.size());
         return promoPublicationCountDTO;
+    }
+
+    @Override
+    public PromoPublicationListDTO getPromoPublications(Integer userId) {
+        isValidUserParam(userId);
+        User user = userRepository.findById(userId);
+        isValidUser(user);
+        isSeller(user);
+        List<Publication> publications = publicationRepository.getPromoPublications(userId);
+        List<ListedPromoPostDTO> listedPromoPostDTOList = publications.stream().map(publication -> new ListedPromoPostDTO(userId,publication.getPost_id(),publication.getDate(),mapper.map(publication.getProduct(),ProductDTO.class),publication.getCategory().getId(),publication.getPrice(),publication.isHasPromo(),publication.getDiscount())).collect(Collectors.toList());
+        return new PromoPublicationListDTO(userId,user.getUser_name(),listedPromoPostDTOList);
+    }
+
+    @Override
+    public PromoPublicationListDTO getPromoPublicationsInRangePrice(Integer userId, Double from, Double to, String order) {
+        isValidRangeParams(from,to);
+        isValidDateOrder(order);
+        isValidUserParam(userId);
+        User user = userRepository.findById(userId);
+        isValidUser(user);
+        List<Integer> followedIds = user.getFollowed().values().stream().map(u -> u.getUser_id()).collect(Collectors.toList());
+        //TODO verificar que pasa si llega order null y user null
+        List<Publication> publications = publicationRepository.getPromoPublicationsInRangePrice(followedIds, from,to);
+        if (order.equals("date_desc")) Collections.reverse(publications);
+        List<ListedPromoPostDTO> listedPromoPostDTOList = publications.stream().map(publication -> new ListedPromoPostDTO(publication.getUser_id(),publication.getPost_id(),publication.getDate(),mapper.map(publication.getProduct(),ProductDTO.class),publication.getCategory().getId(),publication.getPrice(),publication.isHasPromo(),publication.getDiscount())).collect(Collectors.toList());
+        return new PromoPublicationListDTO(userId,user.getUser_name(),listedPromoPostDTOList);
     }
 }

@@ -31,6 +31,10 @@ public class UserValidator {
      */
     public static void isNotSameUser(int userId1, int userId2){
         if(userId1 == userId2) throw new BadRequestException("El usuario no puede realizar la operacion sobre si mismo");
+    }
 
+    public static void isValidSeller(User user){
+        isValidUser(user);
+        isSeller(user);
     }
 }

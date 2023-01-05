@@ -27,7 +27,12 @@ public class Validators {
      * @param param - Es el String que especifica el id del usuario
      */
     public static void isValidUserParam(Integer param){
-        if (param == null) throw new BadRequestException("Parametro de usuario incorrecto.");
+        if (param == null) throw new BadRequestException("El parametro de usuario es obligatorio.");
+    }
+
+    public static void isValidRangeParams(Double from , Double to){
+        if (((from == null) || (to == null))) throw new BadRequestException("Los parametros from y to son obligatorios");
+        if (from > to) throw new BadRequestException("El parametro from no puede ser mayor que to");
     }
 
 }

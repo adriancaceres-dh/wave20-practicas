@@ -11,4 +11,5 @@ public interface IPublicationRepository {
     public boolean addPublication(Publication publication);
     public List<Publication> getPublicationLastNDays(List<Integer> followedIds, int nDays);
     public List<Publication> getPromoPublications(int userId);
+    List<Publication> getPromoPublicationsInRangePrice(List<Integer> followedIds, Double since, Double to);
 }
