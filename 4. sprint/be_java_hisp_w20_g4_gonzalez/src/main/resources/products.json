@@ -1,0 +1,32 @@
+[
+  {
+      "product_id": 1,
+      "product_name": "Silla Gamer",
+      "type": "Gamer",
+      "brand": "Racer",
+      "color": "Red & Black",
+      "notes": "Special Edition"
+  },
+  {
+    "product_id": 2,
+    "product_name": "producto2",
+    "color": "red",
+    "notes": "nota2",
+    "type": "tipo2",
+    "brand": "nike"
+  },{
+  "product_id": 3,
+  "product_name": "producto3",
+  "color": "blue",
+  "notes": "nota3",
+  "type": "tipo3",
+  "brand": "puma"
+},{
+  "product_id": 4,
+  "product_name": "producto4",
+  "color": "green",
+  "notes": "nota4",
+  "type": "tipo4",
+  "brand": "adidas"
+}
+]
