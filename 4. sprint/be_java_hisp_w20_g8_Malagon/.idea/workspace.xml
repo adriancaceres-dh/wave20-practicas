@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e18dab7f-affa-4356-a8a3-4cbc136b0ae7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Sprint-1.postman_collectionWithBonus.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/BeJavaHispW20G8Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/config/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/controllers/PostController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/controllers/SellerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/controllers/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/PostDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/PostRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ProductDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ResponsePostDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/SellerDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/SellerFollowersDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/SellerPromotionsDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserAndFollowedsDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserCountDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserFollowedDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/DoesntExistSellerException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/InvalidArgumentException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/OperationFailedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Seller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/persons/IPersonRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/persons/PersonRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/posts/IPostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/posts/PostRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/products/IProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/products/ProductRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/posts/IPostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/posts/PostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/products/IProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/products/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/sellers/ISellerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/sellers/SellerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/users/IUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/users/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/utils/Validators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/BeJavaHispW20G8ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../readme.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JrioGciRceHVzT3H6xFTg5GZ3T" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/dmalagon/Documents/Java/wave20-practicas/4. sprint/be_java_hisp_w20_g8_Malagon",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BeJavaHispW20G8Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.socialmeli.be_java_hisp_w20_g8.BeJavaHispW20G8Application" />
+      <module name="be_java_hisp_w20_g8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.socialmeli.be_java_hisp_w20_g8.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BeJavaHispW20G8Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e18dab7f-affa-4356-a8a3-4cbc136b0ae7" name="Changes" comment="" />
+      <created>1672842776316</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672842776316</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
