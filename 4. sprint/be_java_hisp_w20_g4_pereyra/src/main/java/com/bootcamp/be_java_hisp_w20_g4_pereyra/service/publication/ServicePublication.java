@@ -148,6 +148,11 @@ public class ServicePublication implements IServicePublication {
         return new ListedPublicationDiscountDTO(user_id, user.getUser_name(), publicationDiscountDTOS);
     }
 
+    /**
+     * Método que crea un nuevo producto y lo guarda en el repositorio
+     * @param productDTORequest
+     * @return ProductDTO - dto del procuto creado
+     */
     @Override
     public ProductDTO createProduct(ProductDTORequest productDTORequest) {
         Product product = new Product(productDTORequest.getProduct_name(), productDTORequest.getColor(), productDTORequest.getNotes(), productDTORequest.getType(), productDTORequest.getBrand());
@@ -158,6 +163,10 @@ public class ServicePublication implements IServicePublication {
         }
     }
 
+    /**
+     * El método devuelve un una lista con todas las publicaciones
+     * @return ListedPublicationsDTO - dto con el listado de todas las publicaciones
+     */
     @Override
     public ListedPublicationsDTO getAllPublications() {
         List<PublicationDiscountDTO> publicationDTOS = publicationRepository.getAllPublications().stream()

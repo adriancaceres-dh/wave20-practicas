@@ -47,6 +47,11 @@ public class ProductRepository implements IProductRepository {
         return productRepository.equals(product);
     }
 
+    /**
+     * El método agrega un nuevo producto al repositorio
+     * @param productToAdd
+     * @return boolean - agregado(true) o no
+     */
     @Override
     public boolean addProduct(Product productToAdd) {
         try{
