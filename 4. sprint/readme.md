@@ -39,17 +39,21 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 
 
 # Rutas de la aplicacion
-| User Story  | Method   | Route   | Description |   By     |
-| :---        |    :----:|    :---: |     :---:    |    ---: |
-| SU0001 | POST  | /users/{userId}/follow/{userIdToFollow}  |Poder realizar la acción de “Follow” (seguir) a un determinado vendedor|Juan Camilo Arango Valle  |
-| SU0002      | GET     | /users/{userId}/followers/count  |Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor|Julian Atehortua Zapata  |
-| SU0003  | GET  | /users/{userId}/followers/list  |Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)|Diego Alejandro Malagon Ruiz  |
-| SU0004  | GET  | /users/{userId}/followed/list  |Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)|Adrian Isaac Gomez|
-| SU0005  | POST  | /products/post  |Dar de alta una publicación|Luis Francisco Lopez|
-| SU0006  | GET  | /products/followed/{userId}/list | Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas|John Edward Garcia Saavedra|
-| SU0007 | POST  | /users/{userId}/unfollow/{userIdToUnfollow} | Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor|Dimas Hernandez Mendoza|
-| SU0008 | GET  | /users/{UserID}/followers/list?order=name_asc  /users/{UserID}/followed/list?order=name_desc | Ordenamiento alfabético ascendente y descendente|Grupal|
-| SU0009 | GET  | /products/followed/{userId}/list?order=date_asc /products/followed/{userId}/list?order=date_desc| Ordenamiento por fecha ascendente y descendente|Grupal|
+| User Story | Method |                                              Route                                               |                                                      Description                                                      |                           By |
+|:-----------|:------:|:------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|-----------------------------:|
+| US0001     |  POST  |                             /users/{userId}/follow/{userIdToFollow}                              |                        Poder realizar la acción de “Follow” (seguir) a un determinado vendedor                        |     Juan Camilo Arango Valle |
+| US0002     |  GET   |                                 /users/{userId}/followers/count                                  |                 Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor                  |      Julian Atehortua Zapata |
+| US0003     |  GET   |                                  /users/{userId}/followers/list                                  |           Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)            | Diego Alejandro Malagon Ruiz |
+| US0004     |  GET   |                                  /users/{userId}/followed/list                                   |         Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)         |           Adrian Isaac Gomez |
+| US0005     |  POST  |                                          /products/post                                          |                                              Dar de alta una publicación                                              |         Luis Francisco López |
+| US0006     |  GET   |                                 /products/followed/{userId}/list                                 | Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas |  John Edward Garcia Saavedra |
+| US0007     |  POST  |                           /users/{userId}/unfollow/{userIdToUnfollow}                            |                  Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor                   |      Dimas Hernandez Mendoza |
+| US0008     |  GET   |   /users/{UserID}/followers/list?order=name_asc  /users/{UserID}/followed/list?order=name_desc   |                                   Ordenamiento alfabético ascendente y descendente                                    |                       Grupal |
+| US0009     |  GET   | /products/followed/{userId}/list?order=date_asc /products/followed/{userId}/list?order=date_desc |                                    Ordenamiento por fecha ascendente y descendente                                    |                       Grupal |
+| US0010     |  POST  |                                       /products/promo-post                                       |                                         Dar de alta una publicación con promo                                         |         Luis Francisco López |
+| US0011     |  GET   |                           /products/promo-post/count?user_id={userId}                            |                        Mostrar el número de publicaciones con promo de un determinado usuario                         |         Luis Francisco López |
+| US0012     |  GET   |                            /products/promo-post/list?user_id={userId}                            |                             Mostrar las publicaciones con promo de un determinado usuario                             |         Luis Francisco López |
 
 # Consideraciones especificas
 - SU0002 se crearon datos de prueba en los cuales el seller con id 5 es seguido por el user con id 1, el seller con id 6 es seguido por el user con id 1, el seller 7 es seguido por el user 3, el seller 8 no tiene seguidores, el seller 9 es seguido por los usuarios con id 1, 2 y 3 y el seller 10 es seguido por el usuario 2
+- Los posts con promo se toman en cuenta y son formateados de la forma correcta al momento de listar los posts de los vendedores a los que sigue un usuario, es decir, el endpoint de la historia US0006.
