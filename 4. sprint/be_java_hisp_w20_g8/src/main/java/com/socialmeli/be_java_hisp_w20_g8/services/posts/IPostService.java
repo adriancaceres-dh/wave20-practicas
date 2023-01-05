@@ -4,6 +4,7 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PromoPostCountDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.SellerPromoPostsResponseDTO;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 
 import java.util.Set;
@@ -17,4 +18,6 @@ public interface IPostService {
     ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser, String order);
 
     PromoPostCountDTO getPromoPostCountByUserId(int userId);
+
+    SellerPromoPostsResponseDTO getPromoPostsByUserId(int userId);
 }

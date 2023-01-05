@@ -125,13 +125,25 @@ public class PostService implements IPostService {
         // Get the seller
         Seller seller = personRepository.findSellerById(userId);
 
-        // Check if the seller exists
-        if(seller == null)
-            throw new NotFoundException("The specified seller does not exist in the database");
-
         // Get the number of promo posts
         int promoPostCount = postRepository.getPromoPostsByUserId(userId).size();
 
         return new PromoPostCountDTO(userId, seller.getUser_name(), promoPostCount);
+    }
+
+    @Override
+    public SellerPromoPostsResponseDTO getPromoPostsByUserId(int userId) {
+        // Get the seller
+        Seller seller = personRepository.findSellerById(userId);
+
+        // Get the promo posts
+        Set<Post> posts = postRepository.getPromoPostsByUserId(userId);
+
+        // Convert the posts to DTO
+        List<PromoPostResponseDTO> promoPostDTOs = posts.stream().map(
+                post -> new PromoPostResponseDTO(post, productService.getProductById(post.getProduct_id()), post.isHasPromo(), post.getDiscount())
+        ).collect(Collectors.toList());
+
+        return new SellerPromoPostsResponseDTO(userId, seller.getUser_name(), promoPostDTOs);
     }
 }
