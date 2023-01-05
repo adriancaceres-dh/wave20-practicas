@@ -22,7 +22,7 @@ public class Parameter {
             put("EX_NotExistentProduct","Producto no existente");
             put("EX_NotASeller","El usuario no es vendedor");
             put("EX_NotExistentUser","El usuario no existe");
-            put("EX_PromoAlreadyExist", "No se puede publicar la misma promocion");
+            put("EX_PromoAlreadyExist", "Promocion ya existente");
             put("EX_InvalidUserIdToPostPromo","EL producto a poner en promocion no corresponde a este usuario");
             put("EX_ProductDoesntMatchId","EL producto a poner en promocion no corresponde a este usuario");
         }

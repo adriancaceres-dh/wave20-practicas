@@ -669,7 +669,19 @@ _Llevar a cabo la publicación de un nuevo producto en promoción_
 <td style="height: 23px;">
 <pre><code class="language-plaintext">
 {
-    "message": "Promocion invalida",
+    "message": "Promocion ya existente",
+    "status": 400,
+    "timestamp": "2023-01-05T14:28:53.227908"
+}
+</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+{
+    "message": "EL producto a poner en promocion no corresponde a este usuario",
     "status": 400,
     "timestamp": "2023-01-05T14:28:53.227908"
 }
@@ -856,19 +868,19 @@ _Obtener un listado de todos los productos en promoción de un determinado vende
 
 Filtros / Parámetros
 
-| order            | Tipo      | Description                                                                                                             |
-|------------------|-----------|-------------------------------------------------------------------------------------------------------------------------|
-| **user\_id**     | int       | Número que identifica a cada usuario                                                                                    |
-| **user_name**    | String    | Cadena de caracteres que representa el nombre del usuario                                                               |
-| **post_id**      | int       | Número identificatorio de cada una de las publicaciones                                                                 |
-| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                           |
-| **product_id**   | int       | Número identificatorio de un producto asociado a una publicacion                                                        |
-| **product_name** | String    | Cadena de caracteres que representa el nombre de un producto                                                            |
-| **type**         | String    | Cadena de caracteres que representa el tipo de un producto                                                              |
-| **brand**        | String    | Cadena de caracteres que representa la marca de un producto                                                             |
-| **color**        | String    | Cadena de caracteres que representa el color de un producto                                                             |
-| **notes**        | String    | Cadena de caracteres para colocar notas u observaciones de un producto                                                  |
-| **category**     | int       | dentificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
-| **price**        | double    | Precio del producto                                                                                                     |
-| **has_promo**    | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                |
-| **discount**     | double    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.                                     |
+| order            | Tipo      | Description                                                                                                              |
+|------------------|-----------|--------------------------------------------------------------------------------------------------------------------------|
+| **user\_id**     | int       | Número que identifica a cada usuario                                                                                     |
+| **user_name**    | String    | Cadena de caracteres que representa el nombre del usuario                                                                |
+| **post_id**      | int       | Número identificatorio de cada una de las publicaciones                                                                  |
+| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **product_id**   | int       | Número identificatorio de un producto asociado a una publicacion                                                         |
+| **product_name** | String    | Cadena de caracteres que representa el nombre de un producto                                                             |
+| **type**         | String    | Cadena de caracteres que representa el tipo de un producto                                                               |
+| **brand**        | String    | Cadena de caracteres que representa la marca de un producto                                                              |
+| **color**        | String    | Cadena de caracteres que representa el color de un producto                                                              |
+| **notes**        | String    | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| **category**     | int       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**        | double    | Precio del producto                                                                                                      |
+| **has_promo**    | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                 |
+| **discount**     | double    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.                                      |
