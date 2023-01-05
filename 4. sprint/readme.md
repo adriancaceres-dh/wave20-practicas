@@ -3,6 +3,8 @@
 
 1 - **PROYECTO GRUPAL** -> ./Parte-grupal/be_java_hisp_w20_g05
 
+[siguiente archivo.](Individual.postman_collection.json)
+
 ----------------------------------
 
 2 - **PROYECTO INDIVIDUAL** -> ./Parte-Individual/be_java_hisp_w20_g05
@@ -61,6 +63,6 @@
     -> Caso contrario, 400 BAD REQUEST + mensaje error.
 
 
-    Link con pruebas de POSTMAN, click aqui.
-    [siguiente archivo.](Sprint 1 - Individual.postman_collection.json)
+
+     Link con pruebas de POSTMAN, click aqui.
     
