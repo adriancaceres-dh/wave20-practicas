@@ -7,6 +7,14 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 Teccnologias Utilizadas: Java 11, Spring Framework(Web, DevTools, Lombok) y Github.
 
 Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en equipo, recibiendo recomendaciones y feedback constante.
+Deciciones funcionales: 
+- Req 1:
+-- Un usuario no se puede seguir a sí mismo.
+-- Un vendedor puede seguir a un vendedor.
+-- Un vendedor puede seguir a un comprador.
+-- Un comprador puede seguir a un comprador.
+-- Retorna el dto del usuario al que siguió con estado 200.
+
 
 Endpoints: Responsable Emiliano Asprea
 
