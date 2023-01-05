@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.helpers.user;
 
-import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
 
