@@ -14,6 +14,7 @@ Desarrollo de una API REST para mejorar la experiencia entre compradores y vende
 Los compradores podran seguir a sus vendedores favoritos y enterarse de sus posteos de nuevos productos.
 
 Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en equipo, recibiendo recomendaciones y feedback constante.
+Los requisitos 10, 11 y 12 se trabajaron de forma individual.
 
 ## Decisiones funcionales: 
 *     Req 1:
@@ -39,7 +40,7 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
      * Categoría es una entidad aparte.
      * Una publicación tiene una categoría, precio, si tiene promo y el descuento correspondiente.
      * Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
-* En caso de que un producto no exista o el id sea incorrecto devuelve un 400
+     * En caso de que un producto no exista o el id sea incorrecto devuelve un 400
 
 *     Req 7:
     * No se puede dejar de seguirte a ti mismo.
@@ -49,10 +50,9 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
 
-*     Endpoints: Responsable Emiliano Asprea
+### [Endpoints](https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf): Responsable Emiliano Asprea
 
-US 001: 
-POST
+US 001: POST
 - /users/{userId}/follow/{userIdToFollow}
 
 US 002: GET
@@ -96,5 +96,5 @@ US 0012: GET
 Diagrama UML sprint 1
 <img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
 
-Agradecimientos para el equipo de Digital House y los coordinadores del Bootcamp Backend JAVA
+Agradecimientos para el equipo de Digital House y los coordinadores del Bootcamp Backend JAVA.
 
