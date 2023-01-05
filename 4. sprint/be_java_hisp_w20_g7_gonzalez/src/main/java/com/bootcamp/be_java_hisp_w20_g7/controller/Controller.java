@@ -1,10 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g7.controller;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.ProductPromoDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.*;
+import com.bootcamp.be_java_hisp_w20_g7.entity.Product;
 import com.bootcamp.be_java_hisp_w20_g7.service.IFollowService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IPostService;
 import com.bootcamp.be_java_hisp_w20_g7.service.IUserService;
@@ -80,9 +79,13 @@ public class Controller {
 
     }
 
-    //@GetMapping("/products/followed/{userId}/list")
+    @PostMapping("/products/promo-post")
+    public ResponseEntity<String> createProductPromo(@RequestBody ProductPromoDto productPromoDto) {
+        return new ResponseEntity<>(postService.createPostProductPromo(productPromoDto), HttpStatus.OK);
+    }
 
-    //ser menos desscriptivos en los errores
-    //un solo idioma pls
-
+    @GetMapping("/products/promo-post/count")
+    public ResponseEntity<UserProductPromoCountDto> countProductsPromo(@RequestParam int userId) {
+        return new ResponseEntity<>(postService.countProductPromo(userId), HttpStatus.OK);
+    }
 }
