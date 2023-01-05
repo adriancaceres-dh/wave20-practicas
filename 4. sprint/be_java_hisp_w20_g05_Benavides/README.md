@@ -198,6 +198,67 @@ Cada miembro del equipo fue responsable por la implementación de una US, y por 
 
 *NOTA: Este ordenamiento aplica solo para la US-006.*
 
+#### US0010: Llevar a cabo la publicación de un nuevo producto en promoción
+
+```http
+  POST /products/promo-post
+```
+
+| Parameter | Type     | Description                                                                         |
+| :-------- | :------- |:------------------------------------------------------------------------------------|
+| `user_id` | `int` | Número que identifica a cada usuario                                                |
+| `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy                                       |
+| `product_id` | `int` | Número identificatorio de un producto asociado a una publicación                    |
+| `product_name` | `String` | Cadena de caracteres que representa el nombre de un producto                        |
+| `type` | `String` | Cadena de caracteres que representa el tipo de un producto                          |
+| `brand` | `String` | Cadena de caracteres que representa la marca de un producto                         |
+| `color` | `String` | Cadena de caracteres que representa el color de un producto                         |
+| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones de un producto              |
+| `category` | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto    |
+| `price` | `double` | Precio del producto                                                                 |
+| `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no            |
+| `discount` | `double` | En caso de que un producto estuviese en promoción, establece el monto de descuento. |
+
+| Response |
+| :-------- |
+| **Status Code 200** (todo OK)| 
+| **Status Code 400** (Bad Request)|
+
+#### US0011: Obtener la cantidad de productos en promoción de un determinado vendedor
+
+```http
+  GET /products/promo-post/count?user_id={userId}
+```
+
+| Parameter | Type     | Description                                                           |
+| :-------- | :------- |:----------------------------------------------------------------------|
+| `user_id` | `int` | Número que identifica a cada usuario                                  |
+| `user_name` | `String` | Cadena de caracteres que representa el nombre del usuario             |
+| `promo_products_count` | `int` | Cantidad numérica de productos en promoción de un determinado usuario |
+
+#### US0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
+
+```http
+  GET /products/promo-post/count?user_id={userId}
+```
+
+| Parameter | Type     | Description                                                                         |
+| :-------- | :------- |:------------------------------------------------------------------------------------|
+| `user_id` | `int` | Número que identifica a cada usuario                                                |
+| `user_name` | `String` | Cadena de caracteres que representa el nombre del usuario                           |
+| `post_id` | `int` | Número identificatorio de cada una de las publicaciones                             |
+| `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy                                       |
+| `product_id` | `int` | Número identificatorio de un producto asociado a una publicación                    |
+| `product_name` | `String` | Cadena de caracteres que representa el nombre de un producto                        |
+| `type` | `String` | Cadena de caracteres que representa el tipo de un producto                          |
+| `brand` | `String` | Cadena de caracteres que representa la marca de un producto                         |
+| `color` | `String` | Cadena de caracteres que representa el color de un producto                         |
+| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones de un producto              |
+| `category` | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto    |
+| `price` | `double` | Precio del producto                                                                 |
+| `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no            |
+| `discount` | `double` | En caso de que un producto estuviese en promoción, establece el monto de descuento. |
+
 ### Agradecimientos
 
 En primer lugar, los miembros argentinos del grupo agradecen a Lionel Messi por traer la copa.
