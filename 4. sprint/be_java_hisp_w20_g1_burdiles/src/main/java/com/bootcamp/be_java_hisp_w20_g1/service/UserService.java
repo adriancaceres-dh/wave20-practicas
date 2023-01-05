@@ -156,6 +156,14 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserSeller(int id) {
+        User userSeller = userRepository.getUserById(id);
+        validateUserExist(userSeller);
+        validateUserIsSeller(userSeller);
+        return userSeller;
+    }
+
+    @Override
     public void validateUserExistById(int id) {
         User user = userRepository.getUserById(id);
         validateUserExist(user);

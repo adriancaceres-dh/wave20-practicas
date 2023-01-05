@@ -1,4 +1,4 @@
-package com.bootcamp.be_java_hisp_w20_g1.dto.request;
+package com.bootcamp.be_java_hisp_w20_g1.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -15,15 +15,15 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostRequestDto {
+public class PostPromoResponseDto{
+
+    private int userId;
+    private int postId;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
-    private int userId;
-    private ProductRequestDto product;
+    private ProductResponseDto product;
     private int category;
     private double price;
-
-
-
-
+    private boolean hasPromo;
+    private double discount;
 }
