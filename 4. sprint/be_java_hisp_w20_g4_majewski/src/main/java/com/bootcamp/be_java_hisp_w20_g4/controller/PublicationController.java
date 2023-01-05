@@ -3,13 +3,17 @@ package com.bootcamp.be_java_hisp_w20_g4.controller;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.ListedUserDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.service.publication.IServicePublication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/products")
 @RestController
@@ -33,13 +37,18 @@ public class PublicationController {
     }
 
     @GetMapping("/promo-post/count")
-    public ResponseEntity<UserPromoProductsCountDTO> CountPromoProductsOfSeller(@RequestParam(value="user_id", required = true) int userId){
+    public ResponseEntity<UserPromoProductsCountDTO> CountPromoPublicationsOfSeller(@RequestParam(value="user_id", required = true) int userId){
         return ResponseEntity.ok().body(servicePublication.promoPublicationsCount(userId));
     }
 
     @GetMapping("/promo-post/list")
-    public ResponseEntity<UserPostPromotionDTO> promoProductsOfSeller(@RequestParam(value="user_id", required = true) int userId){
+    public ResponseEntity<UserPostPromotionDTO> promoPublicationsOfSeller(@RequestParam(value="user_id", required = true) int userId){
         return ResponseEntity.ok().body(servicePublication.getPromoPublications(userId));
+    }
+
+    @GetMapping("/post-with/{productId}")
+    public ResponseEntity<List<ListedPostDTO>> publicationsWithProduct(@PathVariable int productId){
+        return ResponseEntity.ok().body(servicePublication.getProductPublications(productId));
     }
 
 
