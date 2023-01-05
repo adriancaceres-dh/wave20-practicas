@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductCountDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductsPromotionSellerDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
@@ -134,6 +135,18 @@ public class ServicePublication implements IServicePublication {
         if(!(userFinder instanceof Seller)) throw new BadRequestException("Un comprador no tiene publicaciones");
         ProductCountDTO userProductCountDTO = new ProductCountDTO(userId,userFinder.getUser_name(),publicationRepository.getPublicationHasPromotion(userId).size());
         return userProductCountDTO;
+    }
+
+    public ProductsPromotionSellerDTO ProductHasPromotionOfSeller(int userId){
+        User userFinder = userRepository.findById(userId);
+        if (userFinder == null){
+            throw new NotFoundException("No se ha encontrado el usuario");
+        }
+        List<Publication> publications = publicationRepository.getPublicationHasPromotion(userId);
+        List<PostPromotionDTO> promotionDTOs = publications.stream().map(p ->{return new PostPromotionDTO(p.getUser_id(),p.getPost_id(),p.getDate(),mapper.map(p.getProduct(), ProductDTO.class),p.getCategory().getId(),p.getPrice(),p.isHasPromo(),p.getDiscount());}).collect(Collectors.toList());
+        ProductsPromotionSellerDTO productsPromotionsOfSeller = new ProductsPromotionSellerDTO(userId,userFinder.getUser_name(),promotionDTOs);
+        return productsPromotionsOfSeller;
+
     }
 
 
