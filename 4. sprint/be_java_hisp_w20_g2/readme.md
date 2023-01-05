@@ -2,7 +2,7 @@
 ______
 ## 🔍🧮 Índice 🧮🔍
 1. _**[Objetivo](#-objetivo-)**_
-2. _**[Putas para la actividad](#-pautas-para-la-actividad-)**_
+2. _**[Pautas para la actividad](#-pautas-para-la-actividad-)**_
 3. _*
    *[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)
    **_
