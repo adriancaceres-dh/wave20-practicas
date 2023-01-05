@@ -1,10 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.config;
 
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.FollowerExistsException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.FollowerNotFoundException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.InvalidParamException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.UserExistsException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.*;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +33,11 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(InvalidParamException.class)
     public ResponseEntity<String> invalidParam(InvalidParamException invalidParamException){
         return new ResponseEntity<>(invalidParamException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SameUserException.class)
+    public ResponseEntity<String> invalidParam(SameUserException sameUserException){
+        return new ResponseEntity<>(sameUserException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }

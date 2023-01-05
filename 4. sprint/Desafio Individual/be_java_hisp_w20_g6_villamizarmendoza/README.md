@@ -247,6 +247,97 @@ Ordenamiento por fecha ascendente y descendente
 
 Responsable: Juan Carlos Ortiz
 ***
+***
+**US0010**:
+Dar de alta una nueva publicación en promoción
+
+| METHOD | SIGN                   |
+|:-------|:-----------------------|
+| `POST` | `/products/promo-post` |
+
+PAYLOAD:
+```json
+{
+    "user_id": 123,
+    "date": "29-04-2021",
+    "product": {
+        "product_id": 1,
+        "product_name": "Silla Gamer",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1500.50,
+    "has_promo": true,
+    "discount": 0.25
+}
+```
+RESPONSE: Status code 200 (OK) | Status code 400 (Bad request)
+
+Responsable: Daniela Villamizar Mendoza
+***
+**US0011**:
+Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
+
+| METHOD | SIGN                              | EJEMPLO                    | 
+|:-------|:----------------------------------|:---------------------------|
+| `GET`  | `/products/promo-post/count?user_id={userId}` | `products/promo-post/count?user_id=1` |
+
+
+
+RESPONSE:
+~~~json
+{
+  "user_id" : 1,
+  "user_name": "vendedor1",
+  "promo_products_count": 23
+}
+
+~~~
+
+Responsable: Daniela Villamizar
+***
+**US0012**:
+Obtener un listado de todos los productos en promoción de un determinado vendedor
+
+| METHOD | SIGN                              | EJEMPLO                    | 
+|:-------|:----------------------------------|:---------------------------|
+| `GET`  | `/products/promo-post/list?user_id={userId}` | `products/promo-post/list?user_id=1` |
+
+
+
+RESPONSE:
+~~~json
+{
+  "user_id": 1,
+  "user_name": "pablito1",
+  "posts": [
+    {
+      “user_id”: 234
+    "post_id": 18,
+    "date": "29-04-2021",
+    "product": {
+      "product_id": 1,
+      "product_name": "Silla Gamer",
+      "type": "Gamer",
+      "brand": "Racer",
+      "color": "Red & Black",
+      "notes": "Special Edition"
+    },
+    "category": "100",
+    "price": 15000.50,
+    "has_promo": true,
+    "discount": 0.25
+    }
+  ]
+}
+
+~~~
+
+Responsable: Daniela Villamizar
+***
 ## Colección de Postman 
 
 Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/be_java_hisp_w20_g6/blob/main/src/main/resources/static/User_test.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**

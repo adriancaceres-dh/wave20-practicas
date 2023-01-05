@@ -1,10 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.service.Implement;
 
 import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.dto.response.*;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.FollowerExistsException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.FollowerNotFoundException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.InvalidParamException;
-import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.exception.*;
 import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g6_villamizarmendoza.service.Interface.IUserService;
@@ -23,6 +20,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean followUser(int user_id, int userToFollow_id) {
+        if(user_id == userToFollow_id) throw new SameUserException("El usuario no se puede seguir a si mismo.");
         UserModel userToFollow = getUserById(userToFollow_id);
         UserModel user = getUserById(user_id);
 
