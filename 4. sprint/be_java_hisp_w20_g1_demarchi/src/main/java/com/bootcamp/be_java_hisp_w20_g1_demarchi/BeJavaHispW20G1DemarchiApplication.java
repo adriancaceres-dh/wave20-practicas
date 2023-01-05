@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class BeJavaHispW20G1ApplicationDemarchi {
+public class BeJavaHispW20G1DemarchiApplication {
 
     @Bean
     public ModelMapper modelMapper() {
@@ -15,7 +15,7 @@ public class BeJavaHispW20G1ApplicationDemarchi {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(BeJavaHispW20G1ApplicationDemarchi.class, args);
+        SpringApplication.run(BeJavaHispW20G1DemarchiApplication.class, args);
     }
 
 }
