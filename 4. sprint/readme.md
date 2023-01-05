@@ -4,7 +4,7 @@ Mercado Libre sigue creciendo y tiene como objetivo empezar a implementar una se
 
 # Rama principal
 Se utilizó como repositorio principal la rama de de John Edward Garcia Saavedra **EdwardGs1702**
-## proyecto realizado por:
+## Proyecto realizado por:
 - John Edward Garcia Saavedra **github: EdwardGs1702**
 - Juan Camilo Arango Valle **github: jcamiloarangov**
 - Julian Atehortua Zapata **github: juatehortua**
@@ -15,7 +15,7 @@ Se utilizó como repositorio principal la rama de de John Edward Garcia Saavedra
 
 
 # Requisitos para el correcto funcionamiento del proyecto
-Este proyecto fue realizado mediante **Spring initializr** con la siguiente configuracion:
+Este proyecto fue realizado mediante **Spring initializr** con la siguiente configuration:
 - Java version: 11
 - Maven
 - Spring Boot: 2.7.7
@@ -30,11 +30,11 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 
 - Se llegó a un consenso grupal en el cual se decidió que si bien un post tiene un id único, diferentes post pueden tener el mismo producto con el mismo Id de producto.
 
-- No se cuenta con repositorios estaticos, estos son creados con codigo "quemado" o hardcoded code como datos iniciales.
+- No se cuenta con repositorios estáticos, estos son creados con código "quemado" o hardcoded code como datos iniciales.
 
 - Los datos ingresados por `@pathVariables` siempre llegarán con el tipado solicitado por lo que no se tendrá en cuenta errores de este tipo en el controlador.
 
-- Al no contar con un repositorio de datos estatico se crearon datos de prueba dentro de los repositorios del proyecto, por lo que los ids del 1-4 fueron asignados a usuarios, mientras que los ids del 5-10 fueron asignados a vendedores.
+- Al no contar con un repositorio de datos estáticos, se crearon datos de prueba dentro de los repositorios del proyecto, por lo que los ids del 1-4 fueron asignados a usuarios, mientras que los ids del 5-10 fueron asignados a vendedores.
 - Los sellers solo pueden tener seguidores más no pueden seguir otros sellers.
 
 
@@ -54,6 +54,6 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 | US0011     |  GET   |                           /products/promo-post/count?user_id={userId}                            |                        Mostrar el número de publicaciones con promo de un determinado usuario                         |         Luis Francisco López |
 | US0012     |  GET   |                            /products/promo-post/list?user_id={userId}                            |                             Mostrar las publicaciones con promo de un determinado usuario                             |         Luis Francisco López |
 
-# Consideraciones especificas
-- SU0002 se crearon datos de prueba en los cuales el seller con id 5 es seguido por el user con id 1, el seller con id 6 es seguido por el user con id 1, el seller 7 es seguido por el user 3, el seller 8 no tiene seguidores, el seller 9 es seguido por los usuarios con id 1, 2 y 3 y el seller 10 es seguido por el usuario 2
-- Los posts con promo se toman en cuenta y son formateados de la forma correcta al momento de listar los posts de los vendedores a los que sigue un usuario, es decir, el endpoint de la historia US0006.
+# Consideraciones específicas
+- Se crearon datos de prueba en los cuales el seller con id 5 es seguido por el user con id 1, el seller con id 6 es seguido por el user con id 1, el seller 7 es seguido por el user 3, el seller 8 no tiene seguidores, el seller 9 es seguido por los usuarios con id 1, 2 y 3 y el seller 10 es seguido por el usuario 2
+- Los posts con promo se toman en cuenta y son formateados de la forma correcta al momento de listar los posts de los vendedores a los que sigue un usuario, es decir, los endpoints de las historias US0006 y US0009.
