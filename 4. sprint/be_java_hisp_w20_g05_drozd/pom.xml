@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bootcamp.java.w20</groupId>
-    <artifactId>be_java_hisp_w20_g05</artifactId>
+    <artifactId>be_java_hisp_w20_g05_drozd</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>be_java_hisp_w20_g05</name>
     <description>be_java_hisp_w20_g05</description>
