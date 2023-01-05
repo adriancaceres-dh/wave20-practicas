@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "77fe473c-6a02-4d83-bea6-86ccbeabd656",
+		"_postman_id": "052c0486-bdcc-464e-9833-0e58538f793a",
 		"name": "SPRINT-1 API-USER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25153453"
@@ -339,7 +339,10 @@
 			"name": "US 0010 - Create-Post-WithPromo Copy",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -347,7 +350,10 @@
 			"name": "US 0011 - User Products-Promo-count",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -355,7 +361,10 @@
 			"name": "US 0012 - User-ProductsWithPromo",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		}
