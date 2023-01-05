@@ -35,7 +35,7 @@ public class PostRepository implements IPostRepository{
     }
     public Post getById(int userId) {
         return posts.stream().filter(u -> u.getId()== userId)
-                .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("Elemento no encontrado")));
+                .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("Post no encontrado")));
     }
 
     @Override
@@ -53,6 +53,16 @@ public class PostRepository implements IPostRepository{
     public Set<Post> filterByUserId(int userId) {
         return posts.stream().filter(p -> p.getUserId()== userId)
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public boolean deletePost(int postId) {
+        if(posts.stream().filter(p -> p.getId() == postId).findFirst().isEmpty()){
+            throw new IdNotFoundException(new MessageExceptionDTO("No se encontró el post."));
+        } else {
+            Post post = posts.stream().filter(p -> p.getId() == postId).findFirst().get();
+            return posts.remove(post);
+        }
     }
 
     private static Set<Post> loadDataBase() {

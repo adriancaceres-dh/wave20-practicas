@@ -18,6 +18,8 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -119,11 +121,11 @@ public class PostService implements IPostService{
     // Crea un nuevo post con descuento valiendose del metodo para crear post normales y seteando has_promo y discount
     // por lo que no es necesario chequear por excepciones ya que están contempladas en el otro metodo.
     // Me parecio una buena forma de implementarlo para reusar codigo y al mismo tiempo respetar el desarollo grupal.
-    public Post newPromoPost(PromoPostRequestDTO promoPostRequestDTO) {
+    public ResponseEntity<String> newPromoPost(PromoPostRequestDTO promoPostRequestDTO) {
         Post newPost = newPost(promoPostRequestDTO);
         newPost.setPromo(promoPostRequestDTO.isPromo());
         newPost.setDiscount(promoPostRequestDTO.getDiscount());
-        return newPost;
+        return new ResponseEntity("todo OK",HttpStatus.OK);
     }
 
     // OMG, here we go
@@ -175,4 +177,25 @@ public class PostService implements IPostService{
         return new PromoPostCountDTO(user.getId(),user.getUserName(),(int)(postRepository.getAll().stream().filter(post -> post.getUserId() == userId && post.isPromo()).count()));
     }
 
+    // Convierte un post con descuento a un post sin descuento
+    // US 0013
+    public ResponseEntity<String> convertPromoPost (int postId) {
+        Post post = postRepository.getById(postId); // No hace falta chequear que el post exista
+        // Chequeamos que sea un post con promo
+        if (post.isPromo()){
+            post.setDiscount(0);
+            post.setPromo(false);
+            return new ResponseEntity<>("Se eliminó el descuento del post.", HttpStatus.OK);
+        } else return new ResponseEntity<>("No es un post con descuento.", HttpStatus.BAD_REQUEST);
+    }
+
+    //Elimina un post
+    // US 0014
+    public ResponseEntity<String> deletePost (int postId) {
+        if (postRepository.deletePost(postId)){
+            return new ResponseEntity<>("Se eliminó el post.", HttpStatus.OK);
+        } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST); //No estoy seguro que alguna vez se devuelva este response entity
+    }
 }
+
+

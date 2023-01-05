@@ -202,7 +202,7 @@ En segunda instancia, agradecer a nuestro Scrum Master, Adrián Cáceres, así c
 
 # Desarollo incremental individual
 
-Se añadieron al proyecto respetando el desarrollo grupal 3 nuevos endpoints.
+Los US 0010 y US 0011 son desarrollos individual que se agregaron respetando la base del desarrollo grupal.
 
 #### US 0010: Llevar a cabo la publicación de un nuevo producto en promoción.
 
@@ -238,6 +238,11 @@ Se añadieron al proyecto respetando el desarrollo grupal 3 nuevos endpoints.
 | `userId`      | `int` | Número que identifica a cada usuario |
 
 
+# Desarollos extras
+
+Se añadieron al proyecto tres nuevos endpoints. El requerimiento bonus de ejemplo US 0012 y dos adicionales US 0013 y US 0014.
+
+
 #### US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
 
 ```http
@@ -247,6 +252,27 @@ Se añadieron al proyecto respetando el desarrollo grupal 3 nuevos endpoints.
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `userId`      | `int` | Número que identifica a cada usuario |
+
+
+#### US 0013: Convertir un publicación con descuento en uno normal (setea discount en 0 y has_promo en false)
+
+```http
+  POST /products/promo-post/convert?postId={postId}
+```
+
+| Parameter | Type     | Description                              |
+|:----------| :------- |:-----------------------------------------|
+| `postId`  | `int` | Número que identifica a cada publicaciòn |
+
+#### US 0014: Elimina una publicación
+
+```http
+  DELETE /products/post/delete?postId={postId}
+```
+
+| Parameter | Type     | Description                              |
+|:----------| :------- |:-----------------------------------------|
+| `postId`  | `int` | Número que identifica a cada publicaciòn |
 
 
 

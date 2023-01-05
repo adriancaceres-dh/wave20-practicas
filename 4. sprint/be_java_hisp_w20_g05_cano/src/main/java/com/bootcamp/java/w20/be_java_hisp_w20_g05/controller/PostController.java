@@ -43,8 +43,7 @@ public class PostController {
     // Crea un nuevo post con descuento
     @PostMapping("/promo-post")
     public ResponseEntity newPromoPost(@RequestBody PromoPostRequestDTO promoPostRequestDTO) {
-        postService.newPromoPost(promoPostRequestDTO);
-        return new ResponseEntity("todo OK",HttpStatus.OK);
+        return postService.newPromoPost(promoPostRequestDTO);
     }
 
     // Devuelve la cuenta de post con descuento de un user
@@ -57,6 +56,16 @@ public class PostController {
     @GetMapping("promo-post/list")
     public ResponseEntity<PromoPostListResponse> getPromoPostList(@RequestParam int user_id){
         return new ResponseEntity<>(postService.getPromoPostList(user_id), HttpStatus.OK);
+    }
+
+    @PostMapping("promo-post/convert")
+    public ResponseEntity<String> convertPromoPost (@RequestParam int postId){
+        return postService.convertPromoPost(postId);
+    }
+
+    @DeleteMapping("post/delete")
+    public ResponseEntity<String> deletePost (@RequestParam int postId){
+        return postService.deletePost(postId);
     }
 
 }

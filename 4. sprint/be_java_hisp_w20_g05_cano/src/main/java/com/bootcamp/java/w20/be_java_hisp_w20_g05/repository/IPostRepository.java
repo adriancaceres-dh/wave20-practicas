@@ -6,4 +6,5 @@ import java.util.Set;
 
 public interface IPostRepository extends IRepository<Post> {
     Set<Post> filterByUserId(int userId);
+    public boolean deletePost (int postId);
 }
