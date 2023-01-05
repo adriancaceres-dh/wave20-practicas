@@ -358,7 +358,7 @@ _Dar de alta una nueva publicación_
 <td>Response / Dto</td>
 </tr>
 <tr>
-<td><strong>200</strong></td>
+<td><strong>201</strong></td>
 <td>
 <pre><code class="language-plaintext">{
 "date": "29-04-2021",
@@ -648,7 +648,7 @@ _Llevar a cabo la publicación de un nuevo producto en promoción_
 <td>Response</td>
 </tr>
 <tr>
-<td>200</td>
+<td>201</td>
 <td>
 <div>
 <div>{</div>
