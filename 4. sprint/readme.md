@@ -7,7 +7,7 @@
 
 2 - **PROYECTO INDIVIDUAL** -> ./Parte-Individual/be_java_hisp_w20_g05
 
-* Consta de la US10 y US11.
+* Consta de la US10 y US11 (NO BONUS).
 * 
      > Link con pruebas de POSTMAN:
     [Click aqui.](Individual.postman_collection.json)
