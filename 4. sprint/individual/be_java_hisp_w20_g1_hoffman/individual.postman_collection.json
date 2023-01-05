@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "72fad87d-54df-428e-b02d-7b4617dce65b",
+		"name": "Desarrollo individual",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25048218"
+	},
+	"item": [
+		{
+			"name": "US 10",
+			"item": [
+				{
+					"name": "OK",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 10,\n    \"date\": \"01-02-2023\",\n    \"product\": {       \n        \"product_id\": 90,\n        \"product_name\": \"pru\",\n        \"type\": \"Plastic\",\n        \"brand\": \"Lang and Sons\",\n        \"color\": \"magenta\",\n        \"notes\": \"Est cum aut quidem quo illo.\"\n\n    },\n    \"category\": 4,\n    \"price\": 350.0,\n    \"has_promo\": \"true\",\n    \"discount\": 30\n\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 150,\n    \"date\": \"01-02-2023\",\n    \"product\": {       \n        \"product_id\": 90,\n        \"product_name\": \"pru\",\n        \"type\": \"Plastic\",\n        \"brand\": \"Lang and Sons\",\n        \"color\": \"magenta\",\n        \"notes\": \"Est cum aut quidem quo illo.\"\n\n    },\n    \"category\": 4,\n    \"price\": 350.0,\n    \"has_promo\": \"true\",\n    \"discount\": 30\n\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 11",
+			"item": [
+				{
+					"name": "OK",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/count?user_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"count"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/count?user_id=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"count"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 12 (Bonus)",
+			"item": [
+				{
+					"name": "OK",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/list?user_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OK ORDER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/list?user_id=1&order=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OK ORDER DESC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/list?user_id=1&order=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PROPUESTA DE MEJORA",
+			"item": [
+				{
+					"name": "OK",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"user_id\": 1,\n        \"post_id\": 2,\n        \"date\": \"10-02-2022\",\n        \"product\": {\n            \"product_id\": 1,\n            \"product_name\": \"Prueba modifico nombre\",\n            \"type\": \"Steel\",\n            \"brand\": \"Pagac, Lemke and Langosh\",\n            \"color\": \"green\",\n            \"notes\": \"Labore explicabo accusamus a.\"\n        },\n        \"category\": 5,\n        \"price\": 14.0,\n        \"has_promo\": true,\n        \"discount\": 0.1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/post/modify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"post",
+								"modify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"user_id\": 100,\n        \"post_id\": 2,\n        \"date\": \"10-02-2022\",\n        \"product\": {\n            \"product_id\": 5,\n            \"product_name\": \"Prueba modifico nombre\",\n            \"type\": \"tipo nuevo\",\n            \"brand\": \"brand nueva\",\n            \"color\": \"color nuevo\",\n            \"notes\": \"Labore explicabo accusamus a.\"\n        },\n        \"category\": 7,\n        \"price\": 36.0,\n        \"has_promo\": true,\n        \"discount\": 0.25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/post/modify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"post",
+								"modify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"user_id\": 1,\n        \"post_id\": 2,\n        \"date\": \"10-02-2022\",\n        \"product\": {\n            \"product_id\": 100,\n            \"product_name\": \"Prueba modifico nombre\",\n            \"type\": \"tipo nuevo\",\n            \"brand\": \"brand nueva\",\n            \"color\": \"color nuevo\",\n            \"notes\": \"Labore explicabo accusamus a.\"\n        },\n        \"category\": 7,\n        \"price\": 36.0,\n        \"has_promo\": true,\n        \"discount\": 0.25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/post/modify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"post",
+								"modify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
