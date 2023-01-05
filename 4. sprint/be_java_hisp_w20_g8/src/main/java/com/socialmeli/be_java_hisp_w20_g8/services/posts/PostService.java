@@ -76,7 +76,6 @@ public class PostService implements IPostService {
         postId = postRepository.createPost(post, postDTO);
         return seller.getPost().add(postId);
 
-
     }
 
     @Override
