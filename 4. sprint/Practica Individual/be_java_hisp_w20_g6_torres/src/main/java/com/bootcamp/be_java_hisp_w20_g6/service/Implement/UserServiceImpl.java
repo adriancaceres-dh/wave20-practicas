@@ -4,10 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowedListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.UserResponseDto;
-import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerExistsException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerNotFoundException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6.exception.*;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
@@ -26,6 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean followUser(int user_id, int userToFollow_id) {
+        if(user_id == userToFollow_id) throw new SameUserException("El usuario no se puede seguir a si mismo.");
         UserModel userToFollow = getUserById(userToFollow_id);
         UserModel user = getUserById(user_id);
 
