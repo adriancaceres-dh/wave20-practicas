@@ -81,11 +81,12 @@ public class Controller {
 
     @PostMapping("/products/promo-post")
     public ResponseEntity<String> createProductPromo(@RequestBody ProductPromoDto productPromoDto) {
+        System.out.println("producto agregado");
         return new ResponseEntity<>(postService.createPostProductPromo(productPromoDto), HttpStatus.OK);
     }
 
     @GetMapping("/products/promo-post/count")
-    public ResponseEntity<UserProductPromoCountDto> countProductsPromo(@RequestParam int userId) {
+    public ResponseEntity<UserProductPromoCountDto> countProductPromo(@RequestParam(name="user_id") int userId) {
         return new ResponseEntity<>(postService.countProductPromo(userId), HttpStatus.OK);
     }
 }
