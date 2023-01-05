@@ -14,7 +14,7 @@ Desarrollo de una API REST para mejorar la experiencia entre compradores y vende
 Los compradores podran seguir a sus vendedores favoritos y enterarse de sus posteos de nuevos productos.
 
 Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en equipo, recibiendo recomendaciones y feedback constante.
-Los requisitos 10, 11 y 12 se trabajaron de forma individual.
+Los requisitos 10, 11, 12 y el Bonus se trabajaron de forma individual.
 
 ## Decisiones funcionales: 
 *     Req 1:
