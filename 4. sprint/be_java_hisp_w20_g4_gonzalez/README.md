@@ -18,6 +18,8 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en equipo, recibiendo recomendaciones y feedback constante.
 Los requisitos 10, 11 y 12 se trabajaron de forma individual.
 
+Para el USS 12 se implementó un endpoint para filtrar publicaciones por precio. Los parámetros `minPrice` y `maxPrice` son opcionales y pueden usarse en simultáneo o individualmente. Incluso podrían no incluirse y el endpoint simplemente retornará el listado de publicaciones completo (sin filtrar)
+
 ## Decisiones funcionales:
 * Req 1
   * Un usuario no se puede seguir a sí mismo.
@@ -97,20 +99,77 @@ GET /users/{UserID}/followed/list?order=name_asc
 GET /users/{UserID}/followed/list?order=name_desc
 ```
 
-#### USS 009:
+#### USS 09:
 ```http
 GET /products/followed/{userId}/list?order=date_asc
 GET /products/followed/{userId}/list?order=date_desc
 ```
 
-#### USS 0010:
+#### USS 10:
 ```http
 POST /products/promo-post
 ```
 
-#### USS 0011:
+#### USS 11:
 ```http
 GET /products/promo-post/count?user_id={userId}
+```
+
+#### USS 12 (BONUS):
+```http
+GET /products/posts
+```
+
+```http
+GET /products/posts?min={minPrice}&max={maxPrice}
+GET /products/posts?min={minPrice}
+GET /products/posts?max={maxPrice}
+```
+
+Response
+```json
+[
+  {
+    "user_id": 2,
+    "post_id": 1,
+    "date": "31-12-2022",
+    "product": {
+      "product_id": 1,
+      "product_name": "producto1",
+      "type": "tipo",
+      "brand": "adidas",
+      "color": "yellow",
+      "notes": "nota"
+    },
+    "category": {
+      "id": 10,
+      "name": "football"
+    },
+    "price": 15.55,
+    "has_promo": false,
+    "discount": 15.0
+  },
+  {
+    "user_id": 2,
+    "post_id": 2,
+    "date": "26-12-2022",
+    "product": {
+      "product_id": 2,
+      "product_name": "producto2",
+      "type": "tipo2",
+      "brand": "nike",
+      "color": "red",
+      "notes": "nota2"
+    },
+    "category": {
+      "id": 20,
+      "name": "basketball"
+    },
+    "price": 16.55,
+    "has_promo": false,
+    "discount": 10.0
+  }
+]
 ```
 
 Diagrama UML sprint 1
