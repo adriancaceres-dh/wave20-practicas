@@ -74,6 +74,10 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Este método obtiene todas las publicaciones
+     * @return List<Publicaciones> - Devuelve todas las publicaciones
+     */
     @Override
     public List<Publication> getPublications(){
         return publications;

@@ -1,11 +1,11 @@
 [
   {
-      "product_id": 1,
-      "product_name": "Silla Gamer",
-      "type": "Gamer",
-      "brand": "Racer",
-      "color": "Red & Black",
-      "notes": "Special Edition"
+    "product_id": 1,
+    "product_name": "producto1",
+    "color": "yellow",
+    "notes": "nota",
+    "type": "tipo",
+    "brand": "adidas"
   },
   {
     "product_id": 2,
