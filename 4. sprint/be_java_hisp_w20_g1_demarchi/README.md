@@ -74,9 +74,9 @@ Responsables de cada User Story
 | **US 0008**  | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
 | **US 0009**  | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
 | **US 0010*** | Esteban Jose Demarchi                                                        |
-| **US 0011*** |Esteban Jose Demarchi|
-| **US 0012*** |Esteban Jose Demarchi|
-| **US 0013*** |Esteban Jose Demarchi|
+| **US 0011*** | Esteban Jose Demarchi                                                        |
+| **US 0012*** | Esteban Jose Demarchi                                                        |
+| **US 0013*** | Esteban Jose Demarchi                                                        |
 
 (*) Entregas individuales
 
@@ -86,8 +86,8 @@ Responsables de cada User Story
 _Poder realizar la acción de “Follow” (seguir) a un determinado vendedor_
 
 
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
+| Method   | Sign                                    | Ejemplo               |
+|----------|-----------------------------------------|-----------------------|
 | **POST** | /users/{userId}/follow/{userIdToFollow} | /users/123/follow/234 |
 
 
@@ -141,18 +141,18 @@ _Poder realizar la acción de “Follow” (seguir) a un determinado vendedor_
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica al usuario actual |
-| **userIdToFollow** | int | Número que identifica al usuario actual |
+| Parámetros         | Tipo | Descripción / Ejemplo                   |
+|--------------------|------|-----------------------------------------|
+| **userId**         | int  | Número que identifica al usuario actual |
+| **userIdToFollow** | int  | Número que identifica al usuario actual |
 
 ----
 **US 0002**
 
 _Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor_
 
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
+| Method  | Sign                            | Ejemplo                     |
+|---------|---------------------------------|-----------------------------|
 | **GET** | /users/{userId}/followers/count | /users/234/followers/count/ |
 
 <table>
@@ -197,17 +197,17 @@ _Obtener el resultado de la cantidad de usuarios que siguen a un determinado ve
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
+| Parámetros | Tipo | Descripción / Ejemplo                |
+|------------|------|--------------------------------------|
+| **userId** | int  | Número que identifica a cada usuario |
 
 ----
 **US 0003**
 
 _Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)_
 
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
+| Method  | Sign                           | Ejemplo                        |
+|---------|--------------------------------|--------------------------------|
 | **GET** | /users/{userId}/followers/list | /users/{userId}/followers/list |
 
 <table>
@@ -255,17 +255,17 @@ _Obtener un listado de todos los usuarios que siguen a un determinado vendedor 
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
+| Parámetros | Tipo | Descripción / Ejemplo                |
+|------------|------|--------------------------------------|
+| **userId** | int  | Número que identifica a cada usuario |
 
 ----
 **US 0004**
 
 _Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)_
 
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
+| Method  | Sign                          | Ejemplo                   |
+|---------|-------------------------------|---------------------------|
 | **GET** | /users/{userId}/followed/list | /users/4698/followed/list |
 
 <table>
@@ -312,17 +312,17 @@ _Obtener un listado de todos los vendedores a los cuales sigue un determinado us
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
+| Parámetros | Tipo | Descripción / Ejemplo                |
+|------------|------|--------------------------------------|
+| **userId** | int  | Número que identifica a cada usuario |
 
 ----
 **US 0005**
 
 _Dar de alta una nueva publicación_
 
-| Method | Sign |
-| --- | --- |
+| Method   | Sign           |
+|----------|----------------|
 | **POST** | /products/post |
 
 <table>
@@ -409,22 +409,22 @@ _Dar de alta una nueva publicación_
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **user\_Id** | int | Número que identifica a cada usuario |
-| **date** | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
-| **product\_id** | int | Número identificatorio de un producto asociado a una publicación |
-| **product\_name** | String | Cadena de caracteres que representa el nombre de un producto |
-| **type** | String | Cadena de caracteres que representa el tipo de un producto |
-| **brand** | String | Cadena de caracteres que representa la marca de un producto |
+| Parámetros        | Tipo      | Descripción / Ejemplo                                            |
+|-------------------|-----------|------------------------------------------------------------------|
+| **user\_Id**      | int       | Número que identifica a cada usuario                             |
+| **date**          | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                    |
+| **product\_id**   | int       | Número identificatorio de un producto asociado a una publicación |
+| **product\_name** | String    | Cadena de caracteres que representa el nombre de un producto     |
+| **type**          | String    | Cadena de caracteres que representa el tipo de un producto       |
+| **brand**         | String    | Cadena de caracteres que representa la marca de un producto      |
 
 ----
 **US 0006**
 
 _Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero)._
 
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
+| Method  | Sign                             | Ejemplo                      |
+|---------|----------------------------------|------------------------------|
 | **GET** | /products/followed/{userId}/list | /products/followed/4698/list |
 
 <table>
@@ -473,17 +473,17 @@ _Obtener un listado de las publicaciones realizadas por los vendedores que un us
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
+| Parámetros | Tipo | Descripción / Ejemplo                |
+|------------|------|--------------------------------------|
+| **userId** | int  | Número que identifica a cada usuario |
 
 ----
 **US 0007**
 
 _Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor._
 
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
+| Method   | Sign                                       | Ejemplo                 |
+|----------|--------------------------------------------|-------------------------|
 | **POST** | /users/{userId}/unfollow/{userIdToUnfollow | /users/234/unfollow/123 |
 
 <table>
@@ -522,10 +522,10 @@ _Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado 
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica al usuario actual |
-| **userIdToUnfollow** | int | Número que identifica al usuario a dejar de seguir |
+| Parámetros           | Tipo | Descripción / Ejemplo                              |
+|----------------------|------|----------------------------------------------------|
+| **userId**           | int  | Número que identifica al usuario actual            |
+| **userIdToUnfollow** | int  | Número que identifica al usuario a dejar de seguir |
 
 ----
 **US 0008**
@@ -552,9 +552,9 @@ _Ordenamiento alfabético ascendente y descendente_
 
 Filtros / Parámetros
 
-| order | Description |
-| --- | --- |
-| **name\_asc** | Alfabético ascendente. |
+| order          | Description             |
+|----------------|-------------------------|
+| **name\_asc**  | Alfabético ascendente.  |
 | **name\_desc** | Alfabético descendente. |
 
 **Nota:** Este ordenamiento aplica solo para US-003 y US-004.
@@ -582,9 +582,9 @@ _Ordenamiento por fecha ascendente y descendente_
 
 Filtros / Parámetros
 
-| order | Description |
-| --- | --- |
-| **date\_asc** | Fecha ascendente (de más antigua a más nueva) |
+| order          | Description                                    |
+|----------------|------------------------------------------------|
+| **date\_asc**  | Fecha ascendente (de más antigua a más nueva)  |
 | **date\_desc** | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006
@@ -594,9 +594,9 @@ Filtros / Parámetros
 
 _Llevar a cabo la publicación de un nuevo producto en promoción_
 
-| Method   | Sign |
-|----------| --- |
-| **POST** | /products/promo-post|
+| Method   | Sign                 |
+|----------|----------------------|
+| **POST** | /products/promo-post |
 
 <table>
 <tbody>
@@ -638,8 +638,8 @@ _Llevar a cabo la publicación de un nuevo producto en promoción_
 | **notes**         | String    | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
 | **category**      | int       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
 | **price**         | double    | Precio del producto                                                                                                      |
-| **has_promo**     | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                              |
-| **discount**      | double    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.                                                              |
+| **has_promo**     | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                 |
+| **discount**      | double    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.                                      |
 
 <table>
 <tbody>
@@ -703,16 +703,16 @@ _Llevar a cabo la publicación de un nuevo producto en promoción_
 
 _Obtener la cantidad de productos en promoción de un determinado vendedor_
 
-| Method | Sign | Ejemplo                              |
-| --- | --- |--------------------------------------|
+| Method  | Sign                                        | Ejemplo                              |
+|---------|---------------------------------------------|--------------------------------------|
 | **GET** | /products/promo-post/count?user_id={userId} | /products/promo-post/count?user_id=1 |
 
 Filtros / Parámetros
 
-| Parámetros  | Tipo   | Descripción / Ejemplo |
-|-------------|--------| --- |
-| **user_id** | int    | Número que identifica a cada usuario |
-| **user_name** | String | Cadena de caracteres que representa el nombre del usuario |
+| Parámetros               | Tipo   | Descripción / Ejemplo                                                  |
+|--------------------------|--------|------------------------------------------------------------------------|
+| **user_id**              | int    | Número que identifica a cada usuario                                   |
+| **user_name**            | String | Cadena de caracteres que representa el nombre del usuario              |
 | **promo_products_count** | int    | Cantidad numérica de productos en promoción de un determinado usuario. |
 
 <table>
@@ -776,28 +776,28 @@ Filtros / Parámetros
 
 _Obtener un listado de todos los productos en promoción de un determinado vendedor_
 
-| Method | Sign | Ejemplo                             |
-| --- | --- |-------------------------------------|
+| Method  | Sign                                       | Ejemplo                             |
+|---------|--------------------------------------------|-------------------------------------|
 | **GET** | /products/promo-post/list?user_id={userId} | /products/promo-post/list?user_id=1 |
 
 Filtros / Parámetros
 
-| Parámetros  | Tipo      | Descripción / Ejemplo |
-|-------------|-----------| --- |
-| **user_id** | int       | Número que identifica a cada usuario |
-| **user_name** | String    | Cadena de caracteres que representa el nombre del usuario |
-| **post_id** | int       | Número identificatorio de cada una de las publicaciones |
-| **date** | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
-| **product_id** | int       | Número identificatorio de un producto asociado a una publicación |
-| **product_name** | String    | Cadena de caracteres que representa el nombre de un producto |
-| **type** | String    | Cadena de caracteres que representa el tipo de un producto |
-| **brand** | String    | Cadena de caracteres que representa la marca de un producto |
-| **color** | String    | Cadena de caracteres que representa el color de un producto |
-| **notes** | String    | Cadena de caracteres para colocar notas u observaciones de un producto |
-| **category** | int       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
-| **price** | double    | Precio del producto |
-| **has_promo** | boolean   | Campo true o false para determinar si un producto está en promoción o no |
-| **discount** | double    | En caso de que un producto estuviese en promoción, establece el monto de descuento. |
+| Parámetros       | Tipo      | Descripción / Ejemplo                                                                                                    |
+|------------------|-----------|--------------------------------------------------------------------------------------------------------------------------|
+| **user_id**      | int       | Número que identifica a cada usuario                                                                                     |
+| **user_name**    | String    | Cadena de caracteres que representa el nombre del usuario                                                                |
+| **post_id**      | int       | Número identificatorio de cada una de las publicaciones                                                                  |
+| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **product_id**   | int       | Número identificatorio de un producto asociado a una publicación                                                         |
+| **product_name** | String    | Cadena de caracteres que representa el nombre de un producto                                                             |
+| **type**         | String    | Cadena de caracteres que representa el tipo de un producto                                                               |
+| **brand**        | String    | Cadena de caracteres que representa la marca de un producto                                                              |
+| **color**        | String    | Cadena de caracteres que representa el color de un producto                                                              |
+| **notes**        | String    | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| **category**     | int       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**        | double    | Precio del producto                                                                                                      |
+| **has_promo**    | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                 |
+| **discount**     | double    | En caso de que un producto estuviese en promoción, establece el monto de descuento.                                      |
 
 <table>
 <tbody>
