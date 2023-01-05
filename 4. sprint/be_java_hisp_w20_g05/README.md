@@ -7,7 +7,7 @@
 - Iván Cano
 - Nicolás Chiesa
 - José Drozd
-- Andrea Ruiz
+- Andrea Ruiz Zorrilla
 - Santiago Valdez
 
 ## Breve Descripción
@@ -31,9 +31,7 @@ Se plantea creación de una API Rest que permita:
 5. Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
 6. Dar de alta una nueva publicación.
 7. Obtener un listado de las publicaciones realizadas en las últimas dos semanas, por los vendedores que un usuario sigue (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
-8. (Individual) Agregar un producto con descuento
-9. (individual) Retornar la cantidad de productos con descuento de un determinado usuario.
-10. (Individual) Retornar los posteos de un usuario con descuentos.
+
 ## Metodología de trabajo
 
 El trabajo consistió de 2 estapas claramente diferentes:
@@ -64,9 +62,137 @@ Una vez acordado el modelo, se implementó el scaffolding del proyecto, el cual 
 
 Se crearon clases de Usuario y Servicio para las capas de controlador, servicio y repositorio, así como las clases de Usuario, Publicación y Producto. A medida que se fueron implementando las API solicitadas se fueron creando los DTO necesarios para su correcto funcionamiento.
 
+### Responsables de cada User Story
+
+- US 001 - Ivan
+- US 002 - Jose
+- US 003 - Santiago
+- US 004 - Nicolas
+- US 005 - Luciano
+- US 006 - Andrea
+- US 007 - Ivan
+- US 008 - Jose
+- US 009 - Gonzalo
+
 ### Pruebas
 
 Cada miembro del equipo fue responsable por la implementación de una US, y por las pruebas de funcionamiento necesarias, para lo cual se valió de la herramienta *Postman*. La colección de pruebas realizadas se muestra en el [siguiente archivo.](postman_collection.json)
+
+
+## Detalles de los endpoints
+
+#### US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
+
+```http
+  POST /users/{userId}/follow/{userIdToFollow}
+```
+
+| Parámetro | Tipo     | Descripción/Ejemplo               |
+| :-------- | :------- | :------------------------- |
+| `userId` | `int` | Número que identifica al usuario actual|
+| `userIdToFollow` | `int` | Número que identifica al usuario a seguir|
+
+#### US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
+
+```http
+  GET /users/{userId}/followers/count
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+
+#### US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor
+
+```http
+  GET /users/{userId}/followers/list
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+
+#### US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario
+
+```http
+  GET /users/{userId}/followed/list
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+
+
+
+#### US 0005: Dar de alta una nueva publicación
+
+```http
+  POST /products/post
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+| `date`      | `LocalDate` | Fecha de la publicación en formato dd-MM-yyyy |
+| `product_id`      | `int` | Número identificatorio de un producto asociado a una publicación |
+| `product_name`      | `String` | Cadena de caracteres que representa el nombre de un producto |
+| `type`      | `String` | Cadena de caracteres que representa el tipo de un producto |
+| `brand`      | `String` | Cadena de caracteres que representa la marca de un producto |
+| `color`      | `String` | Cadena de caracteres que representa el color de un producto |
+| `notes`      | `String` | Cadena de caracteres para colocar notas u observaciones de un producto |
+| `category`      | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| `price`      | `double` | Precio del producto |
+
+#### US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas
+
+```http
+  GET /products/followed/{userId}/list
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId`      | `int` | Número que identifica a cada usuario |
+
+#### US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
+
+```http
+  POST /users/{userId}/follow/{userIdToFollow}
+```
+
+| Parámetro | Tipo     | Descripción/Ejemplo               |
+| :-------- | :------- | :------------------------- |
+| `userId` | `int` | Número que identifica al usuario actual|
+| `userIdToFollow` | `int` | Número que identifica al usuario a seguir|
+
+#### US 0008: Ordenamiento alfabético ascendente y descendente
+
+```http
+  GET /users/{userId}/followers/list?order={orderIndicator}
+```
+```http
+  GET /users/{userId}/followed/list?order={orderIndicator}
+```
+
+| Parámetro | Tipo     | Descripción/Ejemplo               |
+| :-------- | :------- | :------------------------- |
+| `userId` | `int` | Número que identifica al usuario actual|
+| `orderIndicator` | `int` | Acepta "name_asc" para indicar orden alfabético ascendente y "name_desc" para indicar orden alfabético descendente.|
+
+*NOTA: Este ordenamiento aplica solo para US-003 y US-004.*
+
+
+#### US 0009: Ordenamiento por fecha ascendente y descendente
+
+```http
+  GET /products/followed/{userId}/list?order={orderIndicator}
+```
+
+| Parámetro | Tipo     | Descripción/Ejemplo               |
+| :-------- | :------- | :------------------------- |
+| `userId` | `int` | Número que identifica al usuario actual|
+| `orderIndicator` | `int` | Acepta "date_asc" para indicar orden alfabético ascendente y "date_desc" para indicar orden alfabético descendente.|
+
+*NOTA: Este ordenamiento aplica solo para la US-006.*
 
 ### Agradecimientos
 
