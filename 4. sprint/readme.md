@@ -50,8 +50,7 @@ Los requisitos 10, 11 y 12 se trabajaron de forma individual.
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
 
-### [Endpoint]((https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf)
-): Responsable Emiliano Asprea
+### [Endpoints](https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf): Responsable Emiliano Asprea
 
 US 001: POST
 - /users/{userId}/follow/{userIdToFollow}
