@@ -92,6 +92,14 @@ USS 0011: GET
 US 0012: GET
 - /products/promo-post/list?user_id={userId}
 
+### [Endpoints individuales](https://github.com/adriancaceres-dh/wave20-practicas/files/10354890/Documentacion.tecnica.bonus.pdf)
+
+US 0013: POST
+- /products/post_product
+
+US 0014: GET
+- /products/list
+
 
 Diagrama UML sprint 1
 <img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
