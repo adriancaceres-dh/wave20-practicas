@@ -24,8 +24,9 @@ public class ConfigException {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> userNotFoundException(UserNotFoundException exception) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    public ResponseEntity<MessageExceptionDTO> userNotFoundException(UserNotFoundException exception, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new MessageExceptionDTO(exception.getMessage(), HttpStatus.NOT_FOUND.value(), request.getRequestURI(), LocalDateTime.now()));
     }
 
     @ExceptionHandler(PostCreationException.class)
