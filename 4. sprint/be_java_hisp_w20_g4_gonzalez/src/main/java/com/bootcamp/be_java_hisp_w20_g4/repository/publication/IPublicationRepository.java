@@ -13,6 +13,7 @@ public interface IPublicationRepository {
     List<Publication> getPublicationLastNDays(List<Integer> followedIds, int nDays);
     List<Publication> getPromoPublications(int userId);
 
-    public List<Publication> getPublicationsByPrice(double min, double max);
+    List<Publication> getPublicationsByPrice(double min, double max);
 
+    List<Publication> getAllPublications();
 }

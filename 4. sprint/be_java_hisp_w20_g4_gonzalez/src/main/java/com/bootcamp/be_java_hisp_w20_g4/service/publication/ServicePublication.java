@@ -119,11 +119,17 @@ public class ServicePublication implements IServicePublication {
     }
 
     public List<FilteredPostDTO> getPublicationsByPrice(Double min, Double max) {
+        if (min == null && max == null) return this.getAllPublications();
+
         if (min == null) min = 0.0;
         if (max == null) max = Double.POSITIVE_INFINITY;
         List<Publication> publications = publicationRepository.getPublicationsByPrice(min, max);
 
         return publications.stream().map(p -> mapper.map(p, FilteredPostDTO.class)).collect(Collectors.toList());
+    }
+
+    public List<FilteredPostDTO> getAllPublications() {
+        return publicationRepository.getAllPublications().stream().map(p -> mapper.map(p, FilteredPostDTO.class)).collect(Collectors.toList());
     }
 
 }
