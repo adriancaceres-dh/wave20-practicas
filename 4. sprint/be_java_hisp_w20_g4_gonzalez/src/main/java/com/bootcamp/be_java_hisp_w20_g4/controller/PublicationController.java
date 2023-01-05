@@ -1,7 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromotionPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.service.publication.IServicePublication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ public class PublicationController {
     }
 
     @PostMapping("/promo-post")
-    public ResponseEntity<String> addPromo (@RequestBody String promoProductDTO){
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<PromotionPublicationDTO> addPromo (@RequestBody PromotionPostDTO promoProductDTO){
+        return ResponseEntity.ok().body(servicePublication.addPublicationWithPromo(promoProductDTO));
     }
 
     @GetMapping("/promo-post/count")

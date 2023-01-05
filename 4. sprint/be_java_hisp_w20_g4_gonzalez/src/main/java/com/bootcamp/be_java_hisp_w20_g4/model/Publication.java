@@ -38,7 +38,7 @@ public class Publication {
         this.category = category;
     }
 
-    public Publication(LocalDate date, double price, boolean hasPromo, double discount, Product product, Category category, int user_id) {
+    public Publication(LocalDate date, double price, Product product, Category category, int user_id, boolean hasPromo, double discount) {
         this(date, price, product, category, user_id);
         this.hasPromo = hasPromo;
         this.discount = discount;

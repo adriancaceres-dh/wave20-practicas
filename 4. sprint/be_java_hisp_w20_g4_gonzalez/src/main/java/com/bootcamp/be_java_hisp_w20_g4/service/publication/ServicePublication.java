@@ -1,9 +1,11 @@
 package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromotionPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrder;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isSeller;
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
 
 @Service
@@ -83,6 +86,27 @@ public class ServicePublication implements IServicePublication {
         if(order == null || order.equals("date_desc")) Collections.reverse(listedPostDTO);
 
         return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
+    }
+
+    public PromotionPublicationDTO addPublicationWithPromo(PromotionPostDTO post) {
+        User user =  userRepository.findById(post.getUser_id());
+
+        isValidUser(user);
+        isSeller(user);
+
+        Category category = categoryRepository.findById(post.getCategory());
+        if(category == null) throw new BadRequestException("La categoria ingresa no es válida.");
+
+        Product product = mapper.map(post.getProduct(), Product.class);
+        if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
+
+        Publication promoPublication = new Publication(post.getDate(), post.getPrice(), product, category, user.getUser_id(), post.isHas_promo(), post.getDiscount());
+
+        if(!publicationRepository.addPublication(promoPublication)) throw new BadRequestException("Ocurrió un error al crear la publicación");
+
+        ((Seller) user).addPublication(promoPublication);
+        return new PromotionPublicationDTO(post.getDate(), mapper.map(post.getProduct(), ProductDTO.class), category.getId(), post.getPrice(), post.isHas_promo(), post.getDiscount());
+
     }
 
 
