@@ -27,7 +27,7 @@ classDiagram
         -author : User
         -date : LocalDate
         -product : Product
-        -postCategory : Category
+        -category : Category
         -price : double
         -hasPromo : boolean
         -discount : double
@@ -42,7 +42,7 @@ classDiagram
     class Product {
         -id : Integer
         -name : String
-        -type : ProductType
+        -type : String
         -brand : String
         -color : String
         -notes : String
