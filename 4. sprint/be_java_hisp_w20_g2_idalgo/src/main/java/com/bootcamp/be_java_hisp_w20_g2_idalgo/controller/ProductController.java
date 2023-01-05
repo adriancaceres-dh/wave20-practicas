@@ -4,8 +4,8 @@ import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.request.PromoPostRequestDTO;
-import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.PromosAmountDTO;
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.UserIdentifiedListDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.service.interfaces.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class ProductController {
 
     // US-0006 - US-0009
     @GetMapping("followed/{userId}/list")
-    public PostResponseDTO<PostWithIdDTO> sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
+    public UserIdentifiedListDTO<PostWithIdDTO> sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
         return productService.sendLastPostOfFollowed(userId, order);
     }
 
@@ -48,7 +48,7 @@ public class ProductController {
 
     // US-0012
     @GetMapping("/promo-post/{userId}/list")
-    public PostResponseDTO<PostWithPromoDTO> listPromosFromUser(@PathVariable int userId, @RequestParam Optional<String> order) {
+    public UserIdentifiedListDTO<PostWithPromoDTO> listPromosFromUser(@PathVariable int userId, @RequestParam Optional<String> order) {
         return productService.listPromosFromUser(userId, order);
     }
 

@@ -4,8 +4,8 @@ import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostWithPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.request.PromoPostRequestDTO;
-import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.PromosAmountDTO;
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.UserIdentifiedListDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.model.User;
@@ -59,7 +59,7 @@ public class ProductService implements IProductService {
      * @param order  is the string representing the sorting criteria that will be used
      */
     @Override
-    public PostResponseDTO<PostWithIdDTO> sendLastPostOfFollowed(int userId, Optional<String> order) {
+    public UserIdentifiedListDTO<PostWithIdDTO> sendLastPostOfFollowed(int userId, Optional<String> order) {
         User user = getUserOrThrow(userId);
 
         List<PostWithIdDTO> posts = user.getFollowing().stream()
@@ -69,7 +69,7 @@ public class ProductService implements IProductService {
                 .map(postMapper::toWithIdDTO)
                 .collect(Collectors.toList());
 
-        return new PostResponseDTO<>(userId, posts);
+        return new UserIdentifiedListDTO<>(userId, posts);
     }
 
     /**
@@ -112,7 +112,7 @@ public class ProductService implements IProductService {
      * @return list of posts
      */
     @Override
-    public PostResponseDTO<PostWithPromoDTO> listPromosFromUser(int userId, Optional<String> order) {
+    public UserIdentifiedListDTO<PostWithPromoDTO> listPromosFromUser(int userId, Optional<String> order) {
         User user = getUserOrThrow(userId);
 
         List<PostWithPromoDTO> posts = user.getPosts().stream()
@@ -121,7 +121,7 @@ public class ProductService implements IProductService {
                 .map(postMapper::toWithPromoDTO)
                 .collect(Collectors.toList());
 
-        return new PostResponseDTO<>(userId, posts);
+        return new UserIdentifiedListDTO<>(userId, posts);
     }
 
     /**
@@ -147,9 +147,8 @@ public class ProductService implements IProductService {
     }
 
     private Comparator<Post> getDateComparator(Optional<String> order) {
-        return order.orElse("date_desc").equals("date_desc") ?
-                Comparator.comparing(Post::getDate).reversed()
-                : Comparator.comparing(Post::getDate);
+        Comparator<Post> comparator = Comparator.comparing(Post::getDate);
+        return order.orElse("date_desc").equals("date_desc") ? comparator.reversed() : comparator;
     }
 
 }

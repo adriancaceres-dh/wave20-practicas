@@ -1,5 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response;
 
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.UserDTO;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -13,12 +15,13 @@ import java.util.List;
 @Getter
 //@Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class UserFollowersResponseDTO extends UserResponseDTO {
+public class UserFollowersResponseDTO {
+    @JsonUnwrapped
+    private UserDTO user;
+    private List<UserDTO> followers;
 
-    private List<UserResponseDTO> followers;
-
-    public UserFollowersResponseDTO(int userId, String userName, List<UserResponseDTO> followers) {
-        super(userId, userName);
+    public UserFollowersResponseDTO(int userId, String userName, List<UserDTO> followers) {
+        this.user = new UserDTO(userId, userName);
         this.followers = followers;
     }
 

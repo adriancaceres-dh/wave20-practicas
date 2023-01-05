@@ -1,14 +1,15 @@
 package com.bootcamp.be_java_hisp_w20_g2_idalgo.service;
 
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.UserDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.UserFollowedResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.UserFollowersResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.model.User;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2_idalgo.service.interfaces.IUserService;
+import com.bootcamp.be_java_hisp_w20_g2_idalgo.utils.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserService implements IUserService {
 
+    private final List<String> validUserSort = List.of("name_asc", "nameDesc");
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * Finds and lists all users following a given user.
@@ -36,18 +41,11 @@ public class UserService implements IUserService {
         if (userFound == null) {
             throw new UserNotFoundException("User not found");
         } else {
-            List<UserResponseDTO> followers = userFound.getFollowers().stream()
-                    .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
+            List<UserDTO> followers = userFound.getFollowers().stream()
+                    .map(user -> new UserDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if (order.isPresent()) {
-                Comparator<UserResponseDTO> comparator;
-                if (order.get().equals("name_asc") || order.get().equals("name_desc")) {
-                    comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                } else {
-                    comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
-                }
-
-                followers = followers.stream().sorted(comparator).collect(Collectors.toList());
+                followers = followers.stream().sorted(getUserComparator(order.get())).collect(Collectors.toList());
 
             }
             return new UserFollowersResponseDTO(userFound.getId(), userFound.getUserName(), followers);
@@ -66,24 +64,14 @@ public class UserService implements IUserService {
         User userFound = userRepository.findOne(userId);
         if (userFound == null) {
             throw new UserNotFoundException("User not found");
-        } else {
-            List<UserResponseDTO> followed = userFound.getFollowing().stream()
-                    .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
-                    .collect(Collectors.toList());
-            if (order.isPresent()) {
-                if (order.get().equals("name_asc") || order.get().equals("name_desc")) {
-                    Comparator<UserResponseDTO> comparator;
-                    if (order.get().equals("name_asc")) {
-                        comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                    } else {
-                        comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
-                    }
-                    followed = followed.stream().sorted(comparator).collect(Collectors.toList());
-                }
-
-            }
-            return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed);
         }
+        Stream<UserDTO> followed = userFound.getFollowing().stream()
+                .map(user -> new UserDTO(user.getId(), user.getUserName()));
+        if (order.isPresent() && validUserSort.contains(order.get())) {
+            followed = followed.sorted(getUserComparator(order.get()));
+        }
+        return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed.collect(Collectors.toList()));
+
     }
 
     /**
@@ -114,7 +102,7 @@ public class UserService implements IUserService {
                 throw new BadRequestException("This User don't have followings");
             }
             if (userFollowers.size() == 0) {
-                throw new BadRequestException("This User don't have followings");
+                throw new BadRequestException("This User don't have followers");
             }
 
             if (!userFollowing.contains(userToUnfollow) && !userFollowers.contains(user)) {
@@ -131,20 +119,6 @@ public class UserService implements IUserService {
     }
 
     /**
-     * Sets the user attribute values into the UserFollowersCountResponseDTO.
-     *
-     * @param user is the user to get the attribute values from.
-     * @return UserFollowersCountResponseDTO.
-     */
-    public UserFollowersCountResponseDTO entity2UserResponseDTO(User user) {
-        UserFollowersCountResponseDTO userFollowersCountResponseDTO = new UserFollowersCountResponseDTO();
-        userFollowersCountResponseDTO.setUserId(user.getId());
-        userFollowersCountResponseDTO.setUserName(user.getUserName());
-        userFollowersCountResponseDTO.setFollowersCount(user.getFollowers().size());
-        return userFollowersCountResponseDTO;
-    }
-
-    /**
      * Adds a follower into a user followers list.
      * Adds a followed into another user following list.
      *
@@ -155,15 +129,15 @@ public class UserService implements IUserService {
     @Override
     public boolean follow(Integer idFollower, Integer idFollowed) {
         if (!userRepository.exists(idFollowed) || !userRepository.exists(idFollower)) {
-            throw new BadRequestException("Alguno de los usuarios no existe");
+            throw new BadRequestException("One of the users does not exist");
         }
         User follower = userRepository.findOne(idFollower);
         User followed = userRepository.findOne(idFollowed);
         if (follower.getFollowing().contains(followed)) {
-            throw new BadRequestException("Ya esta siguiendo a ese usuario");
+            throw new BadRequestException("Already following that user");
         }
         if (follower.equals(followed)) {
-            throw new BadRequestException("No puedes seguirte a ti mismo");
+            throw new BadRequestException("Can't follow yourself");
         }
         follower.follow(followed);
         followed.addFollower(follower);
@@ -180,11 +154,16 @@ public class UserService implements IUserService {
     @Override
     public UserFollowersCountResponseDTO followerList(Integer id) {
         if (!userRepository.exists(id)) {
-            throw new BadRequestException("El usuario no existe");
+            throw new BadRequestException("The user does not exist");
         }
         User user = userRepository.findOne(id);
-        return entity2UserResponseDTO(user);
+        return userMapper.toCountDTO(user);
     }
 
+    private Comparator<UserDTO> getUserComparator(String criteria) {
+        Comparator<UserDTO> comparator = Comparator.comparing(UserDTO::getUserName);
+
+        return criteria.equals("name_asc") ? comparator : comparator.reversed();
+    }
 
 }

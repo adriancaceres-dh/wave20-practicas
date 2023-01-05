@@ -1,6 +1,5 @@
 package com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.response;
 
-import com.bootcamp.be_java_hisp_w20_g2_idalgo.dto.PostDTO;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -14,11 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostResponseDTO<T extends PostDTO> {
+public class UserIdentifiedListDTO<T> {
     private int userId;
     private List<T> posts;
 
-    public PostResponseDTO(int userId) {
+    public UserIdentifiedListDTO(int userId) {
         this.userId = userId;
         posts = new ArrayList<>();
     }
