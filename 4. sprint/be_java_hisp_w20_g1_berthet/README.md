@@ -1,5 +1,5 @@
 
-# Sprint 1 Social MELI.
+# Sprint 1 Social MELI  - Requerimientos individuales.
 
 ### Miembros del equipo.
 
@@ -50,23 +50,34 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 - Consideramos que un usuario es vendedor si tiene al menos una publicación.
 - Al lanzarse excepciones, se mostrará su descripción, código de error y timestamp.
 
+### Decisiones individuales.
+
+- Solo se creara un post de promocion si el producto a publicar en el post coincide con uno ya credo en todos sus elementos a partir de su ID o es un producto que no se ha publicado antes.
+- Si un producto ya fue publicado con anterioridad, solo podra ser publicado en promocion por el usario que lo publico anteriormente.
+- Si el producto no fue publicado con anterioridad, al intentar crear un post con promocion, se creara un nuevo producto con promoción.
+- No se pueden publicar las mismas promociones más de una vez.
+- Se puede publicar nuevamente una promocion si se cambia el valor del precio o del descuento.
+
 ### Endpoints (Grupales)
 
 [Colección de request para importar en Postman](SCRUM%201.postman_collection.json)
 
 Responsables de cada User Story
 
-| User Story | Responsables |
-| --- | --- |
+| User Story  | Responsables                                                                 |
+|-------------|------------------------------------------------------------------------------|
 | **US 0001** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0002** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0003** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0004** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0005** | Karen Hoffman y Lautaro Walsh |
+| **US 0002** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0003** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0004** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0005** | Karen Hoffman y Lautaro Walsh                                                |
 | **US 0006** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
 | **US 0007** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0008** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
+| **US 0008** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
 | **US 0009** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
+| **US 0010** | Franciso Nicolas Berthet Cosentino                                           |
+| **US 0011** | Franciso Nicolas Berthet Cosentino                                           |
+| **US 0012** | Franciso Nicolas Berthet Cosentino                                           |
 
 ----
 **US 0001**
