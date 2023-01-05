@@ -49,7 +49,7 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
 
-*     Endpoints: Responsable Emiliano Asprea
+### Endpoints: Responsable Emiliano Asprea
 
 US 001: 
 POST
