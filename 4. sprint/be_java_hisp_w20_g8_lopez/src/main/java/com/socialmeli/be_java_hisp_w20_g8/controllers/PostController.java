@@ -22,12 +22,8 @@ public class PostController {
     }
     @PostMapping("/post")
     public ResponseEntity<?> postPost(@RequestBody PostRequestDTO postRequestDTO) {
-        try {
-            postService.createPost(postRequestDTO);
-            return ResponseEntity.status(HttpStatus.OK).body("The post was published");
-        } catch(Exception e) {
-            throw new OperationFailedException(e.getMessage() + " Please check the information");
-        }
+        postService.createPost(postRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body("The post was published");
     }
 
     @PostMapping("/promo-post")

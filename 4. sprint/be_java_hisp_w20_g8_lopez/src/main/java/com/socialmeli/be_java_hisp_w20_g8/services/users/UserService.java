@@ -3,6 +3,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.users;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.*;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDto;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
@@ -60,6 +61,7 @@ public class UserService implements IUserService {
     }
 
     public ResponseDto addNewFollow(int userId, int sellerId) {
+        if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (IPersonRepository.checkUser(userId) && IPersonRepository.checkUser(sellerId)) {
             IPersonRepository.addFollowing(userId, sellerId);
             IPersonRepository.addFollower(sellerId, userId);

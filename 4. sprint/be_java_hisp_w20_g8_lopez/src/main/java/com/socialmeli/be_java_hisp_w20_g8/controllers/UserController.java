@@ -17,25 +17,17 @@ public class UserController {
     @Autowired
     private IUserService userService;
     @GetMapping("/{userId}/followed/list")
-    public UserFollowedDTO getFollowed(@PathVariable int userId, @RequestParam(required = false) String order){
-            return userService.getAllFollowed(userId, order);
+    public ResponseEntity<UserFollowedDTO> getFollowed(@PathVariable int userId, @RequestParam(required = false) String order){
+        return ResponseEntity.ok().body(userService.getAllFollowed(userId, order));
     }
 
-    @GetMapping("/users/{userId}/follow/{userIdToFollow}")
+    @PostMapping("/users/{userId}/follow/{userIdToFollow}")
     public ResponseEntity<ResponseDto> newFollow(@PathVariable int userId, @PathVariable int userIdToFollow){
-        try{
-            return new ResponseEntity<>(userService.addNewFollow(userId, userIdToFollow), HttpStatus.OK);
-        } catch (NumberFormatException e) {
-            throw new OperationFailedException(e.getMessage() + " Please check the information");
-        }
+        return new ResponseEntity<>(userService.addNewFollow(userId, userIdToFollow), HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}/unfollow/{userIdToUnfollow}")
+    @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<ResponseDto> unfollowC(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        try {
-            return new ResponseEntity<>(userService.unfollow(userId, userIdToUnfollow), HttpStatus.OK);
-        } catch (NumberFormatException e) {
-            throw new OperationFailedException(e.getMessage() + " Please check the information");
-        }
+        return new ResponseEntity<>(userService.unfollow(userId, userIdToUnfollow), HttpStatus.OK);
     }
 }
