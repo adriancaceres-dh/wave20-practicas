@@ -2,7 +2,9 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.ProductPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserProductsPromoCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
@@ -88,5 +90,41 @@ public class PostService implements IPostService {
 
         List<PostDto> postDtos = posts.stream().map(e -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
         return new UserPostFollowedDto(userId, postDtos);
+    }
+
+    public String createPruductPromo(ProductPromoDto productPromoDto){
+
+        User user = iUserRepository.findById(productPromoDto.getUserId());
+        if (user == null) throw new UserNotFoundException("User not found");
+        if (productPromoDto == null) {
+            throw new PostEmptyException("Post is empty");
+        }
+
+        Post post = modelMapper.map(productPromoDto, Post.class);
+
+        calculateId(post);
+        if (post.getPrice() <= 0) {
+            throw new DataIsnotCorrectException("Price incorrect, it should be greater than 0");
+        }
+        if (iPostRepository.save(post)) {
+            return "Post registered successfully";
+        } else {
+            return "Could no register post";
+        }
+
+    }
+
+    @Override
+    public UserProductsPromoCountDto countProductsPromo(int userId) {
+
+        User user = iUserRepository.findById(userId);
+
+        if (user == null) throw new UserNotFoundException("user not found");
+
+
+        int productPromoCount = (int) iPostRepository.findAll().stream().filter(e -> e.getUserId() == userId && e.isHasPromo()).count();
+
+        return new UserProductsPromoCountDto(userId, user.getUserName(), productPromoCount);
+
     }
 }

@@ -20,7 +20,7 @@ public class PostRepository implements IPostRepository {
         LocalDate date = LocalDate.parse("2022-12-30");
         Product product = new Product(3, "Silla Gamer", "Gamer", "Racer", "Black", "Special Edition");
         Product product2 = new Product(3, "Silla Gamer", "Gamer", "Racer", "Pink", "Special Edition");
-        Post post = new Post(3, 1, date, product, 100, 2, false, 22.0);
+        Post post = new Post(3, 1, date, product, 100, 2, true, 22.0);
         Post post2 = new Post(3, 2, LocalDate.parse("2022-11-30"), product2, 100, 2, false, 22.0);
         Post post3 = new Post(3, 3, LocalDate.parse("2023-01-01"), product2, 100, 2, false, 22.0);
         posts.add(post);

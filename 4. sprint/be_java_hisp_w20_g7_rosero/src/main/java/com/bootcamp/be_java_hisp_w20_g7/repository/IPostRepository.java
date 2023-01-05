@@ -8,4 +8,5 @@ public interface IPostRepository {
     List<Post> findAll();
 
     boolean save(Post post);
+
 }
