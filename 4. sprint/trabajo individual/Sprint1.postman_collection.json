@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bf815649-682a-491c-9559-0d77005b9361",
+		"_postman_id": "6d2fb51d-4b29-4549-b427-f0c8e6bd14eb",
 		"name": "Sprint1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -607,7 +607,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/products/promo-post/count?user_id=123",
+							"raw": "localhost:8080/products/promo-post/count?user_id=123&order=name_desc",
 							"host": [
 								"localhost"
 							],
@@ -621,6 +621,10 @@
 								{
 									"key": "user_id",
 									"value": "123"
+								},
+								{
+									"key": "order",
+									"value": "name_desc"
 								}
 							]
 						}

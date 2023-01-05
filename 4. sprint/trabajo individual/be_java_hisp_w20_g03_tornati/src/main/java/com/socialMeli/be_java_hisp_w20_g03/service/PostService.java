@@ -125,14 +125,24 @@ public class PostService implements IPostService {
         return new UserPromoPostCountDTO(userId, user.getUserName(),userPromoPosts.size());
     }
 
-    public UserPromoPostsDTO getUserPromoPosts(int userId) {
+    public UserPromoPostsDTO getUserPromoPosts(int userId, String order) {
         User user = userRepository.getUserById(userId);
         if (user == null) {
             throw new NotFoundException("El usuario ingresado no existe");
         }
-        List<PromoPostDTO> userPromoPostsDTOs = postRepository.getPosts().stream()
-                .filter(p -> p.getUserId() == userId && p.isHasPromo())
-                .map(u -> mapper.map(u, PromoPostDTO.class)).collect(Collectors.toList());
+        List<PromoPostDTO> userPromoPostsDTOs;
+
+        if (order != null && order.equals("name_desc")) {
+            userPromoPostsDTOs = postRepository.getPosts().stream()
+                    .filter(p -> p.getUserId() == userId && p.isHasPromo())
+                    .sorted(Comparator.comparing(x -> x.getProduct().getProductName(), Comparator.reverseOrder()))
+                    .map(u -> mapper.map(u, PromoPostDTO.class)).collect(Collectors.toList());
+        } else {
+            userPromoPostsDTOs = postRepository.getPosts().stream()
+                    .filter(p -> p.getUserId() == userId && p.isHasPromo())
+                    .sorted(Comparator.comparing(x -> x.getProduct().getProductName()))
+                    .map(u -> mapper.map(u, PromoPostDTO.class)).collect(Collectors.toList());
+        }
 
 
         return new UserPromoPostsDTO(userId, user.getUserName(),userPromoPostsDTOs);

@@ -39,15 +39,8 @@ public class PostController {
     }
 
     @GetMapping("/products/promo-post/list")
-    public ResponseEntity <UserPromoPostsDTO> getUserPromoPosts(@RequestParam(name = "user_id") int userId) {
-        return new ResponseEntity<>(iPostService.getUserPromoPosts(userId), HttpStatus.OK);
+    public ResponseEntity <UserPromoPostsDTO> getUserPromoPosts(@RequestParam(name = "user_id") int userId, @RequestParam (required = false) String order) {
+        return new ResponseEntity<>(iPostService.getUserPromoPosts(userId, order), HttpStatus.OK);
     }
 
-/*    //DEV
-    @GetMapping("/products/allPosts")
-    public ResponseEntity <List<PromoPostDTO>> getAllPosts() {
-        return new ResponseEntity<>(iPostService.getAllPosts(), HttpStatus.OK);
-    }
-
-    //FIN*/
 }
