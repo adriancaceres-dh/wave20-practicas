@@ -17,5 +17,5 @@ public class PostRequestDto {
     private ProductModel product;
     private double price;
     private boolean has_promo;
-    private double disccount;
+    private double discount;
 }
