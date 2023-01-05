@@ -49,7 +49,7 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
 
-### [Endpoints](https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf): Responsable Emiliano Asprea
+### [Endpoints](https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf): Requerimientos
 
 US 001: 
 POST
