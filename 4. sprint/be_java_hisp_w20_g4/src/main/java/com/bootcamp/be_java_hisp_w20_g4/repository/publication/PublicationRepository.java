@@ -72,6 +72,11 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Este método obtiene las publicaciones en promocion de un determinado vendedor
+     * @param userId - Id del vendedor al que se le consultan las promociones
+     * @return List<Publication> - Se devuelve la lista de publicaciones en promocion que fueron requeridas
+     */
     @Override
     public List<Publication> getPromoPublications(int userId) {
         return publications.stream()
@@ -80,6 +85,15 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Este método obtiene las publicaciones en promocion que fueron publicadas por alguno de los vendedores
+     * cuyo id fue pasado como parametro
+     * Las publicaciones son filtradas por precio, filtrando las que no estan en el rango de precio indicado
+     * @param followedIds - Ids de los vendedores a los que se le consultan las promociones
+     * @param from - El rango inicial de los precios
+     * @param to - El rango final de los precios
+     * @return List<Publication> - Se devuelve la lista de publicaciones en promocion filtradas
+     */
     @Override
     public List<Publication> getPromoPublicationsInRangePrice(List<Integer> followedIds, Double from, Double to) {
         return publications.stream()

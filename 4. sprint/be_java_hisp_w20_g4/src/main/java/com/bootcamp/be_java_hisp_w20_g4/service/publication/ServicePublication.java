@@ -77,12 +77,14 @@ public class ServicePublication implements IServicePublication {
     }
 
 
+    /**
+     * Este método agrega una publicacion en promocion
+     * @param promoPostDTO - Payload requerido para dar de alta una publicacion en promocion
+     * @return PromoPublicationDTO - Se devuelve la información de la publicacion en promocion publicada
+     */
     @Override
     public PromoPublicationDTO addPromoPublication(PromoPostDTO promoPostDTO) {
         User user =  userRepository.findById(promoPostDTO.getUser_id());
-
-        //isValidUser(user);
-        //isSeller(user);
         isValidSeller(user);
         Category category = categoryRepository.findById(promoPostDTO.getCategory());
         isValidCategory(category);
@@ -99,6 +101,11 @@ public class ServicePublication implements IServicePublication {
         return null;
     }
 
+    /**
+     * Este método retorna la cantidad de publicaciones en promocion que tiene un usuario
+     * @param userId - El id del usuario al cual se le van a consultar la cantidad de publicaciones en promocion
+     * @return PromoPublicationCountDTO - Objeto que contiene la estructura requerida para retornar la cantidad de publicaciones
+     */
     @Override
     public PromoPublicationCountDTO getCountPromoPublications(Integer userId) {
         isValidUserParam(userId);
@@ -110,6 +117,11 @@ public class ServicePublication implements IServicePublication {
         return promoPublicationCountDTO;
     }
 
+    /**
+     * Este método retorna las publicaciones en promocion que tiene un usuario
+     * @param userId - El id del usuario al cual se le van a consultar las publicaciones en promocion
+     * @return PromoPublicationListDTO - Objeto que contiene la estructura requerida para retornar las publicaciones en promocion
+     */
     @Override
     public PromoPublicationListDTO getPromoPublications(Integer userId) {
         isValidUserParam(userId);
@@ -121,6 +133,15 @@ public class ServicePublication implements IServicePublication {
         return new PromoPublicationListDTO(userId,user.getUser_name(),listedPromoPostDTOList);
     }
 
+    /**
+     * Este método retorna las publicaciones de los vendedores que son seguidos por el usuario pasado por parametro
+     * cuyo precio de publicacion se encuentra dentro del rango pasado en los parametros from y to
+     * @param userId - El id del usuario al cual se le van a consultar las publicaciones de los vendedores que sigue
+     * @param from - El rango inicial de los precios
+     * @param to - El rango final de los precios
+     * @param order - El orden por fecha por el que se van a ordenar las publicaciones
+     * @return PromoPublicationListDTO - Objeto que contiene la estructura requerida para retornar las publicaciones en promocion filtradas por precio
+     */
     @Override
     public PromoPublicationListDTO getPromoPublicationsInRangePrice(Integer userId, Double from, Double to, String order) {
         isValidRangeParams(from,to);
@@ -129,7 +150,6 @@ public class ServicePublication implements IServicePublication {
         User user = userRepository.findById(userId);
         isValidUser(user);
         List<Integer> followedIds = user.getFollowed().values().stream().map(u -> u.getUser_id()).collect(Collectors.toList());
-        //TODO verificar que pasa si llega order null y user null
         List<Publication> publications = publicationRepository.getPromoPublicationsInRangePrice(followedIds, from,to);
         if (order.equals("date_desc")) Collections.reverse(publications);
         List<ListedPromoPostDTO> listedPromoPostDTOList = publications.stream().map(publication -> new ListedPromoPostDTO(publication.getUser_id(),publication.getPost_id(),publication.getDate(),mapper.map(publication.getProduct(),ProductDTO.class),publication.getCategory().getId(),publication.getPrice(),publication.isHasPromo(),publication.getDiscount())).collect(Collectors.toList());

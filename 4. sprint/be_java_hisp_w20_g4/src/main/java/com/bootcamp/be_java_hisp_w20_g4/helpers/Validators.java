@@ -30,6 +30,11 @@ public class Validators {
         if (param == null) throw new BadRequestException("El parametro de usuario es obligatorio.");
     }
 
+    /**
+     * Este método controla que los parametros from y to sean correctos
+     * @param from - Es el doube que especifica el rango inicial
+     * @param to - Es el double que especifica el rango final
+     */
     public static void isValidRangeParams(Double from , Double to){
         if (((from == null) || (to == null))) throw new BadRequestException("Los parametros from y to son obligatorios");
         if (from > to) throw new BadRequestException("El parametro from no puede ser mayor que to");
