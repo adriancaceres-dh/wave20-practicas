@@ -3,8 +3,6 @@
 
 1 - **PROYECTO GRUPAL** -> ./Parte-grupal/be_java_hisp_w20_g05
 
-[siguiente archivo.](Individual.postman_collection.json)
-
 ----------------------------------
 
 2 - **PROYECTO INDIVIDUAL** -> ./Parte-Individual/be_java_hisp_w20_g05
@@ -64,5 +62,5 @@
 
 
 
-     Link con pruebas de POSTMAN, click aqui.
-    
+     >>> Link con pruebas de POSTMAN:
+    [Click aqui.](Individual.postman_collection.json)
