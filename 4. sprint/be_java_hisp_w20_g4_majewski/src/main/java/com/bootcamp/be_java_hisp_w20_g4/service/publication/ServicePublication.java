@@ -90,7 +90,8 @@ public class ServicePublication implements IServicePublication {
         User user = userRepository.findById(publicationPromotionDto.getUser_id());
         Publication publication= validateAndCreatePublication(publicationPromotionDto, user);
         publication.setHasPromo(true);
-        publication.setDiscount(publication.getDiscount());
+        publication.setDiscount(publicationPromotionDto.getDiscount());
+        System.out.println(publicationPromotionDto.getDiscount());
         return addPublicationToRepository(publication, user);
     }
 
