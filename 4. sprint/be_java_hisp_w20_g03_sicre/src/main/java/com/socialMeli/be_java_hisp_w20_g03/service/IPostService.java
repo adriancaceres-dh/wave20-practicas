@@ -9,6 +9,7 @@ import java.util.List;
 public interface IPostService {
     String addPost(PostDTO postDTO);
     List<PostDTO> getPost(int userId, String order);
-    public PostDiscountCountDto getDiscountPostByUserId(int user_id);
+    public PostDiscountCountDto getDiscountCountPostByUserId(int user_id);
     public String addDiscountPost(PostDiscountDto postDiscountDto);
+    public List<PostDiscountDto> getDiscountPostByUserId(int user_id);
 }

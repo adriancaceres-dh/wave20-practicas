@@ -31,7 +31,12 @@ public class PostController {
         return new ResponseEntity<>(iPostService.addDiscountPost(postDiscountDto), HttpStatus.OK);
     }
     @GetMapping("/products/promo-post/count")
-    public ResponseEntity<PostDiscountCountDto> getDiscountPost(@RequestParam int userId){
+    public ResponseEntity<PostDiscountCountDto> getDiscountCountPost(@RequestParam int userId){
+        return new ResponseEntity<>(iPostService.getDiscountCountPostByUserId(userId),HttpStatus.OK);
+    }
+
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity<List<PostDiscountDto>> getDiscountPost(@RequestParam int userId){
         return new ResponseEntity<>(iPostService.getDiscountPostByUserId(userId),HttpStatus.OK);
     }
 }

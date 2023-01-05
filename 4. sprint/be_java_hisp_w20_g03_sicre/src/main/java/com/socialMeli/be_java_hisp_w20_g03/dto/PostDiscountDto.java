@@ -1,15 +1,12 @@
 package com.socialMeli.be_java_hisp_w20_g03.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 import java.time.LocalDate;
-@Data
+@Setter @Getter
 public class PostDiscountDto{
     @JsonProperty("user_id")
     private int userId;

@@ -104,13 +104,23 @@ public class PostService implements IPostService {
         }
     }
     @Override
-    public PostDiscountCountDto getDiscountPostByUserId(int user_id){
+    public PostDiscountCountDto getDiscountCountPostByUserId(int user_id){
         User user = userRepository.getUserById(user_id);
         if(user != null){
             int postCount = (int) postRepository.getPosts().stream()
                     .filter(p -> p.getUserId() == user_id && p.isHasPromo()).count();
             return new PostDiscountCountDto(user.getUserId(), user.getUserName(), postCount);
 
+        }
+        throw new NotFoundException("User not found");
+    }
+    @Override
+    public List<PostDiscountDto> getDiscountPostByUserId(int user_id){
+        User user = userRepository.getUserById(user_id);
+        if(user != null){
+            return postRepository.getPosts().stream()
+                    .filter(p -> p.getUserId() == user_id && p.isHasPromo())
+                    .map(p -> mapper.map(p, PostDiscountDto.class)).collect(Collectors.toList());
         }
         throw new NotFoundException("User not found");
     }
