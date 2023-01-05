@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Repository
 public class PostRepository implements IPostRepository {
 
-    private List<Post> posts;
+    private final List<Post> posts;
 
     public PostRepository() {
         this.posts = buildPostRepository();

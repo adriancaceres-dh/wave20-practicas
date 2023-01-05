@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class UserRepository implements IUserRepository {
 
-    private List<User> users;
+    private final List<User> users;
 
     public UserRepository() {
         this.users = buildUserRepository();

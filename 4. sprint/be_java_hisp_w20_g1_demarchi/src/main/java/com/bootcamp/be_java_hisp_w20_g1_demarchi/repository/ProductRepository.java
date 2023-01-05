@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class ProductRepository implements IProductRepository {
 
-    private List<Product> products;
+    private final List<Product> products;
 
     public ProductRepository() {
         this.products = buildProductRepository();
