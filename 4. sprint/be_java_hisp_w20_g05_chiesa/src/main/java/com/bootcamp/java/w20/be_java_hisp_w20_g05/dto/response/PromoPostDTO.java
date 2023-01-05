@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Getter
 @NoArgsConstructor
-public class PromoPostDTO extends FollowedUserProductDTO{
-    private boolean hasPromo;
+public class PromoPostDTO {
+    private final boolean hasPromo = true;
     private double discount;
+    private FollowedUserProductDTO product;
 
-    public PromoPostDTO(int productId, String productName, String type, String brand, String color, String notes, boolean hasPromo, double discount) {
-        super(productId, productName, type, brand, color, notes);
-        this.hasPromo = hasPromo;
+    public PromoPostDTO(double discount, FollowedUserProductDTO product) {
+        //this.hasPromo = true;
         this.discount = discount;
     }
 }
