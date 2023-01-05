@@ -23,7 +23,7 @@ public class Publication {
     private Category category;
 
     private int user_id;
-    private int contador = 3;
+    private static int contador = 3;
 
     public Publication() {
         this.post_id = ++this.contador;

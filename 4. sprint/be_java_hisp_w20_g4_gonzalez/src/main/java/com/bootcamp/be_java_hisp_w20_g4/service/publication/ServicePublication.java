@@ -8,7 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResp
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
-import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
 import com.bootcamp.be_java_hisp_w20_g4.repository.product.IProductRepository;
