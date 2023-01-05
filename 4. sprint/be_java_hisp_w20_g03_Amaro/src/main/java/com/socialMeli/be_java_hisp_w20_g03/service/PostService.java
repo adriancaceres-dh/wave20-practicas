@@ -1,6 +1,8 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.PromoPostCountDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.PromoPostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
@@ -68,6 +70,61 @@ public class PostService implements IPostService {
                     .filter(post -> DAYS.between(post.getDate(), dateNow) <= 15)
                     .map(u -> mapper.map(u, PostDTO.class)).collect(Collectors.toList()));
         }
+        if (order != null && order.equals("date_desc")) {
+            postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate(), Comparator.reverseOrder())).collect(Collectors.toList());
+        } else {
+            postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate())).collect(Collectors.toList());
+        }
+        return postList;
+    }
+
+    @Override
+    public String addPromoPost(PromoPostDTO postPromoDto) {
+        if (userRepository.getUserById(postPromoDto.getUserId()) == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+        Product product = Product.builder()
+                .productId(postPromoDto.getProduct().getProductId())
+                .productName(postPromoDto.getProduct().getProductName())
+                .type(postPromoDto.getProduct().getType())
+                .brand(postPromoDto.getProduct().getBrand())
+                .color(postPromoDto.getProduct().getColor())
+                .notes(postPromoDto.getProduct().getNotes())
+                .build();
+        Post post = Post.builder()
+                .postId(postRepository.getPosts().size() + 1)
+                .userId(postPromoDto.getUserId())
+                .category(postPromoDto.getCategory())
+                .price(postPromoDto.getPrice())
+                .product(product)
+                .date(postPromoDto.getDate())
+                .hasPromo(postPromoDto.isHasPromo())
+                .discount(postPromoDto.getDiscount())
+                .build();
+        postRepository.addPost(post);
+        return "Publicación con promoción agregada";
+    }
+
+    @Override
+    public PromoPostCountDTO getPromoPostCountById(int userId) {
+        User user = userRepository.getUserById(userId);
+        if (user == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+        int count = (int) postRepository.getPosts().stream().filter(p -> p.getUserId() == userId && p.isHasPromo())
+                .count();
+        return new PromoPostCountDTO(user.getUserId(), user.getUserName(), count);
+    }
+
+    @Override
+    public List<PromoPostDTO> getPromoPostById(int userId, String order) {
+        User user = userRepository.getUserById(userId);
+        if (user == null) {
+            throw new NotFoundException("El usuario ingresado no existe");
+        }
+        List<PromoPostDTO> postList= postRepository.getPosts().stream()
+                .filter(p -> p.getUserId() == userId && p.isHasPromo()).map(p -> mapper.map(p, PromoPostDTO.class))
+                .collect(Collectors.toList());
         if (order != null && order.equals("date_desc")) {
             postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate(), Comparator.reverseOrder())).collect(Collectors.toList());
         } else {
