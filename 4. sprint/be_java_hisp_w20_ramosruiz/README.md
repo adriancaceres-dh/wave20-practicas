@@ -576,3 +576,313 @@ Filtros / Parámetros
 | **date\_desc** | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006
+
+
+----
+----
+### Decisiones Individuales.
+
+- Puede actualizarse un producto existente con una promoción siempre y cuando:
+  - El userId del post a actualizar sea el mismo userId al que pertenece el post original
+  - La fecha de actualización sea posterior a la fecha original
+  - Ambas publicaciones contengan el mismo producto
+  - Ambas publicaciones coincidan en código de categoría
+  - El descuento a actualizar es distinto del original
+- Utilizar el endpoint US_0005 (Llevar a cabo una publicación) con un Body con promoción no arroja un error 400, pero no publica el producto con promoción.
+- Utilizar el endpoiint US_0010 (Llevar a cabo una publicación con promoción) con un Body sin promoción arroja error 400.
+- Implemento US_0012 de ejemplo y le agrego ordenamiento por fecha en US_0013 con más recientes por defecto.
+
+### Endpoints (Individuales)
+
+[Colección de request para importar en Postman](UserStories-ramosruiz.postman_collection.json)
+
+**US 0010**
+
+_Llevar a cabo la publicación de un nuevo producto en promoción_
+
+| Method | Sign |
+| --- | --- |
+| **POST** | /products/promo-post |
+
+<table>
+<tbody>
+<tr>
+<td>Payload</td>
+</tr>
+<tr>
+<td>
+<pre><code class="language-plaintext">{
+ &nbsp;&nbsp;&nbsp;"user_id": 123,
+ &nbsp;&nbsp;&nbsp;"date": "29-04-2021",
+ &nbsp;&nbsp;&nbsp;"product": {
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"product_id": 1,
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"product_name": "Silla Gamer",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "Gamer",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"brand": "Racer",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"color": "Red &amp; Black",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"notes": "Special Edition"
+ &nbsp;&nbsp;&nbsp;},
+ &nbsp;&nbsp;&nbsp;"category": 100,
+ &nbsp;&nbsp;&nbsp;"price": 1500.50,
+ &nbsp;&nbsp;&nbsp;"has_promo": "true",
+ &nbsp;&nbsp;&nbsp;"discount": 0.10
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr>
+<td>Status Code</td>
+<td>Response / Dto</td>
+</tr>
+<tr>
+<td><strong>200</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+"date": "29-04-2021",
+"user_id": 1,
+"product": {
+"product_id": 17,
+"product_name": "Silla Gamer",
+"type": "Gamer",
+"brand": "Racer",
+"color": "Red &amp; Black",
+"notes": "Special Edition"
+},
+"category": 100,
+"price": 1500.5,
+"has_promo": true,
+"discount": 0.10
+}</code></pre>
+</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+"message": "El producto ya existe",
+"status": 400,
+"timestamp": "2023-01-03T12:32:22.635063"
+}</code></pre>
+<p>&nbsp;</p>
+<pre><code class="language-plaintext">{
+"message": "Usuario invalido.",
+"status": 400,
+"timestamp": "2023-01-03T12:36:40.474285"
+}</code></pre>
+</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+"message": "Producto no existente",
+"status": 404,
+"timestamp": "2023-01-03T12:32:43.051445"
+}</code></pre>
+</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+"message": "La promoción no es válida",
+"status": 400,
+"timestamp": "2023-01-05T12:30:18.042318"
+}</code></pre>
+</td>
+</tr>
+
+<tr>
+<td><strong>400</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+"message": "Actualización de publicación inválida",
+"status": 400,
+"timestamp": "2023-01-05T12:27:53.422158"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros | Tipo | Descripción / Ejemplo |
+| --- | --- | --- |
+| **user\_Id** | int | Número que identifica a cada usuario |
+| **date** | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
+| **product\_id** | int | Número identificatorio de un producto asociado a una publicación |
+| **product\_name** | String | Cadena de caracteres que representa el nombre de un producto |
+| **type** | String | Cadena de caracteres que representa el tipo de un producto |
+| **brand** | String | Cadena de caracteres que representa la marca de un producto |
+| **color** | String | Cadena de caracteres que representa el color de un producto |
+| **notes** | String | Cadena de caracteres para colocar notas u observaciones de un producto |
+| **category** | int | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price** | String | Precio del producto |
+| **has_promo** | boolean | Campo true o false para determinar si un producto está en promoción o no |
+| **discount** | double | En caso de que un producto estuviese en promoción ,establece el monto de descuento. |
+
+----
+**US 0011**
+
+_Obtener la cantidad de productos en promoción de un determinado vendedor_
+
+| Method | Sign | Ejemplo |
+| --- | --- | --- |
+| **GET** | /products/promo-post/count?user_id={userId} | /products/promo-post/count?user_id=234 |
+
+<table>
+<tbody>
+<tr style="height: 23.5px;">
+<td style="height: 23.5px;">Status Code</td>
+<td style="height: 23.5px;">Response / Dto</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>200</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+ &nbsp;&nbsp;&nbsp;"user_id": 234,
+ &nbsp;&nbsp;&nbsp;"user_name": "vendedor1",
+ &nbsp;&nbsp;&nbsp;"promo_products_count": 23
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no existe",
+"status": 404,
+"timestamp": "2023-01-03T12:31:01.167923"
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no es vendedor",
+"status": 400,
+"timestamp": "2023-01-05T13:36:41.913820"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros | Tipo | Descripción / Ejemplo |
+| --- | --- | --- |
+| **userId** | int | Número que identifica a cada usuario |
+| **userName** | String | Cadena de caracteres que representa el nombre del usuario |
+| **promoProductsCount** | int | Cantidad numérica de productos en promoción de un determinado usuario. |
+
+----
+**US 0012**
+
+_Obtener un listado de todos los productos en promoción de un determinado vendedor_
+
+| Method | Sign | Ejemplo |
+| --- | --- | --- |
+| **GET** | /products/promo-post/list?user_id={userId} | /products/promo-post/list?user_id=234 |
+
+<table>
+<tbody>
+<tr style="height: 23px;">
+<td style="height: 23px;">Status Code</td>
+<td style="height: 23px;">Response / Dto</td>
+</tr>
+<tr style="height: 23.25px;">
+<td style="height: 23.25px;"><strong>200</strong></td>
+<td style="height: 23.25px;">
+<pre><code class="language-plaintext">{
+"user_id": 234,
+"user_name": "vendedor1",
+"posts": [
+    {
+        “user_id”: 234
+        "post_id": 18,
+        "date": "29-04-2021",
+        "product": {
+            "product_id": 1,
+            "product_name": "Silla Gamer",
+            "type": "Gamer",
+            "brand": "Racer",
+            "color": "Red & Black",
+            "notes": "Special Edition"
+        },
+        "category": "100",
+        "price": 15000.50,
+        "has_promo": true,
+        "discount": 0.25
+    }
+]
+}
+</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no existe",
+"status": 404,
+"timestamp": "2023-01-03T12:52:15.010738"
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no es vendedor",
+"status": 400,
+"timestamp": "2023-01-05T13:36:41.913820"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros | Tipo | Descripción / Ejemplo |
+| --- | --- | --- |
+| **userId** | int | Número que identifica a cada usuario |
+
+----
+**US 0013**
+
+_Ordenamiento por fecha ascendente y descendente_
+
+<table>
+<tbody>
+<tr>
+<td>Method</td>
+<td>Sign</td>
+</tr>
+<tr>
+<td><strong>GET</strong></td>
+<td>
+<p>/products/promo-post/list?user_id={userId}?order=date_desc</p>
+<p>/products/promo-post/list?user_id={userId}?order=date_asc</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| order | Description |
+| --- | --- |
+| **date\_asc** | Fecha ascendente (de más antigua a más nueva) |
+| **date\_desc** | Fecha descendente (de más nueva a más antigua) |
+
+**Nota:** Este ordenamiento aplica solo para la US-0012
+
+----

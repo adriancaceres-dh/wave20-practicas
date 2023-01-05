@@ -186,6 +186,7 @@ public class PostService implements IPostService {
     @Override
     public PromoPostListResponseDto listPromoPostByUserId(int userId, String order) {
         userService.validateUserExistById(userId);
+        userService.validateUserIsSellerById(userId);
 
         List<PostResponseDto> promoPostList = postRepository.getPostsByUserId(userId).stream()
                 .filter(Post::isHasPromo)
