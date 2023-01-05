@@ -1,12 +1,15 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
+import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostPromoRequestDto;
+
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
+import com.bootcamp.be_java_hisp_w20_g1.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,6 +180,8 @@ public class UserService implements IUserService {
     public Set<Integer> getUserFollowed(int id) {
         return userRepository.getUserById(id).getFollowed();
     }
+
+
 
 }
 

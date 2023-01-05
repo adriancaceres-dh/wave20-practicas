@@ -1,6 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
-
+import java.util.List;
+import java.util.Collection;
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.CountProductWithDiscountDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.ListOfProductsWithDiscountDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.postResponsePromoDto;
@@ -8,11 +11,18 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
+import com.bootcamp.be_java_hisp_w20_g1.repository.PostRepository;
+import com.bootcamp.be_java_hisp_w20_g1.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
+import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IProductService;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate.Param;
+import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +45,8 @@ public class PostService implements IPostService {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IUserRepository userRepository;
     @Autowired
     private ModelMapper mapper;
 
@@ -149,4 +161,42 @@ public class PostService implements IPostService {
         }
         return post;
     }
+@Override    
+    public ListOfProductsWithDiscountDto productsWithDiscount(int id) {
+userService.validateUserExistById(id);
+if (!userRepository.getUserById(id).isSeller()) {
+throw new BadRequestException(Parameter.getString("EX_NotASeller"));
+}
+List<Post> postWithDiscount = postRepository.getPosts().stream()
+.filter(thePost -> thePost.isHasPromo() == true)
+.collect(Collectors.toList());
+
+
+ListOfProductsWithDiscountDto products = new ListOfProductsWithDiscountDto();
+
+ products= mapper.map(postWithDiscount, ListOfProductsWithDiscountDto.class);
+
+
+products.setUserId(id);
+products.setUserName(userRepository.getUserById(id).getName());
+
+return products;
+    }
+@Override
+public CountProductWithDiscountDto CountProductWithDiscount(int id) {
+	// This method returns the number of products with discount of a seller.
+	userService.validateUserExistById(id);
+	if (!userRepository.getUserById(id).isSeller()) {
+	throw new BadRequestException(Parameter.getString("EX_NotASeller"));
+	}
+	List<Post> postWithDiscount = postRepository.getPosts().stream()
+			.filter(thePost -> thePost.isHasPromo() == true)
+			.collect(Collectors.toList());
+	CountProductWithDiscountDto countProducts = new CountProductWithDiscountDto();
+	countProducts.setUserId(id);
+	countProducts.setUserName(userRepository.getUserById(id).getName());
+	countProducts.setPromoProductsCount(postWithDiscount.size());
+	return countProducts;
+}
+
 }

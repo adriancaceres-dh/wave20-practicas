@@ -3,6 +3,8 @@ package com.bootcamp.be_java_hisp_w20_g1.controller;
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostPromoRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.CountProductWithDiscountDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.ListOfProductsWithDiscountDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.postResponsePromoDto;
@@ -38,4 +40,14 @@ public class PostController {
     public ResponseEntity<postResponsePromoDto> addPostWithDiscount(@RequestBody PostPromoRequestDto dto){
         return new ResponseEntity<>(postService.addWithPromo(dto), HttpStatus.CREATED);
     }
+    
+    @GetMapping("/promo-post/count")
+    public CountProductWithDiscountDto numberOfProductWithDiscount(@RequestParam int userId) {
+    	return postService.CountProductWithDiscount(userId);
+    }
+    @GetMapping("/promo-post/list")
+    public ListOfProductsWithDiscountDto ListProductsWithDiscountOfASeller(@RequestParam int user_id) {
+    return postService.productsWithDiscount(user_id);
+    }
+    
 }

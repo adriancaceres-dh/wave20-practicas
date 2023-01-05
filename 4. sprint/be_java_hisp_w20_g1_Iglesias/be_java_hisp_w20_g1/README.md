@@ -576,3 +576,20 @@ Filtros / Parámetros
 | **date\_desc** | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006
+
+# Proyecto individual.
+
+Una vez realizado el proyecto de manera grupal, se procedió a hacer el US010, US011 y US012 de forma individual, siendo el responsable en este caso Agustín Iglesias.
+
+## User 010.
+
+Se permite la publicación de un producto en promoción. Si el producto es nuevo, se crea, y sino simplemente se añade el post haciendo referencia al antiguo producto.
+
+## User 011.
+
+Se añade la posibilidad de ver la cantidad de productos en promoción de un vendedor. Para eso, se devuelve un DTO agregando el id del usuario, su nombre y la cantidad de productos en promoción que tiene.
+
+## US012 (bonus).
+
+Se permite ver la lista de todos los productos que un vendedor tiene en promoción.
+**Nota: si bien este método está hecho, no funciona. Al devolver el DTO, en el cual debería traer el id del usuario, el nombre y su lista de productos, la lista siempre retorna null.**
