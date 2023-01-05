@@ -51,6 +51,16 @@ public class Publication {
         this.contador = contador;
     }
 
+    public Publication(int post_id, LocalDate date, double price, boolean hasPromo, double discount, Product product, Integer category_id, int user_id) {
+        this.post_id = post_id;
+        this.date = date;
+        this.price = price;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
+        this.product = product;
+        this.category_id = category_id;
+        this.user_id = user_id;
+    }
 
     public Integer getCategory_id() {
         return category_id;

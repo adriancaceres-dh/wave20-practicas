@@ -6,6 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductTwoWe
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PromoCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationPromoDTO;
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationSellerPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.service.publication.IServicePublication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,10 @@ public class PublicationController {
     @GetMapping("/promo-post/count")
     public ResponseEntity<PromoCountDTO> promoProductsOfSeller(@RequestParam(value="user_id") int userId){
         return ResponseEntity.ok().body(servicePublication.countPublicationPromo(userId));
+    }
+    @GetMapping("/promo-post/list")
+    public  ResponseEntity<PublicationSellerPromoDTO> promoPostList(@RequestParam(value="user_id") int user_id){
+        return  ResponseEntity.ok().body(servicePublication.publicationSellerPromo(user_id));
     }
 
 }

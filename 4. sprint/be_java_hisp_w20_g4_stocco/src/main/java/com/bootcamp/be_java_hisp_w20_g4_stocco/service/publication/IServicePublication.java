@@ -6,6 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductTwoWe
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PromoCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationPromoDTO;
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationSellerPromoDTO;
 
 public interface IServicePublication {
 
@@ -16,4 +17,7 @@ public interface IServicePublication {
     PublicationPromoDTO addPublicationPromo(PostPromoDTO postPromoDTO);
 
     PromoCountDTO countPublicationPromo(int user_id);
+
+    PublicationSellerPromoDTO publicationSellerPromo(int user_id);
+
 }

@@ -2,12 +2,9 @@ package com.bootcamp.be_java_hisp_w20_g4_stocco.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.request.PostPromoDTO;
-import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.ListedPostDTO;
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.*;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductTwoWeeksResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PromoCountDTO;
-import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationDTO;
-import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.model.*;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.repository.category.ICategoryRepository;
@@ -124,5 +121,21 @@ public class ServicePublication implements IServicePublication {
         return promoCountDTO;
     }
 
+    @Override
+    public PublicationSellerPromoDTO publicationSellerPromo(int user_id) {
+        User user = userRepository.findById(user_id);
+        isValidUser(user);
+        isSeller(user);
+        List<Publication> publications = publicationRepository.promoSellerList(user_id);
+        List<PostPromoDTO> posts = publications.stream()
+                .filter(p->p.getUser_id() == user_id)
+                .filter(p->p.isHasPromo())
+                .map(p-> mapper.map(p, PostPromoDTO.class))
+                .collect(Collectors.toList());
+
+        PublicationSellerPromoDTO publicationSellerPromoDTO = new PublicationSellerPromoDTO(user_id,user.getUser_name(),posts);
+        return  publicationSellerPromoDTO;
+
+    }
 
 }

@@ -9,4 +9,5 @@ public interface IPublicationRepository {
     public boolean addPublication(Publication publication);
     public List<Publication> getPublicationLastNDays(List<Integer> followedIds, int nDays);
     public int countPromos(int user_id);
+    public List<Publication> promoSellerList(int user_id);
 }
