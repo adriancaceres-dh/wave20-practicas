@@ -9,6 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.InternalServerErrorException;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.publication.PublicationHelper;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.*;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.category.ICategoryRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.product.IProductRepository;
@@ -88,8 +89,8 @@ public class ServicePublication implements IServicePublication {
     @Override
     public PublicationDiscountDTO addPromoPublication(PostDiscountDTO postDiscountDTO) {
         User user =  userRepository.findById(postDiscountDTO.getUser_id());
-        if(!postDiscountDTO.isHas_promo()) throw new BadRequestException("El producto tiene que tener un descuento.");
-        if(postDiscountDTO.getDiscount() <= 0d) throw new BadRequestException("El descuento del producto tiene que ser mayor a 0.");
+        PublicationHelper.hasPromo(postDiscountDTO.isHas_promo());
+        PublicationHelper.hasDiscount(postDiscountDTO.getDiscount());
         Publication publication = this.createPublication(user, postDiscountDTO.getCategory(), postDiscountDTO.getProduct(), postDiscountDTO.getDate(), postDiscountDTO.getPrice(), postDiscountDTO.isHas_promo(), postDiscountDTO.getDiscount());
         if(publicationRepository.addPublication(publication)){
             ((Seller) user).addPublication(publication);
