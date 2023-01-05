@@ -96,6 +96,7 @@ public class PostServiceImpl implements IPostService {
     public DiscountPostListResponseDTO discountPostBySeller(int sellerId) {
         String user_name=userService.getUserById(sellerId).getUser_name();
         int user_id=userService.getUserById(sellerId).getUser_id();
+
         List<DiscountPostResponseDTO> discountPost=postRepository.getPostList().stream()
                 .filter(p->p.getUser_id()==sellerId && p.isHas_promo()==true)
                 .map(p-> mapper.map(p, DiscountPostResponseDTO.class))
