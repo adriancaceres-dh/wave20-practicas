@@ -39,7 +39,7 @@ Java, Spring Boot
 
 ## Endpoints
 
-#### A. Requerimientos Iniciales (Desarrollo GRUPAL)
+### A. Requerimientos Iniciales (Desarrollo GRUPAL)
 
 **Responsables:** Manuel Alejandro Diaz Isaza y Ronald Esteban Rosero Montana.
 
@@ -145,7 +145,6 @@ Java, Spring Boot
 
 ```http
   US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
-
 ```
 
 #### Sign:
@@ -177,7 +176,6 @@ Java, Spring Boot
     ]
 }
 
-
 ```
 
 #### Filtros/Parámetros:
@@ -192,7 +190,6 @@ Java, Spring Boot
 
 ```http
   US 0005: Dar de alta una nueva publicación
-
 ```
 
 #### Sign:
@@ -377,7 +374,6 @@ Java, Spring Boot
 
 ```http
   US 0010: Llevar a cabo la publicación de un nuevo producto en promoción
-
 ```
 
 #### Sign:
@@ -459,15 +455,13 @@ Java, Spring Boot
 | `user_name`      | `String` | Cadena de caracteres que representa el nombre del usuario |
 | `promo_products_count`      | `int` | Cantidad numérica de productos en promoción de un determinado usuario. |
 
-
 #
-### C. Ejemplo Requerimiento Bonus (Desarrollo INDIVIDUAL)
+### C. Ejemplo Requerimiento Bonus (Desarrollo INDIVIDUAL) (Se realiza el requerimiento de ejemplo)
 
 **Responsables:** Sebastian Anttury
 ​
 ```http
   US 0012: Obtener un listado de todos los productos en promoción de un determinado vendedor
-​
 ```
 
 #### Sign:
@@ -522,4 +516,7 @@ Java, Spring Boot
 | `price`   | `double` | Precio del producto |
 | `has_promo`   | `boolean` | Campo true o false para determinar si un producto está en promoción o no |
 | `discount`   | `double` | En caso de que un producto estuviese en promoción ,establece el monto de descuento |
+
+#
+**Nota:** En UserRepository, FollowRepository y PostRepository se dejaron datos quemados para probar el código.
 
