@@ -135,7 +135,7 @@ public class ServicePublication implements IServicePublication {
         User user = userRepository.findById(id);
         isValidUser(user);
         isSeller(user);
-        List<Publication> promoPublications = ((Seller)user).getPublications().values().stream().filter(p -> p.isHasPromo()).collect(Collectors.toList());
+        List<Publication> promoPublications = publicationRepository.getPublicationsPromo().stream().filter(p -> p.getUser_id() == id).collect(Collectors.toList());
         List<ListedPostPromotionDTO> promoPublicationsDto = promoPublications.stream().map(p -> mapper.map(p, ListedPostPromotionDTO.class)).collect(Collectors.toList());
         return new UserPostPromotionDTO(user.getUser_id(), user.getUser_name(), promoPublicationsDto);
     }
