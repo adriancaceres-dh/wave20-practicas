@@ -42,7 +42,7 @@ Los requisitos 10, 11 y 12 se trabajaron de forma individual.
      * Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
      * En caso de que un producto no exista o el id sea incorrecto devuelve un 400
 
-*   Req 6:
+*     Req 6:
     * Recibir el id de un usuario existente
     * El id tiene que ser de un vendedor
 
