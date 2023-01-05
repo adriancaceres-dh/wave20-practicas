@@ -5,13 +5,14 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PromoPostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PostResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoPostCountDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserPostDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUserProductDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.UserPostDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.UserProductDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedUsersPostsResponse;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promo_post_list.PromoPostListResponse;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promo_post_list.UserPromoPostDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidPostDataException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.PromoPostNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
@@ -84,7 +85,7 @@ public class PostService implements IPostService{
                                             .isAfter(LocalDate.now().minusDays(14)))
                                     .collect(Collectors.toList())));
 
-            Collection<FollowedUserPostDTO> postResults = new ArrayList<>();
+            Collection<UserPostDTO> postResults = new ArrayList<>();
 
             //Se guarda en una variable el signo por el que se debe multiplicar el int devuelto por el comparator si se quiere invertir el orden.
             int auxSign = (order!= null && order.equalsIgnoreCase("date_asc"))? 1 : -1;
@@ -93,10 +94,10 @@ public class PostService implements IPostService{
             followedUsersPosts.stream()
                     .sorted((x,y) -> auxSign*(x.getDate().compareTo(y.getDate())))
                     .forEach(post ->
-                    postResults.add(new FollowedUserPostDTO(post.getUserId(),
+                    postResults.add(new UserPostDTO(post.getUserId(),
                             post.getId(),
                             post.getDate(),
-                            new FollowedUserProductDTO(
+                            new UserProductDTO(
                                     post.getProduct().getId(),
                                     post.getProduct().getName(),
                                     post.getProduct().getType(),
@@ -115,6 +116,9 @@ public class PostService implements IPostService{
         return result;
     }
 
+    // Crea un nuevo post con descuento valiendose del metodo para crear post normales y seteando has_promo y discount
+    // por lo que no es necesario chequear por excepciones ya que están contempladas en el otro metodo.
+    // Me parecio una buena forma de implementarlo para reusar codigo y al mismo tiempo respetar el desarollo grupal.
     public Post newPromoPost(PromoPostRequestDTO promoPostRequestDTO) {
         Post newPost = newPost(promoPostRequestDTO);
         newPost.setPromo(promoPostRequestDTO.isPromo());
@@ -122,36 +126,49 @@ public class PostService implements IPostService{
         return newPost;
     }
 
+    // OMG, here we go
+    //Este metodo devuelve una lista con los post con descuento del user valiendose en parte
+    // de DTO ya implementados para el requerimiento US 0006
     @Override
     public PromoPostListResponse getPromoPostList(int userId) {
         User user = userService.getById(userId);
-        Collection<Post> UserPromoPostList = new ArrayList<>();
+        Collection<Post> UserPromoPostList;
+
         //Obtenemos todos los post en promo del user
         UserPromoPostList= postRepository.getAll().stream().filter(post -> post.getUserId() == userId && post.isPromo()).collect(Collectors.toList());
+
+        //Verificamos si nuestro user tiene algun post en promo sino tiramos una excepción.
+        if (UserPromoPostList.isEmpty()) {
+            throw new PromoPostNotFoundException(new MessageExceptionDTO("El usuario no tiene ningún post con descuento."));
+        }
+
+        //Para cada post lo pasamos user promo post dto que contiene info de post con promo y del producto y los ponemos en la lista
+        //Esto hubiera quedado mucho mas lindo con un mapper, anotado para mejorarlo en proximas instancias
         Collection<UserPromoPostDTO> promoPosts = new ArrayList<>();
-        //Mapeamos cada post a user promo post dto y los ponemos en la lista
         UserPromoPostList.forEach(post -> promoPosts.add(new UserPromoPostDTO(
                 user.getId(),
                 post.getId(),
                 post.getDate(),
-                new FollowedUserProductDTO( //Como UserPromoPostDTO hereda de FollowedUserPostDTO requiere un FollowedUserProductDTO
-                        post.getProduct().getId(),
-                        post.getProduct().getName(),
-                        post.getProduct().getType(),
-                        post.getProduct().getBrand(),
-                        post.getProduct().getColor(),
-                        post.getProduct().getNotes()
-                ),
+                        new UserProductDTO( //Como UserPromoPostDTO hereda de UserPostDTO requiere un UserProductDTO
+                                post.getProduct().getId(),
+                                post.getProduct().getName(),
+                                post.getProduct().getType(),
+                                post.getProduct().getBrand(),
+                                post.getProduct().getColor(),
+                                post.getProduct().getNotes()
+                        ),
                 post.getCategory(),
                 post.getPrice(),
                 post.isPromo(),
                 post.getDiscount()
                 )));
+
         //Creamos el dto que lista los post promo del user y le agregamos la lista de post promo dto
         PromoPostListResponse response = new PromoPostListResponse(user.getId(), user.getUserName(), promoPosts);
         return response;
     }
 
+    // Metodo que devuelve la cuenta de post con promo de un user
     public PromoPostCountDTO getPromoPostCount (int userId){
         User user= userService.getById(userId);
         //retornamos el dto del count de post en promo del user

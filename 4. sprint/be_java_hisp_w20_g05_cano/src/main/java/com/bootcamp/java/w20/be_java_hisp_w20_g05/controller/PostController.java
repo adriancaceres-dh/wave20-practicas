@@ -25,6 +25,7 @@ public class PostController {
     @Autowired
     private IPostService postService;
 
+    // Crea un nuevo post
     @PostMapping("/post")
     public ResponseEntity newPost(@RequestBody PostRequestDTO postRequestDTO) {
         postService.newPost(postRequestDTO);
@@ -39,17 +40,20 @@ public class PostController {
         return postService.getFollowedUsersPosts(userId, order);
     }
 
+    // Crea un nuevo post con descuento
     @PostMapping("/promo-post")
     public ResponseEntity newPromoPost(@RequestBody PromoPostRequestDTO promoPostRequestDTO) {
         postService.newPromoPost(promoPostRequestDTO);
         return new ResponseEntity("todo OK",HttpStatus.OK);
     }
 
+    // Devuelve la cuenta de post con descuento de un user
     @GetMapping("promo-post/count")
     public ResponseEntity<PromoPostCountDTO> getPromoPostCount(@RequestParam int user_id){
         return new ResponseEntity<>(postService.getPromoPostCount(user_id), HttpStatus.OK);
     }
 
+    // Obtiene una lista de los post con descuento de un user
     @GetMapping("promo-post/list")
     public ResponseEntity<PromoPostListResponse> getPromoPostList(@RequestParam int user_id){
         return new ResponseEntity<>(postService.getPromoPostList(user_id), HttpStatus.OK);

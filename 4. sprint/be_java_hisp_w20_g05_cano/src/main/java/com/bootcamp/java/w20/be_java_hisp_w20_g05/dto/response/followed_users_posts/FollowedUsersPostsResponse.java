@@ -16,6 +16,6 @@ public class FollowedUsersPostsResponse {
     @JsonProperty("user_id")
     private int userId;
     @JsonProperty("posts")
-    private Collection<FollowedUserPostDTO> posts;
+    private Collection<UserPostDTO> posts;
 
 }

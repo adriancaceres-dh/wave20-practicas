@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FollowedUserProductDTO {
+public class UserProductDTO {
     @JsonProperty("product_id")
     private int productId;
     @JsonProperty("product_name")

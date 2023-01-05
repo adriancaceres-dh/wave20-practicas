@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FollowedUserPostDTO {
+public class UserPostDTO {
 
     @JsonProperty("user_id")
     private int userId;
@@ -21,7 +21,7 @@ public class FollowedUserPostDTO {
     @JsonProperty("date")
     private LocalDate date;
     @JsonProperty("product")
-    private FollowedUserProductDTO product;
+    private UserProductDTO product;
     @JsonProperty("category")
     private int category;
     @JsonProperty("price")
