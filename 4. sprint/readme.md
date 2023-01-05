@@ -42,12 +42,25 @@ Los requisitos 10, 11 y 12 se trabajaron de forma individual.
      * Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
      * En caso de que un producto no exista o el id sea incorrecto devuelve un 400
 
+*   Req 6:
+    * Recibir el id de un usuario existente
+    * El id tiene que ser de un vendedor
+
 *     Req 7:
     * No se puede dejar de seguirte a ti mismo.
     * No se puede dejar de seguir a un usuario que no existes
 
 *     Req 8 & Req 9:
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
+
+*    Req 10:
+    * No se podra publicar una publicacion que no tenga promocion
+
+*    Req 11:
+    * Solo se podra consultar la cantidad de promos de los vendedores. (no compradores)
+    
+*    Req 12:
+    * Solo se puede enviar el id de un vendedor para obtener su lista de promociones
 
 
 ### [Endpoints](https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf): Responsable Emiliano Asprea
