@@ -80,11 +80,7 @@ public class PostServiceImpl implements IPostService {
     public PromoCountResponseDto countPromoProducts(int user_id) {
         UserModel user = userService.getUserById(user_id);
 
-        int total_promo_products = (int) postRepository.getPostList()
-                .stream()
-                .filter(p -> p.getUser_id() == user_id)
-                .filter(PostModel::isHas_promo)
-                .count();
+        int total_promo_products = getPromoPostResponseDtos(user_id).size();
 
         return new PromoCountResponseDto(user_id, user.getUser_name(), total_promo_products);
     }
@@ -93,13 +89,16 @@ public class PostServiceImpl implements IPostService {
     public PromoPostListResponseDto getPromoProducts(int user_id) {
         UserModel user = userService.getUserById(user_id);
 
-        List<PromoPostResponseDto> posts = postRepository.getPostList()
-                .stream()
-                .filter(p -> p.getUser_id() == user_id)
-                .filter(PostModel::isHas_promo)
-                .map(p -> mapper.map(p, PromoPostResponseDto.class))
-                .collect(Collectors.toList());
+        List<PromoPostResponseDto> posts = getPromoPostResponseDtos(user_id);
 
         return new PromoPostListResponseDto(user.getUser_id(), user.getUser_name(), posts);
+    }
+
+    private List<PromoPostResponseDto> getPromoPostResponseDtos(int user_id) {
+        return postRepository.getPostList()
+                .stream()
+                .filter(p -> p.getUser_id() == user_id && p.isHas_promo())
+                .map(p -> mapper.map(p, PromoPostResponseDto.class))
+                .collect(Collectors.toList());
     }
 }

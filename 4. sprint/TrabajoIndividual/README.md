@@ -1,14 +1,8 @@
 # MeliSocial
 ## Sprint 1
 
-## Miembros
-* Alejandro Torres
+## Responsable
 * Augusto Díaz
-* Daniel Andres Angel Rojas
-* Daniela Villamizar
-* David Nuñez
-* Diana Parra
-* Juan Carlos Ortiz
 ## Consigna del ejercicio
 
 Mercado Libre sigue creciendo y para el año que viene  tiene como objetivo empezar a implementar una serie de herramientas que permitan a los compradores y vendedores tener una experiencia totalmente innovadora, en donde el lazo que los una sea mucho más cercano. 
@@ -331,6 +325,6 @@ RESPONSE:
 
 ## Colección de Postman 
 
-Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/be_java_hisp_w20_g6/blob/main/src/main/resources/static/User_test.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
+Para el testeo de esta api colocamos a [disposición](https://github.com/adriancaceres-dh/wave20-practicas/blob/diaz_augusto/4.%20sprint/TrabajoIndividual/src/main/resources/static/User%20Tests.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
 ## Repositorio original
 [Enlace al repo original](https://github.com/alejandrotm20/be_java_hisp_w20_g6)

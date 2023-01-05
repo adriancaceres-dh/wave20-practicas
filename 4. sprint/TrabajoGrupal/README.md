@@ -19,8 +19,6 @@ Para poder realizar esto, un analista funcional relevó una serie de requerimien
 * SpringBoot 2.7.7
 * LucidaChart
 * Postman
-* Git
-* Github
 ## Decisiones de equipo
 1. El modelado de las entidades fue realizado previamente al desarrollo en una reunión grupal donde todos aportamos y estuvimos de acuerdo con el resultado final.
 2. En el repositorio de usuarios optamos por implementar un HashMap para almacenar el mock destinado a las pruebas de la api por una cuestión de eficiencia en el acceso de datos.
@@ -247,10 +245,11 @@ Ordenamiento por fecha ascendente y descendente
 
 **NOTA**: Este ordenamiento solo aplica para **US0006**
 
-Reponsable: Juan Carlos Ortiz
+Responsable: Juan Carlos Ortiz
+***
 ## Colección de Postman 
 
-Para el testeo de esta api colocamos a disposición una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
+Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/be_java_hisp_w20_g6/blob/main/src/main/resources/static/User_test.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
 
 ## Repositorio original
 [Enlace al repo original](https://github.com/alejandrotm20/be_java_hisp_w20_g6)

@@ -1,9 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g6.config;
 
-import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerExistsException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerNotFoundException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6.exception.*;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +29,9 @@ public class ControllerExceptionHandler {
     public ResponseEntity<String> followerNotFound(FollowerNotFoundException followerNotFoundException){
         return new ResponseEntity<>(followerNotFoundException.getMessage(), HttpStatus.BAD_REQUEST);
     }
-
+    @ExceptionHandler(SameUserException.class)
+    public ResponseEntity<String> followerNotFound(SameUserException sameUserException){
+        return new ResponseEntity<>(sameUserException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
 }
