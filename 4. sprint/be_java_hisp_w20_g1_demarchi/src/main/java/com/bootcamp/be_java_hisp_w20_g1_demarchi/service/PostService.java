@@ -147,10 +147,18 @@ public class PostService implements IPostService {
     @Override
     public SellerWithProductsOnPromoListResponseDto getProductsOnPromotionByUser(
             int id,
-            PostFilter postFilter) {
+            PostFilter postFilter
+    ) {
         User userFound = getUserIfValid(id);
+        return new SellerWithProductsOnPromoListResponseDto(
+                userFound.getId(),
+                userFound.getName(),
+                getPostsOnPromotionWithFiltersApplied(id, postFilter)
+        );
+    }
 
-        List<PostPromoResponseDto> postsOnPromotionDto = postRepository.getPostOnPromotionByUserId(id)
+    private List<PostPromoResponseDto> getPostsOnPromotionWithFiltersApplied(int id, PostFilter postFilter) {
+        return postRepository.getPostOnPromotionByUserId(id)
                 .stream()
                 .map(p -> {
                             PostPromoResponseDto post = mapper.map(p, PostPromoResponseDto.class);
@@ -164,12 +172,6 @@ public class PostService implements IPostService {
                 .filter(postFilter.getCategory() > 0 ? p -> p.getCategory() == postFilter.getCategory(): p -> true)
                 .filter(postFilter.getMinDiscount() > 0.0 ? p -> p.getDiscount() >= postFilter.getMinDiscount(): p -> true)
                 .collect(Collectors.toList());
-
-        return new SellerWithProductsOnPromoListResponseDto(
-                userFound.getId(),
-                userFound.getName(),
-                postsOnPromotionDto
-        );
     }
 
     private double getPriceWithDiscount(double postPrice, double discount) {
