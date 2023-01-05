@@ -5,7 +5,9 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
@@ -127,6 +129,15 @@ public class ServicePublication implements IServicePublication {
         List<Publication> publicationsPromo = publicationRepository.getPublicationsPromo();
         List<Publication> userPublications = publicationsPromo.stream().filter(p -> p.getUser_id() == id).collect(Collectors.toList());
         return new UserPromoProductsCountDTO(user.getUser_id(), user.getUser_name(), userPublications.size());
+    }
+
+    public UserPostPromotionDTO getPromoPublications(int id){
+        User user = userRepository.findById(id);
+        isValidUser(user);
+        isSeller(user);
+        List<Publication> promoPublications = ((Seller)user).getPublications().values().stream().filter(p -> p.isHasPromo()).collect(Collectors.toList());
+        List<ListedPostPromotionDTO> promoPublicationsDto = promoPublications.stream().map(p -> mapper.map(p, ListedPostPromotionDTO.class)).collect(Collectors.toList());
+        return new UserPostPromotionDTO(user.getUser_id(), user.getUser_name(), promoPublicationsDto);
     }
 
 
