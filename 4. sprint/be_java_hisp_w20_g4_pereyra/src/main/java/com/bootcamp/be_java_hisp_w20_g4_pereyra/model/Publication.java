@@ -21,7 +21,6 @@ public class Publication {
     private double discount;
     private Product product;
     private Category category;
-
     private int user_id;
     private static int contador = 3;
 

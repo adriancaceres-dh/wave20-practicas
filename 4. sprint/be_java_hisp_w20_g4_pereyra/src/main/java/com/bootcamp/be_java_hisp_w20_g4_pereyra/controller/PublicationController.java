@@ -1,7 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g4_pereyra.controller;
 
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.product.ProductDTORequest;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDiscountDTO;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProductsCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationDiscountDTO;
@@ -41,6 +43,11 @@ public class PublicationController {
     @GetMapping("/promo-post/list")
     public ResponseEntity<ListedPublicationDiscountDTO> promoProductsOfSeller(@RequestParam(value="user_id") int userId){
         return ResponseEntity.ok().body(servicePublication.getProductsWithDiscount(userId));
+    }
+
+    @PostMapping("/post_product")
+    public ResponseEntity<ProductDTO> postProduct(@RequestBody ProductDTORequest productDTORequest){
+        return ResponseEntity.ok().body(servicePublication.createProduct(productDTORequest));
     }
 
 }

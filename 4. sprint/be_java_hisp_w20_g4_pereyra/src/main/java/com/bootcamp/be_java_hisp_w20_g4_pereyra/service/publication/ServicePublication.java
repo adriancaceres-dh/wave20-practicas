@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4_pereyra.service.publication;
 
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.product.ProductDTORequest;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.publication.PostDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.PromoProductsCountDTO;
@@ -147,6 +148,11 @@ public class ServicePublication implements IServicePublication {
                         p.getCategory(), p.getPrice(), p.isHasPromo(),p.getDiscount()))
                 .collect(Collectors.toList());
         return new ListedPublicationDiscountDTO(user_id, user.getUser_name(), publicationDiscountDTOS);
+    }
+
+    @Override
+    public ProductDTO createProduct(ProductDTORequest productDTORequest) {
+        return null;
     }
 
 }
