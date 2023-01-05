@@ -52,11 +52,11 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 
 ### Decisiones individuales.
 
-- Solo se creara un post de promocion si el producto a publicar en el post coincide con uno ya credo en todos sus elementos a partir de su ID o es un producto que no se ha publicado antes.
-- Si un producto ya fue publicado con anterioridad, solo podra ser publicado en promocion por el usario que lo publico anteriormente.
-- Si el producto no fue publicado con anterioridad, al intentar crear un post con promocion, se creara un nuevo producto con promoción.
+- Solo se creara un post de promoción si el producto a publicar en el post coincide con uno ya credo en todos sus elementos a partir de su ID o es un producto que no se ha publicado antes.
+- Si un producto ya fue publicado con anterioridad, solo podra ser publicado en promoción por el usuario que lo publico anteriormente.
+- Si el producto no fue publicado con anterioridad, al intentar crear un post con promoción, se creara un nuevo producto con promoción.
 - No se pueden publicar las mismas promociones más de una vez.
-- Se puede publicar nuevamente una promocion si se cambia el valor del precio o del descuento.
+- Se puede publicar una promoción sobre el mismo producto si se cambia el valor del precio o del descuento.
 
 ### Endpoints (Grupales)
 
@@ -64,20 +64,20 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 
 Responsables de cada User Story
 
-| User Story  | Responsables                                                                 |
-|-------------|------------------------------------------------------------------------------|
-| **US 0001** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0002** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
-| **US 0003** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
-| **US 0004** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
-| **US 0005** | Karen Hoffman y Lautaro Walsh                                                |
-| **US 0006** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0007** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0008** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
-| **US 0009** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0010** | Franciso Nicolas Berthet Cosentino                                           |
-| **US 0011** | Franciso Nicolas Berthet Cosentino                                           |
-| **US 0012** | Franciso Nicolas Berthet Cosentino                                           |
+| User Story                      | Responsables                                                                 |
+|---------------------------------|------------------------------------------------------------------------------|
+| **US 0001**                     | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
+| **US 0002**                     | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0003**                     | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0004**                     | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0005**                     | Karen Hoffman y Lautaro Walsh                                                |
+| **US 0006**                     | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
+| **US 0007**                     | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
+| **US 0008**                     | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi                     |
+| **US 0009**                     | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
+| **US 0010 (individual)**        | Franciso Nicolas Berthet Cosentino                                           |
+| **US 0011 (individual)**        | Franciso Nicolas Berthet Cosentino                                           |
+| **US 0012 (BONUS)** | Franciso Nicolas Berthet Cosentino                                           |
 
 ----
 **US 0001**
@@ -408,14 +408,14 @@ _Dar de alta una nueva publicación_
 
 Filtros / Parámetros
 
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **user\_Id** | int | Número que identifica a cada usuario |
-| **date** | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
-| **product\_id** | int | Número identificatorio de un producto asociado a una publicación |
-| **product\_name** | String | Cadena de caracteres que representa el nombre de un producto |
-| **type** | String | Cadena de caracteres que representa el tipo de un producto |
-| **brand** | String | Cadena de caracteres que representa la marca de un producto |
+| Parámetros        | Tipo      | Descripción / Ejemplo                                            |
+|-------------------|-----------|------------------------------------------------------------------|
+| **user\_Id**      | int       | Número que identifica a cada usuario                             |
+| **date**          | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                    |
+| **product\_id**   | int       | Número identificatorio de un producto asociado a una publicación |
+| **product\_name** | String    | Cadena de caracteres que representa el nombre de un producto     |
+| **type**          | String    | Cadena de caracteres que representa el tipo de un producto       |
+| **brand**         | String    | Cadena de caracteres que representa la marca de un producto      |
 
 ----
 **US 0006**
@@ -587,3 +587,288 @@ Filtros / Parámetros
 | **date\_desc** | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006
+
+---
+REQUERIMIENTOS INCREMENTALES (Desarrollo individual)
+---
+**US 0010**
+
+_Llevar a cabo la publicación de un nuevo producto en promoción_
+
+<table>
+<tbody>
+<tr>
+<td>Method</td>
+<td>Sign</td>
+</tr>
+<tr>
+<td><strong>POST</strong></td>
+<td>
+<p>/products/promo-post</p>
+
+</td>
+</tr>
+
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>Payload</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+ {
+    "date": "29-04-2025",
+    "user_id": 1,
+    "product": {
+        "product_id": 283,
+        "product_name": "Silla Gamer azulex",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1501.5,
+    "has_promo": true,
+    "discount": 0.7
+}
+</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr style="height: 23.5px;">
+<td style="height: 23.5px;">Status Code</td>
+<td style="height: 23.5px;">Response / Dto</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>200</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+ {
+    "date": "29-04-2025",
+    "user_id": 1,
+    "product": {
+        "product_id": 283,
+        "product_name": "Silla Gamer azulex",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1501.5,
+    "has_promo": true,
+    "discount": 0.7
+}
+</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+{
+    "message": "Promocion invalida",
+    "status": 400,
+    "timestamp": "2023-01-05T14:28:53.227908"
+}
+</code></pre>
+</td>
+</tr>
+
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no existe",
+"status": 404,
+"timestamp": "2023-01-03T12:26:58.065217"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| order            | Tipo      | Description                                                                                                             |
+|------------------|-----------|-------------------------------------------------------------------------------------------------------------------------|
+| **user_id**      | int       | Número que identifica a cada usuario                                                                                    |
+| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                           |
+| **product_id**   | int       | Número identificatorio de un producto asociado a una publicacion                                                        |
+| **product_name** | String    | Cadena de caracteres que representa el nombre de un producto                                                            |
+| **type**         | String    | Cadena de caracteres que representa el tipo de un producto                                                              |
+| **brand**        | String    | Cadena de caracteres que representa la marca de un producto                                                             |
+| **color**        | String    | Cadena de caracteres que representa el color de un producto                                                             |
+| **notes**        | String    | Cadena de caracteres para colocar notas u observaciones de un producto                                                  |
+| **category**     | int       | dentificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**        | double    | Precio del producto                                                                                                     |
+| **has_promo**    | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                |
+| **discount**     | double    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.                                     |
+
+---
+**US 0011**
+
+_Obtener la cantidad de productos en promoción de un determinado vendedor_
+
+<table>
+<tbody>
+<tr>
+<td>Method</td>
+<td>Sign</td>
+</tr>
+<tr>
+<td><strong>GET</strong></td>
+<td>
+<p>/products/promo-post/count?user_id={userId}</p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr style="height: 23.5px;">
+<td style="height: 23.5px;">Status Code</td>
+<td style="height: 23.5px;">Response / Dto</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>200</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+{
+    "user_id": 1,
+    "user_name": "zchanelleHhanelle",
+    "promo_products_count": 6
+}
+</code></pre>
+</td>
+</tr>
+
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no existe",
+"status": 404,
+"timestamp": "2023-01-03T12:26:58.065217"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| order                    | Tipo    | Description                                                                                                             |
+|--------------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| **user\_id**             | int     | Número que identifica a cada usuario                                                                                    |
+| **user_name**            | String  | Cadena de caracteres que representa el nombre del usuario                                                               |
+| **promo_products_count** | int     | Cantidad numérica de productos en promoción de un determinado usuario.                                                  |
+
+---
+REQUERIMIENTO BONUS (Individual)
+--
+**US 0012**
+
+_Obtener un listado de todos los productos en promoción de un determinado vendedor_
+
+<table>
+<tbody>
+<tr>
+<td>Method</td>
+<td>Sign</td>
+</tr>
+<tr>
+<td><strong>GET</strong></td>
+<td>
+<p>products/promo-post/list?user_id={userId}</p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<tbody>
+<tr style="height: 23.5px;">
+<td style="height: 23.5px;">Status Code</td>
+<td style="height: 23.5px;">Response / Dto</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>200</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+ {
+    "user_id": 1,
+    "user_name": "zchanelleHhanelle",
+    "posts": [
+        {
+            "user_id": 1,
+            "post_id": 2,
+            "date": "10-02-2022",
+            "product": {
+                "product_id": 1,
+                "product_name": "Durable Steel Bottle",
+                "type": "Steel",
+                "brand": "Pagac, Lemke and Langosh",
+                "color": "green",
+                "notes": "Labore explicabo accusamus a."
+            },
+            "category": 5,
+            "price": 14.0,
+            "has_promo": true,
+            "discount": 0.1
+        }
+    ]
+}
+</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">
+{
+    "message": "El usuario no es vendedor",
+    "status": 400,
+    "timestamp": "2023-01-05T14:58:57.244343"
+}
+</code></pre>
+</td>
+</tr>
+
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+"message": "El usuario no existe",
+"status": 404,
+"timestamp": "2023-01-03T12:26:58.065217"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| order            | Tipo      | Description                                                                                                             |
+|------------------|-----------|-------------------------------------------------------------------------------------------------------------------------|
+| **user\_id**     | int       | Número que identifica a cada usuario                                                                                    |
+| **user_name**    | String    | Cadena de caracteres que representa el nombre del usuario                                                               |
+| **post_id**      | int       | Número identificatorio de cada una de las publicaciones                                                                 |
+| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                           |
+| **product_id**   | int       | Número identificatorio de un producto asociado a una publicacion                                                        |
+| **product_name** | String    | Cadena de caracteres que representa el nombre de un producto                                                            |
+| **type**         | String    | Cadena de caracteres que representa el tipo de un producto                                                              |
+| **brand**        | String    | Cadena de caracteres que representa la marca de un producto                                                             |
+| **color**        | String    | Cadena de caracteres que representa el color de un producto                                                             |
+| **notes**        | String    | Cadena de caracteres para colocar notas u observaciones de un producto                                                  |
+| **category**     | int       | dentificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**        | double    | Precio del producto                                                                                                     |
+| **has_promo**    | boolean   | Campo true o false para determinar si un producto está en promoción o no                                                |
+| **discount**     | double    | En caso de que un producto estuviese en promoción ,establece el monto de descuento.                                     |
