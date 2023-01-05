@@ -1,10 +1,8 @@
 {
 	"info": {
-		"_postman_id": "65f87625-8951-4a33-a5d4-60347fc5a0c7",
+		"_postman_id": "c387b1c4-e62d-4e7e-95af-1c34859def6f",
 		"name": "Sprint1",
-		"schema": 
-"https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25166727"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -16,8 +14,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/6932/follow/123",
+							"raw": "http://localhost:8080/users/6932/follow/123",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -39,8 +36,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/4698/follow/465",
+							"raw": "http://localhost:8080/users/4698/follow/465",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -67,8 +63,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/234/followers/count",
+							"raw": "http://localhost:8080/users/234/followers/count",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -90,8 +85,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/products/followed/1/list",
+							"raw": "http://localhost:8080/products/followed/1/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -118,8 +112,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"localhost:8080/users/234/followers/list/",
+							"raw": "localhost:8080/users/234/followers/list/",
 							"host": [
 								"localhost"
 							],
@@ -141,8 +134,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"localhost:8080/users/1323/followers/list/",
+							"raw": "localhost:8080/users/1323/followers/list/",
 							"host": [
 								"localhost"
 							],
@@ -169,8 +161,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/4698/followed/list",
+							"raw": "http://localhost:8080/users/4698/followed/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -192,8 +183,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/5555/followed/list",
+							"raw": "http://localhost:8080/users/5555/followed/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -221,23 +211,15 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    
-\"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        
-\"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        
-\"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red 
-& Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 
-100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 
-10\n}\n\n",
+							"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 10\n}\n\n",
 							"options": {
 								"raw": {
-									
-"language": "json"
+									"language": "json"
 								}
 							}
 						},
 						"url": {
-							"raw": 
-"localhost:8080/products/post",
+							"raw": "localhost:8080/products/post",
 							"host": [
 								"localhost"
 							],
@@ -257,23 +239,15 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    
-\"user_id\": 133,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        
-\"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        
-\"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red 
-& Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 
-100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 
-10\n}\n\n",
+							"raw": "{\n    \"user_id\": 133,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 10\n}\n\n",
 							"options": {
 								"raw": {
-									
-"language": "json"
+									"language": "json"
 								}
 							}
 						},
 						"url": {
-							"raw": 
-"localhost:8080/products/post",
+							"raw": "localhost:8080/products/post",
 							"host": [
 								"localhost"
 							],
@@ -301,23 +275,15 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    
-\"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        
-\"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        
-\"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red 
-& Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 
-100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 
-10\n}\n\n",
+							"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 10\n}\n\n",
 							"options": {
 								"raw": {
-									
-"language": "json"
+									"language": "json"
 								}
 							}
 						},
 						"url": {
-							"raw": 
-"http://localhost:8080/products/followed/4698/list",
+							"raw": "http://localhost:8080/products/followed/4698/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -339,8 +305,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/products/followed/324/list",
+							"raw": "http://localhost:8080/products/followed/324/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -367,8 +332,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/4698/unfollow/234",
+							"raw": "http://localhost:8080/users/4698/unfollow/234",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -390,8 +354,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/users/4698/follow/234",
+							"raw": "http://localhost:8080/users/4698/follow/234",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -418,8 +381,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"localhost:8080/users/234/followers/list/?order=name_desc",
+							"raw": "localhost:8080/users/234/followers/list/?order=name_desc",
 							"host": [
 								"localhost"
 							],
@@ -433,18 +395,13 @@
 							],
 							"query": [
 								{
-									"key": 
-"order",
-									
-"value": "name_asc",
-									
-"disabled": true
+									"key": "order",
+									"value": "name_asc",
+									"disabled": true
 								},
 								{
-									"key": 
-"order",
-									
-"value": "name_desc"
+									"key": "order",
+									"value": "name_desc"
 								}
 							]
 						}
@@ -457,8 +414,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"localhost:8080/users/1536/followed/list?order=name_desc",
+							"raw": "localhost:8080/users/1536/followed/list?order=name_desc",
 							"host": [
 								"localhost"
 							],
@@ -471,18 +427,13 @@
 							],
 							"query": [
 								{
-									"key": 
-"order",
-									
-"value": "name_asc",
-									
-"disabled": true
+									"key": "order",
+									"value": "name_asc",
+									"disabled": true
 								},
 								{
-									"key": 
-"order",
-									
-"value": "name_desc"
+									"key": "order",
+									"value": "name_desc"
 								}
 							]
 						}
@@ -500,8 +451,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": 
-"http://localhost:8080/products/followed/4698/list?order=date_asc",
+							"raw": "http://localhost:8080/products/followed/4698/list?order=date_asc",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -515,18 +465,13 @@
 							],
 							"query": [
 								{
-									"key": 
-"order",
-									
-"value": "date_desc",
-									
-"disabled": true
+									"key": "order",
+									"value": "date_desc",
+									"disabled": true
 								},
 								{
-									"key": 
-"order",
-									
-"value": "date_asc"
+									"key": "order",
+									"value": "date_asc"
 								}
 							]
 						}
@@ -537,11 +482,106 @@
 		},
 		{
 			"name": "US0010",
-			"item": []
+			"item": [
+				{
+					"name": "ok",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 10\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/post",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bad_request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 123,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50,\n    \"has_promo\": true,\n    \"discount\": 10\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/post",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "US0011",
-			"item": []
+			"item": [
+				{
+					"name": "ok",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "bad_request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US0012",
+			"item": [
+				{
+					"name": "ok",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "bad_request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
