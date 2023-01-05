@@ -248,7 +248,7 @@ Ordenamiento por fecha ascendente y descendente
 Responsable: Juan Carlos Ortiz
 ***
 ## Practica Individual
-
+***
 **US0010**:
 Llevar a cabo la publicación de un nuevo producto en promoción
 
@@ -259,7 +259,7 @@ Llevar a cabo la publicación de un nuevo producto en promoción
 RESPONSE: Status code 200 (OK) - Bodyless | Status code 400 (Bad request) - Bodyless
 
 Responsable: Alejandro Torres Muñoz 
-
+***
 **US0011**:
 Obtener la cantidad de productos en promoción de un determinado vendedor
 
@@ -277,7 +277,7 @@ RESPONSE:
 ```
 
 Responsable: Alejandro Torres Muñoz
-
+***
 **US0012 BONUS**:
 Obtener un listado de todos los productos en promoción de un determinado vendedor.
 
