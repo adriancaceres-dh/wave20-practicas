@@ -1,10 +1,12 @@
 package com.bootcamp.be_java_hisp_w20_g4_stocco.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.request.PostPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationDTO;
+import com.bootcamp.be_java_hisp_w20_g4_stocco.dto.response.publication.PublicationPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.excepcion.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.model.*;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.repository.category.ICategoryRepository;
@@ -20,7 +22,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.bootcamp.be_java_hisp_w20_g4_stocco.helpers.Validators.isValidDateOrder;
+import static com.bootcamp.be_java_hisp_w20_g4_stocco.helpers.user.UserValidator.isSeller;
 import static com.bootcamp.be_java_hisp_w20_g4_stocco.helpers.user.UserValidator.isValidUser;
+import static com.bootcamp.be_java_hisp_w20_g4_stocco.helpers.category.CategoryValidator.isValidCategory;
 
 @Service
 public class ServicePublication implements IServicePublication {
@@ -83,6 +87,30 @@ public class ServicePublication implements IServicePublication {
         if(order == null || order.equals("date_desc")) Collections.reverse(listedPostDTO);
 
         return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
+    }
+
+    @Override
+    public PublicationPromoDTO addPublicationPromo(PostPromoDTO postPromoDTO) {
+        User user = userRepository.findById(postPromoDTO.getUser_id());
+        isValidUser(user);
+        isSeller(user);
+        Category category = categoryRepository.findById(postPromoDTO.getCategory());
+        if(category == null) throw new BadRequestException("La categoría ingresada no es válida.");
+
+        Product product = mapper.map(postPromoDTO.getProduct(), Product.class);
+        if(productRepository.findById(product) == null) throw  new BadRequestException("El producto no es válido");
+        if(postPromoDTO.isHasPromo() == false) throw new BadRequestException("El producto no está en promoción");
+
+        Publication publication = new Publication(postPromoDTO.getDate(),postPromoDTO.getPrice(), postPromoDTO.isHasPromo(), postPromoDTO.getDiscount(), postPromoDTO.getProduct(), postPromoDTO.getCategory(), postPromoDTO.getUser_id());
+        publication.setHasPromo(true);
+
+        if(publicationRepository.addPublication(publication)){
+            ((Seller) user).addPublication(publication);
+            return new PublicationPromoDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), category.getId(), publication.getPrice(), publication.isHasPromo(), publication.getDiscount());
+
+        }
+
+         return null;
     }
 
 

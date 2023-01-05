@@ -37,11 +37,11 @@ public class CategoryRepository implements ICategoryRepository {
     /**
      * Este método busca una categoría que coincida con el id recibido
      * Si ninguna coincide se devuelve null
-     * @param categoryId - Id de la categoría que se desea buscar
+     * @param category - Id de la categoría que se desea buscar
      * @return Category - Se devuelve la información de la categoría buscado
      */
     @Override
-    public Category findById(Integer categoryId) {
-        return categories.stream().filter(x->x.getId() == categoryId).findFirst().orElse(null);
+    public Category findById(Integer category) {
+        return categories.stream().filter(x->x.getId() == category).findFirst().orElse(null);
     }
 }

@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4_stocco.repository.product;
 
+import com.bootcamp.be_java_hisp_w20_g4_stocco.model.Category;
 import com.bootcamp.be_java_hisp_w20_g4_stocco.model.Product;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,16 +10,22 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class ProductRepository implements IProductRepository {
 
-    private List<Product> products = loadProducts();
+    private List<Product> products;
 
-    public ProductRepository(){}
+    public ProductRepository() {
+        products = loadProducts();
+    }
 
     private List<Product> loadProducts() {
+        // products = new ArrayList<>();
+        // products.add(new Product(1, "Silla Gamer", "Black", "Special Edition", "Gamer", "Racer" ));
+
         File file = null;
         try {
             file = ResourceUtils.getFile("classpath:products.json");
@@ -26,25 +33,34 @@ public class ProductRepository implements IProductRepository {
             e.printStackTrace();
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        TypeReference<List<Product>> typeRef = new TypeReference<>() {};
+        TypeReference<List<Product>> typeRef = new TypeReference<>() {
+        };
         List<Product> products = null;
         try {
             products = objectMapper.readValue(file, typeRef);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return products;
     }
 
     /**
      * Este método se encarga de verificar que un producto exista
+     *
      * @param product - Es el producto que hay que verificar si existe
      * @return boolean - Devuelve true si el producto existe
      */
-    public boolean productExist(Product product){
+    public boolean productExist(Product product) {
         Product productRepository = products.stream().filter(p -> p.getProduct_id() == product.getProduct_id()).findFirst().orElse(null);
-        if(productRepository == null) return false;
+        if (productRepository == null) return false;
         return productRepository.equals(product);
+    }
+
+    @Override
+    public Product findById(Product product) {
+        return products.stream().filter(x -> x.getProduct_id() == product.getProduct_id()).findFirst().orElse(null);
+
     }
 
 }
