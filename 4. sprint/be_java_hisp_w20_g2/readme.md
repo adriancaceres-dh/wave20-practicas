@@ -1,9 +1,6 @@
 # ❗️📜 Bootcamp backend Java Sprint N°1 - Spring ❗️📜
-
 ______
-
 ## 🔍🧮 Índice 🧮🔍
-
 1. _**[Objetivo](#-objetivo-)**_
 2. _**[Putas para la actividad](#-pautas-para-la-actividad-)**_
 3. _*
@@ -14,13 +11,14 @@ _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-inc
 **_
 5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
 6. _**[Bitácora](#-bitácora-)**_
-    1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
-    2. _**[Repository](#-repository-)**_
-    3. _**[Model](#-model-)**_
-    4. _**[DTO](#-dto-)**_
-    5. _**[Service](#-service-)**_
-    6. _**[Controller](#-controller-)**_
-    7. _**[Exception y config](#-exception-y-config-)**_
+   1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
+   2. _**[Repository](#-repository-)**_
+   3. _**[Model](#-model-)**_
+   4. _**[DTO](#-dto-)**_
+   5. _**[Service](#-service-)**_
+   6. _**[Controller](#-controller-)**_
+   7. _**[Exception y config](#-exception-y-config-)**_
+   8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
 7. _**[Endpoints](#-endpoints-)**_
 8. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
 9. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
@@ -70,7 +68,6 @@ como cuentan con una determinada complejidad y los tiempos son escasos, deberán
 mismos se detallan a continuación:
 
 Para esta parte se plantea la creación de una API Rest que permita:
-
 1. Poder realizar la acción de “Follow” (seguir) a un determinado usuario.
 2. Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
 3. Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?).
@@ -84,7 +81,6 @@ Para esta parte se plantea la creación de una API Rest que permita:
 Por otra parte, dado que se pretende una buena experiencia de usuario con respecto a la forma de presentación de los
 resultados
 de cada consulta, se necesita que los mismos puedan ser ordenados mediante cualquiera de los siguientes criterios:
-
 8. Alfabético Ascendente y Descendente.
 9. Fecha Ascendente y Descendente.
 
@@ -101,7 +97,6 @@ con ofertas
 o descuentos especiales exclusivos para sus seguidores por un determinado período de tiempo. Para ello propone los
 siguientes
 requerimientos:
-
 10. Llevar a cabo la publicación de un nuevo producto en promoción.
 11. Obtener la cantidad de productos en promoción de un determinado vendedor.
 
@@ -122,17 +117,14 @@ para **“SocialMeli”**. En caso de que esto se lleve a cabo, será necesario,
 la documentación técnica asociada**.
 
 # 🗄 _Bitácora_ 🗄
-
 ______________
 En la siguiente sección desarrollaremos las elecciones por parte de nuestro equipo en el por qué de las elecciones para
 una mejor
 performance de código, asimilación de lógica de negocio, entre otras.
 
 ## 📚 Desarrollo Multicapa 📚
-
 Se realiza un desarrollo multicapa para el proyecto realizado en Spring, donde cada capa posee una determinada función o
 tarea. Esta división consta de 5 capas:
-
 - Repository
 - Model
 - DTO
@@ -171,7 +163,6 @@ requerimientos proporcionados
 por el Scrum Master. Dejaremos el acceso al archivo de Lucidchart para poder ver la representación de cada clase
 especificada por el equipo.
 En esta capa se destacan las clases:
-
 - Category
 - Post
 - Product
@@ -206,7 +197,6 @@ Clases que contiene la lógica de negocio de la aplicación. Los service tambié
 cambios
 en sus métodos al resto de la aplicación.
 Tenemos dos servicios principales:
-
 - _PostService_
 - _UserService_
 
@@ -218,7 +208,6 @@ respuestas y su transmisión. Estas clases llaman a una o más función de la ca
 deserialización de una
 solicitud y la serialización de la respuesta, a través de la capa, anteriormente mencionada, DTO.
 Destacamos las clases:
-
 - PostController
 - UserController
 
@@ -233,6 +222,19 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 - BadRequestException
 - PostCreationException
 - UserNotFoundException
+
+### 🧰 Utils y  Utils/Mapper 🧰
+
+Se crea, por decisión del equipo, el package _Utils_ y dentro de él se encuentra la clase _LoadExampleData_, un package
+que posee las clases _PostMapper_ y _ProductMapper_.
+
+- _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En
+  este método
+  se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
+- _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+  viceversa.
+- _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+  viceversa.
 
 # 📌 _Endpoints_ 📌
 
@@ -271,6 +273,7 @@ _**Sign:**_
 |              | Ejemplo: /users/234/followers/count/                                                              |
 | **Response** | <pre>{<br/>  "user_id": 234, <br/>  "user_name": "vendedor1", <br/>  "followers_count": 35 <br/>} |
 
+
 _**Filtros/Parámetros:**_
 
 | Parámetros | Tipo | Descripción/Ejemplo              |
@@ -281,7 +284,6 @@ Fue desarrollado por: _[Diego Fernando Alderete](https://github.com/DiegoFernand
 y [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)_
 
 -------
-
 #### US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
 
 _**Sign:**_
@@ -292,6 +294,7 @@ _**Sign:**_
 |              | Ejemplo: /users/234/followers/list                                                                                                                                                                                                                                                                                         |
 | **Response** | <pre>{<br/>  "user_id": 234,<br/>  "user_name": "vendedor1",<br/>  "followers":[<br/>  {<br/>    "user_id": 4698,<br/>    "user_name": "usuario1"<br/>  },<br/>  {<br/>    "user_id": 1536,<br/>    "user_name": "usuario2"<br/>  },<br/>  {<br/>    "user_id": 2236,<br/>    "user_name": "usuario3"<br/>  }<br/> ]<br/>} |
 
+
 _**Filtros/Parámetros:**_
 
 | Parámetros | Tipo | Descripción/Ejemplo                  |
@@ -302,7 +305,6 @@ Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli)
 y [Alejandra Espindola](https://github.com/ale-espindola)_
 
 -------
-
 #### US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
 
 _**Sign:**_
@@ -313,6 +315,7 @@ _**Sign:**_
 |              | Ejemplo: /users/4698/followed/list                                                                                                                                                                                                                                                                                          | 
 | **Response** | <pre>{<br/>  "user_id": 4698,<br/>  "user_name": "usuario1",<br/>  "followed":[<br/>  {<br/>    "user_id": 234,<br/>    "user_name": "vendedor1"<br/>  },<br/>  {<br/>    "user_id": 6932,<br/>    "user_name": "vendedor2"<br/>  },<br/>  {<br/>    "user_id": 6631,<br/>    "user_name": "vendedor3"<br/>  }<br/> ]<br/>} |
 
+
 _**Filtros/Parámetros:**_
 
 | Parámetros | Tipo | Descripción/Ejemplo                  |
@@ -323,7 +326,6 @@ Fue desarrollado por: _[Francisco Liz Mardones](https://github.com/FranLizMeli)
 y [Alejandra Espindola](https://github.com/ale-espindola)_
 
 -------
-
 #### US 0005: Dar de alta una nueva publicación
 
 _**Sign:**_
@@ -354,7 +356,6 @@ Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml)
 y [Emanuel Fonseca](https://github.com/Emanoide47)_
 
 -------
-
 #### US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
 
 _**Sign:**_
@@ -375,7 +376,6 @@ Fue desarrollado por: _[Franciso Idalgo](https://github.com/franidalgoml)
 y [Emanuel Fonseca](https://github.com/Emanoide47)_
 
 -------
-
 #### US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
 
 _**Sign:**_
@@ -396,7 +396,6 @@ Fue desarrollado por: _[Federico Javier Veron](https://github.com/fedeveron)
 y [Lorenzo Pedro Podio](https://github.com/lpodio)_
 
 -------
-
 #### US 0008: Ordenamiento alfabético ascendente y descendente
 
 _**Sign:**_
@@ -424,7 +423,6 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
 -------
-
 #### US 0009: Ordenamiento por fecha ascendente y descendente
 
 _**Sign:**_
@@ -452,9 +450,7 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 ____
 
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
-
 ____
-
 - [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete)
 - [Alejandra Espindola](https://github.com/ale-espindola)
 - [Federico Javier Veron](https://github.com/fedeveron)
@@ -473,4 +469,4 @@ ____
 - Maven
 - Git
 - Git Hub
-- Lombok 
+- Lombok
