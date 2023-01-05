@@ -451,7 +451,7 @@ Obtener un listado de todos los productos en promoción de un determinado vended
 | `price` | `double` | Precio del producto |
 | `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no |
 | `discount` | `double` | En caso de que un producto estuviese en promoción ,establece el monto de descuento. |
-```
+
 
 &nbsp;
 #### US0013
