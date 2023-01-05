@@ -29,7 +29,7 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
 *     Req 3:
      * En caso de que no tenga seguidores devuelve una lista vacía.
 
-*    Req 4:
+*     Req 4:
      * En caso de no tener seguidos devuelve una lista vacía.
 
 *     Req 5:
@@ -83,6 +83,22 @@ USS 009: GET
 - /products/followed/{userId}/list?order=date_asc
 - /products/followed/{userId}/list?order=date_desc
 
+                       -----------------------Desarrollo individual------------------------
+## Participantes: 
+Tammara Trivelli
+
+*     Req 10:
+    * Se puede llevar a cabo un producto en promoción o no 
+    * Un comprador no puede llevar a cabo una promoción de un producto
+    * No se pueden llevar a cabo dos productos con el mismo id.
+
+*     Req 11:
+    * Es un count a la lista de publicaciones en promoción del vendedor.
+
+*     Req 12:
+    * En caso de que no tenga publicaciones en promoción el vendedor devuelve la lista vacia.
+
+
 USS 0010: POST
 - /products/promo-post
 
@@ -97,4 +113,3 @@ Diagrama UML sprint 1
 <img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
 
 Agradecimientos para el equipo de Digital House y los coordinadores del Bootcamp Backend JAVA
-
