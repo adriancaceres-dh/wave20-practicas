@@ -7,15 +7,6 @@ import com.bootcamp.be_java_hisp_w20_g7_anttury.dto.response.UserPostFollowedDto
 
 public interface IUserService {
 
-
-    /**
-     * US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
-     *
-     * @param userId id del usuario
-     * @return UserFollowersCountDto : usuario mas el numero de seguidores
-     */
-    UserFollowersCountDto userFollowersCount(int userId);
-
     /**
      * US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor
      *
@@ -32,16 +23,6 @@ public interface IUserService {
      */
     UserFollowedDto userFollowed(int userId, String order);
 
-
-    /**
-     * US 0006 Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas
-     *
-     * @param userId : id del usuario
-     * @return UserPostFollowedDto : retorna una lista de post de los usuarios que sigue el ususario
-     */
-    UserPostFollowedDto userPostFollowed(int userId);
-
-
     /**
      * US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
      *
@@ -49,6 +30,5 @@ public interface IUserService {
      * @return UserFollowerCountDto : retorna la información del ususario mas el numero de seguidores que tiene
      */
     UserFollowersCountDto countFollowers(int userId);
-
 
 }

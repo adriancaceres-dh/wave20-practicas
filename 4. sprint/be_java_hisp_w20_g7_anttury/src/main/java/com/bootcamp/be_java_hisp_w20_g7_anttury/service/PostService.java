@@ -87,6 +87,9 @@ public class PostService implements IPostService {
         return new UserPostFollowedDto(userId, postDtos);
     }
 
+    /*
+    Aquí empiezan los requerimientos individuales.
+     */
     @Override
     public String createPromoPost(PromoPostCreateDto promoPostCreateDto) {
         User user = iUserRepository.findById(promoPostCreateDto.getUserId());
@@ -95,6 +98,9 @@ public class PostService implements IPostService {
             throw new UserNotFoundException("User with id " + promoPostCreateDto.getUserId() + " not found");
         if (promoPostCreateDto == null) {
             throw new PostEmptyException("Post is empty");
+        }
+        if (promoPostCreateDto.isHasPromo() == false || promoPostCreateDto.getDiscount() <= 0) {
+            throw new DataIsnotCorrectException("The post has not promo or discount");
         }
 
         Post post = modelMapper.map(promoPostCreateDto, Post.class);

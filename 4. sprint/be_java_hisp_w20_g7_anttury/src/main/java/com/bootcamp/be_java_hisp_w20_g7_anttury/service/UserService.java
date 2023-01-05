@@ -39,11 +39,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserFollowersCountDto userFollowersCount(int userId) {
-        return null;
-    }
-
-    @Override
     public UserFollowersDto userFollowers(int userId, String order) {
 
         List<Follow> follows = iFollowRepository.findAll().stream().filter(e -> e.getIdFollowed() == userId).collect(Collectors.toList());
@@ -83,11 +78,6 @@ public class UserService implements IUserService {
         User follower = iUserRepository.findById(userId);
 
         return new UserFollowedDto(userFollowedDtoList, follower.getUserId(), follower.getUserName());
-    }
-
-    @Override
-    public UserPostFollowedDto userPostFollowed(int userId) {
-        return null;
     }
 
     @Override

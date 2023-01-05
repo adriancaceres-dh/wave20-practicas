@@ -17,4 +17,5 @@ public class UserPromoPostListDto {
     private int userId;
     private String userName;
     private List<PostPromoDto> postPromoList;
+
 }

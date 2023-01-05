@@ -72,6 +72,9 @@ public class Controller {
         return new ResponseEntity<>(postService.postUsersFollowed(userId, order), HttpStatus.OK);
     }
 
+    /*
+    Requerimientos individuales
+     */
     @PostMapping("/products/promo-post")
     public ResponseEntity<String> addPromoPost(@RequestBody PromoPostCreateDto promoPost) {
         return new ResponseEntity<>(postService.createPromoPost(promoPost), HttpStatus.OK);
@@ -86,8 +89,5 @@ public class Controller {
     public ResponseEntity<?> getPromoPostList(@RequestParam(name = "user_id") int userId) {
         return new ResponseEntity<>(postService.getPostPromoList(userId), HttpStatus.OK);
     }
-
-    //ser menos desscriptivos en los errores
-    //un solo idioma pls
 
 }
