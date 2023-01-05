@@ -10,4 +10,6 @@ public interface IPostRepository {
 
     int createPost(Post post, PostDTO postDTO);
 
+    Set<Post> getPromoPostsByUserId(int userId);
+
 }

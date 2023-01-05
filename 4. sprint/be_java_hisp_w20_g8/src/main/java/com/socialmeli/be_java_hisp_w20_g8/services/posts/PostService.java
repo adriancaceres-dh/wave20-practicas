@@ -119,4 +119,19 @@ public class PostService implements IPostService {
         }
 
     }
+
+    @Override
+    public PromoPostCountDTO getPromoPostCountByUserId(int userId) {
+        // Get the seller
+        Seller seller = personRepository.findSellerById(userId);
+
+        // Check if the seller exists
+        if(seller == null)
+            throw new NotFoundException("The specified seller does not exist in the database");
+
+        // Get the number of promo posts
+        int promoPostCount = postRepository.getPromoPostsByUserId(userId).size();
+
+        return new PromoPostCountDTO(userId, seller.getUser_name(), promoPostCount);
+    }
 }

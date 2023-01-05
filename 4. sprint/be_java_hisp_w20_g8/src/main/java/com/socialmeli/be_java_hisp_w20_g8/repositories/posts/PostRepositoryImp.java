@@ -43,6 +43,11 @@ public class PostRepositoryImp implements IPostRepository {
         return postCount;
     }
 
+    @Override
+    public Set<Post> getPromoPostsByUserId(int userId) {
+        return posts.stream().filter(post -> post.getUser_id() == userId).filter(Post::isHasPromo).collect(Collectors.toSet());
+    }
+
     public Map<Integer, PostDTO> loadPost(){
         posts.add(new Post(1, 5, LocalDate.of(2022, 12, 29), 1, 2, 2000));
         posts.add(new Post(2, 5, LocalDate.of(2022, 12, 28), 2, 2, 2000));

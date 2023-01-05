@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.PromoPostCountDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.PromoPostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
@@ -36,5 +37,10 @@ public class PostController {
     public ResponseEntity<String> postPromoPost(@RequestBody PromoPostRequestDTO promoPostRequestDTO) {
         postService.createPost(promoPostRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body("The promo post was published");
+    }
+
+    @GetMapping("/promo-post/count")
+    public ResponseEntity<PromoPostCountDTO> getPromoPostCountByUserId(@RequestParam int user_id) {
+        return ResponseEntity.status(HttpStatus.OK).body(postService.getPromoPostCountByUserId(user_id));
     }
 }
