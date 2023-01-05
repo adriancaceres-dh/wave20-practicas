@@ -56,8 +56,8 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 
 Responsables de cada User Story
 
-| User Story | Responsables |
-| --- | --- |
+| User Story  | Responsables |
+|-------------| --- |
 | **US 0001** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
 | **US 0002** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
 | **US 0003** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
@@ -67,6 +67,9 @@ Responsables de cada User Story
 | **US 0007** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
 | **US 0008** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
 | **US 0009** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
+| **US 0010** | Armando Burdiles |
+| **US 0011** | Armando Burdiles |
+| **US 0012** | Armando Burdiles |
 
 ----
 **US 0001**
@@ -576,3 +579,187 @@ Filtros / Parámetros
 | **date\_desc** | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006
+
+----
+**US 0010**
+
+_Llevar a cabo la publicación de un nuevo producto en promoción_
+
+
+| Method | Sign | 
+| --- | --- |
+| **POST** | /products/promo-post | 
+
+
+<table>
+<tbody>
+<tr style="height: 23px;">
+<td style="height: 23px;">Status Code</td>
+<td style="height: 23px;">Response / Dto</td>
+</tr>
+<tr style="height: 313.375px;">
+<td style="height: 313.375px;"><strong>200</strong></td>
+<td style="height: 313.375px;">
+<pre><code class="language-json">{
+    "user_id": 234,
+    "date": "29-04-2021",
+    "product": {
+        "product_id": 1,
+        "product_name": "Silla Gamer",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1500.50,
+    "has_promo": true,
+    "discount": 0.25
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400 </strong><em>(el usuario no es vendedor)</em></td>
+<td style="height: 23px;">
+<pre><code class="language-json">{
+"message": "El usuario no es vendedor",
+"status": 400,
+"timestamp": "2023-01-03T12:22:44.591493"
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>404</strong> (algun usuario no existe)</td>
+<td style="height: 23px;">
+<pre><code class="language-json">{
+"message": "El usuario no existe",
+"status": 404,
+"timestamp": "2023-01-03T12:21:26.891095"
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong> (No es promoción)</td>
+<td style="height: 23px;">
+<pre><code class="language-json">{
+"message": "El Producto no esta en Promoción",
+"status": 400,
+"timestamp": "2023-01-03T12:21:26.891095"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros    | Tipo     | Descripción / Ejemplo |
+|---------------|----------| --- |
+| **userId**    | int      | Número que identifica al usuario actual |
+| **date**      | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
+| **productId** | int      | Número identificatorio de un producto asociado a una publicación |
+
+----
+**US 0011**
+
+_Obtener la cantidad de productos en promoción de un determinado vendedor_
+
+
+| Method  | Sign | 
+|---------| --- |
+| **GET** | /products/promo-post/count?user_id={userId} | 
+
+
+<table>
+<tbody>
+<tr style="height: 23px;">
+<td style="height: 23px;">Status Code</td>
+<td style="height: 23px;">Response / Dto</td>
+</tr>
+<tr style="height: 313.375px;">
+<td style="height: 313.375px;"><strong>200</strong></td>
+<td style="height: 313.375px;">
+<pre><code class="language-json">{  
+   "user_id" : 234,
+   "user_name": "vendedor1",
+   "promo_products_count": 23
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros             | Tipo     | Descripción / Ejemplo |
+|------------------------|----------| --- |
+| **userId**             | int      | Número que identifica al usuario actual |
+| **date**               | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
+| **promoProductsCount** | int      | Cantidad numérica de productos en promoción de un determinado usuario.|
+----
+**US 0012**
+
+_Obtener un listado de todos los productos en promoción de un determinado vendedor_
+
+
+| Method  | Sign | 
+|---------| --- |
+| **GET** | /products/promo-post/list?user_id={userId}| 
+
+
+<table>
+<tbody>
+<tr style="height: 23px;">
+<td style="height: 23px;">Status Code</td>
+<td style="height: 23px;">Response / Dto</td>
+</tr>
+<tr style="height: 313.375px;">
+<td style="height: 313.375px;"><strong>200</strong></td>
+<td style="height: 313.375px;">
+<pre><code class="language-json">{
+    "user_id": 234,
+    "user_name": "vendedor1",
+    "posts": [
+        {
+            “user_id”: 234
+            "post_id": 18,
+            "date": "29-04-2021",
+            "product": {
+                "product_id": 1,
+                "product_name": "Silla Gamer",
+                "type": "Gamer",
+                "brand": "Racer",
+                "color": "Red & Black",
+                "notes": "Special Edition"
+            },
+            "category": "100",
+            "price": 15000.50,
+            "has_promo": true,
+            "discount": 0.25
+        }
+    ]
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros      | Tipo      | Descripción / Ejemplo |
+|-----------------|-----------| --- |
+| **userId**      | int       | Número que identifica al usuario actual |
+| **date**        | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
+| **postId**      | int       | Número identificatorio de cada una de las publicaciones|
+| **productId**   | int       | Número identificatorio de un producto asociado a una publicación|
+| **productName** | String    | Cadena de caracteres que representa el nombre de un producto|
+| **type**        | String    | Cadena de caracteres que representa el tipo de un producto|
+| **brand**       | String    | Cadena de caracteres que representa la marca de un producto|
+| **color**       | String    | Cadena de caracteres que representa el color de un producto|
+| **notes**       | String    | Cadena de caracteres para colocar notas u observaciones de un producto|
+| **category**    | int       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados|
+| **price**       | double    | Precio del producto|
+| **hasPromo**    | boolean   | Campo true o false para determinar si un producto está en promoción o no|
+| **discount**    | double    | En caso de que un producto estuviese en promoción, establece el monto de descuento.|
+
+
