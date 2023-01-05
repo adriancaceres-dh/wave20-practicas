@@ -5,6 +5,7 @@
 Andres Bolognesi
 ## Participante: 
 Ivan Majewski
+(Link a la carpeta del mismo proyecto pero en la rama que trabajamos con mi equipo: https://github.com/adriancaceres-dh/wave20-practicas/tree/gonzalez_martin/4.%20sprint/be_java_hisp_w20_g4)
 
 ## Tecnologías Utilizadas: 
 Java 11, Maven, Spring Framework(Web, DevTools, Lombok) y Github.
