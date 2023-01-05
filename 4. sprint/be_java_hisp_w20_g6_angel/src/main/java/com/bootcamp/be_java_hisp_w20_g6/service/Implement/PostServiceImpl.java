@@ -6,12 +6,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
 
+import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
+import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,6 @@ public class PostServiceImpl implements IPostService {
         mapper.getConfiguration()
                 .setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
-
     }
 
     @Override
@@ -82,4 +83,26 @@ public class PostServiceImpl implements IPostService {
         return new PostListResponseDTO(user_id,followedPost );
     }
 
+    @Override
+    public PostDiscountCountResponseDto getPostCountDiscount(int user_id){
+        try {
+            UserModel user = userService.getUserById(user_id);
+            List<PostModel> postDiscountUser = postRepository.getPostsByUserId(user_id);
+            return new PostDiscountCountResponseDto(user.getUser_id(), user.getUser_name(), postDiscountUser.size());
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException("Usuario no existe");
+        }
+    }
+
+    public PostListDiscountResponseDto postDiscountBySeller(int sellerId) {
+        String user_name=userService.getUserById(sellerId).getUser_name();
+        int user_id=userService.getUserById(sellerId).getUser_id();
+        List<PostDiscountResponseDto> discountPost=postRepository.getPostList()
+                .stream()
+                .filter(p->p.getUser_id()==sellerId && p.isHas_promo()==true)
+                .map(p-> mapper.map(p, PostDiscountResponseDto.class))
+                .collect(Collectors.toList());
+
+        return new PostListDiscountResponseDto(user_id,user_name,discountPost);
+    }
 }

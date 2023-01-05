@@ -4,12 +4,10 @@ import com.bootcamp.be_java_hisp_w20_g6.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.FollowerNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.InvalidParamException;
-import com.bootcamp.be_java_hisp_w20_g6.exception.UserExistsException;
 import com.bootcamp.be_java_hisp_w20_g6.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

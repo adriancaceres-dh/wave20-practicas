@@ -1,5 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g6.controller;
 
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostDiscountCountResponseDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListDiscountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostListResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,4 +26,14 @@ public class PostController {
     public ResponseEntity<PostListResponseDTO> getPost(@PathVariable int userId, @RequestParam(required = false) String order) {
         return new ResponseEntity<>(postService.postFollowedLastWeeks(userId, order), HttpStatus.OK); 
     }
+    @GetMapping("/promo-post/count")
+    public ResponseEntity<PostDiscountCountResponseDto> getCountPostDiscount(@RequestParam(required = true) int user_id) {
+        return new ResponseEntity<PostDiscountCountResponseDto>(postService.getPostCountDiscount(user_id), HttpStatus.OK);
+    }
+
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<PostListDiscountResponseDto> getPostDiscount(@RequestParam int user_id) {
+        return new ResponseEntity<>(postService.postDiscountBySeller(user_id), HttpStatus.OK);
+    }
+
 }
