@@ -576,3 +576,188 @@ Filtros / Parámetros
 | **date\_desc** | Fecha descendente (de más nueva a más antigua) |
 
 **Nota:** Este ordenamiento aplica solo para la US-006
+
+----
+
+**US 0010**
+
+_Llevar a cabo la publicacion de un nuevo producto en promoción_
+
+<table>
+<tbody>
+<tr>
+<td>Method</td>
+<td>Sign</td>
+</tr>
+<tr>
+<td><strong>POST</strong></td>
+<td>
+<p>/products/promo-post</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr>
+<td>Payload</td>
+</tr>
+<tr>
+<td>
+<pre><code class="language-plaintext">{
+ &nbsp;&nbsp;&nbsp;"user_id": 123,
+ &nbsp;&nbsp;&nbsp;"date": "29-04-2021",
+ &nbsp;&nbsp;&nbsp;"product": {
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"product_id": 1,
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"product_name": "Silla Gamer",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "Gamer",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"brand": "Racer",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"color": "Red &amp; Black",
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"notes": "Special Edition"
+ &nbsp;&nbsp;&nbsp;},
+ &nbsp;&nbsp;&nbsp;"category": 100,
+ &nbsp;&nbsp;&nbsp;"price": 1500.50,
+    "has_promo": true,
+    "discount": 0.25
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr>
+<td>Status Code</td>
+<td>Response / Dto</td>
+</tr>
+<tr>
+<td><strong>200</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+    "date": "29-04-2021",
+    "user_id": 1,
+    "product": {
+        "product_id": 60,
+        "product_name": "Silla Gamer",
+        "type": "Gamer",
+        "brand": "Racer",
+        "color": "Red & Black",
+        "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 1500.5,
+    "post_id": 7,
+    "has_promo": true,
+    "discount": 0.25
+}</code></pre>
+</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+    "message": "Producto invalido",
+    "status": 400,
+    "timestamp": "2023-01-05T09:40:39.984587"
+}</code></pre>
+</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>
+<pre><code class="language-plaintext">{
+    "message": "El usuario no existe",
+    "status": 404,
+    "timestamp": "2023-01-05T12:22:09.702501"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+Filtros / Parámetros
+
+| Parámetros        | Tipo      | Descripción / Ejemplo                                                              |
+|-------------------|-----------|------------------------------------------------------------------------------------|
+| **user\_Id**      | int       | Número que identifica a cada usuario                                               |
+| **date**          | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                      |
+| **product\_id**   | int       | Número identificatorio de un producto asociado a una publicación                   |
+| **product\_name** | String    | Cadena de caracteres que representa el nombre de un producto                       |
+| **type**          | String    | Cadena de caracteres que representa el tipo de un producto                         |
+| **brand**         | String    | Cadena de caracteres que representa la marca de un producto                        |
+| **color**         | String    | Cadena de caracteres que representa el color de un producto                        |
+| **notes**         | String    | Cadena de caracteres para colocar notas u observaciones de un producto             |
+| **category**      | int       | Identificador que sirve para conocer la categoria a la que pertenece un producto   |
+| **price**         | double    | Precio del producto                                                                |
+| **has_promo**     | boolean   | Campo true o false para determinar si un producto esta en promocion o no           |
+| **discount**      | double    | En caso de que un producto estuviese en promocion, establece el monto de descuento |
+
+**Nota:** No se admitiran posts referidos a un usuario no existente. Se admitiran nuevos productos por cada publicacion,
+en caso de ingresar un producto ya existente, este debera ser ingresado de forma identica al que se encuentra almacenado 
+(mismo nombre, tipo, marca, color, etc).
+
+----
+**US 0011**
+
+_Obtener la cantidad de productos de un determinado vendedor_
+
+| Method | Sign                                       | Ejemplo                             |
+| --- |--------------------------------------------|-------------------------------------|
+| **GET** | /products/promo-post/count?userId={userId} | /products/promo-post/count?userId=1 |
+
+<table>
+<tbody>
+<tr>
+<td>Payload</td>
+</tr>
+<tr>
+<td>
+<pre><code class="language-plaintext">{
+    "user_id": 234,
+    "user_name": "vendedor1",
+    "promo_products_count": 23
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+<tr style="height: 23.5px;">
+<td style="height: 23.5px;">Status Code</td>
+<td style="height: 23.5px;">Response / Dto</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>200</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+    "user_id": 1,
+    "user_name": "zchanelleHhanelle",
+    "promo_products_count": 3
+}</code></pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="height: 23px;"><strong>400</strong></td>
+<td style="height: 23px;">
+<pre><code class="language-plaintext">{
+    "message": "El usuario no existe",
+    "status": 400,
+    "timestamp": "2023-01-05T11:54:24.964718"
+}</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+Filtros / Parámetros
+
+| Parámetros               | Tipo   | Descripción / Ejemplo                                                 |
+|--------------------------|--------|-----------------------------------------------------------------------|
+| **user_id**              | int    | Número que identifica a cada usuario                                  |
+| **user_name**            | String | Cadena de caracteres que representa el nombre del usuario             |
+| **promo_products_count** | int    | Cantidad numérica de productos en promoción de un determinado usuario |

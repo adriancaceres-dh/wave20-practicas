@@ -10,6 +10,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserPromoPostsCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
@@ -70,10 +71,15 @@ public class PostService implements IPostService {
         if (postDto == null || postDto.getUserId() == Parameter.getInteger("InvalidId")) {
             throw new BadRequestException(Parameter.getString("EX_InvalidRequestBody"));
         } else {
+            if(userService.getUserById(postDto.getUserId()) == null){
+                throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
+            }
             if (productService.alreadyExist(postDto.getProduct().getProductId())) {
                 if (productService.checkIfIsIdentical(postDto.getProduct())) {
                     makeDiscount(postDto);
                     Post post = postRepository.add(buildPost(postDto, postDto.getProduct().getProductId()));
+                    //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
+                    userService.updateUser(postDto.getUserId());
                     PostPromoResponseDto postResponseDto = mapper.map(postDto, PostPromoResponseDto.class);
                     postResponseDto.setPostId(post.getId());
                     return postResponseDto;
@@ -96,7 +102,7 @@ public class PostService implements IPostService {
     @Override
     public UserPromoPostsCountResponseDto promoPostsCountByUser(int id) {
         if (userService.getUserById(id) == null) {
-            throw new BadRequestException(Parameter.getString("EX_NotExistentUser"));
+            throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
         }
         UserPromoPostsCountResponseDto promoPosts = new UserPromoPostsCountResponseDto();
         promoPosts.setUserId(id);
