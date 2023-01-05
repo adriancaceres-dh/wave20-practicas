@@ -585,11 +585,90 @@ Una vez realizado el proyecto de manera grupal, se procedió a hacer el US010, U
 
 Se permite la publicación de un producto en promoción. Si el producto es nuevo, se crea, y sino simplemente se añade el post haciendo referencia al antiguo producto.
 
+Ruta para llamar al servicio:
+Post: http://localhost:8080/products/promo-post
+Y se envía en el body con tipo json las propiedades.
+Ejemplo:
+
+```
+{
+	"user_id": 1569,
+	"date": "29-04-2021",
+	"detail": {
+    	"product_id": 1,
+    	"product_name": "Silla Gamer",
+    	"type": "Gamer",
+    	"brand": "Racer",
+    	"color": "Red & Black",
+    	"notes": "Special Edition"
+	},
+	"category": 100,
+	"price": 1500.50,
+	"has_promo": true,
+	"discount": 0.25
+}
+```
+
+Response:
+- Status code 201 (created).
+- Status code 400 (failed).
+
 ## User 011.
 
 Se añade la posibilidad de ver la cantidad de productos en promoción de un vendedor. Para eso, se devuelve un DTO agregando el id del usuario, su nombre y la cantidad de productos en promoción que tiene.
+Para llevar a cabo el servicio:
+Get: http//localhost:8080/products/promo-post/count?user_id={userId}
+
+Ejemplo:
+http//localhost:8080/products/promo-post/count?user_id=2
+
+Response:
+- Un json con la respuesta, de esta forma
+```
+ { 
+   "user_id" : 1569,
+   "user_name": "vendedor1",
+   "promo_products_count": 23
+}
+```
+- Status code 400 (failed), junto a un código de error.
 
 ## US012 (bonus).
 
 Se permite ver la lista de todos los productos que un vendedor tiene en promoción.
 **Nota: si bien este método está hecho, no funciona. Al devolver el DTO, en el cual debería traer el id del usuario, el nombre y su lista de productos, la lista siempre retorna null.**
+
+Ruta para llamar al servicio:
+Get: http://localhost:8080/products/promo-post/list?user_id={userId}
+
+Ejemplo:
+http://localhost:8080/products/promo-post/list?user_id=2
+
+Response:
+
+- Objeto json con el id de usuario, nombre y toda su lista de productos:
+```
+{
+	"user_id": 1569,
+	"user_name": "vendedor1",
+	"posts": [
+    	{
+        	"post_id": 18,
+        	"date": "29-04-2021",
+        	"detail": {
+            	"product_id": 1,
+            	"product_name": "Silla Gamer",
+            	"type": "Gamer",
+            	"brand": "Racer",
+            	"color": "Red & Black",
+            	"notes": "Special Edition"
+        	},
+        	"category": "100",
+        	"price": 15000.50,
+        	"has_promo": true,
+        	"discount": 0.25
+    	}
+	]
+}
+```
+- Status code 400 (failed).

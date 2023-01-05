@@ -12,18 +12,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class postResponsePromoDto {
-    private int userId;
-    private int postId;
-    @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
-    private LocalDate date;
-    private ProductResponseDto product;
-    private int category;
-    private double price;
+public class postResponsePromoDto extends PostResponseDto {
+
     private boolean hasPromo;
     private double discount;
 }
