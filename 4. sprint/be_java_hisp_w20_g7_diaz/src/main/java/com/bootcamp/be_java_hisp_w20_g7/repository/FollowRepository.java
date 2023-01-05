@@ -33,9 +33,4 @@ public class FollowRepository implements IFollowRepository {
         follows.add(follow);
         return true;
     }
-
-    @Override
-    public void deleteByIds(int idFollower, int idFollowed) {
-
-    }
 }

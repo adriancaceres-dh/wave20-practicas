@@ -9,7 +9,4 @@ public interface IFollowRepository {
     List<Follow> findAll();
 
     boolean save(Follow follow);
-
-    void deleteByIds(int idFollower, int idFollowed);
-
 }

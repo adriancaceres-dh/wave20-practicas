@@ -81,11 +81,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserPostFollowedDto userPostFollowed(int userId) {
-        return null;
-    }
-
-    @Override
     public UserFollowersCountDto countFollowers(int userId) {
 
         User user = iUserRepository.findById(userId);

@@ -31,11 +31,4 @@ public interface IUserService {
      */
     UserFollowedDto userFollowed(int userId, String order);
 
-    /**
-     * US 0006 Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas
-     *
-     * @param userId : id del usuario
-     * @return UserPostFollowedDto : retorna una lista de post de los usuarios que sigue el ususario
-     */
-    UserPostFollowedDto userPostFollowed(int userId);
 }
