@@ -5,7 +5,6 @@ import com.bootcamp.be_java_hisp_w20_g1_berthet.dto.request.PromoPostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_berthet.dto.response.PostPromoCounResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_berthet.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_berthet.dto.response.PostPromoListResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_berthet.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1_berthet.model.Post;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface IPostService {
 
     PromoPostRequestDto addPromoPost(PromoPostRequestDto promoPost);
 
-    List<Post> getPromoPostsByUserId(int userId);
+    List<Post> getListPromoPostsByUserId(int userId);
     PostPromoCounResponseDto countPromoPosts(int userId);
 
     PostPromoListResponseDto getPromoPosts(int id);

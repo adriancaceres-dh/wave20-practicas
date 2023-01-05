@@ -67,23 +67,7 @@ public class PostService implements IPostService {
         return new PostListResponseDto(id, sortPostByDate(posts, order));
     }
 
-    public PostPromoListResponseDto getPromoPosts(int id){
-        userService.validateUserExistById(id);
 
-        List<PostResponseDto> promoPostsOfUser = getPromoPostsByUserId(id).stream()
-                .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
-                    .postId(post.getId())
-                    .date(post.getDate())
-                    .product(productService.getProductById(post.getProductId()))
-                    .category(post.getCategory())
-                    .price(post.getPrice())
-                    .hasPromo(post.isHasPromo())
-                    .discount(post.getDiscount())
-                    .build())
-                .collect(Collectors.toList());
-
-        return new PostPromoListResponseDto(id, userService.getUsername(id), promoPostsOfUser);
-    }
 
     public boolean productAlreadyExist(int productId){
         return productService.alreadyExist(productId);
@@ -166,7 +150,7 @@ public class PostService implements IPostService {
 
     public boolean promoWasAlreadyMade(PromoPostRequestDto promoPostRequestDto) {
         //check if already exist a promo with same userId, productId, Date and discount
-        return(getPromoPostsByUserId(promoPostRequestDto.getUserId()).stream()
+        return(getListPromoPostsByUserId(promoPostRequestDto.getUserId()).stream()
                 .anyMatch(p -> p.getProductId() == promoPostRequestDto.getProduct().getProductId()
                         && p.getPrice() == promoPostRequestDto.getPrice()
                         && p.getDiscount() == promoPostRequestDto.getDiscount()));
@@ -180,14 +164,31 @@ public class PostService implements IPostService {
     }
 
 
-    public List<Post> getPromoPostsByUserId(int userId){
+    public List<Post> getListPromoPostsByUserId(int userId){
         return postRepository.getPostsByUserId(userId).stream().filter(Post::isHasPromo).collect(Collectors.toList());
     }
 
+    public PostPromoListResponseDto getPromoPosts(int id){
+        userService.validateUserExistById(id);
 
+        List<PostResponseDto> promoPostsOfUser = getListPromoPostsByUserId(id).stream()
+                .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
+                        .postId(post.getId())
+                        .date(post.getDate())
+                        .product(productService.getProductById(post.getProductId()))
+                        .category(post.getCategory())
+                        .price(post.getPrice())
+                        .hasPromo(post.isHasPromo())
+                        .discount(post.getDiscount())
+                        .build())
+                .collect(Collectors.toList());
+
+        return new PostPromoListResponseDto(id, userService.getUsername(id), promoPostsOfUser);
+    }
     public PostPromoCounResponseDto countPromoPosts(int userId){
         userService.validateUserExistById(userId);
-        List<Post> promoPosts = getPromoPostsByUserId(userId);
+        List<Post> promoPosts = getListPromoPostsByUserId(userId);
+
         return new PostPromoCounResponseDto(userId, userService.getUsername(userId),promoPosts.size());
     }
 
