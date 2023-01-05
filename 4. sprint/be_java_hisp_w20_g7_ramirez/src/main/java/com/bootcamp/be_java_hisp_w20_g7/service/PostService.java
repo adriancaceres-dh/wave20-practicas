@@ -143,11 +143,6 @@ public class PostService implements IPostService {
             throw new UserNotFoundException("User with id" + userId + " not found");
 
         }
-            //List<Post> posts = iPostRepository.findAll()
-                    //.stream()
-                    //.filter(p -> p.getUserId() == userId && p.isHasPromo())
-                    //.collect(Collectors.toList());
-
 
             List<PostDto> postListPromo = iPostRepository.findAll()
                     .stream()
