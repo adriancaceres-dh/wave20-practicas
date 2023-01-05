@@ -16,5 +16,6 @@ import java.util.List;
 public class ResponsePostDTO {
 
     private Integer id_user;
+    private String user_name;
     private List<PostDTO> posts;
 }

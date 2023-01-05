@@ -36,4 +36,10 @@ public class PostController {
     public ResponseEntity<ProductsPromoCountDTO> countFollowers(@RequestParam(required = false) int user_id){
         return ResponseEntity.ok().body(postService.countProductsPromo(user_id));
     }
+
+    @GetMapping("/promo-post/list")
+    public ResponseEntity<ResponsePostDTO> findAllProductsPromoByIdUser(@RequestParam(required = false) int user_id){
+        return ResponseEntity.ok().body(postService.findAllProductsPromoByIdUser(user_id));
+    }
+
 }

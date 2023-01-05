@@ -49,12 +49,24 @@ public class PostRepositoryImp implements IPostRepository {
     public int countProductPromo(int idUser){
         promoCount = 0;
         mapPosts.entrySet().forEach(x-> {
-            if (x.getValue().isHas_promo()){
+            if (x.getValue().isHas_promo() && x.getValue().getUser_id() == idUser){
                 promoCount+=1;
             }
         });
         return promoCount;
     }
+
+    @Override
+    public Set<PostDTO> findAllProductsPromoByIdUser(int idUser){
+        Set<PostDTO> postProductsPromo = new HashSet<>();
+        mapPosts.entrySet().forEach(x-> {
+            if (x.getValue().isHas_promo() && x.getValue().getUser_id() == idUser){
+                postProductsPromo.add(x.getValue());
+            }
+        });
+        return postProductsPromo;
+    }
+
 
     public Map<Integer, PostDTO> loadPost(){
         posts.add(new Post(1, 5, LocalDate.of(2022, 12, 29), 1, 2, 2000));

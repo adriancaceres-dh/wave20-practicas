@@ -130,15 +130,23 @@ public class PostService implements IPostService {
     public ProductsPromoCountDTO countProductsPromo(int userId) {
         int countProductsPromo = 0;
         Seller seller = IPersonRepository.getById(userId);
-        if (seller == null) {
+        if (seller == null)
             throw new NotFoundException("User not found: " + userId);
-        }
-
         countProductsPromo = postRepository.countProductPromo(userId);
-
         ProductsPromoCountDTO productsPromoCountDTO = new ProductsPromoCountDTO(userId, seller.getUser_name(),countProductsPromo);
+
         return productsPromoCountDTO;
     }
 
 
+    @Override
+    public ResponsePostDTO findAllProductsPromoByIdUser(int userId){
+        List<PostDTO> listPostPromoByIdSeller = new ArrayList<>();
+        Seller seller = IPersonRepository.getById(userId);
+        if (seller == null)
+            throw new NotFoundException("User not found: " + userId);
+        listPostPromoByIdSeller.addAll(postRepository.findAllProductsPromoByIdUser(userId));
+
+        return ResponsePostDTO.builder().id_user(userId).user_name(seller.getUser_name()).posts(listPostPromoByIdSeller).build();
+    }
 }

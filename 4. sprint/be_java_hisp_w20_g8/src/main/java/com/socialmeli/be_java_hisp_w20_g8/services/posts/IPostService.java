@@ -18,4 +18,6 @@ public interface IPostService {
     ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser, String order);
     ProductsPromoCountDTO countProductsPromo(int userId);
 
+    ResponsePostDTO findAllProductsPromoByIdUser(int userId);
+
 }

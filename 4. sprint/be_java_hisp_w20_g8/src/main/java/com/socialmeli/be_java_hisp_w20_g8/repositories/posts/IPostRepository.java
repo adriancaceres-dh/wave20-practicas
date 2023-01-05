@@ -13,4 +13,6 @@ public interface IPostRepository {
 
     int countProductPromo(int idUser);
 
+    Set<PostDTO> findAllProductsPromoByIdUser(int idUser);
+
 }
