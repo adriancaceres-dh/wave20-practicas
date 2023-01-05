@@ -273,7 +273,7 @@ _**Filtros/Parámetros:**_
 | Parámetros       |   Tipo   | Descripción/Ejemplo                                                                                                      |
 |------------------|:--------:|--------------------------------------------------------------------------------------------------------------------------|
 | **userId**       |   int    | Número que identifica a cada usuario                                                                                     | 
-| **date**         | Localate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **date**         | LocalDate | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
 | **product_id**   |   int    | Número identificatorio de un producto asociado a una publicación                                                         |
 | **product_name** |  String  | Cadena de caracteres que representa el nombre de un producto                                                             |
 | **type**         |  String  | Cadena de caracteres que representa el tipo de un producto                                                               |
