@@ -906,7 +906,7 @@
       ]
     },
     {
-      "name": "US 0013",
+      "name": "US 0013 & US0015",
       "item": [
         {
           "name": "US 0013 - List Promotions",
@@ -981,7 +981,7 @@
           "response": []
         },
         {
-          "name": "US 0013 - List Promotions - Sorted price asc",
+          "name": "US 0015- List Promotions - Sorted price asc",
           "request": {
             "method": "GET",
             "header": [],
@@ -1007,7 +1007,7 @@
           "response": []
         },
         {
-          "name": "US 0013 - List Promotions - Sorted price desc",
+          "name": "US 0015 - List Promotions - Sorted price desc",
           "request": {
             "method": "GET",
             "header": [],
@@ -1027,6 +1027,31 @@
                   "key": "order",
                   "value": "price_desc"
                 }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "US 0014",
+      "item": [
+        {
+          "name": "US 0014 - List valid categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/products/categories/list",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products",
+                "categories",
+                "list"
               ]
             }
           },
