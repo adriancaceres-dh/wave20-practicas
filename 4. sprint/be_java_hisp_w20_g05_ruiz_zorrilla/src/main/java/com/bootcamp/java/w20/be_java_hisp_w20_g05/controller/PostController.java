@@ -2,9 +2,9 @@ package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PromoPostRequest;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PromoPostCountDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promo_posts.PromoPostCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.promo_posts.PromoPostsResponse;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,4 +52,10 @@ public class PostController {
 
     }
 
+    @GetMapping("/promo-post/list")
+    public PromoPostsResponse getPromoPosts(@RequestParam(name = "user_id") int userId){
+
+        return postService.getPromoPosts(userId);
+
+    }
 }
