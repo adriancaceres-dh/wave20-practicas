@@ -8,6 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -27,8 +28,8 @@ public class PostController {
 
     // US-0006 - US-0009
     @GetMapping("followed/{userId}/list")
-    public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
-        return postService.sendLastPostOfFollowed(userId,order);
+    public ResponseEntity<?> sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
+        return new ResponseEntity<>(postService.sendLastPostOfFollowed(userId,order), HttpStatus.OK);
     }
 
     //US-0010
@@ -40,14 +41,14 @@ public class PostController {
 
     //US-0011
     @GetMapping("/promo-post/count")
-    public PostPromoCountResponseDTO getPromoPostCount(@RequestParam int user_id) {
-        return postService.countPromotionPosts(user_id);
+    public ResponseEntity<?> getPromoPostCount(@RequestParam int user_id) {
+        return new ResponseEntity<>(postService.countPromotionPosts(user_id), HttpStatus.OK);
     }
 
     //US-0012
     @GetMapping("/promo-post/list")
-    public PostPromoListResponseDTO getPromoPostList(@RequestParam int user_id) {
-        return postService.listPromotionPosts(user_id);
+    public ResponseEntity<?> getPromoPostList(@RequestParam int user_id) {
+        return new ResponseEntity<>(postService.listPromotionPosts(user_id), HttpStatus.OK);
     }
 
 }

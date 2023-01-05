@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         userService.unfollowUser(userId, userIdToUnfollow);
-        return ResponseEntity.ok().body("Operación exitosa");
+        return ResponseEntity.ok().body("Successful");
     }
 
 }
