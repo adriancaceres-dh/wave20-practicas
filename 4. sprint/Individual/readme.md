@@ -305,6 +305,8 @@ Ordenamiento alfabético ascendente y descendente.
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
+#### *Asignado: Efrain Francisco Ruiz & Ignacio Tornati*
+
 &nbsp;
 #### US0009
 Ordenamiento alfabético ascendente y descendente.
@@ -324,6 +326,8 @@ Ordenamiento alfabético ascendente y descendente.
 | :-------- | 
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
+
+#### *Asignado: Cindy Micaela Ortega Palma*
 
 &nbsp;
 #### US0010
