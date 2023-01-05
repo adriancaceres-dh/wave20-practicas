@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2_ambroggio.config;
 
+import com.bootcamp.be_java_hisp_w20_g2_ambroggio.dto.MessageExceptionDTO;
 import com.bootcamp.be_java_hisp_w20_g2_ambroggio.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2_ambroggio.exception.PostCreationException;
 import com.bootcamp.be_java_hisp_w20_g2_ambroggio.exception.UserNotFoundException;
@@ -10,12 +11,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+
 @ControllerAdvice
 public class ConfigException {
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<String> exception(BadRequestException exception) {
+    public ResponseEntity<MessageExceptionDTO> exception(BadRequestException exception, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(exception.getMessage());
+                .body(new MessageExceptionDTO(exception.getMessage(), HttpStatus.BAD_REQUEST.value(), request.getRequestURI(), LocalDateTime.now()));
 
     }
 
