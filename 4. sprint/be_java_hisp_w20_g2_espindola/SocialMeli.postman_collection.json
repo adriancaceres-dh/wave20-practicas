@@ -423,16 +423,16 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/users/0/unfollow/777",
+							"raw": "localhost:8080/users/777/unfollow/0",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"users",
-								"0",
+								"777",
 								"unfollow",
-								"777"
+								"0"
 							]
 						}
 					},
@@ -869,7 +869,60 @@
 		},
 		{
 			"name": "US 0012",
-			"item": []
+			"item": [
+				{
+					"name": "US 0012 - List Promotional Posts from a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/promo-post/list?user_id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "US 0012 - List Promotional Posts from a user - Bad request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/promo-post/list?user_id=900",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "900"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
