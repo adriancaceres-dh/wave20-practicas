@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class Publication {
     private int post_id;
@@ -26,13 +25,22 @@ public class Publication {
     private int user_id;
     private int contador = 3;
 
+    public Publication() {
+        this.post_id = ++this.contador;
+    }
+
     public Publication(LocalDate date, double price, Product product, Category category, int user_id) {
+        this();
         this.user_id = user_id;
         this.date = date;
         this.price = price;
         this.product = product;
         this.category = category;
-        contador++;
-        this.post_id = contador;
+    }
+
+    public Publication(LocalDate date, double price, boolean hasPromo, double discount, Product product, Category category, int user_id) {
+        this(date, price, product, category, user_id);
+        this.hasPromo = hasPromo;
+        this.discount = discount;
     }
 }
