@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.PromoPostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.PostService;
@@ -29,5 +30,11 @@ public class PostController {
         } catch(Exception e) {
             throw new OperationFailedException(e.getMessage() + " Please check the information");
         }
+    }
+
+    @PostMapping("/promo-post")
+    public ResponseEntity<String> postPromoPost(@RequestBody PromoPostRequestDTO promoPostRequestDTO) {
+        postService.createPost(promoPostRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body("The promo post was published");
     }
 }

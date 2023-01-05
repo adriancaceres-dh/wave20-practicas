@@ -2,6 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.PromoPostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
@@ -50,6 +51,10 @@ public class PostService implements IPostService {
                 .allMatch(Objects::nonNull))
             throw new InvalidArgumentException("All the fields are required");
 
+        // Check if all the promo post fields are present
+        if(postRequestDTO instanceof PromoPostRequestDTO && (!((PromoPostRequestDTO) postRequestDTO).isHasPromo() || ((PromoPostRequestDTO) postRequestDTO).getDiscount() <= 0.0))
+            throw new InvalidArgumentException("The promo post must have a promo and a discount must be set");
+
         // Get the seller
         Seller seller = personRepository.findSellerById(postRequestDTO.getUser_id());
 
@@ -64,7 +69,7 @@ public class PostService implements IPostService {
         Post post = mapper.map(postRequestDTO, Post.class);
 
         // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUserId(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+        PostDTO postDTO = new PostDTO(post.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
 
         int postId = postRepository.createPost(post, postDTO);
 
