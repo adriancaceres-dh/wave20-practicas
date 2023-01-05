@@ -91,7 +91,7 @@ public class Controller {
 
     @GetMapping("/products/promo-post/list")
     public ResponseEntity<UserProductsPromoDto> getUserProductsPromo(@RequestParam int userId) {
-        return new ResponseEntity<>(postService.getUserProductsPromo(userId), HttpStatus.OK);
+        return new ResponseEntity<>(postService.userProductsPromo(userId), HttpStatus.OK);
     }
 
 

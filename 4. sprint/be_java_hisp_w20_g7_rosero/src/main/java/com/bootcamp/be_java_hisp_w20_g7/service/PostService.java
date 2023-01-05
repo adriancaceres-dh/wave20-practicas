@@ -120,13 +120,14 @@ public class PostService implements IPostService {
 
         if (user == null) throw new UserNotFoundException("user not found");
         
-        int productPromoCount = (int) iPostRepository.findAll().stream().filter(e -> e.getUserId() == userId && e.isHasPromo()).count();
+        int productsPromoCount = (int) iPostRepository.findAll().stream().filter(e -> e.getUserId() == userId && e.isHasPromo()).count();
 
-        return new UserProductsPromoCountDto(userId, user.getUserName(), productPromoCount);
+        return new UserProductsPromoCountDto(userId, user.getUserName(), productsPromoCount);
 
     }
+
     @Override
-    public UserProductsPromoDto getUserProductsPromo(int userId){
+    public UserProductsPromoDto userProductsPromo(int userId){
 
         User user = iUserRepository.findById(userId);
 

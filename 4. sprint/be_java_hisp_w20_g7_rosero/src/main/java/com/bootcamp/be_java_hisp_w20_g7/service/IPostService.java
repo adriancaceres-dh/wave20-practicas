@@ -60,6 +60,6 @@ public interface IPostService {
      * @param userId : id del usuario
      * @return UserProductsPromoDto : retorna la información del ususario mas el numero de productos que tiene en promocion
      */
-    UserProductsPromoDto getUserProductsPromo(int userId);
+    UserProductsPromoDto userProductsPromo(int userId);
 
 }
