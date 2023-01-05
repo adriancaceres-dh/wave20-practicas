@@ -17,8 +17,8 @@ public class UserController {
     @Autowired
     private IUserService userService;
     @GetMapping("/{userId}/followed/list")
-    public UserFollowedDTO getFollowed(@PathVariable int userId, @RequestParam(required = false) String order){
-            return userService.getAllFollowed(userId, order);
+    public ResponseEntity<UserFollowedDTO> getFollowed(@PathVariable int userId, @RequestParam(required = false) String order){
+        return ResponseEntity.ok().body(userService.getAllFollowed(userId, order));
     }
 
     @GetMapping("/users/{userId}/follow/{userIdToFollow}")
