@@ -8,6 +8,9 @@
 2 - **PROYECTO INDIVIDUAL** -> ./Parte-Individual/be_java_hisp_w20_g05
 
 * Consta de la US10 y US11.
+* 
+     > Link con pruebas de POSTMAN:
+    [Click aqui.](Individual.postman_collection.json)
 
 **US 0010: Llevar a cabo la publicación de un nuevo producto en promoción.**
 
@@ -60,7 +63,3 @@
  
     -> Caso contrario, 400 BAD REQUEST + mensaje error.
 
-
-
-     >>> Link con pruebas de POSTMAN:
-    [Click aqui.](Individual.postman_collection.json)
