@@ -84,7 +84,7 @@ USS 009: GET
 - /products/followed/{userId}/list?order=date_desc
 
                        -----------------------Desarrollo individual------------------------
-## Participantes: 
+## Participante: 
 Tammara Trivelli
 
 *     Req 10:
