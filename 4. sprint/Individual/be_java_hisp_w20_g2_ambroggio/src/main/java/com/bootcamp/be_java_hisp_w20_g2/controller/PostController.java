@@ -29,18 +29,18 @@ public class PostController {
     public PostResponseDTO sendLastPostOfFollowed(@PathVariable int userId, @RequestParam Optional<String> order) {
         return postService.sendLastPostOfFollowed(userId,order);
     }
-
+    // US-0010
     @PostMapping(path = "/promo-post")
     @ResponseStatus(HttpStatus.OK)
-    public void addNewProductPromo(@RequestBody PostPromoDTO newPost) {
-        postService.createPostPromo(newPost);
+    public boolean addNewProductPromo(@RequestBody PostPromoDTO newPost) {
+        return postService.createPostPromo(newPost);
     }
-
+    //US-0011
     @GetMapping("/promo-post/count")
     public ResponseEntity<PostPromoCountResponseDTO> countsProductsPromo(@RequestParam int user_id){
         return new ResponseEntity<>(postService.countsProductsPromo(user_id), HttpStatus.OK);
     }
-
+    //US-0012
     @GetMapping("/promo-post/list")
     public ResponseEntity<UserProductsPromoResponseDTO> listUserProductsPromo(@RequestParam int user_id){
         return new ResponseEntity<>(postService.listUserProductsPromo(user_id), HttpStatus.OK);

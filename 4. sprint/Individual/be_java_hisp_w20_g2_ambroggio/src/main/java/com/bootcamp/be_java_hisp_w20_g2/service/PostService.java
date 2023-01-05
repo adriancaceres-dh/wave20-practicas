@@ -93,7 +93,7 @@ public class PostService implements IPostService {
      * @param postRequestDTO (PostPromoDTO) has the data for the promo post to be created.
      */
     @Override
-    public void createPostPromo(PostPromoDTO postRequestDTO) {
+    public boolean createPostPromo(PostPromoDTO postRequestDTO) {
         User user = getUserOrThrow(postRequestDTO.getUserId());
 
         List<Post> postPromoList = user.getPosts().stream().filter(Post::isHasPromo).collect(Collectors.toList());
@@ -106,6 +106,7 @@ public class PostService implements IPostService {
         user.addPost(newPost);
 
         userRepository.save(user);
+        return true;
     }
 
     /**

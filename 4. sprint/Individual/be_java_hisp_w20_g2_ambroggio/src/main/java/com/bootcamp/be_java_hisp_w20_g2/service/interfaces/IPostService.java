@@ -13,7 +13,7 @@ public interface IPostService {
 
     PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order);
 
-    public void createPostPromo(PostPromoDTO postRequestDTO);
+    public boolean createPostPromo(PostPromoDTO postRequestDTO);
 
     public PostPromoCountResponseDTO countsProductsPromo (int userId);
     public UserProductsPromoResponseDTO listUserProductsPromo(int id);
