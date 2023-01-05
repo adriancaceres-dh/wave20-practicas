@@ -9,7 +9,7 @@ import java.util.List;
 public interface IPostService {
     String addPost(PostDTO postDTO);
     List<PostDTO> getPost(int userId, String order);
-    String addPromoPost(PromoPostDTO postPromoDto);
+    String addPromoPost(PromoPostDTO promoPostDTO);
     PromoPostCountDTO getPromoPostCountById(int userId);
     List<PromoPostDTO> getPromoPostById(int userId, String order);
 }

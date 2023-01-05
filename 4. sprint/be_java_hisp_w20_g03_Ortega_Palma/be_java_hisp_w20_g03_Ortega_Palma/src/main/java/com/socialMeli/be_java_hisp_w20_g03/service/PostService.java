@@ -78,6 +78,7 @@ public class PostService implements IPostService {
         return postList;
     }
 
+    //Agregamos un producto con promoción (puede refactorizarce para no tener código duplicado)
     @Override
     public String addPromoPost(PromoPostDTO postPromoDto) {
         if (userRepository.getUserById(postPromoDto.getUserId()) == null) {
