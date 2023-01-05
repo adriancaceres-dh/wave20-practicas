@@ -44,7 +44,7 @@ período de tiempo.
 
 ### Endpoints 
 
-[Colección de request para importar en Postman](individual.postman_collection.json)
+[Colección de request para importar en Postman](sprint1.postman_collection.json)
 
 
 ----

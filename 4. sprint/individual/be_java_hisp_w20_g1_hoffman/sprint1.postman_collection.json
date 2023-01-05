@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "72fad87d-54df-428e-b02d-7b4617dce65b",
-		"name": "Desarrollo individual",
+		"name": "Individual development Sprint 1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25048218"
 	},
@@ -100,7 +100,7 @@
 					"response": []
 				},
 				{
-					"name": "BAD REQUEST",
+					"name": "BAD REQUEST no parameter",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -121,7 +121,7 @@
 					"response": []
 				},
 				{
-					"name": "BAD REQUEST",
+					"name": "BAD REQUEST non-existent user",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -180,7 +180,7 @@
 					"response": []
 				},
 				{
-					"name": "BAD REQUEST",
+					"name": "BAD REQUEST non-existent user id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -195,6 +195,60 @@
 								"products",
 								"promo-post",
 								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST not a seller user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/list?user_id=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BAD REQUEST non-existent user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/promo-post/list?user_id=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"promo-post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "100"
+								}
 							]
 						}
 					},
@@ -232,7 +286,7 @@
 					"response": []
 				},
 				{
-					"name": "OK ORDER DESC",
+					"name": "OK ORDER desc",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -298,7 +352,7 @@
 					"response": []
 				},
 				{
-					"name": "BAD REQUEST",
+					"name": "BAD REQUEST non-existent user",
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -328,7 +382,7 @@
 					"response": []
 				},
 				{
-					"name": "BAD REQUEST",
+					"name": "BAD REQUEST wrong product id",
 					"request": {
 						"method": "PATCH",
 						"header": [],
