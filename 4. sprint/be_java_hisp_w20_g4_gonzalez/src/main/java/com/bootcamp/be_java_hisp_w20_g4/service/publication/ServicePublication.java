@@ -98,6 +98,7 @@ public class ServicePublication implements IServicePublication {
         Category category = categoryRepository.findById(post.getCategory());
         if(category == null) throw new BadRequestException("La categoria ingresa no es válida.");
 
+        if(!post.isHas_promo()) throw new BadRequestException("No puede publicarse un producto que no está en promoción");
         Product product = mapper.map(post.getProduct(), Product.class);
         if(!productRepository.productExist(product)) throw new BadRequestException("El producto no es válido.");
 
