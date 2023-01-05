@@ -3,6 +3,12 @@
 
 1 - **PROYECTO GRUPAL** -> ./Parte-grupal/be_java_hisp_w20_g05
 
+Consta de toda la base de el proyecto, el cual personalmente colabore con el US 003 y el diseño de la misma.
+
+US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor.
+
+Endpoint -> /users/{userId}/followers/list
+
 ----------------------------------
 
 2 - **PROYECTO INDIVIDUAL** -> ./Parte-Individual/be_java_hisp_w20_g05
