@@ -15,6 +15,32 @@ Deciciones funcionales:
 -- Un comprador puede seguir a un comprador.
 -- Retorna el dto del usuario al que siguió con estado 200.
 
+- Req 2:
+-- Es un count a la lista de followers del vendedor.
+
+- Req 3:
+-- En caso de que no tenga seguidores devuelve una lista vacía.
+
+- Req 4:
+-- En caso de no tener seguidos devuelve una lista vacía.
+
+- Req 5:
+-- Un vendedor tiene una lista de publicaciones.
+-- Un vendedor puede no tener publicaciones.
+-- Una publicación si o si tiene un producto únicamente.
+-- Categoría es una entidad aparte.
+-- Una publicación tiene una categoría, precio, si tiene promo y el descuento correspondiente.
+-- Un usuario puede tener varias publicaciones idénticas siempre y cuando el id de la misma sea diferente.
+-- En caso de que un producto no exista o el id sea incorrecto devuelve un 400
+
+- Req 7:
+-- No se puede dejar de seguirte a ti mismo.
+-- No se puede dejar de seguir a un usuario que no existes
+
+- Req 8 & Req 9:
+-- Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
+
+
 
 Endpoints: Responsable Emiliano Asprea
 
