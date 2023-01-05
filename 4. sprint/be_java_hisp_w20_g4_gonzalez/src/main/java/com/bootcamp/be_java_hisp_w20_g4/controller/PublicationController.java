@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g4.controller;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromotionPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PromotionPublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.service.publication.IServicePublication;
@@ -31,8 +32,8 @@ public class PublicationController {
     }
 
     @GetMapping("/promo-post/count")
-    public ResponseEntity<String> promoProductsOfSeller(@RequestParam(value="user_id") String userId){
-        return ResponseEntity.ok().body("Response del service");
+    public ResponseEntity<PromotionPublicationCountDTO> promoProductsOfSeller(@RequestParam(value="user_id") int userId){
+        return ResponseEntity.ok().body(servicePublication.getPromoPublications(userId));
     }
 
 
