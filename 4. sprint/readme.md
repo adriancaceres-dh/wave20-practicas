@@ -29,7 +29,7 @@ Decidimos trabajar de forma grupal y desarrollamos los primeros 9 requisitos en 
 *     Req 3:
      * En caso de que no tenga seguidores devuelve una lista vacía.
 
-*    Req 4:
+*     Req 4:
      * En caso de no tener seguidos devuelve una lista vacía.
 
 *     Req 5:
