@@ -1,11 +1,14 @@
 package com.bootcamp.be_java_hisp_w20_g2_espindola.service;
 
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.request.PostPromoRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostPromoCountResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostPromoListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.exception.PostCreationException;
+import com.bootcamp.be_java_hisp_w20_g2_espindola.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.model.User;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.repository.interfaces.ICategoryRepository;
@@ -18,7 +21,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -97,15 +102,34 @@ public class PostService implements IPostService {
      * @return PostPromoCountResponseDTO.
      */
     @Override
-    public PostPromoCountResponseDTO countPromotionPosts(int userId){
+    public PostPromoCountResponseDTO countPromotionPosts(int userId) {
         User user = userRepository.findOne(userId);
         if (user == null) {
-            throw new BadRequestException("The given userId not exist.");
+            throw new BadRequestException("User not found.");
         }
 
-        int promosCount = (int) user.getPosts().stream().filter(post -> post.isHasPromo()).count();
+        int promosCount = (int) user.getPosts().stream().filter(Post::isHasPromo).count();
 
         return new PostPromoCountResponseDTO(userId, user.getUserName(), promosCount);
+    }
+
+    /**
+     * It returns the basic data from a user including a list with the promotional posts.
+     * @param userId the id of the user to check.
+     * @return PostPromoListResponseDTO.
+     */
+    public PostPromoListResponseDTO listPromotionPosts(int userId) {
+        User user = userRepository.findOne(userId);
+        if (user == null) {
+            throw new UserNotFoundException("User not found.");
+        }
+
+        List<PostPromoDTO> posts = user.getPosts().stream()
+                .filter(Post::isHasPromo)
+                .map(post -> postMapper.toPostPromoDTO(post, userId))
+                .collect(Collectors.toList());
+
+        return new PostPromoListResponseDTO(userId, user.getUserName(), posts);
     }
 
     private User getUserOrThrow(int userId) {

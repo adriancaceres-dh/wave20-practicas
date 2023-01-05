@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g2_espindola.utils.mapper;
 
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostPromoDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.request.PostPromoRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.exception.PostCreationException;
@@ -32,6 +33,19 @@ public class PostMapper {
         Category postCategory = getPostCategoryByCodeOrThrow(postPromoRequestDTO.getCategory());
 
         return new Post(postPromoRequestDTO.getDate(), product, postCategory, postPromoRequestDTO.getPrice(), postPromoRequestDTO.isHasPromo(), postPromoRequestDTO.getDiscount());
+    }
+
+    public PostPromoDTO toPostPromoDTO(Post post, int userId) {
+        return new PostPromoDTO(
+                userId,
+                post.getDate(),
+                productMapper.toDTO(post.getProduct()),
+                post.getCategory().getCode(),
+                post.getPrice(),
+                post.getId(),
+                post.isHasPromo(),
+                post.getDiscount()
+        );
     }
 
     public PostDTO toDTO(Post post, int userId) {

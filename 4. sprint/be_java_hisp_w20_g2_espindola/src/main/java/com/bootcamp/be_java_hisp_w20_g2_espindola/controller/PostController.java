@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g2_espindola.controller;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.request.PostPromoRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostPromoCountResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostPromoListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,20 @@ public class PostController {
     //US-0010
     @PostMapping(path="/promo-post")
     @ResponseStatus(HttpStatus.OK)
-    public void addNewProductPromo(@RequestBody PostPromoRequestDTO newPostPromo){
+    public void addNewProductPromo(@RequestBody PostPromoRequestDTO newPostPromo) {
         postService.createPromoPost(newPostPromo);
     }
 
     //US-0011
     @GetMapping("/promo-post/count")
-    public PostPromoCountResponseDTO getPromoPostCount(@RequestParam int user_id){
+    public PostPromoCountResponseDTO getPromoPostCount(@RequestParam int user_id) {
         return postService.countPromotionPosts(user_id);
     }
+
+    //US-0012
+    @GetMapping("/promo-post/list")
+    public PostPromoListResponseDTO getPromoPostList(@RequestParam int user_id) {
+        return postService.listPromotionPosts(user_id);
+    }
+
 }
