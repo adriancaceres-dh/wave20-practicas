@@ -1,4 +1,4 @@
-package com.socialmeli.be_java_hisp_w20_g8.dto;
+package com.socialmeli.be_java_hisp_w20_g8.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

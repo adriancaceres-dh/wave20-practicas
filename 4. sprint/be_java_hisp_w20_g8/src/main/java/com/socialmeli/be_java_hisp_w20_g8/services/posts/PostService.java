@@ -2,6 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.response.ProductsPromoCountDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.response.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
@@ -33,6 +34,8 @@ public class PostService implements IPostService {
     private IPostRepository postRepository;
     @Autowired
     private IPersonRepository personRepository;
+    @Autowired
+    IPersonRepository IPersonRepository;
 
     public PostService() {
         mapper.getConfiguration()
@@ -122,4 +125,20 @@ public class PostService implements IPostService {
         }
 
     }
+
+    @Override
+    public ProductsPromoCountDTO countProductsPromo(int userId) {
+        int countProductsPromo = 0;
+        Seller seller = IPersonRepository.getById(userId);
+        if (seller == null) {
+            throw new NotFoundException("User not found: " + userId);
+        }
+
+        countProductsPromo = postRepository.countProductPromo(userId);
+
+        ProductsPromoCountDTO productsPromoCountDTO = new ProductsPromoCountDTO(userId, seller.getUser_name(),countProductsPromo);
+        return productsPromoCountDTO;
+    }
+
+
 }

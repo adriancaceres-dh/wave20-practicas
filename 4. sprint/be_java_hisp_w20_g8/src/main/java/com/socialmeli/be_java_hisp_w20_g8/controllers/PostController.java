@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.request.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.response.ProductsPromoCountDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.response.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.PostService;
@@ -29,5 +30,10 @@ public class PostController {
         } catch (Exception e) {
             throw new OperationFailedException(e.getMessage() + " Please check the information");
         }
+    }
+
+    @GetMapping("/promo-post/count")
+    public ResponseEntity<ProductsPromoCountDTO> countFollowers(@RequestParam(required = false) int user_id){
+        return ResponseEntity.ok().body(postService.countProductsPromo(user_id));
     }
 }

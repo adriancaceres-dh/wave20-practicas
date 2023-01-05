@@ -9,7 +9,7 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.response.UserCountDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;

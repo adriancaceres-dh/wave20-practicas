@@ -11,4 +11,6 @@ public interface IPostRepository {
 
     int createPost(Post post, PostDTO postDTO);
 
+    int countProductPromo(int idUser);
+
 }

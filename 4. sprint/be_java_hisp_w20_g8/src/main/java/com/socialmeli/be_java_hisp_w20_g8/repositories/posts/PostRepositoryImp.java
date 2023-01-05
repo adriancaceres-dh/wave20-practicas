@@ -3,9 +3,7 @@ package com.socialmeli.be_java_hisp_w20_g8.repositories.posts;
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.request.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -22,6 +20,7 @@ public class PostRepositoryImp implements IPostRepository {
     private final Map<Integer, PostDTO> mapPosts;
     private final Set<Post> posts;
     private int postCount;
+    private int promoCount;
 
     public PostRepositoryImp(Map<Integer, PostDTO> mapPosts) {
         this.mapPosts = mapPosts;
@@ -43,9 +42,18 @@ public class PostRepositoryImp implements IPostRepository {
         postDTO.setPost_id(postCount);
         mapPosts.put(post.getId(), postDTO);
 
-        System.out.println(mapPosts);
-
         return postCount;
+    }
+
+    @Override
+    public int countProductPromo(int idUser){
+        promoCount = 0;
+        mapPosts.entrySet().forEach(x-> {
+            if (x.getValue().isHas_promo()){
+                promoCount+=1;
+            }
+        });
+        return promoCount;
     }
 
     public Map<Integer, PostDTO> loadPost(){
