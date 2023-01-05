@@ -9,7 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostPromo
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserPromoProductsCountDTO;
-import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
 import com.bootcamp.be_java_hisp_w20_g4.repository.category.ICategoryRepository;
 import com.bootcamp.be_java_hisp_w20_g4.repository.product.IProductRepository;
@@ -84,6 +84,8 @@ public class ServicePublication implements IServicePublication {
      * @return PublicationDTO - Se devuelve un dto de la publicación creada
      */
     public PublicationDTO addPublicationPromotion(PostPromotionDTO publicationPromotionDto){
+        if(!publicationPromotionDto.isHas_promo()) throw new BadRequestException("La publicación no tiene promoción");
+        if(publicationPromotionDto.getDiscount() <= 0) throw new BadRequestException("El descuento debe ser mayor a 0");
         User user = userRepository.findById(publicationPromotionDto.getUser_id());
         Publication publication= validateAndCreatePublication(publicationPromotionDto, user);
         publication.setHasPromo(true);
@@ -121,7 +123,11 @@ public class ServicePublication implements IServicePublication {
         return null;
     }
 
-
+    /**
+     * Este método obtiene la cantidad de publicaciones con promoción que tiene un vendedor
+     * @param id - Es el id del vendedor del que se desea saber la cantidad de publicaciones con promoción
+     * @return UserPromoProductsDTO - Se devuelve información del vendedor y la cantidad de productos con promoción que tiene
+     */
     public UserPromoProductsCountDTO promoPublicationsCount(int id){
         User user = userRepository.findById(id);
         isValidUser(user);
@@ -131,6 +137,11 @@ public class ServicePublication implements IServicePublication {
         return new UserPromoProductsCountDTO(user.getUser_id(), user.getUser_name(), userPublications.size());
     }
 
+    /**
+     * Este método obtiene un listado de las publicaciones con promoción de un vendedor
+     * @param id - Es el id del vendedor del que se quiere obtener el listado
+     * @return UserPostPromotionDto - Se devuelve información de el vendedor con una lista de todas sus publicacione en promoción
+     */
     public UserPostPromotionDTO getPromoPublications(int id){
         User user = userRepository.findById(id);
         isValidUser(user);

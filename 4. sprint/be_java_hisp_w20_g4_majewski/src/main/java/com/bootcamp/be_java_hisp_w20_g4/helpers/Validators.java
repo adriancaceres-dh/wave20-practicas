@@ -1,8 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.helpers;
 
-import com.bootcamp.be_java_hisp_w20_g4.excepcion.BadRequestException;
-import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
-import com.bootcamp.be_java_hisp_w20_g4.model.User;
+import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 
 public class Validators {
 

@@ -74,6 +74,10 @@ public class PublicationRepository implements IPublicationRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Este método obtiene un listado de todas las publicaciones con promoción
+     * @return List<Publication> - Se devuelve el listado obtenido
+     */
     @Override
     public List<Publication> getPublicationsPromo(){
         return publications.stream().filter(p -> p.isHasPromo()).collect(Collectors.toList());
