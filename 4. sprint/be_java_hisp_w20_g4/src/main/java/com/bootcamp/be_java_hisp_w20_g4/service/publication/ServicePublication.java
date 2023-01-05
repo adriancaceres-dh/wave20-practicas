@@ -137,11 +137,17 @@ public class ServicePublication implements IServicePublication {
         return userProductCountDTO;
     }
 
+    /**
+     * Este método busca las publicaciones en promoción y las muestra
+     * @param userId - Id del vendedor del que se le consultada las publicaciones en promoción
+     * @return ProductsPromotionSellerDTO - Se devuelve las publicaciones del vendedor que tiene en promocion
+     */
     public ProductsPromotionSellerDTO ProductHasPromotionOfSeller(int userId){
         User userFinder = userRepository.findById(userId);
         if (userFinder == null){
             throw new NotFoundException("No se ha encontrado el usuario");
         }
+        if (!(userFinder instanceof Seller)) throw new BadRequestException("Este usuario no tiene publicaciones");
         List<Publication> publications = publicationRepository.getPublicationHasPromotion(userId);
         List<PostPromotionDTO> promotionDTOs = publications.stream().map(p ->{return new PostPromotionDTO(p.getUser_id(),p.getPost_id(),p.getDate(),mapper.map(p.getProduct(), ProductDTO.class),p.getCategory().getId(),p.getPrice(),p.isHasPromo(),p.getDiscount());}).collect(Collectors.toList());
         ProductsPromotionSellerDTO productsPromotionsOfSeller = new ProductsPromotionSellerDTO(userId,userFinder.getUser_name(),promotionDTOs);
