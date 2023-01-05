@@ -10,7 +10,8 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductTwoW
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.ListedPublicationDiscountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDiscountDTO;
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.excepcion.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.InternalServerErrorException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.*;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.category.ICategoryRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.product.IProductRepository;
@@ -152,7 +153,12 @@ public class ServicePublication implements IServicePublication {
 
     @Override
     public ProductDTO createProduct(ProductDTORequest productDTORequest) {
-        return null;
+        Product product = new Product(productDTORequest.getProduct_name(), productDTORequest.getColor(), productDTORequest.getNotes(), productDTORequest.getType(), productDTORequest.getBrand());
+        if(productRepository.addProduct(product)){
+            return mapper.map(product, ProductDTO.class);
+        }else{
+            throw new InternalServerErrorException("Error al crear el producto");
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4_pereyra.helpers.user;
 
-import com.bootcamp.be_java_hisp_w20_g4_pereyra.excepcion.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.User;
 

@@ -1,4 +1,4 @@
-package com.bootcamp.be_java_hisp_w20_g4_pereyra.excepcion;
+package com.bootcamp.be_java_hisp_w20_g4_pereyra.exception;
 
 
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<?> BadRequestException(Exception e){
-        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+    @ExceptionHandler(InternalServerErrorException.class)
+    public ResponseEntity<?> internalServerErrorException(Exception e){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 }

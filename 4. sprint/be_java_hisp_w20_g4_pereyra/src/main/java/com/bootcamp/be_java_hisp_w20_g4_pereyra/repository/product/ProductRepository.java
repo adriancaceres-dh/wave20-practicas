@@ -47,4 +47,14 @@ public class ProductRepository implements IProductRepository {
         return productRepository.equals(product);
     }
 
+    @Override
+    public boolean addProduct(Product productToAdd) {
+        try{
+            products.add(productToAdd);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }
