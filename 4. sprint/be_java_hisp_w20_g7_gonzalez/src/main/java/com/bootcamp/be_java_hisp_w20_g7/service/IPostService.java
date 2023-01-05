@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.ProductPromoDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserListPostProductPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserProductPromoCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -35,4 +36,6 @@ public interface IPostService {
     String createPostProductPromo(ProductPromoDto productPromoDto);
 
     UserProductPromoCountDto countProductPromo(int userId);
+
+    UserListPostProductPromoDto listPostProductPromo(int userId);
 }

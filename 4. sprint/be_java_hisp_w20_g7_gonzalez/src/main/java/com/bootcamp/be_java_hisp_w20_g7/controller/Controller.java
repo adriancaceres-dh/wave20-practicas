@@ -89,4 +89,9 @@ public class Controller {
     public ResponseEntity<UserProductPromoCountDto> countProductPromo(@RequestParam(name="user_id") int userId) {
         return new ResponseEntity<>(postService.countProductPromo(userId), HttpStatus.OK);
     }
+
+    @GetMapping("/products/promo-post/list")
+    public ResponseEntity<UserListPostProductPromoDto> listPostProductPromo(@RequestParam(name="user_id") int userId){
+        return new ResponseEntity<>(postService.listPostProductPromo(userId), HttpStatus.OK);
+    }
 }

@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.request.ProductPromoDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserListPostProductPromoDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserPostFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserProductPromoCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
@@ -122,5 +123,17 @@ public class PostService implements IPostService {
 
         return new UserProductPromoCountDto(userId, user.getUserName(), productPromoCount);
 
+    }
+
+    @Override
+    public UserListPostProductPromoDto listPostProductPromo(int userId) {
+
+        User user = iUserRepository.findById(userId);
+        if (user == null) throw new UserNotFoundException("user with id " + userId + " not found");
+
+        List<PostDto> listPostPromo = iPostRepository.findAll().stream().filter(p -> p.getUserId() == userId && p.isHasPromo())
+                .map(p -> modelMapper.map(p, PostDto.class)).collect(Collectors.toList());
+
+        return new UserListPostProductPromoDto(userId, user.getUserName(), listPostPromo);
     }
 }
