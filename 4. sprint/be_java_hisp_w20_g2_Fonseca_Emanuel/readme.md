@@ -14,6 +14,7 @@ ______
    5. _**[Service](#-service-)**_
    6. _**[Controller](#-controller-)**_
    7. _**[Exception y config](#-exception-y-config-)**_
+   8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
 7. _**[Endpoints](#-endpoints-)**_
 8. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
 9. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
@@ -174,7 +175,14 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 
 ### 🧰 Utils y  Utils/Mapper 🧰
 
-Se agrega objetos sobre post con promo para poder realizar acciones get sin la necesidad de realizar los POST del US 0010
+Se crea, por decisión del equipo, el package _Utils_ y dentro de él se encuentra la clase _LoadExampleData_, un package
+que posee las clases _PostMapper_ y _ProductMapper_.
+- _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En este método
+  se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
+- _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o viceversa.
+- _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o viceversa.
+
+Se agrega la creación de objetos, dentro de LoadExampleData, sobre post con promo para poder realizar acciones get sin la necesidad de realizar los POST del US 0010
 antes de poder realizar los GET del US 0011
 
 # 📌 _Endpoints_ 📌

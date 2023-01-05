@@ -79,7 +79,6 @@ public class UserService implements IUserService {
                     }
                     followed = followed.stream().sorted(comparator).collect(Collectors.toList());
                 }
-
             }
             return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed);
         }
@@ -151,15 +150,15 @@ public class UserService implements IUserService {
     @Override
     public boolean follow(Integer idFollower, Integer idFollowed) {
         if (!userRepository.exists(idFollowed) || !userRepository.exists(idFollower)){
-            throw new BadRequestException("Alguno de los usuarios no existe");
+            throw new BadRequestException("One of the users doesn't exist");
         }
         User follower = userRepository.findOne(idFollower);
         User followed = userRepository.findOne(idFollowed);
         if (follower.getFollowing().contains(followed)){
-            throw new BadRequestException("Ya esta siguiendo a ese usuario");
+            throw new BadRequestException("You are already following that user");
         }
         if (follower.equals(followed)){
-            throw new BadRequestException("No puedes seguirte a ti mismo");
+            throw new BadRequestException("Can't follow yourself");
         }
         follower.follow(followed);
         followed.addFollower(follower);
@@ -175,7 +174,7 @@ public class UserService implements IUserService {
     @Override
     public UserFollowersCountResponseDTO followerList(Integer id) {
         if (!userRepository.exists(id)){
-            throw new BadRequestException("El usuario no existe");
+            throw new BadRequestException("User doesn't exist");
         }
         User user = userRepository.findOne(id);
         return entity2UserResponseDTO(user);
