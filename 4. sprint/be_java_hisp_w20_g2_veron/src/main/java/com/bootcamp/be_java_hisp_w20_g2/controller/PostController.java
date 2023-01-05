@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g2.controller;
 import com.bootcamp.be_java_hisp_w20_g2.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserPromoProductsCountResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserPromoProductsListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,5 +41,13 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<UserPromoProductsCountResponseDTO> getUserPromoProductsCount(@RequestParam int user_id ) {
         return ResponseEntity.ok(postService.getPromotionProductsQuantity(user_id));
+    }
+
+
+    // US-0012
+    @GetMapping(path = "/promo-post/list")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserPromoProductsListResponseDTO> getUserPromoProductsList(@RequestParam int user_id ) {
+        return ResponseEntity.ok(postService.getPromotionProductsList(user_id));
     }
 }

@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g2.service;
 import com.bootcamp.be_java_hisp_w20_g2.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserPromoProductsCountResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserPromoProductsListResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.exception.PostCreationException;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -42,9 +45,19 @@ public class PostService implements IPostService {
         User user = getUserOrThrow(postRequestDTO.getUserId());
 
         Post newPost = postMapper.toPost(postRequestDTO);
+
+        // if the endpoint is promo-post
         if(promotion){
             if(postRequestDTO.getDiscount().isEmpty() || postRequestDTO.getHasPromo().isEmpty()){
                 throw new PostCreationException("Need provide promotion data");
+            }
+
+            if(postRequestDTO.getHasPromo().isPresent() && !postRequestDTO.getHasPromo().get()){
+                throw new PostCreationException("has_promo can´t be false");
+            }
+            if(postRequestDTO.getDiscount().isPresent() && postRequestDTO.getDiscount().get() <= 0){
+                throw new PostCreationException("The discount should be > 0");
+
             }
             newPost.setHasPromo(postRequestDTO.getHasPromo());
             newPost.setDiscount(postRequestDTO.getDiscount());
@@ -92,6 +105,24 @@ public class PostService implements IPostService {
                 (x.getHasPromo().isPresent() && x.getHasPromo().get() )
                         && (x.getDiscount().isPresent() && x.getDiscount().get()>0) ).count();
         return new UserPromoProductsCountResponseDTO(user.getId(),user.getUserName(),promoProductsCount);
+    }
+
+    /**
+     * It returns a list of products in promotion from an user given by userId
+     * @param userId the id of the user to check.
+     * @return UserPromoProductsListResponseDTO.
+     */
+    @Override
+    public UserPromoProductsListResponseDTO getPromotionProductsList(int userId) {
+        User user = getUserOrThrow(userId);
+        List<Post> promoProductsList = user.getPosts().stream().filter(x->
+                (x.getHasPromo().isPresent() && x.getHasPromo().get() )
+                        && (x.getDiscount().isPresent() && x.getDiscount().get()>0) )
+                .collect(Collectors.toList());
+
+        List<PostDTO> promoProductsDTOList = promoProductsList.stream().map(x->postMapper.toDTO(x,userId))
+                .collect(Collectors.toList());
+        return new UserPromoProductsListResponseDTO(user.getId(),user.getUserName(),promoProductsDTOList);
     }
 
     private User getUserOrThrow(int userId) {

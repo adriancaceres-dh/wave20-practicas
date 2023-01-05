@@ -2,7 +2,7 @@
 ______
 ## 🔍🧮 Índice 🧮🔍
 1. _**[Objetivo](#-objetivo-)**_
-2. _**[Putas para la actividad](#-pautas-para-la-actividad-)**_
+2. _**[Pautas para la actividad](#-pautas-para-la-actividad-)**_
 3. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)**_
 4. _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)**_
 5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
@@ -406,8 +406,7 @@ _**Sign:**_
 
 |    Method    | SIGN                                                                                                                                                                                                                                                                                                                                |
 |:------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   **GET**   | /products/promo-post/count?user_id={userId}
-|
+|   **GET**   | /products/promo-post/count?user_id={userId} |
 |  **Response**  | <pre>{<br/>  "user_id": 4698,<br/>  "user_name": "usuario1",<br/>  "promo_products_count":23<br/>} |
 
 
@@ -418,6 +417,41 @@ _**Filtros/Parámetros:**_
 | **user_id**           | int  | Número que identifica al usuario actual            |
 | **user_name**         | String  | Cadena de caracteres que representa el nombre del usuario  |
 | **promo_products_count** | int | Cantidad numérica de productos en promoción de un determinado usuario  |
+
+
+Fue desarrollado por:
+[Federico Javier Veron](https://github.com/fedeveron)
+
+-------
+#### US 0012: Obtener listado de productos en promoción de un determinado vendedor
+
+
+_**Sign:**_
+
+|    Method    | SIGN                                                                                                                                                                                                                                                                                                                                |
+|:------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   **GET**   | /products/promo-post/list?user_id={userId} |
+|  **Response**  | <pre>{<br/>  "user_id": 4698,<br/>  "user_name": "usuario1",<br/>  "posts": <br/>[{<br/>  "user_id": 234,<br/>  "date": "29-04-2021",<br/>  "product":{<br/>     "product_id": 1,<br/>     "product_name": "Silla Gamer",<br/>     "type": "Gamer",<br/>     "brand": "Racer",<br/>     "color": "Red & Black",<br/>     "notes": "Special Edition"<br/>  },<br/>  "category": 100,<br/>  "price": 1500.50,<br/>  "has_promo": true,</br>  "discount": 0.25 </br>}]<br/>} |
+
+
+_**Filtros/Parámetros:**_
+
+| Parámetros           | Tipo | Descripción/Ejemplo                                |
+|----------------------|:----:|----------------------------------------------------|
+| **user_id**           | int  | Número que identifica al usuario actual            |
+| **user_name**         | String  | Cadena de caracteres que representa el nombre del usuario  |
+| **post_id**   |   int    | Número identificatorio de cada una de las publicaciones|
+| **date**   |   LocalDate    | Fecha de la publicación en formato dd-MM-yyyy|
+| **product_id**   |   int    | Número identificatorio de un producto asociado a una publicación                                                         |
+| **product_name** |  String  | Cadena de caracteres que representa el nombre de un producto                                                             |
+| **type**         |  String  | Cadena de caracteres que representa el tipo de un producto                                                               |
+| **brand**        |  String  | Cadena de caracteres que representa la marca de un producto                                                              |
+| **color**        |  String  | Cadena de caracteres que representa el color de un producto                                                              |
+| **notes**        |  String  | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| **category**     |   int    | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**        |  double  | Precio del producto                                                                                                      |
+| **has_promo**    |  boolean  | Campo true o false para determinar si un producto está en promoción o no|
+| **discount**     |  double  |En caso de que un producto estuviese en promoción, establece el monto de descuento.                                                                                                     |
 
 
 Fue desarrollado por:
