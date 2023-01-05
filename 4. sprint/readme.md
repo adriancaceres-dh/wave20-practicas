@@ -53,13 +53,13 @@ Los requisitos 10, 11 y 12 se trabajaron de forma individual.
 *     Req 8 & Req 9:
     * Para ordenar se utilizara un request param en la ruta donde especificará el el orden de ordenamiento
 
-*    Req 10:
+*     Req 10:
     * No se podra publicar una publicacion que no tenga promocion
 
-*    Req 11:
+*     Req 11:
     * Solo se podra consultar la cantidad de promos de los vendedores. (no compradores)
     
-*    Req 12:
+*     Req 12:
     * Solo se puede enviar el id de un vendedor para obtener su lista de promociones
 
 
