@@ -88,6 +88,11 @@ public class ServicePublication implements IServicePublication {
         return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
     }
 
+    /**
+     * Este método guarda una publicación con promoción
+     * @param postPromoDTO - Representa los datos de la publicación a guardar
+     * @return PublicationPromoDTO - En caso exitoso devuele la publicación creada
+     */
     @Override
     public PublicationPromoDTO addPublicationPromo(PostPromoDTO postPromoDTO) {
         User user = userRepository.findById(postPromoDTO.getUser_id());
@@ -111,6 +116,11 @@ public class ServicePublication implements IServicePublication {
          return null;
     }
 
+    /**
+     * Este método contabiliza las publicaciones con descuento de un determinado vendedor
+     * @param user_id - Representa al vendedor
+     * @return PromoCountDTO - Devuelve el id y nombre del vendedor junto a la cantidad obtenida
+     */
     @Override
     public PromoCountDTO countPublicationPromo(int user_id) {
         User user = userRepository.findById(user_id);
@@ -121,6 +131,11 @@ public class ServicePublication implements IServicePublication {
         return promoCountDTO;
     }
 
+    /**
+     * Este método lista las publicaciones con promoción de un determinado vendedor
+     * @param user_id - Representa al vendedor
+     * @return PublicationSellerPromoDTO - Retorna el listado de la publicaciones obtenidas
+     */
     @Override
     public PublicationSellerPromoDTO publicationSellerPromo(int user_id) {
         User user = userRepository.findById(user_id);

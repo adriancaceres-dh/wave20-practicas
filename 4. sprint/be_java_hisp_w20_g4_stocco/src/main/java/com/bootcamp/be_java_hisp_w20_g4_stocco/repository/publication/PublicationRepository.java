@@ -72,6 +72,12 @@ public class PublicationRepository implements IPublicationRepository {
                 .sorted(Comparator.comparing(Publication::getDate))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Este método muestra la cantidad de productos con promoción de un determinado verndedor
+     * @param user_id - Representa el id del vendedor
+     * @return int - Devuelve la cantidad obtenida de productos con promoción
+     */
     public int countPromos(int user_id){
 
         int promos = 0;
@@ -82,6 +88,12 @@ public class PublicationRepository implements IPublicationRepository {
         return promos;
 
     }
+
+    /**
+     * Este método lista las publicaciones con promoción de un determinado vendedor
+     * @param user_id - Representa el vendedor
+     * @return List<Publication> - Retorna la lista obtenida de publicaciones con descuento
+     */
     public List<Publication> promoSellerList(int user_id){
         publications.stream()
                 .filter(p->p.getUser_id() == user_id)
