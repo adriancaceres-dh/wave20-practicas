@@ -4,5 +4,6 @@ import com.bootcamp.be_java_hisp_w20_g4.model.Product;
 
 public interface IProductRepository {
     public boolean productExist(Product product);
+    Product findById(int idProduct);
 
 }

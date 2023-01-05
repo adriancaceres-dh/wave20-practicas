@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostPromotionDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductWithPostListDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
@@ -157,11 +158,14 @@ public class ServicePublication implements IServicePublication {
      * @param id - Es el id del producto que deben tener las publicaciones
      * @return ListedPostDTO - Devuelve una lista con la información de los posts obtenidos
      */
-    public List<ListedPostDTO> getProductPublications(int id){
+    public ProductWithPostListDTO getProductPublications(int id){
+        Product product = productRepository.findById(id);
+        if(product == null) throw new BadRequestException("El producto no fue encontrado");
         List<Publication> publications = publicationRepository.getPublications();
         List<ListedPostDTO> publicationsDto = publications.stream().filter(p -> p.getProduct().getProduct_id() == id)
                 .map(p -> mapper.map(p, ListedPostDTO.class)).collect(Collectors.toList());
-        return publicationsDto;
+
+        return new ProductWithPostListDTO(id, product.getProduct_name(), publicationsDto);
     }
 
 

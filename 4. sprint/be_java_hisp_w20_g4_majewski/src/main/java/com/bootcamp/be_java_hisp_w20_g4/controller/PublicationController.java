@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g4.controller;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostPromotionDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductWithPostListDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.ListedUserDTO;
@@ -47,7 +48,7 @@ public class PublicationController {
     }
 
     @GetMapping("/post-with/{productId}")
-    public ResponseEntity<List<ListedPostDTO>> publicationsWithProduct(@PathVariable int productId){
+    public ResponseEntity<ProductWithPostListDTO> publicationsWithProduct(@PathVariable int productId){
         return ResponseEntity.ok().body(servicePublication.getProductPublications(productId));
     }
 
