@@ -451,4 +451,90 @@ Obtener un listado de todos los productos en promoción de un determinado vended
 | `price` | `double` | Precio del producto |
 | `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no |
 | `discount` | `double` | En caso de que un producto estuviese en promoción ,establece el monto de descuento. |
+```
 
+&nbsp;
+#### US0013
+Obtener un listado de todos los usuarios. Ordenamiento alfabético ascendente y descendente
+
+```http
+  GET /users?order=name_asc
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+|  |  |  |
+
+***Response***
+```javasript
+[
+{
+	"user_id": 234,	
+        "user_name": "usuario1”,
+        "followers": [
+            {
+                "user_id": 6631,
+                "user_name": "usuario2"
+            },
+            {
+                "user_id": 4698,
+                "user_name": "usuario3"
+            }            
+        ],
+        "followed": [
+            {
+                "user_id": 4698,
+                "user_name": "usuario3"
+            }
+        ]        
+    },
+    {
+	"user_id": 6631,
+        "user_name": "usuario2”,
+        "followers": [
+            {
+                "user_id": 4698,
+                "user_name": "usuario3"
+            },
+            {
+                "user_id": 1536,
+                "user_name": "usuario4"
+            }
+        ],
+        "followed": [
+            {
+                "user_id": 234,
+                "user_name": "usuario1"
+            }
+        ]        
+    }
+   ]
+```
+
+&nbsp;
+#### US0014
+Dar de alta un nuevo usuario
+
+```http
+  POST /users/user
+```
+
+***Payload***
+```javasript
+{
+    "user_id": 123,
+    "user_name": "nuevo usuario",
+}
+
+```
+
+| Parameter    | Type     | Description                |
+|:-------------| :------- | :------------------------- |
+| `userId`     | `int` | Número que identifica a cada usuario |
+| `user_name`  | `String` | Cadena de caracteres que representa el nombre del usuario |
+
+
+| Response | 
+| :-------- | 
+| **Status Code 200** (todo OK)| 
+| **Status Code 400** (Bad Request)| 
