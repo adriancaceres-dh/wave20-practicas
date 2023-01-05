@@ -36,8 +36,8 @@ favoritos y enterarse de todas las novedades que los mismos posteen.
 [SocialMeli](https://lucid.app/lucidchart/2259acad-fa27-4b7d-b338-1a7d836a3e1c/edit?viewport_loc=-11%2C-43%2C1579%2C841%2C0_0&invitationId=inv_e65c2102-36f5-4d29-9cd9-9c2ca21f4fa0)
 ## Decisiones de Equipo
 
-**US003 & US004:** Concluimos usar un unico DTO para ambos casos ya que la 
-unica diferencia era el valor followed, en vez de followers.
+**US003 & US004:** Concluimos usar un único DTO para ambos casos, ya que la 
+única diferencia era el valor followed, en vez de followers.
 
 **US0010:** Concluimos con usar dos DTOs, uno para los productos de la US0005 
 y otra para esta misma la cual contiene productos con descuentos. Para poder 
@@ -68,7 +68,7 @@ Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
 | `userIdToFollow` | `int` | Número que identifica al usuario a seguir|
 
 | Response | 
-| :-------- | 
+| :-------- |
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
@@ -88,7 +88,7 @@ vendedor
 | `userId` | `int` | Número que identifica a cada usuario |
 
 ***Response***
-```javasript
+```json
 {
     "user_id": 234,
     "user_name": "vendedor1",
@@ -113,7 +113,7 @@ Obtener un listado de todos los usuarios que siguen a un determinado vendedor
 | `userId` | `int` | Número que identifica a cada usuario |
 
 ***Response***
-```javasript
+```json
 {
     "user_id": 234,
     "user_name": "vendedor1",
@@ -151,7 +151,7 @@ usuario (¿A quién sigo?)
 | `userId` | `int` | Número que identifica a cada usuario |
 
 ***Response***
-```javasript
+```json
 {
     "user_id": 4698,
     "user_name": "usuario1",
@@ -184,7 +184,7 @@ Dar de alta una nueva publicación
 ```
 
 ***Payload***
-```javasript
+```json
 {
     "user_id": 123,
     "date": "29-04-2021",
@@ -206,24 +206,17 @@ Dar de alta una nueva publicación
 | :-------- | :------- | :------------------------- |
 | `userId` | `int` | Número que identifica a cada usuario |
 | `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy |
-| `product_id` | `int` | Número identificatorio de un producto asociado a una 
-publicación |
-| `product_name` | `String` | Cadena de caracteres que representa el nombre de 
-un producto |
-| `type` | `String` | Cadena de caracteres que representa el tipo de un 
-producto |
-| `brand` | `String` | Cadena de caracteres que representa la marca de un 
-producto |
-| `color` | `String` | Cadena de caracteres que representa el color de un 
-producto |
-| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones 
-de un producto |
-| `category` | `int` | Identificador que sirve para conocer la categoría a la 
-que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| `product_id` | `int` | Número identificatorio de un producto asociado a una publicación |
+| `product_name` | `String` | Cadena de caracteres que representa el nombre de un producto |
+| `type` | `String` | Cadena de caracteres que representa el tipo de un producto |
+| `brand` | `String` | Cadena de caracteres que representa la marca de un producto |
+| `color` | `String` | Cadena de caracteres que representa el color de un producto |
+| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones de un producto |
+| `category` | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto|
 | `price` | `double` | Precio del producto |
 
 | Response | 
-| :-------- | 
+| :-------- |
 | **Status Code 200** (todo OK)| 
 | **Status Code 400** (Bad Request)| 
 
@@ -246,11 +239,11 @@ ordenamiento por fecha, publicaciones más recientes primero).
 | `userId` | `int` | Número que identifica a cada usuario |
 
 ***Response***
-```javasript
+```json
 {
     "user_id": 4698,
     "posts": [ {
-            “user_id”: 123,
+            "user_id": 123,
             "post_id": 32,
             "date": "01-05-2021",
             "product": {
@@ -265,7 +258,7 @@ ordenamiento por fecha, publicaciones más recientes primero).
             "price": 2800.69
         },
         {
-            “user_id”: 234,
+            "user_id": 234,
             "post_id": 18,
             "date": "29-04-2021",
             "product": {
@@ -294,14 +287,13 @@ vendedor.
   POST /users/{userId}/unfollow/{userIdToUnfollow}
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `userId` | `int` | Número que identifica al usuario actual |
-| `userIdToUnfollow` | `int` | Número que identifica al usuario a dejar de 
-seguir|
+| Parameter | Type     | Description                                        |
+| :-------- | :------- |:---------------------------------------------------|
+| `userId` | `int` | Número que identifica al usuario actual            |
+| `userIdToUnfollow` | `int` | Número que identifica al usuario a dejar de seguir |
 
 | Response | 
-| :-------- | 
+| :-------- |
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
@@ -326,7 +318,7 @@ Ordenamiento alfabético ascendente y descendente.
 | `name_desc` | `String` | Alfabético descendente|
 
 | Response | 
-| :-------- | 
+| :-------- |
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
@@ -346,7 +338,7 @@ Ordenamiento alfabético ascendente y descendente.
 | `date_desc` | `String` | Fecha descendente (de más nueva a más antigua)|
 
 | Response | 
-| :-------- | 
+| :-------- |
 | **Status Code 200** (todo OK) - bodyless or dto| 
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
@@ -359,7 +351,7 @@ Ordenamiento alfabético ascendente y descendente.
 ```
 
 ***Payload***
-```javasript
+```json
 {
     "user_id": 234,
     "date": "29-04-2021",
@@ -380,32 +372,23 @@ Ordenamiento alfabético ascendente y descendente.
 
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `user_id` | `int` | Número que identifica a cada usuario |
-| `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy |
-| `product_id` | `int` | Número identificatorio de un producto asociado a una 
-publicación |
-| `product_name` | `String` | Cadena de caracteres que representa el nombre de 
-un producto |
-| `type` | `String` | Cadena de caracteres que representa el tipo de un 
-producto |
-| `brand` | `String` | Cadena de caracteres que representa la marca de un 
-producto |
-| `color` | `String` | Cadena de caracteres que representa el color de un 
-producto |
-| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones 
-de un producto |
-| `category` | `int` | Identificador que sirve para conocer la categoría a la 
-que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
-| `price` | `double` | Precio del producto |
-| `has_promo` | `boolean` | Campo true o false para determinar si un producto 
-está en promoción o no |
-| `discount` | `double` | En caso de que un producto estuviese en promoción 
-,establece el monto de descuento. |
+| Parameter | Type     | Description                                                                         |
+| :-------- | :------- |:------------------------------------------------------------------------------------|
+| `user_id` | `int` | Número que identifica a cada usuario                                                |
+| `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy                                       |
+| `product_id` | `int` | Número identificatorio de un producto asociado a una publicación                    |
+| `product_name` | `String` | Cadena de caracteres que representa el nombre de un producto                        |
+| `type` | `String` | Cadena de caracteres que representa el tipo de un producto                          |
+| `brand` | `String` | Cadena de caracteres que representa la marca de un producto                         |
+| `color` | `String` | Cadena de caracteres que representa el color de un producto                         |
+| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones de un producto              |
+| `category` | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto    |
+| `price` | `double` | Precio del producto                                                                 |
+| `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no            |
+| `discount` | `double` | En caso de que un producto estuviese en promoción, establece el monto de descuento. |
 
-| Response | 
-| :-------- | 
+| Response |
+| :-------- |
 | **Status Code 200** (todo OK)| 
 | **Status Code 400** (Bad Request)|
 
@@ -418,7 +401,7 @@ Obtener la cantidad de productos en promoción de un determinado vendedor
 ```
 
 ***Response***
-```javasript
+```json
 {  
    "user_id" : 234,
    "user_name": "vendedor1",
@@ -427,13 +410,11 @@ Obtener la cantidad de productos en promoción de un determinado vendedor
 
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `user_id` | `int` | Número que identifica a cada usuario |
-| `user_name` | `String` | Cadena de caracteres que representa el nombre del 
-usuario |
-| `promo_products_count` | `int` | Cantidad numérica de productos en promoción 
-de un determinado usuario. |
+| Parameter | Type     | Description                                                           |
+| :-------- | :------- |:----------------------------------------------------------------------|
+| `user_id` | `int` | Número que identifica a cada usuario                                  |
+| `user_name` | `String` | Cadena de caracteres que representa el nombre del usuario             |
+| `promo_products_count` | `int` | Cantidad numérica de productos en promoción de un determinado usuario |
 
 &nbsp;
 #### US0012
@@ -445,13 +426,13 @@ vendedor
 ```
 
 ***Response***
-```javasript
+```json
 {
     "user_id": 234,
     "user_name": "vendedor1",
     "posts": [
         {
-            “user_id”: 123
+            "user_id": 123,
             "post_id": 18,
             "date": "29-04-2021",
             "product": {
@@ -472,31 +453,20 @@ vendedor
 
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `user_id` | `int` | Número que identifica a cada usuario |
-| `user_name` | `String` | Cadena de caracteres que representa el nombre del 
-usuario |
-| `post_id` | `int` | Número identificatorio de cada una de las publicaciones 
-|
-| `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy |
-| `product_id` | `int` | Número identificatorio de un producto asociado a una 
-publicación |
-| `product_name` | `String` | Cadena de caracteres que representa el nombre de 
-un producto |
-| `type` | `String` | Cadena de caracteres que representa el tipo de un 
-producto |
-| `brand` | `String` | Cadena de caracteres que representa la marca de un 
-producto |
-| `color` | `String` | Cadena de caracteres que representa el color de un 
-producto |
-| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones 
-de un producto |
-| `category` | `int` | Identificador que sirve para conocer la categoría a la 
-que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
-| `price` | `double` | Precio del producto |
-| `has_promo` | `boolean` | Campo true o false para determinar si un producto 
-está en promoción o no |
-| `discount` | `double` | En caso de que un producto estuviese en promoción 
-,establece el monto de descuento. |
+| Parameter | Type     | Description                                                                         |
+| :-------- | :------- |:------------------------------------------------------------------------------------|
+| `user_id` | `int` | Número que identifica a cada usuario                                                |
+| `user_name` | `String` | Cadena de caracteres que representa el nombre del usuario                           |
+| `post_id` | `int` | Número identificatorio de cada una de las publicaciones                             |
+| `date` | `localDate` | Fecha de la publicación en formato dd-MM-yyyy                                       |
+| `product_id` | `int` | Número identificatorio de un producto asociado a una publicación                    |
+| `product_name` | `String` | Cadena de caracteres que representa el nombre de un producto                        |
+| `type` | `String` | Cadena de caracteres que representa el tipo de un producto                          |
+| `brand` | `String` | Cadena de caracteres que representa la marca de un producto                         |
+| `color` | `String` | Cadena de caracteres que representa el color de un producto                         |
+| `notes` | `String` | Cadena de caracteres para colocar notas u observaciones de un producto              |
+| `category` | `int` | Identificador que sirve para conocer la categoría a la que pertenece un producto    |
+| `price` | `double` | Precio del producto                                                                 |
+| `has_promo` | `boolean` | Campo true o false para determinar si un producto está en promoción o no            |
+| `discount` | `double` | En caso de que un producto estuviese en promoción, establece el monto de descuento. |
 
