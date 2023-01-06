@@ -30,6 +30,7 @@ public class PostRepository implements IPostRepository {
     }
 
     public boolean addPost(Post post) {
+
         postsList.add(post);
         return true;
     }

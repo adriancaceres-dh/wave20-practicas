@@ -1,6 +1,9 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.PostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.ProductDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.Request.PromoPostRequestDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.Response.PromoPostCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
@@ -74,5 +77,60 @@ public class PostService implements IPostService {
             postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate())).collect(Collectors.toList());
         }
         return postList;
+    }
+
+    @Override
+    public String addPromoPost(PromoPostRequestDTO promoPostDto) {
+
+        if (userRepository.getUserById(promoPostDto.getUserId()) == null) {
+            throw new NotFoundException("The user entered does not exist");
+        }
+
+        ProductDTO productDTO = promoPostDto.getProduct();
+        Product product = Product.builder()
+                .productId(productDTO.getProductId())
+                .productName(productDTO.getProductName())
+                .type(productDTO.getType())
+                .brand(productDTO.getBrand())
+                .color(productDTO.getColor())
+                .notes(productDTO.getNotes())
+                .build();
+
+        Post post = Post.builder()
+                .postId(postRepository.getPosts().size() + 1)
+                .userId(promoPostDto.getUserId())
+                .category(promoPostDto.getCategory())
+                .price(promoPostDto.getPrice())
+                .product(product)
+                .date(promoPostDto.getDate())
+                .hasPromo(promoPostDto.isHasPromo())
+                .discount(promoPostDto.getDiscount())
+                .build();
+
+        postRepository.addPost(post);
+
+        return "Post added successfully";
+    }
+
+    @Override
+    public PromoPostCountDTO getPromoProducts(int userId) {
+
+        User user = userRepository.getUserById(userId);
+        if (user == null) {
+            throw new NotFoundException("The user entered does not exist");
+        }
+
+        List<PromoPostRequestDTO> userPromoPosts = this.postRepository.getPosts().stream().
+                filter(post -> post.getUserId() == userId)
+                .filter(post -> post.isHasPromo())
+                .map(u -> mapper.map(u, PromoPostRequestDTO.class)).collect(Collectors.toList());
+
+        List<ProductDTO> promoProducts = new ArrayList<>();
+
+        for (PromoPostRequestDTO post : userPromoPosts){
+            ProductDTO product = post.getProduct();
+            promoProducts.add(product);
+        }
+        return new PromoPostCountDTO(user.getUserId(),user.getUserName(),promoProducts.size());
     }
 }

@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 
 @Data

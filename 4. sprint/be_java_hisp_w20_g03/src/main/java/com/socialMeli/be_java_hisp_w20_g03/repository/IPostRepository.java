@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.repository;
 
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
+import com.socialMeli.be_java_hisp_w20_g03.model.Product;
 
 import java.util.List;
 
