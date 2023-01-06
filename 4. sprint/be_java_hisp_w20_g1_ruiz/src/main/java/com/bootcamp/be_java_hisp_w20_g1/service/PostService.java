@@ -137,6 +137,7 @@ public class PostService implements IPostService {
                 .filter(post -> post.isHasPromo())
                 .map(post -> mapToPostResponseDto(post, userId, true))
                 .collect(Collectors.toList());
+
         return PostListResponseDto
                 .builder()
                 .posts(postResponses)
@@ -154,9 +155,11 @@ public class PostService implements IPostService {
                 .product(productService.getProductById(post.getProductId()))
                 .category(post.getCategory())
                 .price(post.getPrice());
+
         PostResponseDto.PostResponseDtoBuilder withPromo = setPromo ?
                 res.hasPromo(post.isHasPromo()).discount(post.getDiscount()) :
                 res;
-        return res.build();
+
+        return withPromo.build();
     }
 }
