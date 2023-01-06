@@ -1,6 +1,7 @@
 package com.meli.obtenerdiploma.service;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
+import com.meli.obtenerdiploma.model.StudentInDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,14 @@ import java.util.List;
 public class ObtenerDiplomaService implements IObtenerDiplomaService {
 
     @Override
-    public StudentDTO analyzeScores(StudentDTO rq) {
-        rq.setAverageScore(calculateAverage(rq.getSubjects()));
-        rq.setMessage(getGreetingMessage(rq.getStudentName(), rq.getAverageScore()));
+    public StudentDTO analyzeScores(StudentInDTO rq) {
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setStudentName(rq.getStudentName());
+        studentDTO.setSubjects(rq.getSubjects());
+        studentDTO.setAverageScore(calculateAverage(rq.getSubjects()));
+        studentDTO.setMessage(getGreetingMessage(rq.getStudentName(), studentDTO.getAverageScore()));
 
-        return rq;
+        return studentDTO;
     }
 
     private String getGreetingMessage(String studentName, Double average) {
