@@ -1,9 +1,6 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostPromoDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.PromoCountDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.*;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +17,14 @@ public class PostController {
     IPostService postService;
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<ResponsePostDTO> findAllPostsByIdUser(@PathVariable int userId,  @RequestParam(required = false) String order){
-        return new ResponseEntity<>(postService.findSellersByIdUser(userId,order), HttpStatus.OK);
+    public ResponseEntity<ResponsePostDTO> findAllPostsByIdUser(@PathVariable int userId, @RequestParam(required = false) String order) {
+        return new ResponseEntity<>(postService.findSellersByIdUser(userId, order), HttpStatus.OK);
     }
+
     @PostMapping("/post")
     public ResponseEntity<String> postPost(@RequestBody PostRequestDTO postRequestDTO) {
-            postService.createPost(postRequestDTO);
-            return ResponseEntity.status(HttpStatus.OK).body("The post was published");
+        postService.createPost(postRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body("The post was published");
     }
 
     @PostMapping("/promo-post")
@@ -42,5 +40,10 @@ public class PostController {
     @GetMapping("/promo-post/count")
     public ResponseEntity<PromoCountDTO> countPromos(@RequestParam int user_id) {
         return new ResponseEntity<PromoCountDTO>(postService.promosCount(user_id), HttpStatus.OK);
+    }
+
+    @GetMapping("promo-post/list")
+    public ResponseEntity<PostPromoListDTO> promoList(@RequestParam int user_id) {
+        return new ResponseEntity<PostPromoListDTO>(postService.postPromoList(user_id), HttpStatus.OK);
     }
 }

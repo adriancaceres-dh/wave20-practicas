@@ -62,8 +62,10 @@ public class PostRepositoryImp implements IPostRepository {
                 }
             }
         });
+
         PostPromoDTO postPromoDTO = PostPromoDTO.builder()
                 .userId(postPromo.getUserId())
+                .postId(sizeMapPostPromos + 1)
                 .date(postPromo.getDate())
                 .productDTO(
                         ProductDTO.builder()
@@ -90,18 +92,24 @@ public class PostRepositoryImp implements IPostRepository {
         return (int) mapPostsPromos.entrySet().stream().filter(p -> p.getValue().getUserId() == userId && p.getValue().isHashPromo()).count();
     }
 
+    @Override
+    public Map<Integer, PostPromoDTO> getMapPostsPromos() {
+        return mapPostsPromos;
+    }
+
+
     public Map<Integer, PostPromoDTO> loadPostPromo() {
 
-        mapPostsPromos.put(1, PostPromoDTO.builder().userId(5).date(LocalDate.of(2022, 12, 29)).productDTO(
+        mapPostsPromos.put(1, PostPromoDTO.builder().userId(5).postId(1).date(LocalDate.of(2022, 12, 29)).productDTO(
                 ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()
         ).category(2).price(2000).hashPromo(true).discount(0.23).build());
-        mapPostsPromos.put(2, PostPromoDTO.builder().userId(5).date(LocalDate.of(2022, 12, 28)).productDTO(
+        mapPostsPromos.put(2, PostPromoDTO.builder().userId(5).postId(2).date(LocalDate.of(2022, 12, 28)).productDTO(
                 ProductDTO.builder().product_id(1).product_name("Freezer").type("Technology").brand("Samsung").color("Black").notes("Freezer").build()
         ).category(2).price(2000).hashPromo(true).discount(0.23).build());
-        mapPostsPromos.put(3, PostPromoDTO.builder().userId(7).date(LocalDate.of(2022, 11, 29)).productDTO(
+        mapPostsPromos.put(3, PostPromoDTO.builder().userId(7).postId(3).date(LocalDate.of(2022, 11, 29)).productDTO(
                 ProductDTO.builder().product_id(1).product_name("Blender").type("Technology").brand("Samsung").color("Black").notes("9 liters").build()
         ).category(2).price(2000).build());
-        mapPostsPromos.put(4, PostPromoDTO.builder().userId(6).date(LocalDate.of(2022, 11, 27)).productDTO(
+        mapPostsPromos.put(4, PostPromoDTO.builder().userId(6).postId(4).date(LocalDate.of(2022, 11, 27)).productDTO(
                 ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
         ).category(2).price(2000).hashPromo(true).discount(0.23).build());
 

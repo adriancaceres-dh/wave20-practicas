@@ -19,6 +19,8 @@ public class PostPromoDTO {
 
     @JsonProperty("user_id")
     private int userId;
+    @JsonProperty("post_id")
+    private int postId;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
     @JsonProperty("product")
@@ -28,6 +30,4 @@ public class PostPromoDTO {
     @JsonProperty("has_promo")
     private boolean hashPromo;
     private double discount;
-
-
 }

@@ -1,9 +1,11 @@
 package com.socialmeli.be_java_hisp_w20_g8.repositories.posts;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.PostPromoDTO;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import com.socialmeli.be_java_hisp_w20_g8.models.PostPromo;
 
+import java.util.Map;
 import java.util.Set;
 
 public interface IPostRepository {
@@ -14,4 +16,6 @@ public interface IPostRepository {
     boolean createPostPromo(PostPromo postPromo);
 
     int postPromoCountUser(int userId);
+
+    Map<Integer, PostPromoDTO> getMapPostsPromos();
 }
