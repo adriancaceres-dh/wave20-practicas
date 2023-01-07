@@ -81,7 +81,8 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 - Si el atributo **has_promo** se encuentra en **false** dicha promoción será almacenada en el Mapa, pero **NO** se
   tendrá en
   cuenta a la hora de realizar la acción de listar productos en promoción **(US-012)**.
-- Para el requerimiento 10 **(US-010)** se recomienda utilizar el user_id con los valores **5,6,7** respectivamente.
+- Para el requerimiento 10 **(US-010)** se recomienda utilizar el **user_id** con los valores **5,6,7** respectivamente.
+- El **id** de cada **Post** es generado autoincrementalmente.
 - No se cuenta con repositorios estaticos, estos son creados con codigo "quemado" o hardcoded code como datos iniciales.
 
 
