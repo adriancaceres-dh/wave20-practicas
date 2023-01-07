@@ -117,9 +117,7 @@ public class PostService implements IPostService {
                                 .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
                                 .collect(Collectors.toList()))
                         .build();
-
         }
-
     }
 
     @Override
@@ -135,11 +133,9 @@ public class PostService implements IPostService {
         Seller seller = personRepository.getById(userId);
 
         List<PostPromoDTO> listPostPromo = new ArrayList<>();
-        for (Map.Entry<Integer, PostPromoDTO> integerPostPromoDTOEntry : postRepository.getMapPostsPromos().entrySet()) {
-            if (integerPostPromoDTOEntry.getValue().getUserId() == userId) {
-                System.out.println("Cyclo: recorrer" + integerPostPromoDTOEntry);
-                listPostPromo.add(integerPostPromoDTOEntry.getValue());
-                //listPostPromo.add(mapper.map(integerPostPromoDTOEntry.getValue(), PostPromo.class));
+        for (Map.Entry<Integer, PostPromo> integerPostPromoDTOEntry : postRepository.getMapPostsPromos().entrySet()) {
+            if (integerPostPromoDTOEntry.getValue().getUserId() == userId && integerPostPromoDTOEntry.getValue().isHashPromo()) {
+                listPostPromo.add(mapper.map(integerPostPromoDTOEntry.getValue(), PostPromoDTO.class));
             }
         }
         PostPromoListDTO promoListDTO = new PostPromoListDTO(seller.getId(), seller.getUser_name(), listPostPromo);

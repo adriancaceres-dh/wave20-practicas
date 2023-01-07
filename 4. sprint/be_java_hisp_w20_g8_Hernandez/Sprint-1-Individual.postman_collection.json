@@ -382,6 +382,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "US-012",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products/promo-post/list?user_id=6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"promo-post",
+						"list"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

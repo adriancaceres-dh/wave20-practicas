@@ -17,5 +17,5 @@ public interface IPostRepository {
 
     int postPromoCountUser(int userId);
 
-    Map<Integer, PostPromoDTO> getMapPostsPromos();
+    Map<Integer, PostPromo> getMapPostsPromos();
 }

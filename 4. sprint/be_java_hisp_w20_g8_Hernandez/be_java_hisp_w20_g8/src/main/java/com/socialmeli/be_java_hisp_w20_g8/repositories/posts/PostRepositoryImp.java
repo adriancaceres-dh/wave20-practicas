@@ -7,6 +7,7 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
 import com.socialmeli.be_java_hisp_w20_g8.models.PostPromo;
+import com.socialmeli.be_java_hisp_w20_g8.models.Product;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -21,11 +22,11 @@ import java.util.Set;
 public class PostRepositoryImp implements IPostRepository {
 
     private final Map<Integer, PostDTO> mapPosts;
-    private final Map<Integer, PostPromoDTO> mapPostsPromos;
+    private final Map<Integer, PostPromo> mapPostsPromos;
     private final Set<Post> posts;
     private int postCount;
 
-    public PostRepositoryImp(Map<Integer, PostDTO> mapPosts, Map<Integer, PostPromoDTO> mapPostsPromos, Set<PostPromo> postPromos) {
+    public PostRepositoryImp(Map<Integer, PostDTO> mapPosts, Map<Integer, PostPromo> mapPostsPromos, Set<PostPromo> postPromos) {
         this.mapPosts = mapPosts;
         this.mapPostsPromos = mapPostsPromos;
         this.posts = new HashSet<>();
@@ -55,7 +56,7 @@ public class PostRepositoryImp implements IPostRepository {
         int sizeMapPostPromos = mapPostsPromos.size();
         mapPostsPromos.forEach((k, v) -> {
             int userId = v.getUserId();
-            int productId = v.getProductDTO().getProduct_id();
+            int productId = v.getProduct().getProduct_id();
             if (userId == postPromo.getUserId()) {
                 if (productId == postPromo.getProduct().getProduct_id()) {
                     throw new OperationFailedException("Product already exits");
@@ -63,55 +64,40 @@ public class PostRepositoryImp implements IPostRepository {
             }
         });
 
-        PostPromoDTO postPromoDTO = PostPromoDTO.builder()
-                .userId(postPromo.getUserId())
-                .postId(sizeMapPostPromos + 1)
-                .date(postPromo.getDate())
-                .productDTO(
-                        ProductDTO.builder()
-                                .product_id(postPromo.getProduct().getProduct_id())
-                                .product_name(postPromo.getProduct().getProduct_name())
-                                .type(postPromo.getProduct().getType())
-                                .brand(postPromo.getProduct().getBrand())
-                                .color(postPromo.getProduct().getColor())
-                                .notes(postPromo.getProduct().getNotes())
-                                .build()
-                )
-                .category(postPromo.getCategory())
-                .price(postPromo.getPrice())
-                .hashPromo(postPromo.isHashPromo())
-                .discount(postPromo.getDiscount())
-                .build();
-        mapPostsPromos.put(sizeMapPostPromos + 1, postPromoDTO);
+        postPromo.setPostId(sizeMapPostPromos + 1);
+        mapPostsPromos.put(sizeMapPostPromos + 1, postPromo);
         if (mapPostsPromos.size() > 4) isSave = true;
         return isSave;
     }
 
     @Override
     public int postPromoCountUser(int userId) {
-        return (int) mapPostsPromos.entrySet().stream().filter(p -> p.getValue().getUserId() == userId && p.getValue().isHashPromo()).count();
+        return (int) mapPostsPromos.entrySet().stream().filter(p -> p.getValue().getUserId() == userId && p.getValue()
+                .isHashPromo()).count();
     }
 
     @Override
-    public Map<Integer, PostPromoDTO> getMapPostsPromos() {
+    public Map<Integer, PostPromo> getMapPostsPromos() {
         return mapPostsPromos;
     }
 
+    public Map<Integer, PostPromo> loadPostPromo() {
 
-    public Map<Integer, PostPromoDTO> loadPostPromo() {
+        mapPostsPromos.put(1, new PostPromo(5, 1, LocalDate.of(2022, 12, 29), new Product(
+                1, "Television", "Technology", "Samsung", "Black", "TV 68 inches"),
+                2, 2000, true, 0.25));
 
-        mapPostsPromos.put(1, PostPromoDTO.builder().userId(5).postId(1).date(LocalDate.of(2022, 12, 29)).productDTO(
-                ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()
-        ).category(2).price(2000).hashPromo(true).discount(0.23).build());
-        mapPostsPromos.put(2, PostPromoDTO.builder().userId(5).postId(2).date(LocalDate.of(2022, 12, 28)).productDTO(
-                ProductDTO.builder().product_id(1).product_name("Freezer").type("Technology").brand("Samsung").color("Black").notes("Freezer").build()
-        ).category(2).price(2000).hashPromo(true).discount(0.23).build());
-        mapPostsPromos.put(3, PostPromoDTO.builder().userId(7).postId(3).date(LocalDate.of(2022, 11, 29)).productDTO(
-                ProductDTO.builder().product_id(1).product_name("Blender").type("Technology").brand("Samsung").color("Black").notes("9 liters").build()
-        ).category(2).price(2000).build());
-        mapPostsPromos.put(4, PostPromoDTO.builder().userId(6).postId(4).date(LocalDate.of(2022, 11, 27)).productDTO(
-                ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
-        ).category(2).price(2000).hashPromo(true).discount(0.23).build());
+        mapPostsPromos.put(2, new PostPromo(5, 2, LocalDate.of(2022, 12, 28), new Product(
+                2, "Freezer", "Technology", "Samsung", "Black", "Freezer"),
+                2, 2000, true, 0.25));
+
+        mapPostsPromos.put(3, new PostPromo(7, 3, LocalDate.of(2022, 11, 29), new Product(
+                1, "Blender", "Technology", "Samsung", "Black", "9 Liters"),
+                2, 2000, true, 0.20));
+
+        mapPostsPromos.put(4, new PostPromo(6, 4, LocalDate.of(2022, 11, 27), new Product(
+                1, "Shirt", "Clothes", "Soft", "Black", "Sports shirt"),
+                2, 2000, true, 0.20));
 
         return mapPostsPromos;
     }
