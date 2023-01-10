@@ -4,17 +4,24 @@ import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.meli.obtenerdiploma.repository.StudentDTOUtil.createStudentWithSubject;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class StudentDAOTest {
 
-    private final StudentDAO studentDAO = new StudentDAO();
+    private IStudentDAO studentDAO;
+
+    @Autowired
+    public StudentDAOTest(IStudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
+    }
 
     @Test
     void saveNewSubject() {
@@ -105,16 +112,6 @@ class StudentDAOTest {
 
 
         assertThrows(StudentNotFoundException.class, () -> studentDAO.findById(studentId));
-
-    }
-
-    private StudentDTO createStudentWithSubject() {
-        SubjectDTO subjectDTO = new SubjectDTO("Mátematicas", 3d);
-        return new StudentDTO(null,
-                "Jorge",
-                "Un mensaje",
-                8.0,
-                new ArrayList<>(List.of(subjectDTO)));
 
     }
 }
