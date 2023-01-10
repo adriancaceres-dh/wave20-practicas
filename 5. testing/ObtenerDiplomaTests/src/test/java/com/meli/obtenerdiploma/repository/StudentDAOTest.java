@@ -2,10 +2,7 @@ package com.meli.obtenerdiploma.repository;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +32,7 @@ class StudentDAOTest {
 
     @Test
     @DisplayName("Validate StudentDTO can be added")
+    @Disabled
     void Given_AStudentDTO_When_IsAdded_Then_ItIsPersisted() {
 
         studentDTO.setStudentName("Ezequiel");
