@@ -3,7 +3,6 @@ package repository;
 import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.repository.StudentDAO;
-import com.meli.obtenerdiploma.repository.StudentRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -94,11 +93,12 @@ public class StudentDAOTests {
         //arrange
         String originalName = "Matias";
         String modifiedName= "Armando";
-        StudentDTO studentToModify =new StudentDTO(originalName);
 
         //act
+        StudentDTO studentToModify =new StudentDTO(originalName);
         studentDAO.save(studentToModify);
         String studentToModifyName = studentDAO.findById(studentToModify.getId()).getStudentName();
+
         StudentDTO modifiedStudent = new StudentDTO(studentToModify.getId(), modifiedName);
         studentDAO.save(modifiedStudent);
         String modifiedStudentName = studentDAO.findById(modifiedStudent.getId()).getStudentName();
