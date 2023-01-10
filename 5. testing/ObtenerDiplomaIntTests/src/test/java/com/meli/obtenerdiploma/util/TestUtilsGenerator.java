@@ -1,6 +1,7 @@
 package com.meli.obtenerdiploma.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -106,6 +107,21 @@ public class TestUtilsGenerator {
         StudentDTO stu4 = getStudentWith3Subjects("Julio Cesar");
 
         return new HashSet<StudentDTO>(){{add(stu1); add(stu2); add(stu3); add(stu4);}};
+    }
+
+    public static void appendSetOfStudents(Set<StudentDTO> students) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file;
+        try {
+            file = ResourceUtils.getFile("./src/" + SCOPE + "/resources/users.json");
+            objectMapper.writeValue(file, students);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Failed while initializing DB, check your resources files");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed while initializing DB, check your JSON formatting.");
+        }
     }
 
     public static void appendNewStudent(StudentDTO stu) {
