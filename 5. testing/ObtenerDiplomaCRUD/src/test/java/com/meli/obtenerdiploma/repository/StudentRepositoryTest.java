@@ -5,13 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import static com.meli.obtenerdiploma.repository.StudentDTOUtil.createStudentWithSubject;
+import static com.meli.obtenerdiploma.util.StudentDTOUtil.createStudentWithSubject;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
