@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Repository
@@ -25,8 +26,9 @@ public class StudentRepository implements IStudentRepository {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = ResourceUtils.getFile("./src/" + SCOPE + "/resources/users.json");
-            loadedData = objectMapper.readValue(file, new TypeReference<Set<StudentDTO>>(){});
+            File file = ResourceUtils.getFile("./src/main" + "/resources/users.json");
+            loadedData = objectMapper.readValue(file, new TypeReference<Set<StudentDTO>>() {
+            });
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Failed while initializing DB, check your resources files");

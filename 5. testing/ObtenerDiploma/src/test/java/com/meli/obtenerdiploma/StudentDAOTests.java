@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class StudentDAOTests {
 
@@ -93,17 +92,19 @@ public class StudentDAOTests {
     void findByIdOK() {
         //Arrange: ver la forma de que quede hardcodeado.
         long idTest = 2L;
-        StudentDTO studentExpected = studentDAO.findById(2L);
-                /*new StudentDTO(2L, "Pedro", List.of(
+        StudentDTO studentExpected =
+
+                new StudentDTO(2L, "Pedro", List.of(
                 new SubjectDTO("Matemática", 10.0),
                 new SubjectDTO("Física", 8.0),
-                new SubjectDTO("Química", 4.0)));*/
+                new SubjectDTO("Química", 4.0)));
+
 
         //Act
         StudentDTO studentResult = studentDAO.findById(idTest);
 
         //Assert
-        Assertions.assertEquals(studentExpected, studentResult);
+        Assertions.assertEquals(studentExpected.getStudentName(), studentResult.getStudentName());
     }
 
 }
