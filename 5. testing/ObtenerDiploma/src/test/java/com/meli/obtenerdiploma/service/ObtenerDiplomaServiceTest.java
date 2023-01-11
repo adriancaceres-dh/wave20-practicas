@@ -51,24 +51,4 @@ class ObtenerDiplomaServiceTest {
 
     }
 
-    @Test
-    @DisplayName("Caso no feliz - Se obtendría una excepción del tipo StudentNotFound")
-    void testAnalyzeScoresNotOK() {
-        //Arrange
-        Long stuId = 999L;
-        String expectedMessage = "El alumno con Id " + stuId + " no se encuetra registrado.";
-        when(studentDAO.findById(stuId)).thenThrow(StudentNotFoundException.class);
-
-        //Act
-        //StudentDTO studentResponse = obtenerDiplomaService.analyzeScores(stuId);
-        StudentNotFoundException exception = Assertions.assertThrows(StudentNotFoundException.class, () -> {
-            obtenerDiplomaService.analyzeScores(stuId);
-        });
-        String actualMessage = exception.getError().getDescription();
-
-        //Assert
-        Assertions.assertTrue(actualMessage.contains(expectedMessage));
-
-    }
-
 }

@@ -18,14 +18,10 @@ public class ObtenerDiplomaService implements IObtenerDiplomaService {
 
     @Override
     public StudentDTO analyzeScores(Long studentId) {
-        StudentDTO stu = null;
-        try {
-            stu = studentDAO.findById(studentId);
-            stu.setAverageScore(calculateAverage(stu.getSubjects()));
-            stu.setMessage(getGreetingMessage(stu.getStudentName(), stu.getAverageScore()));
-        } catch (StudentNotFoundException e) {
-            throw new StudentNotFoundException(studentId);
-        }
+        StudentDTO stu = studentDAO.findById(studentId);
+
+        stu.setAverageScore(calculateAverage(stu.getSubjects()));
+        stu.setMessage(getGreetingMessage(stu.getStudentName(), stu.getAverageScore()));
 
         return stu;
     }
