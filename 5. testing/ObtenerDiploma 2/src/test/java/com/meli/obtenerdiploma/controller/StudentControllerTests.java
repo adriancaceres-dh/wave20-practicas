@@ -3,7 +3,7 @@ package com.meli.obtenerdiploma.controller;
 import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
-import com.meli.obtenerdiploma.service.StudentService;
+import com.meli.obtenerdiploma.service.IStudentService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 public class StudentControllerTests {
 
     @Mock
-    StudentService studentService;
+    IStudentService studentService;
 
     @InjectMocks
     StudentController studentController;

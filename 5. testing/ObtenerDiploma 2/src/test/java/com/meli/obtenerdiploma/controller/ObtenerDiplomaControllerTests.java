@@ -2,7 +2,7 @@ package com.meli.obtenerdiploma.controller;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
-import com.meli.obtenerdiploma.service.ObtenerDiplomaService;
+import com.meli.obtenerdiploma.service.IObtenerDiplomaService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class ObtenerDiplomaControllerTests {
 
     @Mock
-    ObtenerDiplomaService obtenerDiplomaService;
+    IObtenerDiplomaService obtenerDiplomaService;
 
     @InjectMocks
     ObtenerDiplomaController obtenerDiplomaController;
