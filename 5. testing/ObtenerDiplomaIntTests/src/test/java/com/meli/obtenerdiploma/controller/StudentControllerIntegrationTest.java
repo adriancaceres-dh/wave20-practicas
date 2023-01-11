@@ -184,7 +184,7 @@ class StudentControllerIntegrationTest {
         newStudent.setSubjects(getSubjects(
                 "Quimica",
                 null,
-                "Historiaaaaaaaaaaaaaaaaaaaaaaaa",
+                "Historia",
                 10d
         ));
 
