@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -238,8 +239,85 @@ class StudentControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La nota máxima de la materia es de 10 pts."));
     }
 
+    @Test
+    @DisplayName("Get a existent student")
+    public void getAnExistentStudent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/getStudent/{id}", 1L ))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.studentName").value("student1"));
+    }
 
+    @Test
+    @DisplayName("Get a non-existent student")
+    public void getANonExistentStudent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/getStudent/{id}", 33L ))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("StudentNotFoundException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("El alumno con Id 33 no se encuetra registrado."));
+    }
 
+    @Test
+    @DisplayName("Update Valid Student")
+    public void updateValidStudent() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setId(1L);
+        newStudent.setStudentName("Student1");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                10d,
+                "Historia",
+                5d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/modifyStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Update non existent student (creates a new one)")
+    public void updateNonExistentStudent() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setId(444L);
+        newStudent.setStudentName("Student1");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                10d,
+                "Historia",
+                5d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/modifyStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Delete existent student")
+    public void deleteExistentStudent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/removeStudent/{id}", 1L ))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Delete non existent student (mal comportamiento, revisar código)")
+    public void deleteNonExistentStudent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/removeStudent/{id}", 213123L ))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Get all students")
+    public void getAllStudents() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/listStudents"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)));
+    }
 
 
     private List<SubjectDTO> getSubjects(String subjectName1, Double score1, String subjectName2, Double score2) {
