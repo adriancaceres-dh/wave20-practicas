@@ -1,31 +1,25 @@
 package com.meli.obtenerdiploma.repositoryTest;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
-import com.meli.obtenerdiploma.repository.IStudentRepository;
+import com.meli.obtenerdiploma.repository.StudentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Set;
 
+@SpringBootTest
 public class StudentRepositoryTest {
 
-    private IStudentRepository studentRepository;
-
-    public StudentRepositoryTest(IStudentRepository studentRepository){
-            this.studentRepository = studentRepository;
-    }
+    private final StudentRepository studentRepository = new StudentRepository();
 
     @Test
     public void findAllTest() {
-        //arrange
+        //Arrange
         int expected = 2;
-
-        //act
-        Set < StudentDTO > actual = studentRepository.findAll();
-
-        //assert
+        //Act
+        Set <StudentDTO> actual = studentRepository.findAll();
+        //Assert
         Assertions.assertEquals(expected, actual.size());
     }
-
-
 }
