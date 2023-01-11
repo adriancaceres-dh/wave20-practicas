@@ -20,7 +20,7 @@ class StudentDAOTest {
     }
 
     @Test
-    void saveNewSubject() {
+    void saveNewStudent() {
         StudentDTO studentDTO = createStudentWithSubject();
         Long firstId = 1L;
 
@@ -35,6 +35,7 @@ class StudentDAOTest {
     void saveOverwriteStudent() {
         Long studentId = 1L;
         StudentDTO studentDTO = createStudentWithSubject();
+        studentDTO.setStudentName("Johny Doe");
         studentDTO.setId(studentId);
 
         studentDAO.save(studentDTO);
