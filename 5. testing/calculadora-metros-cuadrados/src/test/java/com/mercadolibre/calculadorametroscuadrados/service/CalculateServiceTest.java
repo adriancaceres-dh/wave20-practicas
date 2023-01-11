@@ -21,7 +21,7 @@ class CalculateServiceTest {
     }
 
     @Test
-    public void asd() {
+    public void calculate() {
         HouseDTO house = getHouseDto();
 
         HouseResponseDTO response = calculateService.calculate(house);
