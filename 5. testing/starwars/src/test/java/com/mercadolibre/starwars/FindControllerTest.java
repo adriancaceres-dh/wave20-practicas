@@ -1,7 +1,7 @@
 package com.mercadolibre.starwars;
 
+import com.mercadolibre.starwars.controller.FindController;
 import com.mercadolibre.starwars.dto.CharacterDTO;
-import com.mercadolibre.starwars.repositories.CharacterRepository;
 import com.mercadolibre.starwars.service.FindService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,27 +17,27 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class FindServiceTest {
+class FindControllerTest {
 
     @Mock
-    private CharacterRepository characterRepository;
-    @InjectMocks
     private FindService findService;
+    @InjectMocks
+    private FindController findController;
 
     @Test
-    @DisplayName("Check repository handshake call in find")
-    void findTest() {
+    @DisplayName("Check service handshake call in find")
+    void find() {
         // Arrange
         CharacterDTO char1 = new CharacterDTO();
         CharacterDTO char2 = new CharacterDTO();
         List<CharacterDTO> expectedCharacters = List.of(char1, char2);
-        when(characterRepository.findAllByNameContains(anyString())).thenReturn(expectedCharacters);
+        when(findService.find(anyString())).thenReturn(expectedCharacters);
 
         // Act
-        List<CharacterDTO> charactersFound = findService.find("Character Name");
+        List<CharacterDTO> retrievedCharacters = findController.find("Lucas");
 
         // Assert
-        verify(characterRepository, atLeast(1)).findAllByNameContains(anyString());
-        assertEquals(expectedCharacters, charactersFound);
+        verify(findService, atLeast(1)).find(anyString());
+        assertEquals(expectedCharacters, retrievedCharacters);
     }
 }
