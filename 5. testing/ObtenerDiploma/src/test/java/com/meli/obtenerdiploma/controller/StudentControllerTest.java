@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class StudentControllerTest {
@@ -23,6 +23,22 @@ class StudentControllerTest {
 
     @InjectMocks
     private StudentController studentController;
+
+    @Test
+    void testRegisterStudent(){
+        //Arrange
+        List<SubjectDTO> subjectsDTOS = new ArrayList<>();
+        subjectsDTOS.add(new SubjectDTO("Maths",4.0) );
+        subjectsDTOS.add(new SubjectDTO("History",4.5) );
+        StudentDTO stu = new StudentDTO(5L,"Camilo","Buen estudiante"
+                , 4.0, subjectsDTOS );
+
+        //Acton
+        studentController.studentService.create(stu);
+
+        //Assert
+        verify(studentService,atLeastOnce()).create(stu);
+    }
 
     @Test
     void  testGetStudent(){

@@ -1,6 +1,5 @@
 package com.meli.obtenerdiploma.repository;
 
-import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import org.junit.jupiter.api.Test;
@@ -48,17 +47,24 @@ class StudentDAOTest {
     }
     @Test
     void testModifyStudent(){
+        //Arrange
         List< SubjectDTO> subjectsDTOS = new ArrayList<>();
         subjectsDTOS.add(new SubjectDTO("Maths",4.0) );
         subjectsDTOS.add(new SubjectDTO("History",4.5) );
-
+        //Action
         studentDAO.save(new StudentDTO(1L,"Andres",null,3.4,subjectsDTOS));
+        //Asserts
         assertEquals("Andres",studentDAO.findById(1L).getStudentName());
     }
 
     @Test
     void deleteStudent(){
-        assertTrue(studentDAO.delete(4L));
+        //Arrange
+        long queryId = 9L;
+        //Action
+        boolean result =studentDAO.delete(queryId);
+        //Assert
+        assertTrue(result);
     }
 
 }

@@ -41,7 +41,8 @@ class ObtenerDiplomaServiceTest {
 
         //asserts
         assertNotNull(studentResult);
-        assertEquals(stu.getStudentName(),studentResult.getStudentName());
+        assertEquals(message,stu.getMessage());
+        assertEquals(10.0,stu.getAverageScore());
     }
 
 }
