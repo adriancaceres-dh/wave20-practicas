@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -24,25 +25,31 @@ public class FindControllerIntegrationTest {
     @DisplayName("Get list of Characters who have 'Lars' in its name")
     public void findCharactersNamedLarsIntegrationTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/{query}", "Lars"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Owen Lars"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)))
+                .andReturn();
     }
 
     @Test
     @DisplayName("Query throws error with empty String")
     public void findEmptyQueryErrorIntegrationTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/{query}", ""))
-                .andExpect(status().is4xxClientError());
+                .andDo(print())
+                .andExpect(status().is4xxClientError())
+                .andReturn();
     }
 
     @Test
     @DisplayName("No character is retrieved when passing a non existing name")
     public void findCharactersNonExistentNameIntegrationTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/{query}", "This name has no matches"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(0)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(0)))
+                .andReturn();
     }
 }
