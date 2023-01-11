@@ -57,7 +57,7 @@ public class PostService implements IPostService {
     public void createPromoPost(PostPromoDTO postRequestDTO) {
         if(!postRequestDTO.isHasPromo()){
             throw new PostCreationException("El indicador de promo no puede ser falso.");
-        } else if (postRequestDTO.getDiscount() == 0.0 || postRequestDTO.getDiscount()<0.0) {
+        } else if (postRequestDTO.getDiscount() <= 0.0) {
             throw new PostCreationException("No ha aplicado a un descuento valido para el producto que ha seleccionado como promo.");
         }
         User user = getUserOrThrow(postRequestDTO.getUserId());
