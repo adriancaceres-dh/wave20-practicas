@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.meli.obtenerdiploma.model.StudentDTO;
+import com.meli.obtenerdiploma.model.SubjectDTO;
 import com.meli.obtenerdiploma.util.TestUtilsGenerator;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +42,7 @@ class StudentControllerIntegrationTest {
     public static void runAfterAll() {
         TestUtilsGenerator.emptyUsersFile();
     }
-    
+
     @Test
     @DisplayName("Register a valid student")
     public void registerValidStudent() throws Exception {
@@ -63,6 +66,189 @@ class StudentControllerIntegrationTest {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("El nombre del estudiante debe comenzar con mayúscula."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a long name")
+    public void registerStudentWithMoreThan50Chars() throws Exception {
+        String longName = "Estebannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn";
+        StudentDTO newStudent = TestUtilsGenerator.getStudentWith3SubjectsAverageOver9(longName);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La longitud del nombre del estudiante no puede superar los 50 caracteres."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a null name")
+    public void registerStudentWithNullName() throws Exception {
+        StudentDTO newStudent = TestUtilsGenerator.getStudentWith3SubjectsAverageOver9(null);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("El nombre del estudiante no puede estar vacío."));
+    }
+
+    @Test
+    @DisplayName("Register a student with no subjects")
+    public void registerStudentWithNoSubjects() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La lista de materias no puede estar vacía."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a subject in lowercase")
+    public void registerStudentWithASubjectInLowerCase() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+        newStudent.setSubjects(getSubjects(
+                "quimica",
+                9d,
+                "Matemática",
+                10d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("El nombre de la materia debe comenzar con mayúscula."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a missing subject name")
+    public void registerStudentWithAMissingSubjectName() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                9d,
+                null,
+                10d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("El nombre de la materia no puede estar vacío."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a subject name with more than 30 chars")
+    public void registerStudentWithASubjectWithMoreThan30Chars() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                9d,
+                "Historiaaaaaaaaaaaaaaaaaaaaaaaa",
+                10d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La longitud del nombre de la materia no puede superar los 30 caracteres."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a subject with no grade")
+    public void registerStudentWithASubjectWithNoGrade() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                null,
+                "Historiaaaaaaaaaaaaaaaaaaaaaaaa",
+                10d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La nota de la materia no puede estar vacía."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a subject with negative grade")
+    public void registerStudentWithASubjectWithNegativeGrade() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                10d,
+                "Historia",
+                -1d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La nota mínima de la materia es de 0 pts."));
+    }
+
+    @Test
+    @DisplayName("Register a student with a subject with a grade more than 10")
+    public void registerStudentWithASubjectWithGradeMoreThan10() throws Exception {
+        StudentDTO newStudent = new StudentDTO();
+        newStudent.setStudentName("Snoop");
+        newStudent.setSubjects(getSubjects(
+                "Quimica",
+                10d,
+                "Historia",
+                11d
+        ));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/student/registerStudent")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getStudentAsString(newStudent)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("La nota máxima de la materia es de 10 pts."));
+    }
+
+
+
+
+
+    private List<SubjectDTO> getSubjects(String subjectName1, Double score1, String subjectName2, Double score2) {
+        SubjectDTO subject1 =  new SubjectDTO(subjectName1, score1);
+        SubjectDTO subject2 =  new SubjectDTO(subjectName2, score2);
+        List<SubjectDTO> subjects = new ArrayList<>();
+        subjects.add(subject1);
+        subjects.add(subject2);
+        return subjects;
     }
 
     private String getStudentAsString(StudentDTO studentDTO) throws JsonProcessingException {
