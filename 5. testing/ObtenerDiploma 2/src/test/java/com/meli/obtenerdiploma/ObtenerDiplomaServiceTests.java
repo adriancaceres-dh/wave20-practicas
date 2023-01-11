@@ -40,10 +40,25 @@ class ObtenerDiplomaServiceTests {
     }
 
     @Test
+    public void analizeScoresRoundsDecimalTest(){
+        //Arrange
+        SubjectDTO sub1 = new SubjectDTO("Lógica", 5.5);
+        SubjectDTO sub2 = new SubjectDTO("Filosofía", 6.8);
+        SubjectDTO sub3 = new SubjectDTO("Arte", 10.0);
+        List<SubjectDTO> subjects = List.of(sub1, sub2, sub3);
+        StudentDTO expected = new StudentDTO(2L,"Malena","El alumno Malena ha obtenido un promedio de 7.43. Puedes mejorar.",7.433333333333334 ,subjects);
+        when(iStudentDAO.findById(2L)).thenReturn(new StudentDTO(2L,"Malena",null,null,subjects));
+        //Act
+        StudentDTO result = obtenerDiplomaService.analyzeScores(2L);
+        //Assert
+        Assertions.assertEquals(expected.getMessage(),result.getMessage());
+        Assertions.assertEquals(expected.getAverageScore(),result.getAverageScore());
+    }
+
+    @Test
     public void analizeScoresTestWithHonors(){
         //Arrange
-        SubjectDTO sub1 = new
-                SubjectDTO("Lógica", 10.0);
+        SubjectDTO sub1 = new SubjectDTO("Lógica", 10.0);
         SubjectDTO sub2 = new SubjectDTO("Filosofía", 10.0);
         SubjectDTO sub3 = new SubjectDTO("Arte", 10.0);
         List<SubjectDTO> subjects = List.of(sub1, sub2, sub3);
