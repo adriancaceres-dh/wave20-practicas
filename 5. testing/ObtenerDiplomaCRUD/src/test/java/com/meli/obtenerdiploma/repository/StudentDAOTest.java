@@ -22,21 +22,18 @@ class StudentDAOTest {
     @Test
     void saveNewStudent() {
         StudentDTO studentDTO = createStudentWithSubject();
-        Long firstId = 1L;
 
         studentDAO.save(studentDTO);
 
-        assertDoesNotThrow(() -> studentDAO.findById(firstId));
+        assertDoesNotThrow(() -> studentDAO.findById(studentDTO.getId()));
 
         studentDAO.delete(studentDTO.getId());
     }
 
     @Test
     void saveOverwriteStudent() {
-        Long studentId = 1L;
         StudentDTO studentDTO = createStudentWithSubject();
         studentDTO.setStudentName("Johny Doe");
-        studentDTO.setId(studentId);
 
         studentDAO.save(studentDTO);
         String newName = "John Doe";
@@ -44,11 +41,11 @@ class StudentDAOTest {
 
         studentDAO.save(studentDTO);
 
-        StudentDTO studentWithExpectedNewName = studentDAO.findById(studentId);
+        StudentDTO studentWithExpectedNewName = studentDAO.findById(studentDTO.getId());
 
         assertEquals(newName, studentWithExpectedNewName.getStudentName());
 
-        studentDAO.delete(studentId);
+        studentDAO.delete(studentDTO.getId());
     }
 
     @Test
@@ -64,11 +61,9 @@ class StudentDAOTest {
     @Test
     void deleteReturnsTrueWhenStudentExists() {
         StudentDTO studentDTO = createStudentWithSubject();
-        Long studentId = 1L;
-        studentDTO.setId(studentId);
         studentDAO.save(studentDTO);
 
-        assertTrue(studentDAO.delete(studentId));
+        assertTrue(studentDAO.delete(studentDTO.getId()));
     }
 
     @Test
@@ -93,14 +88,12 @@ class StudentDAOTest {
     @Test
     void findByIdReturnsStudentWhenItExists() {
         StudentDTO studentDTO = createStudentWithSubject();
-        Long studentId = 1L;
-        studentDTO.setId(studentId);
 
         studentDAO.save(studentDTO);
 
-        assertEquals(studentDTO, studentDAO.findById(studentId));
+        assertEquals(studentDTO, studentDAO.findById(studentDTO.getId()));
 
-        studentDAO.delete(studentId);
+        studentDAO.delete(studentDTO.getId());
     }
 
     @Test
