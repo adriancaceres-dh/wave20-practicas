@@ -99,6 +99,25 @@ public class StudentDAO implements IStudentDAO {
         this.students = loadedData;
     }
 
+    public void loadDataTest() {
+        Set<StudentDTO> loadedData = new HashSet<>();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file;
+        try {
+            file = ResourceUtils.getFile("./src/" + SCOPE + "/resources/users_test.json");
+            loadedData = objectMapper.readValue(file, new TypeReference<Set<StudentDTO>>(){});
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Failed while initializing DB, check your resources files");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed while initializing DB, check your JSON formatting.");
+        }
+
+        this.students = loadedData;
+    }
+
     private void saveData() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {

@@ -25,7 +25,8 @@ public class StudentRepository implements IStudentRepository {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = ResourceUtils.getFile("./src/" + SCOPE + "/resources/users.json");
+            File file = ResourceUtils.getFile("./src/" + "main" + "/resources/users.json");
+            //System.out.println(SCOPE);
             loadedData = objectMapper.readValue(file, new TypeReference<Set<StudentDTO>>(){});
         } catch (FileNotFoundException e) {
             e.printStackTrace();
