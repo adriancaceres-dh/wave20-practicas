@@ -26,8 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
 class StudentControllerTest {
 
     @Mock
@@ -142,14 +140,6 @@ class StudentControllerTest {
         subjects.add(new SubjectDTO(subjectName1, scoreSubject1));
         subjects.add(new SubjectDTO(subjectName2, scoreSubject2));
         return subjects;
-    }
-
-    @TestConfiguration
-    static class TestContextConfiguration {
-        @Bean
-        public MethodValidationPostProcessor bean() {
-            return new MethodValidationPostProcessor();
-        }
     }
 }
 
