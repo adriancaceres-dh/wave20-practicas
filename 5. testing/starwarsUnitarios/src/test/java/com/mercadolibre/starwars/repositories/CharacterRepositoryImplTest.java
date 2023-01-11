@@ -1,22 +1,22 @@
 package com.mercadolibre.starwars.repositories;
 
 import com.mercadolibre.starwars.dto.CharacterDTO;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@ExtendWith(MockitoExtension.class)
 class CharacterRepositoryImplTest {
 
-    private static CharacterRepositoryImpl characterRepository;
-
-    @BeforeAll
-    static void initAll() {
-        characterRepository = new CharacterRepositoryImpl();
-    }
+    @InjectMocks
+    private CharacterRepositoryImpl characterRepository;
 
     @Test
     @DisplayName("Find all by an existing name")
