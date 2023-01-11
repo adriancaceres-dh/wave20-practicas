@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d75b3f77-2b5a-4820-8c7f-fa11d911ca9a" name="Default Changelist" comment="Spring 2 - Practica TT - Obetener Diploma">
-      <change beforePath="$PROJECT_DIR$/.idea/ObtenerDiploma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ObtenerDiploma.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/modelTest/StudentDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/SubjectDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/SubjectDTO.java" afterDir="false" />
     </list>

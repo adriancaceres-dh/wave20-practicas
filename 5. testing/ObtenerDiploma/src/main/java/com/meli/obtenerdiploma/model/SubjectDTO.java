@@ -3,13 +3,12 @@ package com.meli.obtenerdiploma.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter @Setter
 public class SubjectDTO {
+
+    @Pattern(regexp="([A-Z]|[0-9])[\\s|[0-9]|A-Z|a-z|ñ|ó|í|á|é|ú|Á|Ó|É|Í|Ú]*$", message = "El nombre de la materia debe comenzar con mayúscula.")
     @Size(max = 30, message = "La longitud del nombre no puede superar los 30 caracteres.")
     @NotNull(message = "El nombre de la materia no puede estar vacío.")
     String name;
