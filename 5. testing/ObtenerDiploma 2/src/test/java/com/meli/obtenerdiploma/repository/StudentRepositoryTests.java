@@ -1,9 +1,7 @@
-package com.meli.obtenerdiploma;
+package com.meli.obtenerdiploma.repository;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.parameter_resolver.StudentRepositoryParameterResolver;
-import com.meli.obtenerdiploma.repository.IStudentRepository;
-import com.meli.obtenerdiploma.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
