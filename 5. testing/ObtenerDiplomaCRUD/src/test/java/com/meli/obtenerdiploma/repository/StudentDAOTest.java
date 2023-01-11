@@ -43,9 +43,9 @@ class StudentDAOTest {
 
         studentDAO.save(studentDTO);
 
-        StudentDTO studentWithExpecteNewName = studentDAO.findById(studentId);
+        StudentDTO studentWithExpectedNewName = studentDAO.findById(studentId);
 
-        assertEquals(newName, studentWithExpecteNewName.getStudentName());
+        assertEquals(newName, studentWithExpectedNewName.getStudentName());
 
         studentDAO.delete(studentId);
     }
