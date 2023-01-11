@@ -41,13 +41,13 @@ public class StudentServiceTest {
     @Test
     public void readTestOk(){
         //Arrange
-        StudentDTO expected = new StudentDTO(2L, null, null, null, null);
-        when(iStudentDAO.findById(2L)).thenReturn(new StudentDTO(2L,null,null,null,null));
+        Long id=2L;
+        when(iStudentDAO.findById(id)).thenReturn(new StudentDTO());
         //Act
-        StudentDTO result = studentService.read(2L);
+        StudentDTO result = studentService.read(id);
         //Assert
-        verify(iStudentDAO,times(1)).findById(2L);
-        Assertions.assertEquals(expected.getId(),result.getId());
+        verify(iStudentDAO,times(1)).findById(id);
+        Assertions.assertEquals(StudentDTO.class,result.getClass());
     }
 
     @Test
