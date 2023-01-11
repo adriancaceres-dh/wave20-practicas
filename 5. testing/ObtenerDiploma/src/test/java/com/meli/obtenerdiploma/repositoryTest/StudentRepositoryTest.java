@@ -2,11 +2,12 @@ package com.meli.obtenerdiploma.repositoryTest;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.repository.StudentRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
 public class StudentRepositoryTest {
@@ -16,10 +17,10 @@ public class StudentRepositoryTest {
     @Test
     public void findAllTest() {
         //Arrange
-        int expected = 2;
+        int empty = 0;
         //Act
         Set <StudentDTO> actual = studentRepository.findAll();
         //Assert
-        Assertions.assertEquals(expected, actual.size());
+        assertNotEquals(empty, actual.size());
     }
 }

@@ -1,19 +1,27 @@
 package com.meli.obtenerdiploma.repositoryTest;
 
+import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
-import com.meli.obtenerdiploma.repository.StudentDAO;
+import com.meli.obtenerdiploma.repository.IStudentDAO;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static com.meli.obtenerdiploma.helper.StudentDTOHelper.dummyStudent;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class StudentDAOTest {
 
-    private final StudentDAO studentDAO = new StudentDAO();
+    private final IStudentDAO studentDAO;
+
+    @Autowired
+    public StudentDAOTest(IStudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
+    }
 
     @Test
     void shouldSaveTest() {
@@ -23,34 +31,39 @@ public class StudentDAOTest {
         studentDAO.save(student);
         //Assert
         assertNotNull(student.getId());
+
+        studentDAO.delete(student.getId());
     }
 
     @Test
     void shouldFindByIdTest() {
         //Arrange
-        Long id = 1L;
+        StudentDTO student = dummyStudent();
         //Act
-        StudentDTO student = studentDAO.findById(id);
+        studentDAO.save(student);
+        StudentDTO foundStudent = studentDAO.findById(student.getId());
         //Assert
-        assertNotNull(student);
+        assertNotNull(foundStudent);
+
+        studentDAO.delete(student.getId());
+    }
+
+    @Test
+    void shouldNotFindByIdTest() {
+        //Arrange
+        long invalidId = 0;
+        //Assert
+        assertThrows(StudentNotFoundException.class, () -> studentDAO.findById(invalidId));
     }
 
     @Test
     void shouldDeleteTest() {
         //Arrange
-        Long id = 2L;
+        StudentDTO student = dummyStudent();
         //Act
-        boolean response = studentDAO.delete(id);
+        studentDAO.save(student);
+        boolean response = studentDAO.delete(student.getId());
         //Assert
         assertTrue(response);
-    }
-
-    private StudentDTO dummyStudent() {
-        return new StudentDTO(null,
-                "Anibal",
-                null,
-                null,
-                List.of(new SubjectDTO("Quimica", 8D), new SubjectDTO("Algebra", 3D)));
-
     }
 }
