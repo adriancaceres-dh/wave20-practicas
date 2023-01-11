@@ -8,11 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class StudentDaoAndStudentRepositoryTests {
+public class StudentRepositoryTests {
     StudentDAO studentDAO;
     StudentRepository studentRepository;
 
-    public StudentDaoAndStudentRepositoryTests() {
+    public StudentRepositoryTests() {
         studentRepository = new StudentRepository();
         studentDAO = new StudentDAO();
     }
