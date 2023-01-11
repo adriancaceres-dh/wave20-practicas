@@ -80,11 +80,6 @@ public class StudentDAO implements IStudentDAO {
                 .findFirst().orElseThrow(() -> new StudentNotFoundException(id));
     }
 
-    @Override
-    public Set<StudentDTO> getAllStudents(){
-        return students;
-    }
-
     private void loadData() {
         Set<StudentDTO> loadedData = new HashSet<>();
 

@@ -1,4 +1,4 @@
-package com.meli.obtenerdiploma;
+package com.meli.obtenerdiploma.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meli.obtenerdiploma.model.StudentDTO;

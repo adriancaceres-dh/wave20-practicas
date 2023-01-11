@@ -9,5 +9,4 @@ public interface IStudentDAO {
     boolean delete(Long id);
     boolean exists(StudentDTO stu);
     StudentDTO findById(Long id);
-    Set<StudentDTO> getAllStudents();
 }
