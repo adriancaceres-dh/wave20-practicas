@@ -1,5 +1,10 @@
 package com.meli.obtenerdiploma.integration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.meli.obtenerdiploma.model.StudentDTO;
+import com.meli.obtenerdiploma.model.SubjectDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,6 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -21,6 +29,14 @@ public class ObtenerDiplomaControllerIntegrationTests {
 
     @Autowired
     MockMvc mockMvc;
+
+    private static ObjectWriter writer;
+
+    public ObtenerDiplomaControllerIntegrationTests() {
+        writer = new ObjectMapper()
+                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
+                .writer();
+    }
 
     @Test
     void analyzeScoresBelow9() throws Exception {
@@ -46,6 +62,8 @@ public class ObtenerDiplomaControllerIntegrationTests {
         Long id = 3L;
         String studentName = "Fatima";
         String message = "El alumno Fatima ha obtenido un promedio de 10. Felicitaciones!";
+        StudentDTO student = new StudentDTO(id, studentName, message, 10.0D, List.of(new SubjectDTO("Matemática", 10D), new SubjectDTO("Física", 10D), new SubjectDTO("Química", 10D)));
+        String responseJson = writer.writeValueAsString(student);
         String expectedType = "application/json";
         // act && assert
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/analyzeScores/{studentId}", id))
@@ -56,6 +74,7 @@ public class ObtenerDiplomaControllerIntegrationTests {
                 .andReturn();
         // assert
         assertEquals(expectedType, result.getResponse().getContentType());
+        assertEquals(responseJson, result.getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test
