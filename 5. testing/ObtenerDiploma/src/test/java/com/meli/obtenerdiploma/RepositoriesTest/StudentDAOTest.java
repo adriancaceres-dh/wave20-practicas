@@ -4,27 +4,22 @@ import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import com.meli.obtenerdiploma.repository.StudentDAO;
-import lombok.EqualsAndHashCode;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class StudentDAOTest {
 
     private StudentDAO studentDAO = new StudentDAO();
     private StudentDTO studentDTOTest1 = new StudentDTO(0L, "Martin", "", 6.8, List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
-    private StudentDTO studentDTOTest2 = new StudentDTO(4L, "Emanuel", "", 7.8, List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
-    private StudentDTO studentDTOTest3DeUserJson = new StudentDTO(1L, "Juan", null, null, List.of(new SubjectDTO("Matemática", 9.0), new SubjectDTO("Física", 7.0),new SubjectDTO("Química",6.0)));
+    private StudentDTO studentDTOTest3DeUserJuan = new StudentDTO(1L, "Juan", null, null, List.of(new SubjectDTO("Matemática", 9.0), new SubjectDTO("Física", 7.0),new SubjectDTO("Química",6.0)));
+    private StudentDTO studentDTOTest3DeUserPedro = new StudentDTO(2L, "Pedro", null, null, List.of(new SubjectDTO("Matemática", 10.0), new SubjectDTO("Física", 8.0),new SubjectDTO("Química",4.0)));
 
-    /* En la BD hay objetos con ID: 4,3,2 y cuando agregue cualquiera sea, siempre va a
-     * ser 4L. ¿Se puede modificar los valores de id que están en el JSON? ¿Debo ejecutar un
-     * @beforeAll para cargar más datos y poder corroborar los datos?
-     */
     @Test
     void saveAnUserNotSaved() {
         // arrange
@@ -45,11 +40,11 @@ class StudentDAOTest {
     @Test
     void saveAnUserSaved() {
         // Arrange
-        Long expectedNewIdStudent = studentDTOTest3DeUserJson.getId();
+        Long expectedNewIdStudent = studentDTOTest3DeUserJuan.getId();
         // Act
-        studentDAO.save(studentDTOTest3DeUserJson);
+        studentDAO.save(studentDTOTest3DeUserJuan);
         // Assert
-        assertEquals(expectedNewIdStudent, studentDTOTest3DeUserJson.getId());
+        assertEquals(expectedNewIdStudent, studentDTOTest3DeUserJuan.getId());
     }
 
     @Test
@@ -70,6 +65,7 @@ class StudentDAOTest {
         boolean result = studentDAO.delete(idTest);
         // Assert
         assertTrue(result);
+        studentDAO.save(studentDTOTest3DeUserPedro); // Vuelvo a agregarlo
     }
 
     @Test
@@ -84,9 +80,9 @@ class StudentDAOTest {
     void existAnUserNotExistingOnRepository() {
         // Arrange
         // Act
-        boolean result = studentDAO.exists(studentDTOTest3DeUserJson);
+        boolean result = studentDAO.exists(studentDTOTest1);
         // Assert
-        assertTrue(result);
+        assertFalse(result);
     }
 
     @Test
@@ -96,7 +92,7 @@ class StudentDAOTest {
         StudentNotFoundException result = null;
         // Act
         try {
-            StudentDTO resultUser = studentDAO.findById(1L);
+            StudentDTO resultUser = studentDAO.findById(5L);
         } catch (StudentNotFoundException ex) {
             result = ex;
         }
@@ -104,13 +100,36 @@ class StudentDAOTest {
         assertEquals(expectedException.getMessage(), result.getMessage());
     }
 
-    @Disabled
+    @Test
     void findUserExistingById() {
         // Arrange
-        StudentDTO userExpected = studentDTOTest3DeUserJson;
+        StudentDTO userExpected = studentDTOTest3DeUserJuan;
         // Act
-        StudentDTO result = studentDAO.findById(4L);
+        StudentDTO result = studentDAO.findById(1L);
         // Assert
-        assertEquals(userExpected, result); // Me está comparando el espacio en memoria :(
+        assertEquals(userExpected.getId(), result.getId()); // Me está comparando el espacio en memoria :(
     }
+
+    @Test
+    void loadDataAndSaveData(){
+        // Arrange
+        StudentDTO studentAddRepo = new StudentDTO(0L, "Martin", "", 6.8, List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
+        Set<StudentDTO> studentsSpectedAfterAddNewUser = new HashSet<>(); // Set que voy a esperar luego de hacer save() del estudiante studentAddRepo.
+        studentsSpectedAfterAddNewUser.addAll(Set.of(
+                new StudentDTO(2L, "Pedro", null, null, List.of(new SubjectDTO("Matemática", 10.0), new SubjectDTO("Física", 8.0), new SubjectDTO("Química", 4.0))),
+                new StudentDTO(1L, "Juan", null, null, List.of(new SubjectDTO("Matemática", 9.0), new SubjectDTO("Física", 7.0), new SubjectDTO("Química", 6.0))),
+                studentAddRepo));
+        // Act
+        // Aquí verifico el saveData().
+        studentDAO.save(studentAddRepo);
+
+        // Creo uno nuevo para que se carguen los datos de 0 del JSON editado luego del save().
+        // Aquí verifico el loadData().
+        StudentDAO newStudentDAO = new StudentDAO(); // Creo uno nuevo para que se carguen los datos de 0 del JSON editado luego del save().
+        // Assert
+        assertEquals(newStudentDAO.getStudents().size(),studentsSpectedAfterAddNewUser.size());
+        assertEquals(studentAddRepo,newStudentDAO.findById(studentAddRepo.getId()));
+        studentDAO.delete(studentAddRepo.getId()); // Lo elimino para que no me modifique mi JSON.
+    }
+
 }

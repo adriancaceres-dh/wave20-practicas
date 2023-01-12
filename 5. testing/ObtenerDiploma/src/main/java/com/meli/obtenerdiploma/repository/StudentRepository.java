@@ -3,6 +3,8 @@ package com.meli.obtenerdiploma.repository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meli.obtenerdiploma.model.StudentDTO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
@@ -18,6 +20,7 @@ public class StudentRepository implements IStudentRepository {
 
     @Value("${api.scope}")
     private String SCOPE;
+
 
     @Override
     public Set<StudentDTO> findAll() {
