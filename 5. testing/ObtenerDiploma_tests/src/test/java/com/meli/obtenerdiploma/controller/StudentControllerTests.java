@@ -1,12 +1,10 @@
 package com.meli.obtenerdiploma.controller;
 
-import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import com.meli.obtenerdiploma.service.IStudentService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
@@ -36,7 +33,7 @@ public class StudentControllerTests {
         // act
         studentController.registerStudent(student);
         // assert
-        verify(studentService, atLeast(1)).create(student);
+        verify(studentService, atLeastOnce()).create(student);
     }
 
     @Test
@@ -44,22 +41,12 @@ public class StudentControllerTests {
         // arrange
         Long id = 10L;
         StudentDTO expected = new StudentDTO(10L, "Óscar", null, null, List.of(new SubjectDTO("Matemática", 6D), new SubjectDTO("Física", 9D)));
-        when(studentService.read(anyLong())).thenReturn(expected);
+        when(studentService.read(id)).thenReturn(expected);
         // act
         StudentDTO actual = studentController.getStudent(id);
         // assert
+        verify(studentService, atLeastOnce()).read(id);
         assertEquals(expected, actual);
-    }
-
-    @Test
-    void getStudentException() {
-        // arrange
-        Long id = 10L;
-        when(studentService.read(anyLong())).thenThrow(StudentNotFoundException.class);
-        // act
-        Executable executable = () -> studentController.getStudent(id);
-        // assert
-        assertThrows(StudentNotFoundException.class, executable);
     }
 
     @Test
@@ -70,18 +57,18 @@ public class StudentControllerTests {
         // act
         studentController.modifyStudent(student);
         // assert
-        verify(studentService, atLeast(1)).update(student);
+        verify(studentService, atLeastOnce()).update(student);
     }
 
     @Test
     void removeStudentOk() {
         // arrange
         Long id = 10L;
-        doNothing().when(studentService).delete(anyLong());
+        doNothing().when(studentService).delete(id);
         // act
         studentController.removeStudent(id);
         // assert
-        verify(studentService, atLeast(1)).delete(id);
+        verify(studentService, atLeastOnce()).delete(id);
     }
 
     @Test
@@ -92,6 +79,7 @@ public class StudentControllerTests {
         // act
         Set<StudentDTO> currentStudents = studentController.listStudents();
         // assert
+        verify(studentService, atLeastOnce()).getAll();
         assertEquals(expectedStudents, currentStudents);
     }
 

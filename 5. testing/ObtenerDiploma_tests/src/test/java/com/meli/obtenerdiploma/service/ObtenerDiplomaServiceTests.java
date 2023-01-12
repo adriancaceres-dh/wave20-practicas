@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ObtenerDiplomaServiceTests {
@@ -28,12 +28,15 @@ public class ObtenerDiplomaServiceTests {
     void analyzeScoresOk() {
         // arrange
         Long id = 10L;
-        StudentDTO preProcessed = new StudentDTO(id, "Óscar", null, null, List.of(new SubjectDTO("Matemática", 6D), new SubjectDTO("Física", 9D)));
-        when(studentDAO.findById(anyLong())).thenReturn(preProcessed);
+        Double average = 7.5;
+        StudentDTO student = new StudentDTO(id, "Óscar", null, null, List.of(new SubjectDTO("Matemática", 6D), new SubjectDTO("Física", 9D)));
+        when(studentDAO.findById(student.getId())).thenReturn(student);
         // act
-        StudentDTO processed = obtenerDiplomaService.analyzeScores(id);
+        obtenerDiplomaService.analyzeScores(id);
         // assert
-        assertNotNull(processed.getAverageScore());
+        verify(studentDAO, atLeastOnce()).findById(student.getId());
+        assertNotNull(student.getAverageScore());
+        assertEquals(average, student.getAverageScore());
     }
 
     @Test
@@ -46,5 +49,33 @@ public class ObtenerDiplomaServiceTests {
         StudentDTO processed = obtenerDiplomaService.analyzeScores(id);
         // assert
         assertTrue(Double.isNaN(processed.getAverageScore()));
+    }
+
+    @Test
+    void analyzeScoresOver9Message() {
+        // arrange
+        Long id = 10L;
+        String expected = "El alumno Óscar ha obtenido un promedio de 9.5. Felicitaciones!";
+        StudentDTO student = new StudentDTO(id, "Óscar", null, null, List.of(new SubjectDTO("Matemática", 10D), new SubjectDTO("Física", 9D)));
+        when(studentDAO.findById(student.getId())).thenReturn(student);
+        // act
+        obtenerDiplomaService.analyzeScores(id);
+        // assert
+        verify(studentDAO, atLeastOnce()).findById(student.getId());
+        assertEquals(expected, student.getMessage());
+    }
+
+    @Test
+    void analyzeScoresBelow9Message() {
+        // arrange
+        Long id = 10L;
+        String expected = "El alumno Óscar ha obtenido un promedio de 7.5. Puedes mejorar.";
+        StudentDTO student = new StudentDTO(id, "Óscar", null, null, List.of(new SubjectDTO("Matemática", 6D), new SubjectDTO("Física", 9D)));
+        when(studentDAO.findById(student.getId())).thenReturn(student);
+        // act
+        obtenerDiplomaService.analyzeScores(id);
+        // assert
+        verify(studentDAO, atLeastOnce()).findById(student.getId());
+        assertEquals(expected, student.getMessage());
     }
 }
