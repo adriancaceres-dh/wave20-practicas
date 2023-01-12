@@ -12,20 +12,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StudentDAOTest {
     private final StudentDAO studentDAO;
+    private List<SubjectDTO> subjectDTOList;
+    private StudentDTO studentDTO;
 
     public StudentDAOTest() {
         this.studentDAO = new StudentDAO();
+
+        subjectDTOList = new ArrayList<>();
+        subjectDTOList.add(new SubjectDTO("Maths",4.0) );
+        subjectDTOList.add(new SubjectDTO("History",4.5) );
+        studentDTO = new StudentDTO(1231L,"Camilo","Buen estudiante"
+                , 4.0, subjectDTOList );
     }
 
 
     @Test
     void testSaveEstudent(){
-        List<SubjectDTO> subjectDTOList = new ArrayList<>();
-        subjectDTOList.add(new SubjectDTO("Maths",4.0) );
-        subjectDTOList.add(new SubjectDTO("History",4.5) );
-        StudentDTO studentDTO = new StudentDTO(1231L,"Camilo","Buen estudiante"
-                , 4.0, subjectDTOList );
-
         studentDAO.save(studentDTO);
         assertTrue(studentDAO.exists(studentDTO));
     }
@@ -33,13 +35,6 @@ public class StudentDAOTest {
 
     @Test
     void testFindStudentById(){
-
-        List<SubjectDTO> subjectDTOList = new ArrayList<>();
-        subjectDTOList.add(new SubjectDTO("Maths",4.0) );
-        subjectDTOList.add(new SubjectDTO("History",4.5) );
-        StudentDTO studentDTO = new StudentDTO(1231L,"Camilo","Buen estudiante"
-                , 4.0, subjectDTOList );
-
         studentDAO.save(studentDTO);
         StudentDTO student = studentDAO.findById(studentDTO.getId());
 
