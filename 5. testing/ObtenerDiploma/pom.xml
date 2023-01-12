@@ -44,6 +44,8 @@
             <version>4.5.13</version>
             <scope>test</scope>
         </dependency>
+
+		<!-- Validation dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -65,6 +67,7 @@
 		</dependency>
 
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
