@@ -56,6 +56,8 @@ public class StudentControllerTest {
 
         StudentDTO studentDTOExpected = studentController.getStudent(id);
 
+        verify(iStudentService).read(id);
+
         assertNotNull(studentDTOExpected);
         assertEquals(studentDTO, studentDTOExpected);
 

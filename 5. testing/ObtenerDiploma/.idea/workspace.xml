@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d75b3f77-2b5a-4820-8c7f-fa11d911ca9a" name="Default Changelist" comment="Testing_1 - ObtenerDiploma + CRUD Alumnos">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/controller/StudentControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../1. git/repoPrueba" beforeDir="false" afterPath="$PROJECT_DIR$/../../1. git/repoPrueba" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/controller/StudentControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/controller/StudentControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +85,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/meli/obtenerDiploma" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StudentControllerTest.findAllStudents">
+  <component name="RunManager" selected="JUnit.StudentControllerTest.findStudentById">
     <configuration name="ObtenerDIplomaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
@@ -167,8 +167,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StudentControllerTest.findAllStudents" />
         <item itemvalue="JUnit.StudentControllerTest.findStudentById" />
+        <item itemvalue="JUnit.StudentControllerTest.findAllStudents" />
         <item itemvalue="JUnit.StudentControllerTest.testCreate" />
         <item itemvalue="JUnit.ObtenerDIplomaControllerTest" />
         <item itemvalue="JUnit.ObtenerDIplomaControllerTest.testAnalyzeScore" />
