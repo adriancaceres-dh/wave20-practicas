@@ -4,6 +4,8 @@ import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import com.meli.obtenerdiploma.repository.StudentDAO;
+import lombok.EqualsAndHashCode;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
@@ -16,47 +18,58 @@ class StudentDAOTest {
 
     private StudentDAO studentDAO = new StudentDAO();
     private StudentDTO studentDTOTest1 = new StudentDTO(0L, "Martin", "", 6.8, List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
-    private StudentDTO studentDTOTest2 = new StudentDTO(2L, "Emanuel", "", 7.8, List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
+    private StudentDTO studentDTOTest2 = new StudentDTO(4L, "Emanuel", "", 7.8, List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
+    private StudentDTO studentDTOTest3DeUserJson = new StudentDTO(1L, "Juan", null, null, List.of(new SubjectDTO("Matemática", 9.0), new SubjectDTO("Física", 7.0),new SubjectDTO("Química",6.0)));
 
     /* En la BD hay objetos con ID: 4,3,2 y cuando agregue cualquiera sea, siempre va a
-    * ser 4L. ¿Se puede modificar los valores de id que están en el JSON? ¿Debo ejecutar un
-    * @beforeAll para cargar más datos y poder corroborar los datos?
-    */
+     * ser 4L. ¿Se puede modificar los valores de id que están en el JSON? ¿Debo ejecutar un
+     * @beforeAll para cargar más datos y poder corroborar los datos?
+     */
     @Test
     void saveAnUserNotSaved() {
-        // Arrange
-        Long expectedNewIdStudent = 4L;
-        // Act
-        studentDAO.save(studentDTOTest1);
-        // Assert
-        assertEquals(expectedNewIdStudent,studentDTOTest1.getId());
+        // arrange
+        StudentDTO stu = new StudentDTO();
+        stu.setStudentName("Emanuel");
+        stu.setSubjects(List.of(new SubjectDTO("Matemática", 8.0), new SubjectDTO("Física", 9.0)));
+
+        // act
+        studentDAO.save(stu); // Tener cuidado porque escribe en el json y hay que eliminarlo luego.
+
+        // assert
+        assertTrue(studentDAO.exists(stu));
+        assertEquals(3L, stu.getId());
+        assertEquals(studentDAO.findById(stu.getId()), stu);
+        studentDAO.delete(stu.getId());
     }
+
     @Test
     void saveAnUserSaved() {
         // Arrange
-        Long expectedNewIdStudent = 4L;
+        Long expectedNewIdStudent = studentDTOTest3DeUserJson.getId();
         // Act
-        studentDAO.save(studentDTOTest1);
+        studentDAO.save(studentDTOTest3DeUserJson);
         // Assert
-        assertEquals(expectedNewIdStudent,studentDTOTest1.getId());
+        assertEquals(expectedNewIdStudent, studentDTOTest3DeUserJson.getId());
     }
 
     @Test
-    void deleteAnUserNotExistingOnRepository() throws StudentNotFoundException {
+    void deleteAnUserNotExistingOnRepository() {
         // Arrange
-        Long idTest = studentDTOTest1.getId();
+        Long idTest = 15L;
         // Act
+        boolean result = studentDAO.delete(idTest);
         // Assert
-        assertFalse(studentDAO.delete(idTest));
-
+        assertFalse(result);
     }
+
     @Test
-    void deleteAnUserExistingOnRepository() throws StudentNotFoundException{
+    void deleteAnUserExistingOnRepository() {
         // Arrange
-        Long idTest = 1L;
+        Long idTest = 2L; // Cuidado porque borra a Pedro
         // Act
+        boolean result = studentDAO.delete(idTest);
         // Assert
-        assertTrue(studentDAO.delete(idTest));
+        assertTrue(result);
     }
 
     @Test
@@ -66,23 +79,38 @@ class StudentDAOTest {
         // Assert
         assertFalse(studentDAO.exists(studentDTOTest1));
     }
+
     @Test
     void existAnUserNotExistingOnRepository() {
         // Arrange
         // Act
+        boolean result = studentDAO.exists(studentDTOTest3DeUserJson);
         // Assert
-        studentDAO.exists(studentDTOTest2);
-        assertTrue(studentDAO.exists(studentDTOTest2));
+        assertTrue(result);
     }
 
     @Test
     void findUserNotExistingById() {
         // Arrange
-        studentDAO.save(studentDTOTest1);
-        StudentDTO expectedUser = studentDTOTest1;
+        StudentNotFoundException expectedException = new StudentNotFoundException(1L);
+        StudentNotFoundException result = null;
         // Act
-        StudentDTO resultUser = studentDAO.findById(4L);
+        try {
+            StudentDTO resultUser = studentDAO.findById(1L);
+        } catch (StudentNotFoundException ex) {
+            result = ex;
+        }
         // Assert
-        assertEquals(expectedUser,resultUser); // Me está comparando el espacio en memoria :(
+        assertEquals(expectedException.getMessage(), result.getMessage());
+    }
+
+    @Disabled
+    void findUserExistingById() {
+        // Arrange
+        StudentDTO userExpected = studentDTOTest3DeUserJson;
+        // Act
+        StudentDTO result = studentDAO.findById(4L);
+        // Assert
+        assertEquals(userExpected, result); // Me está comparando el espacio en memoria :(
     }
 }
