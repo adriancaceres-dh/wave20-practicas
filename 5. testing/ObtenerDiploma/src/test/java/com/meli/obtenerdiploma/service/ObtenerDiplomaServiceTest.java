@@ -28,7 +28,7 @@ class ObtenerDiplomaServiceTest {
     void testAnalyzeScores(){
         //Arrange
         Long idQuery = 1L;
-        String message= "El alumno Andres ha obtenido un promedio de 10. Felicitaciones!";
+        String message= "El alumno Andres ha obtenido un promedio de 4.25. Puedes mejorar.";
         List<SubjectDTO> subjectsDTOS = new ArrayList<>();
         subjectsDTOS.add(new SubjectDTO("Maths",4.0) );
         subjectsDTOS.add(new SubjectDTO("History",4.5) );
@@ -42,7 +42,7 @@ class ObtenerDiplomaServiceTest {
         //asserts
         assertNotNull(studentResult);
         assertEquals(message,stu.getMessage());
-        assertEquals(10.0,stu.getAverageScore());
+        assertEquals(4.25,stu.getAverageScore());
     }
 
 }
