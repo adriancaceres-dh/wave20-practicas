@@ -4,18 +4,30 @@ import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import com.meli.obtenerdiploma.service.IStudentService;
 import com.meli.obtenerdiploma.service.StudentService;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class StudentDaoTest {
-    IStudentService studentService = new StudentService();
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    @AfterEach
-    void setup() {
+public class StudentDaoTest {
+    static IStudentService studentService = new StudentService();
+
+
+    @BeforeAll
+    static void setup() {
+        List<SubjectDTO> lista = new ArrayList<>();
+        lista.add(new SubjectDTO("Matemáticas",7.4));
+        StudentDTO expected = new StudentDTO(3L, "Alberto", "", 7.4, lista);
+        studentService.create(expected);
+    }
+    @AfterAll
+    static void rollback() {
         studentService.delete(3L);
     }
 
@@ -42,10 +54,11 @@ public class StudentDaoTest {
         lista.add(new SubjectDTO("Matemáticas",7.4));
         StudentDTO expected = new StudentDTO(3L, "Alberto", "", 7.4, lista);
         //act
+        studentService.create(expected);
         StudentDTO actual = studentService.read(3L);
         //assert
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
