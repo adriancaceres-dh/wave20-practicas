@@ -19,10 +19,7 @@ public class CalculateServiceTest {
         calculateService = new CalculateService();
     }
 
-    @Test
-    @DisplayName("Calculate valid house")
-    public void calculateOkTest () {
-        // Arrange
+    private HouseDTO buildHouse() {
         RoomDTO smallRoom = new RoomDTO();
         smallRoom.setLength(5);
         smallRoom.setWidth(5);
@@ -32,25 +29,57 @@ public class CalculateServiceTest {
         HouseDTO house = new HouseDTO();
         house.setRooms(List.of(smallRoom, bigRoom));
 
+        return house;
+    }
+
+    private HouseResponseDTO buildResponseHouse (HouseDTO house) {
         HouseResponseDTO expectedResponse = new HouseResponseDTO(house);
-        expectedResponse.setBiggest(bigRoom);
+        expectedResponse.setBiggest(house.getRooms().get(1));
         expectedResponse.setSquareFeet(125);
         expectedResponse.setPrice(100000);
 
+        return expectedResponse;
+    }
+
+    @Test
+    @DisplayName("Calculate house price")
+    public void calculateHousePriceTest () {
+        // Arrange
+        HouseDTO house = buildHouse();
+        HouseResponseDTO expectedResponse = buildResponseHouse(house);
         // Act
         HouseResponseDTO actualResponse = calculateService.calculate(house);
-
         // Assert
-        assertEquals(expectedResponse.getName(), actualResponse.getName());
-        assertEquals(expectedResponse.getAddress(), actualResponse.getAddress());
+        assertEquals(expectedResponse.getPrice(), actualResponse.getPrice());
+    }
+
+    @Test
+    @DisplayName("Calculate sq feet in house")
+    public void calculateHouseAreaTest () {
+        // Arrange
+        HouseDTO house = buildHouse();
+        HouseResponseDTO expectedResponse = buildResponseHouse(house);
+        // Act
+        HouseResponseDTO actualResponse = calculateService.calculate(house);
+        // Assert
         assertEquals(expectedResponse.getRooms(), actualResponse.getRooms());
         assertEquals(expectedResponse.getSquareFeet(), actualResponse.getSquareFeet());
-        assertEquals(expectedResponse.getPrice(), actualResponse.getPrice());
+    }
+
+    @Test
+    @DisplayName("Set room with most sq feet as biggest")
+    public void calculateBiggestRoomTest () {
+        // Arrange
+        HouseDTO house = buildHouse();
+        HouseResponseDTO expectedResponse = buildResponseHouse(house);
+        // Act
+        HouseResponseDTO actualResponse = calculateService.calculate(house);
+        // Assert
         assertEquals(expectedResponse.getBiggest(), actualResponse.getBiggest());
     }
 
     @Test
-    @DisplayName("Calculate house with no rooms")
+    @DisplayName("Calculate house price with no rooms")
     public void calculateEmptyHouseTest () {
         // Arrange
         HouseDTO house = new HouseDTO();
@@ -59,13 +88,10 @@ public class CalculateServiceTest {
         house.setRooms(new ArrayList<>());
 
         HouseResponseDTO expectedResponse = new HouseResponseDTO(house);
-        expectedResponse.setBiggest(null);
         expectedResponse.setSquareFeet(0);
         expectedResponse.setPrice(0);
-
         // Act
         HouseResponseDTO actualResponse = calculateService.calculate(house);
-
         // Assert
         assertEquals(expectedResponse.getName(), actualResponse.getName());
         assertEquals(expectedResponse.getAddress(), actualResponse.getAddress());
