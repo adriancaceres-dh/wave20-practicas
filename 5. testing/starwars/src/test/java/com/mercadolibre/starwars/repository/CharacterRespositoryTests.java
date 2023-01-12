@@ -54,5 +54,14 @@ public class CharacterRespositoryTests {
         Assertions.assertEquals(expected, result);
     }
 
+    @Test
+    @DisplayName("Load data Test")
+    public void loadDataTest(){
+        // act
+        characterRepository = new CharacterRepositoryImpl();
+
+        // assert
+        Assertions.assertNotNull(characterRepository);
+    }
 
 }
