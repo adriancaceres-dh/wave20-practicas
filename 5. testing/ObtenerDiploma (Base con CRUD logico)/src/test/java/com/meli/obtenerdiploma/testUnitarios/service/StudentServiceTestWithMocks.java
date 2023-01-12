@@ -13,7 +13,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.*;
 
@@ -60,6 +62,56 @@ public class StudentServiceTestWithMocks {
         //Assert
         Assertions.assertEquals(expectedStudentDTO,actualStudentDTO);
         verify(mockStudentDAO,atLeastOnce()).findById(expectedStudentDTO.getId());
+
+    }
+
+    @Test
+    @DisplayName("Actualizando estudiante ya existente")
+    void updateOK(){
+        //Arrange
+        StudentDTO studentDTOTest = new StudentDTO(3L, "Arturo", null, null, List.of(
+                new SubjectDTO("Fisica", 9.0),
+                new SubjectDTO("Calculo", 7.0),
+                new SubjectDTO("Diseño", 6.0)));
+
+        //Act
+        studentService.update(studentDTOTest);
+        //Assert
+        verify(mockStudentDAO,atLeastOnce()).save(studentDTOTest);
+
+    }
+
+    @Test
+    @DisplayName("Eliminando un estudiante por su ID")
+    void deleteOK(){
+        //Arrange
+        Long id = 1L;
+        //Act
+        studentService.delete(id);
+        //Assert
+        verify(mockStudentDAO,atLeastOnce()).delete(id);
+    }
+
+    @Test
+    @DisplayName("Obtener todos los estudiantes")
+    void shouldGetAllOK(){
+        //Arrange
+        StudentDTO studentDTOTest1 = new StudentDTO(2L, "Diego", null, null, List.of(
+                new SubjectDTO("Fisica", 9.0),
+                new SubjectDTO("Calculo", 7.0),
+                new SubjectDTO("Diseño", 6.0)));
+        StudentDTO studentDTOTest2 = new StudentDTO(2L, "Juan", null, null, List.of(
+                new SubjectDTO("Matematica", 9.0),
+                new SubjectDTO("Fisica", 7.0),
+                new SubjectDTO("Quimica", 6.0)));
+        Set<StudentDTO> expectedSet = new HashSet<>();
+        expectedSet.add(studentDTOTest1);
+        expectedSet.add(studentDTOTest2);
+        when(mockStudentRepository.findAll()).thenReturn(expectedSet);
+        //Act
+        Set<StudentDTO> actualSetResponse = studentService.getAll();
+        //Assert
+        Assertions.assertEquals(expectedSet,actualSetResponse);
 
     }
 
