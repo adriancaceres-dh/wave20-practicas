@@ -1,0 +1,1 @@
+[{"id":1,"studentName":"student1","message":"El alumno student1 ha obtenido un promedio de 6.00. Puedes mejorar.","averageScore":6.0,"subjects":[{"name":"Matemática","score":8.0},{"name":"Lengua","score":6.0},{"name":"Física","score":4.0}]}]
