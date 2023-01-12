@@ -49,7 +49,7 @@ public class IntegrationTest {
   public static void setUp() {
     writer = new ObjectMapper()
             .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
-            .writer().withDefaultPrettyPrinter();
+            .writer();
 
   }
 
