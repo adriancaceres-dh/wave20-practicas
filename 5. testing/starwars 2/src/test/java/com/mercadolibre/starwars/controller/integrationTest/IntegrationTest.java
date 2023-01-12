@@ -1,4 +1,4 @@
-package com.mercadolibre.starwars.controller;
+package com.mercadolibre.starwars.controller.integrationTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -32,9 +32,10 @@ public class IntegrationTest {
     @Test
     void integrationGetFindTest() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/darth"))
-                .andDo(print()).andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$[0].nombre").value("Luke"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Darth Vader"))
                 .andReturn();
        // System.out.println(mvcResult.getResponse().getContentAsString());
     }
