@@ -34,5 +34,23 @@
         "score": 4
       }
     ]
+  },
+  {
+    "id": 3,
+    "studentName": "Fatima",
+    "subjects": [
+      {
+        "name": "Matemática",
+        "score": 10
+      },
+      {
+        "name": "Física",
+        "score": 10
+      },
+      {
+        "name": "Química",
+        "score": 10
+      }
+    ]
   }
 ]

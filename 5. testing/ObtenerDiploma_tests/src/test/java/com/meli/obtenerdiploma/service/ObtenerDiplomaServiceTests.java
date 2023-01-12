@@ -52,7 +52,7 @@ public class ObtenerDiplomaServiceTests {
     }
 
     @Test
-    void analyzeScoresOver9Message() {
+    void analyzeScoresAbove9Message() {
         // arrange
         Long id = 10L;
         String expected = "El alumno Óscar ha obtenido un promedio de 9.5. Felicitaciones!";
