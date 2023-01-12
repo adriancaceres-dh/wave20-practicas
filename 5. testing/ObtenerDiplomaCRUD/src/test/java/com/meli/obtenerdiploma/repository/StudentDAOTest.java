@@ -55,7 +55,7 @@ class StudentDAOTest {
 
     @Test
     void deleteReturnsFalseWhenStudentDoesNotExist() {
-        assertFalse(studentDAO.delete(1L));
+        assertFalse(studentDAO.delete(200000L));
     }
 
     @Test
@@ -98,7 +98,7 @@ class StudentDAOTest {
 
     @Test
     void findByIdThrowsWhenIdNotFound() {
-        Long studentId = 1L;
+        Long studentId = 20000L;
 
 
         assertThrows(StudentNotFoundException.class, () -> studentDAO.findById(studentId));
