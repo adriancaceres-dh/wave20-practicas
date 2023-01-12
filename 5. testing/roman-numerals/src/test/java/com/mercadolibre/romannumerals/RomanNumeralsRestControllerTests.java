@@ -1,6 +1,8 @@
 package com.mercadolibre.romannumerals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,6 +23,16 @@ public class RomanNumeralsRestControllerTests {
         for(int i=0; i<numbers.length; i++) {
             assertRomanExpected(numbers[i], expected[i]);
         }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,I", "3,III", "5,V", "7,VII", "10,X", "50,L"})
+    void toRomanOkParameterized(String source) {
+        // arrange
+        String[] split = source.split(",");
+        Integer number = Integer.parseInt(split[0]);
+        // act & assert
+        assertRomanExpected(number, split[1]);
     }
 
     @Test
