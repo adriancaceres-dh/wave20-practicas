@@ -3,6 +3,7 @@ package com.meli.obtenerdiploma2.service;
 import com.meli.obtenerdiploma2.model.StudentDTO;
 import com.meli.obtenerdiploma2.model.SubjectDTO;
 import com.meli.obtenerdiploma2.repository.IStudentDAO;
+import com.meli.obtenerdiploma2.util.TestUtilsGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,30 +25,23 @@ class ObtenerDiplomaServiceTest {
     @InjectMocks
     ObtenerDiplomaService service;
 
-    private StudentDTO student;
 
-    @BeforeEach
-    void setup (){
-        SubjectDTO sub1 = new SubjectDTO("Matemática", 7.0);
-        SubjectDTO sub2 = new SubjectDTO("Física", 5.0);
-        SubjectDTO sub3 = new SubjectDTO("Química", 6.0);
-        student = new StudentDTO(12L, "Felipe", "", 0.0, Arrays.asList(sub1,sub2,sub3));
-
-    }
     @Test
     void checkValidAverage() {
         //Arrange
+        StudentDTO student = TestUtilsGenerator.getStudentWith3Subjects();
         when(studentDAO.findById(student.getId())).thenReturn(student);
         //Act
         service.analyzeScores(student.getId());
         //Assert
         verify(studentDAO, atLeastOnce()).findById(student.getId());
-        assertEquals(6.0, student.getAverageScore());
+        assertEquals(7, Math.round(student.getAverageScore()));
     }
 
     @Test
     void checkValidMessageScoreBelow9() {
         //Arrange
+        StudentDTO student = TestUtilsGenerator.getStudentWith3Subjects();
         when(studentDAO.findById(student.getId())).thenReturn(student);
 
         //Act
