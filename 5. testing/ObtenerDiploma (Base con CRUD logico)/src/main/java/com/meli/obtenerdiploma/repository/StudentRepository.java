@@ -20,12 +20,12 @@ public class StudentRepository implements IStudentRepository {
     private String SCOPE;
 
     @Override
-    public Set<StudentDTO> findAll() {
+    public Set<StudentDTO> findAll()  {
         Set<StudentDTO> loadedData = new HashSet<>();
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = ResourceUtils.getFile("./src/" + SCOPE + "/resources/users.json");
+            File file = ResourceUtils.getFile("./src/test/resources/urs.json");
             loadedData = objectMapper.readValue(file, new TypeReference<Set<StudentDTO>>(){});
         } catch (FileNotFoundException e) {
             e.printStackTrace();
