@@ -24,7 +24,7 @@ public class PostController {
     }
     @GetMapping("/followed/{userId}/list")
     public ResponseEntity<PostListResponseDTO> getPost(@PathVariable int userId, @RequestParam(required = false) String order) {
-        return new ResponseEntity<>(postService.postFollowedLastWeeks(userId, order), HttpStatus.OK); 
+        return new ResponseEntity<>(postService.postFollowedLastWeeks(userId, order), HttpStatus.OK);
     }
     @GetMapping("/promo-post/count")
     public ResponseEntity<PromoCountResponseDTO> getPromoCount(@RequestParam(required = true) int user_id){

@@ -9,7 +9,7 @@ public interface IPostService {
     public boolean save(PostRequestDto postRequestDto);
     public PostListResponseDTO postFollowedLastWeeks(int user_id, String order);
 
-    PromoCountResponseDTO promoCount(int user_id);
+    PromoCountResponseDTO promoCount(int userId);
 
     PromoListResponseDTO promoListDiscount(int userId);
 }
