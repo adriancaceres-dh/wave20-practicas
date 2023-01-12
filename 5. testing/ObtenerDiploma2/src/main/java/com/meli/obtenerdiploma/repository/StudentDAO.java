@@ -37,7 +37,7 @@ public class StudentDAO implements IStudentDAO {
 
     @Override
     public void save(StudentDTO stu) {
-        stu.setId((this.students.size() + 1L));
+        this.delete(stu.getId());
 
         students.add(stu);
 

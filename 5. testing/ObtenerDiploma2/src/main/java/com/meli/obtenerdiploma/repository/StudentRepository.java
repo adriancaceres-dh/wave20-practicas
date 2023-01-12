@@ -18,6 +18,13 @@ public class StudentRepository implements IStudentRepository {
 
     @Value("${api.scope}")
     private String SCOPE;
+    private String FILE_PATH = "./src/main/resources/users.json";
+
+    public StudentRepository(String filePath) {
+        this.FILE_PATH = filePath;
+    }
+
+    public StudentRepository() {}
 
     @Override
     public Set<StudentDTO> findAll() {
@@ -25,7 +32,7 @@ public class StudentRepository implements IStudentRepository {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = ResourceUtils.getFile("./src/" + SCOPE + "/resources/users.json");
+            File file = ResourceUtils.getFile(FILE_PATH);
             loadedData = objectMapper.readValue(file, new TypeReference<Set<StudentDTO>>(){});
         } catch (FileNotFoundException e) {
             e.printStackTrace();

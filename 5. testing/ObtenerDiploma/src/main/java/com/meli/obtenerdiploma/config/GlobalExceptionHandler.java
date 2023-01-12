@@ -12,7 +12,6 @@ public class GlobalExceptionHandler {
     MethodArgumentNotValidException ex) {
 
     return new ResponseEntity<>(ex.getBindingResult()
-            .getFieldError()
-            .getDefaultMessage(), HttpStatus.BAD_REQUEST);
+            .getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
   }
 }
