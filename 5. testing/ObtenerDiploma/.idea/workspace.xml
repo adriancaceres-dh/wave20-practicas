@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d75b3f77-2b5a-4820-8c7f-fa11d911ca9a" name="Default Changelist" comment="Testing_1 - ObtenerDiploma + CRUD Alumnos">
-      <change beforePath="$PROJECT_DIR$/../../1. git/repoPrueba" beforeDir="false" afterPath="$PROJECT_DIR$/../../1. git/repoPrueba" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../4. sprint/be_java_hisp_w20_g8_Garcia/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../4. sprint/be_java_hisp_w20_g8_Garcia/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../4. sprint/be_java_hisp_w20_g8_Garcia/be_java_hisp_w20_g8/src/test/java/com/socialmeli/be_java_hisp_w20_g8/services/PostServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../4. sprint/be_java_hisp_w20_g8_Garcia/be_java_hisp_w20_g8/src/test/java/com/socialmeli/be_java_hisp_w20_g8/services/PostServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/exception/StudentNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/repository/IStudentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/repository/IStudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/repository/StudentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/repository/StudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/IStudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/SubjectDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/SubjectDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/IObtenerDiplomaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/IObtenerDiplomaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/ObtenerDiplomaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/ObtenerDiplomaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +68,6 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
   <component name="ProjectId" id="1rr4iiqbWc4IwRLyT4RkGVb5rhC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -70,13 +76,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/ohgarcia/Documents/wave20-practicas/5. testing/ObtenerDiploma"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../nose/con Validaciones/ObtenerDiploma" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.meli.obtenerdiploma.exception" />
@@ -88,6 +95,66 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.StudentDAOTest">
+    <configuration name="ObtenerDiplomaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.ObtenerDiplomaApplication" />
+      <module name="ObtenerDiploma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.meli.obtenerdiploma.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObetenerDiplomaApplicationTests.testObtenerDiploma" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ObtenerDiploma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.meli.obtenerdiploma.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.ObetenerDiplomaApplicationTests" />
+      <option name="METHOD_NAME" value="testObtenerDiploma" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObtenerDiplomaControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ObtenerDiploma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.ObtenerDiplomaControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObtenerDiplomaControllerIntegrationTest.testObtenerDiplomaSinMaterias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ObtenerDiploma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.ObtenerDiplomaControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="testObtenerDiplomaSinMaterias" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StudentDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
@@ -103,76 +170,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentDAOTest.deleteStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ObtenerDiploma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentDAOTest" />
-      <option name="METHOD_NAME" value="deleteStudent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentDAOTest.testSaveEstudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ObtenerDiploma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentDAOTest" />
-      <option name="METHOD_NAME" value="testSaveEstudent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ObtenerDiploma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentRepositoryTest.testListAllStudents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ObtenerDiploma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="testListAllStudents" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.StudentDAOTest" />
-        <item itemvalue="JUnit.StudentRepositoryTest" />
-        <item itemvalue="JUnit.StudentRepositoryTest.testListAllStudents" />
-        <item itemvalue="JUnit.StudentDAOTest.deleteStudent" />
-        <item itemvalue="JUnit.StudentDAOTest.testSaveEstudent" />
+        <item itemvalue="Application.ObtenerDiplomaApplication" />
+        <item itemvalue="JUnit.ObtenerDiplomaControllerIntegrationTest.testObtenerDiplomaSinMaterias" />
+        <item itemvalue="JUnit.ObtenerDiplomaControllerIntegrationTest" />
+        <item itemvalue="JUnit.ObetenerDiplomaApplicationTests.testObtenerDiploma" />
       </list>
     </recent_temporary>
   </component>
@@ -295,6 +299,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Spring 2 - Practica TT - Obetener Diploma (again)" />
