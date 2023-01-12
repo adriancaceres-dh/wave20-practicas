@@ -1,7 +1,8 @@
-package com.mercadolibre.starwars.service;
+package com.mercadolibre.starwars.service.service;
 
 import com.mercadolibre.starwars.dto.CharacterDTO;
 import com.mercadolibre.starwars.repositories.CharacterRepository;
+import com.mercadolibre.starwars.service.FindService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,6 +44,5 @@ public class FindServiceTest {
         Assertions.assertEquals(dtoList,findCharacters);
 
     }
-
 
 }
