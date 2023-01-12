@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d75b3f77-2b5a-4820-8c7f-fa11d911ca9a" name="Default Changelist" comment="Testing_1 - ObtenerDiploma + CRUD Alumnos">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/service/StudentServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/controller/ObtenerDIplomaControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../1. git/repoPrueba" beforeDir="false" afterPath="$PROJECT_DIR$/../../1. git/repoPrueba" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/SubjectDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/model/SubjectDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,31 +85,34 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/meli/obtenerDiploma" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StudentServiceTest.testFindAllStudents">
-    <configuration name="ObtenerDiplomaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.ObtenerDiplomaApplication" />
+  <component name="RunManager" selected="JUnit.ObtenerDIplomaControllerTest">
+    <configuration name="ObtenerDIplomaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.*" />
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.ObtenerDIplomaControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObtenerDIplomaControllerTest.testAnalyzeScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentDAOTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.ObtenerDIplomaControllerTest" />
+      <option name="METHOD_NAME" value="testAnalyzeScore" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ObtenerDIplomaControllerTest" />
+        <item itemvalue="JUnit.ObtenerDIplomaControllerTest.testAnalyzeScore" />
         <item itemvalue="JUnit.StudentServiceTest.testFindAllStudents" />
         <item itemvalue="JUnit.StudentServiceTest" />
         <item itemvalue="JUnit.StudentServiceTest.testSaveStudent" />
-        <item itemvalue="JUnit.StudentDAOTest" />
-        <item itemvalue="Application.ObtenerDiplomaApplication" />
       </list>
     </recent_temporary>
   </component>
