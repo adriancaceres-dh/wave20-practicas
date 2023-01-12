@@ -1,6 +1,5 @@
 package com.meli.obtenerdiploma.testUnitarios.repository;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meli.obtenerdiploma.model.StudentDTO;
@@ -8,16 +7,14 @@ import com.meli.obtenerdiploma.repository.StudentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class StudentRepositoryTests {
+public class StudentRepositoryTest {
 
     StudentRepository studentRepository = new StudentRepository();
 
