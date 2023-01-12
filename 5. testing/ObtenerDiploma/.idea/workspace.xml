@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d75b3f77-2b5a-4820-8c7f-fa11d911ca9a" name="Default Changelist" comment="Testing_1 - ObtenerDiploma + CRUD Alumnos">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/controller/ObtenerDIplomaControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/controller/StudentControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../1. git/repoPrueba" beforeDir="false" afterPath="$PROJECT_DIR$/../../1. git/repoPrueba" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -85,7 +85,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/meli/obtenerDiploma" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ObtenerDIplomaControllerTest">
+  <component name="RunManager" selected="JUnit.StudentControllerTest.findAllStudents">
     <configuration name="ObtenerDIplomaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
@@ -117,48 +117,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentControllerTest.findAllStudents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.service.*" />
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.service" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.service.StudentServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentServiceTest.testFindAllStudents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ObtenerDiploma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.service" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.service.StudentServiceTest" />
-      <option name="METHOD_NAME" value="testFindAllStudents" />
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.StudentControllerTest" />
+      <option name="METHOD_NAME" value="findAllStudents" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentServiceTest.testSaveStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentControllerTest.findStudentById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.service.*" />
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.service" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.service.StudentServiceTest" />
-      <option name="METHOD_NAME" value="testSaveStudent" />
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.StudentControllerTest" />
+      <option name="METHOD_NAME" value="findStudentById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentControllerTest.testCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ObtenerDiploma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.meli.obtenerdiploma.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.controller.StudentControllerTest" />
+      <option name="METHOD_NAME" value="testCreate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -166,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StudentControllerTest.findAllStudents" />
+        <item itemvalue="JUnit.StudentControllerTest.findStudentById" />
+        <item itemvalue="JUnit.StudentControllerTest.testCreate" />
         <item itemvalue="JUnit.ObtenerDIplomaControllerTest" />
         <item itemvalue="JUnit.ObtenerDIplomaControllerTest.testAnalyzeScore" />
-        <item itemvalue="JUnit.StudentServiceTest.testFindAllStudents" />
-        <item itemvalue="JUnit.StudentServiceTest" />
-        <item itemvalue="JUnit.StudentServiceTest.testSaveStudent" />
       </list>
     </recent_temporary>
   </component>
@@ -303,6 +304,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="Testing_1 - ObtenerDiploma + CRUD Alumnos" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentControllerTest_findStudentById.ic" NAME="StudentControllerTest.findStudentById Coverage Results" MODIFIED="1673555843742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$ObtenerDIplomaControllerTest.ic" NAME="ObtenerDIplomaControllerTest Coverage Results" MODIFIED="1673554884172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentControllerTest_testCreate.ic" NAME="StudentControllerTest.testCreate Coverage Results" MODIFIED="1673555514608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/PracticaTT$ObtenerDiplomaServiceTest_testAverageWithEmptySubjectList.ic" NAME="ObtenerDiplomaServiceTest.testAverageWithEmptySubjectList Coverage Results" MODIFIED="1620739844261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.meli.obtenerdiploma.service.*</FILTER>
     </SUITE>
