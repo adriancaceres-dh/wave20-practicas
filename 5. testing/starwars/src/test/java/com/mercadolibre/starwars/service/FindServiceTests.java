@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class FindServiceTests {
@@ -32,6 +32,7 @@ public class FindServiceTests {
         // act
         List<CharacterDTO> actual = findService.find(query);
         // assert
+        verify(characterRepository, atLeastOnce()).findAllByNameContains(query);
         assertEquals(expected, actual);
     }
 
@@ -44,6 +45,7 @@ public class FindServiceTests {
         // act
         List<CharacterDTO> actual = findService.find(query);
         // assert
+        verify(characterRepository, atLeastOnce()).findAllByNameContains(query);
         assertTrue(actual.isEmpty());
     }
 }
