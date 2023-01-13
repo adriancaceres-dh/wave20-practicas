@@ -88,7 +88,7 @@ this.mapper = mapper;
             Post post = buildPost(postDto, productDto.getProductId());
             postRepository.add(post);
             //Se actualiza el usuario indicando que es seller en caso de que se trate de su primer posteo.
-            userService.updateUser(postDto.getUserId());
+            userService.updateUser(postDto.getUserId(), post.getId());
             PostResponseDto postResponseDto = mapper.map(postDto, PostResponseDto.class);
             postResponseDto.setPostId(post.getId());
             return postResponseDto;

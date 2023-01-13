@@ -22,9 +22,10 @@ public class UserService implements IUserService {
 
     private IUserRepository userRepository;
 
-public UserService (UserRepository userRepository) {
-this.userRepository = userRepository;
-}
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserFollowersResponseDto getSellerFollowersDto(int id, String order) {
         UserFollowersResponseDto userResponse = new UserFollowersResponseDto();
@@ -171,11 +172,15 @@ this.userRepository = userRepository;
         return user != null;
     }
 
+
+
     @Override
-    public void updateUser(int userId) {
+    public User updateUser(int userId, int postId) {
         if (!userRepository.isSeller(userId)) {
             userRepository.getUserById(userId).setSeller(true);
         }
+        userRepository.getUserById(userId).getPosts().add(postId);
+        return userRepository.getUserById(userId);
     }
 
     public Set<Integer> getUserFollowed(int id) {
