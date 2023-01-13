@@ -1,12 +1,15 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.request.PostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IPostRepository;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
+import com.socialMeli.be_java_hisp_w20_g03.repository.PostRepository;
 import com.socialMeli.be_java_hisp_w20_g03.utils.PostUtils;
+import com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -147,4 +150,32 @@ class PostServiceTest {
         verify(userRepository, atLeast(1)).getUserById(userId1);
         Assertions.assertEquals(expectedPostsDTO, actualPosts);
     }
+
+    @Test
+    @DisplayName("T-0005: Parametro de ordenamiento existe")
+    void testDateOrder() {
+        //Arrange
+        User user234 = UserUtils.buildUser();
+        User user = User.builder()
+                .userId(1)
+                .userName("usuario1")
+                .followers(new ArrayList<>())
+                .followed(List.of(user234))
+                .build();
+        when(userRepository.getUserById(1)).thenReturn(user);
+
+        List<Post> posts = PostUtils.getLatestPosts();
+        when(postRepository.getPostsByUserId(234)).thenReturn(posts);
+
+        //Act
+        List<PostDTO> ascPost = postService.getPost(1, "date_asc");
+        List<PostDTO> descPost = postService.getPost(1, "date_desc");
+        //Assert
+        Assertions.assertThrows(BadRequestException.class, () ->postService.getPost(1, "date_bsc"));
+        Assertions.assertFalse(ascPost.isEmpty());
+        Assertions.assertFalse(descPost.isEmpty());
+        verify(userRepository, atLeast(1)).getUserById(1);
+        verify(postRepository, atLeast(1)).getPostsByUserId(234);
+    }
+
 }
