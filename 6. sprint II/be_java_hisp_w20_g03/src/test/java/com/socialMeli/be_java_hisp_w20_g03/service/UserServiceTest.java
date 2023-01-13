@@ -93,9 +93,28 @@ class UserServiceTest {
 
     @Test
     void getFollowedList() {
+
     }
 
     @Test
-    void unfollow() {
+    void unfollowOk() {
+        //arrange
+        int userId = 234;
+
+        //Act
+
+        //Assert
+
+    }
+
+    @Test
+    void unfollowUserNotFound() {
+        //arrange
+        int userId = 234;
+
+        //Act
+
+        //Assert
+
     }
 }
