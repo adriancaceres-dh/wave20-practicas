@@ -2,7 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.PublicationDTO;
 import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
@@ -56,7 +56,7 @@ public class ServicePublication implements IServicePublication {
 
         if(publicationRepository.addPublication(publication)){
             ((Seller) user).addPublication(publication);
-            return new PublicationDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductDTO.class), category.getId(), publication.getPrice());
+            return new PublicationDTO(publication.getDate(), mapper.map(publication.getProduct(), ProductResponseDTO.class), category.getId(), publication.getPrice());
 
         }
         return null;

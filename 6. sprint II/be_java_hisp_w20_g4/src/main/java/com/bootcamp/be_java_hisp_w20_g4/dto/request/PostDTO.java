@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -23,6 +25,8 @@ public class PostDTO {
     @NotNull(message = "La fecha no puede estar vacía")
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate date;
+
+    @Valid
     private ProductRequestDTO product;
 
     @NotNull(message = "El campo categoria no puede estar vacío")
@@ -30,5 +34,5 @@ public class PostDTO {
 
     @NotNull(message = "El campo precio no puede estar vacío")
     @DecimalMax(value = "10000000", message = "El precio maximo por producto es de 10.000.000")
-    private double price;
+    private Double price;
 }

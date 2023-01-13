@@ -17,7 +17,7 @@ public class Publication {
     private int post_id;
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate date;
-    private double price;
+    private Double price;
     private boolean hasPromo;
     private double discount;
     private Product product;

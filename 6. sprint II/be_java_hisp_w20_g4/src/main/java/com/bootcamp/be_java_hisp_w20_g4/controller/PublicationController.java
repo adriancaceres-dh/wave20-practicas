@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequestMapping("/products")
 @RestController
 public class PublicationController {
@@ -15,7 +17,7 @@ public class PublicationController {
     IServicePublication servicePublication;
 
     @PostMapping("/post")
-    public ResponseEntity<PublicationDTO> add(@RequestBody PostDTO publicationDTO){
+    public ResponseEntity<PublicationDTO> add(@Valid @RequestBody PostDTO publicationDTO){
         return ResponseEntity.ok().body(servicePublication.addPublication(publicationDTO));
     }
     @GetMapping("/followed/{userId}/list")
