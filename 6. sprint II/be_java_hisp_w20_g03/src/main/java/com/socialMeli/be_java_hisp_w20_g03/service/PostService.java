@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.request.PostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
@@ -12,7 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -56,7 +56,6 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostDTO> getPost(int userId, String order) {
-        LocalDate dateNow = LocalDate.now();
         List<PostDTO> postList = new ArrayList<>();
         User userEx = userRepository.getUserById(userId);
 
@@ -73,10 +72,10 @@ public class PostService implements IPostService {
             } else if (order.equals(DateOrder.date_asc.toString())) {
                 postList = postList.stream().sorted(Comparator.comparing(PostDTO::getDate)).collect(Collectors.toList());
             } else {
-                throw new NotFoundException("El orden ingresado no es valido.");
+                throw new BadRequestException("El orden ingresado no es valido.");
             }
         }  else {
-            postList = postList.stream().sorted(Comparator.comparing(PostDTO::getDate)).collect(Collectors.toList());
+            postList = postList.stream().sorted(Comparator.comparing(PostDTO::getDate, Comparator.reverseOrder())).collect(Collectors.toList());
         }
         return postList;
     }
