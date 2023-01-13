@@ -1,13 +1,23 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
+
+import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -27,7 +37,30 @@ class UserServiceTest {
     }
 
     @Test
-    void getFollowersList() {
+    void getFollowersListOrderDesc() {
+        //arrange
+        int userId = 234;
+        UserFollowersDTO expect = buildListUserFollowedDtoDesc();
+        User user = buildtUser();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(234,"name_desc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expect,actual);
+    }
+    @Test
+    void getFollowersListOrderAsc() {
+        //arrange
+        int userId = 234;
+        UserFollowersDTO expect = buildListUserFollowedDtoAsc();
+        User user = buildtUser();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expect,actual);
     }
 
     @Test
