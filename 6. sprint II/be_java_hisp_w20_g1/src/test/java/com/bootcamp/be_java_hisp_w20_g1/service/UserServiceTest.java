@@ -245,4 +245,71 @@ class UserServiceTest {
         //Act y Assert
         assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(6, "invalid_order"));
     }
+
+    @Test
+    @DisplayName("T3 se obtiene lista de los que un usuario sigue ordenada ascendentemente (por defecto).")
+    public void shouldGetSellersFollowedDtoOrdered() {
+
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followed = new HashSet<>();
+        followed.add(1);
+        followed.add(2);
+
+        user.setFollowed(followed);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(1, "Facundo"));
+        users.add(new UserResponseDto(2, "Raul"));
+
+        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowed(users);
+
+        //Act y Assert
+        UserFollowedResponseDto actual = userService.getFollowedDto(6, null);
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T3 se obtiene lista de seguidores de un usuario ordenada ascendentemente (por defecto).")
+    public void shouldGetSellersFollowersDtoOrdered() {
+
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followers = new HashSet<>();
+        followers.add(1);
+        followers.add(2);
+
+        user.setFollowers(followers);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(1, "Facundo"));
+        users.add(new UserResponseDto(2, "Raul"));
+
+        UserFollowersResponseDto expectedResult = new UserFollowersResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowers(users);
+
+        //Act y Assert
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, null);
+        assertEquals(expectedResult, actual);
+    }
+
 }
