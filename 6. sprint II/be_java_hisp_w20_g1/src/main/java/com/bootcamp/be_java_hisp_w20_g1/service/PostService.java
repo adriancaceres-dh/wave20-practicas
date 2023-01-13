@@ -57,11 +57,11 @@ public class PostService implements IPostService {
         userService.validateUserExistById(id);
         Set<Integer> followedByuserId = userService.getUserFollowed(id);
 
-        List<PostResponseDto> posts = followedByuserId.stream() // Stream every seller followed by parameter id
-                .map(postRepository::getPostsByUserId) // Get the List of Posts from each seller.
-                .flatMap(List::stream) // Get a flat List with every Post
+        List<PostResponseDto> posts = followedByuserId.stream()
+                .map(postRepository::getPostsByUserId) // Obtiene la lista de Posts de cada vendedor.
+                .flatMap(List::stream) // Concatena lista de publicaciones de todos los vendedores a una única lista.
                 .filter(post -> LocalDate.now().minusDays(Parameter.getInteger("NumberOfDays")).isBefore(post.getDate()))
-                .map(post -> PostResponseDto.builder().userId(id) // Only map Posts from the last 2 weeks.
+                .map(post -> PostResponseDto.builder().userId(post.getUserId()) // Solo mapea los posts de los últimos 14 días.
                         .postId(post.getId())
                         .date(post.getDate())
                         .product(productService.getProductById(post.getProductId()))
