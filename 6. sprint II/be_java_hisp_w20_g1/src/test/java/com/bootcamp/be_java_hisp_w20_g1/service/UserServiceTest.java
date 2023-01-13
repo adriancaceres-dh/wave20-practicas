@@ -69,4 +69,18 @@ class UserServiceTest {
 
     }
 
+    @Test
+    void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() throws Exception {
+
+        //Arrange
+        String expectedErrorMessage = "El usuario no existe";
+        when(userRepository.getUserById(1)).thenReturn(validUser);
+        when(userRepository.getUserById(99)).thenReturn(null);
+        validUser.getFollowed().add(validUserToFollow.getId());
+
+        //Act && Assert
+        NotFoundException notFoundException = Assertions.assertThrows(NotFoundException.class, () -> userService.followUser(1,99));
+        Assertions.assertEquals(expectedErrorMessage,notFoundException.getMessage());
+    }
+
 }
