@@ -70,12 +70,12 @@ class UserServiceTest {
         when(userRepository.findOne(1)).thenReturn(user1);
         when(userRepository.findOne(2)).thenReturn(user2);
 
-        boolean res = userService.follow(1,2);
+        boolean res = userService.follow(1, 2);
 
-        verify(userRepository,atLeastOnce()).exists(1);
-        verify(userRepository,atLeastOnce()).exists(2);
-        verify(userRepository,atLeastOnce()).findOne(1);
-        verify(userRepository,atLeastOnce()).findOne(2);
+        verify(userRepository, atLeastOnce()).exists(1);
+        verify(userRepository, atLeastOnce()).exists(2);
+        verify(userRepository, atLeastOnce()).findOne(1);
+        verify(userRepository, atLeastOnce()).findOne(2);
 
         Assertions.assertTrue(res);
     }
@@ -85,16 +85,14 @@ class UserServiceTest {
     void followerListWithUserExist() {
         // Arrange
         UserFollowersCountResponseDTO responseExpected = new UserFollowersCountResponseDTO(2, "Mariano", 3);
-        User user = new User("Mariano");
-        user.setId(2);
-        user.addFollower(new User("Luis"));
-        user.addFollower(new User("Francisco"));
-        user.addFollower(new User("Lorenzo"));
+        User user = UtilsTest.generateUserToTestFollowerList();
         // Act
-        when(repository.exists(2)).thenReturn(true);
-        when(repository.findOne(2)).thenReturn(user);
-        UserFollowersCountResponseDTO dtoResult = service.followerList(2);
+        when(userRepository.exists(2)).thenReturn(true);
+        when(userRepository.findOne(2)).thenReturn(user);
+        UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
         // Assert
+        verify(userRepository, atLeastOnce()).exists(1);
+        verify(userRepository, atLeastOnce()).findOne(1);
         assertEquals(responseExpected, dtoResult);
     }
 
@@ -103,21 +101,18 @@ class UserServiceTest {
     void followerListWithUserNotExist() {
         // Arrange
         BadRequestException responseExpected = new BadRequestException("El usuario no existe");
-        User user = new User("Mariano");
-        user.setId(2);
-        user.addFollower(new User("Luis"));
-        user.addFollower(new User("Francisco"));
-        user.addFollower(new User("Lorenzo"));
 
         Exception myExceptionResult = null;
         // Act
-        when(repository.exists(2)).thenReturn(false);
+        when(userRepository.exists(2)).thenReturn(false);
         try {
-            UserFollowersCountResponseDTO dtoResult = service.followerList(2);
+            UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
         } catch (BadRequestException ex) {
             myExceptionResult = ex;
         } finally {
             // Assert
+            verify(userRepository, atLeastOnce()).exists(2);
+            //assertThrows(BadRequestException.class,()->{userRepository.exists(2);});
             assertEquals(responseExpected.getMessage(), myExceptionResult.getMessage());
         }
     }

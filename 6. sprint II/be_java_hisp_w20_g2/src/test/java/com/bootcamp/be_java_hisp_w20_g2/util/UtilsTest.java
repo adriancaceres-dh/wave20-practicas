@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2.util;
 
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 
 import java.util.ArrayList;
@@ -29,5 +30,14 @@ public class UtilsTest {
         users.put(2,user2);
         return users;
 
+    }
+
+    public static User generateUserToTestFollowerList(){
+        User user = new User("Mariano");
+        user.setId(2);
+        user.addFollower(new User("Luis"));
+        user.addFollower(new User("Francisco"));
+        user.addFollower(new User("Lorenzo"));
+        return user;
     }
 }
