@@ -9,6 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
+import com.bootcamp.be_java_hisp_w20_g2.utils.sort.UserResponseDTOStreamSorter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,12 +41,7 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if (order.isPresent()) {
-                Comparator<UserResponseDTO> comparator;
-                if (order.get().equals("name_asc") || order.get().equals("name_desc")) {
-                    comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                } else {
-                    comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
-                }
+                Comparator<UserResponseDTO> comparator = UserResponseDTOStreamSorter.getSortCriteria(order.get());
 
                 followers = followers.stream().sorted(comparator).collect(Collectors.toList());
 
@@ -71,13 +67,8 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if (order.isPresent()) {
-                if (order.get().equals("name_asc") || order.get().equals("name_desc")) {
-                    Comparator<UserResponseDTO> comparator;
-                    if (order.get().equals("name_asc")) {
-                        comparator = Comparator.comparing(UserResponseDTO::getUserName);
-                    } else {
-                        comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
-                    }
+                if (UserResponseDTOStreamSorter.isValid(order.get())) {
+                    Comparator<UserResponseDTO> comparator = UserResponseDTOStreamSorter.getSortCriteria(order.get());
                     followed = followed.stream().sorted(comparator).collect(Collectors.toList());
                 }
 
