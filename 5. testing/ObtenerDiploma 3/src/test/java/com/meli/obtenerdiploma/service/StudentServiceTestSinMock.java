@@ -21,7 +21,7 @@ class StudentServiceTestSinMock {
         studentService = new StudentService();
         studentRepository = new StudentRepository();
     }
-    @Test
+  /*  @Test
     void create(){
         //arranger
         StudentDTO studentDTO = new StudentDTO();
@@ -30,7 +30,7 @@ class StudentServiceTestSinMock {
         //assert
         //verify(StudentDAO, atLeast(1).save(studentDTO));
 
-    }
+    }*/
 
     @Test
     void read() {

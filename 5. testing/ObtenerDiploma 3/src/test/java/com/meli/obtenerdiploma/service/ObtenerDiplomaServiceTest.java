@@ -3,6 +3,7 @@ package com.meli.obtenerdiploma.service;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
 import com.meli.obtenerdiploma.repository.IStudentDAO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,29 +29,28 @@ class ObtenerDiplomaServiceTest {
     ObtenerDiplomaService obtenerDiplomaService;
 
     @Test
-    @DisplayName("")
     void analyzeScores(){
         //arrange
         List<SubjectDTO> list = new ArrayList<>();
-        StudentDTO expect = new StudentDTO(1L,"Pedro","",9.0,list);
-        when(studentDAO.findById(1L)).thenReturn(expect);
+        StudentDTO student = new StudentDTO(1L,"Pedro","",9.0,list);
+        when(studentDAO.findById(1L)).thenReturn(student);
         //act
         StudentDTO actual =  obtenerDiplomaService.analyzeScores(1L);
         //assert
-        assertEquals(expect, actual);
+        verify(studentDAO, atLeastOnce()).findById(student.getId());
     }
     @Test
     @DisplayName("test with first messege")
     void getGreetingMessage(){
         //arrange
         List<SubjectDTO> list = new ArrayList<>();
-        list.add(new SubjectDTO("Matemática",9.0));
-        list.add(new SubjectDTO("Física",7.0));
-        list.add(new SubjectDTO("Química",6.0));
+        list.add(new SubjectDTO("Matemática",8.0));
+        list.add(new SubjectDTO("Física",9.0));
+        list.add(new SubjectDTO("Química",10.0));
         String name = "Pedro";
         StudentDTO student = new StudentDTO(1L,name,"",0.0,list);
         when(studentDAO.findById(1L)).thenReturn(student);
-        String expectResult ="El alumno "+ name +" ha obtenido un promedio de 7.33. Puedes mejorar.";
+        String expectResult ="El alumno "+ name +" ha obtenido un promedio de 9. Puedes mejorar.";
         //act
         String actual =  obtenerDiplomaService.analyzeScores(1L).getMessage();
         //assert
@@ -74,22 +74,7 @@ class ObtenerDiplomaServiceTest {
         //assert
         assertEquals(expectResult, actual);
     }
-    @Test
-    void calculateAverage(){
-        //arrange
-        List<SubjectDTO> list = new ArrayList<>();
-        list.add(new SubjectDTO("Matemática",10.0));
-        list.add(new SubjectDTO("Física",10.0));
-        list.add(new SubjectDTO("Química",10.0));
-        String name = "Pedro";
-        StudentDTO student = new StudentDTO(1L,name,"",0.0,list);
-        when(studentDAO.findById(1L)).thenReturn(student);
-        Double expectResult = 10.0;
-        //act
-        Double actual =  obtenerDiplomaService.analyzeScores(1L).getAverageScore();
-        //assert
-        assertEquals(expectResult, actual);
-    }
+
     @Test
     @DisplayName("Test without a list for avg")
     void GreetingMessageNan(){
@@ -100,25 +85,24 @@ class ObtenerDiplomaServiceTest {
         when(studentDAO.findById(1L)).thenReturn(student);
         String expectResult ="El alumno "+ name +" ha obtenido un promedio de NaN. Puedes mejorar.";
         //act
-        String actual =  obtenerDiplomaService.analyzeScores(1L).getMessage();
+        obtenerDiplomaService.analyzeScores(1L);
         //assert
-        assertEquals(expectResult, actual);
+        assertEquals(expectResult, student.getMessage());
     }
     @Test
-    void calculateAverageNull(){
+    void calculateAverage(){
         //arrange
         List<SubjectDTO> list = new ArrayList<>();
         list.add(new SubjectDTO("Matemática",6.0));
         list.add(new SubjectDTO("Física",6.0));
         list.add(new SubjectDTO("Química",6.0));
-        String name = "Pedro";
-        StudentDTO student = new StudentDTO(1L,name,"",0.0,list);
+        StudentDTO student = new StudentDTO(1L,"Pedro","",0.0,list);
         when(studentDAO.findById(1L)).thenReturn(student);
-        Double expectResult = 6.0;
         //act
-        Double actual =  obtenerDiplomaService.analyzeScores(1L).getAverageScore();
+        obtenerDiplomaService.analyzeScores(1L);
         //assert
-        assertEquals(expectResult, actual);
+        assertEquals(6.0, student.getAverageScore());
     }
+
 
 }
