@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g4.service.user;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.ListedUserDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowedDTO;
+import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.Buyer;
 import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
@@ -78,11 +79,18 @@ class ServiceUsrTest {
 
         UserFollowedDTO result = mockServiceUser.unfollow(1,2);
 
-        Assertions.assertEquals(expected, result);
+        assertEquals(expected, result);
 
     }
 
     @Test
     void unfollowInvalidIDTest() {
+
+        Buyer userWhoUnfollow = new Buyer(1, "nombre1");
+
+        when(mockUserRepository.findById(1)).thenReturn(userWhoUnfollow);
+        when(mockUserRepository.findById(2)).thenReturn(null);
+
+        assertThrows(BadRequestException.class, () -> mockServiceUser.unfollow(1, 2));
     }
 }
