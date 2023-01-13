@@ -20,7 +20,7 @@ class CharacterRepositoryImplTest {
     }
 
     @Test
-    void fwhenQueryIsNullThenThrowException() {
+    void whenQueryIsNullThenThrowException() {
         String query = null;
         assertThrows(NullPointerException.class, () -> repository.findAllByNameContains(query));
     }

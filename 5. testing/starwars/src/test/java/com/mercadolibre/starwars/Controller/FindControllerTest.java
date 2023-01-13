@@ -21,7 +21,7 @@ class FindControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testEndpoint() throws Exception {
+    public void shouldMatchCorrectly() throws Exception {
         MvcResult mvcResult =
                 this.mockMvc.perform(MockMvcRequestBuilders.get("/darth"))
                         .andExpect(status().isOk())
