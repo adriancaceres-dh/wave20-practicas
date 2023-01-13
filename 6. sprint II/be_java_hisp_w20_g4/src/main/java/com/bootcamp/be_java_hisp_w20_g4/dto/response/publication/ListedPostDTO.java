@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.dto.response.publication;
 
-import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.model.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class ListedPostDTO {
     private Integer post_id;
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate date;
-    private ProductDTO product;
+    private ProductResponseDTO product;
     private Category category;
     private double price;
 }
