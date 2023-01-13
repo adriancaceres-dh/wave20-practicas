@@ -1,15 +1,14 @@
 package com.socialmeli.be_java_hisp_w20_g8.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
-public class ResponseDto {
-    private boolean ok;
-    private String message;
+public class ErrorDTO {
+
+    private String name;
+    private String description;
 }

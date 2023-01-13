@@ -5,7 +5,7 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.*;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDto;
+import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -60,12 +60,12 @@ public class UserService implements IUserService {
         }
     }
 
-    public ResponseDto addNewFollow(int userId, int sellerId) {
+    public ResponseDTO addNewFollow(int userId, int sellerId) {
         if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (IPersonRepository.checkUser(userId) && IPersonRepository.checkUser(sellerId)) {
             IPersonRepository.addFollowing(userId, sellerId);
             IPersonRepository.addFollower(sellerId, userId);
-            return ResponseDto.builder()
+            return ResponseDTO.builder()
                     .ok(true)
                     .message("New Follower add successfully").build();
         } else {
@@ -74,11 +74,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public ResponseDto unfollow(int userid, int sellerId) {
+    public ResponseDTO unfollow(int userid, int sellerId) {
         if (IPersonRepository.checkUser(userid) && IPersonRepository.checkUser(sellerId)) {
             IPersonRepository.unfollowing(userid, sellerId);
             IPersonRepository.unfollower(sellerId, userid);
-            return ResponseDto.builder()
+            return ResponseDTO.builder()
                     .ok(true)
                     .message("you have unfollowed the user").build();
         } else {

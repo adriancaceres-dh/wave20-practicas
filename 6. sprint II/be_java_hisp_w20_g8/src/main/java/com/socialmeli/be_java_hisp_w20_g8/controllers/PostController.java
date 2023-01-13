@@ -9,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 
 @RestController
 @RequestMapping("/products")
@@ -18,11 +22,12 @@ public class PostController {
     IPostService postService;
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<ResponsePostDTO> findAllPostsByIdUser(@PathVariable int userId,  @RequestParam(required = false) String order){
-        return new ResponseEntity<>(postService.findSellersByIdUser(userId,order), HttpStatus.OK);
+    public ResponseEntity<ResponsePostDTO> findAllPostsByIdUser(@Positive(message ="El ID deber ser mayor a cero")
+        @PathVariable int userId, @RequestParam(required = false) String order){
+            return new ResponseEntity<>(postService.findSellersByIdUser(userId,order), HttpStatus.OK);
     }
     @PostMapping("/post")
-    public ResponseEntity<String> postPost(@RequestBody PostRequestDTO postRequestDTO) {
+    public ResponseEntity<String> postPost(@Valid @RequestBody PostRequestDTO postRequestDTO) {
             postService.createPost(postRequestDTO);
             return ResponseEntity.status(HttpStatus.OK).body("The post was published");
     }
