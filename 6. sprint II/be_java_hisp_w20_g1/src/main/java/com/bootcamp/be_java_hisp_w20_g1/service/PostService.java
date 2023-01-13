@@ -37,7 +37,7 @@ public class PostService implements IPostService {
 
     private ModelMapper mapper;
 
-    public PostService(PostRepository postRepository, ProductService productService, UserService userService, ModelMapper mapper) {
+    public PostService(IPostRepository postRepository, ProductService productService, UserService userService, ModelMapper mapper) {
         this.postRepository = postRepository;
         this.productService = productService;
         this.userService = userService;

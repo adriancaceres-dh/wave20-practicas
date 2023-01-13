@@ -21,11 +21,13 @@ import java.util.stream.Collectors;
 public class UserService implements IUserService {
 
 
+    //@Autowired
     private IUserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
 
     @Override
     public UserFollowersResponseDto getSellerFollowersDto(int id, String order) {

@@ -23,7 +23,7 @@ public class ProductService implements IProductService {
 
     private IProductRepository productRepository;
 
-    public ProductService(ProductRepository productRepository, ModelMapper mapper) {
+    public ProductService(IProductRepository productRepository, ModelMapper mapper) {
         this.productRepository = productRepository;
         this.mapper = mapper;
     }
