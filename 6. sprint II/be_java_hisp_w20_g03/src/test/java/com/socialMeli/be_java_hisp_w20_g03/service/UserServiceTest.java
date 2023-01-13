@@ -1,11 +1,8 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
-import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
 import com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils;
@@ -18,7 +15,6 @@ import org.mockito.Mock;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import static com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils.*;

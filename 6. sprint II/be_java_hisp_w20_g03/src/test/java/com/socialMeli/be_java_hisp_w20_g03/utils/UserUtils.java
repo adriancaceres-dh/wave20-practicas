@@ -6,13 +6,7 @@ import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
-import com.socialMeli.be_java_hisp_w20_g03.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserUtils {
     private static List<User> userList;
