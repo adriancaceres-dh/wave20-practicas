@@ -31,6 +31,10 @@ class ServicePublicationTest {
     }
 
     @Test
+    void getPublicationsOrderOKTest() {
+    }
+    
+    @Test
     void getPublicationsInvalidOrderTest() {
     }
 
