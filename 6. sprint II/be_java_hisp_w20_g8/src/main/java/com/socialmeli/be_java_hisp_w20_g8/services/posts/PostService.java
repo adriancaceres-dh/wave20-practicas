@@ -2,6 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
@@ -44,7 +45,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public boolean createPost(PostRequestDTO postRequestDTO) {
+    public ResponseDTO createPost(PostRequestDTO postRequestDTO) {
         // Check if all the fields are present
         if(!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(), postRequestDTO.getProductDTO(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
                 .allMatch(Objects::nonNull))
@@ -69,7 +70,10 @@ public class PostService implements IPostService {
         int postId = postRepository.createPost(post, postDTO);
 
         // Add the post to the seller's list
-        return seller.getPost().add(postId);
+         seller.getPost().add(postId);
+         return  new ResponseDTO(true, "Post added successfully");
+
+
     }
 
     @Override

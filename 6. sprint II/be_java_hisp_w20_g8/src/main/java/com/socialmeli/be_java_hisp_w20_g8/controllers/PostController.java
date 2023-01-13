@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.services.posts.IPostService;
@@ -27,8 +28,8 @@ public class PostController {
             return new ResponseEntity<>(postService.findSellersByIdUser(userId,order), HttpStatus.OK);
     }
     @PostMapping("/post")
-    public ResponseEntity<String> postPost(@Valid @RequestBody PostRequestDTO postRequestDTO) {
-            postService.createPost(postRequestDTO);
-            return ResponseEntity.status(HttpStatus.OK).body("The post was published");
+    public ResponseEntity<ResponseDTO> postPost(@Valid @RequestBody PostRequestDTO postRequestDTO) {
+            ResponseDTO  response = postService.createPost(postRequestDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

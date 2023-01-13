@@ -19,22 +19,26 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(OperationFailedException.class)
     public ResponseEntity<?> operationFailedException(Exception e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        ErrorDTO error = new ErrorDTO( "Operation failed exception",e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> notFoundException(Exception e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        ErrorDTO error = new ErrorDTO( "Not found exception",e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(InvalidArgumentException.class)
     public ResponseEntity<?> invalidArgumentException(Exception e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        ErrorDTO error = new ErrorDTO( "Invalid argument exception",e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(DoesntExistSellerException.class)
     public ResponseEntity<?> doesntExistSellerException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        ErrorDTO error = new ErrorDTO( "Doesn't exist seller exception",e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ErrorDTO> handleValidationExceptions(MethodArgumentNotValidException e) {
