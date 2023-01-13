@@ -1,7 +1,10 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
+import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.repository.PostRepository;
@@ -17,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -71,6 +75,17 @@ class PostServiceTest {
 
         //assert
         Assertions.assertEquals(expected, results);
+    }
+
+    @Test
+    void whenGivingInvalidOrderParam_sortPostByDate_ShouldThrowInvalidQueryParamValueException() throws Exception {
+        // Arrange
+        String expectedErrorMessage = "El valor de ordenamiento no es válido";
+        List<PostResponseDto> postResponseDtoList = new ArrayList<>();
+
+        // Act && Assert
+        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList,"nonExistingOrder"));
+        Assertions.assertEquals(expectedErrorMessage,InvalidQueryParamValueException.getMessage());
     }
 
 }
