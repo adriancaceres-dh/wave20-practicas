@@ -9,5 +9,5 @@ public interface IProductService {
 
     boolean alreadyExist(int id);
 
-    void add(ProductRequestDto product);
+    ProductResponseDto add(ProductRequestDto product);
 }

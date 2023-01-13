@@ -105,10 +105,11 @@ public class UserService implements IUserService {
         }
     }
 
-    private void validateUserExist(User user) {
+    private boolean validateUserExist(User user) {
         if (user == null) {
             throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
         }
+        return true;
     }
 
     @Override
@@ -161,9 +162,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void validateUserExistById(int id) {
+    public boolean validateUserExistById(int id) {
         User user = userRepository.getUserById(id);
-        validateUserExist(user);
+        return validateUserExist(user);
     }
 
     @Override

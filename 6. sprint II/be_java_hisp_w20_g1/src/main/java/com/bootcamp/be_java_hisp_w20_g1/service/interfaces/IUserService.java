@@ -19,7 +19,7 @@ public interface IUserService {
 
     UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow);
 
-    void validateUserExistById(int id);
+    boolean validateUserExistById(int id);
 
     Set<Integer> getUserFollowed(int id);
 

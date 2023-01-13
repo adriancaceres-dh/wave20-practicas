@@ -51,11 +51,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void add(ProductRequestDto product) {
-        productRepository.addProduct(convertProduct(product));
+    public ProductResponseDto  add(ProductRequestDto product) {
+        return mapper.map(productRepository.addProduct(convertProduct(product)), ProductResponseDto.class);
     }
 
-    public Product convertProduct(ProductRequestDto product) {
+    private Product convertProduct(ProductRequestDto product) {
         return mapper.map(product, Product.class);
     }
 
