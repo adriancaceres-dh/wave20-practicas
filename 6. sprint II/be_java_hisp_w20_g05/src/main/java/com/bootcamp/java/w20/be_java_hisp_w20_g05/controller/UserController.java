@@ -24,13 +24,13 @@ public class UserController {
 
 
     @PostMapping ("/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<String> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
-        return userService.followUser(userId, userIdToFollow);
+    public ResponseEntity<UserResponseDTO> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        return new ResponseEntity<>(userService.followUser(userId, userIdToFollow), HttpStatus.OK);
     }
 
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity<String> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
-        return userService.unfollowUser(userId, userIdToUnfollow);
+    public ResponseEntity<UserResponseDTO> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        return new ResponseEntity<>(userService.unfollowUser(userId, userIdToUnfollow), HttpStatus.OK);
     }
 
     //Cuenta la cantidad de seguidores que tiene un determinado usuario buscándolo por su id. En caso de no encontrarlo devuelve una excepción IdNotFoundException.

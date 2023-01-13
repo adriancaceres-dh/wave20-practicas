@@ -6,9 +6,12 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.InvalidFollowUnfollowException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.WrongRequestParamException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,15 @@ public class UserService implements IUserService{
     @Autowired
     private IRepository<User> userRepository;
 
+    private final ModelMapper mapper;
+
+    public UserService() {
+        mapper = new ModelMapper();
+        mapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
+    }
+
     @Override
     public FollowersCountDTO getFollowersCount (int id){
         User user= getById(id);
@@ -35,30 +47,34 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public ResponseEntity<String> followUser(int userId, int userIdToFollow) {
+    public UserResponseDTO followUser(int userId, int userIdToFollow) {
+        User user1 = userRepository.getById(userId)
+                .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
+        User user2 = userRepository.getById(userIdToFollow)
+                .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
 
-        try {
-            User user1 = userRepository.getById(userId).orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
-            User user2 = userRepository.getById(userIdToFollow).orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
-            user1.followUser(user2.getId());
-            user2.addFollower(user1.getId());
-        } catch (IdNotFoundException exception) {
-            return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>("todo OK", HttpStatus.OK);
+        if (userId == userIdToFollow)
+            throw new InvalidFollowUnfollowException(new MessageExceptionDTO("No puedes seguirte a tí mismo"));
+
+        if (!user1.followUser(user2.getId()))
+            throw new InvalidFollowUnfollowException(new MessageExceptionDTO(String.format("Ya sigues al usuario %d", userIdToFollow)));
+        user2.addFollower(user1.getId());
+
+        return mapper.map(user2, UserResponseDTO.class);
     }
 
     @Override
-    public ResponseEntity<String> unfollowUser(int userId, int userIdToUnfollow) {
-        try {
-            User user1 = userRepository.getById(userId).orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
-            User user2 = userRepository.getById(userIdToUnfollow).orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
-            user1.unfollowUser(user2.getId());
-            user2.removeFollower(user1.getId());
-        } catch (IdNotFoundException exception) {
-            return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>("todo OK", HttpStatus.OK);
+    public UserResponseDTO unfollowUser(int userId, int userIdToUnfollow) {
+        User user1 = userRepository.getById(userId)
+            .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
+        User user2 = userRepository.getById(userIdToUnfollow)
+            .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
+
+        if (!user1.unfollowUser(user2.getId()))
+            throw new InvalidFollowUnfollowException(new MessageExceptionDTO(String.format("Actualmente no sigues al usuario %d", userIdToUnfollow)));
+        user2.removeFollower(user1.getId());
+
+        return mapper.map(user2, UserResponseDTO.class);
     }
 
     @Override
