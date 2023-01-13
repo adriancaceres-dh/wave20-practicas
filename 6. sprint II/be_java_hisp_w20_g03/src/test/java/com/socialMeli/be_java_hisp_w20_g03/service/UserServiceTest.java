@@ -3,6 +3,7 @@ package com.socialMeli.be_java_hisp_w20_g03.service;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
@@ -118,10 +119,16 @@ class UserServiceTest {
         //assert
         assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
     }
+    @Test
+    void getFollowersListUserNotFoundOrder() {
+        //arrange
+        when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
+        //assert
+        assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
+    }
 
     @Test
     void getFollowedList() {
-
     }
 
     @DisplayName("US0002-Permite continuar con normalidad.")
@@ -136,7 +143,7 @@ class UserServiceTest {
 
         when(userRepository.getUserById(userIdFollower)).thenReturn(user);
         when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
-        
+
         String expectedString = "Dejaste de seguir al usuario: " + user2.getUserName();
 
         //Act

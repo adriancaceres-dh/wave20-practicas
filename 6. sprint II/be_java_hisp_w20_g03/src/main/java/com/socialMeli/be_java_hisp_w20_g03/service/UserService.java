@@ -9,6 +9,7 @@ import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
+import com.socialMeli.be_java_hisp_w20_g03.utils.OrderEnum;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,12 +69,16 @@ public class UserService implements IUserService {
         }
         List<UserDTO> followers = user.getFollowers().stream()
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
-        if (order != null && order.equals("name_desc")) {
-            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder()))
-                    .collect(Collectors.toList());
-        } else {
-            followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName()))
-                    .collect(Collectors.toList());
+        if (order != null) {
+            if (order.equals(OrderEnum.name_desc.toString())) {
+                followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder()))
+                        .collect(Collectors.toList());
+            } else if (order.equals(OrderEnum.name_asc.toString())) {
+                followers = followers.stream().sorted(Comparator.comparing(x -> x.getUserName()))
+                        .collect(Collectors.toList());
+            }else{
+                throw new BadRequestException("El orden ingresado no es valido.");
+            }
         }
         return new UserFollowersDTO(user.getUserId(), user.getUserName(), followers);
     }
@@ -88,12 +93,14 @@ public class UserService implements IUserService {
         List<UserDTO> followed = user.getFollowed().stream()
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
         if (order != null) {
-            if (order.equals("name_asc")) {
+            if (order.equals(OrderEnum.name_desc.toString())) {
                 followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName()))
                         .collect(Collectors.toList());
-            } else {
+            } else if (order.equals(OrderEnum.name_desc.toString())){
                 followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName(), Comparator.reverseOrder()))
                         .collect(Collectors.toList());
+            }else{
+                throw new BadRequestException("El orden ingresado no es valido.");
             }
         }
         return new UserFollowedDTO(user.getUserId(), user.getUserName(), followed);
