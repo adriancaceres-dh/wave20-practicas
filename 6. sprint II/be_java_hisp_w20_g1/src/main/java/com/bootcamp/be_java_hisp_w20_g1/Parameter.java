@@ -10,7 +10,8 @@ public class Parameter {
             put("PostJsonPath", "classpath:posts.json");
             put("ProductJsonPath", "classpath:products.json");
             put("UserJsonPath", "classpath:users.json");
-            put("DateOrder", "date_asc");
+            put("DateAsc", "date_asc");
+            put("DateDesc", "date_desc");
             put("NameAsc", "name_asc");
             put("NameDesc", "name_desc");
 
