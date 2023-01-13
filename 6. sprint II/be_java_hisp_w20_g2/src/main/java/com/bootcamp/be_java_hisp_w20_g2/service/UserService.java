@@ -186,6 +186,4 @@ public class UserService implements IUserService {
         User user = userRepository.findOne(id);
         return entity2UserResponseDTO(user);
     }
-
-
 }
