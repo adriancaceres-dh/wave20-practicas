@@ -21,9 +21,10 @@ public class UserController {
 
     private IUserService userService;
 
-public UserController(UserService service) {
-this.userService = service;
-}
+    public UserController(UserService service) {
+        this.userService = service;
+    }
+
     @GetMapping("/{userId}/followers/list")
     public ResponseEntity<UserFollowersResponseDto> getSellerFollowers(
             @PathVariable int userId,
@@ -45,13 +46,13 @@ this.userService = service;
     }
 
     @PostMapping("/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<UserFollowedResponseDto> followUser(@PathVariable int userId, @PathVariable int userIdToFollow){
-        return ResponseEntity.ok(userService.followUser(userId,userIdToFollow));
+    public ResponseEntity<UserFollowedResponseDto> followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
+        return ResponseEntity.ok(userService.followUser(userId, userIdToFollow));
     }
 
     @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity<UserFollowedResponseDto> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow){
-        return ResponseEntity.ok(userService.unfollowUser(userId,userIdToUnfollow));
+    public ResponseEntity<UserFollowedResponseDto> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        return ResponseEntity.ok(userService.unfollowUser(userId, userIdToUnfollow));
 
     }
 

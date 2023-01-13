@@ -23,23 +23,24 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean isValidId(int id){
+    public boolean isValidId(int id) {
         return getUserById(id) != null;
     }
 
     @Override
-    public boolean isSeller(int id){
+    public boolean isSeller(int id) {
         return getUserById(id).isSeller();
     }
+
     @Override
-    public User getUserById(int id){
+    public User getUserById(int id) {
         return users.stream().filter(u -> id == u.getId()).findFirst().orElse(null);
     }
 
     @Override
-    public User addFollower(int userIdToModify, int userIdOfFollower){
-        for (User user : users){
-            if (user.getId() == userIdToModify){
+    public User addFollower(int userIdToModify, int userIdOfFollower) {
+        for (User user : users) {
+            if (user.getId() == userIdToModify) {
                 user.getFollowers().add(userIdOfFollower);
                 return user;
             }
@@ -51,17 +52,17 @@ public class UserRepository implements IUserRepository {
     public User removeFollower(int userIdToModify, int userIdOfFollower) {
         for (User user : users) {
             if (user.getId() == userIdToModify) {
-                 user.getFollowers().remove(userIdOfFollower);
-                 return user;
+                user.getFollowers().remove(userIdOfFollower);
+                return user;
             }
         }
         return null;
     }
 
     @Override
-    public User addFollowed(int userIdToModify, int userIdToFollow){
-        for (User user : users){
-            if (user.getId() == userIdToModify){
+    public User addFollowed(int userIdToModify, int userIdToFollow) {
+        for (User user : users) {
+            if (user.getId() == userIdToModify) {
                 user.getFollowed().add(userIdToFollow);
                 return user;
             }

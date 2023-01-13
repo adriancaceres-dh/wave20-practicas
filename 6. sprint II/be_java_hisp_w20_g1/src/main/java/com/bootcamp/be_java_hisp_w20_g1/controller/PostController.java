@@ -15,22 +15,21 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/products")
 public class PostController {
-private IPostService postService;
+    private IPostService postService;
 
-public PostController(PostService service) {
-this.postService = service;
-}
+    public PostController(PostService service) {
+        this.postService = service;
+    }
 
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<PostListResponseDto> lastTwoWeeksPostsFromFollowers (@PathVariable int userId, @RequestParam(defaultValue = "date_desc") String order) {
+    public ResponseEntity<PostListResponseDto> lastTwoWeeksPostsFromFollowers(@PathVariable int userId, @RequestParam(defaultValue = "date_desc") String order) {
         return ResponseEntity.ok(postService.lastTwoWeeksPostsFromFollowers(userId, order));
     }
 
 
     @PostMapping("/post")
-    public ResponseEntity<PostResponseDto> addPost(@RequestBody PostRequestDto post) { 
-    return new ResponseEntity<>(postService.add(post), HttpStatus.CREATED); 
-    //return ResponseEntity.ok(postService.add(post)); 
-    }    
+    public ResponseEntity<PostResponseDto> addPost(@RequestBody PostRequestDto post) {
+        return new ResponseEntity<>(postService.add(post), HttpStatus.CREATED);
+    }
 }
