@@ -26,18 +26,17 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping ("/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<String> followUser(
+    public ResponseEntity<UserResponseDTO> followUser(
             @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userId,
-            @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userIdToFollow
-    )
-    {
-        return userService.followUser(userId, userIdToFollow);
+            @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userIdToFollow) {
+        return new ResponseEntity<>(userService.followUser(userId, userIdToFollow), HttpStatus.OK);
     }
 
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
-    public ResponseEntity<String> unfollowUser(@PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userId,
-                                               @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userIdToUnfollow) {
-        return userService.unfollowUser(userId, userIdToUnfollow);
+    public ResponseEntity<UserResponseDTO> unfollowUser(
+            @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userId,
+            @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userIdToFollow) {
+        return new ResponseEntity<>(userService.unfollowUser(userId, userIdToUnfollow), HttpStatus.OK);
     }
 
     //Cuenta la cantidad de seguidores que tiene un determinado usuario buscándolo por su id. En caso de no encontrarlo devuelve una excepción IdNotFoundException.

@@ -13,8 +13,8 @@ public interface IUserService extends IService<UserResponseDTO> {
 
     public FollowersCountDTO getFollowersCount (int id);
     User getById(int id);
-    public ResponseEntity<String> followUser(int userId, int userIdToFollow);
-    public ResponseEntity<String> unfollowUser(int userId, int userIdToUnfollow);
+    public UserResponseDTO followUser(int userId, int userIdToFollow);
+    public UserResponseDTO unfollowUser(int userId, int userIdToUnfollow);
     FollowedListDTO getFollowedListDto(int userId, String order);
     public FollowersBySellerDTO getFollowersBySeller(int userId, String order);
 }
