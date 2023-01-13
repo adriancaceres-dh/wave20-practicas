@@ -124,14 +124,26 @@ class UserServiceTest {
 
     }
 
+    @DisplayName("US0002-Permite continuar con normalidad.")
     @Test
     void unfollowOk() {
         //arrange
-        int userId = 234;
+        int userIdFollower = 234;
+        int userIdToUnfollow = 6631;
+
+        User user = UserUtils.buildUser();
+        User user2 = user.getFollowed().get(0);
+
+        when(userRepository.getUserById(userIdFollower)).thenReturn(user);
+        when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
+        
+        String expectedString = "Dejaste de seguir al usuario: " + user2.getUserName();
 
         //Act
+        String unfollowResponse = userService.unfollow(userIdFollower,userIdToUnfollow);
 
         //Assert
+        assertEquals(expectedString,unfollowResponse);
 
     }
 

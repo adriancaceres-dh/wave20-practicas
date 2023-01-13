@@ -83,6 +83,9 @@ public static User getUserAddFollower(int usId){
         usuario1.getFollowers().add(usuario4);
         usuario4.getFollowed().add(usuario1);
 
+        usuario2.getFollowers().add(usuario1);
+        usuario1.getFollowed().add(usuario2);
+
         return usuario1;
     }
 }
