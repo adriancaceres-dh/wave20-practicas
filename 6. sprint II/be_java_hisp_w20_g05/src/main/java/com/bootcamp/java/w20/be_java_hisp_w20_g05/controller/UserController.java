@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping ("/{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<UserResponseDTO> unfollowUser(
             @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userId,
-            @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userIdToFollow) {
+            @PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userIdToUnfollow) {
         return new ResponseEntity<>(userService.unfollowUser(userId, userIdToUnfollow), HttpStatus.OK);
     }
 
