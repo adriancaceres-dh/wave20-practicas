@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g7.exception;
 
+import com.bootcamp.be_java_hisp_w20_g7.dto.exception.ExceptionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,8 +16,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<?> userNotFoundException(Exception e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    public ResponseEntity<ExceptionDTO> userNotFoundException(Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionDTO("UserNotFoundException","User Not Found"));
     }
 
     @ExceptionHandler(UnfollowNotExistException.class)
