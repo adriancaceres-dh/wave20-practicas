@@ -1,6 +1,7 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.controller;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.PostResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.*;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IPostService;
@@ -22,9 +23,8 @@ public class PostController {
     private IPostService postService;
 
     @PostMapping("/post")
-    public ResponseEntity newPost(@RequestBody PostRequestDTO postRequestDTO) {
-        postService.newPost(postRequestDTO);
-        return new ResponseEntity("todo OK",HttpStatus.OK);
+    public ResponseEntity<PostResponseDTO> newPost(@RequestBody PostRequestDTO postRequestDTO) {
+        return new ResponseEntity<>(postService.newPost(postRequestDTO),HttpStatus.OK);
     }
 
     //Obtiene los posts hechos post hechos en las ultimas dos semanas por los usuarios que sigue el usuario {userId}.

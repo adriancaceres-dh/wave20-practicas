@@ -29,10 +29,7 @@ public class PostRepository implements IPostRepository{
         return posts.contains(post);
     }
     @Override
-    public boolean add(Post post) {
-        if (contains(post)) return false;
-        return posts.add(post);
-    }
+    public boolean add(Post post) { return posts.add(post); }
     public Post getById(int userId) {
         return posts.stream().filter(u -> u.getId()== userId)
                 .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("Elemento no encontrado")));

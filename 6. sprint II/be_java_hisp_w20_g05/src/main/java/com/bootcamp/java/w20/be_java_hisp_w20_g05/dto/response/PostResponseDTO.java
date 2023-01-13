@@ -1,9 +1,14 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.ProductRequestDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -11,8 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PostResponseDTO {
     private int id;
-    private String category;
-    private double price;
-    private double discount;
-    private String productName;
+    @JsonProperty("user_id")
+    private int userId;
+    private ProductResponseDTO product;
 }
