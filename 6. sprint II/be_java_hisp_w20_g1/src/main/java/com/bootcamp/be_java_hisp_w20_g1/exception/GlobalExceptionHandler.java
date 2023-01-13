@@ -33,6 +33,12 @@ public class GlobalExceptionHandler {
                 .body(new MessageException(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
     }
 
+    @ExceptionHandler(InvalidQueryParamValueException.class)
+    public ResponseEntity<?> InvalidQueryParamValueException(Exception e) {
+        return ResponseEntity.unprocessableEntity()
+                .body(new MessageException(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value()));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException ex) {
 

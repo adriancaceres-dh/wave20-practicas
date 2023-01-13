@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import com.bootcamp.be_java_hisp_w20_g1.repository.UserRepository;
@@ -81,7 +82,7 @@ public class UserService implements IUserService {
         List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
 
         if (!orders.contains(order)) {
-            return users;
+            throw new InvalidQueryParamValueException(Parameter.getString("EX_InvalidQueryParamValue"));
         }
 
         Comparator<UserResponseBaseDto> comparator = Comparator.comparing(UserResponseBaseDto::getUserName);
