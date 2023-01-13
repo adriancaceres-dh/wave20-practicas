@@ -15,6 +15,9 @@ import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,7 +27,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -74,7 +80,24 @@ class PostServiceTest {
         PostListResponseDto results = postService.lastTwoWeeksPostsFromFollowers(idUser, order);
 
         //assert
-        Assertions.assertEquals(expected, results);
+        assertEquals(expected, results);
+    }
+
+    static private Stream<Arguments> orderByDateQueryParamProvider() {
+        return Stream.of(arguments("date_asc"), arguments("date_desc"));
+    }
+
+    @ParameterizedTest
+    @MethodSource("orderByDateQueryParamProvider")
+    void whenGivingValidOrderParam_sortPostByDate_ShouldReturnList(String orderQueryParam) throws Exception {
+        // Arrange
+        List<PostResponseDto> postResponseDtoList = new ArrayList<>();
+
+        // Act
+        List<PostResponseDto> actualPostResponseDtoList = postService.sortPostByDate(postResponseDtoList,orderQueryParam);
+
+        // Assert
+        assertEquals(postResponseDtoList, actualPostResponseDtoList);
     }
 
     @Test
@@ -85,7 +108,7 @@ class PostServiceTest {
 
         // Act && Assert
         InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList,"nonExistingOrder"));
-        Assertions.assertEquals(expectedErrorMessage,InvalidQueryParamValueException.getMessage());
+        assertEquals(expectedErrorMessage,InvalidQueryParamValueException.getMessage());
     }
 
 }
