@@ -24,11 +24,6 @@ public class UserService implements IUserService{
     private IRepository<User> userRepository;
 
     @Override
-    public List<UserResponseDTO> filterBy(String name) {
-        return null;
-    }
-
-    @Override
     public FollowersCountDTO getFollowersCount (int id){
         User user= getById(id);
         return new FollowersCountDTO(user.getId(),user.getFollowers().size(),user.getUserName());

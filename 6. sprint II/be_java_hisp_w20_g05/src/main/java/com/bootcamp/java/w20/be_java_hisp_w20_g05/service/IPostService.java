@@ -7,5 +7,6 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 
 public interface IPostService extends IService<PostResponseDTO> {
     FollowedUsersPostsResponse getFollowedUsersPosts(int userId, String order);
-    Post newPost(PostRequestDTO postRequestDTO);
+
+    PostResponseDTO newPost(PostRequestDTO postRequestDTO);
 }

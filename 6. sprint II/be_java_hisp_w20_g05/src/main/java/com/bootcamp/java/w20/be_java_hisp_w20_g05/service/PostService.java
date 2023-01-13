@@ -12,6 +12,8 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IPostRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Objects;
@@ -30,34 +32,25 @@ public class PostService implements IPostService{
     public IPostRepository postRepository;
     @Autowired
     public IUserService userService;
-    @Override
-    public List<PostResponseDTO> filterBy(String name) {
-        return null;
+
+    private final ModelMapper mapper;
+
+    public PostService() {
+        mapper = new ModelMapper();
+        mapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
     }
 
     @Override
-    public Post newPost(PostRequestDTO postRequestDTO) {
-        Post newPost = Post.builder()
-                .id(++post_id)
-                .category(postRequestDTO.getCategory())
-                .price(postRequestDTO.getPrice())
-                .userId(postRequestDTO.getUserId())
-                .discount(0)
-                .date(postRequestDTO.getDate())
-                .userId(postRequestDTO.getUserId())
-                .product(Product.builder()
-                            .id(postRequestDTO.getProduct().getProduct_id())
-                            .name(postRequestDTO.getProduct().getProduct_name())
-                            .brand(postRequestDTO.getProduct().getBrand())
-                            .color(postRequestDTO.getProduct().getColor())
-                            .notes(postRequestDTO.getProduct().getNotes())
-                            .type(postRequestDTO.getProduct().getType())
-                            .build()
-                        )
-                .build();
+    public PostResponseDTO newPost(PostRequestDTO postRequestDTO) {
+        if (postRequestDTO == null) throw new InvalidPostDataException(new MessageExceptionDTO("Invalid data"));
+        Post newPost = mapper.map(postRequestDTO, Post.class);
+        newPost.setId(++post_id);
+
         if(!postRepository.add(newPost)) throw new InvalidPostDataException(new MessageExceptionDTO("Invalid data"));
-        // --> Pendiente chequear esta excepcion, validar datos para que dispare.
-        return newPost;
+
+        return mapper.map(newPost, PostResponseDTO.class);
     }
 
     //Requerimiento 006 + 009
