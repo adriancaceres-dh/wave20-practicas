@@ -1,5 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.models;
 
+import lombok.ToString;
+
 import java.util.Set;
 
 public class User extends Person {
