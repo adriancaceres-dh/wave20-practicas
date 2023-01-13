@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d75b3f77-2b5a-4820-8c7f-fa11d911ca9a" name="Default Changelist" comment="Testing_1 - ObtenerDiploma + CRUD Alumnos">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../1. git/repoPrueba" beforeDir="false" afterPath="$PROJECT_DIR$/../../1. git/repoPrueba" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/repository/StudentDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/service/StudentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/meli/obtenerdiploma/service/StudentServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +90,8 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/meli/obtenerDiploma" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StudentRepositoryTest.testAssertThrowsInFindAllStudents">
-    <configuration name="StudentRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StudentDAOTest.deleteStudent">
+    <configuration name="StudentDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
@@ -100,13 +100,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentDAOTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentRepositoryTest.testAssertThrows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentDAOTest.deleteStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
@@ -115,14 +115,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="testAssertThrows" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentDAOTest" />
+      <option name="METHOD_NAME" value="deleteStudent" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentRepositoryTest.testAssertThrowsInFindAllStudents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentDAOTest.testModifyStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
@@ -131,52 +131,50 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="testAssertThrowsInFindAllStudents" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentDAOTest" />
+      <option name="METHOD_NAME" value="testModifyStudent" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentRepositoryTest.testFindAllStudents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentServiceTest.deleteStudentById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
+          <option name="PATTERN" value="com.meli.obtenerdiploma.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindAllStudents" />
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.service" />
+      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.service.StudentServiceTest" />
+      <option name="METHOD_NAME" value="deleteStudentById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentRepositoryTest.testFindAllStudentsExceptions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="com.meli.obtenerdiploma in ObtenerDiploma" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ObtenerDiploma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.meli.obtenerdiploma.repository.*" />
+          <option name="PATTERN" value="com.meli.obtenerdiploma.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.meli.obtenerdiploma.repository.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindAllStudentsExceptions" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.meli.obtenerdiploma" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StudentRepositoryTest.testAssertThrowsInFindAllStudents" />
-        <item itemvalue="JUnit.StudentRepositoryTest.testFindAllStudents" />
-        <item itemvalue="JUnit.StudentRepositoryTest" />
-        <item itemvalue="JUnit.StudentRepositoryTest.testAssertThrows" />
-        <item itemvalue="JUnit.StudentRepositoryTest.testFindAllStudentsExceptions" />
+        <item itemvalue="JUnit.StudentDAOTest.deleteStudent" />
+        <item itemvalue="JUnit.StudentDAOTest.testModifyStudent" />
+        <item itemvalue="JUnit.com.meli.obtenerdiploma in ObtenerDiploma" />
+        <item itemvalue="JUnit.StudentDAOTest" />
+        <item itemvalue="JUnit.StudentServiceTest.deleteStudentById" />
       </list>
     </recent_temporary>
   </component>
@@ -312,20 +310,23 @@
     <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentControllerTest_findStudentById.ic" NAME="StudentControllerTest.findStudentById Coverage Results" MODIFIED="1673555843742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ObtenerDiploma$ObtenerDIplomaControllerTest.ic" NAME="ObtenerDIplomaControllerTest Coverage Results" MODIFIED="1673554884172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentRepositoryTest_testAssertThrowsInFindAllStudents.ic" NAME="StudentRepositoryTest.testAssertThrowsInFindAllStudents Coverage Results" MODIFIED="1673583152488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.repository.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentDAOTest_testModifyStudent.ic" NAME="StudentDAOTest.testModifyStudent Coverage Results" MODIFIED="1673584590064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.meli.obtenerdiploma.repository.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentControllerTest_testCreate.ic" NAME="StudentControllerTest.testCreate Coverage Results" MODIFIED="1673555514608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentRepositoryTest_testAssertThrows.ic" NAME="StudentRepositoryTest.testAssertThrows Coverage Results" MODIFIED="1673582967330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.meli.obtenerdiploma.repository.*</FILTER>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentServiceTest_testCreateStudent.ic" NAME="StudentServiceTest.testCreateStudent Coverage Results" MODIFIED="1673583699902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ObtenerDiploma$com_meli_obtenerdiploma_in_ObtenerDiploma.ic" NAME="com.meli.obtenerdiploma in ObtenerDiploma Coverage Results" MODIFIED="1673581813429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.meli.obtenerdiploma.*</FILTER>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentServiceTest_testUpdateStudent.ic" NAME="StudentServiceTest.testUpdateStudent Coverage Results" MODIFIED="1673583791316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentServiceTest_deleteStudentById.ic" NAME="StudentServiceTest.deleteStudentById Coverage Results" MODIFIED="1673584411419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/PracticaTT$ObtenerDiplomaServiceTest_testAverageWithEmptySubjectList.ic" NAME="ObtenerDiplomaServiceTest.testAverageWithEmptySubjectList Coverage Results" MODIFIED="1620739844261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.meli.obtenerdiploma.service.*</FILTER>
@@ -335,6 +336,15 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentRepositoryTest_testFindAllStudentsExceptions.ic" NAME="StudentRepositoryTest.testFindAllStudentsExceptions Coverage Results" MODIFIED="1673582925374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.meli.obtenerdiploma.repository.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$ObtenerDIplomaControllerTest.ic" NAME="ObtenerDIplomaControllerTest Coverage Results" MODIFIED="1673554884172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$StudentRepositoryTest_testAssertThrows.ic" NAME="StudentRepositoryTest.testAssertThrows Coverage Results" MODIFIED="1673582967330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.repository.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ObtenerDiploma$com_meli_obtenerdiploma_in_ObtenerDiploma.ic" NAME="com.meli.obtenerdiploma in ObtenerDiploma Coverage Results" MODIFIED="1673584790200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.meli.obtenerdiploma.*</FILTER>
     </SUITE>
   </component>
 </project>

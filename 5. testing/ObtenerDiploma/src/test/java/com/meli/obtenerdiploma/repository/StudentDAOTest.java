@@ -1,9 +1,13 @@
 package com.meli.obtenerdiploma.repository;
 
+import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
+import org.assertj.core.internal.bytebuddy.implementation.bytecode.Throw;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.client.HttpClientErrorException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +19,17 @@ public class StudentDAOTest {
     private List<SubjectDTO> subjectDTOList;
     private StudentDTO studentDTO;
 
-    public StudentDAOTest() {
-        this.studentDAO = new StudentDAO();
+    private Long student;
 
+    public StudentDAOTest() {
+        int num = (int)(Math.random()*10+1);
+        student = Long.valueOf(String.valueOf(num));
+
+        this.studentDAO = new StudentDAO();
         subjectDTOList = new ArrayList<>();
         subjectDTOList.add(new SubjectDTO("Maths",4.0) );
         subjectDTOList.add(new SubjectDTO("History",4.5) );
-        studentDTO = new StudentDTO(1231L,"Camilo","Buen estudiante"
+        studentDTO = new StudentDTO(student,"Camilo","Buen estudiante"
                 , 4.0, subjectDTOList );
     }
 
@@ -43,23 +51,19 @@ public class StudentDAOTest {
     }
     @Test
     void testModifyStudent(){
-
-        List<SubjectDTO> subjectDTOList = new ArrayList<>();
-        subjectDTOList.add(new SubjectDTO("Maths",4.0) );
-        subjectDTOList.add(new SubjectDTO("History",4.5) );
-
-        studentDAO.save(new StudentDTO(1L,"Andres",null,3.4,subjectDTOList));
-
-        assertEquals("Andres",studentDAO.findById(1L).getStudentName());
+        studentDAO.save(studentDTO);
+        assertThrows(StudentNotFoundException.class, this::throwNotFoundException);
+        assertEquals(studentDTO.getStudentName(),studentDAO.findById(student).getStudentName());
     }
 
     @Test
     void deleteStudent(){
-        long queryId = 6L;
-
-        boolean result = studentDAO.delete(queryId);
-
+        boolean result = studentDAO.delete(student);
         assertTrue(result);
+    }
+
+    private void throwNotFoundException() throws StudentNotFoundException {
+        throw new StudentNotFoundException(student);
     }
 
 
