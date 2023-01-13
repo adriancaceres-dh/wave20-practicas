@@ -1,7 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
@@ -15,6 +17,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,6 +25,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,13 +43,12 @@ class UserServiceTest {
     private UserService userService;
 
     static ObjectWriter writer;
-    static User validUser = new User(1,"noahHoah",new HashSet<>(),new HashSet<>(),new HashSet<>(),true);
-    static User validUserToFollow = new User(2,"elzaTlza",new HashSet<>(),new HashSet<>(),new HashSet<>(),true);
+    static User validUser = new User(1, "noahHoah", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
+    static User validUserToFollow = new User(2, "elzaTlza", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
+
     @BeforeEach
     public void setUp() {
-        this.writer = new ObjectMapper()
-                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
-                .writer();
+        this.writer = new ObjectMapper().configure(SerializationFeature.WRAP_ROOT_VALUE, false).writer();
     }
 
     @Test
@@ -72,15 +75,174 @@ class UserServiceTest {
     @Test
     void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() throws Exception {
 
-        //Arrange
+        // Arrange
         String expectedErrorMessage = "El usuario no existe";
         when(userRepository.getUserById(1)).thenReturn(validUser);
         when(userRepository.getUserById(99)).thenReturn(null);
         validUser.getFollowed().add(validUserToFollow.getId());
 
-        //Act && Assert
-        NotFoundException notFoundException = Assertions.assertThrows(NotFoundException.class, () -> userService.followUser(1,99));
-        Assertions.assertEquals(expectedErrorMessage,notFoundException.getMessage());
+        // Act && Assert
+        NotFoundException notFoundException = Assertions.assertThrows(NotFoundException.class, () -> userService.followUser(1, 99));
+        Assertions.assertEquals(expectedErrorMessage, notFoundException.getMessage());
     }
 
+    @Test
+    @DisplayName("T3 se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
+    public void shouldGetSellersFollowersDtoOrderedByAsc() {
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        Set<Integer> followers = new HashSet<>();
+        followers.add(1);
+        followers.add(2);
+        User user1 = User.builder().id(1).name("Facundo").build();
+
+        User user2 = User.builder().id(2).name("Raul").build();
+        user.setFollowers(followers);
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        UserFollowersResponseDto expectedResult = new UserFollowersResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        List<UserResponseDto> users = new ArrayList<>();
+        UserResponseDto userResponse1 = new UserResponseDto(1, "Facundo");
+        UserResponseDto userResponse2 = new UserResponseDto(2, "Raul");
+        users.add(userResponse1);
+        users.add(userResponse2);
+        expectedResult.setFollowers(users);
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, "name_asc");
+
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T3 se obtiene lista de los seguidores de un usuario ordenada descendente.")
+    public void shouldGetSellersFollowersDtoOrderedByDesc() {
+
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followers = new HashSet<>();
+        followers.add(1);
+        followers.add(2);
+
+        user.setFollowers(followers);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(2, "Raul"));
+        users.add(new UserResponseDto(1, "Facundo"));
+
+        UserFollowersResponseDto expectedResult = new UserFollowersResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowers(users);
+
+        //Act y Assert
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, "name_desc");
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T3 se obtiene lista de los que un usuario sigue ordenada ascendente.")
+    public void shouldGetSellersFollowedDtoOrderedByAsc() {
+
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followed = new HashSet<>();
+        followed.add(1);
+        followed.add(2);
+
+        user.setFollowed(followed);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(1, "Facundo"));
+        users.add(new UserResponseDto(2, "Raul"));
+
+        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowed(users);
+
+        //Act y Assert
+        UserFollowedResponseDto actual = userService.getFollowedDto(6, "name_asc");
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T3 se obtiene lista de los que un usuario sigue ordenada descendente.")
+    public void shouldGetSellersFollowedDtoOrderedByDesc() {
+
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followed = new HashSet<>();
+        followed.add(1);
+        followed.add(2);
+
+        user.setFollowed(followed);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(2, "Raul"));
+        users.add(new UserResponseDto(1, "Facundo"));
+
+        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowed(users);
+
+        //Act y Assert
+        UserFollowedResponseDto actual = userService.getFollowedDto(6, "name_desc");
+        assertEquals(expectedResult, actual);
+    }
+
+
+    @Test
+    @DisplayName("T3 Se lanza excepción si el orden es inválido.")
+    public void shouldThrowExceptionIfOrderDoesNotExist() {
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followed = new HashSet<>();
+        followed.add(1);
+        followed.add(2);
+
+        user.setFollowed(followed);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(2, "Raul"));
+        users.add(new UserResponseDto(1, "Facundo"));
+
+        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowed(users);
+
+        //Act y Assert
+        assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(6, "invalid_order"));
+    }
 }
