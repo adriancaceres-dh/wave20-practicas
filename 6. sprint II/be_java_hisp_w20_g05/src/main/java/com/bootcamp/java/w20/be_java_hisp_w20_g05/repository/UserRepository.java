@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,9 +44,9 @@ public class UserRepository implements IRepository<User> {
                 .collect(Collectors.toSet());
     }
 
-    public User getById(int userId) {
+    public Optional<User> getById(int userId) {
         return users.stream().filter(u -> u.getId()== userId)
-                .findFirst().orElseThrow(() -> new IdNotFoundException(new MessageExceptionDTO("No se encontro el usuario")));
+                .findFirst();
     }
 
     private static Set<User> loadDataBase() {
