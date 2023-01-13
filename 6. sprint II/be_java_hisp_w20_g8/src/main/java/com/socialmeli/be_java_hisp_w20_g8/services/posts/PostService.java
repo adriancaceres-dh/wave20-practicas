@@ -72,8 +72,6 @@ public class PostService implements IPostService {
         // Add the post to the seller's list
          seller.getPost().add(postId);
          return  new ResponseDTO(true, "Post added successfully");
-
-
     }
 
     @Override
