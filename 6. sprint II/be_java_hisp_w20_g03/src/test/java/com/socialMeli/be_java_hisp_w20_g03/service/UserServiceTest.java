@@ -126,12 +126,4 @@ class UserServiceTest {
         //assert
         assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
     }
-
-    @Test
-    void getFollowedList() {
-    }
-
-    @Test
-    void unfollow() {
-    }
 }

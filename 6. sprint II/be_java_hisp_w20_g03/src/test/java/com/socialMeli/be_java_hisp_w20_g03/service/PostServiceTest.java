@@ -36,10 +36,6 @@ class PostServiceTest {
     PostService postService;
 
     @Test
-    void addPost() {
-    }
-
-    @Test
     @DisplayName("T-0008: Camino Feliz")
     void getPostOk() {
         //Arrange
