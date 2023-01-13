@@ -83,12 +83,12 @@ public class UserService implements IUserService {
     private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
         List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
 
-        if (!orders.contains(order)) {
+        if (!orders.contains(order) && (order !=null)) {
             throw new InvalidQueryParamValueException(Parameter.getString("EX_InvalidQueryParamValue"));
         }
 
         Comparator<UserResponseBaseDto> comparator = Comparator.comparing(UserResponseBaseDto::getUserName);
-        Comparator<UserResponseBaseDto> selectedOrder = orders.get(0).equalsIgnoreCase(order) ? comparator : comparator.reversed();
+        Comparator<UserResponseBaseDto> selectedOrder = (orders.get(0).equalsIgnoreCase(order) || order == null) ? comparator : comparator.reversed();
 
         return users
                 .stream()
