@@ -4,13 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class UserFollowersCountDto {
 
     private int userId;
+
     private String userName;
+
     private int followersCount;
 
 }
