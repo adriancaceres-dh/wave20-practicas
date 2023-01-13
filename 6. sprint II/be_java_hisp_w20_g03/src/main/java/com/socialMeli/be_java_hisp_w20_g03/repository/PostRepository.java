@@ -1,13 +1,18 @@
 package com.socialMeli.be_java_hisp_w20_g03.repository;
 
+import com.socialMeli.be_java_hisp_w20_g03.dto.request.PostDTO;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Repository
 public class PostRepository implements IPostRepository {
@@ -89,6 +94,13 @@ public class PostRepository implements IPostRepository {
 
     public List<Post> getPosts() {
         return this.postsList;
+    }
+
+    public List<Post> getPostsByUserId(int userId) {
+        LocalDate dateNow = LocalDate.now();
+        return this.postsList.stream().filter(post -> post.getUserId() == userId)
+                .filter(post -> DAYS.between(post.getDate(), dateNow) <= 15)
+                .collect(Collectors.toList());
     }
 
 }
