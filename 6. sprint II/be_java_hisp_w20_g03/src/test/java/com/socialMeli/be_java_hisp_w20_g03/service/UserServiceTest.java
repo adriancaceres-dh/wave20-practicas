@@ -4,6 +4,7 @@ package com.socialMeli.be_java_hisp_w20_g03.service;
 import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
@@ -49,6 +50,15 @@ class UserServiceTest {
         String result = userService.addFollower(idRequestUser,idRequestUser2);
         // assert
         Assertions.assertEquals(expected,result);
+    }
+    @Test
+    @DisplayName("US0001-Verificando la excepcion cuando el usuario no existe.")
+    void addFollowerThrowsNotFoundException() {
+        //Arrange
+        int idRequestUser = 23;
+        int idRequestUser2 = 6631;
+        //Act y Assert
+        Assertions.assertThrows(NotFoundException.class,()-> userService.addFollower(idRequestUser,idRequestUser2));
     }
 
     @Test
