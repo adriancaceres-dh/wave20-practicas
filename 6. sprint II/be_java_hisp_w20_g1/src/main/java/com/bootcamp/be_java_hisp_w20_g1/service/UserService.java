@@ -22,9 +22,10 @@ public class UserService implements IUserService {
 
     private IUserRepository userRepository;
 
-public UserService (UserRepository userRepository) {
-this.userRepository = userRepository;
-}
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserFollowersResponseDto getSellerFollowersDto(int id, String order) {
         UserFollowersResponseDto userResponse = new UserFollowersResponseDto();

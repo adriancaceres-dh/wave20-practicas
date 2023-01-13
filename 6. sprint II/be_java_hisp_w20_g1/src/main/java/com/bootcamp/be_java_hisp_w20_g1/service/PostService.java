@@ -37,12 +37,13 @@ public class PostService implements IPostService {
 
     private ModelMapper mapper;
 
-public PostService (PostRepository postRepository, ProductService productService, UserService userService, ModelMapper mapper) {
-this.postRepository = postRepository;
-this.productService = productService;
-this.userService = userService;
-this.mapper = mapper;
-}
+    public PostService(PostRepository postRepository, ProductService productService, UserService userService, ModelMapper mapper) {
+        this.postRepository = postRepository;
+        this.productService = productService;
+        this.userService = userService;
+        this.mapper = mapper;
+    }
+
     public List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
         if (order.equalsIgnoreCase(Parameter.getString("DateOrder"))) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));

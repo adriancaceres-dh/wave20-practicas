@@ -14,11 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class UserFollowedResponseDto extends UserResponseBaseDto{
+public class UserFollowedResponseDto extends UserResponseBaseDto {
     private List<UserResponseDto> followed;
 
     public UserFollowedResponseDto(int id, String name, List<UserResponseDto> userFollowedList) {
-        super(id,name);
+        super(id, name);
         followed = userFollowedList;
     }
 }
