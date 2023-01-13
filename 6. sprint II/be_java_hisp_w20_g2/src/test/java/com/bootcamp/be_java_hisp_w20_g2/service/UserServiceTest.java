@@ -81,40 +81,6 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Camino feliz en donde existe el usuario buscado por parámetro.")
-    void followerListWithUserExist() {
-        // Arrange
-        UserFollowersCountResponseDTO responseExpected = new UserFollowersCountResponseDTO(2, "Mariano", 3);
-        User user = UtilsTest.generateUserToTestFollowerList();
-        // Act
-        when(userRepository.exists(2)).thenReturn(true);
-        when(userRepository.findOne(2)).thenReturn(user);
-        UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
-        // Assert
-        verify(userRepository, atLeastOnce()).exists(1);
-        verify(userRepository, atLeastOnce()).findOne(1);
-        assertEquals(responseExpected, dtoResult);
-    }
-
-    @Test
-    @DisplayName("Camino feliz't en donde no existe el usuario buscado por parámetro.")
-    void followerListWithUserNotExist() {
-        // Arrange
-        BadRequestException responseExpected = new BadRequestException("El usuario no existe");
-
-        Exception myExceptionResult = null;
-        // Act
-        when(userRepository.exists(2)).thenReturn(false);
-        try {
-            UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
-        } catch (BadRequestException ex) {
-            myExceptionResult = ex;
-        } finally {
-            // Assert
-            verify(userRepository, atLeastOnce()).exists(2);
-            //assertThrows(BadRequestException.class,()->{userRepository.exists(2);});
-            assertEquals(responseExpected.getMessage(), myExceptionResult.getMessage());
-        }
     void followNonExistingUser() {
 
         // test follow a non-existing user (BadRequest)
@@ -159,8 +125,41 @@ class UserServiceTest {
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,1));
 
     }
+    
+    @Test
+    @DisplayName("Camino feliz en donde existe el usuario buscado por parámetro.")
+    void followerListWithUserExist() {
+        // Arrange
+        UserFollowersCountResponseDTO responseExpected = new UserFollowersCountResponseDTO(2, "Mariano", 3);
+        User user = UtilsTest.generateUserToTestFollowerList();
+        // Act
+        when(userRepository.exists(2)).thenReturn(true);
+        when(userRepository.findOne(2)).thenReturn(user);
+        UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
+        // Assert
+        verify(userRepository, atLeastOnce()).exists(1);
+        verify(userRepository, atLeastOnce()).findOne(1);
+        assertEquals(responseExpected, dtoResult);
+    }
 
     @Test
-    void followerList() {
+    @DisplayName("Camino feliz't en donde no existe el usuario buscado por parámetro.")
+    void followerListWithUserNotExist() {
+        // Arrange
+        BadRequestException responseExpected = new BadRequestException("El usuario no existe");
+
+        Exception myExceptionResult = null;
+        // Act
+        when(userRepository.exists(2)).thenReturn(false);
+        try {
+            UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
+        } catch (BadRequestException ex) {
+            myExceptionResult = ex;
+        } finally {
+            // Assert
+            verify(userRepository, atLeastOnce()).exists(2);
+            //assertThrows(BadRequestException.class,()->{userRepository.exists(2);});
+            assertEquals(responseExpected.getMessage(), myExceptionResult.getMessage());
+        }
     }
 }
