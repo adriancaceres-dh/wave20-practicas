@@ -55,7 +55,7 @@ public class StudentDAOTest {
 
     @Test
     void deleteStudent(){
-        long queryId = 2L;
+        long queryId = 6L;
 
         boolean result = studentDAO.delete(queryId);
 
