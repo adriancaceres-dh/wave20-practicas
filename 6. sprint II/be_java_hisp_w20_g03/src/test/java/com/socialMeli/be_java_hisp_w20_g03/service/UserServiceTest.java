@@ -1,7 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
-
-
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
@@ -15,9 +14,9 @@ import org.mockito.Mock;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils.*;
 import static org.mockito.Mockito.when;
 
-import static com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -75,12 +74,13 @@ class UserServiceTest {
         verify(userRepository, atLeastOnce()).getUserById(userId);
         assertEquals(expect,actual);
     }
+
     @Test
     void getFollowersListOrderAsc() {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoAsc();
-        User user = buildUser();
+        User user = UserUtils.buildUser();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
@@ -89,11 +89,18 @@ class UserServiceTest {
         assertEquals(expect,actual);
     }
     @Test
-    void getFollowersListUserNotFound() {
+    void getFollowersListUserNotFoundUser() {
         //arrange
         when(userRepository.getUserById(000)).thenThrow(NotFoundException.class);
         //assert
         assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
+    }
+    @Test
+    void getFollowersListUserNotFoundOrder() {
+        //arrange
+        when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
+        //assert
+        assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
     }
 
     @Test
