@@ -39,10 +39,8 @@ class ServiceUsrTest {
     @Test
     void followersCountOKTest() {
     }
-    
 
-    @Test
-    void followersOrderAscOKTest() {
+    private Seller createSeller(){
         Seller seller1 = new Seller();
         seller1.setUser_name("rodri");
         seller1.setUser_id(1);
@@ -65,19 +63,13 @@ class ServiceUsrTest {
         followed.put(10,seller4);
 
         seller1.setFollowed(followed);
+        return seller1;
 
-        List<ListedUserDTO> expectedList = new ArrayList<>();
-        expectedList.add(new ListedUserDTO(10,"Daniela"));
-        expectedList.add(new ListedUserDTO(7,"Julieta"));
-        expectedList.add(new ListedUserDTO(6,"Tammi"));
+    }
 
-        UserFollowedDTO expected =  new UserFollowedDTO(1,"rodri",expectedList);
 
-        when(mockUserRepository.findById(1)).thenReturn(seller1);
-
-        UserFollowedDTO result = mockServiceUser.followed(1,"name_asc");
-
-        Assertions.assertEquals(expected,result);
+    @Test
+    void followersOrderAscOKTest() {
 
     }
 
@@ -91,10 +83,37 @@ class ServiceUsrTest {
 
     @Test
     void followedOrderAscOKTest() {
+        Seller sellerCreate = createSeller();
+
+        List<ListedUserDTO> expectedList = new ArrayList<>();
+        expectedList.add(new ListedUserDTO(10,"Daniela"));
+        expectedList.add(new ListedUserDTO(7,"Julieta"));
+        expectedList.add(new ListedUserDTO(6,"Tammi"));
+
+        UserFollowedDTO expected =  new UserFollowedDTO(1,"rodri",expectedList);
+
+        when(mockUserRepository.findById(1)).thenReturn(sellerCreate);
+
+        UserFollowedDTO result = mockServiceUser.followed(1,"name_asc");
+
+        Assertions.assertEquals(expected,result);
     }
 
     @Test
     void followedOrderDescOKTest() {
+        Seller sellerCreate = createSeller();
+        List<ListedUserDTO> expectedList = new ArrayList<>();
+        expectedList.add(new ListedUserDTO(6,"Tammi")); //Tammi
+        expectedList.add(new ListedUserDTO(7,"Julieta")); //Julieta
+        expectedList.add(new ListedUserDTO(10,"Daniela"));//Daniela
+
+        UserFollowedDTO expected =  new UserFollowedDTO(1,"rodri",expectedList);
+
+        when(mockUserRepository.findById(1)).thenReturn(sellerCreate);
+
+        UserFollowedDTO result = mockServiceUser.followed(1,"name_desc");
+
+        Assertions.assertEquals(expected,result);
     }
 
     @Test
