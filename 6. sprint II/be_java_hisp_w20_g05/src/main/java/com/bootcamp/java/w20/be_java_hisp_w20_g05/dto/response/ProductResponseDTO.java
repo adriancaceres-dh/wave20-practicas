@@ -11,17 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProductResponseDTO {
-    @JsonProperty("product_id")
     private int id;
-    @JsonProperty("product_name")
     private String name;
-
     private String type;
-
     private String brand;
-
     private String color;
-
     private String notes;
 
 }
