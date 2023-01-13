@@ -1,6 +1,7 @@
-package com.socialMeli.be_java_hisp_w20_g03.dto;
+package com.socialMeli.be_java_hisp_w20_g03.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

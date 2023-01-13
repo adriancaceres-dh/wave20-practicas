@@ -1,7 +1,9 @@
 package com.socialMeli.be_java_hisp_w20_g03.controller;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.*;
-import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserExtendedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

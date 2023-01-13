@@ -1,9 +1,9 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowedDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserExtendedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 
 import java.util.List;
 

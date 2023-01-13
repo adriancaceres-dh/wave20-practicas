@@ -1,6 +1,10 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.*;
+import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserExtendedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
