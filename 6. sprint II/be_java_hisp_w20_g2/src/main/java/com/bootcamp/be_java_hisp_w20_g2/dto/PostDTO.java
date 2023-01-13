@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -14,10 +16,22 @@ import java.time.LocalDate;
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostDTO {
-    private int userId;
+    @NotNull(message = "El id no puede estar vacío.") // Se paso a Integer para que pueda agarrar el @ e identificarlo como null.
+    @Positive(message = "El id debe ser mayor a cero.")
+    private Integer userId;
+
+    @NotNull(message = "La fecha no puede estar vacía.")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd-MM-yyyy") // Verificar que funcione.
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
+
     private ProductDTO product;
-    private int category;
-    private double price;
+
+    @NotNull(message = "El campo no puede estar vacío.")
+    private Integer category;
+
+    @NotNull(message = "El campo no puede estar vacío.")
+    @Positive(message = "El precio debe ser mayor a cero")
+    @Max(value = 10000000, message = "El precio máximo por producto es 10.000.000")
+    private Double price;
 }
