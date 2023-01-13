@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g7.repository;
 
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
-import com.bootcamp.be_java_hisp_w20_g7.exception.UserNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -26,12 +25,6 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public User findById(int id) {
-        User user = users.stream().filter(e -> e.getUserId() == id).findFirst().orElse(null);
-
-        if (user == null) {
-            throw new UserNotFoundException("user not found");
-        }
-
-        return user;
+        return users.stream().filter(e -> e.getUserId() == id).findFirst().orElse(null);
     }
 }

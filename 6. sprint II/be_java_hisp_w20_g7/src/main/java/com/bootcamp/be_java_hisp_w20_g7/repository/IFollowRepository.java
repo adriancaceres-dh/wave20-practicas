@@ -10,6 +10,4 @@ public interface IFollowRepository {
 
     boolean save(Follow follow);
 
-    void deleteByIds(int idFollower, int idFollowed);
-
 }

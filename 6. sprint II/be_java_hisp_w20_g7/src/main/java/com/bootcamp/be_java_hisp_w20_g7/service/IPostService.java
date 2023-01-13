@@ -19,7 +19,7 @@ public interface IPostService {
      *
      * @return int
      */
-    void calculateId(Post post);
+    Integer calculateId(Post post);
 
     /**
      * US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).

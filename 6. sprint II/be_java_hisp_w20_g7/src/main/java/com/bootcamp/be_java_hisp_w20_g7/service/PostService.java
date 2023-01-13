@@ -7,7 +7,6 @@ import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
 import com.bootcamp.be_java_hisp_w20_g7.exception.DataIsnotCorrectException;
-import com.bootcamp.be_java_hisp_w20_g7.exception.PostEmptyException;
 import com.bootcamp.be_java_hisp_w20_g7.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IFollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IPostRepository;
@@ -45,9 +44,6 @@ public class PostService implements IPostService {
 
         User user = iUserRepository.findById(postCreateDto.getUserId());
         if (user == null) throw new UserNotFoundException("User with id " + postCreateDto.getUserId() + " not found");
-        if (postCreateDto == null) {
-            throw new PostEmptyException("Post is empty");
-        }
         Post post = modelMapper.map(postCreateDto, Post.class);
         calculateId(post);
         if (post.getPrice() <= 0) {
@@ -60,12 +56,13 @@ public class PostService implements IPostService {
         }
     }
 
-    public void calculateId(Post post) {
+    public Integer calculateId(Post post) {
         post.setPostId(iPostRepository.findAll().stream().filter(post1 -> post.getUserId() == post1.getUserId())
                 .map(Post::getPostId)
                 .sorted(Comparator.reverseOrder())
                 .findFirst()
                 .orElseGet(() -> 0) + 1);
+        return post.getPostId();
     }
 
     @Override
