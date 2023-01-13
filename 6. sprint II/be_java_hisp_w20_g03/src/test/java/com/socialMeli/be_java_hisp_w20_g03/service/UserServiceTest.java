@@ -15,7 +15,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import org.mockito.internal.matchers.Not;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.expression.spel.support.BooleanTypedValue;
+
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.when;
 
@@ -127,10 +131,6 @@ class UserServiceTest {
         assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
     }
 
-    @Test
-    void getFollowedList() {
-    }
-
     @DisplayName("US0002-Permite continuar con normalidad.")
     @Test
     void unfollowOk() {
@@ -153,15 +153,36 @@ class UserServiceTest {
         assertEquals(expectedString,unfollowResponse);
 
     }
-
+    @DisplayName("US0002- Usuario no existe.")
     @Test
     void unfollowUserNotFound() {
         //arrange
-        int userId = 234;
+        int userIdFollower = 234;
+        int userIdToUnfollow = 6631;
 
         //Act
+        when(userRepository.getUserById(userIdFollower)).thenReturn(null);
+        //Assert
+        assertThrows(NotFoundException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
+    }
+    @DisplayName("US0002-Usuario no es seguido")
+    @Test
+    void unfollowUserNotFollowed() {
+        int userIdFollower = 234;
+        int userIdToUnfollow = 6631;
+
+        User user = UserUtils.buildUser();
+        User user2 = User.builder()
+                .userId(userIdToUnfollow)
+                .userName("usuario3")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        //Act
+        when(userRepository.getUserById(userIdFollower)).thenReturn(user);
+        when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
 
         //Assert
-
+        assertThrows(BadRequestException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
     }
 }
