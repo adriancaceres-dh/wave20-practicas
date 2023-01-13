@@ -24,7 +24,7 @@ public class UtilsTest {
         User user1 = new User(1,"usuario1",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         User user2 = new User(2,"usuario2",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         user2.addFollower(user1);
-
+        user1.getFollowing().add(user2);
         HashMap<Integer,User> users = new HashMap<>();
         users.put(1,user1);
         users.put(2,user2);
