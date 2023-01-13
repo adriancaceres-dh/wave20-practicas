@@ -23,6 +23,7 @@ public class PostRepository implements IPostRepository {
     public PostRepository() {
         this.posts = buildPostRepository();
     }
+
     @Override
     public List<Post> getPostsByUserId(int userId) {
         return posts.stream().filter(post -> post.getUserId() == userId).collect(Collectors.toList());

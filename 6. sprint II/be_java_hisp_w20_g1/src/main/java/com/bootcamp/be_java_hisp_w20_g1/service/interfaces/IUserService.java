@@ -9,13 +9,19 @@ import java.util.Set;
 public interface IUserService {
 
     UserFollowersResponseDto getSellerFollowersDto(int id, String order);
+
     UserFollowersCountResponseDto getFollowersCountDto(int id);
+
     UserFollowedResponseDto getFollowedDto(int id, String order);
+
     UserFollowedResponseDto followUser(int userId, int userIdToFollow);
+
     UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow);
+
     void validateUserExistById(int id);
 
     Set<Integer> getUserFollowed(int id);
+
     boolean alreadyExists(int userId);
 
     void updateUser(int userId);

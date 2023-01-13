@@ -23,10 +23,11 @@ public class ProductService implements IProductService {
 
     private IProductRepository productRepository;
 
-public ProductService (ProductRepository productRepository, ModelMapper mapper) {
-this.productRepository = productRepository;
-this.mapper = mapper;
-}
+    public ProductService(ProductRepository productRepository, ModelMapper mapper) {
+        this.productRepository = productRepository;
+        this.mapper = mapper;
+    }
+
     @Override
     public ProductResponseDto getProductById(int id) {
         Product product = productRepository.getProductById(id);

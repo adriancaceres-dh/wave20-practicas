@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class UserFollowersCountResponseDto extends UserResponseBaseDto{
+public class UserFollowersCountResponseDto extends UserResponseBaseDto {
 
     private int followersCount;
 
