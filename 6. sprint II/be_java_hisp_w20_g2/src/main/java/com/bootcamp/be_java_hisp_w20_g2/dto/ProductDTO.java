@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2.dto;
 
-import com.bootcamp.be_java_hisp_w20_g2.utils.Constants.RegexConstants;
+import com.bootcamp.be_java_hisp_w20_g2.utils.constants.RegexConstants;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
