@@ -1,9 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.*;
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
@@ -78,7 +75,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserFollowersDTO getFollowedList(int userId, String order) {
+    public UserFollowedDTO getFollowedList(int userId, String order) {
         User user = iUserRepository.getUserById(userId);
 
         if (user == null) {
@@ -95,7 +92,7 @@ public class UserService implements IUserService {
                         .collect(Collectors.toList());
             }
         }
-        return new UserFollowersDTO(user.getUserId(), user.getUserName(), followed);
+        return new UserFollowedDTO(user.getUserId(), user.getUserName(), followed);
     }
 
     @Override

@@ -1,9 +1,6 @@
 package com.socialMeli.be_java_hisp_w20_g03.controller;
 
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserExtendedDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowerCountDTO;
-import com.socialMeli.be_java_hisp_w20_g03.dto.UserFollowersDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.*;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +40,8 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}/followed/list")
-    public ResponseEntity<UserFollowersDTO> getFollowedList(@PathVariable int userId,
-                                                            @RequestParam (required = false) String order) {
+    public ResponseEntity<UserFollowedDTO> getFollowedList(@PathVariable int userId,
+                                                           @RequestParam (required = false) String order) {
         return new ResponseEntity<>(iUserService.getFollowedList(userId, order), HttpStatus.OK);
     }
 
