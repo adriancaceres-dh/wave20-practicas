@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
@@ -59,7 +60,29 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T-0007-Cantidad de seguidores adecuada.")
     void getFollowerCount() {
+        //Arrange
+        User user = UserUtils.buildUser();
+        when(userRepository.getUserById(anyInt())).thenReturn(user);
+
+        //Act
+        UserFollowerCountDTO output = userService.getFollowerCount(user.getUserId());
+
+        //Assert
+        verify(userRepository, atLeastOnce()).getUserById(user.getUserId());
+        assertEquals(3,output.getFollowers_count());
+
+    }
+
+    @Test
+    @DisplayName("T-0007-Usuario inexistente")
+    void getFollowerCountUserDoesntExists() {
+        //Arrange
+        when(userRepository.getUserById(anyInt())).thenReturn(null);
+
+        //Act & Assert
+        assertThrows(NotFoundException.class, ()->userService.getFollowerCount(1));
     }
 
     @Test
@@ -67,7 +90,7 @@ class UserServiceTest {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoDesc();
-        User user = buildUser();
+        User user = UserUtils.buildUser();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_desc");
@@ -80,7 +103,7 @@ class UserServiceTest {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoAsc();
-        User user = buildUser();
+        User user = UserUtils.buildUser();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
