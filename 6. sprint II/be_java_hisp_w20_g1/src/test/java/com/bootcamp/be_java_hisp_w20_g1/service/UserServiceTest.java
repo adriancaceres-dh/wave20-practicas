@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
@@ -211,5 +212,37 @@ class UserServiceTest {
         //Act y Assert
         UserFollowedResponseDto actual = userService.getFollowedDto(6, "name_desc");
         assertEquals(expectedResult, actual);
+    }
+
+
+    @Test
+    @DisplayName("T3 Se lanza excepción si el orden es inválido.")
+    public void shouldThrowExceptionIfOrderDoesNotExist() {
+        // Arrange
+        User user = User.builder().id(6).name("Joe").isSeller(true).build();
+        User user1 = User.builder().id(1).name("Facundo").build();
+        User user2 = User.builder().id(2).name("Raul").build();
+
+        Set<Integer> followed = new HashSet<>();
+        followed.add(1);
+        followed.add(2);
+
+        user.setFollowed(followed);
+
+        when(userRepository.getUserById(6)).thenReturn(user);
+        when(userRepository.getUserById(1)).thenReturn(user1);
+        when(userRepository.getUserById(2)).thenReturn(user2);
+
+        List<UserResponseDto> users = new ArrayList<>();
+        users.add(new UserResponseDto(2, "Raul"));
+        users.add(new UserResponseDto(1, "Facundo"));
+
+        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
+        expectedResult.setUserId(6);
+        expectedResult.setUserName("Joe");
+        expectedResult.setFollowed(users);
+
+        //Act y Assert
+        assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(6, "invalid_order"));
     }
 }
