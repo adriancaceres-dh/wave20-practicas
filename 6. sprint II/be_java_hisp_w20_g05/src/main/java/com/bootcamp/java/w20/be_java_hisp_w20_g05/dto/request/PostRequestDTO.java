@@ -8,6 +8,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -16,10 +20,20 @@ import java.time.LocalDate;
 @Builder
 public class PostRequestDTO {
     @JsonProperty("user_id")
+    @Min(value = 1, message= "El Id debe ser mayor a 0.")
+    @NotNull(message = "El Id no puede estar vacio.")
     private int userId;
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
+    @NotNull(message = "La fecha no puede estar vacia.")
     private LocalDate date;
+
+    @Valid
     private ProductRequestDTO product;
+    @NotNull(message = "La categoria no puede estar vacia.")
     private int category;
+
+    @NotNull(message = "El precio no puede estar vacio.")
+    @Max(value = 10000000 , message = "El precio maximo por producto es de 10.000.000")
+    @Min(value = 0)
     private double price;
 }
