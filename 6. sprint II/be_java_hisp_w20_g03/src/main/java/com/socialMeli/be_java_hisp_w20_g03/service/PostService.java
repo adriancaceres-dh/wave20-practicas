@@ -63,15 +63,14 @@ public class PostService implements IPostService {
         if (userEx == null) {
             throw new NotFoundException("El usuario ingresado no existe.");
         }
-        for (User user : userRepository.getUserById(userId).getFollowed()) {
-            postList.addAll(postRepository.getPosts().stream().filter(post -> post.getUserId() == user.getUserId())
-                    .filter(post -> DAYS.between(post.getDate(), dateNow) <= 15)
+        for (User user : userEx.getFollowed()) {
+            postList.addAll(postRepository.getPostsByUserId(user.getUserId()).stream()
                     .map(u -> mapper.map(u, PostDTO.class)).collect(Collectors.toList()));
         }
-        if (order != null && order.equals("date_desc")) {
-            postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate(), Comparator.reverseOrder())).collect(Collectors.toList());
-        } else {
+        if (order != null && order.equals("date_asc")) {
             postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate())).collect(Collectors.toList());
+        } else {
+            postList = postList.stream().sorted(Comparator.comparing(x -> x.getDate(), Comparator.reverseOrder())).collect(Collectors.toList());
         }
         return postList;
     }
