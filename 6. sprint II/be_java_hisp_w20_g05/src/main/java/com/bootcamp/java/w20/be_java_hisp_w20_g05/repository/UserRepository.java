@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-public class UserRepository implements IRepository<User> {
+public class UserRepository implements IUserRepository {
     private Set<User> users= new HashSet<>();
 
     public UserRepository(){
