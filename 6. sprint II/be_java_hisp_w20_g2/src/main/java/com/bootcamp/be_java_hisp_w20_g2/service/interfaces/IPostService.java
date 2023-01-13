@@ -6,7 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
 import java.util.Optional;
 
 public interface IPostService {
-    void createPost(PostDTO postRequestDTO);
+    PostDTO createPost(PostDTO postRequestDTO);
 
     PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order);
 }

@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -17,9 +18,8 @@ public class PostController {
 
     // US-0005
     @PostMapping(path = "/post")
-    @ResponseStatus(HttpStatus.OK)
-    public void addNewProduct(@RequestBody PostDTO newPost) {
-        postService.createPost(newPost);
+    public ResponseEntity<PostDTO> addNewProduct(@RequestBody PostDTO newPost) {
+        return new ResponseEntity<>(postService.createPost(newPost),HttpStatus.CREATED);
     }
 
     // US-0006 - US-0009

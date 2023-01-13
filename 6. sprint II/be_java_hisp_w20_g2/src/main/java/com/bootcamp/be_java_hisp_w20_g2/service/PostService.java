@@ -35,13 +35,14 @@ public class PostService implements IPostService {
      * @param postRequestDTO has the data for the post to be created.
      */
     @Override
-    public void createPost(PostDTO postRequestDTO) {
+    public PostDTO createPost(PostDTO postRequestDTO) {
         User user = getUserOrThrow(postRequestDTO.getUserId());
 
         Post newPost = postMapper.toPost(postRequestDTO);
         user.addPost(newPost);
 
         userRepository.save(user);
+        return postRequestDTO;
     }
 
     /**

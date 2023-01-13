@@ -12,7 +12,7 @@ public interface IUserService {
 
     UserFollowedResponseDTO findAllFollowed(int userId, Optional<String> order);
 
-    void unfollowUser(int userId, int userIdToUnfollow);
+    String unfollowUser(int userId, int userIdToUnfollow);
 
     boolean follow(Integer idFollower, Integer idFollowed);
 

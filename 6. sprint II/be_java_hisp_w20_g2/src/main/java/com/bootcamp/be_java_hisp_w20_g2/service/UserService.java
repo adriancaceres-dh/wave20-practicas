@@ -94,7 +94,7 @@ public class UserService implements IUserService {
      * @param userIdToUnfollow the id of the user who is being unfollowed.
      */
     @Override
-    public void unfollowUser(int userId, int userIdToUnfollow) {
+    public String unfollowUser(int userId, int userIdToUnfollow) {
 
         if (userId != userIdToUnfollow) {
             User user = userRepository.findOne(userId);
@@ -128,6 +128,7 @@ public class UserService implements IUserService {
         } else {
             throw new BadRequestException("You can't unfollow yourself");
         }
+        return "Operación exitosa";
     }
 
     /**
