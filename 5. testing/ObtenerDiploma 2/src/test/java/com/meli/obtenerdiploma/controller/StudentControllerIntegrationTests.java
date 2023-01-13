@@ -3,6 +3,7 @@ package com.meli.obtenerdiploma.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.util.TestUtilsGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -11,18 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.awt.*;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class StudentControllerIntegrationTests {
 
     @Autowired
@@ -55,6 +60,15 @@ public class StudentControllerIntegrationTests {
                 .andExpect(jsonPath("$.studentName").value("Juan"));
     }
 
+    @Test
+    @DisplayName("Camino no feliz - Debería arrojar una excepción cuando se le ingresa un Id no válido")
+    public void testGetStudentNotOk() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/student/getStudent/{id}", 666L))
+                .andDo(print()).andExpect(status().isNotFound())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof StudentNotFoundException));
+                //.andExpect();
+    }
+
     //modify student
     @Test
     @DisplayName("Camino feliz - Debería modificar un estudiante y devolver un status code 200")
@@ -80,15 +94,22 @@ public class StudentControllerIntegrationTests {
                 .andDo(print()).andExpect(status().isOk());
     }
 
+    @Test
+    @DisplayName("Camino no feliz - Debería arrojar una excepción cuando se le ingresa un Id no válido")
+    public void testRemoveStudentNotOk() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/student/removeStudent/{id}", 10000L))
+                .andDo(print()).andExpect(status().isNotFound())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof StudentNotFoundException));
+
+    }
+
     //list students
     @Test
     @DisplayName("Camino feliz - Debería listar todos los estudiantes registrados")
     public void testListStudents() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/student/listStudents"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)));
+                .andExpect(jsonPath("$", hasSize(2)));
     }
-    //Preguntar por qué es 3 y no 2 como debería ser ^^^^
-
 
 }
