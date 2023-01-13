@@ -7,7 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Optional;
 
 public class UserResponseSortValidator implements ConstraintValidator<UserResponseSorterConstraint, Optional<String>> {
-
     @Override
     public boolean isValid(Optional<String> order, ConstraintValidatorContext constraintValidatorContext) {
         return order.map(UserResponseDTOStreamSorter::isValid).orElse(true);

@@ -8,11 +8,6 @@ import java.util.Optional;
 
 public class PostSortValidator implements ConstraintValidator<PostSorterConstraint, Optional<String>> {
     @Override
-    public void initialize(PostSorterConstraint constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
-
-    @Override
     public boolean isValid(Optional<String> order, ConstraintValidatorContext constraintValidatorContext) {
         return order.map(PostStreamSorter::isValid).orElse(true);
     }

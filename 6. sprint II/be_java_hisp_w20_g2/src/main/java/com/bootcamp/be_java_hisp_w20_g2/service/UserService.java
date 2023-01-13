@@ -67,11 +67,8 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if (order.isPresent()) {
-                if (UserResponseDTOStreamSorter.isValid(order.get())) {
                     Comparator<UserResponseDTO> comparator = UserResponseDTOStreamSorter.getSortCriteria(order.get());
                     followed = followed.stream().sorted(comparator).collect(Collectors.toList());
-                }
-
             }
             return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed);
         }
