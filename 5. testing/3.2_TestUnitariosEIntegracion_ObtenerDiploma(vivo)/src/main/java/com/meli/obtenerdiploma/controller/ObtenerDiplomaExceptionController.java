@@ -17,7 +17,7 @@ public class ObtenerDiplomaExceptionController {
         return new ResponseEntity<>(e.getError(), e.getStatus());
     }
 
-    /*@ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ErrorDTO> handleValidationExceptions(MethodArgumentNotValidException e) {
         ErrorDTO error = new ErrorDTO("MethodArgumentNotValidException", e.getBindingResult().getFieldError().getDefaultMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
@@ -27,6 +27,6 @@ public class ObtenerDiplomaExceptionController {
     protected ResponseEntity<ErrorDTO> handleValidationExceptions(HttpMessageNotReadableException e) {
         ErrorDTO error = new ErrorDTO("HttpMessageNotReadableException", e.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }*/
+    }
 
 }
