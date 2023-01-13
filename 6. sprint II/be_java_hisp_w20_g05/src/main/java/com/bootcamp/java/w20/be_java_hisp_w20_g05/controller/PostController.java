@@ -34,7 +34,7 @@ public class PostController {
     //Obtiene los posts hechos post hechos en las ultimas dos semanas por los usuarios que sigue el usuario {userId}.
     //Ordenados por default con fecha descendiente, se puede incluir "order=asc" en el queryString para ordenar por fecha ascendiente
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<FollowedUsersPostsResponseDTO> getFollowedUsersPosts(@PathVariable int userId,
+    public ResponseEntity<FollowedUsersPostsResponseDTO> getFollowedUsersPosts(@PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userId,
                                                                @RequestParam(required = false) String order){
         return new ResponseEntity<>(postService.getFollowedUsersPosts(userId, order), HttpStatus.OK);
     }
