@@ -15,6 +15,6 @@ public class SubjectDTO {
 
     @NotNull(message = "La nota de la materia no puede estar vacia")
     @DecimalMax(value = "10", message = "La nota maxima de la materia es de 10")
-    @Min(value = 0, message = "La nota mínima de la materia es 0")
+    @DecimalMin(value = "0", message = "La nota mínima de la materia es 0")
     Double score;
 }
