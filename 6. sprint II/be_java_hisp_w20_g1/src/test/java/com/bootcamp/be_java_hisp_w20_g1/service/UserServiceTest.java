@@ -87,7 +87,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
+    @DisplayName("T4 se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
     public void shouldGetSellersFollowersDtoOrderedByAsc() {
         User user = User.builder().id(6).name("Joe").isSeller(true).build();
         Set<Integer> followers = new HashSet<>();
@@ -116,7 +116,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 se obtiene lista de los seguidores de un usuario ordenada descendente.")
+    @DisplayName("T4 se obtiene lista de los seguidores de un usuario ordenada descendente.")
     public void shouldGetSellersFollowersDtoOrderedByDesc() {
 
         // Arrange
@@ -149,7 +149,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 se obtiene lista de los que un usuario sigue ordenada ascendente.")
+    @DisplayName("T4 se obtiene lista de los que un usuario sigue ordenada ascendente.")
     public void shouldGetSellersFollowedDtoOrderedByAsc() {
 
         // Arrange
@@ -182,7 +182,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 se obtiene lista de los que un usuario sigue ordenada descendente.")
+    @DisplayName("T4 se obtiene lista de los que un usuario sigue ordenada descendente.")
     public void shouldGetSellersFollowedDtoOrderedByDesc() {
 
         // Arrange
