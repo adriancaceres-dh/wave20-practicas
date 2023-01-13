@@ -44,7 +44,7 @@ public class PostService implements IPostService {
         this.mapper = mapper;
     }
 
-    public List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
+    private List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
         if (order.equalsIgnoreCase(Parameter.getString("DateOrder"))) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));
         } else {
