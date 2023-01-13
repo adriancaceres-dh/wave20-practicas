@@ -4,15 +4,10 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseD
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
-import lombok.experimental.Wither;
 import org.junit.jupiter.api.DisplayName;
-import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
-import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,32 +26,22 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-
-
     @Mock
     private IUserRepository userRepository;
-
     @InjectMocks
     private UserService userService;
 
+    @Test
+    void findAllFollowers() {}
 
     @Test
-    void findAllFollowers() {
-
-
-    }
+    void findAllFollowed() {}
 
     @Test
-    void findAllFollowed() {
-    }
+    void unfollowUser() {}
 
     @Test
-    void unfollowUser() {
-    }
-
-    @Test
-    void entity2UserResponseDTO() {
-    }
+    void entity2UserResponseDTO() {}
 
     @Test
     void follow() {
@@ -84,7 +69,6 @@ class UserServiceTest {
 
         Assertions.assertTrue(res);
     }
-
     @Test
     void followNonExistingUser() {
 
@@ -94,7 +78,6 @@ class UserServiceTest {
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,2));
 
     }
-
     @Test
     void followExistingFollowing() {
 
@@ -115,7 +98,6 @@ class UserServiceTest {
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,2));
 
     }
-
     @Test
     void followMySelf() {
         //test follow to myself (BadRequest)
@@ -130,7 +112,6 @@ class UserServiceTest {
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,1));
 
     }
-
     @Test
     @DisplayName("Camino feliz en donde existe el usuario buscado por parámetro.")
     void followerListWithUserExist() {
@@ -146,9 +127,8 @@ class UserServiceTest {
         verify(userRepository, atLeastOnce()).findOne(1);
         assertEquals(responseExpected, dtoResult);
     }
-
     @Test
-    @DisplayName("Camino feliz't en donde no existe el usuario buscado por parámetro.")
+    @DisplayName("Camino feliz en donde no existe el usuario buscado por parámetro.")
     void followerListWithUserNotExist() {
         // Arrange
         BadRequestException responseExpected = new BadRequestException("El usuario no existe");
@@ -167,8 +147,8 @@ class UserServiceTest {
             assertEquals(responseExpected.getMessage(), myExceptionResult.getMessage());
         }
     }
-
     @Test
+    @DisplayName("Camino feliz donde se ordena correctamente por nombre de usuario ascendente")
     void findAllFollowersNameOrderAscOkTest() {
         //arrange
         Optional<String> order = Optional.of("name_asc");
@@ -188,8 +168,8 @@ class UserServiceTest {
         //assert
         assertEquals(userResponseDTOListExpected, userFollowedResponseDTOResult.getFollowers());
     }
-
     @Test
+    @DisplayName("Camino feliz donde se ordena correctamente por nombre de usuario descendente")
     void findAllFollowersNameOrderDescOkTest() {
         //arrange
         Optional<String> order = Optional.of("name_desc");
@@ -209,17 +189,14 @@ class UserServiceTest {
         //assert
         assertEquals(userResponseDTOListExpected, userFollowedResponseDTOResult.getFollowers());
     }
-
     @Test
+    @DisplayName("No se encuentra el id del usuario")
     void findAllFollowersUserNotFoundTest() {
         //arrange
         Optional<String> order = Optional.of("name_desc");
-        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
-        User user1 = users.get(1);
-        when(userRepository.findOne(1)).thenReturn(null);
+        when(userRepository.findOne(anyInt())).thenReturn(null);
         //act - assert
         assertThrows(UserNotFoundException.class, ()->userService.findAllFollowers(1,order));
     }
-
 
 }
