@@ -32,6 +32,24 @@ class UserServiceTest {
     @Test
     void findAllFollowers() {
 
+
+    }
+
+    @Test
+    void findAllFollowed() {
+    }
+
+    @Test
+    void unfollowUser() {
+    }
+
+    @Test
+    void entity2UserResponseDTO() {
+    }
+
+    @Test
+    void follow() {
+
         // test follow an existing user (OK)
 
         HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
@@ -50,26 +68,10 @@ class UserServiceTest {
 
         verify(userRepository,atLeastOnce()).exists(1);
         verify(userRepository,atLeastOnce()).exists(2);
-        verify(userRepository,atLeastOnce()).findOne(2);
+        verify(userRepository,atLeastOnce()).findOne(1);
         verify(userRepository,atLeastOnce()).findOne(2);
 
         Assertions.assertTrue(res);
-    }
-
-    @Test
-    void findAllFollowed() {
-    }
-
-    @Test
-    void unfollowUser() {
-    }
-
-    @Test
-    void entity2UserResponseDTO() {
-    }
-
-    @Test
-    void follow() {
     }
 
     @Test
