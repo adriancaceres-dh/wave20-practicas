@@ -1,11 +1,11 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.sellers;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.SellerFollowersDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.UserDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
-import com.socialmeli.be_java_hisp_w20_g8.services.sellers.SellerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,4 +84,67 @@ class SellerServiceTest {
         assertEquals(expectedErrorMessage,exception.getMessage());
     }
 
+    @Test
+    @DisplayName("T-0004 -> Verify the followers sorting in ascending order")
+    void getSellerFollowersAsc() {
+        // arrange
+        int sellerId = 6;
+        List<UserDTO> expected = List.of(
+                new UserDTO(2, "ana_ortiz"),
+                new UserDTO(5, "ana_real"),
+                new UserDTO(3, "ernesto_llano"),
+                new UserDTO(1, "jesus_flores"),
+                new UserDTO(4, "jesus_rivera")
+        );
+
+        when(personRepository.findSellerById(anyInt())).thenReturn(new Seller(sellerId, "luis_lopez", Set.of(1, 2, 3, 4, 5), new HashSet<>()));
+        when(personRepository.findUserById(1)).thenReturn(new User(1, "jesus_flores", new HashSet<>()));
+        when(personRepository.findUserById(2)).thenReturn(new User(2, "ana_ortiz", new HashSet<>()));
+        when(personRepository.findUserById(3)).thenReturn(new User(3, "ernesto_llano", new HashSet<>()));
+        when(personRepository.findUserById(4)).thenReturn(new User(4, "jesus_rivera", new HashSet<>()));
+        when(personRepository.findUserById(5)).thenReturn(new User(5, "ana_real", new HashSet<>()));
+
+        // act
+        SellerFollowersDTO sellerFollowersDTO = sellerService.getSellerFollowers(sellerId, "name_asc");
+        List<UserDTO> actual = sellerFollowersDTO.getFollowers();
+
+        // assert
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+        for(int i = 1; i < actual.size(); i++) {
+            assertTrue(actual.get(i-1).getUser_name().compareTo(actual.get(i).getUser_name()) <= 0);
+        }
+    }
+
+    @Test
+    @DisplayName("T-0004 -> Verify the followers sorting in descending order")
+    void getSellerFollowersDesc() {
+        // arrange
+        int sellerId = 6;
+        List<UserDTO> expected = List.of(
+                new UserDTO(4, "jesus_rivera"),
+                new UserDTO(1, "jesus_flores"),
+                new UserDTO(3, "ernesto_llano"),
+                new UserDTO(5, "ana_real"),
+                new UserDTO(2, "ana_ortiz")
+        );
+
+        when(personRepository.findSellerById(anyInt())).thenReturn(new Seller(sellerId, "luis_lopez", Set.of(1, 2, 3, 4, 5), new HashSet<>()));
+        when(personRepository.findUserById(1)).thenReturn(new User(1, "jesus_flores", new HashSet<>()));
+        when(personRepository.findUserById(2)).thenReturn(new User(2, "ana_ortiz", new HashSet<>()));
+        when(personRepository.findUserById(3)).thenReturn(new User(3, "ernesto_llano", new HashSet<>()));
+        when(personRepository.findUserById(4)).thenReturn(new User(4, "jesus_rivera", new HashSet<>()));
+        when(personRepository.findUserById(5)).thenReturn(new User(5, "ana_real", new HashSet<>()));
+
+        // act
+        SellerFollowersDTO sellerFollowersDTO = sellerService.getSellerFollowers(sellerId, "name_desc");
+        List<UserDTO> actual = sellerFollowersDTO.getFollowers();
+
+        // assert
+        assertNotNull(actual);
+        assertEquals(expected, actual);
+        for(int i = 1; i < actual.size(); i++) {
+            assertTrue(actual.get(i-1).getUser_name().compareTo(actual.get(i).getUser_name()) >= 0);
+        }
+    }
 }
