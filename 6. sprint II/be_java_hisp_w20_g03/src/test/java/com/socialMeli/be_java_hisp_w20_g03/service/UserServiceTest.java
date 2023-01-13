@@ -23,6 +23,7 @@ import static org.mockito.Mockito.when;
 
 import static com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -70,7 +71,7 @@ class UserServiceTest {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoDesc();
-        User user = buildtUser();
+        User user = buildUser();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_desc");
@@ -83,13 +84,20 @@ class UserServiceTest {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoAsc();
-        User user = buildtUser();
+        User user = buildUser();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
         //assert
         verify(userRepository, atLeastOnce()).getUserById(userId);
         assertEquals(expect,actual);
+    }
+    @Test
+    void getFollowersListUserNotFound() {
+        //arrange
+        when(userRepository.getUserById(000)).thenThrow(NotFoundException.class);
+        //assert
+        assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
     }
 
     @Test
