@@ -1,7 +1,9 @@
 package com.bootcamp.be_java_hisp_w20_g2.service;
 
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
+import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest;
 import org.junit.jupiter.api.Assertions;
@@ -10,14 +12,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
@@ -77,4 +80,59 @@ class UserServiceTest {
     @Test
     void followerList() {
     }
+
+    @Test
+    void findAllFollowersNameOrderAscOkTest() {
+        //arrange
+        Optional<String> order = Optional.of("name_asc");
+        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
+        User user1 = users.get(1);
+        when(userRepository.findOne(1)).thenReturn(user1);
+
+        List<UserResponseDTO> userResponseDTOListExpected = new ArrayList<>();
+        UserResponseDTO userResponseDTO2 = new UserResponseDTO(2, "usuario2");
+        UserResponseDTO userResponseDTO3 = new UserResponseDTO(3, "usuario3");
+        userResponseDTOListExpected.add(userResponseDTO2);
+        userResponseDTOListExpected.add(userResponseDTO3);
+
+        UserFollowersResponseDTO userFollowedResponseDTO = new UserFollowersResponseDTO(user1.getId(), user1.getUserName(), userResponseDTOListExpected);
+        //act
+        UserFollowersResponseDTO userFollowedResponseDTOResult = userService.findAllFollowers(userFollowedResponseDTO.getUserId(), order);
+        //assert
+        assertEquals(userResponseDTOListExpected, userFollowedResponseDTOResult.getFollowers());
+    }
+
+    @Test
+    void findAllFollowersNameOrderDescOkTest() {
+        //arrange
+        Optional<String> order = Optional.of("name_desc");
+        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
+        User user1 = users.get(1);
+        when(userRepository.findOne(1)).thenReturn(user1);
+
+        List<UserResponseDTO> userResponseDTOListExpected = new ArrayList<>();
+        UserResponseDTO userResponseDTO3 = new UserResponseDTO(3, "usuario3");
+        UserResponseDTO userResponseDTO2 = new UserResponseDTO(2, "usuario2");
+        userResponseDTOListExpected.add(userResponseDTO3);
+        userResponseDTOListExpected.add(userResponseDTO2);
+
+        UserFollowersResponseDTO userFollowedResponseDTO = new UserFollowersResponseDTO(user1.getId(), user1.getUserName(), userResponseDTOListExpected);
+        //act
+        UserFollowersResponseDTO userFollowedResponseDTOResult = userService.findAllFollowers(userFollowedResponseDTO.getUserId(), order);
+        //assert
+        assertEquals(userResponseDTOListExpected, userFollowedResponseDTOResult.getFollowers());
+    }
+
+    @Test
+    void findAllFollowersUserNotFoundTest() {
+        //arrange
+        Optional<String> order = Optional.of("name_desc");
+        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
+        User user1 = users.get(1);
+        when(userRepository.findOne(1)).thenReturn(null);
+        //act - assert
+        assertThrows(UserNotFoundException.class, ()->userService.findAllFollowers(1,order));
+    }
+
+
 }

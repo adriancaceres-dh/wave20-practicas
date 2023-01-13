@@ -41,7 +41,7 @@ public class UserService implements IUserService {
                     .collect(Collectors.toList());
             if (order.isPresent()) {
                 Comparator<UserResponseDTO> comparator;
-                if (order.get().equals("name_asc") || order.get().equals("name_desc")) {
+                if (order.get().equals("name_asc")) {
                     comparator = Comparator.comparing(UserResponseDTO::getUserName);
                 } else {
                     comparator = Comparator.comparing(UserResponseDTO::getUserName).reversed();
