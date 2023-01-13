@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2.service;
 
+import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
@@ -17,7 +18,6 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
@@ -72,6 +72,52 @@ class UserServiceTest {
         verify(userRepository,atLeastOnce()).findOne(2);
 
         Assertions.assertTrue(res);
+    }
+
+    @Test
+    void followNonExistingUser() {
+
+        // test follow a non-existing user (BadRequest)
+
+        when(userRepository.exists(2)).thenReturn(false);
+        Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,2));
+
+    }
+
+    @Test
+    void followExistingFollowing() {
+
+        // test follow a user who already followed (BadRequest)
+        HashMap<Integer, User> users = UtilsTest.generateUsersToTestExistingFollow();
+
+        User user1 = users.get(1);
+        User user2 = users.get(2);
+
+
+        when(userRepository.exists(1)).thenReturn(true);
+        when(userRepository.exists(2)).thenReturn(true);
+
+        when(userRepository.findOne(1)).thenReturn(user1);
+        when(userRepository.findOne(2)).thenReturn(user2);
+
+
+        Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,2));
+
+    }
+
+    @Test
+    void followMySelf() {
+        //test follow to myself (BadRequest)
+        HashMap<Integer, User> users = UtilsTest.generateUsersToTestExistingFollow();
+
+        User user1 = users.get(1);
+
+        when(userRepository.exists(1)).thenReturn(true);
+
+        when(userRepository.findOne(1)).thenReturn(user1);
+
+        Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,1));
+
     }
 
     @Test
