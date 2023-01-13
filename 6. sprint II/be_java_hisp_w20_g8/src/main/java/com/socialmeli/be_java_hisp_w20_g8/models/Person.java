@@ -1,5 +1,8 @@
 package com.socialmeli.be_java_hisp_w20_g8.models;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 public abstract class Person {
 
     private Integer id;
