@@ -6,6 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
@@ -45,11 +46,18 @@ public class PostService implements IPostService {
     }
 
     public List<PostResponseDto> sortPostByDate(List<PostResponseDto> posts, String order) {
+        List<String> orders = Arrays.asList(Parameter.getString("DateAsc"), Parameter.getString("DateDesc"));
+
+        if (!orders.contains(order)) {
+            throw new InvalidQueryParamValueException(Parameter.getString("EX_InvalidQueryParamValue"));
+        }
+
         if (order.equalsIgnoreCase(Parameter.getString("DateOrder"))) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));
         } else {
             posts.sort(Comparator.comparing(PostResponseDto::getDate).reversed());
         }
+
         return posts;
     }
 
