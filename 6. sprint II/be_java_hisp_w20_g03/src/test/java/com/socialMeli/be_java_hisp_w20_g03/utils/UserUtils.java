@@ -11,21 +11,19 @@ import java.util.List;
 public class UserUtils {
 
     public static UserFollowersDTO buildListUserFollowedDtoDesc(){
-        List<UserFollowedDTO> userFollowedDTOList = new ArrayList<>();
         UserDTO userDto = new UserDTO(1536,"usuario4");
         UserDTO userDto1 = new UserDTO(4698,"usuario3");
         UserDTO userDto2 = new UserDTO(6631,"usuario2");
         return  new UserFollowersDTO(234,"usuario1",List.of(userDto,userDto1,userDto2));
     }
     public static UserFollowersDTO buildListUserFollowedDtoAsc(){
-        List<UserFollowedDTO> userFollowedDTOList = new ArrayList<>();
         UserDTO userDto4 = new UserDTO(1536,"usuario4");
         UserDTO userDto1 = new UserDTO(4698,"usuario3");
         UserDTO userDto2 = new UserDTO(6631,"usuario2");
         return  new UserFollowersDTO(234,"usuario1",List.of(userDto2,userDto1,userDto4));
     }
 
-    public static User buildtUser(){
+    public static User buildUser(){
         User usuario1 = User.builder()
                 .userId(234)
                 .userName("usuario1")
