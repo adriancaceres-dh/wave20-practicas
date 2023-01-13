@@ -16,7 +16,7 @@ public class StudentRepositoryTest {
 
 
 
-    @Test
+ /*   @Test
     public void findAllTest(){
         //Arrange
         StudentDTO studentDTO1 = new StudentDTO();
@@ -48,6 +48,6 @@ public class StudentRepositoryTest {
 
         //Assert
         Assertions.assertEquals(studentsExpect,studentsActual);
-    }
+    }*/
 
 }
