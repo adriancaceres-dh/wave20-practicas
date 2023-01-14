@@ -24,8 +24,8 @@ public class UserController {
     }
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
-    public ResponseEntity<ResponseDTO> newFollow(@Positive(message = "El id debe ser mayor a cero")
-         @PathVariable int userId, @Positive(message = "El id debe ser mayor a cero") @PathVariable int userIdToFollow){
+    public ResponseEntity<ResponseDTO> newFollow(
+         @PathVariable @Positive(message = "El id debe ser mayor a cero")int userId, @Positive(message = "El id debe ser mayor a cero") @PathVariable int userIdToFollow){
             return new ResponseEntity<>(userService.addNewFollow(userId, userIdToFollow), HttpStatus.OK);
     }
 

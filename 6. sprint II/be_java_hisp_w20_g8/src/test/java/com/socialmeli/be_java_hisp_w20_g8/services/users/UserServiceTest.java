@@ -42,15 +42,15 @@ class UserServiceTest {
 
         //Arrange
         int userId = 1;
-        int sellerId = 2;
+        int userIdToFollow = 2;
         ResponseDTO expectedResponse = new ResponseDTO(true,"New Follower add successfully");
         when(mockPersonRepository.checkUser(userId)).thenReturn(true);
-        when(mockPersonRepository.checkUser(sellerId)).thenReturn(true);
-        when(mockPersonRepository.addFollowing(userId, sellerId)).thenReturn(true);
-        when(mockPersonRepository.addFollower(sellerId, userId)).thenReturn(true);
+        when(mockPersonRepository.checkUser(userIdToFollow)).thenReturn(true);
+        when(mockPersonRepository.addFollowing(userId, userIdToFollow)).thenReturn(true);
+        when(mockPersonRepository.addFollower(userIdToFollow, userId)).thenReturn(true);
 
         //Act
-        ResponseDTO actualResponse = injectMockUserService.addNewFollow(userId,sellerId);
+        ResponseDTO actualResponse = injectMockUserService.addNewFollow(userId,userIdToFollow);
         //Assert
         Assertions.assertEquals(expectedResponse,actualResponse);
 
@@ -61,19 +61,19 @@ class UserServiceTest {
 
         //Arrange
         int userId = 2;
-        int sellerId = 2;
+        int userIdToFollow = 2;
         String actualMessageError = "";
         String expectedMessageError ="A user can't follow himself";
         OperationFailedException expectedError = new OperationFailedException("A user can't follow himself");
 
         //Act
         try {
-            ResponseDTO actualResponse = injectMockUserService.addNewFollow(userId, sellerId);
+            ResponseDTO actualResponse = injectMockUserService.addNewFollow(userId, userIdToFollow);
         }catch (OperationFailedException e){
             actualMessageError = e.getMessage();
         }
         //Assert
-        Assertions.assertThrows(expectedError.getClass(),()->injectMockUserService.addNewFollow(userId,sellerId));
+        Assertions.assertThrows(expectedError.getClass(),()->injectMockUserService.addNewFollow(userId,userIdToFollow));
         Assertions.assertEquals(expectedMessageError,actualMessageError);
     }
     @Test
@@ -81,16 +81,16 @@ class UserServiceTest {
     void followServiceTestNotOKV2(){
         //Arrange
         int userId = 2;
-        int sellerId = 3;
+        int userIdToFollow = 3;
         String actualMessageError = "";
         String expectedMessageError ="Invalid users please check information.";
         NotFoundException expectedException = new NotFoundException("Invalid users please check information.");
         when(mockPersonRepository.checkUser(userId)).thenReturn(true);
-        when(mockPersonRepository.checkUser(sellerId)).thenReturn(false);
+        when(mockPersonRepository.checkUser(userIdToFollow)).thenReturn(false);
 
         //Act
         //Assert
-        Assertions.assertThrows(expectedException.getClass(),()->injectMockUserService.addNewFollow(userId,sellerId));
+        Assertions.assertThrows(expectedException.getClass(),()->injectMockUserService.addNewFollow(userId,userIdToFollow));
     }
 
     @Test
