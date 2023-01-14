@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
@@ -52,15 +53,22 @@ class PostServiceTest {
 
     @Test
     void lastTwoWeeksPostsFromFollowersTest() {
-        //arrange
+        //Arrange
+        Set<Integer> followedIds = new HashSet<>();
+
+        //variables de test
         int idUser = 2;
         int idSeller = 1;
-        String order = "DESC";
-        Set<Integer> followedIds = new HashSet<>();
+        int idFirstExpectedProduct=1;
+        int idSecondExpectedProduct=2;
+        String order = Parameter.getString("DateDesc");
         followedIds.add(idSeller);
+
+        //lista de id de posts
         List<Post> posts = TestUtil.getPostsByUserId(idSeller);
-        ProductResponseDto primerProducto = TestUtil.getProductById(1);
-        ProductResponseDto segundoProducto = TestUtil.getProductById(2);
+        //populamiento de lista
+        ProductResponseDto firstExpectedProduct = TestUtil.getProductById(idFirstExpectedProduct);
+        ProductResponseDto secondExpecterdProduct = TestUtil.getProductById(idSecondExpectedProduct);
 
         //se valida que el usuario exista
         when(userService.validateUserExistById(idUser)).thenReturn(true);
@@ -72,15 +80,16 @@ class PostServiceTest {
         when(postRepository.getPostsByUserId(idSeller)).thenReturn(posts);
 
         //devuelve los productos asociados a cada posteo.
-        when(productService.getProductById(1)).thenReturn(primerProducto);
-        when(productService.getProductById(2)).thenReturn(segundoProducto);
+        when(productService.getProductById(1)).thenReturn(firstExpectedProduct);
+        when(productService.getProductById(2)).thenReturn(secondExpecterdProduct);
 
         PostListResponseDto expected = TestUtil.getPostListResponseDto(idUser, idSeller);
-        // act
-        PostListResponseDto results = postService.lastTwoWeeksPostsFromFollowers(idUser, order);
 
-        //assert
-        assertEquals(expected, results);
+        //Act
+        PostListResponseDto actual = postService.lastTwoWeeksPostsFromFollowers(idUser, order);
+
+        //Assert
+        assertEquals(expected, actual);
     }
 
     static private Stream<Arguments> orderByDateQueryParamProvider() {
