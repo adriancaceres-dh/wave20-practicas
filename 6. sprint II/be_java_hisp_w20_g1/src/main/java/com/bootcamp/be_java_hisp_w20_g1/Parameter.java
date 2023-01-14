@@ -14,6 +14,7 @@ public class Parameter {
             put("DateDesc", "date_desc");
             put("NameAsc", "name_asc");
             put("NameDesc", "name_desc");
+            put("NonExistentOrder", "nonExistingOrder");
 
             put("EX_Path", "Path variable incorrecta");
             put("EX_InvalidRequestBody", "Request body inválido");
@@ -23,6 +24,7 @@ public class Parameter {
             put("EX_NotASeller", "El usuario no es vendedor");
             put("EX_NotExistentUser", "El usuario no existe");
             put("EX_InvalidQueryParamValue", "El valor de ordenamiento no es válido");
+            put("EX_InvalidOrder","El valor de ordenamiento no es válido");
         }
     };
 
