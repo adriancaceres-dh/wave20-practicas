@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class StudentDAOTest {
     }
 
     @Test
+    @Rollback
     @DisplayName("Eliminando un estudiante caso triste")
     void deleteStudentNotOK() {
         //Arrange
@@ -79,7 +81,7 @@ public class StudentDAOTest {
     @DisplayName("Chequeando si un usuario existe")
     void studentExistsOK() {
         //Arrange
-        StudentDTO student = new StudentDTO(1L, "Juan", null, null, List.of(
+        StudentDTO student = new StudentDTO(2L, "Juan", null, null, List.of(
                 new SubjectDTO("Matemática", 9.0),
                 new SubjectDTO("Física", 7.0),
                 new SubjectDTO("Química", 6.0)));
@@ -95,16 +97,16 @@ public class StudentDAOTest {
     @DisplayName("Encontrar estudiante por ID")
     void findStudentByIdOK() {
         //Arrange
-        StudentDTO studentExpected = new StudentDTO(1L, "Juan", null, null, List.of(
-                new SubjectDTO("Matemática", 9.0),
-                new SubjectDTO("Física", 7.0),
-                new SubjectDTO("Química", 6.0)));
+        StudentDTO studentExpected = new StudentDTO(2L, "Diego", null, null, List.of(
+                new SubjectDTO("Fisica", 9.0),
+                new SubjectDTO("Calculo", 7.0),
+                new SubjectDTO("Diseño", 6.0)));
 
         //Act
         StudentDTO studentActual = studentDAO.findById(studentExpected.getId());
 
         //Assert
-        Assertions.assertEquals(studentExpected,studentActual);
+        Assertions.assertEquals(studentExpected, studentActual);
     }
 
     @Test
@@ -115,7 +117,7 @@ public class StudentDAOTest {
         StudentNotFoundException exceptionExpected = new StudentNotFoundException(10L);
         //Act
         //Assert
-        Assertions.assertThrows(exceptionExpected.getClass(),()->studentDAO.findById(id));
-        }
+        Assertions.assertThrows(exceptionExpected.getClass(), () -> studentDAO.findById(id));
+    }
 
 }

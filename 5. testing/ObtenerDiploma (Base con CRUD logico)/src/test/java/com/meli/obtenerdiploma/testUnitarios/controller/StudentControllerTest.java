@@ -13,7 +13,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.*;
 
@@ -88,11 +90,35 @@ public class StudentControllerTest {
         Long id = 1L;
         ResponseEntity<?> expectedResponseEntity = ResponseEntity.ok().build();
         //Act
-        studentController.removeStudent(id);
         ResponseEntity actualResponseEntity = studentController.removeStudent(id);
 
         //Assert
         verify(mockStudentService,atLeastOnce()).delete(id);
+
+    }
+
+    @Test
+    @DisplayName("Listar estudiantes existentes")
+    void listStudentsOK(){
+        //Arrange
+        Set<StudentDTO> expectedSet = new HashSet<>();
+        StudentDTO expectedStu = new StudentDTO(2L, "Diego", null, null, List.of(
+                new SubjectDTO("Fisica", 9.0),
+                new SubjectDTO("Calculo", 7.0),
+                new SubjectDTO("Diseño", 6.0)));
+        StudentDTO expectedStu2 = new StudentDTO(1L, "Juan", null, null, List.of(
+                new SubjectDTO("Matemática", 9.0),
+                new SubjectDTO("Física", 7.0),
+                new SubjectDTO("Química", 6.0)));
+        expectedSet.add(expectedStu);
+        expectedSet.add(expectedStu2);
+        when(mockStudentService.getAll()).thenReturn(expectedSet);
+
+        //Act
+        Set<StudentDTO> actualSetResponse = studentController.listStudents();
+        //Assert
+        Assertions.assertEquals(expectedSet,actualSetResponse);
+        verify(mockStudentService,atLeastOnce()).getAll();
 
     }
 
