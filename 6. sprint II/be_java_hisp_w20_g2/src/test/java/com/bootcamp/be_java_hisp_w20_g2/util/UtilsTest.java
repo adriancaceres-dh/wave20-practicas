@@ -42,7 +42,6 @@ public class UtilsTest {
 
         user.addPost(primerPost);
         user.addPost(segundoPost);
-
     }
 
     public static PostResponseDTO generatePostResponseDTOAsc() {
