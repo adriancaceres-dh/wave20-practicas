@@ -6,11 +6,14 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.Product;
+import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TestUtil {
@@ -71,6 +74,19 @@ public class TestUtil {
             postDto.get(i).setProduct(getProductById(i + 1));
         }
         return new PostListResponseDto(id, postDto);
+    }
+
+    public static User getUserWithFollowers(boolean isSeller){
+        Set<Integer> followers = new HashSet<>();
+        followers.add(2);
+        followers.add(3);
+
+        return User.builder().
+                id(1).
+                name("Enrique").
+                followers(followers).
+                isSeller(isSeller).
+                build();
     }
 
 }
