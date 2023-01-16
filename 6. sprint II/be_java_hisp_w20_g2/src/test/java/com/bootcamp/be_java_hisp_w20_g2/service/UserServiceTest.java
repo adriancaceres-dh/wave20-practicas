@@ -176,7 +176,7 @@ class UserServiceTest {
         }
     }
     @Test
-    @DisplayName("US-0004 - Sorts correctly by ascending username")
+    @DisplayName("T-0004 - Sorts correctly by ascending username")
     void findAllFollowersNameOrderAscOkTest() {
         //arrange
         Optional<String> order = Optional.of("name_asc");
@@ -197,7 +197,7 @@ class UserServiceTest {
         assertEquals(userResponseDTOListExpected.get(1), userFollowedResponseDTOResult.getFollowers().get(1));
     }
     @Test
-    @DisplayName("US-0004 - Sorts correctly by username descending")
+    @DisplayName("T-0004 - Sorts correctly by username descending")
     void findAllFollowersNameOrderDescOkTest() {
         //arrange
         Optional<String> order = Optional.of("name_desc");
@@ -218,7 +218,7 @@ class UserServiceTest {
         assertEquals(userResponseDTOListExpected.get(1), userFollowedResponseDTOResult.getFollowers().get(1));
     }
     @Test
-    @DisplayName("US-0004 - User id not found")
+    @DisplayName("T-0004 - User id not found")
     void findAllFollowersUserNotFoundTest() {
         //arrange
         Optional<String> order = Optional.of("name_desc");
