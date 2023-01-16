@@ -596,8 +596,8 @@
   },
   {
     "id":36,
-    "userId":12,
-    "date":"2022-12-22",
+    "userId":2,
+    "date":"2023-01-15",
     "category":20,
     "price":600,
     "discount":0.4,
@@ -607,6 +607,57 @@
       "name":"Antibiotic and pain relief",
       "brand":"CVS Pharmacy",
       "type":"Neomycin, Polymyxin B, Pramoxine HCl",
+      "color":"green",
+      "notes":"Diverse uniform process improvement"
+    }
+  },
+  {
+    "id":37,
+    "userId":2,
+    "date":"2023-01-14",
+    "category":20,
+    "price":500,
+    "discount":0.4,
+    "product":
+    {
+      "id":102,
+      "name":"Antibiotic and pain relief",
+      "brand":"CVS Pharmacy",
+      "type":"Neomycin, Polymyxin B, Pramoxine HCl",
+      "color":"red",
+      "notes":"Diverse uniform process improvement"
+    }
+  },
+  {
+    "id":38,
+    "userId":2,
+    "date":"2023-01-10",
+    "category":20,
+    "price":600,
+    "discount":0.4,
+    "product":
+    {
+      "id":101,
+      "name":"Antibiotic and pain relief",
+      "brand":"Pfizer",
+      "type":"Neomycin, Polymyxin B, Pramoxine HCl",
+      "color":"yellow",
+      "notes":"Quick action"
+    }
+  },
+  {
+    "id":39,
+    "userId":2,
+    "date":"2023-01-13",
+    "category":20,
+    "price":600,
+    "discount":0.4,
+    "product":
+    {
+      "id":100,
+      "name":"Antibiotic and pain relief",
+      "brand":"Nova",
+      "type":"Penicilin",
       "color":"green",
       "notes":"Diverse uniform process improvement"
     }
