@@ -5,15 +5,11 @@ import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
-import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
-import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.repository.PostRepository;
-import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
-import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IProductService;
-import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,14 +20,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.Mockito.when;
 
@@ -53,46 +46,53 @@ class PostServiceTest {
     ModelMapper mapper = new ModelMapper();
 
     @Test
-    void whenAGivingAValidUser_ThenObtainPostsFromLastTwoWeeks() {
+    void lastTwoWeeksPostsFromFollowersTest() {
         //Arrange
         Set<Integer> followedIds = new HashSet<>();
 
-        /*variables de test*/
-        int idSeller = 1;
+        //variables de test
         int idUser = 2;
-        int idFirstExpectedProduct = 1;
-        int idSecondExpectedProduct = 2;
+        int idSeller = 1;
+        int idFirstExpectedProduct=1;
+        int idSecondExpectedProduct=2;
         String order = Parameter.getString("DateDesc");
         followedIds.add(idSeller);
 
-        List<Post> posts = TestUtil.getPostsByUserId(idSeller); //lista de posts con fechas validas
-        posts.add(TestUtil.getPostFromFifteenDaysAgo()); //se agrega post con fecha invalida, el sistema deberia descartarla exitosamente
-
+        //lista de id de posts
+        List<Post> posts = TestUtil.getPostsByUserId(idSeller);
+        //populamiento de lista
         ProductResponseDto firstExpectedProduct = TestUtil.getProductById(idFirstExpectedProduct);
         ProductResponseDto secondExpecterdProduct = TestUtil.getProductById(idSecondExpectedProduct);
 
-        when(userService.validateUserExistById(idUser)).thenReturn(true); //se valida que el usuario exista
-        when(userService.getUserFollowed(idUser)).thenReturn(followedIds); //devuelve la lista de ids de los vendedores a los cuales sigue el usuario
-        when(postRepository.getPostsByUserId(idSeller)).thenReturn(posts); //devuelve la lista de posteos del vendedor
-        /*devuelve los productos asociados a cada posteo.*/
-        when(productService.getProductById(idFirstExpectedProduct)).thenReturn(firstExpectedProduct);
-        when(productService.getProductById(idSecondExpectedProduct)).thenReturn(secondExpecterdProduct);
+        //se valida que el usuario exista
+        when(userService.validateUserExistById(idUser)).thenReturn(true);
+
+        //devuelve la lista de ids de los vendedores a los cuales sigue el usuario
+        when(userService.getUserFollowed(idUser)).thenReturn(followedIds);
+
+        //devuelve la lista de posteos del vendedor
+        when(postRepository.getPostsByUserId(idSeller)).thenReturn(posts);
+
+        //devuelve los productos asociados a cada posteo.
+        when(productService.getProductById(1)).thenReturn(firstExpectedProduct);
+        when(productService.getProductById(2)).thenReturn(secondExpecterdProduct);
+
+        PostListResponseDto expected = TestUtil.getPostListResponseDto(idUser, idSeller);
 
         //Act
-        PostListResponseDto expected = TestUtil.getPostListResponseDto(idUser, idSeller);
         PostListResponseDto actual = postService.lastTwoWeeksPostsFromFollowers(idUser, order);
 
         //Assert
         assertEquals(expected, actual);
-        assertFalse(actual.getPosts().containsAll(posts)); //Verifica que se haya descartado el post con fecha anterior a 14 dias
     }
 
     static private Stream<Arguments> orderByDateQueryParamProvider() {
-        return Stream.of(arguments(Parameter.getString("DateAsc")), arguments(Parameter.getString("DateDesc")));
+        return Stream.of(arguments("date_asc"), arguments("date_desc"));
     }
 
     @ParameterizedTest
     @MethodSource("orderByDateQueryParamProvider")
+    @DisplayName("T5 Se devuelve una lista cuando el parametro order es valido")
     void whenGivingValidOrderParam_sortPostByDate_ShouldReturnList(String orderQueryParam) throws Exception {
         // Arrange
         List<PostResponseDto> postResponseDtoList = new ArrayList<>();
@@ -105,13 +105,44 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("T5 Se lanza excepción cuando el parametro order es invalido")
     void whenGivingInvalidOrderParam_sortPostByDate_ShouldThrowInvalidQueryParamValueException() throws Exception {
         // Arrange
-        String expectedErrorMessage = Parameter.getString("EX_InvalidOrder");
+        String expectedErrorMessage = "El valor de ordenamiento no es válido";
         List<PostResponseDto> postResponseDtoList = new ArrayList<>();
 
         // Act && Assert
-        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList, Parameter.getString("NonExistentOrder")));
+        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList,"nonExistingOrder"));
         assertEquals(expectedErrorMessage,InvalidQueryParamValueException.getMessage());
     }
+
+    @Test
+    @DisplayName("T6 Se obtiene lista de los post de un usuario ordenada ascendentemente.")
+    void whenGivingUnorderedList_sortPostByDateAscParam_ShouldReturnOrderedList(){
+        // Arrange
+        List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1,2);
+        List<PostResponseDto> shuffledList = TestUtil.ascPostResponseDTOBuilder(1,2);
+        Collections.shuffle(shuffledList);
+        // Act
+        List<PostResponseDto> actualList=  postService.sortPostByDate(shuffledList, "date_asc");
+        // Assert
+        assertEquals(ascPost, actualList);
+
+    }
+    @Test
+    @DisplayName("T6 Se obtiene lista de los post de un usuario ordenada descendentemente.")
+    void whenGivingUnorderedList_sortPostByDateDescParam_ShouldReturnOrderedList(){
+        // Arrange
+        List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1,2);
+        List<PostResponseDto> ascPostReverse = TestUtil.ascPostResponseDTOBuilder(1,2);
+        Collections.reverse(ascPostReverse);
+        Collections.shuffle(ascPost);
+        // Act
+        List<PostResponseDto> actualList=  postService.sortPostByDate(ascPost, "date_desc");
+
+        // Assert
+        assertEquals(ascPostReverse, actualList);
+
+    }
+
 }

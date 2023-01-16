@@ -50,7 +50,8 @@ class UserServiceTest {
     static User validUserToFollow = new User(2, "elzaTlza", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
 
     @Test
-    void whenGivingValidUserId_followUser_ShouldFollowUser() throws Exception {
+    @DisplayName("T1 Cuando el usuario a seguir existe se agrega como seguidor")
+    void whenGivingValidUserId_followUser_ShouldFollowUser() {
 
         //Arrange
         when(userRepository.getUserById(1)).thenReturn(validUser);
@@ -71,7 +72,8 @@ class UserServiceTest {
     }
 
     @Test
-    void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() throws Exception {
+    @DisplayName("T1 Se lanza excepción cuando el usuario a seguir no existe")
+    void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() {
 
         // Arrange
         String expectedErrorMessage = Parameter.getString("EX_NotExistentUser");
