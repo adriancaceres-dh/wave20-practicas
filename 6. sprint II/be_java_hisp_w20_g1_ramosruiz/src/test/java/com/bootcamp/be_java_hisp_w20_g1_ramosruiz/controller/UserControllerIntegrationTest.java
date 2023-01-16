@@ -1,8 +1,9 @@
-package com.bootcamp.be_java_hisp_w20_g1.controller;
+package com.bootcamp.be_java_hisp_w20_g1_ramosruiz.controller;
 
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.model.User;
-import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
+
+import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.dto.response.UserFollowedResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.model.User;
+import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.util.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
