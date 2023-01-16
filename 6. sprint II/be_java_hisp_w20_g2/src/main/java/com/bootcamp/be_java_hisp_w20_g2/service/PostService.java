@@ -20,8 +20,6 @@ import java.util.Optional;
 public class PostService implements IPostService {
     @Autowired
     private IUserRepository userRepository;
-    @Autowired
-    private ICategoryRepository categoryRepository;
     private PostMapper postMapper;
 
     public PostService() {

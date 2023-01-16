@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;

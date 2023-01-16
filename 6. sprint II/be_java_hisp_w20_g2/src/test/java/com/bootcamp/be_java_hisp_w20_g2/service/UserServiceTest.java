@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseD
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest;
 import org.junit.jupiter.api.Assertions;
@@ -27,17 +28,6 @@ class UserServiceTest {
 
     @InjectMocks
     private UserService userService;
-
-
-    @Test
-    void findAllFollowers() {
-
-
-    }
-
-    @Test
-    void findAllFollowed() {
-    }
 
     @Test
     void unfollowUserExistTest() {
@@ -66,10 +56,6 @@ class UserServiceTest {
         when(userRepository.findOne(2)).thenReturn(user2);
         // Assert
         Assertions.assertThrows(BadRequestException.class,()->userService.unfollowUser(1,2));
-    }
-
-    @Test
-    void entity2UserResponseDTO() {
     }
 
     @Test
@@ -149,11 +135,11 @@ class UserServiceTest {
     @DisplayName("Camino feliz en donde existe el usuario buscado por parámetro.")
     void followerListWithUserExist() {
         // Arrange
-        UserFollowersCountResponseDTO responseExpected = new UserFollowersCountResponseDTO(2, "Mariano", 3);
-        User user = UtilsTest.generateUserToTestFollowerList();
+        UserFollowersCountResponseDTO responseExpected = new UserFollowersCountResponseDTO(2, "Mariano", 1);
+        HashMap<Integer,User> users = UtilsTest.generateUsers();
         // Act
         when(userRepository.exists(2)).thenReturn(true);
-        when(userRepository.findOne(2)).thenReturn(user);
+        when(userRepository.findOne(2)).thenReturn(users.get(2));
         UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
         // Assert
         verify(userRepository, atLeastOnce()).exists(2);
