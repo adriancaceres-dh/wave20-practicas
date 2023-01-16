@@ -2,38 +2,23 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
-import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
-import com.bootcamp.be_java_hisp_w20_g1.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -46,14 +31,14 @@ class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
-    static User validUser = new User(1, "noahHoah", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
-    static User validUserToFollow = new User(2, "elzaTlza", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
-
     @Test
     @DisplayName("T1 Cuando el usuario a seguir existe se agrega como seguidor")
     void whenGivingValidUserId_followUser_ShouldFollowUser() {
 
         //Arrange
+        User validUser = TestUtil.getSellerUser("noahHoah", 1);
+        validUser.setFollowed(new HashSet<>());
+        User validUserToFollow =  TestUtil.getSellerUser("elzaTlza", 2);
         when(userRepository.getUserById(1)).thenReturn(validUser);
         when(userRepository.getUserById(2)).thenReturn(validUserToFollow);
 
@@ -76,6 +61,9 @@ class UserServiceTest {
     void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() {
 
         // Arrange
+        User validUser = TestUtil.getSellerUser("noahHoah", 1);
+        User validUserToFollow =  TestUtil.getSellerUser("elzaTlza", 2);
+        validUser.setFollowed(new HashSet<>());
         String expectedErrorMessage = Parameter.getString("EX_NotExistentUser");
         when(userRepository.getUserById(1)).thenReturn(validUser);
         when(userRepository.getUserById(99)).thenReturn(null);
@@ -84,6 +72,40 @@ class UserServiceTest {
         // Act && Assert
         NotFoundException notFoundException = Assertions.assertThrows(NotFoundException.class, () -> userService.followUser(1, 99));
         Assertions.assertEquals(expectedErrorMessage, notFoundException.getMessage());
+    }
+
+    @Test
+    @DisplayName("T2: valida que se continue con normalidad cuando el usuario a dejar de seguir existe.")
+    void whenGivingValidUserId_unfollowUser_ShouldUnfollowUser()  {
+        //Arrange
+        User validUser = TestUtil.getSellerUser("noahHoah", 1);
+        validUser.setFollowed(new HashSet<>());
+        User validUserToUnfollow = TestUtil.getSellerUser("elzaTlza", 2);
+        when(userRepository.getUserById(1)).thenReturn(validUser);
+        when(userRepository.getUserById(2)).thenReturn(validUserToUnfollow);
+
+        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of());
+        //Act
+        UserFollowedResponseDto actualDTO = userService.unfollowUser(1, 2);
+
+        //Assert
+        Assertions.assertEquals(expectedDTO,actualDTO);
+
+    }
+
+    @Test
+    @DisplayName("T2: valida que se lance una excepción cuando el usuario a dejar de seguir no existe.")
+    void whenGivingInvalidUserId_unfollowUser_ShouldThrowNotFoundException() {
+        // Arrange
+        User validUser = TestUtil.getSellerUser("noahHoah", 1);
+        String expectedErrorMessage = Parameter.getString("EX_NotExistentUser");
+        when(userRepository.getUserById(1)).thenReturn(validUser);
+        when(userRepository.getUserById(99)).thenReturn(null);
+
+        // Act && Assert
+        NotFoundException notFoundException = Assertions.assertThrows(NotFoundException.class, () -> userService.unfollowUser(1, 99));
+        Assertions.assertEquals(expectedErrorMessage, notFoundException.getMessage());
+
     }
 
     @Test
