@@ -30,7 +30,7 @@ public class FollowService implements IFollowService {
             throw new FollowAlreadyExistException("User cannot be followed by himself");
             //Ahora se valida que tanto el que va a seguir como el que se va a seguir existan
         } else if (userRepository.findById(userIdFollower) == null || userRepository.findById(userIdFollowed) == null) {
-            throw new UserNotFoundException("Followed user or Foller user not found");
+            throw new UserNotFoundException("Followed user or Follower user not found");
         } else {
             followRepository.save(follow);
             return "User has been followed succesfully";
@@ -42,7 +42,9 @@ public class FollowService implements IFollowService {
         Follow follow = new Follow(userIdFollower, userIdFollowed);
         boolean exists = alreadyExists(follow);
 
-        if (exists) {
+        if(userRepository.findById(userIdFollower) == null || userRepository.findById(userIdFollowed) == null) {
+            throw new UserNotFoundException("Followed user or Follower user not found");
+        }else if (exists) {
             followRepository.findAll().remove(follow);
             return "the user was unfollowed successfully";
         } else {
