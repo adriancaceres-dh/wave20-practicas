@@ -329,29 +329,29 @@ Por ejemplo
 
 <table>
 <tbody>
-<tr>
-<td>&nbsp;</td>
-<td>
+<tr style="height: 33px;">
+<td style="height: 33px;">&nbsp;</td>
+<td style="height: 33px;">
 <p><strong>Responsables</strong></p>
 </td>
-<td>
+<td style="height: 33px;">
 <p><strong>Situaciones de entrada</strong></p>
 </td>
-<td>
+<td style="height: 33px;">
 <p><strong>Comportamiento Esperado</strong></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 143px;">
+<td style="height: 143px;">
 <p><strong>T-0001</strong></p>
 </td>
-<td>
-<p><span style="font-weight: 400;">Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Francisco Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><span style="font-weight: 400;">Verificar que el usuario a seguir exista. </span><strong>(US-0001)</strong></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><strong>Se cumple:</strong></p>
 <p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
 <br />
@@ -359,17 +359,17 @@ Por ejemplo
 <p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 143px;">
+<td style="height: 143px;">
 <p><strong>T-0002</strong></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><span style="font-weight: 400;">Karen Hoffman y Lautaro Walsh</span></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><span style="font-weight: 400;">Verificar que el usuario a dejar de seguir exista. </span><strong>(US-0007)</strong></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><strong>Se cumple:</strong></p>
 <p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
 <br />
@@ -377,17 +377,17 @@ Por ejemplo
 <p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 143px;">
+<td style="height: 143px;">
 <p><strong>T-0003</strong></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><span style="font-weight: 400;">Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi</span></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><span style="font-weight: 400;">Verificar que el tipo de ordenamiento alfab&eacute;tico exista (US-0008)</span></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><strong>Se cumple:</strong></p>
 <p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
 <br />
@@ -395,32 +395,32 @@ Por ejemplo
 <p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 63px;">
+<td style="height: 63px;">
 <p><strong>T-0004</strong></p>
 </td>
-<td>
+<td style="height: 63px;">
 <p><span style="font-weight: 400;">Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi</span></p>
 </td>
-<td>
+<td style="height: 63px;">
 <p><span style="font-weight: 400;">Verificar el correcto ordenamiento ascendente&nbsp;</span></p>
 <p><span style="font-weight: 400;">y descendente por nombre. </span><strong>(US-0008)</strong></p>
 </td>
-<td>
+<td style="height: 63px;">
 <p><span style="font-weight: 400;">Devuelve la lista ordenada seg&uacute;n el criterio solicitado</span></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 143px;">
+<td style="height: 143px;">
 <p><strong>T-0005</strong></p>
 </td>
-<td>
-<p><span style="font-weight: 400;">Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Francisco Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><span style="font-weight: 400;">Verificar que el tipo de ordenamiento por fecha exista </span><strong>(US-0009)</strong></p>
 </td>
-<td>
+<td style="height: 143px;">
 <p><strong>Se cumple:</strong></p>
 <p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
 <br />
@@ -428,45 +428,45 @@ Por ejemplo
 <p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 73px;">
+<td style="height: 73px;">
 <p><strong>T-0006</strong></p>
 </td>
-<td>
-<p><span style="font-weight: 400;">Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Francisco Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
 </td>
-<td>
+<td style="height: 73px;">
 <p><span style="font-weight: 400;">Verificar el correcto ordenamiento ascendente y descendente por fecha. </span><strong>(US-0009)</strong></p>
 </td>
-<td>
+<td style="height: 73px;">
 <p><span style="font-weight: 400;">Verificar el correcto ordenamiento ascendente y descendente por fecha. </span><strong>(US-0009)</strong></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 53.5px;">
+<td style="height: 53.5px;">
 <p><strong>T-0007</strong></p>
 </td>
-<td>
+<td style="height: 53.5px;">
 <p><span style="font-weight: 400;">Karen Hoffman y Lautaro Walsh</span></p>
 </td>
-<td>
+<td style="height: 53.5px;">
 <p><span style="font-weight: 400;">Verificar que la cantidad de seguidores de un determinado usuario sea correcta.</span><strong> (US-0002)</strong></p>
 </td>
-<td>
+<td style="height: 53.5px;">
 <p><span style="font-weight: 400;">Devuelve el c&aacute;lculo correcto del total de la cantidad de seguidores que posee un usuario.&nbsp;</span></p>
 </td>
 </tr>
-<tr>
-<td>
+<tr style="height: 73px;">
+<td style="height: 73px;">
 <p><strong>T-0008</strong></p>
 </td>
-<td>
+<td style="height: 73px;">
 <p><span style="font-weight: 400;">Karen Hoffman y Lautaro Walsh</span></p>
 </td>
-<td>
+<td style="height: 73px;">
 <p><span style="font-weight: 400;">Verificar que la consulta de publicaciones realizadas en las &uacute;ltimas dos semanas de un determinado vendedor sean efectivamente de las &uacute;ltimas dos semanas. </span><strong>(US-0006)</strong></p>
 </td>
-<td>
+<td style="height: 73px;">
 <p><span style="font-weight: 400;">Devuelve &uacute;nicamente los datos de las publicaciones que tengan fecha de publicaci&oacute;n dentro de las &uacute;ltimas dos semanas a partir del d&iacute;a de la fecha.</span></p>
 </td>
 </tr>
