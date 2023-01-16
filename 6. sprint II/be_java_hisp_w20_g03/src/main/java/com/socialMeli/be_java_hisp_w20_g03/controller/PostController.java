@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,7 @@ public class PostController {
     private IPostService iPostService;
 
     @PostMapping("/products/post")
-    public ResponseEntity<String> addPost(@RequestBody PostDTO postDto) {
+    public ResponseEntity<String> addPost(@RequestBody @Valid PostDTO postDto) {
         return new ResponseEntity<>(iPostService.addPost(postDto), HttpStatus.OK);
     }
 
