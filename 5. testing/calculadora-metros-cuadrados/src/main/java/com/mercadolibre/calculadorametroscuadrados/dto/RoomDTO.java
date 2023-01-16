@@ -1,11 +1,20 @@
 package com.mercadolibre.calculadorametroscuadrados.dto;
 
+
+import java.util.Objects;
+
 public class RoomDTO {
   private String name;
   private Integer width;
   private Integer length;
 
   public RoomDTO() {
+  }
+
+  public RoomDTO(String name, Integer width, Integer length) {
+    this.name = name;
+    this.width = width;
+    this.length = length;
   }
 
   public String getName() {
@@ -37,5 +46,27 @@ public class RoomDTO {
     if(this.width != null && this.length != null)
       result = this.width * this.length;
     return result;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof RoomDTO)) return false;
+    RoomDTO roomDTO = (RoomDTO) o;
+    return Objects.equals(getName(), roomDTO.getName()) && Objects.equals(getWidth(), roomDTO.getWidth()) && Objects.equals(getLength(), roomDTO.getLength());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getName(), getWidth(), getLength());
+  }
+
+  @Override
+  public String toString() {
+    return "RoomDTO{" +
+            "name='" + name + '\'' +
+            ", width=" + width +
+            ", length=" + length +
+            '}';
   }
 }

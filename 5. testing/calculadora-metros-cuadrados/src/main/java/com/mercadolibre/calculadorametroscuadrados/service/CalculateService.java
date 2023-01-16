@@ -31,4 +31,5 @@ public class CalculateService {
   private int calculatePrice(Integer result) {
     return result * 800;
   }
+
 }

@@ -1,5 +1,7 @@
 package com.mercadolibre.calculadorametroscuadrados.dto;
 
+import java.util.Objects;
+
 public class HouseResponseDTO extends HouseDTO {
   private Integer squareFeet;
   private Integer price;
@@ -36,5 +38,28 @@ public class HouseResponseDTO extends HouseDTO {
 
   public void setBiggest(RoomDTO biggest) {
     this.biggest = biggest;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof HouseResponseDTO)) return false;
+    if (!super.equals(o)) return false;
+    HouseResponseDTO that = (HouseResponseDTO) o;
+    return Objects.equals(getSquareFeet(), that.getSquareFeet()) && Objects.equals(getPrice(), that.getPrice()) && Objects.equals(getBiggest(), that.getBiggest());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), getSquareFeet(), getPrice(), getBiggest());
+  }
+
+  @Override
+  public String toString() {
+    return "HouseResponseDTO{" +
+            "squareFeet=" + squareFeet +
+            ", price=" + price +
+            ", biggest=" + biggest +
+            '}';
   }
 }
