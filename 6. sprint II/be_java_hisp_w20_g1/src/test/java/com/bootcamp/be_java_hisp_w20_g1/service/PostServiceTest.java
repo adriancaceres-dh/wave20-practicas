@@ -18,7 +18,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -43,7 +42,65 @@ class PostServiceTest {
     @InjectMocks
     PostService postService;
 
-    ModelMapper mapper = new ModelMapper();
+    static private Stream<Arguments> orderByDateQueryParamProvider() {
+        return Stream.of(arguments(Parameter.getString("DateAsc")), arguments(Parameter.getString("DateDesc")));
+    }
+
+    @ParameterizedTest
+    @MethodSource("orderByDateQueryParamProvider")
+    @DisplayName("T5: Se devuelve una lista cuando el parametro order es valido")
+    void whenGivingValidOrderParam_sortPostByDate_ShouldReturnList(String orderQueryParam) throws Exception {
+        // Arrange
+        List<PostResponseDto> postResponseDtoList = new ArrayList<>();
+
+        // Act
+        List<PostResponseDto> actualPostResponseDtoList = postService.sortPostByDate(postResponseDtoList, orderQueryParam);
+
+        // Assert
+        assertEquals(postResponseDtoList, actualPostResponseDtoList);
+    }
+
+    @Test
+    @DisplayName("T5: Se lanza excepción cuando el parametro order es invalido")
+    void whenGivingInvalidOrderParam_sortPostByDate_ShouldThrowInvalidQueryParamValueException() throws Exception {
+        // Arrange
+        String expectedErrorMessage = Parameter.getString("EX_InvalidOrder");
+        List<PostResponseDto> postResponseDtoList = new ArrayList<>();
+
+        // Act && Assert
+        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList, Parameter.getString("NonExistentOrder")));
+        assertEquals(expectedErrorMessage, InvalidQueryParamValueException.getMessage());
+    }
+
+    @Test
+    @DisplayName("T6: Se obtiene lista de los post de un usuario ordenada ascendentemente.")
+    void whenGivingUnorderedList_sortPostByDateAscParam_ShouldReturnOrderedList() {
+        // Arrange
+        List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1, 2);
+        List<PostResponseDto> shuffledList = TestUtil.ascPostResponseDTOBuilder(1, 2);
+        Collections.shuffle(shuffledList);
+        // Act
+        List<PostResponseDto> actualList = postService.sortPostByDate(shuffledList, "date_asc");
+        // Assert
+        assertEquals(ascPost, actualList);
+
+    }
+
+    @Test
+    @DisplayName("T6: Se obtiene lista de los post de un usuario ordenada descendentemente.")
+    void whenGivingUnorderedList_sortPostByDateDescParam_ShouldReturnOrderedList() {
+        // Arrange
+        List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1, 2);
+        List<PostResponseDto> ascPostReverse = TestUtil.ascPostResponseDTOBuilder(1, 2);
+        Collections.reverse(ascPostReverse);
+        Collections.shuffle(ascPost);
+        // Act
+        List<PostResponseDto> actualList = postService.sortPostByDate(ascPost, "date_desc");
+
+        // Assert
+        assertEquals(ascPostReverse, actualList);
+
+    }
 
     @Test
     @DisplayName("T8: obtiene lista de posteos de las ultimas dos semanas de los vendedores seguidos por un usuario")
@@ -80,65 +137,6 @@ class PostServiceTest {
         //Assert
         assertEquals(expected, actual);
         assertFalse(actual.getPosts().containsAll(posts)); //Verifica que se haya descartado el post con fecha anterior a 14 dias
-    }
-
-    static private Stream<Arguments> orderByDateQueryParamProvider() {
-        return Stream.of(arguments(Parameter.getString("DateAsc")), arguments(Parameter.getString("DateDesc")));
-    }
-
-    @ParameterizedTest
-    @MethodSource("orderByDateQueryParamProvider")
-    @DisplayName("T5 Se devuelve una lista cuando el parametro order es valido")
-    void whenGivingValidOrderParam_sortPostByDate_ShouldReturnList(String orderQueryParam) throws Exception {
-        // Arrange
-        List<PostResponseDto> postResponseDtoList = new ArrayList<>();
-
-        // Act
-        List<PostResponseDto> actualPostResponseDtoList = postService.sortPostByDate(postResponseDtoList,orderQueryParam);
-
-        // Assert
-        assertEquals(postResponseDtoList, actualPostResponseDtoList);
-    }
-
-    @Test
-    @DisplayName("T5 Se lanza excepción cuando el parametro order es invalido")
-    void whenGivingInvalidOrderParam_sortPostByDate_ShouldThrowInvalidQueryParamValueException() throws Exception {
-        // Arrange
-        String expectedErrorMessage = Parameter.getString("EX_InvalidOrder");
-        List<PostResponseDto> postResponseDtoList = new ArrayList<>();
-
-        // Act && Assert
-        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList, Parameter.getString("NonExistentOrder")));
-        assertEquals(expectedErrorMessage,InvalidQueryParamValueException.getMessage());
-    }
-
-    @Test
-    @DisplayName("T6 Se obtiene lista de los post de un usuario ordenada ascendentemente.")
-    void whenGivingUnorderedList_sortPostByDateAscParam_ShouldReturnOrderedList(){
-        // Arrange
-        List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1,2);
-        List<PostResponseDto> shuffledList = TestUtil.ascPostResponseDTOBuilder(1,2);
-        Collections.shuffle(shuffledList);
-        // Act
-        List<PostResponseDto> actualList=  postService.sortPostByDate(shuffledList, "date_asc");
-        // Assert
-        assertEquals(ascPost, actualList);
-
-    }
-    @Test
-    @DisplayName("T6 Se obtiene lista de los post de un usuario ordenada descendentemente.")
-    void whenGivingUnorderedList_sortPostByDateDescParam_ShouldReturnOrderedList(){
-        // Arrange
-        List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1,2);
-        List<PostResponseDto> ascPostReverse = TestUtil.ascPostResponseDTOBuilder(1,2);
-        Collections.reverse(ascPostReverse);
-        Collections.shuffle(ascPost);
-        // Act
-        List<PostResponseDto> actualList=  postService.sortPostByDate(ascPost, "date_desc");
-
-        // Assert
-        assertEquals(ascPostReverse, actualList);
-
     }
 
 }
