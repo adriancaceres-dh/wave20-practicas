@@ -1,17 +1,19 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.WrongRequestParamException;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IUserRepository;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.util.TestUtils;
+import org.junit.jupiter.api.Assertions;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.WrongRequestParamException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -210,6 +212,95 @@ public class UserServiceTest {
         //Act & Assert
         Assertions.assertThrows(WrongRequestParamException.class,()->userService.getFollowedListDto(id,order));
     }
+
+
+    // TEST T-0004
+    // Verificar el correcto ordenamiento ascendente y descendente por nombre.
+    @Test
+    @DisplayName("T-0004: Following by name_asc")
+    public void getFollowedByIdTestAsc () {
+
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowedListDTO expectedAscending = TestUtils.getTestFollowedListDTO("name_asc");   // hbowstead0, jmedcraft2, qropcke1, usu1
+        FollowedListDTO sortedAscending;
+
+        // ACT
+        sortedAscending = userService.getFollowedListDto(5, "name_asc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedAscending.equals(expectedAscending));
+    }
+
+    @Test
+    @DisplayName("T-0004: Following by name_desc")
+    public void getFollowedByIdTestDesc () {
+
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowedListDTO expectedDescending = TestUtils.getTestFollowedListDTO("name_desc"); // usu1, qropcke1, jmedcraft2, hbowstead0
+        FollowedListDTO sortedDescending;
+
+        // ACT
+        sortedDescending = userService.getFollowedListDto(5, "name_desc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedDescending.equals(expectedDescending));
+
+    }
+
+    @Test
+    @DisplayName("T-0004: Followers by name_asc")
+    public void getFollowersBySellerTestAsc () {
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowersBySellerDTO expectedAscending = TestUtils.getTestFollowersBySellerDTO("name_asc");   // hbowstead0, jmedcraft2, qropcke1, usu1
+        FollowersBySellerDTO sortedAscending;
+
+        // ACT
+        sortedAscending = userService.getFollowersBySeller(5, "name_asc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedAscending.equals(expectedAscending));
+    }
+
+    @Test
+    @DisplayName("T-0004: Followers by name_desc")
+    public void getFollowersBySellerTestDesc () {
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowersBySellerDTO expectedDescending = TestUtils.getTestFollowersBySellerDTO("name_desc");   // hbowstead0, jmedcraft2, qropcke1, usu1
+        FollowersBySellerDTO sortedDescending;
+
+        // ACT
+        sortedDescending = userService.getFollowersBySeller(5, "name_desc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedDescending.equals(expectedDescending));
+    }
+
+    // FIN DE TEST T-0004
+
 
     @Test
     @DisplayName("T-0003 Followers_Ord_Desc_Exists")
