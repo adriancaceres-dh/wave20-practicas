@@ -60,20 +60,22 @@ public class TestUtils {
     }
 
     public static User getTestUser(int id) {
-        return TestUtils.createMockUsers().stream().filter(user -> user.getId() == id).findFirst().orElseThrow();
+        return TestUtils.createMockUsers().stream().filter(user -> user.getId() == id).findFirst().get();
     }
 
     public static FollowedListDTO getTestFollowedListDTO (String order) {
         List<UserResponseDTO> userResponseDTOList = new ArrayList<>();
 
         if (order.equalsIgnoreCase("name_asc")) {
-            for (int i = 0; i < 5; i++) {
-                userResponseDTOList.add( new UserResponseDTO (i, TestUtils.getTestUser(i).getUserName()));
-            }
+            userResponseDTOList.add( new UserResponseDTO (2, TestUtils.getTestUser(2).getUserName()));
+            userResponseDTOList.add( new UserResponseDTO (4, TestUtils.getTestUser(4).getUserName()));
+            userResponseDTOList.add( new UserResponseDTO (3, TestUtils.getTestUser(3).getUserName()));
+            userResponseDTOList.add( new UserResponseDTO (1, TestUtils.getTestUser(1).getUserName()));
         } else if (order.equalsIgnoreCase("name_desc")) {
-            for (int i = 5; i > 0; i--) {
-                userResponseDTOList.add( new UserResponseDTO (i, TestUtils.getTestUser(i).getUserName()));
-            }
+            userResponseDTOList.add( new UserResponseDTO (1, TestUtils.getTestUser(1).getUserName()));
+            userResponseDTOList.add( new UserResponseDTO (3, TestUtils.getTestUser(3).getUserName()));
+            userResponseDTOList.add( new UserResponseDTO (4, TestUtils.getTestUser(4).getUserName()));
+            userResponseDTOList.add( new UserResponseDTO (2, TestUtils.getTestUser(2).getUserName()));
         }
 
         return new FollowedListDTO(5, "Test", userResponseDTOList);

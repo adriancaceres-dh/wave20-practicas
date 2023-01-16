@@ -5,6 +5,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IUserRepository;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.util.TestUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -139,29 +140,45 @@ public class UserServiceTest {
     // TEST T-0004
     // Verificar el correcto ordenamiento ascendente y descendente por nombre.
     @Test
-    @DisplayName("T-0004: Following list sorting")
-    public void getFollowedByIdTest () {
+    @DisplayName("T-0004: Following by name_asc")
+    public void getFollowedByIdTestAsc () {
 
         // ARRANGE
-        when(userService.getById(5)).thenReturn(TestUtils.getTestUser(5)); // userId del usuario de test que sigue a todos y todos lo siguen.
-        when(userService.getById(1)).thenReturn(TestUtils.getTestUser(1)); // Ana
-        when(userService.getById(2)).thenReturn(TestUtils.getTestUser(2)); // Benjamin
-        when(userService.getById(3)).thenReturn(TestUtils.getTestUser(3)); // Carolina
-        when(userService.getById(4)).thenReturn(TestUtils.getTestUser(4)); // Daniel
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
 
-        FollowedListDTO expectedAscending = TestUtils.getTestFollowedListDTO("name_asc");
-        FollowedListDTO expectedDescending = TestUtils.getTestFollowedListDTO("name_desc");
+        FollowedListDTO expectedAscending = TestUtils.getTestFollowedListDTO("name_asc");   // hbowstead0, jmedcraft2, qropcke1, usu1
         FollowedListDTO sortedAscending;
-        FollowedListDTO sortedDescending;
 
         // ACT
         sortedAscending = userService.getFollowedListDto(5, "name_asc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedAscending.equals(expectedAscending));
+    }
+
+    @Test
+    @DisplayName("T-0004: Following by name_desc")
+    public void getFollowedByIdTestDesc () {
+
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowedListDTO expectedDescending = TestUtils.getTestFollowedListDTO("name_desc"); // usu1, qropcke1, jmedcraft2, hbowstead0
+        FollowedListDTO sortedDescending;
+
+        // ACT
         sortedDescending = userService.getFollowedListDto(5, "name_desc");
 
         // ASSERT
-
-        Assertions.assertEquals(expectedAscending, sortedAscending);
-        Assertions.assertEquals(expectedDescending, sortedDescending);
+        Assertions.assertTrue(sortedDescending.equals(expectedDescending));
 
     }
 
