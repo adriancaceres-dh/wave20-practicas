@@ -80,7 +80,7 @@ class UserServiceTest {
     void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() throws Exception {
 
         // Arrange
-        String expectedErrorMessage = "El usuario no existe";
+        String expectedErrorMessage = Parameter.getString("EX_NotExistentUser");
         when(userRepository.getUserById(1)).thenReturn(validUser);
         when(userRepository.getUserById(99)).thenReturn(null);
         validUser.getFollowed().add(validUserToFollow.getId());
@@ -114,7 +114,7 @@ class UserServiceTest {
         users.add(userResponse1);
         users.add(userResponse2);
         expectedResult.setFollowers(users);
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, "name_asc");
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, Parameter.getString("NameAsc"));
 
         assertEquals(expectedResult, actual);
     }
@@ -148,7 +148,7 @@ class UserServiceTest {
         expectedResult.setFollowers(users);
 
         //Act y Assert
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, "name_desc");
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, Parameter.getString("NameDesc"));
         assertEquals(expectedResult, actual);
     }
 
@@ -181,7 +181,7 @@ class UserServiceTest {
         expectedResult.setFollowed(users);
 
         //Act y Assert
-        UserFollowedResponseDto actual = userService.getFollowedDto(6, "name_asc");
+        UserFollowedResponseDto actual = userService.getFollowedDto(6, Parameter.getString("NameAsc"));
         assertEquals(expectedResult, actual);
     }
 
@@ -214,7 +214,7 @@ class UserServiceTest {
         expectedResult.setFollowed(users);
 
         //Act y Assert
-        UserFollowedResponseDto actual = userService.getFollowedDto(6, "name_desc");
+        UserFollowedResponseDto actual = userService.getFollowedDto(6, Parameter.getString("NameDesc"));
         assertEquals(expectedResult, actual);
     }
 
@@ -247,7 +247,7 @@ class UserServiceTest {
         expectedResult.setFollowed(users);
 
         //Act y Assert
-        assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(6, "invalid_order"));
+        assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(6, Parameter.getString("InvalidOrder")));
     }
 
     @Test

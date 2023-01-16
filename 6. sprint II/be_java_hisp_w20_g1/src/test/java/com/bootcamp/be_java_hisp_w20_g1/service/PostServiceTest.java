@@ -88,7 +88,7 @@ class PostServiceTest {
     }
 
     static private Stream<Arguments> orderByDateQueryParamProvider() {
-        return Stream.of(arguments("date_asc"), arguments("date_desc"));
+        return Stream.of(arguments(Parameter.getString("DateAsc")), arguments(Parameter.getString("DateDesc")));
     }
 
     @ParameterizedTest
@@ -107,12 +107,11 @@ class PostServiceTest {
     @Test
     void whenGivingInvalidOrderParam_sortPostByDate_ShouldThrowInvalidQueryParamValueException() throws Exception {
         // Arrange
-        String expectedErrorMessage = "El valor de ordenamiento no es válido";
+        String expectedErrorMessage = Parameter.getString("EX_InvalidOrder");
         List<PostResponseDto> postResponseDtoList = new ArrayList<>();
 
         // Act && Assert
-        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList,"nonExistingOrder"));
+        InvalidQueryParamValueException InvalidQueryParamValueException = Assertions.assertThrows(InvalidQueryParamValueException.class, () -> postService.sortPostByDate(postResponseDtoList, Parameter.getString("NonExistentOrder")));
         assertEquals(expectedErrorMessage,InvalidQueryParamValueException.getMessage());
     }
-
 }
