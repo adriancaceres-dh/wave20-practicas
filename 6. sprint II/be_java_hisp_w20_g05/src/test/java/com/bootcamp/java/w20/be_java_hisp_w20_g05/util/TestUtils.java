@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TestUtils {
     public static Set<User> createMockUsers() {
@@ -67,18 +68,26 @@ public class TestUtils {
         List<UserResponseDTO> userResponseDTOList = new ArrayList<>();
 
         if (order.equalsIgnoreCase("name_asc")) {
-            userResponseDTOList.add( new UserResponseDTO (2, TestUtils.getTestUser(2).getUserName()));
-            userResponseDTOList.add( new UserResponseDTO (4, TestUtils.getTestUser(4).getUserName()));
-            userResponseDTOList.add( new UserResponseDTO (3, TestUtils.getTestUser(3).getUserName()));
-            userResponseDTOList.add( new UserResponseDTO (1, TestUtils.getTestUser(1).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(2, TestUtils.getTestUser(2).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(4, TestUtils.getTestUser(4).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(3, TestUtils.getTestUser(3).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(1, TestUtils.getTestUser(1).getUserName()));
         } else if (order.equalsIgnoreCase("name_desc")) {
-            userResponseDTOList.add( new UserResponseDTO (1, TestUtils.getTestUser(1).getUserName()));
-            userResponseDTOList.add( new UserResponseDTO (3, TestUtils.getTestUser(3).getUserName()));
-            userResponseDTOList.add( new UserResponseDTO (4, TestUtils.getTestUser(4).getUserName()));
-            userResponseDTOList.add( new UserResponseDTO (2, TestUtils.getTestUser(2).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(1, TestUtils.getTestUser(1).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(3, TestUtils.getTestUser(3).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(4, TestUtils.getTestUser(4).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(2, TestUtils.getTestUser(2).getUserName()));
         }
 
         return new FollowedListDTO(5, "Test", userResponseDTOList);
+    }
 
+    public static List<UserResponseDTO> createFollsListDto(Integer id, boolean followed){
+        return createMockUsers().stream()
+                .filter(user -> (followed)?
+                        user.getFollowers().contains(id):
+                        user.getFollowing().contains(id))
+                .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
+                .collect(Collectors.toList());
     }
 }
