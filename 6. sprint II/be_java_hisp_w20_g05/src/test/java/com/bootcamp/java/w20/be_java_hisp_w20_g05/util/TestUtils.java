@@ -1,5 +1,7 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.util;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowedUsersPostsResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
@@ -80,6 +82,24 @@ public class TestUtils {
         }
 
         return new FollowedListDTO(5, "Test", userResponseDTOList);
+    }
+
+    public static FollowersBySellerDTO getTestFollowersBySellerDTO (String order) {
+        List<UserResponseDTO> userResponseDTOList = new ArrayList<>();
+
+        if (order.equalsIgnoreCase("name_asc")) {
+            userResponseDTOList.add(new UserResponseDTO(2, TestUtils.getTestUser(2).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(4, TestUtils.getTestUser(4).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(3, TestUtils.getTestUser(3).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(1, TestUtils.getTestUser(1).getUserName()));
+        } else if (order.equalsIgnoreCase("name_desc")) {
+            userResponseDTOList.add(new UserResponseDTO(1, TestUtils.getTestUser(1).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(3, TestUtils.getTestUser(3).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(4, TestUtils.getTestUser(4).getUserName()));
+            userResponseDTOList.add(new UserResponseDTO(2, TestUtils.getTestUser(2).getUserName()));
+        }
+
+        return new FollowersBySellerDTO(5, "Test", userResponseDTOList);
     }
 
     public static List<UserResponseDTO> createFollsListDto(Integer id, boolean followed){

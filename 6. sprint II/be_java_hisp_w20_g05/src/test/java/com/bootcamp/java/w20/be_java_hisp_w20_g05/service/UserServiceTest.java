@@ -1,5 +1,6 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
@@ -259,9 +260,43 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0004: Followers list sorting")
-    public void getFollowersBySellerTest () {
-        // DEAR GOD, IF YOU ARE REAL PLEASE STOP TESTING ME. THANKS :)
+    @DisplayName("T-0004: Followers by name_asc")
+    public void getFollowersBySellerTestAsc () {
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowersBySellerDTO expectedAscending = TestUtils.getTestFollowersBySellerDTO("name_asc");   // hbowstead0, jmedcraft2, qropcke1, usu1
+        FollowersBySellerDTO sortedAscending;
+
+        // ACT
+        sortedAscending = userService.getFollowersBySeller(5, "name_asc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedAscending.equals(expectedAscending));
+    }
+
+    @Test
+    @DisplayName("T-0004: Followers by name_desc")
+    public void getFollowersBySellerTestDesc () {
+        // ARRANGE
+        when(userRepository.getById(5)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(5))); // userId del usuario de test que sigue a todos y todos lo siguen.
+        when(userRepository.getById(1)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(1))); // usu1
+        when(userRepository.getById(2)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(2))); // hbowstead0
+        when(userRepository.getById(3)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(3))); // qropcke1
+        when(userRepository.getById(4)).thenReturn(Optional.ofNullable(TestUtils.getTestUser(4))); // jmedcraft2
+
+        FollowersBySellerDTO expectedDescending = TestUtils.getTestFollowersBySellerDTO("name_desc");   // hbowstead0, jmedcraft2, qropcke1, usu1
+        FollowersBySellerDTO sortedDescending;
+
+        // ACT
+        sortedDescending = userService.getFollowersBySeller(5, "name_desc");
+
+        // ASSERT
+        Assertions.assertTrue(sortedDescending.equals(expectedDescending));
     }
 
     // FIN DE TEST T-0004
