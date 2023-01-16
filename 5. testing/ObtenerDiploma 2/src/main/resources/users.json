@@ -1,0 +1,1 @@
+[{"id":3,"studentName":"John Doe","message":"Un mensaje","averageScore":8.0,"subjects":[{"name":"Mátematicas","score":8.0}]},{"id":2,"studentName":"Jorge","message":"Un mensaje","averageScore":10.0, "subjects":[{"name":"Mátematicas","score":10.0},{"name":"Lógica","score":10.0}]}]

@@ -1,4 +1,4 @@
-package com.meli.obtenerdiploma;
+package com.meli.obtenerdiploma.service;
 
 import com.meli.obtenerdiploma.exception.StudentNotFoundException;
 import com.meli.obtenerdiploma.model.StudentDTO;
@@ -80,19 +80,6 @@ public class StudentServiceTests {
         //Assert
         verify(studentDAO,times(1)).delete(id);
     }
-
-    /*
-    @Test
-    public void deleteTestNotFound(){
-        //Arrange
-        Long id = 8L;
-        when(studentDAO.delete(id)).thenReturn(false);
-        //Act
-        studentService.delete(id);
-        //Assert
-        verify(studentDAO,times(1)).delete(id);
-    }
-     */
 
     @Test
     public void getAllTestOk(){

@@ -1,2 +1,4 @@
-package com.meli.obtenerdiploma.controller;public class ObtenerDiplomaControllerTest {
+package com.meli.obtenerdiploma.controller;
+
+public class ObtenerDiplomaControllerTest {
 }

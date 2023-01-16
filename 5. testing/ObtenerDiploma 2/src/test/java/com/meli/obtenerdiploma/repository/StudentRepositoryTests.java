@@ -1,4 +1,4 @@
-package com.meli.obtenerdiploma;
+package com.meli.obtenerdiploma.repository;
 
 import com.meli.obtenerdiploma.repository.StudentDAO;
 import com.meli.obtenerdiploma.repository.StudentRepository;
