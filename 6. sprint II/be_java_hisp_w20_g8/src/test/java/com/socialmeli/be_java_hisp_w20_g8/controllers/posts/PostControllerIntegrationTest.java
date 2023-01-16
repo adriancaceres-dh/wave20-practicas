@@ -1,4 +1,4 @@
-package com.socialmeli.be_java_hisp_w20_g8.services.posts;
+package com.socialmeli.be_java_hisp_w20_g8.controllers.posts;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
