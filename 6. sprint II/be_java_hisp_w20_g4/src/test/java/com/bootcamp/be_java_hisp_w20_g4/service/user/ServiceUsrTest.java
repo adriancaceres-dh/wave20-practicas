@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g4.service.user;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.ListedUserDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowedDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowersDTO;
 import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g4.model.Buyer;
 import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
@@ -9,12 +10,7 @@ import com.bootcamp.be_java_hisp_w20_g4.model.User;
 import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
 import org.junit.jupiter.api.Assertions;
 
-import com.bootcamp.be_java_hisp_w20_g4.model.Buyer;
-import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
-import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import com.bootcamp.be_java_hisp_w20_g4.model.User;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -101,19 +97,77 @@ class ServiceUsrTest {
         return seller1;
 
     }
+    private User createUser(){
+        Seller seller1 = new Seller();
+        seller1.setUser_name("rodri");
+        seller1.setUser_id(1);
+
+        Seller seller2 = new Seller();
+        seller2.setUser_name("Lalo Landa2");
+        seller2.setUser_id(2);
+
+        Seller seller3 = new Seller();
+        seller3.setUser_name("Lalo Landa3");
+        seller3.setUser_id(3);
+
+        Seller seller4 = new Seller();
+        seller4.setUser_name("Lalo Landa4");
+        seller4.setUser_id(4);
+
+        HashMap<Integer, User> followers = new HashMap<>();
+        followers.put(2,seller2);
+        followers.put(3,seller3);
+        followers.put(4,seller4);
+
+        seller1.setFollowers(followers);
+        return seller1;
+    }
 
 
     @Test
+    @DisplayName("US 0003 - Verificar que el orden exista. Orden name_asc")
     void followersOrderAscOKTest() {
+        //arrange
+    String order = "name_asc";
+    List<ListedUserDTO> expectedList = new ArrayList<>();
+
+    UserFollowersDTO expected = new UserFollowersDTO(2,"rodri", expectedList);
+    when(mockUserRepository.findById(2)).thenReturn(new Seller(2, "rodri"));
+         //act
+   UserFollowersDTO actual = mockServiceUser.followers(2, "name_asc");
+
+        //assert
+   Assertions.assertEquals(expected, actual);
 
     }
-
     @Test
+    @DisplayName("US 0003 - Verificar que el orden exista. Orden name_desc")
     void followersOrderDescOKTest() {
+        //arrange
+        String order = "name_desc";
+
+        List<ListedUserDTO> expectedList = new ArrayList<>();
+        UserFollowersDTO expected = new UserFollowersDTO(2,"rodri",expectedList);
+
+        when(mockUserRepository.findById(2)).thenReturn(new Seller(2, "rodri"));
+
+        //act
+        UserFollowersDTO actual = mockServiceUser.followers(2, order);
+
+        //assert
+        Assertions.assertEquals(expected, actual);
     }
 
-    @Test
+    @Test //BadRequestException: Parametro de orden incorrecto
+    @DisplayName("US 0003 - Verificar que el orden exista. Orden inválido")
     void followersInvalidOrderTest() {
+
+        //arrange
+        String wrongOrder = "lalala";
+
+        //assert
+       assertThrows(BadRequestException.class, ()->mockServiceUser.followers(1, wrongOrder));
+
     }
 
     @Test
