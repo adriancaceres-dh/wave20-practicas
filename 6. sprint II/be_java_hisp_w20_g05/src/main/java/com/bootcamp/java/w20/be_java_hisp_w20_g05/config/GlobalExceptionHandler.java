@@ -12,12 +12,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseStatusExceptionHandler {
 
+    //Excepcion para las validaciones dentro de los DTOs.
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<MessageExceptionDTO> handleValidationException(MethodArgumentNotValidException e){
         return new ResponseEntity<>(new MessageExceptionDTO(e.getBindingResult().getFieldError().getDefaultMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    //Excepcion para las validaciones de los tipos primitivos dentro de los controllers.
+    @ExceptionHandler(ConstraintViolationException.class)
+    protected ResponseEntity<MessageExceptionDTO> constraintViolationException(ConstraintViolationException e){
+        return new ResponseEntity<>(new MessageExceptionDTO(e.getConstraintViolations().iterator().next().getMessage()),HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(IdNotFoundException.class)
