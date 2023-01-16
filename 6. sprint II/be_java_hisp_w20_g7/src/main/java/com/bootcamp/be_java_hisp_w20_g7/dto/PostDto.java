@@ -27,9 +27,8 @@ public class PostDto {
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
 
-
     @NotNull(message = "userId is a mandatory field")
-    private ProductDto productDto;
+    private ProductDto product;
 
     @NotNull(message = "Field cannot be empty")
     @Min(value = 1, message = "category must be greather than 0")

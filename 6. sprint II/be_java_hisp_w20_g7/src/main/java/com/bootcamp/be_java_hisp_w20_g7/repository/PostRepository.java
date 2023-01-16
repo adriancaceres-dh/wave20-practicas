@@ -25,7 +25,7 @@ public class PostRepository implements IPostRepository {
 
     public PostRepository() {
         posts = loadData();
-        posts = new ArrayList<>();
+        /*posts = new ArrayList<>();
         LocalDate date = LocalDate.parse("2022-12-30");
         Product product = new Product(3, "Silla Gamer", "Gamer", "Racer", "Black", "Special Edition");
         Product product2 = new Product(3, "Silla Gamer", "Gamer", "Racer", "Pink", "Special Edition");
@@ -34,7 +34,7 @@ public class PostRepository implements IPostRepository {
         Post post3 = new Post(3, 3, LocalDate.parse("2023-01-01"), product2, 100, 2, false, 22.0);
         posts.add(post);
         posts.add(post2);
-        posts.add(post3);
+        posts.add(post3);*/
     }
 
     @Override

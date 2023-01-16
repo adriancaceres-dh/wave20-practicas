@@ -15,7 +15,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +35,7 @@ public class PostService implements IPostService {
     IUserRepository iUserRepository;
 
     ModelMapper modelMapper;
+    private final Clock clock = Clock.systemUTC();
 
     public PostService() {
         modelMapper = new ModelMapper();
@@ -71,16 +74,17 @@ public class PostService implements IPostService {
         User user = iUserRepository.findById(userId);
         if (user == null) throw new UserNotFoundException("user with id " + userId + " not found");
         List<Integer> followedIds = iFollowRepository.findAll().stream().filter(e -> e.getIdFollower() == userId).map(Follow::getIdFollowed).collect(Collectors.toList());
-        List<Post> posts;
-        if (order == null) order = "";
+        List<Post> posts = new ArrayList<>();
         if (order.equals("date_desc")) {
             posts = iPostRepository.findAll().stream()
-                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
+                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now(clock).minusDays(15)))
                     .sorted(Comparator.comparing(Post::getDate)).collect(Collectors.toList());
-        } else {
+        } else if (order.equals("date_asc")) {
             posts = iPostRepository.findAll().stream()
-                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now().minusDays(15)))
+                    .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now(clock).minusDays(15)))
                     .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
+        } else{
+            throw new DataIsnotCorrectException("Select an existed order, you can use date_desc or date_asc");
         }
 
         List<PostDto> postDtos = posts.stream().map(e -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
