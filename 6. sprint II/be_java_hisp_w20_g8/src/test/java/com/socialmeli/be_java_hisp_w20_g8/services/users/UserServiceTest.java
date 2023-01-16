@@ -232,7 +232,6 @@ class UserServiceTest {
             when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
             //Action
             UserFollowedDTO sellerFollowers = injectMockUserService.getAllFollowed(userId,orderOption);
-            System.out.println("sellerFollowers = " + sellerFollowers);
 
             //assert
             assertNotNull(sellerFollowers);
