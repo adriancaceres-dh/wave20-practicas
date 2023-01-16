@@ -43,20 +43,8 @@ class PostServiceTest {
         int userId2 = 234;
         List<Post> expectedPosts = PostUtils.getLatestPosts();
         List<PostDTO> expectedPostsDTO = PostUtils.postDTOConverter(expectedPosts);
-        User user1 = User.builder()
-                .userId(userId1)
-                .userName("usuario1")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
-        User user2 = User.builder()
-                .userId(userId2)
-                .userName("usuario2")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
-        user2.getFollowed().add(user1);
-        user1.getFollowers().add(user2);
+        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        User user2 = user1.getFollowers().get(0);
         when(userRepository.getUserById(userId1)).thenReturn(user2);
         when(postRepository.getPostsByUserId(userId1)).thenReturn(expectedPosts);
 
@@ -87,20 +75,8 @@ class PostServiceTest {
         int userId2 = 234;
         List<Post> expectedPosts = PostUtils.getLatestPosts();
         List<PostDTO> expectedPostsDTO = PostUtils.postDTOConverter(expectedPosts);
-        User user1 = User.builder()
-                .userId(userId1)
-                .userName("usuario1")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
-        User user2 = User.builder()
-                .userId(userId2)
-                .userName("usuario2")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
-        user2.getFollowed().add(user1);
-        user1.getFollowers().add(user2);
+        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        User user2 = user1.getFollowers().get(0);
         when(userRepository.getUserById(userId1)).thenReturn(user2);
         when(postRepository.getPostsByUserId(userId1)).thenReturn(expectedPosts);
 
@@ -121,20 +97,8 @@ class PostServiceTest {
         int userId2 = 234;
         List<Post> expectedPosts = PostUtils.getAscendingDatePosts();
         List<PostDTO> expectedPostsDTO = PostUtils.postDTOConverter(expectedPosts);
-        User user1 = User.builder()
-                .userId(userId1)
-                .userName("usuario1")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
-        User user2 = User.builder()
-                .userId(userId2)
-                .userName("usuario2")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
-        user2.getFollowed().add(user1);
-        user1.getFollowers().add(user2);
+        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        User user2 = user1.getFollowers().get(0);
         when(userRepository.getUserById(userId1)).thenReturn(user2);
         when(postRepository.getPostsByUserId(userId1)).thenReturn(expectedPosts);
 

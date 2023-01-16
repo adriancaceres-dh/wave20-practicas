@@ -88,4 +88,23 @@ public static User getUserAddFollower(int usId){
 
         return usuario1;
     }
+
+    public static User buildUserWithOneFollower(int userId1, int userId2){
+        User user1 = User.builder()
+                .userId(userId1)
+                .userName("usuario1")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        User user2 = User.builder()
+                .userId(userId2)
+                .userName("usuario2")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        user2.getFollowed().add(user1);
+        user1.getFollowers().add(user2);
+
+        return user1;
+    }
 }
