@@ -13,7 +13,7 @@ Java 11, Maven, Spring Framework(Web, DevTools, Lombok), JUnit5, Mockito y Githu
 Desarrollo de una API REST para mejorar la experiencia entre compradores y vendedores.
 Los compradores podran seguir a sus vendedores favoritos y enterarse de sus posteos de nuevos productos.
 
-## Validaciones en los campos de entrada.
+## Implementacion de validaciones en los campos de entrada.
 - user_id
 - id_post
 - date
@@ -25,7 +25,7 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 - notes
 - category
 - price
-- 
+
 ## Implementacion de Test Unitarios y Test de Integracion.
 
 ![image](https://user-images.githubusercontent.com/119961027/212745767-a4f0262b-dd4a-4727-9ba2-0812e9181a9f.png)
