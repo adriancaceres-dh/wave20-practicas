@@ -15,6 +15,7 @@ public class Parameter {
             put("NameAsc", "name_asc");
             put("NameDesc", "name_desc");
             put("NonExistentOrder", "nonExistingOrder");
+            put("InvalidOrder", "invalid_order");
 
             put("EX_Path", "Path variable incorrecta");
             put("EX_InvalidRequestBody", "Request body inválido");
