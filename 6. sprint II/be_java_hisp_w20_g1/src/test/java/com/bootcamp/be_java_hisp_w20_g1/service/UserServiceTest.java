@@ -43,9 +43,8 @@ class UserServiceTest {
         when(userRepository.getUserById(2)).thenReturn(validUserToFollow);
 
         UserResponseDto userResponseDto = new UserResponseDto(validUserToFollow.getId(),validUserToFollow.getName());
-        UserFollowedResponseDto userFollowedResponseDto = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of(userResponseDto));
 
-        UserFollowedResponseDto expectedDTO = userFollowedResponseDto;
+        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of(userResponseDto));
 
         //Act
         validUser.getFollowed().add(validUserToFollow.getId());
