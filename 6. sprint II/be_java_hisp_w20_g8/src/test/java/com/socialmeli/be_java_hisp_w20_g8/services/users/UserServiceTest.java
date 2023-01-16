@@ -99,7 +99,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0002 -> Unfollow user exists")
+    @DisplayName("T-0002 ->  User to unfollow exists")
     void unfollowServiceTest() {
         //Arrange
         int userId = 1;
@@ -132,7 +132,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0002 -> Unfollow user exists exception")
+    @DisplayName("T-0002 -> User to unfollow exists exception")
     void unfollowServiceNoExistTest() {
         //Arrange
         int userId = 50;
