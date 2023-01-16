@@ -21,8 +21,8 @@ public class PostRepositoryImp implements IPostRepository {
     private final Set<Post> posts;
     private int postCount;
 
-    public PostRepositoryImp(Map<Integer, PostDTO> mapPosts) {
-        this.mapPosts = mapPosts;
+    public PostRepositoryImp() {
+        this.mapPosts = new HashMap<>();
         this.posts = new HashSet<>();
         loadPost();
         this.postCount = posts.size();
@@ -31,7 +31,7 @@ public class PostRepositoryImp implements IPostRepository {
 
     @Override
     public Set<PostDTO> findPostsById(Set<Integer> listPostId) {
-        return listPostId.stream().map(mapPosts::get).filter(post -> ChronoUnit.WEEKS.between(post.getDate(), LocalDate.now()) <= 2).collect(Collectors.toSet());
+        return listPostId.stream().map(mapPosts::get).filter(post -> ChronoUnit.DAYS.between(post.getDate(), LocalDate.now()) <= 14).collect(Collectors.toSet());
     }
 
     @Override
@@ -49,16 +49,16 @@ public class PostRepositoryImp implements IPostRepository {
         posts.add(new Post(3, 7, LocalDate.of(2022, 11, 29), 3, 2, 2000));
         posts.add(new Post(4, 6, LocalDate.of(2022, 11, 27), 4, 2, 2000));
 
-        mapPosts.put(1, PostDTO.builder().post_id(1).user_id(5).date(LocalDate.of(2022, 12, 29)).product(
+        mapPosts.put(1, PostDTO.builder().post_id(1).user_id(5).date(LocalDate.of(2022, 12, 31)).product(
                 ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()
         ).category(2).price(2000).build());
-        mapPosts.put(2, PostDTO.builder().post_id(2).user_id(5).date(LocalDate.of(2022, 12, 28)).product(
+        mapPosts.put(2, PostDTO.builder().post_id(2).user_id(5).date(LocalDate.of(2023, 1, 2)).product(
                 ProductDTO.builder().product_id(1).product_name("Freezer").type("Technology").brand("Samsung").color("Black").notes("Freezer").build()
         ).category(2).price(2000).build());
-        mapPosts.put(3, PostDTO.builder().post_id(3).user_id(7).date(LocalDate.of(2022, 11, 29)).product(
+        mapPosts.put(3, PostDTO.builder().post_id(3).user_id(7).date(LocalDate.of(2022, 12, 26)).product(
                 ProductDTO.builder().product_id(1).product_name("Blender").type("Technology").brand("Samsung").color("Black").notes("9 liters").build()
         ).category(2).price(2000).build());
-        mapPosts.put(4, PostDTO.builder().post_id(4).user_id(6).date(LocalDate.of(2022, 11, 27)).product(
+        mapPosts.put(4, PostDTO.builder().post_id(4).user_id(6).date(LocalDate.of(2022, 12, 30)).product(
                 ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
         ).category(2).price(2000).build());
 
