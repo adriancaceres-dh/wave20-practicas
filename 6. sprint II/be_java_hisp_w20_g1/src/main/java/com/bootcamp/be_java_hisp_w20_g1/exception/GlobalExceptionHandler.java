@@ -1,14 +1,17 @@
 package com.bootcamp.be_java_hisp_w20_g1.exception;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -39,6 +42,18 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> InvalidQueryParamValueException(Exception e) {
         return ResponseEntity.unprocessableEntity()
                 .body(new MessageException(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value()));
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> messageNotReadableException(HttpMessageNotReadableException e) {
+        JsonMappingException cause = (JsonMappingException) e.getCause();
+        String invalidField = cause.getPath().get(0).getFieldName();
+
+        return ResponseEntity.badRequest()
+                .body(new MessageException(
+                        "Tipo de dato inválido en " + invalidField,
+                        HttpStatus.BAD_REQUEST.value()
+                ));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
