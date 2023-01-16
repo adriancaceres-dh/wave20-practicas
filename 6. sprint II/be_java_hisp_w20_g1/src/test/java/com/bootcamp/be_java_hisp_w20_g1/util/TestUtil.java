@@ -3,7 +3,6 @@ package com.bootcamp.be_java_hisp_w20_g1.util;
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
-import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import org.modelmapper.ModelMapper;
 
