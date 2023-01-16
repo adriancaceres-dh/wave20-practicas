@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 public class PostDTO {
     @JsonProperty("post_id")
     @NotNull(message = "El post_id no puede estar vacio")
-    @Min(value = 1, message = "El post_id debe ser mayor a 0")
+    //@Min(value = 1, message = "El post_id debe ser mayor a 0")
     private int postId;
     @JsonProperty("user_id")
     @NotNull(message = "El id no puede estar vacio")
@@ -26,6 +27,7 @@ public class PostDTO {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @NotNull(message = "La fecha no puede estar vacía.")
     private LocalDate date;
+    @Valid
     private ProductDTO product;
     @NotNull(message = "El campo no puede estar vacío.")
     private int category;
