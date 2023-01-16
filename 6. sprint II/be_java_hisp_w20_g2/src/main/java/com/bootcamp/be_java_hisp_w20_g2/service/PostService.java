@@ -10,11 +10,11 @@ import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g2.utils.mapper.PostMapper;
+import com.bootcamp.be_java_hisp_w20_g2.utils.sort.PostStreamSorter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.Optional;
 
 
@@ -67,7 +67,7 @@ public class PostService implements IPostService {
         user.getFollowing()
                 .forEach(followedUser -> {
                     followedUser.getPosts().stream()
-                            .sorted(this.getDateComparator(order))
+                            .sorted(PostStreamSorter.getSortCriteria(order.orElse("date_desc")))
                             .filter(post -> post.getDate().isAfter(LocalDate.now().minusWeeks(2)))
                             .forEach(post -> postResponse.addPost(postMapper.toWithIdDTO(post, followedUser.getId())));
                 });
@@ -82,12 +82,6 @@ public class PostService implements IPostService {
         }
 
         return user;
-    }
-
-    private Comparator<Post> getDateComparator(Optional<String> order) {
-        return order.orElse("date_desc").equals("date_desc") ?
-                Comparator.comparing(Post::getDate).reversed()
-                : Comparator.comparing(Post::getDate);
     }
 
 }
