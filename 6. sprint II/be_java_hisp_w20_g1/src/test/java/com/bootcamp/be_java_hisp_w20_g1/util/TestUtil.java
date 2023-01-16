@@ -1,19 +1,14 @@
 package com.bootcamp.be_java_hisp_w20_g1.util;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TestUtil {
@@ -83,10 +78,55 @@ public class TestUtil {
 
         return User.builder().
                 id(1).
-                name("Enrique").
+                name("Joe").
                 followers(followers).
                 isSeller(isSeller).
                 build();
+    }
+
+    public static User getUserWithFollowed(boolean isSeller){
+        Set<Integer> followed = new HashSet<>();
+        followed.add(2);
+        followed.add(3);
+
+        return User.builder().
+                id(1).
+                name("Joe").
+                followed(followed).
+                isSeller(isSeller).
+                build();
+    }
+
+    public static User getSellerUser(String name, int id){
+        return User.builder().
+                id(id).
+                name(name).
+                isSeller(true).
+                build();
+    }
+
+    public static UserFollowersResponseDto getUserFollowersResponseDto(User mainUser, User ...userToFollow) {
+        List<UserResponseDto> users = new ArrayList<>();
+        Arrays.stream(userToFollow)
+                .forEach(user -> users.add(new UserResponseDto(user.getId(), user.getName())));
+
+        UserFollowersResponseDto userFollowersResponseDto = new UserFollowersResponseDto();
+        userFollowersResponseDto.setUserId(mainUser.getId());
+        userFollowersResponseDto.setUserName(mainUser.getName());
+        userFollowersResponseDto.setFollowers(users);
+        return userFollowersResponseDto;
+    }
+
+    public static UserFollowedResponseDto getUserFollowedResponseDto(User mainUser, User ...followedUser) {
+        List<UserResponseDto> users = new ArrayList<>();
+        Arrays.stream(followedUser)
+                .forEach(user -> users.add(new UserResponseDto(user.getId(), user.getName())));
+
+        UserFollowedResponseDto userFollowedResponseDto = new UserFollowedResponseDto();
+        userFollowedResponseDto.setUserId(mainUser.getId());
+        userFollowedResponseDto.setUserName(mainUser.getName());
+        userFollowedResponseDto.setFollowed(users);
+        return userFollowedResponseDto;
     }
 
 }

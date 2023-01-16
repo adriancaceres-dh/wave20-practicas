@@ -87,29 +87,20 @@ class UserServiceTest {
     @Test
     @DisplayName("T4 se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
     public void shouldGetSellersFollowersDtoOrderedByAsc() {
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        Set<Integer> followers = new HashSet<>();
-        followers.add(1);
-        followers.add(2);
-        User user1 = User.builder().id(1).name("Facundo").build();
 
-        User user2 = User.builder().id(2).name("Raul").build();
-        user.setFollowers(followers);
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
+        // Arrange
+        User user = TestUtil.getUserWithFollowers(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
 
-        UserFollowersResponseDto expectedResult = new UserFollowersResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        List<UserResponseDto> users = new ArrayList<>();
-        UserResponseDto userResponse1 = new UserResponseDto(1, "Facundo");
-        UserResponseDto userResponse2 = new UserResponseDto(2, "Raul");
-        users.add(userResponse1);
-        users.add(userResponse2);
-        expectedResult.setFollowers(users);
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, Parameter.getString("NameAsc"));
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
 
+        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user1, user2);
+
+        //Act y Assert
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, Parameter.getString("NameAsc"));
         assertEquals(expectedResult, actual);
     }
 
@@ -118,31 +109,18 @@ class UserServiceTest {
     public void shouldGetSellersFollowersDtoOrderedByDesc() {
 
         // Arrange
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        User user1 = User.builder().id(1).name("Facundo").build();
-        User user2 = User.builder().id(2).name("Raul").build();
+        User user = TestUtil.getUserWithFollowers(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
 
-        Set<Integer> followers = new HashSet<>();
-        followers.add(1);
-        followers.add(2);
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
 
-        user.setFollowers(followers);
-
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
-
-        List<UserResponseDto> users = new ArrayList<>();
-        users.add(new UserResponseDto(2, "Raul"));
-        users.add(new UserResponseDto(1, "Facundo"));
-
-        UserFollowersResponseDto expectedResult = new UserFollowersResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        expectedResult.setFollowers(users);
+        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user2, user1);
 
         //Act y Assert
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, Parameter.getString("NameDesc"));
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, Parameter.getString("NameDesc"));
         assertEquals(expectedResult, actual);
     }
 
@@ -151,31 +129,18 @@ class UserServiceTest {
     public void shouldGetSellersFollowedDtoOrderedByAsc() {
 
         // Arrange
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        User user1 = User.builder().id(1).name("Facundo").build();
-        User user2 = User.builder().id(2).name("Raul").build();
+        User user = TestUtil.getUserWithFollowed(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
 
-        Set<Integer> followed = new HashSet<>();
-        followed.add(1);
-        followed.add(2);
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
 
-        user.setFollowed(followed);
-
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
-
-        List<UserResponseDto> users = new ArrayList<>();
-        users.add(new UserResponseDto(1, "Facundo"));
-        users.add(new UserResponseDto(2, "Raul"));
-
-        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        expectedResult.setFollowed(users);
+        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user1, user2);
 
         //Act y Assert
-        UserFollowedResponseDto actual = userService.getFollowedDto(6, Parameter.getString("NameAsc"));
+        UserFollowedResponseDto actual = userService.getFollowedDto(1, Parameter.getString("NameAsc"));
         assertEquals(expectedResult, actual);
     }
 
@@ -184,64 +149,44 @@ class UserServiceTest {
     public void shouldGetSellersFollowedDtoOrderedByDesc() {
 
         // Arrange
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        User user1 = User.builder().id(1).name("Facundo").build();
-        User user2 = User.builder().id(2).name("Raul").build();
+        User user = TestUtil.getUserWithFollowed(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
 
-        Set<Integer> followed = new HashSet<>();
-        followed.add(1);
-        followed.add(2);
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
 
-        user.setFollowed(followed);
-
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
-
-        List<UserResponseDto> users = new ArrayList<>();
-        users.add(new UserResponseDto(2, "Raul"));
-        users.add(new UserResponseDto(1, "Facundo"));
-
-        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        expectedResult.setFollowed(users);
+        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user2, user1);
 
         //Act y Assert
-        UserFollowedResponseDto actual = userService.getFollowedDto(6, Parameter.getString("NameDesc"));
+        UserFollowedResponseDto actual = userService.getFollowedDto(1, Parameter.getString("NameDesc"));
         assertEquals(expectedResult, actual);
     }
 
 
     @Test
-    @DisplayName("T3 Se lanza excepción si el orden es inválido.")
-    public void shouldThrowExceptionIfOrderDoesNotExist() {
+    @DisplayName("T3 Se lanza excepción si el orden es inválido en getFollowed.")
+    public void shouldThrowExceptionIfOrderDoesNotExistWhenCallingGetFollowed() {
         // Arrange
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        User user1 = User.builder().id(1).name("Facundo").build();
-        User user2 = User.builder().id(2).name("Raul").build();
+        User user = TestUtil.getUserWithFollowed(true);
 
-        Set<Integer> followed = new HashSet<>();
-        followed.add(1);
-        followed.add(2);
-
-        user.setFollowed(followed);
-
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
-
-        List<UserResponseDto> users = new ArrayList<>();
-        users.add(new UserResponseDto(2, "Raul"));
-        users.add(new UserResponseDto(1, "Facundo"));
-
-        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        expectedResult.setFollowed(users);
+        when(userRepository.getUserById(1)).thenReturn(user);
 
         //Act y Assert
-        assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(6, Parameter.getString("InvalidOrder")));
+        assertThrows(InvalidQueryParamValueException.class, () -> userService.getFollowedDto(1, Parameter.getString("InvalidOrder")));
+    }
+
+    @Test
+    @DisplayName("T3 Se lanza excepción si el orden es inválido en getSellerFollowers.")
+    public void shouldThrowExceptionIfOrderDoesNotExistWhenCallingGetSellerFollowers() {
+        // Arrange
+        User user = TestUtil.getUserWithFollowed(true);
+
+        when(userRepository.getUserById(1)).thenReturn(user);
+
+        //Act y Assert
+        assertThrows(InvalidQueryParamValueException.class, () -> userService.getSellerFollowersDto(1, Parameter.getString("InvalidOrder")));
     }
 
     @Test
@@ -249,31 +194,19 @@ class UserServiceTest {
     public void shouldGetSellersFollowedDtoOrdered() {
 
         // Arrange
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        User user1 = User.builder().id(1).name("Facundo").build();
-        User user2 = User.builder().id(2).name("Raul").build();
+        User user = TestUtil.getUserWithFollowed(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
 
-        Set<Integer> followed = new HashSet<>();
-        followed.add(1);
-        followed.add(2);
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
 
-        user.setFollowed(followed);
 
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
-
-        List<UserResponseDto> users = new ArrayList<>();
-        users.add(new UserResponseDto(1, "Facundo"));
-        users.add(new UserResponseDto(2, "Raul"));
-
-        UserFollowedResponseDto expectedResult = new UserFollowedResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        expectedResult.setFollowed(users);
+        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user1, user2);
 
         //Act y Assert
-        UserFollowedResponseDto actual = userService.getFollowedDto(6, null);
+        UserFollowedResponseDto actual = userService.getFollowedDto(1, null);
         assertEquals(expectedResult, actual);
     }
 
@@ -282,31 +215,18 @@ class UserServiceTest {
     public void shouldGetSellersFollowersDtoOrdered() {
 
         // Arrange
-        User user = User.builder().id(6).name("Joe").isSeller(true).build();
-        User user1 = User.builder().id(1).name("Facundo").build();
-        User user2 = User.builder().id(2).name("Raul").build();
+        User user = TestUtil.getUserWithFollowers(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
 
-        Set<Integer> followers = new HashSet<>();
-        followers.add(1);
-        followers.add(2);
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
 
-        user.setFollowers(followers);
-
-        when(userRepository.getUserById(6)).thenReturn(user);
-        when(userRepository.getUserById(1)).thenReturn(user1);
-        when(userRepository.getUserById(2)).thenReturn(user2);
-
-        List<UserResponseDto> users = new ArrayList<>();
-        users.add(new UserResponseDto(1, "Facundo"));
-        users.add(new UserResponseDto(2, "Raul"));
-
-        UserFollowersResponseDto expectedResult = new UserFollowersResponseDto();
-        expectedResult.setUserId(6);
-        expectedResult.setUserName("Joe");
-        expectedResult.setFollowers(users);
+        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user1, user2);
 
         //Act y Assert
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(6, null);
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, null);
         assertEquals(expectedResult, actual);
     }
 
