@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2da0941b-23e9-424a-b4a0-594a46d9cbb2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../4. sprint/be_java_hisp_w20_ramosruiz/src/main/java/com/bootcamp/be_java_hisp_w20_ramosruiz/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../4. sprint/be_java_hisp_w20_ramosruiz/src/main/java/com/bootcamp/be_java_hisp_w20_ramosruiz/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. sprint/be_java_hisp_w20_ramosruiz/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../4. sprint/be_java_hisp_w20_ramosruiz/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/repository/StudentDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/repository/StudentDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/repository/StudentRepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/repository/StudentRepositoryTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/service/ObtenerDiplomaServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/service/ObtenerDiplomaServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/service/StudentServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/ObtenerDiploma 2/src/test/java/com/meli/obtenerdiploma/service/StudentServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../5. testing/starwars/src/test/java/com/mercadolibre/starwars/FindControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../5. testing/starwars/src/test/java/com/mercadolibre/starwars/FindControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/dto/request/PostRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/dto/request/PostRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/dto/request/ProductRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/dto/request/ProductRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/exception/InvalidValidationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/exception/InvalidValidationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/exception/MessageException.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/main/java/com/bootcamp/be_java_hisp_w20_g1/exception/MessageException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/test/java/com/bootcamp/be_java_hisp_w20_g1/service/PostServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/test/java/com/bootcamp/be_java_hisp_w20_g1/service/PostServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/test/java/com/bootcamp/be_java_hisp_w20_g1/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/be_java_hisp_w20_g1/src/test/java/com/bootcamp/be_java_hisp_w20_g1/service/UserServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KQ3avSN1siK4JZab1aV1ZKgxCQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/JUARAMOS/bootcamp/wave20-practicas/6. sprint II",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2da0941b-23e9-424a-b4a0-594a46d9cbb2" name="Changes" comment="" />
+      <created>1673893045483</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673893045483</updated>
+    </task>
+    <servers />
+  </component>
+</project>
