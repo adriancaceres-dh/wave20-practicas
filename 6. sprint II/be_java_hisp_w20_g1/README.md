@@ -1,5 +1,5 @@
 
-# Sprint 1 Social MELI.
+# Sprint 2 Social MELI.
 
 ### Miembros del equipo.
 
@@ -50,529 +50,425 @@ La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación d
 - Consideramos que un usuario es vendedor si tiene al menos una publicación.
 - Al lanzarse excepciones, se mostrará su descripción, código de error y timestamp.
 
-### Endpoints (Grupales)
+## Validaciones
 
-[Colección de request para importar en Postman](User%20Stories.postman_collection.json)
-
-Responsables de cada User Story
-
-| User Story | Responsables |
-| --- | --- |
-| **US 0001** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0002** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0003** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0004** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0005** | Karen Hoffman y Lautaro Walsh |
-| **US 0006** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0007** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-| **US 0008** | Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi |
-| **US 0009** | Franciso Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles |
-
-----
-**US 0001**
-
-_Poder realizar la acción de “Follow” (seguir) a un determinado vendedor_
-
-
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
-| **POST** | /users/{userId}/follow/{userIdToFollow} | /users/123/follow/234 |
-
+Se agregaron las siguientes validaciones a los Dto de request
 
 <table>
 <tbody>
-<tr style="height: 23px;">
-<td style="height: 23px;">Status Code</td>
-<td style="height: 23px;">Response / Dto</td>
+<tr>
+<td>
+<p><strong>Dato/Par&aacute;metro</strong></p>
+</td>
+<td>
+<p><strong>&iquest;Obligatorio?</strong></p>
+</td>
+<td>
+<p><strong>Validaci&oacute;n</strong></p>
+</td>
+<td>
+<p><strong>Mensaje de error</strong></p>
+</td>
 </tr>
-<tr style="height: 313.375px;">
-<td style="height: 313.375px;"><strong>200</strong></td>
-<td style="height: 313.375px;">
-<pre><code class="language-json">{
-"user_id": 1,
-"user_name": "zchanelleHhanelle",
-"followed": [
+<tr>
+<td>
+<p><span style="font-weight: 400;">user_id</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Si</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mayor 0</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El&nbsp; id no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id debe ser mayor a cero</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">id_post</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mayor 0</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id_post no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id_post debe ser mayor a cero</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">date</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La fecha no puede estar vac&iacute;a.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">product_id</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mayor 0</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La id no puede estar vac&iacute;a.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id debe ser mayor a cero</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">product_name</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 40 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc), permite espacios.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 40 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">type</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc)&nbsp;</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">brand</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 25 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc)&nbsp;</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 25 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+<br /><br /><br /></td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">color</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc)</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">notes</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">NO</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 80 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc), permite espacios.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 80 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">category</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">price</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El precio m&aacute;ximo puede ser 10.000.000.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El precio m&aacute;ximo por producto es de 10.000.000</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+Hemos definido mostrar todas las validaciones errones cuando se lanza _MethodArgumentNotValidException_
+
+Por ejemplo
+
+```json
 {
-"user_id": 2,
-"user_name": "zmohamedDohamed"
-},
-{
-"user_id": 3,
-"user_name": "kinaMina"
+  "message": "Campos inválidos o faltantes",
+  "status": 400,
+  "timestamp": "2023-01-16T09:30:21.563110",
+  "invalid_validations": [{
+    "field": "userId",
+    "rejected_value": "0",
+    "reason": "El id debe ser mayor a 0"
+  },
+    {
+      "field": "product.color",
+      "rejected_value": "Red & Black",
+      "reason": "El campo no puede poseer caracteres especiales."
+    },
+    {
+      "field": "price",
+      "rejected_value": "1.500123123213231E15",
+      "reason": "El precio máximo por producto es de 10.000.000"
+    }
+  ]
 }
-]
-}</code></pre>
-</td>
-</tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>400 </strong><em>(el usuario a seguir no es vendedor)</em></td>
-<td style="height: 23px;">
-<pre><code class="language-json">{
-"message": "El usuario no es vendedor",
-"status": 400,
-"timestamp": "2023-01-03T12:22:44.591493"
-}</code></pre>
-</td>
-</tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>404</strong> (algun usuario no existe)</td>
-<td style="height: 23px;">
-<pre><code class="language-json">{
-"message": "El usuario no existe",
-"status": 404,
-"timestamp": "2023-01-03T12:21:26.891095"
-}</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
+```
 
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica al usuario actual |
-| **userIdToFollow** | int | Número que identifica al usuario actual |
-
-----
-**US 0002**
-
-_Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor_
-
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
-| **GET** | /users/{userId}/followers/count | /users/234/followers/count/ |
+## Test unitarios
 
 <table>
 <tbody>
-<tr style="height: 23.5px;">
-<td style="height: 23.5px;">Status Code</td>
-<td style="height: 23.5px;">Response / Dto</td>
-</tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>200</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
- &nbsp;&nbsp;&nbsp;"user_id": 234,
- &nbsp;&nbsp;&nbsp;"user_name": "vendedor1",
- &nbsp;&nbsp;&nbsp;"followers_count": 35
-}</code></pre>
+<tr style="height: 33px;">
+<td style="height: 33px;">&nbsp;</td>
+<td style="height: 33px;">
+<p><strong>Responsables</strong></p>
+</td>
+<td style="height: 33px;">
+<p><strong>Situaciones de entrada</strong></p>
+</td>
+<td style="height: 33px;">
+<p><strong>Comportamiento Esperado</strong></p>
 </td>
 </tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>400</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
-"message": "El usuario no es vendedor",
-"status": 400,
-"timestamp": "2023-01-03T12:25:57.628851"
-}</code></pre>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>T-0001</strong></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Francisco Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Verificar que el usuario a seguir exista. </span><strong>(US-0001)</strong></p>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>404</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
-"message": "El usuario no existe",
-"status": 404,
-"timestamp": "2023-01-03T12:26:58.065217"
-}</code></pre>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>T-0002</strong></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Karen Hoffman y Lautaro Walsh</span></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Verificar que el usuario a dejar de seguir exista. </span><strong>(US-0007)</strong></p>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-</tbody>
-</table>
-
-
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
-
-----
-**US 0003**
-
-_Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)_
-
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
-| **GET** | /users/{userId}/followers/list | /users/{userId}/followers/list |
-
-<table>
-<tbody>
-<tr style="height: 23.5px;">
-<td style="height: 23.5px;">Status Code</td>
-<td style="height: 23.5px;">Response / Dto</td>
-</tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>200</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
-"user_id": 2,
-"user_name": "zmohamedDohamed",
-"followers": [
-{
-"user_id": 1,
-"user_name": "zchanelleHhanelle"
-},
-{
-"user_id": 3,
-"user_name": "kinaMina"
-},
-{
-"user_id": 4,
-"user_name": "marshallBarshall"
-}
-]
-}</code></pre>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>T-0003</strong></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi</span></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Verificar que el tipo de ordenamiento alfab&eacute;tico exista (US-0008)</span></p>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>404</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
-"message": "El usuario no existe",
-"status": 404,
-"timestamp": "2023-01-03T12:28:38.959081"
-}</code></pre>
+<tr style="height: 63px;">
+<td style="height: 63px;">
+<p><strong>T-0004</strong></p>
+</td>
+<td style="height: 63px;">
+<p><span style="font-weight: 400;">Facundo Andres Ruiz, Agustin Iglesias y Esteban Demarchi</span></p>
+</td>
+<td style="height: 63px;">
+<p><span style="font-weight: 400;">Verificar el correcto ordenamiento ascendente&nbsp;</span></p>
+<p><span style="font-weight: 400;">y descendente por nombre. </span><strong>(US-0008)</strong></p>
+</td>
+<td style="height: 63px;">
+<p><span style="font-weight: 400;">Devuelve la lista ordenada seg&uacute;n el criterio solicitado</span></p>
 </td>
 </tr>
-</tbody>
-</table>
-
-
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
-
-----
-**US 0004**
-
-_Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)_
-
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
-| **GET** | /users/{userId}/followed/list | /users/4698/followed/list |
-
-<table>
-<tbody>
-<tr style="height: 23.5px;">
-<td style="height: 23.5px;">Status Code</td>
-<td style="height: 23.5px;">Response / Dto</td>
-</tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>200</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
- &nbsp;&nbsp;&nbsp;"user_id": 4698,
- &nbsp;&nbsp;&nbsp;"user_name": "usuario1",
- &nbsp;&nbsp;&nbsp;"followed": [
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_id": 234,
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_name": "vendedor1"
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_id": 6932,
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_name": "vendedor2"
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_id": 6631,
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user_name": "vendedor3"
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
- &nbsp;&nbsp;&nbsp;]
-}</code></pre>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>T-0005</strong></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Francisco Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Verificar que el tipo de ordenamiento por fecha exista </span><strong>(US-0009)</strong></p>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
 </td>
 </tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>404</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
-"message": "El usuario no existe",
-"status": 404,
-"timestamp": "2023-01-03T12:31:01.167923"
-}</code></pre>
+<tr style="height: 73px;">
+<td style="height: 73px;">
+<p><strong>T-0006</strong></p>
+</td>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Francisco Nicolas Berthet Cosentino, Juan Pablo Ramos Ruiz y Armando Burdiles</span></p>
+</td>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Verificar el correcto ordenamiento ascendente y descendente por fecha. </span><strong>(US-0009)</strong></p>
+</td>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Verificar el correcto ordenamiento ascendente y descendente por fecha. </span><strong>(US-0009)</strong></p>
+</td>
+</tr>
+<tr style="height: 53.5px;">
+<td style="height: 53.5px;">
+<p><strong>T-0007</strong></p>
+</td>
+<td style="height: 53.5px;">
+<p><span style="font-weight: 400;">Karen Hoffman y Lautaro Walsh</span></p>
+</td>
+<td style="height: 53.5px;">
+<p><span style="font-weight: 400;">Verificar que la cantidad de seguidores de un determinado usuario sea correcta.</span><strong> (US-0002)</strong></p>
+</td>
+<td style="height: 53.5px;">
+<p><span style="font-weight: 400;">Devuelve el c&aacute;lculo correcto del total de la cantidad de seguidores que posee un usuario.&nbsp;</span></p>
+</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px;">
+<p><strong>T-0008</strong></p>
+</td>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Karen Hoffman y Lautaro Walsh</span></p>
+</td>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Verificar que la consulta de publicaciones realizadas en las &uacute;ltimas dos semanas de un determinado vendedor sean efectivamente de las &uacute;ltimas dos semanas. </span><strong>(US-0006)</strong></p>
+</td>
+<td style="height: 73px;">
+<p><span style="font-weight: 400;">Devuelve &uacute;nicamente los datos de las publicaciones que tengan fecha de publicaci&oacute;n dentro de las &uacute;ltimas dos semanas a partir del d&iacute;a de la fecha.</span></p>
 </td>
 </tr>
 </tbody>
 </table>
-
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
-
-----
-**US 0005**
-
-_Dar de alta una nueva publicación_
-
-| Method | Sign |
-| --- | --- |
-| **POST** | /products/post |
-
-<table>
-<tbody>
-<tr>
-<td>Payload</td>
-</tr>
-<tr>
-<td>
-<pre><code class="language-plaintext">{
- &nbsp;&nbsp;&nbsp;"user_id": 123,
- &nbsp;&nbsp;&nbsp;"date": "29-04-2021",
- &nbsp;&nbsp;&nbsp;"product": {
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"product_id": 1,
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"product_name": "Silla Gamer",
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "Gamer",
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"brand": "Racer",
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"color": "Red &amp; Black",
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"notes": "Special Edition"
- &nbsp;&nbsp;&nbsp;},
- &nbsp;&nbsp;&nbsp;"category": 100,
- &nbsp;&nbsp;&nbsp;"price": 1500.50
-}</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<tbody>
-<tr>
-<td>Status Code</td>
-<td>Response / Dto</td>
-</tr>
-<tr>
-<td><strong>200</strong></td>
-<td>
-<pre><code class="language-plaintext">{
-"date": "29-04-2021",
-"user_id": 1,
-"product": {
-"product_id": 17,
-"product_name": "Silla Gamer",
-"type": "Gamer",
-"brand": "Racer",
-"color": "Red &amp; Black",
-"notes": "Special Edition"
-},
-"category": 100,
-"price": 1500.5,
-"has_promo": false,
-"discount": 0.0
-}</code></pre>
-</td>
-</tr>
-<tr>
-<td><strong>400</strong></td>
-<td>
-<pre><code class="language-plaintext">{
-"message": "El producto ya existe",
-"status": 400,
-"timestamp": "2023-01-03T12:32:22.635063"
-}</code></pre>
-<p>&nbsp;</p>
-<pre><code class="language-plaintext">{
-"message": "Usuario invalido.",
-"status": 400,
-"timestamp": "2023-01-03T12:36:40.474285"
-}</code></pre>
-</td>
-</tr>
-<tr>
-<td><strong>404</strong></td>
-<td>
-<pre><code class="language-plaintext">{
-"message": "Producto no existente",
-"status": 404,
-"timestamp": "2023-01-03T12:32:43.051445"
-}</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
-
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **user\_Id** | int | Número que identifica a cada usuario |
-| **date** | LocalDate | Fecha de la publicación en formato dd-MM-yyyy |
-| **product\_id** | int | Número identificatorio de un producto asociado a una publicación |
-| **product\_name** | String | Cadena de caracteres que representa el nombre de un producto |
-| **type** | String | Cadena de caracteres que representa el tipo de un producto |
-| **brand** | String | Cadena de caracteres que representa la marca de un producto |
-
-----
-**US 0006**
-
-_Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero)._
-
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
-| **GET** | /products/followed/{userId}/list | /products/followed/4698/list |
-
-<table>
-<tbody>
-<tr style="height: 23px;">
-<td style="height: 23px;">Status Code</td>
-<td style="height: 23px;">Response / Dto</td>
-</tr>
-<tr style="height: 23.25px;">
-<td style="height: 23.25px;"><strong>200</strong></td>
-<td style="height: 23.25px;">
-<pre><code class="language-plaintext">{
-"user_id": 1,
-"posts": [
-{
-"user_id": 2,
-"post_id": 3,
-"date": "01-02-2023",
-"product": {
-"product_id": 2,
-"product_name": "Intelligent Leather Coat",
-"type": "Plastic",
-"brand": "Lang and Sons",
-"color": "magenta",
-"notes": "Est cum aut quidem quo illo."
-},
-"category": 4,
-"price": 19.0
-}
-]
-}</code></pre>
-</td>
-</tr>
-<tr style="height: 23px;">
-<td style="height: 23px;"><strong>404</strong></td>
-<td style="height: 23px;">
-<pre><code class="language-plaintext">{
-"message": "El usuario no existe",
-"status": 404,
-"timestamp": "2023-01-03T12:52:15.010738"
-}</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
-
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica a cada usuario |
-
-----
-**US 0007**
-
-_Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor._
-
-| Method | Sign | Ejemplo |
-| --- | --- | --- |
-| **POST** | /users/{userId}/unfollow/{userIdToUnfollow | /users/234/unfollow/123 |
-
-<table>
-<tbody>
-<tr style="height: 43px;">
-<td style="width: 85px; height: 43px;">Status Code</td>
-<td style="width: 284.391px; height: 43px;">Response / Dto</td>
-</tr>
-<tr style="height: 23.5px;">
-<td style="width: 85px; height: 23.5px;"><strong>200</strong></td>
-<td style="width: 284.391px; height: 23.5px;">
-<pre><code class="language-plaintext">{
-"user_id": 1,
-"user_name": "zchanelleHhanelle",
-"followed": [
-{
-"user_id": 3,
-"user_name": "kinaMina"
-}
-]
-}</code></pre>
-</td>
-</tr>
-<tr >
-<td ><strong>404</strong></td>
-<td >
-<pre><code class="language-plaintext">{
-"message": "El usuario no existe",
-"status": 404,
-"timestamp": "2023-01-03T12:59:24.254171"
-}</code></pre>
-</td>
-</tr>
-</tbody>
-</table>
-
-Filtros / Parámetros
-
-| Parámetros | Tipo | Descripción / Ejemplo |
-| --- | --- | --- |
-| **userId** | int | Número que identifica al usuario actual |
-| **userIdToUnfollow** | int | Número que identifica al usuario a dejar de seguir |
-
-----
-**US 0008**
-
-_Ordenamiento alfabético ascendente y descendente_
-
-<table>
-<tbody>
-<tr>
-<td>Method</td>
-<td>Sign</td>
-</tr>
-<tr>
-<td><strong>GET</strong></td>
-<td>
-<p>/users/{UserID}/followers/list?order=name_asc</p>
-<p>/users/{UserID}/followers/list?order=name_desc</p>
-<p>/users/{UserID}/followed/list?order=name_asc</p>
-<p>/users/{UserID}/followed/list?order=name_desc</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-Filtros / Parámetros
-
-| order | Description |
-| --- | --- |
-| **name\_asc** | Alfabético ascendente. |
-| **name\_desc** | Alfabético descendente. |
-
-**Nota:** Este ordenamiento aplica solo para US-003 y US-004.
-
-----
-**US 0009**
-
-_Ordenamiento por fecha ascendente y descendente_
-
-<table>
-<tbody>
-<tr>
-<td>Method</td>
-<td>Sign</td>
-</tr>
-<tr>
-<td><strong>GET</strong></td>
-<td>
-<p>/products/followed/{userId}/list?order=date_asc</p>
-<p>/products/followed/{userId}/list?order=date_desc</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-Filtros / Parámetros
-
-| order | Description |
-| --- | --- |
-| **date\_asc** | Fecha ascendente (de más antigua a más nueva) |
-| **date\_desc** | Fecha descendente (de más nueva a más antigua) |
-
-**Nota:** Este ordenamiento aplica solo para la US-006

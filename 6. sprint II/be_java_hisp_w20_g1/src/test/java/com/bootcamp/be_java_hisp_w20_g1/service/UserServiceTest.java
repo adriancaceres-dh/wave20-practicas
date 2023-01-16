@@ -46,14 +46,8 @@ class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
-    static ObjectWriter writer;
     static User validUser = new User(1, "noahHoah", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
     static User validUserToFollow = new User(2, "elzaTlza", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
-
-    @BeforeEach
-    public void setUp() {
-        this.writer = new ObjectMapper().configure(SerializationFeature.WRAP_ROOT_VALUE, false).writer();
-    }
 
     @Test
     void whenGivingValidUserId_followUser_ShouldFollowUser() throws Exception {
@@ -65,11 +59,11 @@ class UserServiceTest {
         UserResponseDto userResponseDto = new UserResponseDto(validUserToFollow.getId(),validUserToFollow.getName());
         UserFollowedResponseDto userFollowedResponseDto = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of(userResponseDto));
 
-        String expectedDTO = writer.writeValueAsString(userFollowedResponseDto);
+        UserFollowedResponseDto expectedDTO = userFollowedResponseDto;
 
         //Act
         validUser.getFollowed().add(validUserToFollow.getId());
-        String actualDTO = writer.writeValueAsString(userService.followUser(1,2));
+        UserFollowedResponseDto actualDTO = userService.followUser(1,2);
 
         //Assert
         Assertions.assertEquals(expectedDTO,actualDTO);
