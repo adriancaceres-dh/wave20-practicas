@@ -5,8 +5,6 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.ICategoryRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g2.utils.mapper.PostMapper;
@@ -21,11 +19,7 @@ import java.util.Optional;
 @Service
 public class PostService implements IPostService {
     @Autowired
-    private IPostRepository postRepository;
-    @Autowired
     private IUserRepository userRepository;
-    @Autowired
-    private ICategoryRepository categoryRepository;
     @Autowired
     private PostMapper postMapper;
 

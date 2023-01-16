@@ -51,5 +51,4 @@ public class UserController {
     public ResponseEntity<String> unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         return ResponseEntity.ok().body(userService.unfollowUser(userId, userIdToUnfollow));
     }
-
 }

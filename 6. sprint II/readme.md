@@ -223,18 +223,37 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 - PostCreationException
 - UserNotFoundException
 
-### 🧰 Utils y  Utils/Mapper 🧰
+### 🧰 Utils 🧰
 
 Se crea, por decisión del equipo, el package _Utils_ y dentro de él se encuentra la clase _LoadExampleData_, un package
 que posee las clases _PostMapper_ y _ProductMapper_.
+- **Utils/Constants**
+  - _RegexConstants_: Esta clase posee una constante final para los regex utilizado en algunos patrones de verificación, a 
+  través de validaciones, de no utilización de caracteres especiales dentro de variables que llegarán por parámetros a nuestra API.
 
-- _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En
-  este método
-  se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
-- _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-  viceversa.
-- _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-  viceversa.
+- **Utils/Mapper**
+  - _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+    viceversa.
+  - _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+    viceversa.
+
+- **Utils/sort**
+  - PostStreamSorter: Clase creada para la validación y extracción correcta de los requestParam obtenidos a través de la URL
+  por parte del usuario. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+  la clase PostService.
+  - UserResponseDTOStreamSorter: Clase creada para la validación y extracción correcta de los requestParam obtenidos a través de la URL
+    por parte del usuario. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+    la clase UserService.
+- **Utils/Validator**
+  - **Validator/Post**
+      - _PostSortValidator_: ¿¿??
+      - _UserResponseSorterConstraint_: ¿¿??
+  - **Validator/userResponse**
+    - _UserResponseSortValidator_: ¿¿??
+    - _PostSorterConstraint_: ¿¿??
+- _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En 
+este método se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
+
 
 # 📌 _Endpoints_ 📌
 
@@ -448,7 +467,58 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
 ____
+# Resumen de Datos de entrada según las US
+| Datos/Parámetros        |   Tipo    |     Longitud     | Descripción                                                                                                              |
+|-------------------------|:---------:|:----------------:|--------------------------------------------------------------------------------------------------------------------------|
+| **user_id**             |  Integer  |                  | Número que identifica al usuario actual                                                                                  |
+| **user_id_to_follow**   |  Integer  |                  | Número que identifica al usuario a seguir                                                                                |
+| **user_name**           |  String   |        15        | Nombre de usuario asociado a la user_id                                                                                  |
+| **followers_count**     |  Integer  |                  | Cantidad de seguidores                                                                                                   |
+| **id_post**             |  Integer  |                  | Número identificatorio de cada una de las publicaciones                                                                  |
+| **date**                | LocalDate |                  | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **product_id**          |  Integer  |                  | Número identificatorio de cada uno de los productos asociados a una publicación                                          |
+| **product_name**        |  String   |        40        | Cadena de caracteres que representa el nombre de un producto                                                             |
+| **type**                |  String   |        15        | Cadena de caracteres que representa el tipo de un producto                                                               |
+| **brand**               |  String   |        25        | Cadena de caracteres que representa la marca de un producto                                                              |
+| **color**               |  String   |        15        | Cadena de caracteres que representa el color de un producto                                                              |
+| **notes**               |  String   |        80        | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| **category**            |  Integer  |                  | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**               |  Double   | 10.000.000 (Max) | Precio del producto                                                                                                      |
+| **user_id_to_unfollow** |  Integer  |                  | Número que identifica al usuario a dejar de seguir                                                                       |
+| **order**               |  String   |                  | Establece el ordenamiento. Puede poseer los valores: name_asc, name_desc, date_asc, date_desc                            |
 
+# Validaciones en campos de las US
+| Datos/Parámetros | ¿Obligatorio? | Validación                                                                                                                  | Mensaje de error                                                                                                                             |
+|------------------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| **user_id**      |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id no puede estar vacío.<br/>- El id debe ser mayor a cero                                                                              |
+| **id_post**      |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id_post no puede estar vacío.<br/>- El id_post debe ser mayor a cero                                                                    |
+| **date**         |      Si       | - Que el campo no esté vacío.                                                                                               | - La fecha no puede estar vacía.                                                                                                             |
+| **product_id**   |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id no puede estar vacía<br/>- El id debe ser mayor a cero                                                                               |
+| **product_name** |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 40 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 40 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **type**         |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 15 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 15 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **brand**        |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 25 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 25 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **brand**        |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 25 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 25 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **color**        |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 15 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 15 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **notes**        |      No       | - Longitud máxima de 80 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc)                                   | - La longitud no puede superar los 80 caracteres.<br/>- El campo no puede poseer caracteres especiales.                                      |
+| **category**     |      No       | - Que el campo no esté vacío.                                                                                               | - El campo no puede estar vacío.                                                                                                             |
+| **price**        |      No       | - Que el campo no esté vacío.<br/>- El precio máximo puede ser 10.000.000                                                   | - El campo no puede estar vacío.<br/>- El precio máximo por producto es de 10.000.000                                                        |
+
+
+# Tests Unitarios
+A continuación se solicita una serie de test unitarios a llevar a cabo; sin embargo, en caso de que se considere necesario implementar otros, esto es totalmente viable.
+
+|            | Situaciones de entrada                                                                                                                                                | Comportamiento Esperado                                                                                                                             |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **T-0001** | Verificar que el usuario a seguir exista. (US-0001)                                                                                                                   | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0002** | Verificar que el usuario a dejar de seguir exista. (US-0007)                                                                                                          | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0003** | Verificar que el tipo de ordenamiento alfabético exista (US-0008)                                                                                                     | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0004** | Verificar el correcto ordenamiento ascendente y descendente por nombre. (US-0008)                                                                                     | Devuelve la lista ordenada según el criterio solicitado                                                                                             |
+| **T-0005** | Verificar que el tipo de ordenamiento por fecha exista (US-0009)                                                                                                      | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0006** | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)                                                                                      | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)                                                                    |
+| **T-0007** | Verificar que la cantidad de seguidores de un determinado usuario sea correcta. (US-0002)                                                                             | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                                                           |
+| **T-0008** | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006)  | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha.  |
+
+____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
 - [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete)

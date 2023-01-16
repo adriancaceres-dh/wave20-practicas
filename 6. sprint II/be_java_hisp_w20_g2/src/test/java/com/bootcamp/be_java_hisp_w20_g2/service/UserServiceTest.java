@@ -4,14 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseD
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import lombok.experimental.Wither;
 import org.junit.jupiter.api.DisplayName;
-import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
-import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -164,8 +156,8 @@ class UserServiceTest {
         when(userRepository.findOne(2)).thenReturn(user);
         UserFollowersCountResponseDTO dtoResult = userService.followerList(2);
         // Assert
-        verify(userRepository, atLeastOnce()).exists(1);
-        verify(userRepository, atLeastOnce()).findOne(1);
+        verify(userRepository, atLeastOnce()).exists(2);
+        verify(userRepository, atLeastOnce()).findOne(2);
         assertEquals(responseExpected, dtoResult);
     }
 
