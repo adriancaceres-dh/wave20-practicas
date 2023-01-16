@@ -1,4 +1,4 @@
-# ❗️📜 Bootcamp backend Java Sprint N°2 - Spring ❗️📜
+# ❗️📜 Bootcamp backend Java Sprint N°2 - Testing ❗️📜
 ______
 ## 🔍🧮 Índice 🧮🔍
 1. _**[Objetivo](#-objetivo-)**_
