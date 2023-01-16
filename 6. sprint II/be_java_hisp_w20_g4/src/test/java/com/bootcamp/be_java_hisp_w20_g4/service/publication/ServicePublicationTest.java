@@ -8,6 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
 import com.bootcamp.be_java_hisp_w20_g4.repository.publication.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
+import org.apache.catalina.mapper.Mapper;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
@@ -40,8 +41,6 @@ class ServicePublicationTest {
 
     @Mock
     IPublicationRepository mockPublicationRepository;
-    @Mock
-    IUserRepository iUserRepository;
 
     @Mock
     IUserRepository mockUserRepository;
@@ -54,6 +53,7 @@ class ServicePublicationTest {
     }
 
     @Test
+    @DisplayName("USS 006 - Verificar  las publicaciones de las ultimas 2 semanas en orden ascendente")
     void getPublicationsOrderAscOKTest() {
         //Arrange
         Product product1 = new Product(
@@ -62,15 +62,17 @@ class ServicePublicationTest {
                 "de carrera", "REANULT");
         Category category = new Category(100, "autos");
 
-        Publication publication1 = new Publication(LocalDate.of(2022, 1, 9),
+        Publication publication1 = new Publication(LocalDate.of(2023, 1, 9),
                 100.00, product1, category, 10);
 
         Publication publication2 = new Publication(LocalDate.of(2022, 12, 19),
                 100.00, product1, category, 10);
+        Publication publication3 = new Publication(LocalDate.of(2021, 6, 9),
+                100.00, product1, category, 10);
         HashMap<Integer, Publication> publicationHashMap = new HashMap<>();
         publicationHashMap.put(1, publication1);
         publicationHashMap.put(2, publication2);
-
+        publicationHashMap.put(3, publication3);
         Seller seller = new Seller(10, "messi");
         HashMap<Integer, User> followeds = new HashMap<>();
         seller.setPublications(publicationHashMap);
@@ -79,12 +81,12 @@ class ServicePublicationTest {
         Buyer buyer = new Buyer(1, "rodri");
         buyer.addUserToMyFollowedList(seller);
 
-        when(iUserRepository.findById(anyInt())).thenReturn(buyer);
+        when(mockUserRepository.findById(anyInt())).thenReturn(buyer);
 
         when(mockPublicationRepository.getPublicationLastNDays(Collections.singletonList(seller.getUser_id()), 15))
-                .thenReturn(publicationHashMap.values().stream().collect(Collectors.toList()));
+                .thenReturn(publicationHashMap.values().stream().sorted(Comparator.comparing(Publication::getDate)).collect(Collectors.toList()));
 
-        List<ListedPostDTO> listedPostDTOList = publicationHashMap.values().stream().map(publication -> mockServicePublication.mapper.map(publication, ListedPostDTO.class)).collect(Collectors.toList());
+        List<ListedPostDTO> listedPostDTOList = publicationHashMap.values().stream().sorted(Comparator.comparing(Publication::getDate)).map(publication -> mockServicePublication.mapper.map(publication, ListedPostDTO.class)).collect(Collectors.toList());
 
         ProductTwoWeeksResponseDTO productExpected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
         //Act
@@ -94,7 +96,52 @@ class ServicePublicationTest {
     }
 
     @Test
+    @DisplayName("US 006 - Verificar publicaciones ultimas 2 semanas orden descendente")
     void getPublicationsOrderDescOKTest() {
+        //Arrange
+        Product product1 = new Product(
+                6, "casio",
+                "dorado", "no es un rolex pero casi",
+                "reloj", "CASIO");
+        Category category = new Category(50, "relojes");
+
+        Publication publication1 = new Publication(LocalDate.of(2021, 2, 12),
+                1000.00, product1, category, 10);
+
+        Publication publication2 = new Publication(LocalDate.of(2021, 11, 21),
+                10000.00, product1, category, 10);
+
+        Publication publication3 = new Publication(LocalDate.of(2022, 11, 21),
+                10000.00, product1, category, 10);
+
+        HashMap<Integer, Publication> publicationHashMap = new HashMap<>();
+        publicationHashMap.put(1, publication1);
+        publicationHashMap.put(2, publication2);
+        publicationHashMap.put(3, publication3);
+
+        Seller seller = new Seller(10, "diego");
+        HashMap<Integer, User> followeds = new HashMap<>();
+        seller.setPublications(publicationHashMap);
+        seller.setFollowers(followeds);
+
+        Buyer buyer = new Buyer(11, "angel");
+        buyer.addUserToMyFollowedList(seller);
+
+        when(mockUserRepository.findById(anyInt())).thenReturn(buyer);
+
+        when(mockPublicationRepository.getPublicationLastNDays(Collections.singletonList(seller.getUser_id()), 15))
+                .thenReturn(publicationHashMap.values().stream().collect(Collectors.toList()));
+
+        List<ListedPostDTO> listedPostDTOList = new ArrayList<>();
+                // publicationHashMap.values().stream().map(publication -> mockServicePublication.mapper.map(publication, ListedPostDTO.class)).collect(Collectors.toList());
+        listedPostDTOList.add(mockServicePublication.mapper.map(publication3, ListedPostDTO.class));
+        listedPostDTOList.add(mockServicePublication.mapper.map(publication2, ListedPostDTO.class));
+        listedPostDTOList.add(mockServicePublication.mapper.map(publication1, ListedPostDTO.class));
+        ProductTwoWeeksResponseDTO productExpected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
+        //Act
+        ProductTwoWeeksResponseDTO productActual = mockServicePublication.getLastTwoWeeksPublications(11, "date_desc");
+        //Assert
+        assertEquals(productExpected, productActual);
     }
 
     @Test
