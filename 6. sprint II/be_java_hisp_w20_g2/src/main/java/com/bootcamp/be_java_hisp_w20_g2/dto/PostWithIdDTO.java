@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 
 @NoArgsConstructor
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostWithIdDTO extends PostDTO {
 

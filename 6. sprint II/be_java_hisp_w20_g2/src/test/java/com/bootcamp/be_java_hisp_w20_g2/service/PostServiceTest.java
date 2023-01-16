@@ -85,7 +85,7 @@ class PostServiceTest {
     @DisplayName("T-0006 Bad Request - It should throw an Exception when given invalid user Id.")
     void sendLastPostsOfFollowedNotOK() {
         //Arrange
-        when(userRepository.findOne(444)).thenThrow(new BadRequestException("The given userId not exist."));
+        when(userRepository.findOne(444)).thenReturn(null);
 
         //Assert
         assertThrows(BadRequestException.class, () -> postService.sendLastPostOfFollowed(444, Optional.of("date_asc")));

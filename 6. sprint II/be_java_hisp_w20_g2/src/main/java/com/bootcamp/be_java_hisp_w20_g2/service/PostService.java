@@ -51,10 +51,7 @@ public class PostService implements IPostService {
      */
     @Override
     public PostResponseDTO sendLastPostOfFollowed(int userId, Optional<String> order) {
-        User user = userRepository.findOne(userId);
-        if (user == null) {
-            throw new BadRequestException("The given userId not exist.");
-        }
+        User user = getUserOrThrow(userId);
 
         PostResponseDTO postResponse = new PostResponseDTO(userId);
 
