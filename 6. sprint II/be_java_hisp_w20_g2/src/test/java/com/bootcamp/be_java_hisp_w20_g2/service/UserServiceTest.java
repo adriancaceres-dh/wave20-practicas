@@ -4,6 +4,9 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseD
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.experimental.Wither;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
@@ -18,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +43,33 @@ class UserServiceTest {
 
     @Test
     void unfollowUser() {}
+    void unfollowUserExistTest() {
+        // Arrange
+        HashMap<Integer, User> users = UtilsTest.generateUsersForTestTwo();
+        User user1 = users.get(1); // user2 follows user1
+        User user2 = users.get(2);
+        // Act
+        when(userRepository.findOne(1)).thenReturn(user1);
+        when(userRepository.findOne(2)).thenReturn(user2);
+        String res = userService.unfollowUser(1, 2);
+        // Assert
+        verify(userRepository, atLeastOnce()).findOne(1);
+        verify(userRepository, atLeastOnce()).findOne(2);
+        assertEquals("Operación exitosa", res);
+
+    }
+
+    @Test
+    void unfollowUserNotOkTest() {
+        // Arrange
+        HashMap<Integer, User> users = UtilsTest.generateUsersForTestTwo();
+        User user2 = users.get(2); // user2 follows user1
+        // Act
+        when(userRepository.findOne(1)).thenReturn(null);
+        when(userRepository.findOne(2)).thenReturn(user2);
+        // Assert
+        Assertions.assertThrows(BadRequestException.class,()->userService.unfollowUser(1,2));
+    }
 
     @Test
     void entity2UserResponseDTO() {}
