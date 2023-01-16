@@ -2,7 +2,6 @@ package com.socialMeli.be_java_hisp_w20_g03.config;
 
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
 import com.socialMeli.be_java_hisp_w20_g03.exception.NotFoundException;
-import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,7 +20,7 @@ public class ControllerExceptionHandler {
   }
 
   @ExceptionHandler(BadRequestException.class)
-  public ResponseEntity<String> badRequestException(Exception e) {
+  public ResponseEntity<String> badRequestException(BadRequestException e) {
     return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
   }
 
