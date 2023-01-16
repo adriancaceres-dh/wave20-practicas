@@ -489,7 +489,7 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
 ____
-#  Resumen de Datos de entrada según las US
+# 📦 Resumen de Datos de entrada según las US 📦
 | Datos/Parámetros        |   Tipo    |     Longitud     | Descripción                                                                                                              |
 |-------------------------|:---------:|:----------------:|--------------------------------------------------------------------------------------------------------------------------|
 | **user_id**             |  Integer  |                  | Número que identifica al usuario actual                                                                                  |
@@ -509,7 +509,7 @@ ____
 | **user_id_to_unfollow** |  Integer  |                  | Número que identifica al usuario a dejar de seguir                                                                       |
 | **order**               |  String   |                  | Establece el ordenamiento. Puede poseer los valores: name_asc, name_desc, date_asc, date_desc                            |
 
-# Validaciones en campos de las US
+# ⚠️ Validaciones en campos de las US ⚠️
 | Datos/Parámetros | ¿Obligatorio? | Validación                                                                                                                  | Mensaje de error                                                                                                                             |
 |------------------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | **user_id**      |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id no puede estar vacío.<br/>- El id debe ser mayor a cero                                                                              |
@@ -526,7 +526,7 @@ ____
 | **price**        |      No       | - Que el campo no esté vacío.<br/>- El precio máximo puede ser 10.000.000                                                   | - El campo no puede estar vacío.<br/>- El precio máximo por producto es de 10.000.000                                                        |
 
 
-# Tests Unitarios
+# 🛃 Tests Unitarios 🛃
 A continuación se solicita una serie de test unitarios a llevar a cabo; sin embargo, en caso de que se considere necesario implementar otros, esto es totalmente viable.
 
 |            | Situaciones de entrada                                                                                                                                                | Comportamiento Esperado                                                                                                                             |
@@ -541,6 +541,41 @@ A continuación se solicita una serie de test unitarios a llevar a cabo; sin emb
 | **T-0008** | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006)  | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha.  |
 
 Los test desarrollados, durante la realización del Sprint II será realizado en un Sistema Bajo Prueba - SUT y principio F.I.R.S.T.
+
+## Implementación de Test Unitarios - Grupal
+____
+### Controller
+*  _PostControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación individual.
+* _UserControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación individual.
+
+### Service
+* _PostServiceTest_:
+
+| TEST   | Desarrollador                                           |
+|--------|---------------------------------------------------------|
+ | T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)      |
+ | T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
+ | T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
+
+* _userServiceTest_:
+
+| TEST   | Descripción/Ejemplo                                                 |
+|--------|---------------------------------------------------------------------|
+| T-0001 | [Federico Javier Veron](https://github.com/fedeveron)               |
+| T-0002 | [Francisco Liz Mardones](https://github.com/FranLizMeli)            |
+| T-0003 | [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) |
+| T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)        |
+| T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)                    |
+
+* Test/Util
+  - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
+  creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
+  los test, solo sean encargados de testear los métodos.
+* Validator
+  - _PostSortValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+  validador creado que se mencionó anteriormente.
+  - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+    validador creado que se mencionó anteriormente.
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
@@ -569,3 +604,11 @@ ____
 - JUnit 5
 - Spring Boot Starter Test
 - Mockito
+
+## ✅ Correcciones Sprint 1 ✅
+Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
+Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), 
+[Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron), 
+[Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+[Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), 
+[Emanuel Fonseca](https://github.com/Emanoide47)._
