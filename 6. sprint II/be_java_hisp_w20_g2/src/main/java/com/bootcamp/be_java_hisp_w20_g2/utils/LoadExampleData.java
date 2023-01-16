@@ -9,7 +9,6 @@ import com.bootcamp.be_java_hisp_w20_g2.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w20_g2.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -18,17 +17,19 @@ import java.time.LocalDate;
 
 @Component
 public class LoadExampleData {
-    @Autowired
     private PostRepository postRepository;
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private CategoryRepository categoryRepository;
 
     private final User diego = new User("Diego");
     private final User flavio = new User("Flavio");
     private final User ale = new User("Ale");
 
+    public LoadExampleData(PostRepository postRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
+        this.postRepository = postRepository;
+        this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     private final Logger logger = LoggerFactory.getLogger(LoadExampleData.class);
 

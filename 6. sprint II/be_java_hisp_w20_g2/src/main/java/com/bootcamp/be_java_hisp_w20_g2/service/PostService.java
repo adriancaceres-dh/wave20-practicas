@@ -9,7 +9,6 @@ import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IPostService;
 import com.bootcamp.be_java_hisp_w20_g2.utils.mapper.PostMapper;
 import com.bootcamp.be_java_hisp_w20_g2.utils.sort.PostStreamSorter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,12 +17,12 @@ import java.util.Optional;
 
 @Service
 public class PostService implements IPostService {
-    @Autowired
     private IUserRepository userRepository;
     private PostMapper postMapper;
 
-    public PostService() {
-        this.postMapper = new PostMapper();
+    public PostService(IUserRepository userRepository, PostMapper postMapper) {
+        this.postMapper = postMapper;
+        this.userRepository = userRepository;
     }
 
     /**

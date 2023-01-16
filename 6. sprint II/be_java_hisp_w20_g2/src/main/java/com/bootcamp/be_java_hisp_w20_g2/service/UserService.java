@@ -10,7 +10,6 @@ import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
 import com.bootcamp.be_java_hisp_w20_g2.utils.sort.UserResponseDTOStreamSorter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -21,8 +20,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
     private IUserRepository userRepository;
+
+    public UserService(IUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * Finds and lists all users following a given user.
@@ -67,8 +69,8 @@ public class UserService implements IUserService {
                     .map(user -> new UserResponseDTO(user.getId(), user.getUserName()))
                     .collect(Collectors.toList());
             if (order.isPresent()) {
-                    Comparator<UserResponseDTO> comparator = UserResponseDTOStreamSorter.getSortCriteria(order.get());
-                    followed = followed.stream().sorted(comparator).collect(Collectors.toList());
+                Comparator<UserResponseDTO> comparator = UserResponseDTOStreamSorter.getSortCriteria(order.get());
+                followed = followed.stream().sorted(comparator).collect(Collectors.toList());
             }
             return new UserFollowedResponseDTO(userFound.getId(), userFound.getUserName(), followed);
         }
