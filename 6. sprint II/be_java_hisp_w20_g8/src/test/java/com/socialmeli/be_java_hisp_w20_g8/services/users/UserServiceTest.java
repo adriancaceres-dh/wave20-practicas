@@ -46,6 +46,7 @@ class UserServiceTest {
         int userId = 1;
         int userIdToFollow = 2;
         ResponseDTO expectedResponse = new ResponseDTO(true,"New Follower add successfully");
+
         when(mockPersonRepository.checkUser(userId)).thenReturn(true);
         when(mockPersonRepository.checkUser(userIdToFollow)).thenReturn(true);
         when(mockPersonRepository.addFollowing(userId, userIdToFollow)).thenReturn(true);

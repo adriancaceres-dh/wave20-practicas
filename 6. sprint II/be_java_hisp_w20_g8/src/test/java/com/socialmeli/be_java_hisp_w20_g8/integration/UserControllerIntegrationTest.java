@@ -40,6 +40,7 @@ public class UserControllerIntegrationTest {
                 .writer();
 
         String expectedResponseJson = writer.writeValueAsString(expectedResponseDTO);
+
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
                         .post("/users/users/{userId}/follow/{userIdToFollow}", userId, userIdToFollow))
                 .andDo(print()).andExpect(status().isOk())
@@ -86,12 +87,12 @@ public class UserControllerIntegrationTest {
 
         int userId =-1;
         int userIdToFollow =-2;
-        String expectedeMessage= "ConstraintViolationException";
+        String expectedMessage= "ConstraintViolationException";
 
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/users/users/{userId}/follow/{userIdToFollow}", userId, userIdToFollow))
                 .andDo(print()).andExpect(status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedeMessage));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedMessage));
     }
 
 
