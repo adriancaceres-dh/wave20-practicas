@@ -26,12 +26,6 @@ import static org.mockito.Mockito.*;
 class PostServiceTest {
 
     @Mock
-    private IPostRepository postRepository;
-
-    @Mock
-    private ICategoryRepository categoryRepository;
-
-    @Mock
     private IUserRepository userRepository;
 
     @InjectMocks
