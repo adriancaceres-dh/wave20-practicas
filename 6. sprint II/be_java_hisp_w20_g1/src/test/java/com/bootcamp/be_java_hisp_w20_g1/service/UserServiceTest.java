@@ -17,8 +17,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.HashSet;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -32,36 +34,36 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    @DisplayName("T1 Cuando el usuario a seguir existe se agrega como seguidor")
+    @DisplayName("T1: Cuando el usuario a seguir existe se agrega como seguidor")
     void whenGivingValidUserId_followUser_ShouldFollowUser() {
 
         //Arrange
         User validUser = TestUtil.getSellerUser("noahHoah", 1);
         validUser.setFollowed(new HashSet<>());
-        User validUserToFollow =  TestUtil.getSellerUser("elzaTlza", 2);
+        User validUserToFollow = TestUtil.getSellerUser("elzaTlza", 2);
         when(userRepository.getUserById(1)).thenReturn(validUser);
         when(userRepository.getUserById(2)).thenReturn(validUserToFollow);
 
-        UserResponseDto userResponseDto = new UserResponseDto(validUserToFollow.getId(),validUserToFollow.getName());
+        UserResponseDto userResponseDto = new UserResponseDto(validUserToFollow.getId(), validUserToFollow.getName());
 
-        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of(userResponseDto));
+        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(), validUser.getName(), List.of(userResponseDto));
 
         //Act
         validUser.getFollowed().add(validUserToFollow.getId());
-        UserFollowedResponseDto actualDTO = userService.followUser(1,2);
+        UserFollowedResponseDto actualDTO = userService.followUser(1, 2);
 
         //Assert
-        Assertions.assertEquals(expectedDTO,actualDTO);
+        Assertions.assertEquals(expectedDTO, actualDTO);
 
     }
 
     @Test
-    @DisplayName("T1 Se lanza excepción cuando el usuario a seguir no existe")
+    @DisplayName("T1: Se lanza excepción cuando el usuario a seguir no existe")
     void whenGivingInvalidUserId_followUser_ShouldThrowNotFoundException() {
 
         // Arrange
         User validUser = TestUtil.getSellerUser("noahHoah", 1);
-        User validUserToFollow =  TestUtil.getSellerUser("elzaTlza", 2);
+        User validUserToFollow = TestUtil.getSellerUser("elzaTlza", 2);
         validUser.setFollowed(new HashSet<>());
         String expectedErrorMessage = Parameter.getString("EX_NotExistentUser");
         when(userRepository.getUserById(1)).thenReturn(validUser);
@@ -75,7 +77,7 @@ class UserServiceTest {
 
     @Test
     @DisplayName("T2: valida que se continue con normalidad cuando el usuario a dejar de seguir existe.")
-    void whenGivingValidUserId_unfollowUser_ShouldUnfollowUser()  {
+    void whenGivingValidUserId_unfollowUser_ShouldUnfollowUser() {
         //Arrange
         User validUser = TestUtil.getSellerUser("noahHoah", 1);
         validUser.setFollowed(new HashSet<>());
@@ -83,12 +85,12 @@ class UserServiceTest {
         when(userRepository.getUserById(1)).thenReturn(validUser);
         when(userRepository.getUserById(2)).thenReturn(validUserToUnfollow);
 
-        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of());
+        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(), validUser.getName(), List.of());
         //Act
         UserFollowedResponseDto actualDTO = userService.unfollowUser(1, 2);
 
         //Assert
-        Assertions.assertEquals(expectedDTO,actualDTO);
+        Assertions.assertEquals(expectedDTO, actualDTO);
 
     }
 
@@ -108,91 +110,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T4 se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
-    public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFollowers_ShouldGetAnAscendentListOfFollowers() {
-
-        // Arrange
-        User user = TestUtil.getUserWithFollowers(true);
-        User user1 = TestUtil.getSellerUser("Facundo", 2);
-        User user2 = TestUtil.getSellerUser("Raul", 3);
-
-        when(userRepository.getUserById(1)).thenReturn(user);
-        when(userRepository.getUserById(2)).thenReturn(user1);
-        when(userRepository.getUserById(3)).thenReturn(user2);
-
-        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user1, user2);
-
-        // Act
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, Parameter.getString("NameAsc"));
-        // Assert 
-        assertEquals(expectedResult, actual);
-    }
-
-    @Test
-    @DisplayName("T4 se obtiene lista de los seguidores de un usuario ordenada descendente.")
-    public void whenGivingAnUserIdAndDescendingOrderByQueryParam_getSellerFollowers_ShouldGetADescendentListOfFollowers() {
-
-        // Arrange
-        User user = TestUtil.getUserWithFollowers(true);
-        User user1 = TestUtil.getSellerUser("Facundo", 2);
-        User user2 = TestUtil.getSellerUser("Raul", 3);
-
-        when(userRepository.getUserById(1)).thenReturn(user);
-        when(userRepository.getUserById(2)).thenReturn(user1);
-        when(userRepository.getUserById(3)).thenReturn(user2);
-
-        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user2, user1);
-
-        // Act
-        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, Parameter.getString("NameDesc"));
-        // Assert
-        assertEquals(expectedResult, actual);
-    }
-
-    @Test
-    @DisplayName("T4 se obtiene lista de los que un usuario sigue ordenada ascendente.")
-    public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFolloweds_ShouldGetAnAscendentListOfFolloweds() {
-
-        // Arrange
-        User user = TestUtil.getUserWithFollowed(true);
-        User user1 = TestUtil.getSellerUser("Facundo", 2);
-        User user2 = TestUtil.getSellerUser("Raul", 3);
-
-        when(userRepository.getUserById(1)).thenReturn(user);
-        when(userRepository.getUserById(2)).thenReturn(user1);
-        when(userRepository.getUserById(3)).thenReturn(user2);
-
-        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user1, user2);
-
-        // Act
-        UserFollowedResponseDto actual = userService.getFollowedDto(1, Parameter.getString("NameAsc"));
-        // Assert
-        assertEquals(expectedResult, actual);
-    }
-
-    @Test
-    @DisplayName("T4 se obtiene lista de los que un usuario sigue ordenada descendente.")
-    public void whenGivingAnUserIdAndDescendentOrderByQueryParam_getSellerFolloweds_ShouldGetADescendentListOfFolloweds() {
-
-        // Arrange
-        User user = TestUtil.getUserWithFollowed(true);
-        User user1 = TestUtil.getSellerUser("Facundo", 2);
-        User user2 = TestUtil.getSellerUser("Raul", 3);
-
-        when(userRepository.getUserById(1)).thenReturn(user);
-        when(userRepository.getUserById(2)).thenReturn(user1);
-        when(userRepository.getUserById(3)).thenReturn(user2);
-
-        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user2, user1);
-
-        // Act
-        UserFollowedResponseDto actual = userService.getFollowedDto(1, Parameter.getString("NameDesc"));
-        // Assert
-        assertEquals(expectedResult, actual);
-    }
-
-    @Test
-    @DisplayName("T3 Se lanza excepción si el orden es inválido en getFollowed.")
+    @DisplayName("T3: Se lanza excepción si el orden es inválido en getFollowed.")
     public void whenAnInvalidContentOfQueryParamIsReceived_getFolloweds_ShouldThrowException() {
         // Arrange
         User user = TestUtil.getUserWithFollowed(true);
@@ -204,7 +122,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 Se lanza excepción si el orden es inválido en getSellerFollowers.")
+    @DisplayName("T3: Se lanza excepción si el orden es inválido en getSellerFollowers.")
     public void whenAnInvalidContentOfQueryParamIsReceived_getFollowers_ShouldThrowException() {
         // Arrange
         User user = TestUtil.getUserWithFollowed(true);
@@ -216,7 +134,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 se obtiene lista de los que un usuario sigue ordenada ascendentemente (por defecto).")
+    @DisplayName("T3: se obtiene lista de los que un usuario sigue ordenada ascendentemente (por defecto).")
     public void whenNoQueryParamIsReceived_getFollowed_ShouldOrderTheListAscendently() {
 
         // Arrange
@@ -237,7 +155,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3 se obtiene lista de seguidores de un usuario ordenada ascendentemente (por defecto).")
+    @DisplayName("T3: se obtiene lista de seguidores de un usuario ordenada ascendentemente (por defecto).")
     public void whenNoQueryParamIsReceived_getFollowers_ShouldOrderTheListAscendently() {
 
         // Arrange
@@ -258,7 +176,91 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T7 se obtiene cantidad de seguidores que tiene un vendedor")
+    @DisplayName("T4: se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
+    public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFollowers_ShouldGetAnAscendentListOfFollowers() {
+
+        // Arrange
+        User user = TestUtil.getUserWithFollowers(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
+
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
+
+        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user1, user2);
+
+        // Act
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, Parameter.getString("NameAsc"));
+        // Assert 
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T4: se obtiene lista de los seguidores de un usuario ordenada descendente.")
+    public void whenGivingAnUserIdAndDescendingOrderByQueryParam_getSellerFollowers_ShouldGetADescendentListOfFollowers() {
+
+        // Arrange
+        User user = TestUtil.getUserWithFollowers(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
+
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
+
+        UserFollowersResponseDto expectedResult = TestUtil.getUserFollowersResponseDto(user, user2, user1);
+
+        // Act
+        UserFollowersResponseDto actual = userService.getSellerFollowersDto(1, Parameter.getString("NameDesc"));
+        // Assert
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T4: se obtiene lista de los que un usuario sigue ordenada ascendente.")
+    public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFolloweds_ShouldGetAnAscendentListOfFolloweds() {
+
+        // Arrange
+        User user = TestUtil.getUserWithFollowed(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
+
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
+
+        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user1, user2);
+
+        // Act
+        UserFollowedResponseDto actual = userService.getFollowedDto(1, Parameter.getString("NameAsc"));
+        // Assert
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T4: se obtiene lista de los que un usuario sigue ordenada descendente.")
+    public void whenGivingAnUserIdAndDescendentOrderByQueryParam_getSellerFolloweds_ShouldGetADescendentListOfFolloweds() {
+
+        // Arrange
+        User user = TestUtil.getUserWithFollowed(true);
+        User user1 = TestUtil.getSellerUser("Facundo", 2);
+        User user2 = TestUtil.getSellerUser("Raul", 3);
+
+        when(userRepository.getUserById(1)).thenReturn(user);
+        when(userRepository.getUserById(2)).thenReturn(user1);
+        when(userRepository.getUserById(3)).thenReturn(user2);
+
+        UserFollowedResponseDto expectedResult = TestUtil.getUserFollowedResponseDto(user, user2, user1);
+
+        // Act
+        UserFollowedResponseDto actual = userService.getFollowedDto(1, Parameter.getString("NameDesc"));
+        // Assert
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
+    @DisplayName("T7: se obtiene cantidad de seguidores que tiene un vendedor")
     void shouldReturnRealAmountOfFollowers() {
 
         // Arrange
@@ -275,7 +277,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T7 se lanza excepcion si el usuario a consultar no existe")
+    @DisplayName("T7: se lanza excepcion si el usuario a consultar no existe")
     void whenGetAnInvalidUserId_ThenThrowNotFoundException() {
 
         // Arrange
@@ -292,7 +294,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T7 se lanza excepcion si el usuario a consultar no es vendedor")
+    @DisplayName("T7: se lanza excepcion si el usuario a consultar no es vendedor")
     void ifIsNotASeller_ThenThrowBadRequestException() {
 
         // Arrange
