@@ -42,10 +42,10 @@ En SocialMeli en donde los compradores van a poder seguir a sus vendedores favor
 
 - Se cambio la porción del código relacionada con el ordenamiento en PostService y UserService. En ambos casos las funciones que tenían ordenamiento por fecha (post) y por nombre(User) se revisa, de no ser null que sea nombre o fecha desc o asc, de lo contrario tira una excepción.
 
-- Cambiamos la reponsabilidad de buscar las publicaciones al repositorio y no al servicio. Se pide el id del usuario y desde el repository se devuelven las publicaciones de ese usuario en especifico.
+- Cambiamos la responsabilidad de buscar las publicaciones al repositorio y no al servicio. Se pide el id del usuario y desde el repository se devuelven las publicaciones de ese usuario en especifico.
 
 ### Convenciones grupales
-- Agregamos la validación @NotBlank al user_nama en el DTO de user para que no se pueda pasar un string en blanco.
+- Agregamos la validación @NotBlank al user_name en el DTO de user para que no se pueda pasar un string en blanco.
 
 - Agregamos las validaciones de las longitud que solo estaban especificadas en la tabla de resumen de datos de entrada pero no en validaciones en campos.
 
