@@ -6,17 +6,18 @@ import com.socialmeli.be_java_hisp_w20_g8.services.sellers.ISellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @RestController
+@Validated
 public class SellerController {
 
     @Autowired
