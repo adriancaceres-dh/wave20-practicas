@@ -42,8 +42,6 @@ En SocialMeli en donde los compradores van a poder seguir a sus vendedores favor
 - Agregamos las validaciones de las longitud que solo estaban especificadas en la tabla de resumen de datos de entrada pero no en validaciones en campos.
 
 ## API Reference
-
-&nbsp;
 #### Test de integracion 
 
 Realizado a partir de UserController 
