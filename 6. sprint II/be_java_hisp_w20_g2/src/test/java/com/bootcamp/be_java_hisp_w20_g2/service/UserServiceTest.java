@@ -20,6 +20,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -81,24 +82,27 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T-0001 Follow - OK")
     void follow() {
 
         // test follow an existing user (OK)
 
-        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
+        //Arrange
+        User user1 = new User(1,"usuario1",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        User user2 = new User(2,"usuario2",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
 
-        User user1 = users.get(1);
-        User user2 = users.get(2);
-
-
+        //Act
         when(userRepository.exists(1)).thenReturn(true);
         when(userRepository.exists(2)).thenReturn(true);
 
         when(userRepository.findOne(1)).thenReturn(user1);
         when(userRepository.findOne(2)).thenReturn(user2);
 
+
         boolean res = userService.follow(1, 2);
 
+
+        //Assert
         verify(userRepository, atLeastOnce()).exists(1);
         verify(userRepository, atLeastOnce()).exists(2);
         verify(userRepository, atLeastOnce()).findOne(1);
@@ -108,25 +112,36 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T-0001 Follow existing user - Bad request")
+
     void followNonExistingUser() {
 
         // test follow a non-existing user (BadRequest)
 
+        //Arrange
+
+        //Act
         when(userRepository.exists(2)).thenReturn(false);
+
+        //Assert
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,2));
 
     }
 
     @Test
+    @DisplayName("T-0001 Follow existing following - Bad request")
+
     void followExistingFollowing() {
 
         // test follow a user who already followed (BadRequest)
-        HashMap<Integer, User> users = UtilsTest.generateUsersToTestExistingFollow();
 
-        User user1 = users.get(1);
-        User user2 = users.get(2);
+        //Arrange
+        User user1 = new User(1,"usuario1",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        User user2 = new User(2,"usuario2",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        user1.getFollowing().add(user2);
 
 
+        //Act
         when(userRepository.exists(1)).thenReturn(true);
         when(userRepository.exists(2)).thenReturn(true);
 
@@ -134,21 +149,29 @@ class UserServiceTest {
         when(userRepository.findOne(2)).thenReturn(user2);
 
 
+        //Assert
+
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,2));
 
     }
 
     @Test
+    @DisplayName("T-0001 Follow my self - Bad request")
+
     void followMySelf() {
         //test follow to myself (BadRequest)
-        HashMap<Integer, User> users = UtilsTest.generateUsersToTestExistingFollow();
 
-        User user1 = users.get(1);
+        //Arrange
+        User user1 = new User(1,"usuario1",new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
 
+
+        //Act
         when(userRepository.exists(1)).thenReturn(true);
 
         when(userRepository.findOne(1)).thenReturn(user1);
 
+
+        //Assert
         Assertions.assertThrows(BadRequestException.class,()->userService.follow(1,1));
 
     }
