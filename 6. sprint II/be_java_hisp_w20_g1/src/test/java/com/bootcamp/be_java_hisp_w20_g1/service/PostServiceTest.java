@@ -73,7 +73,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T6: Se obtiene lista de los post de un usuario ordenada ascendentemente.")
+    @DisplayName("T6: Se obtiene lista de los post de un usuario ordenada ascendentemente")
     void whenGivingUnorderedList_sortPostByDateAscParam_ShouldReturnOrderedList() {
         // Arrange
         List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1, 2);
@@ -87,7 +87,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T6: Se obtiene lista de los post de un usuario ordenada descendentemente.")
+    @DisplayName("T6: Se obtiene lista de los post de un usuario ordenada descendentemente")
     void whenGivingUnorderedList_sortPostByDateDescParam_ShouldReturnOrderedList() {
         // Arrange
         List<PostResponseDto> ascPost = TestUtil.ascPostResponseDTOBuilder(1, 2);
@@ -103,7 +103,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T8: obtiene lista de posteos de las ultimas dos semanas de los vendedores seguidos por un usuario")
+    @DisplayName("T8: Obtiene lista de posteos de las ultimas dos semanas de los vendedores seguidos por un usuario")
     void whenAGivingAValidUser_ThenObtainPostsFromLastTwoWeeks() {
 
         //Arrange

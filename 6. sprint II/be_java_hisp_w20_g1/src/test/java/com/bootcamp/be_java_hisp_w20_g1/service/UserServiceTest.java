@@ -76,7 +76,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T2: valida que se continue con normalidad cuando el usuario a dejar de seguir existe.")
+    @DisplayName("T2: Cuando el usuario a dejar de seguir existe se deja de seguir")
     void whenGivingValidUserId_unfollowUser_ShouldUnfollowUser() {
         //Arrange
         User validUser = TestUtil.getSellerUser("noahHoah", 1);
@@ -95,7 +95,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T2: valida que se lance una excepción cuando el usuario a dejar de seguir no existe.")
+    @DisplayName("T2: Se lanza excepción cuando el usuario a dejar de seguir no existe")
     void whenGivingInvalidUserId_unfollowUser_ShouldThrowNotFoundException() {
         // Arrange
         User validUser = TestUtil.getSellerUser("noahHoah", 1);
@@ -110,7 +110,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3: Se lanza excepción si el orden es inválido en getFollowed.")
+    @DisplayName("T3: Se lanza excepción si el orden es inválido en getFollowed")
     public void whenAnInvalidContentOfQueryParamIsReceived_getFolloweds_ShouldThrowException() {
         // Arrange
         User user = TestUtil.getUserWithFollowed(true);
@@ -122,7 +122,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3: Se lanza excepción si el orden es inválido en getSellerFollowers.")
+    @DisplayName("T3: Se lanza excepción si el orden es inválido en getSellerFollowers")
     public void whenAnInvalidContentOfQueryParamIsReceived_getFollowers_ShouldThrowException() {
         // Arrange
         User user = TestUtil.getUserWithFollowed(true);
@@ -134,7 +134,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3: se obtiene lista de los que un usuario sigue ordenada ascendentemente (por defecto).")
+    @DisplayName("T3: Se obtiene lista de los que un usuario sigue ordenada ascendentemente (por defecto)")
     public void whenNoQueryParamIsReceived_getFollowed_ShouldOrderTheListAscendently() {
 
         // Arrange
@@ -155,7 +155,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T3: se obtiene lista de seguidores de un usuario ordenada ascendentemente (por defecto).")
+    @DisplayName("T3: Se obtiene lista de seguidores de un usuario ordenada ascendentemente (por defecto)")
     public void whenNoQueryParamIsReceived_getFollowers_ShouldOrderTheListAscendently() {
 
         // Arrange
@@ -176,7 +176,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T4: se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
+    @DisplayName("T4: Se obtiene lista de los seguidores de un usuario ordenada ascendentemente")
     public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFollowers_ShouldGetAnAscendentListOfFollowers() {
 
         // Arrange
@@ -197,7 +197,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T4: se obtiene lista de los seguidores de un usuario ordenada descendente.")
+    @DisplayName("T4: Se obtiene lista de los seguidores de un usuario ordenada descendente")
     public void whenGivingAnUserIdAndDescendingOrderByQueryParam_getSellerFollowers_ShouldGetADescendentListOfFollowers() {
 
         // Arrange
@@ -218,7 +218,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T4: se obtiene lista de los que un usuario sigue ordenada ascendente.")
+    @DisplayName("T4: Se obtiene lista de los que un usuario sigue ordenada ascendente")
     public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFolloweds_ShouldGetAnAscendentListOfFolloweds() {
 
         // Arrange
@@ -239,7 +239,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T4: se obtiene lista de los que un usuario sigue ordenada descendente.")
+    @DisplayName("T4: Se obtiene lista de los que un usuario sigue ordenada descendente")
     public void whenGivingAnUserIdAndDescendentOrderByQueryParam_getSellerFolloweds_ShouldGetADescendentListOfFolloweds() {
 
         // Arrange
@@ -260,7 +260,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T7: se obtiene cantidad de seguidores que tiene un vendedor")
+    @DisplayName("T7: Se obtiene cantidad de seguidores que tiene un vendedor")
     void shouldReturnRealAmountOfFollowers() {
 
         // Arrange
@@ -277,7 +277,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T7: se lanza excepcion si el usuario a consultar no existe")
+    @DisplayName("T7: Se lanza excepcion si el usuario a consultar no existe")
     void whenGetAnInvalidUserId_ThenThrowNotFoundException() {
 
         // Arrange
@@ -294,7 +294,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T7: se lanza excepcion si el usuario a consultar no es vendedor")
+    @DisplayName("T7: Se lanza excepcion si el usuario a consultar no es vendedor")
     void ifIsNotASeller_ThenThrowBadRequestException() {
 
         // Arrange
