@@ -2,38 +2,23 @@ package com.bootcamp.be_java_hisp_w20_g1.service;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
-import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
-import com.bootcamp.be_java_hisp_w20_g1.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -45,9 +30,6 @@ class UserServiceTest {
 
     @InjectMocks
     private UserService userService;
-
-    static User validUser = new User(1, "noahHoah", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
-    static User validUserToFollow = new User(2, "elzaTlza", new HashSet<>(), new HashSet<>(), new HashSet<>(), true);
 
     @Test
     @DisplayName("T2: valida que se continue con normalidad cuando el usuario a seguir existe.")
