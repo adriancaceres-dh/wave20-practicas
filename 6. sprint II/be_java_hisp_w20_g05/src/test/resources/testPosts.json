@@ -2,7 +2,7 @@
   {
     "id":1,
     "userId":2,
-    "date":"2022-09-28",
+    "date":"2023-01-04",
     "category":20,
     "price":930,
     "discount":0.35,
@@ -19,7 +19,7 @@
   {
     "id":2,
     "userId":1,
-    "date":"2022-11-17",
+    "date":"2023-01-06",
     "category":23,
     "price":1070,
     "discount":0.25,
@@ -36,7 +36,7 @@
   {
     "id":3,
     "userId":2,
-    "date":"2022-10-12",
+    "date":"2023-01-07",
     "category":20,
     "price":1120,
     "discount":0.3,
@@ -53,7 +53,7 @@
   {
     "id":4,
     "userId":2,
-    "date":"2022-11-27",
+    "date":"2023-01-08",
     "category":20,
     "price":1670,
     "discount":0.1,
@@ -70,7 +70,7 @@
   {
     "id":5,
     "userId":3,
-    "date":"2022-12-30",
+    "date":"2023-01-09",
     "category":22,
     "price":1850,
     "discount":0.25,
@@ -87,7 +87,7 @@
     {
     "id":6,
     "userId":4,
-    "date":"2022-12-26",
+    "date":"2023-01-10",
     "category":22,
     "price":260,
     "discount":0.05,
@@ -104,7 +104,7 @@
     {
     "id":7,
     "userId":2,
-    "date":"2022-07-12",
+    "date":"2023-01-12",
     "category":22,
     "price":1030,
     "discount":0.25,
@@ -121,7 +121,7 @@
   {
     "id":8,
     "userId":1,
-    "date":"2022-12-21",
+    "date":"2023-01-12",
     "category":20,
     "price":1590,
     "discount":0.15,
@@ -138,7 +138,7 @@
   {
     "id":9,
     "userId":2,
-    "date":"2022-11-29",
+    "date":"2023-01-13",
     "category":20,
     "price":1800,
     "discount":0.15,
@@ -155,7 +155,7 @@
   {
     "id":10,
     "userId":1,
-    "date":"2022-12-10",
+    "date":"2023-01-14",
     "category":20,
     "price":1760,
     "discount":0.2,
@@ -172,7 +172,7 @@
   {
     "id":11,
     "userId":2,
-    "date":"2022-07-24",
+    "date":"2023-01-14",
     "category":22,
     "price":1850,
     "discount":0.25,
@@ -189,7 +189,7 @@
   {
     "id":12,
     "userId":1,
-    "date":"2022-10-25",
+    "date":"2023-01-15",
     "category":20,
     "price":1100,
     "discount":0.25,
@@ -206,7 +206,7 @@
   {
     "id":13,
     "userId":2,
-    "date":"2022-08-30",
+    "date":"2023-01-16",
     "category":22,
     "price":1600,
     "discount":0.25,

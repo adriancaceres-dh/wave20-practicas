@@ -10,34 +10,140 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
     @Mock
     IUserRepository userRepository;
-
     @InjectMocks
     UserService userService;
-
     private static ObjectWriter writer;
+    private AutoCloseable closeable;
     @BeforeAll
     public static void setUp(){
         writer = new ObjectMapper()
                 .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
                 .writer();
+    }
+    @BeforeEach
+    public void beforeEach() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    @DisplayName("T-0001 cumple")
+    void followUser_ok(){
+
+        //Arrange
+        int userId = 1;
+        int userIdToFollow = 1213213;
+
+        User user = new User(userId, "", new HashSet<>(), new HashSet<>());
+        User userToFollow = new User(userIdToFollow, "", new HashSet<>(), new HashSet<>());
+
+        when(userRepository.getById(userId)).thenReturn(Optional.of(user));
+        when(userRepository.getById(userIdToFollow)).thenReturn(Optional.of(userToFollow));
+
+        //Act
+
+        userService.followUser(userId, userIdToFollow);
+
+        //Assert
+        assertTrue(user.getFollowing().contains(userIdToFollow));
+        assertTrue(userToFollow.getFollowers().contains(userId));
+
+    }
+    @Test
+    @DisplayName("T-0001 no cumple")
+    void followUser_userNotFound(){
+
+        //Arrange
+        int userId = 1;
+        int userIdToFollow = 1213213;
+
+        User user = new User(userId, "us1", new HashSet<>(), new HashSet<>());
+
+        when(userRepository.getById(userId)).thenReturn(Optional.of(user));
+        when(userRepository.getById(userIdToFollow)).thenReturn(Optional.empty());
+
+        String expectedMessage = "User with id: "+userIdToFollow+" was not found";
+
+        //Act && Assert
+
+        IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> {
+            userService.followUser(userId, userIdToFollow);
+        });
+
+        String actualMessage = exception.getMessageExceptionDto().getMessageException();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
+
+    @Test
+    @DisplayName("T-0002 cumple")
+    void unfollowUser_ok(){
+        //Arrange
+        int userId = 1;
+        int userIdToUnFollow = 1213213;
+
+        User user = new User(userId, "", new HashSet<>(), new HashSet<>());
+        User userToFollow = new User(userIdToUnFollow, "", new HashSet<>(userId), new HashSet<>());
+
+        user.followUser(userIdToUnFollow);
+
+        when(userRepository.getById(userId)).thenReturn(Optional.of(user));
+        when(userRepository.getById(userIdToUnFollow)).thenReturn(Optional.of(userToFollow));
+
+        //Act
+
+        userService.unfollowUser(userId, userIdToUnFollow);
+
+        //Assert
+        assertFalse(user.getFollowing().contains(userIdToUnFollow));
+        assertFalse(userToFollow.getFollowers().contains(userId));
+    }
+    @Test
+    @DisplayName("T-0002 no cumple")
+    void unfollowUser_userNotFound(){
+        //Arrange
+        int userId = 1;
+        int userIdToUnFollow = 1213213;
+
+        User user = new User(userId, "us1", new HashSet<>(), new HashSet<>());
+
+        when(userRepository.getById(userId)).thenReturn(Optional.of(user));
+        when(userRepository.getById(userIdToUnFollow)).thenReturn(Optional.empty());
+
+        String expectedMessage = "User with id: "+userIdToUnFollow+" was not found";
+
+        //Act && Assert
+
+        IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> {
+            userService.unfollowUser(userId, userIdToUnFollow);
+        });
+
+        String actualMessage = exception.getMessageExceptionDto().getMessageException();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     /*
@@ -163,6 +269,19 @@ public class UserServiceTest {
         String order="wrong_order";
         //Act & Assert
         Assertions.assertThrows(WrongRequestParamException.class,()->userService.getFollowersBySeller(id,order));
+    }
+    @Test
+    @DisplayName("T-0007 Cantidad de Segiodores correcta")
+    public void getFollowersCountTest() throws Exception {
+        //arrange
+        Set<User> users = TestUtils.createMockUsers();
+        Optional<User> user1 = users.stream().findFirst();
+        when(userRepository.getById(user1.get().getId())).thenReturn(user1);
+        //act
+        FollowersCountDTO followersCountDTO = userService.getFollowersCount(user1.get().getId());
+        //verify
+        verify(userRepository, atLeastOnce()).getById(user1.get().getId());
+        assertEquals(user1.get().getFollowers().size(), followersCountDTO.getFollowers_count());
     }
 
 }
