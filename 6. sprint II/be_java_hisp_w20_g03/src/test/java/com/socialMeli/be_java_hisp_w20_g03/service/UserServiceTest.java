@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
@@ -86,7 +87,42 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0004: Camino Feliz")
+    @DisplayName("T-0004: Verificar orden alfabético desc de 'Seguidos' OK")
+    void getFollowedListOrderDesc(){
+        //Arrange
+        int userId = 6631;
+        UserFollowedDTO expected = buildListUserFollowersDtoDesc();
+        // Creo todos los usuarios con sus respectivos seguidores/seguidos
+        User user = UserUtils.buildUserWithFollowed();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+
+        //Act
+        UserFollowedDTO actual = userService.getFollowedList(6631, "name_desc");
+
+        //Assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("T-0004: Verificar orden alfabético desc de 'Seguidos' OK")
+    void getFollowedListOrderAsc(){
+        //Arrange
+        int userId = 6631;
+        UserFollowedDTO expected = buildListUserFollowersDtoAsc();
+        User user = UserUtils.buildUserWithFollowed();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+
+        //Act
+        UserFollowedDTO actual = userService.getFollowedList(6631, "name_asc");
+
+        //Assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("T-0004: Verificar orden alfabético desc de 'Seguidores' OK")
     void getFollowersListOrderDesc() {
         //arrange
         int userId = 234;

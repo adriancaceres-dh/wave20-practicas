@@ -93,7 +93,7 @@ public class UserService implements IUserService {
         List<UserDTO> followed = user.getFollowed().stream()
                 .map(u -> mapper.map(u, UserDTO.class)).collect(Collectors.toList());
         if (order != null) {
-            if (order.equals(OrderEnum.name_desc.toString())) {
+            if (order.equals(OrderEnum.name_asc.toString())) {
                 followed = followed.stream().sorted(Comparator.comparing(x -> x.getUserName()))
                         .collect(Collectors.toList());
             } else if (order.equals(OrderEnum.name_desc.toString())){
