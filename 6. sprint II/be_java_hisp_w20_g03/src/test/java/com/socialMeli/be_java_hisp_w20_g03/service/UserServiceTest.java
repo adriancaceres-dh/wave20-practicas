@@ -60,30 +60,90 @@ class UserServiceTest {
         Assertions.assertThrows(NotFoundException.class,()-> userService.addFollower(idRequestUser,idRequestUser2));
     }
 
+    @DisplayName("T-0002: Permite continuar con normalidad.")
     @Test
-    @DisplayName("T-0007: Cantidad de seguidores adecuada.")
-    void getFollowerCount() {
-        //Arrange
+    void unfollowOk() {
+        //arrange
+        int userIdFollower = 234;
+        int userIdToUnfollow = 6631;
+
         User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(anyInt())).thenReturn(user);
+        User user2 = user.getFollowed().get(0);
+
+        when(userRepository.getUserById(userIdFollower)).thenReturn(user);
+        when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
+
+        String expectedString = "Dejaste de seguir al usuario: " + user2.getUserName();
 
         //Act
-        UserFollowerCountDTO output = userService.getFollowerCount(user.getUserId());
+        String unfollowResponse = userService.unfollow(userIdFollower,userIdToUnfollow);
 
         //Assert
-        verify(userRepository, atLeastOnce()).getUserById(user.getUserId());
-        assertEquals(3,output.getFollowers_count());
+        assertEquals(expectedString,unfollowResponse);
 
+    }
+    @DisplayName("T-0002: Usuario no existe.")
+    @Test
+    void unfollowUserNotFound() {
+        //arrange
+        int userIdFollower = 234;
+        int userIdToUnfollow = 6631;
+
+        //Act
+        when(userRepository.getUserById(userIdFollower)).thenReturn(null);
+        //Assert
+        assertThrows(NotFoundException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
+    }
+    @DisplayName("T-0002: Usuario no es seguido")
+    @Test
+    void unfollowUserNotFollowed() {
+        int userIdFollower = 234;
+        int userIdToUnfollow = 6631;
+
+        User user = UserUtils.buildUserWithFollowers();
+        User user2 = UserUtils.getUserAddFollower(userIdToUnfollow);
+        //Act
+        when(userRepository.getUserById(userIdFollower)).thenReturn(user);
+        when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
+
+        //Assert
+        assertThrows(BadRequestException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
     }
 
     @Test
-    @DisplayName("T-0007: Usuario inexistente")
-    void getFollowerCountUserDoesntExists() {
-        //Arrange
-        when(userRepository.getUserById(anyInt())).thenReturn(null);
+    @DisplayName("T-0003: Camino Feliz, orden de forma asc")
+    void getFollowersListOrderAscOK() {
+        //arrange
+        int userId = 234;
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(userId,"name_asc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertNotNull(actual);
+    }
+    @Test
+    @DisplayName("T-0003: Camino Feliz, orden de forma desc")
+    void getFollowersListOrderDescOK() {
+        //arrange
+        int userId = 234;
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(userId,"name_desc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertNotNull(actual);
+    }
 
-        //Act & Assert
-        assertThrows(NotFoundException.class, ()->userService.getFollowerCount(1));
+    @Test
+    @DisplayName("T-0003: Excepción cuando ingresa un orden incorrecto")
+    void getFollowersListUserNotFoundOrder() {
+        //arrange
+        when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
+        //assert
+        assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
     }
 
     @Test
@@ -149,32 +209,7 @@ class UserServiceTest {
         verify(userRepository, atLeastOnce()).getUserById(userId);
         assertEquals(expect,actual);
     }
-    @Test
-    @DisplayName("T-0003: Camino Feliz, orden de forma asc")
-    void getFollowersListOrderAscOK() {
-        //arrange
-        int userId = 234;
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(userId)).thenReturn(user);
-        //act
-        UserFollowersDTO actual = userService.getFollowersList(userId,"name_asc");
-        //assert
-        verify(userRepository, atLeastOnce()).getUserById(userId);
-        assertNotNull(actual);
-    }
-    @Test
-    @DisplayName("T-0003: Camino Feliz, orden de forma desc")
-    void getFollowersListOrderDescOK() {
-        //arrange
-        int userId = 234;
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(userId)).thenReturn(user);
-        //act
-        UserFollowersDTO actual = userService.getFollowersList(userId,"name_desc");
-        //assert
-        verify(userRepository, atLeastOnce()).getUserById(userId);
-        assertNotNull(actual);
-    }
+
     @Test
     @DisplayName("T-0004: Excepción cuando el usuario no existe")
     void getFollowersListUserNotFound() {
@@ -183,62 +218,31 @@ class UserServiceTest {
         //assert
         assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
     }
-    @Test
-    @DisplayName("T-0003: Excepción cuando ingresa un orden incorrecto")
-    void getFollowersListUserNotFoundOrder() {
-        //arrange
-        when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
-        //assert
-        assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
-    }
 
-    @DisplayName("T-0002: Permite continuar con normalidad.")
     @Test
-    void unfollowOk() {
-        //arrange
-        int userIdFollower = 234;
-        int userIdToUnfollow = 6631;
-
+    @DisplayName("T-0007: Cantidad de seguidores adecuada.")
+    void getFollowerCount() {
+        //Arrange
         User user = UserUtils.buildUserWithFollowers();
-        User user2 = user.getFollowed().get(0);
-
-        when(userRepository.getUserById(userIdFollower)).thenReturn(user);
-        when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
-
-        String expectedString = "Dejaste de seguir al usuario: " + user2.getUserName();
+        when(userRepository.getUserById(anyInt())).thenReturn(user);
 
         //Act
-        String unfollowResponse = userService.unfollow(userIdFollower,userIdToUnfollow);
+        UserFollowerCountDTO output = userService.getFollowerCount(user.getUserId());
 
         //Assert
-        assertEquals(expectedString,unfollowResponse);
+        verify(userRepository, atLeastOnce()).getUserById(user.getUserId());
+        assertEquals(3,output.getFollowers_count());
 
     }
-    @DisplayName("T-0002: Usuario no existe.")
+
     @Test
-    void unfollowUserNotFound() {
-        //arrange
-        int userIdFollower = 234;
-        int userIdToUnfollow = 6631;
+    @DisplayName("T-0007: Usuario inexistente")
+    void getFollowerCountUserDoesntExists() {
+        //Arrange
+        when(userRepository.getUserById(anyInt())).thenReturn(null);
 
-        //Act
-        when(userRepository.getUserById(userIdFollower)).thenReturn(null);
-        //Assert
-        assertThrows(NotFoundException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
+        //Act & Assert
+        assertThrows(NotFoundException.class, ()->userService.getFollowerCount(1));
     }
-    @DisplayName("T-0002: Usuario no es seguido")
-    @Test
-    void unfollowUserNotFollowed() {
-        int userIdFollower = 234;
-        int userIdToUnfollow = 6631;
 
-        User user = UserUtils.buildUserWithFollowers();
-        User user2 = UserUtils.getUserAddFollower(userIdToUnfollow);
-        //Act
-        when(userRepository.getUserById(userIdFollower)).thenReturn(user);
-        when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);
-
-        //Assert
-        assertThrows(BadRequestException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
-    }
 }
