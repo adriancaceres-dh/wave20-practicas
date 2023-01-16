@@ -97,32 +97,6 @@ class ServiceUsrTest {
         return seller1;
 
     }
-    private User createUser(){
-        Seller seller1 = new Seller();
-        seller1.setUser_name("rodri");
-        seller1.setUser_id(1);
-
-        Seller seller2 = new Seller();
-        seller2.setUser_name("Lalo Landa2");
-        seller2.setUser_id(2);
-
-        Seller seller3 = new Seller();
-        seller3.setUser_name("Lalo Landa3");
-        seller3.setUser_id(3);
-
-        Seller seller4 = new Seller();
-        seller4.setUser_name("Lalo Landa4");
-        seller4.setUser_id(4);
-
-        HashMap<Integer, User> followers = new HashMap<>();
-        followers.put(2,seller2);
-        followers.put(3,seller3);
-        followers.put(4,seller4);
-
-        seller1.setFollowers(followers);
-        return seller1;
-    }
-
 
     @Test
     @DisplayName("US 0003 - Verificar que el orden exista. Orden name_asc")
@@ -158,7 +132,7 @@ class ServiceUsrTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test //BadRequestException: Parametro de orden incorrecto
+    @Test
     @DisplayName("US 0003 - Verificar que el orden exista. Orden inválido")
     void followersInvalidOrderTest() {
 
