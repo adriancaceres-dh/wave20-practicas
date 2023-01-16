@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g7.service;
 
-import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.repository.FollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils;
