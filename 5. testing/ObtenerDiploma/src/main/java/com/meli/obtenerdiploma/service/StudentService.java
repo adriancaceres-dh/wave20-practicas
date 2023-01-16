@@ -32,7 +32,10 @@ public class StudentService implements IStudentService {
         studentDAO.save(stu);
     }
 
+<<<<<<< HEAD
     //deberia retornar el boolean?
+=======
+>>>>>>> ivan_amaro
     @Override
     public void delete(Long id) {
         studentDAO.delete(id);

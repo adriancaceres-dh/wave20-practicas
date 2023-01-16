@@ -323,5 +323,9 @@ Ordenamiento alfabético ascendente y descendente.
 | Response | 
 | :-------- | 
 | **Status Code 200** (todo OK) - bodyless or dto| 
+<<<<<<< HEAD:4. sprint/trabajo grupal/readme.md
 | **Status Code 400** (Bad Request) -  bodyless or dto| 
 
+=======
+| **Status Code 400** (Bad Request) -  bodyless or dto| 
+>>>>>>> ivan_amaro:4. sprint/readme.md
