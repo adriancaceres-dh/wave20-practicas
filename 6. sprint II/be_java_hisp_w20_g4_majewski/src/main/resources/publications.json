@@ -1,0 +1,60 @@
+[{
+  "user_id": 2,
+  "post_id": 1,
+  "date": "31-12-2022",
+  "price": 15.55,
+  "hasPromo":false,
+  "discount": 15.0,
+  "product": {
+    "product_id": 1,
+    "product_name": "producto1",
+    "color": "yellow",
+    "notes": "nota",
+    "type": "tipo",
+    "brand": "adidas"
+  },
+  "category": {
+    "id": 10,
+    "name": "football"
+  }
+},{
+  "user_id": 2,
+  "post_id": 2,
+  "date": "26-12-2022",
+  "price": 16.55,
+  "hasPromo":true,
+  "discount": 10.0,
+  "product": {
+    "product_id": 2,
+    "product_name": "producto2",
+    "color": "red",
+    "notes": "nota2",
+    "type": "tipo2",
+    "brand": "nike"
+  },
+  "category": {
+    "id": 20,
+    "name": "basketball"
+  }
+},
+  {
+    "user_id": 3,
+    "post_id": 3,
+    "date": "01-01-2023",
+    "price": 161.55,
+    "hasPromo":true,
+    "discount": 20.0,
+    "product": {
+      "product_id": 3,
+      "product_name": "producto3",
+      "color": "dark",
+      "notes": "nota3",
+      "type": "tipo3",
+      "brand": "reebook"
+    },
+    "category": {
+      "id": 200,
+      "name": "sports"
+    }
+  }
+]
