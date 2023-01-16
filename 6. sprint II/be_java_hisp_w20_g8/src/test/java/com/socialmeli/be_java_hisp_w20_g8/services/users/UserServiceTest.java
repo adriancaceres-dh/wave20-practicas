@@ -2,6 +2,7 @@ package com.socialmeli.be_java_hisp_w20_g8.services.users;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.SellerDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserFollowedDTO;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -151,4 +152,76 @@ class UserServiceTest {
             assertTrue(actual.get(i - 1).getUser_name().compareTo(actual.get(i).getUser_name()) >= 0);
         }
     }
+        @Test
+        @DisplayName("T-0003 Users-> Ascending sort test")
+        void testAscSort(){
+            //Arrange
+            String orderOption = "name_asc";
+            int userId =2;
+
+            when(mockPersonRepository.checkUser(anyInt())).thenReturn(true);
+            when(mockPersonRepository.findUserById(anyInt())).thenReturn(new User(userId, "luis_lopez", new HashSet<>()));
+            when(mockPersonRepository.getAllFollowed(anyInt())).thenReturn(Set.of(6, 7, 8, 9, 10));
+            when(mockPersonRepository.findSellerById(6)).thenReturn(new Seller(6, "jesus_flores"));
+            when(mockPersonRepository.findSellerById(7)).thenReturn(new Seller(7, "ana_ortiz"));
+            when(mockPersonRepository.findSellerById(8)).thenReturn(new Seller(8, "ernesto_llano"));
+            when(mockPersonRepository.findSellerById(9)).thenReturn(new Seller(9, "jesus_rivera"));
+            when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
+            //Action
+            UserFollowedDTO sellerFollowers = injectMockUserService.getAllFollowed(userId,orderOption);
+            System.out.println("sellerFollowers = " + sellerFollowers);
+
+            //assert
+            assertNotNull(sellerFollowers);
+            assertDoesNotThrow(() -> injectMockUserService.getAllFollowed(userId,orderOption));
+
+        }
+
+        @Test
+        @DisplayName("T-0003 Users-> descending sort test")
+        void testDescSort(){
+            //Arrange
+            String orderOption = "name_desc";
+            int userId =2;
+
+            when(mockPersonRepository.checkUser(anyInt())).thenReturn(true);
+            when(mockPersonRepository.findUserById(anyInt())).thenReturn(new User(userId, "luis_lopez", new HashSet<>()));
+            when(mockPersonRepository.getAllFollowed(anyInt())).thenReturn(Set.of(6, 7, 8, 9, 10));
+            when(mockPersonRepository.findSellerById(6)).thenReturn(new Seller(6, "jesus_flores"));
+            when(mockPersonRepository.findSellerById(7)).thenReturn(new Seller(7, "ana_ortiz"));
+            when(mockPersonRepository.findSellerById(8)).thenReturn(new Seller(8, "ernesto_llano"));
+            when(mockPersonRepository.findSellerById(9)).thenReturn(new Seller(9, "jesus_rivera"));
+            when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
+            //Action
+            UserFollowedDTO sellerFollowers = injectMockUserService.getAllFollowed(userId,orderOption);
+
+            //assert
+            assertNotNull(sellerFollowers);
+            assertDoesNotThrow(() -> injectMockUserService.getAllFollowed(userId,orderOption));
+
+
+        }
+        @Test
+        @DisplayName("T-0003 Users-> Invalid sorting option test")
+        void badSortingOption(){
+            //Arrange
+            String orderOption = "not_sorting_option";
+            String expectedErrorMessage = "Invalid sorting option";
+            int userId =2;
+
+            when(mockPersonRepository.checkUser(anyInt())).thenReturn(true);
+            when(mockPersonRepository.findUserById(anyInt())).thenReturn(new User(userId, "luis_lopez", new HashSet<>()));
+            when(mockPersonRepository.getAllFollowed(anyInt())).thenReturn(Set.of(6, 7, 8, 9, 10));
+            when(mockPersonRepository.findSellerById(6)).thenReturn(new Seller(6, "jesus_flores"));
+            when(mockPersonRepository.findSellerById(7)).thenReturn(new Seller(7, "ana_ortiz"));
+            when(mockPersonRepository.findSellerById(8)).thenReturn(new Seller(8, "ernesto_llano"));
+            when(mockPersonRepository.findSellerById(9)).thenReturn(new Seller(9, "jesus_rivera"));
+            when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
+
+            //Action
+            Exception exception = assertThrows(InvalidArgumentException.class,()-> injectMockUserService.getAllFollowed(userId,orderOption));
+            //Asserts
+            assertEquals(expectedErrorMessage,exception.getMessage());
+        }
+
 }

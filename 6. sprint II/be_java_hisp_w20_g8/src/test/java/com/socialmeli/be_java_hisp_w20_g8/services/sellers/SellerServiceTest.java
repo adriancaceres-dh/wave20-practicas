@@ -4,6 +4,7 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.SellerFollowersDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -166,6 +167,6 @@ class SellerServiceTest {
 
         //assert
         assertEquals(sellExcpected.getFollowers_count(),sellActual.getFollowers_count());
-        assertThrows(RuntimeException.class,()->sellerService.followersCount(2));
+        assertThrows(NotFoundException.class,()->sellerService.followersCount(2));
     }
 }
