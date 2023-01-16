@@ -86,4 +86,22 @@ class PostControllerIntegrationTest {
             .andExpect(expectedMessage);
   }
 
+  @Test
+  void testGetPostsOk() throws Exception {
+    // Arrange
+
+    ResultMatcher expectedStatus = status().isOk();
+    ResultMatcher expectedContentType = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
+
+    MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(
+            "/products/followed/4698/list")
+            .param("order", "date_asc");
+
+    // Act & Assert
+    mockMvc.perform(request)
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(expectedStatus)
+            .andExpect(expectedContentType);
+  }
+
 }
