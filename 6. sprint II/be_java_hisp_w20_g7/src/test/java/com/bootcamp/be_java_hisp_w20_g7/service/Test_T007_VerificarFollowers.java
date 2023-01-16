@@ -12,9 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import static com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils.*;
-
+import static com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils.userFollowersCountDto;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

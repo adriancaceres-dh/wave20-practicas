@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class ExceptionDTO {
 

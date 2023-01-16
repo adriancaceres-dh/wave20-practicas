@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ExceptionDTO> userNotFoundException(Exception e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionDTO("UserNotFoundException","User Not Found"));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionDTO("UserNotFoundException", "User Not Found"));
     }
 
     @ExceptionHandler(UnfollowNotExistException.class)
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionValidationDto> postEmpty(MethodArgumentNotValidException e, BindingResult r) {
         List<String> errosMessages = r.getAllErrors().stream().map(error -> error.getDefaultMessage()).collect(Collectors.toList());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionValidationDto("Invalid field",errosMessages));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionValidationDto("Invalid field", errosMessages));
     }
 
 }

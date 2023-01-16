@@ -21,12 +21,12 @@ import java.time.ZoneId;
 import java.util.stream.Stream;
 
 import static com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class Test_T008_VerifyPostsByDate {
+    static Clock clock;
     @Mock
     private PostRepository postRepository;
     @Mock
@@ -36,12 +36,11 @@ public class Test_T008_VerifyPostsByDate {
     @InjectMocks
     private PostService postService;
 
-    static Clock clock;
-
     public static Stream<Arguments> postWithAscAndDescOrder() {
         return Stream.of(
                 arguments(postDtoAscOrder(), "date_asc"), arguments(postDtoDescOrder(), "date_desc"));
     }
+
     // Configurar el localDate en una fecha exacta
     @BeforeAll
     static void setupClock() {
@@ -54,12 +53,13 @@ public class Test_T008_VerifyPostsByDate {
     }
 
     //Muestras las fechas dentro del rango sugerido (dos semanas)
+    @DisplayName("Verificar las publicaciones realizadas en las últimas dos semanas")
     @Test
-    void t0008LastTwoWeekPosts(){
+    void t0008LastTwoWeekPosts() {
         when(userRepository.findById(1)).thenReturn(users().get(0));
         when(followRepository.findAll()).thenReturn(followListToTest());
         when(postRepository.findAll()).thenReturn(postListTestToTest0008());
         UserPostFollowedDto userPostFollowedDtoActual = postService.postUsersFollowed(1, "date_asc");
-        Assertions.assertEquals(postDtoBetween15Days(), userPostFollowedDtoActual.getPosts() );
+        Assertions.assertEquals(postDtoBetween15Days(), userPostFollowedDtoActual.getPosts());
     }
 }

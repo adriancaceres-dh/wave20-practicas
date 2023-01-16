@@ -1,22 +1,26 @@
 [
   {
     "idFollower": 1,
-    "idFollowed":3
+    "idFollowed": 3
   },
   {
     "idFollower": 2,
-    "idFollowed":3
-  },{
-  "idFollower": 8,
-  "idFollowed":3
-},{
-  "idFollower": 4,
-  "idFollowed":3
-},{
-  "idFollower": 5,
-  "idFollowed":4
-},{
-  "idFollower": 5,
-  "idFollowed":2
-}
+    "idFollowed": 3
+  },
+  {
+    "idFollower": 8,
+    "idFollowed": 3
+  },
+  {
+    "idFollower": 4,
+    "idFollowed": 3
+  },
+  {
+    "idFollower": 5,
+    "idFollowed": 4
+  },
+  {
+    "idFollower": 5,
+    "idFollowed": 2
+  }
 ]
