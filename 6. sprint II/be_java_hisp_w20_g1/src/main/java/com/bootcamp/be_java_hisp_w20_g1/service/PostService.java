@@ -52,7 +52,7 @@ public class PostService implements IPostService {
             throw new InvalidQueryParamValueException(Parameter.getString("EX_InvalidQueryParamValue"));
         }
 
-        if (order.equalsIgnoreCase(Parameter.getString("DateOrder"))) {
+        if (order.equalsIgnoreCase(Parameter.getString("DateDesc"))) {
             posts.sort(Comparator.comparing(PostResponseDto::getDate));
         } else {
             posts.sort(Comparator.comparing(PostResponseDto::getDate).reversed());
