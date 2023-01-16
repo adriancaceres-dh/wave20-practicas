@@ -1,8 +1,10 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.service;
 
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IUserRepository;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.util.TestUtils;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,11 +14,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+
 import java.util.HashSet;
 import java.util.Optional;
-
+import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -24,6 +27,7 @@ public class UserServiceTest {
     IUserRepository userRepository;
     @InjectMocks
     UserService userService;
+
 
     private AutoCloseable closeable;
 
@@ -108,7 +112,6 @@ public class UserServiceTest {
     @Test
     @DisplayName("T-0002 no cumple")
     void unfollowUser_userNotFound(){
-
         //Arrange
         int userId = 1;
         int userIdToUnFollow = 1213213;
@@ -129,7 +132,18 @@ public class UserServiceTest {
         String actualMessage = exception.getMessageExceptionDto().getMessageException();
 
         assertTrue(actualMessage.contains(expectedMessage));
-
-
+    }
+    @Test
+    @DisplayName("T-0007 Cantidad de Segiodores correcta")
+    public void getFollowersCountTest() throws Exception {
+        //arrange
+        Set<User> users = TestUtils.createMockUsers();
+        Optional<User> user1 = users.stream().findFirst();
+        when(userRepository.getById(user1.get().getId())).thenReturn(user1);
+        //act
+        FollowersCountDTO followersCountDTO = userService.getFollowersCount(user1.get().getId());
+        //verify
+        verify(userRepository, atLeastOnce()).getById(user1.get().getId());
+        assertEquals(user1.get().getFollowers().size(), followersCountDTO.getFollowers_count());
     }
 }
