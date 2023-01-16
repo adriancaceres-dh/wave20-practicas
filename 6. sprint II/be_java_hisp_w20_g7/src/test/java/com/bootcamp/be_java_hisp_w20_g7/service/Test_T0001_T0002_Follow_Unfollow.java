@@ -3,6 +3,8 @@ package com.bootcamp.be_java_hisp_w20_g7.service;
 import com.bootcamp.be_java_hisp_w20_g7.controller.UserController;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
+import com.bootcamp.be_java_hisp_w20_g7.exception.FollowAlreadyExistException;
+import com.bootcamp.be_java_hisp_w20_g7.exception.UnfollowNotExistException;
 import com.bootcamp.be_java_hisp_w20_g7.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IFollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
@@ -74,6 +76,35 @@ public class Test_T0001_T0002_Follow_Unfollow {
     }
 
     @Test
+    @DisplayName("T0001 - Follow already exist exception")
+    public void followAlreadyExistException() {
+        // arrange
+        List<Follow> follows = new ArrayList<>();
+        Follow follow = new Follow(1,3);
+        follows.add(follow);
+        when(followRepository.findAll()).thenReturn(follows);
+
+        // act
+
+        // assert
+        assertThrows(FollowAlreadyExistException.class,()->followService.follow(1,3));
+    }
+
+    @Test
+    @DisplayName("T0001 - Follow User follower and followed equals")
+    public void followFollowerAndFollowedEqual() {
+        // arrange
+        List<Follow> follows = new ArrayList<>();
+        Follow follow = new Follow(1,3);
+        follows.add(follow);
+        when(followRepository.findAll()).thenReturn(follows);
+        // act
+
+        // assert
+        assertThrows(FollowAlreadyExistException.class,()->followService.follow(1,1));
+    }
+
+    @Test
     @DisplayName("T0002 - Unfollow Ok")
     public void unfollowOk() {
         // arrange
@@ -113,6 +144,23 @@ public class Test_T0001_T0002_Follow_Unfollow {
 
         // assert
         assertThrows(UserNotFoundException.class,()->followService.unfollow(1,4));
+    }
+
+    @Test
+    @DisplayName("T0002 - Unfollow not exist exception")
+    public void unfollowNotExistException() {
+        // arrange
+        // Se prepara la respuesta para cuando busque los usuarios por ID
+        User userFollower = new User(1,"Manuel");
+        User userFollowed = new User(4,"Tomas");
+
+        when(userRepository.findById(1)).thenReturn(userFollower);
+        when(userRepository.findById(4)).thenReturn(userFollowed);
+
+        // act
+
+        // assert
+        assertThrows(UnfollowNotExistException.class,()->followService.unfollow(1,4));
     }
 
 }
