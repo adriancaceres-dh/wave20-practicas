@@ -26,6 +26,9 @@ public class ProductRequestDto {
     @NotBlank(message = "El campo no puede estar vacio")
     @Pattern(regexp = "^[\\w]+$", message = "El campo no puede poseer caracteres especiales.")
     private String type;
+    @NotBlank(message = "El campo no puede estar vacio")
+    @Size(max = 25, message = "La longitud no puede superar los 25 caracteres")
+    @Pattern(regexp = "^[\\w]+$", message = "El campo no puede poseer caracteres especiales.")
     private String brand;
     @Size(max = 15, message = "La longitud no puede superar los 15 caracteres")
     @NotBlank(message = "El campo no puede estar vacío")
