@@ -1,8 +1,11 @@
 package com.bootcamp.be_java_hisp_w20_g1.service;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowedResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserFollowersResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.UserResponseDto;
+import com.bootcamp.be_java_hisp_w20_g1.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.InvalidQueryParamValueException;
 import com.bootcamp.be_java_hisp_w20_g1.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
@@ -10,6 +13,7 @@ import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import com.bootcamp.be_java_hisp_w20_g1.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
+import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -312,4 +316,51 @@ class UserServiceTest {
         assertEquals(expectedResult, actual);
     }
 
+    @Test
+    void shouldReturnRealAmountOfFollowers() {
+
+        //Arrange
+        int id = 1;
+        int expected = 2;
+
+        when(userRepository.getUserById(id)).thenReturn(TestUtil.getUserWithFollowers(true));
+
+        //Act
+        int actual = userService.getFollowersCountDto(id).getFollowersCount();
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void whenGetAnInvalidUserId_ThenThrowNotFoundException() {
+
+        //Arrange
+        int id = 1;
+        String expectedMessage = Parameter.getString("EX_NotExistentUser");
+
+        when(userRepository.getUserById(id)).thenReturn(null);
+
+        //Act
+        NotFoundException actual = assertThrows(NotFoundException.class, () -> userService.getFollowersCountDto(id).getFollowersCount());
+
+        //Assert
+        assertEquals(actual.getMessage(), expectedMessage);
+    }
+
+    @Test
+    void ifIsNotASeller_ThenThrowBadRequestException() {
+
+        //Arrange
+        int id = 1;
+        String expectedMessage = Parameter.getString("EX_NotASeller");
+
+        when(userRepository.getUserById(id)).thenReturn(TestUtil.getUserWithFollowers(false));
+
+        //Act
+        BadRequestException actual = assertThrows(BadRequestException.class, () -> userService.getFollowersCountDto(id).getFollowersCount());
+
+        //Assert
+        assertEquals(actual.getMessage(), expectedMessage);
+    }
 }
