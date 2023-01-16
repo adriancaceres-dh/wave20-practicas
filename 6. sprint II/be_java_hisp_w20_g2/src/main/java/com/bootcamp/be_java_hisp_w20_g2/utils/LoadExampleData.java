@@ -52,7 +52,7 @@ public class LoadExampleData {
         Product mesa = new Product(1001, "Mesa", "Mueble", "Vaca mistica", "Blanco", "");
 
         Post primerPost = new Post(LocalDate.now(), mesa, categoryRepository.findByCode(13).get(), 100000);
-        Post segundoPost = new Post(LocalDate.of(2021, 5, 25), silla, categoryRepository.findByCode(200).get(), 120000);
+        Post segundoPost = new Post(LocalDate.of(2023, 1, 10), silla, categoryRepository.findByCode(200).get(), 120000);
 
         postRepository.save(primerPost);
         postRepository.save(segundoPost);
