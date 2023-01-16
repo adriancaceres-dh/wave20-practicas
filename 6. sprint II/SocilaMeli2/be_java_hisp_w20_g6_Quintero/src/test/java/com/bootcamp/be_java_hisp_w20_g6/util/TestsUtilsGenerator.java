@@ -1,5 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g6.util;
 
+import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
@@ -70,5 +72,10 @@ public class TestsUtilsGenerator {
                 .stream()
                 .map(p -> mapper.map(p, PostModel.class))
                 .collect(Collectors.toList());
+    }
+    public static PostRequestDto getPostsRequest() {
+        return new PostRequestDto(1,"01-01-2023",23,
+                new ProductRequestDto(1, "Silla", "Gamer", "Racer", "Red and Black", "Special Edition")
+        ,4500.5,false,null);
     }
 }
