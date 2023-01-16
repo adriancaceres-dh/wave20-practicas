@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest.*;
@@ -35,13 +36,18 @@ class PostServiceTest {
     private PostService postService;
 
     @Test
-    @DisplayName("It should sort the user following sellers posts in ascending order.")
+    @DisplayName("T-0006 - It should sort the user following sellers posts in ascending order.")
     void sendLastPostsOfFollowedAscOK() {
         //Arrange
-        User expectedUser = generateUserWithPostExist();
+        User user2 = new User(2, "Mariano", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        addPostsToUser(user2);
+
+        User user1 = new User("Pepe");
+        user1.follow(user2);
+
         PostResponseDTO expectedResponse = generatePostResponseDTOAsc();
 
-        when(userRepository.findOne(1)).thenReturn(expectedUser);
+        when(userRepository.findOne(1)).thenReturn(user1);
 
         //Act
         PostResponseDTO actualResponse = postService.sendLastPostOfFollowed(1, Optional.of("date_asc"));
@@ -52,13 +58,18 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("It should sort the user following sellers posts in descending order.")
+    @DisplayName("T-0006 - It should sort the user following sellers posts in descending order.")
     void sendLastPostsOfFollowedDescOK() {
         //Arrange
-        User expectedUser = generateUserWithPostExist();
+        User user2 = new User(2, "Mariano", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        addPostsToUser(user2);
+
+        User user1 = new User("Pepe");
+        user1.follow(user2);
+
         PostResponseDTO expectedResponse = generatePostResponseDTODesc();
 
-        when(userRepository.findOne(1)).thenReturn(expectedUser);
+        when(userRepository.findOne(1)).thenReturn(user1);
 
         //Act
         PostResponseDTO actualResponse = postService.sendLastPostOfFollowed(1, Optional.of("date_desc"));
@@ -69,7 +80,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("It should throw an Exception when given invalid user Id.")
+    @DisplayName("T-0006 Bad Request - It should throw an Exception when given invalid user Id.")
     void sendLastPostsOfFollowedNotOK() {
         //Arrange
         when(userRepository.findOne(444)).thenThrow(new BadRequestException("The given userId not exist."));
