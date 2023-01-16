@@ -19,7 +19,6 @@ import java.time.LocalDate;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostRequestDto {
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
-    @Pattern(regexp = "\\d{2}-\\d{2}-\\d{4}", message = "La fecha debe seguir el formato dd-mm-yyyy.")
     @NotNull(message = "La fecha no puede estar vacía.")
     private LocalDate date;
     @NotNull(message = "El id no puede estar vacío")
