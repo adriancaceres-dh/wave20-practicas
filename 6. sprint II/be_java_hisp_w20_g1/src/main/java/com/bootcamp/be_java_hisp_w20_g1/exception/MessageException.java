@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Data
@@ -21,7 +22,7 @@ public class MessageException {
     private int status;
     private String timestamp;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<InvalidValidationMessage> invalidValidations;
+    private Set<InvalidValidationMessage> invalidValidations;
 
     public MessageException(String message, int status) {
         this.message = message;
@@ -29,7 +30,7 @@ public class MessageException {
         this.timestamp = LocalDateTime.now().toString();
     }
 
-    public MessageException(String message, int status, List<InvalidValidationMessage> invalidValidations) {
+    public MessageException(String message, int status, Set<InvalidValidationMessage> invalidValidations) {
         this.message = message;
         this.status = status;
         this.timestamp = LocalDateTime.now().toString();

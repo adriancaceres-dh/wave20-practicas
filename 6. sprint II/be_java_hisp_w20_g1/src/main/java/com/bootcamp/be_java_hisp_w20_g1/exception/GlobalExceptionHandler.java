@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @ControllerAdvice(annotations = RestController.class)
@@ -41,7 +43,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException ex) {
-
         MessageException message = new MessageException(
                 "Campos inválidos o faltantes",
                 HttpStatus.BAD_REQUEST.value(),
@@ -50,12 +51,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(message);
     }
 
-    private List<InvalidValidationMessage> getListOfInvalidFields(MethodArgumentNotValidException ex) {
+    private Set<InvalidValidationMessage> getListOfInvalidFields(MethodArgumentNotValidException ex) {
         return ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(e -> new InvalidValidationMessage(e.getField(), e.getRejectedValue().toString(), e.getDefaultMessage()))
-                .collect(Collectors.toList());
+                .map(e -> {
+                            String rejectedValue = Objects.isNull(e.getRejectedValue()) ? "empty field" : e.getRejectedValue().toString();
+                            return new InvalidValidationMessage(e.getField(), rejectedValue, e.getDefaultMessage());
+                        }
+                )
+                .collect(Collectors.toSet());
     }
 
 }
