@@ -4,6 +4,7 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.exceptions.IdNotFoundException
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.repository.IUserRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,6 +33,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T-0001 cumple")
     void followUser_ok(){
 
         //Arrange
@@ -54,6 +56,7 @@ public class UserServiceTest {
 
     }
     @Test
+    @DisplayName("T-0001 no cumple")
     void followUser_userNotFound(){
 
         //Arrange
@@ -80,6 +83,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T-0002 cumple")
     void unfollowUser_ok(){
         //Arrange
         int userId = 1;
@@ -102,6 +106,7 @@ public class UserServiceTest {
         assertFalse(userToFollow.getFollowers().contains(userId));
     }
     @Test
+    @DisplayName("T-0002 no cumple")
     void unfollowUser_userNotFound(){
 
         //Arrange
