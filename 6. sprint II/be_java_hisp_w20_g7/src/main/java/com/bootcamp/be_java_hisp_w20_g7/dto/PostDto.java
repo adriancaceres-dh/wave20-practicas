@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -18,21 +15,24 @@ import java.time.LocalDate;
 @Data
 public class PostDto {
 
-    //@NotBlank(message = "Id cannot be empty")
+    @NotNull(message = "userId is a mandatory field")
     @Min(value = 1,message = "Id must be greater than 0")
     private int userId;
 
     //@NotBlank(message = "Id cannot be empty")
+    @NotNull(message = "postId is a mandatory field")
     @Min(value = 1,message = "Id must be greater than 0")
     private int postId;
     @NotEmpty(message = "Date cannot be empty")
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
 
-    @Valid
+
+    @NotNull(message = "userId is a mandatory field")
     private ProductDto productDto;
 
-    //@NotEmpty(message = "Field cannot be empty")
+    @NotNull(message = "Field cannot be empty")
+    @Min(value = 1, message = "category must be greather than 0")
     private int category;
 
     //@NotEmpty(message = "Field cannot be empty")

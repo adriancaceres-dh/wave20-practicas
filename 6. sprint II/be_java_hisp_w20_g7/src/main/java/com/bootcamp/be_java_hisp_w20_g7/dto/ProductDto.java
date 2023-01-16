@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 @Data
 public class ProductDto {
 
-   // @NotBlank(message = "Id cannot be empty")
+    @NotNull(message = "productId is a mandatory field")
     @Min(value = 1,message = "Id must be greater than 0")
     private int productId;
 
@@ -31,6 +31,7 @@ public class ProductDto {
     private String brand;
 
     //probar que pueda ser nulo
+    @NotNull(message = "color is a mandatory field")
     @Size(max = 15, message = "Color cannot have more than 15 characters")
     @Pattern(regexp="[A-Za-zñóíáéúÁÓÉÍÚ ]*", message = "color cannot have especial characters")
     private String color;
