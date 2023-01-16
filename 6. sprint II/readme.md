@@ -50,7 +50,7 @@ los
 implementes como extra. Para ello tendrás un requerimiento de referencia para que sepas a qué tipo de mejoras podés
 apuntar.
 
-## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 🫂
+## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 1.0 🫂
 
 Mercado Libre sigue creciendo y para el año que viene tiene como objetivo empezar a implementar una serie de
 herramientas
@@ -90,6 +90,18 @@ que se cita a continuación para tener en cuenta a la hora de llevar a cabo el d
 
 **[Especificación técnica funcional](https://docs.google.com/document/d/1L9zmNgsB_YZoB6V5LpPyciwCXD2ir6-X/edit)**
 
+## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 2.0 🫂
+SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el equipo de desarrollo “Bootcamp” se ha 
+convertido en ¡Todo un éxito!. Dado esto y a que MeLi tiene unos estándares de calidad muy altos con respecto a los 
+productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta 
+a la hora de incorporar datos como así también diferentes test unitarios que aseguren el correcto funcionamiento de cada 
+una de las funcionalidades que incluye. Para llevar a cabo estas implementaciones, se deberá tomar como base el proyecto 
+desarrollado de forma grupal en el Sprint Nº1. A partir de él, se llevarán a cabo cada una de las validaciones y tests 
+unitarios correspondientes. Como documentación de respaldo, un analista funcional nos proporciona documento de 
+requerimientos técnicos y funcionales
+
+**[Especificación técnica funcional](https://docs.google.com/document/d/1rdOxsPdY_Cxls-Fl9J62lWYRjddh6imT/edit)**
+
 ## 👤 Requerimientos incrementales - Desarrollo Individual - 👤
 
 **SocialMeli** tiene como objetivo extra lograr permitir a los vendedores la posibilidad de publicar nuevos productos
@@ -102,11 +114,9 @@ requerimientos:
 
 Estos requerimientos están pensados para ser llevados a cabo de manera individual por un especialista.
 Tener en cuenta que, como son requerimientos incrementales al trabajo que se haya hecho en equipo, se debe respetar el
-desarrollo
-base que se haya logrado en éste.
+desarrollo base que se haya logrado en éste.
 Por otro lado, tener en cuenta para estos requerimientos la posibilidad de poder ordenarlos alfabéticamente por nombre
-de cada
-producto tanto de forma ascendente como descendente.
+de cada producto tanto de forma ascendente como descendente.
 
 ## 🧨 Bonus - Desarrollo Individual EXTRA - 🧨
 
@@ -132,6 +142,13 @@ tarea. Esta división consta de 5 capas:
 - Controller
 - Exception
 - Config
+- Utils
+  - Constants
+  - Mapper
+  - Sort
+  - Validator
+    - Post
+    - UserResponse
 
 ### 🗂 Repository 🗂
 
@@ -238,19 +255,24 @@ que posee las clases _PostMapper_ y _ProductMapper_.
     viceversa.
 
 - **Utils/sort**
-  - PostStreamSorter: Clase creada para la validación y extracción correcta de los requestParam obtenidos a través de la URL
-  por parte del usuario. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+  - PostStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro 
+  especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
   la clase PostService.
-  - UserResponseDTOStreamSorter: Clase creada para la validación y extracción correcta de los requestParam obtenidos a través de la URL
-    por parte del usuario. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+  - UserResponseDTOStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
+    especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
     la clase UserService.
+
 - **Utils/Validator**
   - **Validator/Post**
-      - _PostSortValidator_: ¿¿??
-      - _UserResponseSorterConstraint_: ¿¿??
+      - _PostSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+        los orders que pasaremos por parámetro en las US0003, US0004, US0006 y US0009
+      - _UserResponseSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+        en caso de que el valor pasado por parámetro sea invalido.
   - **Validator/userResponse**
-    - _UserResponseSortValidator_: ¿¿??
-    - _PostSorterConstraint_: ¿¿??
+    - _UserResponseSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+      los orders que pasaremos por parámetro en las US0006 y US0009
+    - _PostSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+      en caso de que el valor pasado por parámetro sea invalido.
 - _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En 
 este método se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
 
@@ -459,7 +481,7 @@ _**Filtros/Parámetros:**_
 | **date_asc**  | Fecha ascendente (de más antigua a más nueva)  |
 | **date_desc** | Fecha descendente (de más nueva a más antigua) |
 
-***Nota**: Este ordenamiento aplica solo para US-003 y US-004.
+**Nota**: Este ordenamiento aplica solo para US-003 y US-004.
 
 Fue desarrollado por:
 _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
@@ -467,7 +489,7 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
 ____
-# Resumen de Datos de entrada según las US
+#  Resumen de Datos de entrada según las US
 | Datos/Parámetros        |   Tipo    |     Longitud     | Descripción                                                                                                              |
 |-------------------------|:---------:|:----------------:|--------------------------------------------------------------------------------------------------------------------------|
 | **user_id**             |  Integer  |                  | Número que identifica al usuario actual                                                                                  |
@@ -518,6 +540,7 @@ A continuación se solicita una serie de test unitarios a llevar a cabo; sin emb
 | **T-0007** | Verificar que la cantidad de seguidores de un determinado usuario sea correcta. (US-0002)                                                                             | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                                                           |
 | **T-0008** | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006)  | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha.  |
 
+Los test desarrollados, durante la realización del Sprint II será realizado en un Sistema Bajo Prueba - SUT y principio F.I.R.S.T.
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
@@ -540,3 +563,9 @@ ____
 - Git
 - Git Hub
 - Lombok
+- Bean Validation 2.0 JSR 380
+- Hibernate Validator 6.0.13
+- JSR 380 3.0
+- JUnit 5
+- Spring Boot Starter Test
+- Mockito
