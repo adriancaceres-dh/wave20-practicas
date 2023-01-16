@@ -231,6 +231,7 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T7 se obtiene cantidad de seguidores que tiene un vendedor")
     void shouldReturnRealAmountOfFollowers() {
 
         //Arrange
@@ -247,6 +248,7 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T7 se lanza excepcion si el usuario a consultar no existe")
     void whenGetAnInvalidUserId_ThenThrowNotFoundException() {
 
         //Arrange
@@ -263,6 +265,7 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T7 se lanza excepcion si el usuario a consultar no es vendedor")
     void ifIsNotASeller_ThenThrowBadRequestException() {
 
         //Arrange
