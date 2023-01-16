@@ -2,12 +2,15 @@ package com.bootcamp.be_java_hisp_w20_g7.utils;
 
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.ProductDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.UserDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Product;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,5 +50,57 @@ public class TestUtils {
         List<PostDto> postDtosExpectDesc = Arrays.asList(
                 new PostDto(3, 1, date, productDto, 100, 2000), new PostDto(3, 3, LocalDate.parse("2023-01-01"), productDto2, 100, 3000));
         return postDtosExpectDesc;
+    }
+
+
+
+    public static  List<Follow> userFollowsTest(){
+
+        List<Follow> follows = new ArrayList<>();
+        follows.add(new Follow(2,1));
+        follows.add(new Follow(3,1));
+        follows.add(new Follow(4,1));
+        follows.add(new Follow(5,1));
+
+        return follows;
+    }
+    public static UserFollowersDto userFollowersDtoTest(String order){
+
+        List<UserDto> list = new ArrayList();
+
+        if(order.equals("name_asc")) {
+            list.add(new UserDto(5, "Manuel"));
+            list.add(new UserDto(4, "Ronald"));
+            list.add(new UserDto(2, "Sebatian"));
+            list.add(new UserDto(3, "Tomas"));
+        }
+
+        if(order.equals("name_desc")) {
+            list.add(new UserDto(3, "Tomas"));
+            list.add(new UserDto(2, "Sebatian"));
+            list.add(new UserDto(4, "Ronald"));
+            list.add(new UserDto(5, "Manuel"));
+        }
+
+
+
+
+        UserFollowersDto userFollowersDto = new UserFollowersDto(1,"Nathalia",list);
+
+        return userFollowersDto;
+    }
+
+
+    public static List<User> usersTest(){
+
+        List<User> list = new ArrayList<>();
+        list.add(new User(2,"Sebatian"));
+        list.add(new User(3,"Tomas"));
+        list.add(new User(4,"Ronald"));
+        list.add(new User(5,"Manuel"));
+        list.add(new User(1,"Nathalia"));
+
+
+        return list;
     }
 }
