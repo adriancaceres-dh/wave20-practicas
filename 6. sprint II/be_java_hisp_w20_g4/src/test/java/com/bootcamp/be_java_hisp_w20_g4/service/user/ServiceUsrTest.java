@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g4.service.user;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.ListedUserDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowedDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowersDTO;
 import com.bootcamp.be_java_hisp_w20_g4.exception.BadRequestException;
@@ -68,8 +69,21 @@ class ServiceUsrTest {
     }
 
     @Test
+    @DisplayName("US 0007 - Verificar la cantidad de seguidores")
     void followersCountOKTest() {
+        Long idTest = 1L;
+        Seller seller = new Seller(1,"rodri");
+        seller.addUserToMyFollowersList(new Buyer(2, "nina"));
+        seller.addUserToMyFollowersList(new Buyer(3, "ani"));
+        seller.addUserToMyFollowersList(new Buyer(4, "nino"));
+        UserCountDTO expected = new UserCountDTO(1, "rodri", 3);
+        when(mockUserRepository.findById(1)).thenReturn(seller);
+
+        UserCountDTO result = mockServiceUser.followersCount(1);
+
+        assertEquals(expected, result);
     }
+
 
     private Seller createSeller(){
         Seller seller1 = new Seller();
