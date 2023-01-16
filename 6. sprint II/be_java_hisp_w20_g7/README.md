@@ -63,7 +63,7 @@ Java, Spring Boot
 | `userId`         | `int` | Número que identifica al usuario actual   |
 | `userIdToFollow` | `int` | Número que identifica al usuario a seguir |
 
-##  
+##   
 
 **Responsables:** Todo el equipo.
 
@@ -94,7 +94,7 @@ Java, Spring Boot
 |:-----------|:------|:-----------------------------------------|
 | `userId`   | `int` | Número que identifica a cantidad usuario |
 
-##  
+##   
 
 **Responsables:** Tomas Giovanny Gonzalez Romero y Juan Sebastian Henao Ramirez.
 
@@ -139,7 +139,7 @@ Java, Spring Boot
 |:-----------|:------|:-----------------------------------------|
 | `userId`   | `int` | Número que identifica a cantidad usuario |
 
-##  
+##   
 
 **Responsables:** Stiven Gonzalez y Sebastian Camilo Anttury Sanchez.
 
@@ -187,7 +187,7 @@ Java, Spring Boot
 |:-----------|:------|:-----------------------------------------|
 | `userId`   | `int` | Número que identifica a cantidad usuario |
 
-##  
+##   
 
 **Responsables:** Soraya Carolina Gonzalez Ramirez y Nathalia Montero Gomez.
 
@@ -304,7 +304,7 @@ Java, Spring Boot
 |:-----------|:------|:-----------------------------------------|
 | `userId`   | `int` | Número que identifica a cantidad usuario |
 
-##  
+##   
 
 **Responsables:** Manuel Alejandro Diaz Isaza y Ronald Esteban Rosero Montana.
 

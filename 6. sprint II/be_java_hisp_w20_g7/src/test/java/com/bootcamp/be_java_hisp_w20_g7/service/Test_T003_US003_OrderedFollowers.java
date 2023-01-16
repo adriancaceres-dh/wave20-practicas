@@ -28,7 +28,7 @@ public class Test_T003_US003_OrderedFollowers {
 
     @Test
     @DisplayName("Test de validacion de orden descendente por nombre")
-    public void userFollowersValidDescOrderTest(){
+    public void userFollowersValidDescOrderTest() {
         // Arrange
         int id = 1;
         boolean processOk = true;
@@ -37,8 +37,8 @@ public class Test_T003_US003_OrderedFollowers {
 
         // Act
         try {
-            userService.userFollowers(id,order);
-        } catch (OrderNotValidException e){
+            userService.userFollowers(id, order);
+        } catch (OrderNotValidException e) {
             processOk = false;
         }
 
@@ -49,7 +49,7 @@ public class Test_T003_US003_OrderedFollowers {
 
     @Test
     @DisplayName("Test de validacion de orden ascendente por nombre")
-    public void userFollowersValidAscOrderTest(){
+    public void userFollowersValidAscOrderTest() {
         // Arrange
         int id = 1;
         boolean processOk = true;
@@ -58,8 +58,8 @@ public class Test_T003_US003_OrderedFollowers {
 
         // Act
         try {
-            userService.userFollowers(id,order);
-        } catch (OrderNotValidException e){
+            userService.userFollowers(id, order);
+        } catch (OrderNotValidException e) {
             processOk = false;
         }
 
@@ -70,13 +70,13 @@ public class Test_T003_US003_OrderedFollowers {
 
     @Test
     @DisplayName("Test de validacion de orden por nombre invalido")
-    public void userFollowersInvalidOrderTest(){
+    public void userFollowersInvalidOrderTest() {
         // Arrange
         int id = 1;
         String order = "order";
         when(userRepository.findById(1)).thenReturn(TestUtils.usersTest().get(4));
 
         // Act & Assert
-        Assertions.assertThrows(OrderNotValidException.class, () -> userService.userFollowers(id,order));
+        Assertions.assertThrows(OrderNotValidException.class, () -> userService.userFollowers(id, order));
     }
 }

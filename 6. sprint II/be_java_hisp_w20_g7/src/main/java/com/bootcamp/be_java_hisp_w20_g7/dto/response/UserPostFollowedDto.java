@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,7 +15,7 @@ public class UserPostFollowedDto {
 
     private int userId;
 
-    private List< @Valid PostDto> posts;
+    private List<@Valid PostDto> posts;
 
 
 }

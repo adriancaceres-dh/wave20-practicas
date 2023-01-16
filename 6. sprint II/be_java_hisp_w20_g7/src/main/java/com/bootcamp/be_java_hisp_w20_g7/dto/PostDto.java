@@ -1,13 +1,14 @@
 package com.bootcamp.be_java_hisp_w20_g7.dto;
 
-import com.bootcamp.be_java_hisp_w20_g7.entity.Product;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -16,12 +17,12 @@ import java.time.LocalDate;
 public class PostDto {
 
     @NotNull(message = "userId is a mandatory field")
-    @Min(value = 1,message = "Id must be greater than 0")
+    @Min(value = 1, message = "Id must be greater than 0")
     private int userId;
 
     //@NotBlank(message = "Id cannot be empty")
     @NotNull(message = "postId is a mandatory field")
-    @Min(value = 1,message = "Id must be greater than 0")
+    @Min(value = 1, message = "Id must be greater than 0")
     private int postId;
     @NotEmpty(message = "Date cannot be empty")
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)

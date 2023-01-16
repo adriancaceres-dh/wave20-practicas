@@ -1,7 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g7.repository;
 
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
-import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -42,13 +41,14 @@ public class FollowRepository implements IFollowRepository {
         return true;
     }
 
-    public List<Follow> loadData(){
+    public List<Follow> loadData() {
         List<Follow> loadedData = new ArrayList<>();
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             File file = ResourceUtils.getFile("./src/main/resources/follows.json");
-            loadedData = objectMapper.readValue(file, new TypeReference<List<Follow>>(){});
+            loadedData = objectMapper.readValue(file, new TypeReference<List<Follow>>() {
+            });
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Failed while initializing DB, check your resources files");
