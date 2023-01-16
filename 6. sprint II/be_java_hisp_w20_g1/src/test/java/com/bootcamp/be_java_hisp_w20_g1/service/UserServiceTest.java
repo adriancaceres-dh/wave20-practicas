@@ -85,6 +85,40 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T2: valida que se continue con normalidad cuando el usuario a dejar de seguir existe.")
+    void whenGivingValidUserId_unfollowUser_ShouldUnfollowUser()  {
+        //Arrange
+        User validUser = TestUtil.getSellerUser("noahHoah", 1);
+        validUser.setFollowed(new HashSet<>());
+        User validUserToUnfollow = TestUtil.getSellerUser("elzaTlza", 2);
+        when(userRepository.getUserById(1)).thenReturn(validUser);
+        when(userRepository.getUserById(2)).thenReturn(validUserToUnfollow);
+
+        UserFollowedResponseDto expectedDTO = new UserFollowedResponseDto(validUser.getId(),validUser.getName(), List.of());
+        //Act
+        UserFollowedResponseDto actualDTO = userService.unfollowUser(1, 2);
+
+        //Assert
+        Assertions.assertEquals(expectedDTO,actualDTO);
+
+    }
+
+    @Test
+    @DisplayName("T2: valida que se lance una excepción cuando el usuario a dejar de seguir no existe.")
+    void whenGivingInvalidUserId_unfollowUser_ShouldThrowNotFoundException() {
+        // Arrange
+        User validUser = TestUtil.getSellerUser("noahHoah", 1);
+        String expectedErrorMessage = Parameter.getString("EX_NotExistentUser");
+        when(userRepository.getUserById(1)).thenReturn(validUser);
+        when(userRepository.getUserById(99)).thenReturn(null);
+
+        // Act && Assert
+        NotFoundException notFoundException = Assertions.assertThrows(NotFoundException.class, () -> userService.unfollowUser(1, 99));
+        Assertions.assertEquals(expectedErrorMessage, notFoundException.getMessage());
+
+    }
+
+    @Test
     @DisplayName("T4 se obtiene lista de los seguidores de un usuario ordenada ascendentemente.")
     public void whenGivingAnUserIdAndAscendingOrderByQueryParam_getSellerFollowers_ShouldGetAnAscendentListOfFollowers() {
 
