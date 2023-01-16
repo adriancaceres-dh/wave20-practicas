@@ -6,6 +6,7 @@ import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.User;
+import com.bootcamp.be_java_hisp_w20_g7.exception.OrderNotValidException;
 import com.bootcamp.be_java_hisp_w20_g7.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IFollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
@@ -53,7 +54,7 @@ public class UserService implements IUserService {
             } else if (order.equals("name_desc")) {
                 followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).sorted(compareByName.reversed()).collect(Collectors.toList());
             } else {
-                followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).collect(Collectors.toList());
+                throw new OrderNotValidException("Invalid order");
             }
         }
 

@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g7.repository.FollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,7 +27,8 @@ public class Test_T004_OrderedByNameFollowers {
 
 
     @Test
-    public void userFollowerdOrderAscOk(){
+    @DisplayName("Test de validacion de orden ascendente por nombre")
+    public void userFollowersOrderAscOk(){
 
         //Arrange
         UserFollowersDto expectedUserFollowersDto = TestUtils.userFollowersDtoTest("name_asc");
@@ -47,7 +49,8 @@ public class Test_T004_OrderedByNameFollowers {
     }
 
     @Test
-    public void userFollowerdOrderDescOk(){
+    @DisplayName("Test de validacion de orden descendente por nombre")
+    public void userFollowersOrderDescOk(){
 
         //Arrange
         UserFollowersDto expectedUserFollowersDto = TestUtils.userFollowersDtoTest("name_desc");
