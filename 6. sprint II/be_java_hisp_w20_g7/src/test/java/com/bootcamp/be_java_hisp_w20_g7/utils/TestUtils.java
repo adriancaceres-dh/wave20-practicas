@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g7.utils;
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.ProductDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.UserDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Follow;
 import com.bootcamp.be_java_hisp_w20_g7.entity.Post;
@@ -51,7 +52,15 @@ public class TestUtils {
                 new PostDto(3, 1, date, productDto, 100, 2000), new PostDto(3, 3, LocalDate.parse("2023-01-01"), productDto2, 100, 3000));
         return postDtosExpectDesc;
     }
+    public static  List<Follow> userFollowsTestOK(){
 
+        List<Follow> follows = new ArrayList<>();
+        follows.add(new Follow(2,1));
+        follows.add(new Follow(3,1));
+        follows.add(new Follow(1,5));
+
+        return follows;
+    }
 
 
     public static  List<Follow> userFollowsTest(){
@@ -61,9 +70,17 @@ public class TestUtils {
         follows.add(new Follow(3,1));
         follows.add(new Follow(4,1));
         follows.add(new Follow(5,1));
+        follows.add(new Follow(1,5));
 
         return follows;
     }
+
+    public static UserFollowersCountDto userFollowersCountDto = new UserFollowersCountDto( 1, "Soraya", 2);
+
+
+
+
+
     public static UserFollowersDto userFollowersDtoTest(String order){
 
         List<UserDto> list = new ArrayList();
@@ -89,6 +106,7 @@ public class TestUtils {
 
         return userFollowersDto;
     }
+
 
 
     public static List<User> usersTest(){
