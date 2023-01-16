@@ -27,7 +27,6 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 
 ### Test de Integracion desarrollados individualmente.
 
-![image](https://user-images.githubusercontent.com/119961027/212745561-c54c8bb3-7bd6-4959-ad67-b78b3a196064.png)
 ![image](https://user-images.githubusercontent.com/119961027/212745767-a4f0262b-dd4a-4727-9ba2-0812e9181a9f.png)
 
 ![image](https://user-images.githubusercontent.com/119961027/212745667-03a8d6b8-6aba-40b6-b459-3d647dd493f5.png)
