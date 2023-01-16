@@ -176,19 +176,17 @@ class UserServiceTest {
         }
     }
     @Test
-    @DisplayName("Camino feliz donde se ordena correctamente por nombre de usuario ascendente")
+    @DisplayName("US-0004 - Sorts correctly by ascending username")
     void findAllFollowersNameOrderAscOkTest() {
         //arrange
         Optional<String> order = Optional.of("name_asc");
-        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
+        HashMap<Integer, User> users = UtilsTest.generateUsers();
         User user1 = users.get(1);
         when(userRepository.findOne(1)).thenReturn(user1);
 
         List<UserResponseDTO> userResponseDTOListExpected = new ArrayList<>();
-        UserResponseDTO userResponseDTO2 = new UserResponseDTO(2, "usuario2");
-        UserResponseDTO userResponseDTO3 = new UserResponseDTO(3, "usuario3");
-        userResponseDTOListExpected.add(userResponseDTO2);
-        userResponseDTOListExpected.add(userResponseDTO3);
+        userResponseDTOListExpected.add(new UserResponseDTO(3, "Lorenzo"));
+        userResponseDTOListExpected.add(new UserResponseDTO(2, "Mariano"));
 
         UserFollowersResponseDTO userFollowedResponseDTO = new UserFollowersResponseDTO(user1.getId(), user1.getUserName(), userResponseDTOListExpected);
         //act
@@ -199,19 +197,17 @@ class UserServiceTest {
         assertEquals(userResponseDTOListExpected.get(1), userFollowedResponseDTOResult.getFollowers().get(1));
     }
     @Test
-    @DisplayName("Camino feliz donde se ordena correctamente por nombre de usuario descendente")
+    @DisplayName("US-0004 - Sorts correctly by username descending")
     void findAllFollowersNameOrderDescOkTest() {
         //arrange
         Optional<String> order = Optional.of("name_desc");
-        HashMap<Integer, User> users = UtilsTest.generateUsersToTestFollow();
+        HashMap<Integer, User> users = UtilsTest.generateUsers();
         User user1 = users.get(1);
         when(userRepository.findOne(1)).thenReturn(user1);
 
         List<UserResponseDTO> userResponseDTOListExpected = new ArrayList<>();
-        UserResponseDTO userResponseDTO3 = new UserResponseDTO(3, "usuario3");
-        UserResponseDTO userResponseDTO2 = new UserResponseDTO(2, "usuario2");
-        userResponseDTOListExpected.add(userResponseDTO3);
-        userResponseDTOListExpected.add(userResponseDTO2);
+        userResponseDTOListExpected.add(new UserResponseDTO(2, "Mariano"));
+        userResponseDTOListExpected.add(new UserResponseDTO(3, "Lorenzo"));
 
         UserFollowersResponseDTO userFollowedResponseDTO = new UserFollowersResponseDTO(user1.getId(), user1.getUserName(), userResponseDTOListExpected);
         //act
@@ -222,7 +218,7 @@ class UserServiceTest {
         assertEquals(userResponseDTOListExpected.get(1), userFollowedResponseDTOResult.getFollowers().get(1));
     }
     @Test
-    @DisplayName("No se encuentra el id del usuario")
+    @DisplayName("US-0004 - User id not found")
     void findAllFollowersUserNotFoundTest() {
         //arrange
         Optional<String> order = Optional.of("name_desc");
