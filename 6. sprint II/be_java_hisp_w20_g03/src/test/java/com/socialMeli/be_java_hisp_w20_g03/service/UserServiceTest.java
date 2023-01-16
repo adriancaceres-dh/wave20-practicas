@@ -90,7 +90,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0003: Camino Feliz")
+    @DisplayName("T-0004: Camino Feliz")
     void getFollowersListOrderDesc() {
         //arrange
         int userId = 234;
