@@ -4,9 +4,6 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseD
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
-import com.bootcamp.be_java_hisp_w20_g2.service.interfaces.IUserService;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import lombok.experimental.Wither;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
@@ -21,7 +18,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +39,7 @@ class UserServiceTest {
 
     @Test
     void unfollowUser() {}
+
     void unfollowUserExistTest() {
         // Arrange
         HashMap<Integer, User> users = UtilsTest.generateUsersForTestTwo();
@@ -198,6 +195,8 @@ class UserServiceTest {
         UserFollowersResponseDTO userFollowedResponseDTOResult = userService.findAllFollowers(userFollowedResponseDTO.getUserId(), order);
         //assert
         assertEquals(userResponseDTOListExpected, userFollowedResponseDTOResult.getFollowers());
+        assertEquals(userResponseDTOListExpected.get(0), userFollowedResponseDTOResult.getFollowers().get(0));
+        assertEquals(userResponseDTOListExpected.get(1), userFollowedResponseDTOResult.getFollowers().get(1));
     }
     @Test
     @DisplayName("Camino feliz donde se ordena correctamente por nombre de usuario descendente")
@@ -219,6 +218,8 @@ class UserServiceTest {
         UserFollowersResponseDTO userFollowedResponseDTOResult = userService.findAllFollowers(userFollowedResponseDTO.getUserId(), order);
         //assert
         assertEquals(userResponseDTOListExpected, userFollowedResponseDTOResult.getFollowers());
+        assertEquals(userResponseDTOListExpected.get(0), userFollowedResponseDTOResult.getFollowers().get(0));
+        assertEquals(userResponseDTOListExpected.get(1), userFollowedResponseDTOResult.getFollowers().get(1));
     }
     @Test
     @DisplayName("No se encuentra el id del usuario")
