@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
 
@@ -49,6 +51,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     protected ResponseEntity<ErrorDTO> handleValidationExceptions(HttpMessageNotReadableException e) {
         ErrorDTO error = new ErrorDTO("HttpMessageNotReadableException", e.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    protected ResponseEntity<ErrorDTO> handleValidationExceptions(ConstraintViolationException e) {
+        ErrorDTO error = new ErrorDTO("ConstraintViolationException", e.getLocalizedMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
