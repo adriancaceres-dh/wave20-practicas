@@ -40,7 +40,7 @@ public class Test_T004_OrderedByNameFollowed {
         when(userRepository.findById(4)).thenReturn(TestUtils.usersTest().get(2));
         when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(3));
 
-        UserFollowedDto result = userService.userFollowed(1, "name_asc");
+        UserFollowedDto result = userService.userFollowed(5, "name_asc");
 
         //Assert
         Assertions.assertEquals(expected, result);
@@ -62,7 +62,7 @@ public class Test_T004_OrderedByNameFollowed {
         when(userRepository.findById(4)).thenReturn(TestUtils.usersTest().get(2));
         when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(3));
 
-        UserFollowedDto result = userService.userFollowed(1, "name_desc");
+        UserFollowedDto result = userService.userFollowed(5, "name_desc");
 
         //Assert
         Assertions.assertEquals(expected, result);
