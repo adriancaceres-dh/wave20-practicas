@@ -13,8 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -84,6 +86,36 @@ class PostServiceTest {
 
         BadRequestException exception = assertThrows(BadRequestException.class, () -> postService.sendLastPostOfFollowed(444, Optional.of("date_asc")));
         assertEquals("The given userId not exist.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("T-0008 It should find posts made on the last two weeks by user following costumer")
+    void sendPostsOfFollowedOnLastTwoWeek() {
+        //Arrange
+        User user2 = new User(2, "Mariano", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        addPostsToUser(user2);
+
+        User user1 = new User("Pepe");
+        user1.follow(user2);
+
+        when(userRepository.findOne(0)).thenReturn(user1);
+
+        //Act
+        PostResponseDTO actualResponse = postService.sendLastPostOfFollowed(0, Optional.of("date_asc"));
+        AtomicBoolean isOnLastTwoWeeks = new AtomicBoolean(true);
+        if (actualResponse.getPosts().isEmpty()) {
+            isOnLastTwoWeeks.set(false);
+        } else {
+            actualResponse.getPosts().forEach(p -> {
+                if (!p.getDate().isAfter(LocalDate.now().plusDays(-14))) {
+                    isOnLastTwoWeeks.set(false);
+                }
+            });
+        }
+
+        //Assert
+        verify(userRepository, atLeastOnce()).findOne(0);
+        assertTrue(isOnLastTwoWeeks.get());
     }
 
 }
