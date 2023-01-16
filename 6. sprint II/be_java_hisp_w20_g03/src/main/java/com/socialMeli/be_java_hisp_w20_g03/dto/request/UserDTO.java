@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
@@ -20,6 +17,6 @@ public class UserDTO {
     private int userId;
     @JsonProperty("user_name")
     @NotBlank(message = "El nombre de usuario no puede estar vacio")
-    @Max(value = 15, message = "El nombre de usuario debe tener menos de 15 caracteres")
+    @Size(max = 15, message = "El nombre de usuario debe tener menos de 15 caracteres")
     private String userName;
 }
