@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class PostSortValidatorTest {
 
-    PostSortValidator postSortValidator = new PostSortValidator();
+    private final PostSortValidator postSortValidator = new PostSortValidator();
 
     /**
      * Test only validates if postSortValidator works correctly since the
@@ -23,6 +23,12 @@ class PostSortValidatorTest {
     void isValidReturnsTrueWhenValidDateOrdering() {
         assertTrue(postSortValidator.isValid(Optional.of("date_asc"), null));
         assertTrue(postSortValidator.isValid(Optional.of("date_desc"), null));
+    }
+
+    @Test
+    void isValidReturnsTrueWhenValidPriceOrdering() {
+        assertTrue(postSortValidator.isValid(Optional.of("price_asc"), null));
+        assertTrue(postSortValidator.isValid(Optional.of("price_desc"), null));
     }
 
     @Test
