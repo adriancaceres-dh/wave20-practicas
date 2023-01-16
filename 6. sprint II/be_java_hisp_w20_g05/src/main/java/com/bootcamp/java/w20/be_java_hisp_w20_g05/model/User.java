@@ -23,19 +23,15 @@ public class User {
         return id;
     }
 
-    public void addFollower(int idFollower) {
-        followers.add(Integer.valueOf(idFollower));
+    public boolean addFollower(int idFollower) { return followers.add(idFollower); }
+
+    public boolean followUser(int idUserToFollow) { return following.add(idUserToFollow); }
+
+    public boolean removeFollower(int idFollower) {
+        return followers.remove(idFollower);
     }
 
-    public void followUser(int idUserToFollow) {
-        following.add(Integer.valueOf(idUserToFollow));
-    }
-
-    public void removeFollower(int idFollower) {
-        followers.remove(Integer.valueOf(idFollower));
-    }
-
-    public void unfollowUser(int idUserToUnfollow) {
-        following.remove(Integer.valueOf(idUserToUnfollow));
+    public boolean unfollowUser(int idUserToUnfollow) {
+        return following.remove(idUserToUnfollow);
     }
 }
