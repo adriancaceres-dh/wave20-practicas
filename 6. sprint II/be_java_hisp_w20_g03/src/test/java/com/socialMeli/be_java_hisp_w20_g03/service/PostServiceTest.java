@@ -149,7 +149,7 @@ class PostServiceTest {
 
     @Test
     @DisplayName("T-0005: Parametro de ordenamiento existe")
-    void testDateOrder() {
+    void testDateOrderOk() {
         //Arrange
         User user234 = UserUtils.buildUser();
         User user = User.builder()
@@ -167,9 +167,31 @@ class PostServiceTest {
         List<PostDTO> ascPost = postService.getPost(1, "date_asc");
         List<PostDTO> descPost = postService.getPost(1, "date_desc");
         //Assert
-        Assertions.assertThrows(BadRequestException.class, () ->postService.getPost(1, "date_bsc"));
         Assertions.assertFalse(ascPost.isEmpty());
         Assertions.assertFalse(descPost.isEmpty());
+        verify(userRepository, atLeast(1)).getUserById(1);
+        verify(postRepository, atLeast(1)).getPostsByUserId(234);
+    }
+
+    @Test
+    @DisplayName("T-0005: Parametro de ordenamiento no existe")
+    void testDateOrderBad() {
+        //Arrange
+        User user234 = UserUtils.buildUser();
+        User user = User.builder()
+                .userId(1)
+                .userName("usuario1")
+                .followers(new ArrayList<>())
+                .followed(List.of(user234))
+                .build();
+        when(userRepository.getUserById(1)).thenReturn(user);
+
+        List<Post> posts = PostUtils.getLatestPosts();
+        when(postRepository.getPostsByUserId(234)).thenReturn(posts);
+
+        //Act & assert
+
+        Assertions.assertThrows(BadRequestException.class, ()->postService.getPost(1, "date_bsc"));
         verify(userRepository, atLeast(1)).getUserById(1);
         verify(postRepository, atLeast(1)).getPostsByUserId(234);
     }
