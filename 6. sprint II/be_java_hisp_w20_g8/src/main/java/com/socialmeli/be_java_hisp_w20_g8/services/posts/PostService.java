@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Service
@@ -46,11 +45,6 @@ public class PostService implements IPostService {
 
     @Override
     public ResponseDTO createPost(PostRequestDTO postRequestDTO) {
-        // Check if all the fields are present
-        if(!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(), postRequestDTO.getProductDTO(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
-                .allMatch(Objects::nonNull))
-            throw new InvalidArgumentException("All the fields are required");
-
         // Get the seller
         Seller seller = personRepository.findSellerById(postRequestDTO.getUser_id());
 
