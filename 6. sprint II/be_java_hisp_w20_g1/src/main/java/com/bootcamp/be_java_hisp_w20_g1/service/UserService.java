@@ -31,9 +31,10 @@ public class UserService implements IUserService {
 
     @Override
     public UserFollowersResponseDto getSellerFollowersDto(int id, String order) {
-        UserFollowersResponseDto userResponse = new UserFollowersResponseDto();
         User user = userRepository.getUserById(id);
         doValidations(user);
+        validateOrder(order);
+        UserFollowersResponseDto userResponse = new UserFollowersResponseDto();
         userResponse.setUserId(user.getId());
         userResponse.setUserName(user.getName());
         userResponse.setFollowers(getFollowersDto(user, order));
@@ -59,6 +60,7 @@ public class UserService implements IUserService {
     public UserFollowedResponseDto getFollowedDto(int id, String order) {
         User user = userRepository.getUserById(id);
         validateUserExist(user);
+        validateOrder(order);
         UserFollowedResponseDto userFollowedResponseDto = new UserFollowedResponseDto();
         userFollowedResponseDto.setUserId(user.getId());
         userFollowedResponseDto.setUserName(user.getName());
@@ -82,10 +84,6 @@ public class UserService implements IUserService {
 
     private List<UserResponseDto> trySortOrderAlphabetically(List<UserResponseDto> users, String order) {
         List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
-
-        if (!orders.contains(order) && (order !=null)) {
-            throw new InvalidQueryParamValueException(Parameter.getString("EX_InvalidQueryParamValue"));
-        }
 
         Comparator<UserResponseBaseDto> comparator = Comparator.comparing(UserResponseBaseDto::getUserName);
         Comparator<UserResponseBaseDto> selectedOrder = (orders.get(0).equalsIgnoreCase(order) || order == null) ? comparator : comparator.reversed();
@@ -113,6 +111,14 @@ public class UserService implements IUserService {
             throw new NotFoundException(Parameter.getString("EX_NotExistentUser"));
         }
         return true;
+    }
+
+    private void validateOrder(String order) {
+        List<String> orders = Arrays.asList(Parameter.getString("NameAsc"), Parameter.getString("NameDesc"));
+
+        if (!orders.contains(order) && (order != null)) {
+            throw new InvalidQueryParamValueException(Parameter.getString("EX_InvalidQueryParamValue"));
+        }
     }
 
     @Override
