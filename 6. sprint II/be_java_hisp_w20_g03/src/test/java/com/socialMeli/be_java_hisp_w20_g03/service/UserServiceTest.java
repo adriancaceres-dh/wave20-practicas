@@ -21,11 +21,10 @@ import org.springframework.expression.spel.support.BooleanTypedValue;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import static com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -105,7 +104,7 @@ class UserServiceTest {
         assertEquals(expect,actual);
     }
     @Test
-    @DisplayName("T-0003: Camino Feliz")
+    @DisplayName("T-0004: Camino Feliz")
     void getFollowersListOrderAsc() {
         //arrange
         int userId = 234;
@@ -117,6 +116,32 @@ class UserServiceTest {
         //assert
         verify(userRepository, atLeastOnce()).getUserById(userId);
         assertEquals(expect,actual);
+    }
+    @Test
+    @DisplayName("T-0003: Camino Feliz, orden de forma asc")
+    void getFollowersListOrderAscOK() {
+        //arrange
+        int userId = 234;
+        User user = UserUtils.buildUser();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(userId,"name_asc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertNotNull(actual);
+    }
+    @Test
+    @DisplayName("T-0003: Camino Feliz, orden de forma desc")
+    void getFollowersListOrderDescOK() {
+        //arrange
+        int userId = 234;
+        User user = UserUtils.buildUser();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(userId,"name_desc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertNotNull(actual);
     }
     @Test
     @DisplayName("T-0004: Excepción cuando el usuario no existe")
