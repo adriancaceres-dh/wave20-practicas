@@ -31,7 +31,7 @@ public class ControllerExceptionHandler {
   }
 
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-  public ResponseEntity<String> MethodArgumentTypeMismatchException() {
+  public ResponseEntity<String> methodArgumentTypeMismatchException() {
     String message = "Argumentos invalidos";
     return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
   }
