@@ -2,7 +2,9 @@ package com.socialmeli.be_java_hisp_w20_g8.services.users;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.SellerDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserFollowedDTO;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
+
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -37,7 +39,68 @@ class UserServiceTest {
     UserService injectMockUserService;
 
     @Test
-    @DisplayName("T-0002 -> Unfollow user exists")
+    @DisplayName("T-0001 -> User to follow exists")
+    void followServiceTestOK(){
+
+        //Arrange
+        int userId = 1;
+        int userIdToFollow = 2;
+        ResponseDTO expectedResponse = new ResponseDTO(true,"New Follower add successfully");
+        when(mockPersonRepository.checkUser(userId)).thenReturn(true);
+        when(mockPersonRepository.checkUser(userIdToFollow)).thenReturn(true);
+        when(mockPersonRepository.addFollowing(userId, userIdToFollow)).thenReturn(true);
+        when(mockPersonRepository.addFollower(userIdToFollow, userId)).thenReturn(true);
+
+        //Act
+        ResponseDTO actualResponse = injectMockUserService.addNewFollow(userId,userIdToFollow);
+        //Assert
+        Assertions.assertEquals(expectedResponse,actualResponse);
+
+    }
+    @Test
+    @DisplayName("T-0001 ->  User to follow exists but same id's exception")
+    void followServiceTestNotOK(){
+
+        //Arrange
+        int userId = 2;
+        int userIdToFollow = 2;
+        String expectedMessageError ="A user can't follow himself";
+        //Act
+        //Assert
+        Exception actualException = Assertions.assertThrows(OperationFailedException.class,()->injectMockUserService.addNewFollow(userId,userIdToFollow));
+        Assertions.assertEquals(expectedMessageError,actualException.getMessage());
+    }
+    @Test
+    @DisplayName("T-0001 -> User to follow doesn't exist")
+    void followServiceTestNotOKV2(){
+        //Arrange
+        int userId = 2;
+        int userIdToFollow = 8;
+        String expectedMessageError = "Invalid users please check information.";
+        when(mockPersonRepository.checkUser(userId)).thenReturn(true);
+        when(mockPersonRepository.checkUser(userIdToFollow)).thenReturn(false);
+
+        //Act
+        //Assert
+        Exception actualException =Assertions.assertThrows(NotFoundException.class,()->injectMockUserService.addNewFollow(userId,userIdToFollow));
+        Assertions.assertEquals(expectedMessageError,actualException.getMessage());
+    }
+    @Test
+    @DisplayName("T-0001 -> User doesn't exist")
+    void followServiceTestNotOKV3(){
+        //Arrange
+        int userId = 8;
+        int userIdToFollow = 10;
+        String expectedMessageError = "Invalid users please check information.";
+        when(mockPersonRepository.checkUser(userId)).thenReturn(false);
+        //Act
+        //Assert
+        Exception actualException =Assertions.assertThrows(NotFoundException.class,()->injectMockUserService.addNewFollow(userId,userIdToFollow));
+        Assertions.assertEquals(expectedMessageError,actualException.getMessage());
+    }
+
+    @Test
+    @DisplayName("T-0002 ->  User to unfollow exists")
     void unfollowServiceTest() {
         //Arrange
         int userId = 1;
@@ -70,7 +133,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0002 -> Unfollow user exists exception")
+    @DisplayName("T-0002 -> User to unfollow exists exception")
     void unfollowServiceNoExistTest() {
         //Arrange
         int userId = 50;
