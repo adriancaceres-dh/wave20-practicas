@@ -181,6 +181,7 @@ class ServiceUsrTest {
 
     @Test
     void followedInvalidOrderTest() {
+        assertThrows(BadRequestException.class, ()-> mockServiceUser.followed(1, "aaa") );
     }
 
     @Test
