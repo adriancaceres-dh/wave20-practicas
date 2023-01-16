@@ -8,7 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -25,6 +28,7 @@ public class PostDTO {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
+    @Valid
     private ProductDTO product;
 
     @NotNull(message = "El campo no puede estar vacío.")
