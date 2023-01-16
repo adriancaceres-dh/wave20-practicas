@@ -15,11 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import org.mockito.internal.matchers.Not;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.expression.spel.support.BooleanTypedValue;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -67,7 +63,7 @@ class UserServiceTest {
     @DisplayName("T-0007: Cantidad de seguidores adecuada.")
     void getFollowerCount() {
         //Arrange
-        User user = UserUtils.buildUser();
+        User user = UserUtils.buildUserWithFollowers();
         when(userRepository.getUserById(anyInt())).thenReturn(user);
 
         //Act
@@ -95,7 +91,7 @@ class UserServiceTest {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoDesc();
-        User user = UserUtils.buildUser();
+        User user = UserUtils.buildUserWithFollowers();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_desc");
@@ -109,7 +105,7 @@ class UserServiceTest {
         //arrange
         int userId = 234;
         UserFollowersDTO expect = buildListUserFollowedDtoAsc();
-        User user = UserUtils.buildUser();
+        User user = UserUtils.buildUserWithFollowers();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
@@ -122,7 +118,7 @@ class UserServiceTest {
     void getFollowersListOrderAscOK() {
         //arrange
         int userId = 234;
-        User user = UserUtils.buildUser();
+        User user = UserUtils.buildUserWithFollowers();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(userId,"name_asc");
@@ -135,7 +131,7 @@ class UserServiceTest {
     void getFollowersListOrderDescOK() {
         //arrange
         int userId = 234;
-        User user = UserUtils.buildUser();
+        User user = UserUtils.buildUserWithFollowers();
         when(userRepository.getUserById(userId)).thenReturn(user);
         //act
         UserFollowersDTO actual = userService.getFollowersList(userId,"name_desc");
@@ -167,7 +163,7 @@ class UserServiceTest {
         int userIdFollower = 234;
         int userIdToUnfollow = 6631;
 
-        User user = UserUtils.buildUser();
+        User user = UserUtils.buildUserWithFollowers();
         User user2 = user.getFollowed().get(0);
 
         when(userRepository.getUserById(userIdFollower)).thenReturn(user);
@@ -200,13 +196,8 @@ class UserServiceTest {
         int userIdFollower = 234;
         int userIdToUnfollow = 6631;
 
-        User user = UserUtils.buildUser();
-        User user2 = User.builder()
-                .userId(userIdToUnfollow)
-                .userName("usuario3")
-                .followers(new ArrayList<>())
-                .followed(new ArrayList<>())
-                .build();
+        User user = UserUtils.buildUserWithFollowers();
+        User user2 = UserUtils.getUserAddFollower(userIdToUnfollow);
         //Act
         when(userRepository.getUserById(userIdFollower)).thenReturn(user);
         when(userRepository.getUserById(userIdToUnfollow)).thenReturn(user2);

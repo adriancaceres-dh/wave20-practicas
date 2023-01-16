@@ -7,7 +7,6 @@ import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IPostRepository;
 import com.socialMeli.be_java_hisp_w20_g03.repository.IUserRepository;
-import com.socialMeli.be_java_hisp_w20_g03.repository.PostRepository;
 import com.socialMeli.be_java_hisp_w20_g03.utils.PostUtils;
 import com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -90,7 +88,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T-0006: Ordenamiento descendente correcto de publicaciones")
+    @DisplayName("T-0006: Ordenamiento ascendente correcto de publicaciones")
     void getPostAscendingOk() {
         //Arrange
         int userId1 = 6631;
@@ -115,49 +113,42 @@ class PostServiceTest {
     @DisplayName("T-0005: Parametro de ordenamiento existe")
     void testDateOrderOk() {
         //Arrange
-        User user234 = UserUtils.buildUser();
-        User user = User.builder()
-                .userId(1)
-                .userName("usuario1")
-                .followers(new ArrayList<>())
-                .followed(List.of(user234))
-                .build();
-        when(userRepository.getUserById(1)).thenReturn(user);
+        int userId1 = 1;
+        int userId2 = 234;
+        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        User user2 = user1.getFollowers().get(0);
+        when(userRepository.getUserById(userId1)).thenReturn(user2);
 
         List<Post> posts = PostUtils.getLatestPosts();
-        when(postRepository.getPostsByUserId(234)).thenReturn(posts);
+        when(postRepository.getPostsByUserId(userId1)).thenReturn(posts);
 
         //Act
-        List<PostDTO> ascPost = postService.getPost(1, "date_asc");
-        List<PostDTO> descPost = postService.getPost(1, "date_desc");
+        List<PostDTO> ascPost = postService.getPost(userId1, "date_asc");
+        List<PostDTO> descPost = postService.getPost(userId1, "date_desc");
         //Assert
         Assertions.assertFalse(ascPost.isEmpty());
         Assertions.assertFalse(descPost.isEmpty());
-        verify(userRepository, atLeast(1)).getUserById(1);
-        verify(postRepository, atLeast(1)).getPostsByUserId(234);
+        verify(userRepository, atLeast(1)).getUserById(userId1);
+        verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
     }
 
     @Test
     @DisplayName("T-0005: Parametro de ordenamiento no existe")
     void testDateOrderBad() {
         //Arrange
-        User user234 = UserUtils.buildUser();
-        User user = User.builder()
-                .userId(1)
-                .userName("usuario1")
-                .followers(new ArrayList<>())
-                .followed(List.of(user234))
-                .build();
-        when(userRepository.getUserById(1)).thenReturn(user);
+        int userId1 = 1;
+        int userId2 = 234;
+        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        User user2 = user1.getFollowers().get(0);
+        when(userRepository.getUserById(userId1)).thenReturn(user2);
 
         List<Post> posts = PostUtils.getLatestPosts();
-        when(postRepository.getPostsByUserId(234)).thenReturn(posts);
+        when(postRepository.getPostsByUserId(userId1)).thenReturn(posts);
 
         //Act & assert
-
-        Assertions.assertThrows(BadRequestException.class, ()->postService.getPost(1, "date_bsc"));
-        verify(userRepository, atLeast(1)).getUserById(1);
-        verify(postRepository, atLeast(1)).getPostsByUserId(234);
+        Assertions.assertThrows(BadRequestException.class, ()->postService.getPost(userId1, "date_bsc"));
+        verify(userRepository, atLeast(1)).getUserById(userId1);
+        verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
     }
 
 }

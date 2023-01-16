@@ -49,7 +49,7 @@ public static User getUserAddFollower(int usId){
         return  new UserFollowersDTO(234,"usuario1",List.of(userDto2,userDto1,userDto4));
     }
 
-    public static User buildUser(){
+    public static User buildUserWithFollowers(){
         User usuario1 = User.builder()
                 .userId(234)
                 .userName("usuario1")
