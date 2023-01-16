@@ -53,7 +53,7 @@ class PostServiceTest {
     ModelMapper mapper = new ModelMapper();
 
     @Test
-    void lastTwoWeeksPostsFromFollowersTest() {
+    void whenAGivingAValidUser_ThenObtainPostsFromLastTwoWeeks() {
         //Arrange
         Set<Integer> followedIds = new HashSet<>();
 
