@@ -13,7 +13,24 @@ Java 11, Maven, Spring Framework(Web, DevTools, Lombok), JUnit5, Mockito y Githu
 Desarrollo de una API REST para mejorar la experiencia entre compradores y vendedores.
 Los compradores podran seguir a sus vendedores favoritos y enterarse de sus posteos de nuevos productos.
 
+## Validaciones en los campos de entrada.
+- user_id
+- id_post
+- date
+- product_id
+- product_name
+- type
+- brand
+- color
+- notes
+- category
+- price
+- 
 ## Implementacion de Test Unitarios y Test de Integracion.
+
+![image](https://user-images.githubusercontent.com/119961027/212745767-a4f0262b-dd4a-4727-9ba2-0812e9181a9f.png)
+
+![image](https://user-images.githubusercontent.com/119961027/212745667-03a8d6b8-6aba-40b6-b459-3d647dd493f5.png)
 
 ### Test Unitarios desarrollados grupalmente, dividiendo tareas entre los miembros del equipo: 
 *     US 001: followOkTest - Verificar que el usuario a seguir exista.                            Joaquin Pereyra
@@ -27,9 +44,6 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 
 ### Test de Integracion desarrollados individualmente.
 
-![image](https://user-images.githubusercontent.com/119961027/212745767-a4f0262b-dd4a-4727-9ba2-0812e9181a9f.png)
-
-![image](https://user-images.githubusercontent.com/119961027/212745667-03a8d6b8-6aba-40b6-b459-3d647dd493f5.png)
 
 Diagrama UML sprint 1
 <img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
