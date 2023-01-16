@@ -91,6 +91,7 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("T-003-Camino Feliz")
     void getFollowersListOrderDesc() {
         //arrange
         int userId = 234;
@@ -104,6 +105,7 @@ class UserServiceTest {
         assertEquals(expect,actual);
     }
     @Test
+    @DisplayName("T-003-Camino Feliz")
     void getFollowersListOrderAsc() {
         //arrange
         int userId = 234;
@@ -117,6 +119,7 @@ class UserServiceTest {
         assertEquals(expect,actual);
     }
     @Test
+    @DisplayName("T-004-Excepción cuando el usuario no existe")
     void getFollowersListUserNotFound() {
         //arrange
         when(userRepository.getUserById(000)).thenThrow(NotFoundException.class);
@@ -124,6 +127,7 @@ class UserServiceTest {
         assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
     }
     @Test
+    @DisplayName("T-003-Excepción cuando ingresa un orden incorrecto")
     void getFollowersListUserNotFoundOrder() {
         //arrange
         when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
