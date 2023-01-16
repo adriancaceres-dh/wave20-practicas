@@ -98,13 +98,6 @@ public class UserService implements IUserService {
             List<User> userFollowing = user.getFollowing();
             List<User> userFollowers = userToUnfollow.getFollowers();
 
-            if (userFollowing.size() == 0) {
-                throw new BadRequestException("This User don't have followings");
-            }
-            if (userFollowers.size() == 0) {
-                throw new BadRequestException("This User don't have followings");
-            }
-
             if (!userFollowing.contains(userToUnfollow) && !userFollowers.contains(user)) {
                 throw new BadRequestException("Users no longer follow each other");
             }
