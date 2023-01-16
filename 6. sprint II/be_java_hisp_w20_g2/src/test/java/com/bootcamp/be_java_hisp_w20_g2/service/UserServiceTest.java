@@ -4,12 +4,12 @@ import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersCountResponseD
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
-import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserFollowersResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.UserResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.UserNotFoundException;
 import com.bootcamp.be_java_hisp_w20_g2.util.UtilsTest;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -60,8 +60,6 @@ class UserServiceTest {
         Assertions.assertThrows(BadRequestException.class,()->userService.unfollowUser(1,2));
     }
 
-    @Test
-    void entity2UserResponseDTO() {}
 
     @Test
     @DisplayName("T-0001 Follow - OK")
