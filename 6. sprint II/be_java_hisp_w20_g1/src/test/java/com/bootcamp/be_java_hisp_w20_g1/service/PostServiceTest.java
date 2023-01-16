@@ -14,6 +14,7 @@ import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IProductService;
 import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IUserService;
 import com.bootcamp.be_java_hisp_w20_g1.util.TestUtil;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,7 +54,9 @@ class PostServiceTest {
     ModelMapper mapper = new ModelMapper();
 
     @Test
+    @DisplayName("T8: obtiene lista de posteos de las ultimas dos semanas de los vendedores seguidos por un usuario")
     void whenAGivingAValidUser_ThenObtainPostsFromLastTwoWeeks() {
+
         //Arrange
         Set<Integer> followedIds = new HashSet<>();
 
