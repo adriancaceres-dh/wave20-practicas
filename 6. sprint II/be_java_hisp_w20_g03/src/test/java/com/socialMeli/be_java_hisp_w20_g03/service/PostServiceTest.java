@@ -33,36 +33,47 @@ class PostServiceTest {
     @InjectMocks
     PostService postService;
 
+
     @Test
-    @DisplayName("T-0008: Camino Feliz")
-    void getPostOk() {
+    @DisplayName("T-0005: Parametro de ordenamiento existe")
+    void testDateOrderOk() {
         //Arrange
-        int userId1 = 6631;
+        int userId1 = 1;
         int userId2 = 234;
-        List<Post> expectedPosts = PostUtils.getLatestPosts();
-        List<PostDTO> expectedPostsDTO = PostUtils.postDTOConverter(expectedPosts);
         User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
         User user2 = user1.getFollowers().get(0);
         when(userRepository.getUserById(userId1)).thenReturn(user2);
-        when(postRepository.getPostsByUserId(userId1)).thenReturn(expectedPosts);
+
+        List<Post> posts = PostUtils.getLatestPosts();
+        when(postRepository.getPostsByUserId(userId1)).thenReturn(posts);
 
         //Act
-        List<PostDTO> actualPosts = postService.getPost(userId1, null);
-
+        List<PostDTO> ascPost = postService.getPost(userId1, "date_asc");
+        List<PostDTO> descPost = postService.getPost(userId1, "date_desc");
         //Assert
-        verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
+        Assertions.assertFalse(ascPost.isEmpty());
+        Assertions.assertFalse(descPost.isEmpty());
         verify(userRepository, atLeast(1)).getUserById(userId1);
-        Assertions.assertEquals(expectedPostsDTO, actualPosts);
+        verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
     }
 
     @Test
-    @DisplayName("T-0008: Verificando la excepcion cuando el usuario no existe.")
-    void getPostThrowsNotFoundException() {
+    @DisplayName("T-0005: Parametro de ordenamiento no existe")
+    void testDateOrderBad() {
         //Arrange
-        int userId1 = 1558;
+        int userId1 = 1;
+        int userId2 = 234;
+        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        User user2 = user1.getFollowers().get(0);
+        when(userRepository.getUserById(userId1)).thenReturn(user2);
 
-        //Act y Assert
-        Assertions.assertThrows(NotFoundException.class, () ->postService.getPost(userId1, null));
+        List<Post> posts = PostUtils.getLatestPosts();
+        when(postRepository.getPostsByUserId(userId1)).thenReturn(posts);
+
+        //Act & assert
+        Assertions.assertThrows(BadRequestException.class, ()->postService.getPost(userId1, "date_bsc"));
+        verify(userRepository, atLeast(1)).getUserById(userId1);
+        verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
     }
 
     @Test
@@ -108,47 +119,36 @@ class PostServiceTest {
         verify(userRepository, atLeast(1)).getUserById(userId1);
         Assertions.assertEquals(expectedPostsDTO, actualPosts);
     }
-
     @Test
-    @DisplayName("T-0005: Parametro de ordenamiento existe")
-    void testDateOrderOk() {
+    @DisplayName("T-0008: Camino Feliz")
+    void getPostOk() {
         //Arrange
-        int userId1 = 1;
+        int userId1 = 6631;
         int userId2 = 234;
+        List<Post> expectedPosts = PostUtils.getLatestPosts();
+        List<PostDTO> expectedPostsDTO = PostUtils.postDTOConverter(expectedPosts);
         User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
         User user2 = user1.getFollowers().get(0);
         when(userRepository.getUserById(userId1)).thenReturn(user2);
-
-        List<Post> posts = PostUtils.getLatestPosts();
-        when(postRepository.getPostsByUserId(userId1)).thenReturn(posts);
+        when(postRepository.getPostsByUserId(userId1)).thenReturn(expectedPosts);
 
         //Act
-        List<PostDTO> ascPost = postService.getPost(userId1, "date_asc");
-        List<PostDTO> descPost = postService.getPost(userId1, "date_desc");
+        List<PostDTO> actualPosts = postService.getPost(userId1, null);
+
         //Assert
-        Assertions.assertFalse(ascPost.isEmpty());
-        Assertions.assertFalse(descPost.isEmpty());
-        verify(userRepository, atLeast(1)).getUserById(userId1);
         verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
+        verify(userRepository, atLeast(1)).getUserById(userId1);
+        Assertions.assertEquals(expectedPostsDTO, actualPosts);
     }
 
     @Test
-    @DisplayName("T-0005: Parametro de ordenamiento no existe")
-    void testDateOrderBad() {
+    @DisplayName("T-0008: Verificando la excepcion cuando el usuario no existe.")
+    void getPostThrowsNotFoundException() {
         //Arrange
-        int userId1 = 1;
-        int userId2 = 234;
-        User user1 = UserUtils.buildUserWithOneFollower(userId1, userId2);
-        User user2 = user1.getFollowers().get(0);
-        when(userRepository.getUserById(userId1)).thenReturn(user2);
+        int userId1 = 1558;
 
-        List<Post> posts = PostUtils.getLatestPosts();
-        when(postRepository.getPostsByUserId(userId1)).thenReturn(posts);
-
-        //Act & assert
-        Assertions.assertThrows(BadRequestException.class, ()->postService.getPost(userId1, "date_bsc"));
-        verify(userRepository, atLeast(1)).getUserById(userId1);
-        verify(postRepository, atLeast(1)).getPostsByUserId(userId1);
+        //Act y Assert
+        Assertions.assertThrows(NotFoundException.class, () ->postService.getPost(userId1, null));
     }
 
 }

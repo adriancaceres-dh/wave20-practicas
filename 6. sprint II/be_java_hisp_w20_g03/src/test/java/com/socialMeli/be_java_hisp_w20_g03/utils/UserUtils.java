@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.utils;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.request.UserDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
 
 import java.util.ArrayList;
@@ -106,5 +107,59 @@ public static User getUserAddFollower(int usId){
         user1.getFollowers().add(user2);
 
         return user1;
+    }
+
+    public static UserFollowedDTO buildListUserFollowersDtoAsc(){
+        UserDTO userDto4 = new UserDTO(1536, "usuario4");
+        UserDTO userDto3 = new UserDTO(4698, "usuario3");
+        UserDTO userDto2 = new UserDTO(234, "usuario2");
+        return new UserFollowedDTO(6631, "usuario1", List.of(userDto2, userDto3, userDto4));
+    }
+
+    public static UserFollowedDTO buildListUserFollowersDtoDesc(){
+        UserDTO userDto4 = new UserDTO(1536, "usuario4");
+        UserDTO userDto3 = new UserDTO(4698, "usuario3");
+        UserDTO userDto2 = new UserDTO(234, "usuario2");
+        return new UserFollowedDTO(6631, "usuario1", List.of(userDto4, userDto3, userDto2));
+    }
+
+    public static User buildUserWithFollowed(){
+        User usuario1 = User.builder()
+                .userId(6631)
+                .userName("usuario1")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        User usuario2 = User.builder()
+                .userId(234)
+                .userName("usuario2")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        User usuario3 = User.builder()
+                .userId(4698)
+                .userName("usuario3")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        User usuario4 = User.builder()
+                .userId(1536)
+                .userName("usuario4")
+                .followers(new ArrayList<>())
+                .followed(new ArrayList<>())
+                .build();
+        usuario2.getFollowers().add(usuario1);
+        usuario1.getFollowed().add(usuario2);
+
+        usuario3.getFollowers().add(usuario1);
+        usuario1.getFollowed().add(usuario3);
+
+        usuario4.getFollowers().add(usuario1);
+        usuario1.getFollowed().add(usuario4);
+
+        usuario1.getFollowers().add(usuario2);
+        usuario2.getFollowed().add(usuario1);
+
+        return usuario1;
     }
 }

@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.service;
 
 
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowedDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowersDTO;
 import com.socialMeli.be_java_hisp_w20_g03.exception.BadRequestException;
@@ -59,103 +60,6 @@ class UserServiceTest {
         Assertions.assertThrows(NotFoundException.class,()-> userService.addFollower(idRequestUser,idRequestUser2));
     }
 
-    @Test
-    @DisplayName("T-0007: Cantidad de seguidores adecuada.")
-    void getFollowerCount() {
-        //Arrange
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(anyInt())).thenReturn(user);
-
-        //Act
-        UserFollowerCountDTO output = userService.getFollowerCount(user.getUserId());
-
-        //Assert
-        verify(userRepository, atLeastOnce()).getUserById(user.getUserId());
-        assertEquals(3,output.getFollowers_count());
-
-    }
-
-    @Test
-    @DisplayName("T-0007: Usuario inexistente")
-    void getFollowerCountUserDoesntExists() {
-        //Arrange
-        when(userRepository.getUserById(anyInt())).thenReturn(null);
-
-        //Act & Assert
-        assertThrows(NotFoundException.class, ()->userService.getFollowerCount(1));
-    }
-
-    @Test
-    @DisplayName("T-0004: Camino Feliz")
-    void getFollowersListOrderDesc() {
-        //arrange
-        int userId = 234;
-        UserFollowersDTO expect = buildListUserFollowedDtoDesc();
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(userId)).thenReturn(user);
-        //act
-        UserFollowersDTO actual = userService.getFollowersList(234,"name_desc");
-        //assert
-        verify(userRepository, atLeastOnce()).getUserById(userId);
-        assertEquals(expect,actual);
-    }
-    @Test
-    @DisplayName("T-0004: Camino Feliz")
-    void getFollowersListOrderAsc() {
-        //arrange
-        int userId = 234;
-        UserFollowersDTO expect = buildListUserFollowedDtoAsc();
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(userId)).thenReturn(user);
-        //act
-        UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
-        //assert
-        verify(userRepository, atLeastOnce()).getUserById(userId);
-        assertEquals(expect,actual);
-    }
-    @Test
-    @DisplayName("T-0003: Camino Feliz, orden de forma asc")
-    void getFollowersListOrderAscOK() {
-        //arrange
-        int userId = 234;
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(userId)).thenReturn(user);
-        //act
-        UserFollowersDTO actual = userService.getFollowersList(userId,"name_asc");
-        //assert
-        verify(userRepository, atLeastOnce()).getUserById(userId);
-        assertNotNull(actual);
-    }
-    @Test
-    @DisplayName("T-0003: Camino Feliz, orden de forma desc")
-    void getFollowersListOrderDescOK() {
-        //arrange
-        int userId = 234;
-        User user = UserUtils.buildUserWithFollowers();
-        when(userRepository.getUserById(userId)).thenReturn(user);
-        //act
-        UserFollowersDTO actual = userService.getFollowersList(userId,"name_desc");
-        //assert
-        verify(userRepository, atLeastOnce()).getUserById(userId);
-        assertNotNull(actual);
-    }
-    @Test
-    @DisplayName("T-0004: Excepción cuando el usuario no existe")
-    void getFollowersListUserNotFound() {
-        //arrange
-        when(userRepository.getUserById(000)).thenThrow(NotFoundException.class);
-        //assert
-        assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
-    }
-    @Test
-    @DisplayName("T-0003: Excepción cuando ingresa un orden incorrecto")
-    void getFollowersListUserNotFoundOrder() {
-        //arrange
-        when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
-        //assert
-        assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
-    }
-
     @DisplayName("T-0002: Permite continuar con normalidad.")
     @Test
     void unfollowOk() {
@@ -205,4 +109,140 @@ class UserServiceTest {
         //Assert
         assertThrows(BadRequestException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
     }
+
+    @Test
+    @DisplayName("T-0003: Camino Feliz, orden de forma asc")
+    void getFollowersListOrderAscOK() {
+        //arrange
+        int userId = 234;
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(userId,"name_asc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertNotNull(actual);
+    }
+    @Test
+    @DisplayName("T-0003: Camino Feliz, orden de forma desc")
+    void getFollowersListOrderDescOK() {
+        //arrange
+        int userId = 234;
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(userId,"name_desc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertNotNull(actual);
+    }
+
+    @Test
+    @DisplayName("T-0003: Excepción cuando ingresa un orden incorrecto")
+    void getFollowersListUserNotFoundOrder() {
+        //arrange
+        when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
+        //assert
+        assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
+    }
+
+    @Test
+    @DisplayName("T-0004: Verificar orden alfabético desc de 'Seguidos' OK")
+    void getFollowedListOrderDesc(){
+        //Arrange
+        int userId = 6631;
+        UserFollowedDTO expected = buildListUserFollowersDtoDesc();
+        // Creo todos los usuarios con sus respectivos seguidores/seguidos
+        User user = UserUtils.buildUserWithFollowed();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+
+        //Act
+        UserFollowedDTO actual = userService.getFollowedList(6631, "name_desc");
+
+        //Assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("T-0004: Verificar orden alfabético desc de 'Seguidos' OK")
+    void getFollowedListOrderAsc(){
+        //Arrange
+        int userId = 6631;
+        UserFollowedDTO expected = buildListUserFollowersDtoAsc();
+        User user = UserUtils.buildUserWithFollowed();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+
+        //Act
+        UserFollowedDTO actual = userService.getFollowedList(6631, "name_asc");
+
+        //Assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("T-0004: Verificar orden alfabético desc de 'Seguidores' OK")
+    void getFollowersListOrderDesc() {
+        //arrange
+        int userId = 234;
+        UserFollowersDTO expect = buildListUserFollowedDtoDesc();
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(234,"name_desc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expect,actual);
+    }
+    @Test
+    @DisplayName("T-0004: Camino Feliz")
+    void getFollowersListOrderAsc() {
+        //arrange
+        int userId = 234;
+        UserFollowersDTO expect = buildListUserFollowedDtoAsc();
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(userId)).thenReturn(user);
+        //act
+        UserFollowersDTO actual = userService.getFollowersList(234,"name_asc");
+        //assert
+        verify(userRepository, atLeastOnce()).getUserById(userId);
+        assertEquals(expect,actual);
+    }
+
+    @Test
+    @DisplayName("T-0004: Excepción cuando el usuario no existe")
+    void getFollowersListUserNotFound() {
+        //arrange
+        when(userRepository.getUserById(000)).thenThrow(NotFoundException.class);
+        //assert
+        assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
+    }
+
+    @Test
+    @DisplayName("T-0007: Cantidad de seguidores adecuada.")
+    void getFollowerCount() {
+        //Arrange
+        User user = UserUtils.buildUserWithFollowers();
+        when(userRepository.getUserById(anyInt())).thenReturn(user);
+
+        //Act
+        UserFollowerCountDTO output = userService.getFollowerCount(user.getUserId());
+
+        //Assert
+        verify(userRepository, atLeastOnce()).getUserById(user.getUserId());
+        assertEquals(3,output.getFollowers_count());
+
+    }
+
+    @Test
+    @DisplayName("T-0007: Usuario inexistente")
+    void getFollowerCountUserDoesntExists() {
+        //Arrange
+        when(userRepository.getUserById(anyInt())).thenReturn(null);
+
+        //Act & Assert
+        assertThrows(NotFoundException.class, ()->userService.getFollowerCount(1));
+    }
+
 }
