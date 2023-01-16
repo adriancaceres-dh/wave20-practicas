@@ -32,9 +32,10 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
+    @DisplayName("T-0002 unfollowUser - Good Ending")
     void unfollowUserExistTest() {
         // Arrange
-        HashMap<Integer, User> users = UtilsTest.generateUsersForTestTwo();
+        HashMap<Integer, User> users = UtilsTest.generateUsers();
         User user1 = users.get(1); // user2 follows user1
         User user2 = users.get(2);
         // Act
@@ -49,12 +50,42 @@ class UserServiceTest {
     }
 
     @Test
-    void unfollowUserNotOkTest() {
+    @DisplayName("T-0002 unfollowUser - User1 is null")
+    void unfollowUserNullOne() {
         // Arrange
-        HashMap<Integer, User> users = UtilsTest.generateUsersForTestTwo();
+        HashMap<Integer, User> users = UtilsTest.generateUsers();
         User user2 = users.get(2); // user2 follows user1
         // Act
         when(userRepository.findOne(1)).thenReturn(null);
+        when(userRepository.findOne(2)).thenReturn(user2);
+        // Assert
+        Assertions.assertThrows(BadRequestException.class,()->userService.unfollowUser(1,2));
+    }
+
+    @Test
+    @DisplayName("T-0002 unfollowUser - User2 is null")
+    void unfollowUserNullTwo() {
+        // Arrange
+        HashMap<Integer, User> users = UtilsTest.generateUsers();
+        User user1 = users.get(1); // user2 follows user1
+        // Act
+        when(userRepository.findOne(1)).thenReturn(user1);
+        when(userRepository.findOne(2)).thenReturn(null);
+        // Assert
+        Assertions.assertThrows(BadRequestException.class,()->userService.unfollowUser(1,2));
+    }
+
+    @Test
+    @DisplayName("T-0002 unfollowUser - user1 not in user2's followers list and user2 not in user1's following list")
+    void unfollowUserNotInList() {
+        // Arrange
+        HashMap<Integer, User> users = UtilsTest.generateUsers();
+        User user1 = users.get(1); // user2 follows user1
+        User user2 = users.get(2);
+        user1.removeFollowing(user2);
+        user2.removeFollower(user1);
+        // Act
+        when(userRepository.findOne(1)).thenReturn(user1);
         when(userRepository.findOne(2)).thenReturn(user2);
         // Assert
         Assertions.assertThrows(BadRequestException.class,()->userService.unfollowUser(1,2));
