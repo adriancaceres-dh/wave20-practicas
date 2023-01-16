@@ -37,7 +37,7 @@ class ServiceUsrTest {
     ServiceUsr mockServiceUser;
 
     @Test
-    @DisplayName("Test user to follow exists ok")
+    @DisplayName("T-0001 Verificar que el usuario a seguir exista")
     void followOKTest() {
         // arrange
         Buyer userFollow = new Buyer(1, "user which follows");
@@ -56,7 +56,7 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("Test user to follow doesn't exist. Throw exception")
+    @DisplayName("T-0001 Verificar que el usuario a seguir no existe. Lanza excepción")
     void followInvalidIDTest() {
         // arrange
         Buyer userFollow = new Buyer(1, "user which follows");
@@ -69,18 +69,18 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("US 0007 - Verificar la cantidad de seguidores")
+    @DisplayName("T-0007 - Verificar la cantidad de seguidores")
     void followersCountOKTest() {
-        Long idTest = 1L;
+        //arrange
         Seller seller = new Seller(1,"rodri");
         seller.addUserToMyFollowersList(new Buyer(2, "nina"));
         seller.addUserToMyFollowersList(new Buyer(3, "ani"));
         seller.addUserToMyFollowersList(new Buyer(4, "nino"));
         UserCountDTO expected = new UserCountDTO(1, "rodri", 3);
         when(mockUserRepository.findById(1)).thenReturn(seller);
-
+        //act
         UserCountDTO result = mockServiceUser.followersCount(1);
-
+        //assert
         assertEquals(expected, result);
     }
 
@@ -113,7 +113,7 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("US 0003 - Verificar que el orden exista. Orden name_asc")
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden name_asc")
     void followersOrderAscOKTest() {
         //arrange
     String order = "name_asc";
@@ -129,7 +129,7 @@ class ServiceUsrTest {
 
     }
     @Test
-    @DisplayName("US 0003 - Verificar que el orden exista. Orden name_desc")
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden name_desc")
     void followersOrderDescOKTest() {
         //arrange
         String order = "name_desc";
@@ -140,14 +140,14 @@ class ServiceUsrTest {
         when(mockUserRepository.findById(2)).thenReturn(new Seller(2, "rodri"));
 
         //act
-        UserFollowersDTO actual = mockServiceUser.followers(2, order);
+        UserFollowersDTO result = mockServiceUser.followers(2, order);
 
         //assert
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
-    @DisplayName("US 0003 - Verificar que el orden exista. Orden inválido")
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden inválido")
     void followersInvalidOrderTest() {
 
         //arrange
@@ -159,6 +159,7 @@ class ServiceUsrTest {
     }
 
     @Test
+    @DisplayName("T-0004 - Verificar el ordenamiento ascendente por nombre")
     void followedOrderAscOKTest() {
         Seller sellerCreate = createSeller();
 
@@ -177,12 +178,13 @@ class ServiceUsrTest {
     }
 
     @Test
+    @DisplayName("T-0004 - Verificar el ordenamiento descendente por nombre")
     void followedOrderDescOKTest() {
         Seller sellerCreate = createSeller();
         List<ListedUserDTO> expectedList = new ArrayList<>();
-        expectedList.add(new ListedUserDTO(6,"Tammi")); //Tammi
-        expectedList.add(new ListedUserDTO(7,"Julieta")); //Julieta
-        expectedList.add(new ListedUserDTO(10,"Daniela"));//Daniela
+        expectedList.add(new ListedUserDTO(6,"Tammi"));
+        expectedList.add(new ListedUserDTO(7,"Julieta"));
+        expectedList.add(new ListedUserDTO(10,"Daniela"));
 
         UserFollowedDTO expected =  new UserFollowedDTO(1,"rodri",expectedList);
 
@@ -194,36 +196,40 @@ class ServiceUsrTest {
     }
 
     @Test
+    @DisplayName("UT-0003 - Verificar que el orden exista. Orden inválido")
     void followedInvalidOrderTest() {
         assertThrows(BadRequestException.class, ()-> mockServiceUser.followed(1, "aaa") );
     }
 
     @Test
+    @DisplayName("T-0002 -  verificar que el usuario a dejar de seguir exista")
     void unfollowOKTest() {
+        //arrange
         Buyer userWhoUnfollow = new Buyer(1, "nombre1");
         Seller userUnfollowed = new Seller(2, "nombre2");
         userWhoUnfollow.addUserToMyFollowedList(userUnfollowed);
         userUnfollowed.addUserToMyFollowersList(userWhoUnfollow);
 
-        UserFollowedDTO expected = new UserFollowedDTO(1, "nombre1", new ArrayList<>()); //No sigue a nadie
+        UserFollowedDTO expected = new UserFollowedDTO(1, "nombre1", new ArrayList<>());
 
         when(mockUserRepository.findById(1)).thenReturn(userWhoUnfollow);
         when(mockUserRepository.findById(2)).thenReturn(userUnfollowed);
-
+        //act
         UserFollowedDTO result = mockServiceUser.unfollow(1,2);
-
+        //assert
         assertEquals(expected, result);
 
     }
 
     @Test
+    @DisplayName("T-0002 -  verificar que el usuario a dejar de seguir exista")
     void unfollowInvalidIDTest() {
-
+        //arrange
         Buyer userWhoUnfollow = new Buyer(1, "nombre1");
 
         when(mockUserRepository.findById(1)).thenReturn(userWhoUnfollow);
         when(mockUserRepository.findById(2)).thenReturn(null);
-
+        //act & assert
         assertThrows(BadRequestException.class, () -> mockServiceUser.unfollow(1, 2));
     }
 }

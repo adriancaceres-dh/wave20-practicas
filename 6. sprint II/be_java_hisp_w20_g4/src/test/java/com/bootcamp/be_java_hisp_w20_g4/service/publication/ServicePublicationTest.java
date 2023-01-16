@@ -55,7 +55,7 @@ class ServicePublicationTest {
     }
 
     @Test
-    @DisplayName("USS 006 - Verificar  las publicaciones de las ultimas 2 semanas en orden ascendente")
+    @DisplayName("T-0006 - Verificar  las publicaciones de las ultimas 2 semanas en orden ascendente")
     void getPublicationsOrderAscOKTest() {
         //Arrange
         Product product1 = new Product(
@@ -90,15 +90,15 @@ class ServicePublicationTest {
 
         List<ListedPostDTO> listedPostDTOList = publicationHashMap.values().stream().sorted(Comparator.comparing(Publication::getDate)).map(publication -> mockServicePublication.mapper.map(publication, ListedPostDTO.class)).collect(Collectors.toList());
 
-        ProductTwoWeeksResponseDTO productExpected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
+        ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
         //Act
-        ProductTwoWeeksResponseDTO productActual = mockServicePublication.getLastTwoWeeksPublications(1, "date_asc");
+        ProductTwoWeeksResponseDTO response = mockServicePublication.getLastTwoWeeksPublications(1, "date_asc");
         //Assert
-        assertEquals(productExpected, productActual);
+        assertEquals(expected, response);
     }
 
     @Test
-    @DisplayName("US 006 - Verificar publicaciones ultimas 2 semanas orden descendente")
+    @DisplayName("T-0006 - Verificar publicaciones ultimas 2 semanas orden descendente")
     void getPublicationsOrderDescOKTest() {
         //Arrange
         Product product1 = new Product(
@@ -135,19 +135,19 @@ class ServicePublicationTest {
                 .thenReturn(publicationHashMap.values().stream().collect(Collectors.toList()));
 
         List<ListedPostDTO> listedPostDTOList = new ArrayList<>();
-                // publicationHashMap.values().stream().map(publication -> mockServicePublication.mapper.map(publication, ListedPostDTO.class)).collect(Collectors.toList());
+
         listedPostDTOList.add(mockServicePublication.mapper.map(publication3, ListedPostDTO.class));
         listedPostDTOList.add(mockServicePublication.mapper.map(publication2, ListedPostDTO.class));
         listedPostDTOList.add(mockServicePublication.mapper.map(publication1, ListedPostDTO.class));
-        ProductTwoWeeksResponseDTO productExpected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
+        ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
         //Act
-        ProductTwoWeeksResponseDTO productActual = mockServicePublication.getLastTwoWeeksPublications(11, "date_desc");
+        ProductTwoWeeksResponseDTO result = mockServicePublication.getLastTwoWeeksPublications(11, "date_desc");
         //Assert
-        assertEquals(productExpected, productActual);
+        assertEquals(expected, result);
     }
 
     @Test
-    @DisplayName(value = "Parametro de orden correcto")
+    @DisplayName(value = "T-0005 -Parametro de orden correcto")
     void getPublicationsOrderOKTest() {
         //arrange
 
@@ -177,25 +177,27 @@ class ServicePublicationTest {
         listedPostDTO.setUser_id(1);
         List<ListedPostDTO> listedPostDTOList = Arrays.asList(listedPostDTO);
 
-        ProductTwoWeeksResponseDTO productTwoWeeksResponseDTO = new ProductTwoWeeksResponseDTO(1,listedPostDTOList);
+        ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(1,listedPostDTOList);
 
         //act
-        ProductTwoWeeksResponseDTO productTwoWeeksResponseDTOFound = mockServicePublication.getLastTwoWeeksPublications(1,"date_asc");
+        ProductTwoWeeksResponseDTO result = mockServicePublication.getLastTwoWeeksPublications(1,"date_asc");
 
         //assert
-        assertEquals(productTwoWeeksResponseDTO,productTwoWeeksResponseDTOFound);
+        assertEquals(expected,result);
 
     }
 
     @Test
-    @DisplayName(value = "Parametro de orden incorrecto")
+    @DisplayName(value = "T-0005 - Parametro de orden de fecha incorrecto")
     void getPublicationsInvalidOrderTest() {
         //assert
         assertThrows(BadRequestException.class,()->mockServicePublication.getLastTwoWeeksPublications(1,"date_ASsscc"));
     }
 
     @Test
+    @DisplayName("T-0008 - Verificar que las publicaciones sean de las últimas dos semanas")
     void getLastTwoWeeksPublicationsOKTest() {
+        //arrange
         Product product = new Product(1, "producto", "rojo", "", "", "");
         Category category = new Category(1, "categoria");
         Seller seller1 = new Seller(1, "Vendedor1");
@@ -212,9 +214,9 @@ class ServicePublicationTest {
         when(mockPublicationRepository.getPublicationLastNDays(new ArrayList<Integer>(Arrays.asList(1, 2)), 15)).thenReturn(new ArrayList<Publication>(Arrays.asList(publication1,publication3)));
 
         ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(3, new ArrayList<ListedPostDTO>(Arrays.asList(TestUtils.mapper.map(publication3, ListedPostDTO.class), TestUtils.mapper.map(publication1, ListedPostDTO.class))));
-
+        //act
         ProductTwoWeeksResponseDTO result = mockServicePublication.getLastTwoWeeksPublications(3, null);
-
+        //assert
         assertEquals(expected, result);
     }
 }
