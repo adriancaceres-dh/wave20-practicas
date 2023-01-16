@@ -32,6 +32,7 @@ public class TestUtils {
         return posts;
     }
 
+
     public static List<Follow> followListToTest() {
         List<Follow> follows = Arrays.asList(new Follow(1, 3), new Follow(2, 3),
                 new Follow(8, 3), new Follow(4, 3), new Follow(5, 4),
@@ -62,7 +63,6 @@ public class TestUtils {
         return follows;
     }
 
-
     public static  List<Follow> userFollowsTest(){
 
         List<Follow> follows = new ArrayList<>();
@@ -76,11 +76,6 @@ public class TestUtils {
     }
 
     public static UserFollowersCountDto userFollowersCountDto = new UserFollowersCountDto( 1, "Soraya", 2);
-
-
-
-
-
     public static UserFollowersDto userFollowersDtoTest(String order){
 
         List<UserDto> list = new ArrayList();
@@ -99,15 +94,10 @@ public class TestUtils {
             list.add(new UserDto(5, "Manuel"));
         }
 
-
-
-
         UserFollowersDto userFollowersDto = new UserFollowersDto(1,"Nathalia",list);
 
         return userFollowersDto;
     }
-
-
 
     public static List<User> usersTest(){
 
@@ -120,5 +110,20 @@ public class TestUtils {
 
 
         return list;
+    }
+
+    public static List<Post> postListTestToTest0008() {
+        List<Post> posts = Arrays.asList(new Post(3, 1, date, product, 100, 2000, false, 0.0),
+                new Post(3, 2, LocalDate.parse("2022-11-30"), product2, 100, 2500, false, 0.0),
+                new Post(3, 3, LocalDate.parse("2023-01-01"), product2, 100, 3000, false, 0.0),
+                new Post(3, 4, LocalDate.parse("2022-12-17"), product2, 100, 3500, false, 0.0));
+        return posts;
+    }
+    public static List<PostDto> postDtoBetween15Days() {
+
+        List<PostDto> postDtosExpectAsc = Arrays.asList(new PostDto(3, 3, LocalDate.parse("2023-01-01"),
+                        productDto2, 100, 3000),
+                new PostDto(3, 1, date, productDto, 100, 2000));
+        return postDtosExpectAsc;
     }
 }
