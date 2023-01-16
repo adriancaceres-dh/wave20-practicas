@@ -15,6 +15,7 @@ import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.PostRepositoryImp;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -217,6 +218,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("UT-Find post by id seller order asc test")
     void findPostByIdSellerTestAsc(){
         String orderOption = "date_asc";
 
@@ -229,6 +231,7 @@ class PostServiceTest {
 
     }
     @Test
+    @DisplayName("UT-Find post by id seller order desc test")
     void findPostByIdSellerTestDesc(){
         String orderOption = "date_desc";
 
@@ -242,6 +245,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("UT-Find post by id seller order invalid test")
     void findPostByIdSellerOrderInvalidTest(){
         String orderOption = "not_sorting_option";
         String expectedErrorMessage = "Invalid sorting option";
