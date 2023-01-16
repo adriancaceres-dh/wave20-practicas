@@ -36,13 +36,14 @@ public class UserRepository implements IUserRepository {
         return users.stream().filter(e -> e.getUserId() == id).findFirst().orElse(null);
     }
 
-    public List<User> loadData(){
+    public List<User> loadData() {
         List<User> loadedData = new ArrayList<>();
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             File file = ResourceUtils.getFile("./src/main/resources/users.json");
-            loadedData = objectMapper.readValue(file, new TypeReference<List<User>>(){});
+            loadedData = objectMapper.readValue(file, new TypeReference<List<User>>() {
+            });
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Failed while initializing DB, check your resources files");

@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 public class Test_T004_OrderedByNameFollowers {
 
@@ -28,7 +29,7 @@ public class Test_T004_OrderedByNameFollowers {
 
     @Test
     @DisplayName("Test de validacion de orden ascendente por nombre")
-    public void userFollowersOrderAscOk(){
+    public void userFollowersOrderAscOk() {
 
         //Arrange
         UserFollowersDto expectedUserFollowersDto = TestUtils.userFollowersDtoTest("name_asc");
@@ -40,17 +41,17 @@ public class Test_T004_OrderedByNameFollowers {
         when(userRepository.findById(4)).thenReturn(TestUtils.usersTest().get(2));
         when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(3));
 
-        UserFollowersDto actualUserFollowersDto = userService.userFollowers(1,"name_asc");
+        UserFollowersDto actualUserFollowersDto = userService.userFollowers(1, "name_asc");
 
         //Assert
-        Assertions.assertEquals(expectedUserFollowersDto,actualUserFollowersDto);
+        Assertions.assertEquals(expectedUserFollowersDto, actualUserFollowersDto);
 
 
     }
 
     @Test
     @DisplayName("Test de validacion de orden descendente por nombre")
-    public void userFollowersOrderDescOk(){
+    public void userFollowersOrderDescOk() {
 
         //Arrange
         UserFollowersDto expectedUserFollowersDto = TestUtils.userFollowersDtoTest("name_desc");
@@ -62,10 +63,10 @@ public class Test_T004_OrderedByNameFollowers {
         when(userRepository.findById(4)).thenReturn(TestUtils.usersTest().get(2));
         when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(3));
 
-        UserFollowersDto actualUserFollowersDto = userService.userFollowers(1,"name_desc");
+        UserFollowersDto actualUserFollowersDto = userService.userFollowers(1, "name_desc");
 
         //Assert
-        Assertions.assertEquals(expectedUserFollowersDto,actualUserFollowersDto);
+        Assertions.assertEquals(expectedUserFollowersDto, actualUserFollowersDto);
 
 
     }

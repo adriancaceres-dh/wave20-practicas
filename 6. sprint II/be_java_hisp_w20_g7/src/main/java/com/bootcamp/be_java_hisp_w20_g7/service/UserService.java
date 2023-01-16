@@ -46,7 +46,7 @@ public class UserService implements IUserService {
 
         List<User> followers;
 
-        if(order == null){
+        if (order == null) {
             followers = follows.stream().map(e -> iUserRepository.findById(e.getIdFollower())).collect(Collectors.toList());
         } else {
             if (order.equals("name_asc")) {
@@ -61,7 +61,7 @@ public class UserService implements IUserService {
         List<UserDto> userDtos = followers.stream().map(e -> modelMapper.map(e, UserDto.class)).collect(Collectors.toList());
         User followed = iUserRepository.findById(userId);
 
-        return new UserFollowersDto(followed.getUserId(), followed.getUserName(),userDtos);
+        return new UserFollowersDto(followed.getUserId(), followed.getUserName(), userDtos);
 
     }
 
@@ -74,9 +74,9 @@ public class UserService implements IUserService {
         List<Follow> followList = iFollowRepository.findAll().stream().filter(follow -> follow.getIdFollower() == userId).collect(Collectors.toList());
         List<User> userFollowedList;
 
-        if(order == null){
+        if (order == null) {
             userFollowedList = followList.stream().map(e -> iUserRepository.findById(e.getIdFollowed())).collect(Collectors.toList());
-        }else{
+        } else {
             if (order.equals("name_asc")) {
                 userFollowedList = followList.stream().map(e -> iUserRepository.findById(e.getIdFollowed())).sorted(compareByName).collect(Collectors.toList());
             } else if (order.equals("name_desc")) {
@@ -89,7 +89,7 @@ public class UserService implements IUserService {
         List<UserDto> userFollowedDtoList = userFollowedList.stream().map(f -> modelMapper.map(f, UserDto.class)).collect(Collectors.toList());
         User follower = iUserRepository.findById(userId);
 
-        return new UserFollowedDto(follower.getUserId(), follower.getUserName(),userFollowedDtoList);
+        return new UserFollowedDto(follower.getUserId(), follower.getUserName(), userFollowedDtoList);
     }
 
     @Override

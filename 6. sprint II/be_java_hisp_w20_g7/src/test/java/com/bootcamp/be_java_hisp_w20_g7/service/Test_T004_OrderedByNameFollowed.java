@@ -4,6 +4,7 @@ import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.repository.FollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.when;
-
+@ExtendWith(MockitoExtension.class)
 public class Test_T004_OrderedByNameFollowed {
 
     @Mock
@@ -27,7 +28,7 @@ public class Test_T004_OrderedByNameFollowed {
 
     @Test
     @DisplayName("T004 alphabetical order ascending")
-    public void userFollowedOrderAscOk(){
+    public void userFollowedOrderAscOk() {
 
         //Arrange
         UserFollowedDto expected = TestUtils.userFollowedTest("name_asc");
@@ -39,7 +40,7 @@ public class Test_T004_OrderedByNameFollowed {
         when(userRepository.findById(4)).thenReturn(TestUtils.usersTest().get(2));
         when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(3));
 
-        UserFollowedDto result = userService.userFollowed(1,"name_asc");
+        UserFollowedDto result = userService.userFollowed(1, "name_asc");
 
         //Assert
         Assertions.assertEquals(expected, result);
@@ -49,7 +50,7 @@ public class Test_T004_OrderedByNameFollowed {
 
     @Test
     @DisplayName("T004 alphabetical order descending")
-    public void userFollowedOrderDescOk(){
+    public void userFollowedOrderDescOk() {
 
         //Arrange
         UserFollowedDto expected = TestUtils.userFollowedTest("name_desc");
@@ -61,10 +62,10 @@ public class Test_T004_OrderedByNameFollowed {
         when(userRepository.findById(4)).thenReturn(TestUtils.usersTest().get(2));
         when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(3));
 
-        UserFollowedDto result = userService.userFollowed(1,"name_desc");
+        UserFollowedDto result = userService.userFollowed(1, "name_desc");
 
         //Assert
-        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(expected, result);
 
 
     }

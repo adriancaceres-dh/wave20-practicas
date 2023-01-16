@@ -12,12 +12,13 @@ import javax.validation.constraints.*;
 public class UserDto {
 
     @NotBlank(message = "userId is a mandatory field")
-    @Min(value = 1,message = "Id must be greater than 0")
+    @Min(value = 1, message = "Id must be greater than 0")
     private int userId;
 
     @NotNull(message = "userName is a mandatory field")
     @Size(max = 15, message = "Field cannot have more than 15 characters")
-    @Pattern(regexp="(([A-Z]* | [a-z]* | [ñ,ó,í,á,é,ú,Á,Ó,É,Í,Ú]*))*", message = "Name cannot hace especial characters") //creo que esto valida que solo sean letras ahorita lo probamos
+    @Pattern(regexp = "(([A-Z]* | [a-z]* | [ñ,ó,í,á,é,ú,Á,Ó,É,Í,Ú]*))*", message = "Name cannot hace especial characters")
+    //creo que esto valida que solo sean letras ahorita lo probamos
     private String userName;
 
 }

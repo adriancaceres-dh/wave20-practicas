@@ -1,19 +1,19 @@
 [
-{
-  "user_id" : 3,
-  "post_id" : 1,
-  "date" : "30-12-2022",
-  "product" : {
-    "product_id": 3,
-    "product_name": "Silla Gamer",
-    "type": "Gamer",
-    "brand": "Racer",
-    "color": "Black",
-    "notes": "Special Edition"
-  },
-  "category": 100,
-  "price": 3000.0,
-  "has_promo": false,
-  "discount" : 0.0
-}
+  {
+    "user_id": 3,
+    "post_id": 1,
+    "date": "30-12-2022",
+    "product": {
+      "product_id": 3,
+      "product_name": "Silla Gamer",
+      "type": "Gamer",
+      "brand": "Racer",
+      "color": "Black",
+      "notes": "Special Edition"
+    },
+    "category": 100,
+    "price": 3000.0,
+    "has_promo": false,
+    "discount": 0.0
+  }
 ]

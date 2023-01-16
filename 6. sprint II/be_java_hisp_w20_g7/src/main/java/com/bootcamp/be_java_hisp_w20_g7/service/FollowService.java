@@ -42,9 +42,9 @@ public class FollowService implements IFollowService {
         Follow follow = new Follow(userIdFollower, userIdFollowed);
         boolean exists = alreadyExists(follow);
 
-        if(userRepository.findById(userIdFollower) == null || userRepository.findById(userIdFollowed) == null) {
+        if (userRepository.findById(userIdFollower) == null || userRepository.findById(userIdFollowed) == null) {
             throw new UserNotFoundException("Followed user or Follower user not found");
-        }else if (exists) {
+        } else if (exists) {
             followRepository.findAll().remove(follow);
             return "the user was unfollowed successfully";
         } else {

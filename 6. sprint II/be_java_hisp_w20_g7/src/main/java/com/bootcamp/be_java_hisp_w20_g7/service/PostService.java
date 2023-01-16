@@ -25,17 +25,14 @@ import java.util.stream.Collectors;
 @Service
 public class PostService implements IPostService {
 
+    private final Clock clock = Clock.systemUTC();
     @Autowired
     IPostRepository iPostRepository;
-
     @Autowired
     IFollowRepository iFollowRepository;
-
     @Autowired
     IUserRepository iUserRepository;
-
     ModelMapper modelMapper;
-    private final Clock clock = Clock.systemUTC();
 
     public PostService() {
         modelMapper = new ModelMapper();
@@ -83,7 +80,7 @@ public class PostService implements IPostService {
             posts = iPostRepository.findAll().stream()
                     .filter(e -> followedIds.contains(e.getUserId()) && !e.getDate().isBefore(LocalDate.now(clock).minusDays(15)))
                     .sorted(Comparator.comparing(Post::getDate).reversed()).collect(Collectors.toList());
-        } else{
+        } else {
             throw new DataIsnotCorrectException("Select an existed order, you can use date_desc or date_asc");
         }
 
