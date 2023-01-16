@@ -22,8 +22,8 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 *     US 004: followedOrderOkTest - Verificar el ordenamiento ascendente por nombre.              Tammara Trivelli
 *     US 005: getPublicationsInvalidOrderTest - Parametro de orden de fecha incorrecto            Emiliano Asprea
 *     US 006: getPublicationsOrder(Asc/Desc)OKTest - Verificar que las publicaciones de las ultimas 2 semanas esten ordenadas. Rodrigo Cabrera
-*     US 007: followersCountOkTest - Verificar la cantidad de seguidores.                                                      Desarrollo grupal
-*     US 008: getLastTwoWeeksPublicationsOKTest - Verificar que las publicaciones sean de las últimas dos semanas.             Desarrollo grupal
+*     US 007: followersCountOkTest - Verificar la cantidad de seguidores.                         Desarrollo grupal
+*     US 008: getLastTwoWeeksPublicationsOKTest - Verificar que las publicaciones sean de las últimas dos semanas.  Desarrollo grupal
 
 
 ### [Endpoints](https://github.com/adriancaceres-dh/wave20-practicas/files/10354848/3.b.W20.-.Esp.de.Req.tecnicos.funcionales.-.Sprint.N.1.-.Spring.docx.pdf): Responsable Emiliano Asprea
