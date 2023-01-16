@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class PostRequestDTO {

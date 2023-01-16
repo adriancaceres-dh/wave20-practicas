@@ -43,13 +43,8 @@ public class PostControllerIntegrationTest {
     @Test
     void postPostOk() throws Exception {
         // arrange
-        ProductDTO productDTO = new ProductDTO(5, "Gamer Chair", "Gamer", "Racer", "Red & Black", "Special Edition");
-        PostRequestDTO postRequestDTO = new PostRequestDTO();
-        postRequestDTO.setUser_id(6);
-        postRequestDTO.setDate(LocalDate.of(2023, 1, 16));
-        postRequestDTO.setProductDTO(productDTO);
-        postRequestDTO.setCategory(90);
-        postRequestDTO.setPrice(1500.50);
+        ProductDTO productDTO = new ProductDTO(5, "Gamer Chair", "Gamer", "Racer", "Red and Black", "Special Edition");
+        PostRequestDTO postRequestDTO = new PostRequestDTO(6, LocalDate.of(2023, 1, 16), productDTO, 90, 1500.50);
 
         ResponseDTO responseDTO = new ResponseDTO(true, "Post added successfully");
 
@@ -70,13 +65,8 @@ public class PostControllerIntegrationTest {
     @Test
     void postPostInvalidPayload() throws Exception {
         // arrange
-        ProductDTO productDTO = new ProductDTO(5, "Gamer Chair", "Gamer", "Racer", "Red & Black", "Special % Edition");
-        PostRequestDTO postRequestDTO = new PostRequestDTO();
-        postRequestDTO.setUser_id(6);
-        postRequestDTO.setDate(LocalDate.of(2023, 1, 16));
-        postRequestDTO.setProductDTO(productDTO);
-        postRequestDTO.setCategory(90);
-        postRequestDTO.setPrice(1500.50);
+        ProductDTO productDTO = new ProductDTO(5, "Gamer Chair", "Gamer", "Racer", "Red and Black", "Special % Edition");
+        PostRequestDTO postRequestDTO = new PostRequestDTO(6, LocalDate.of(2023, 1, 16), productDTO, 90, 1500.50);
 
         ErrorDTO errorDTO = new ErrorDTO("MethodArgumentNotValidException", "El campo no puede poseer caracteres especiales");
 
