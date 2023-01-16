@@ -1,5 +1,7 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.util;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,6 +12,8 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class TestUtils {
@@ -53,5 +57,26 @@ public class TestUtils {
             e.printStackTrace();
         }
         return posts;
+    }
+
+    public static User getTestUser(int id) {
+        return TestUtils.createMockUsers().stream().filter(user -> user.getId() == id).findFirst().orElseThrow();
+    }
+
+    public static FollowedListDTO getTestFollowedListDTO (String order) {
+        List<UserResponseDTO> userResponseDTOList = new ArrayList<>();
+
+        if (order.equalsIgnoreCase("name_asc")) {
+            for (int i = 0; i < 5; i++) {
+                userResponseDTOList.add( new UserResponseDTO (i, TestUtils.getTestUser(i).getUserName()));
+            }
+        } else if (order.equalsIgnoreCase("name_desc")) {
+            for (int i = 5; i > 0; i--) {
+                userResponseDTOList.add( new UserResponseDTO (i, TestUtils.getTestUser(i).getUserName()));
+            }
+        }
+
+        return new FollowedListDTO(5, "Test", userResponseDTOList);
+
     }
 }
