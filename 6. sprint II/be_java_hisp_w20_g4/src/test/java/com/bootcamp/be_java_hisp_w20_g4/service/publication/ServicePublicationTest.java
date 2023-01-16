@@ -8,6 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.model.User;
 import com.bootcamp.be_java_hisp_w20_g4.repository.publication.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g4.utils.TestUtils;
 import org.apache.catalina.mapper.Mapper;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductResponseDTO;
@@ -22,6 +23,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -194,5 +196,25 @@ class ServicePublicationTest {
 
     @Test
     void getLastTwoWeeksPublicationsOKTest() {
+        Product product = new Product(1, "producto", "rojo", "", "", "");
+        Category category = new Category(1, "categoria");
+        Seller seller1 = new Seller(1, "Vendedor1");
+        Publication publication1 = new Publication(LocalDate.of(2022, 1, 14), 100.0, product, category, 1);
+        Publication publication2 = new Publication(LocalDate.of(2022, 2, 13), 200.0, product, category, 1);
+        Seller seller2 = new Seller(2, "Vendedor2");
+        Publication publication3 = new Publication(LocalDate.of(2023, 1, 10), 300.0, product, category, 2);
+
+        Buyer buyer = new Buyer(3, "Comprador");
+        buyer.addUserToMyFollowedList(seller1);
+        buyer.addUserToMyFollowedList(seller2);
+
+        when(mockUserRepository.findById(3)).thenReturn(buyer);
+        when(mockPublicationRepository.getPublicationLastNDays(new ArrayList<Integer>(Arrays.asList(1, 2)), 15)).thenReturn(new ArrayList<Publication>(Arrays.asList(publication1,publication3)));
+
+        ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(3, new ArrayList<ListedPostDTO>(Arrays.asList(TestUtils.mapper.map(publication3, ListedPostDTO.class), TestUtils.mapper.map(publication1, ListedPostDTO.class))));
+
+        ProductTwoWeeksResponseDTO result = mockServicePublication.getLastTwoWeeksPublications(3, null);
+
+        assertEquals(expected, result);
     }
 }
