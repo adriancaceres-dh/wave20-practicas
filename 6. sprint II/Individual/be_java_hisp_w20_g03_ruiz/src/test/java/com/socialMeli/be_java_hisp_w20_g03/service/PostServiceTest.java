@@ -151,4 +151,38 @@ class PostServiceTest {
         Assertions.assertThrows(NotFoundException.class, () ->postService.getPost(userId1, null));
     }
 
+    @Test
+    @DisplayName("T-0009: Agregando una nueva publicación.")
+    void addPostOk() {
+        //Arrange
+        int userId1 = 234;
+        int userId2 = 6631;
+        User user = UserUtils.buildUserWithOneFollower(userId1, userId2);
+        Post post = PostUtils.buildPost(userId1);
+        PostDTO postDTO = PostUtils.postDTOConverter(List.of(post)).get(0);
+        String expected = "Publicación agregada";
+        when(userRepository.getUserById(userId1)).thenReturn(user);
+
+        //Act
+        String actual = postService.addPost(postDTO);
+
+        //Assert
+        verify(postRepository, atLeastOnce()).addPost(post);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("T-0009: Agregando una nueva publicación con un usuario no existente.")
+    void addPostNotFoundException() {
+        //Arrange
+        int userId1 = 234;
+        Post post = PostUtils.buildPost(userId1);
+        PostDTO postDTO = PostUtils.postDTOConverter(List.of(post)).get(0);
+        when(userRepository.getUserById(userId1)).thenReturn(null);
+
+        //Act y Assert
+        Assertions.assertThrows(NotFoundException.class, () -> postService.addPost(postDTO));
+    }
+
+
 }

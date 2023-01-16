@@ -38,7 +38,7 @@ public class PostService implements IPostService {
         Post post = mapper.map(postDTO, Post.class);
         post.setPostId(++postId);
         postRepository.addPost(post);
-        return "Publicacion agregada";
+        return "Publicación agregada";
     }
 
     @Override

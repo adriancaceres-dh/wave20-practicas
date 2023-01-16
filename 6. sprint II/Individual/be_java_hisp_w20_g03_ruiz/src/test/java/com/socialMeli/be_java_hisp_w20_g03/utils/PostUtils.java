@@ -13,7 +13,7 @@ public class PostUtils {
 
     static ModelMapper mapper = new ModelMapper();
 
-    public static List<Post> getLatestPosts(){
+    public static List<Post> getLatestPosts() {
         LocalDate currentDate = LocalDate.now();
         List<Post> posts = new ArrayList<>();
         Product product1 = Product.builder()
@@ -64,9 +64,9 @@ public class PostUtils {
         return posts;
     }
 
-    public static List<PostDTO> postDTOConverter(List<Post> posts){
+    public static List<PostDTO> postDTOConverter(List<Post> posts) {
         List<PostDTO> postsDTO = new ArrayList<>();
-        posts.stream().forEach(post -> postsDTO.add(mapper.map(post,PostDTO.class)));
+        posts.stream().forEach(post -> postsDTO.add(mapper.map(post, PostDTO.class)));
         return postsDTO;
     }
 
@@ -119,5 +119,26 @@ public class PostUtils {
         posts.add(post2);
         posts.add(post3);
         return posts;
+    }
+
+    public static Post buildPost(int userId) {
+        Product product1 = Product.builder()
+                .productId(1)
+                .productName("Silla Gamer")
+                .type("Gamer")
+                .brand("Racer")
+                .color("Red and Black")
+                .notes("Special Edition")
+                .build();
+
+        Post post1 = Post.builder()
+                .postId(1)
+                .userId(userId)
+                .category(1)
+                .price(1000)
+                .product(product1)
+                .date(LocalDate.parse("2023-01-01"))
+                .build();
+        return post1;
     }
 }
