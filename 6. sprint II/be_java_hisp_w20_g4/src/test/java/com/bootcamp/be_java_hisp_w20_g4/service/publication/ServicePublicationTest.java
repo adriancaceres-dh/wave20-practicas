@@ -120,8 +120,8 @@ class ServicePublicationTest {
     }
 
     @Test
-    @DisplayName(value = "T-0005 -Parametro de orden correcto")
-    void getPublicationsOrderOKTest() {
+    @DisplayName(value = "T-0005 -Parametro de orden correcto (date_asc)")
+    void getPublicationsOrderValidAscOKTest() {
         //arrange
 
         when(mockPublicationRepository.getPublicationLastNDays(Arrays.asList(1),15)).thenReturn(Arrays.asList(publication1,publication2,publication3));
@@ -131,6 +131,28 @@ class ServicePublicationTest {
 
         //act
         ProductTwoWeeksResponseDTO result = mockServicePublication.getLastTwoWeeksPublications(2,"date_asc");
+
+        //assert
+        assertEquals(expected,result);
+
+    }
+
+    @Test
+    @DisplayName(value = "T-0005 -Parametro de orden correcto (date_desc)")
+    void getPublicationsOrderValidDescOKTest() {
+        //arrange
+
+        when(mockPublicationRepository.getPublicationLastNDays(Arrays.asList(1),15)).thenReturn(Arrays.asList(publication1,publication2,publication3));
+        when(mockUserRepository.findById(2)).thenReturn(buyer);
+
+        List<ListedPostDTO> publicationsExpected = seller.getPublications().values().stream().map((x)->mapper.map(x,ListedPostDTO.class)).collect(Collectors.toList());
+
+        Collections.reverse(publicationsExpected);
+
+        ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(2,publicationsExpected);
+
+        //act
+        ProductTwoWeeksResponseDTO result = mockServicePublication.getLastTwoWeeksPublications(2,"date_desc");
 
         //assert
         assertEquals(expected,result);
