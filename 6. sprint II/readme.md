@@ -21,7 +21,7 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
 # Consideraciones generales
 - Solamente se permiten caracteres alfanuméricos en los campos de texto del payload, además de espacios en cada uno.
 - El test **T-0008** se realizó sobre el repositorio, no sobre el servicio, debido a que el filtro de las últimas dos semanas se hace directamente en el repo.
-- Se agregó la anotación **@Validate** en los controladores para poder validar los **@PathVariable**.
+- Se agregó la anotación **@Validated** en los controladores para poder validar los **@PathVariable**.
 
 ## Refactorización
 - Se realizó un cambio en el factor de comparación del método **findPostById** en **PostRepositoryImpl**.
