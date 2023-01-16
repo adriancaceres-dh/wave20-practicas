@@ -13,6 +13,7 @@ import com.bootcamp.be_java_hisp_w20_g7.repository.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.time.Clock;
@@ -37,7 +38,6 @@ public class PostService implements IPostService {
     public PostService() {
         modelMapper = new ModelMapper();
     }
-
 
     @Override
     public String createPost(PostCreateDto postCreateDto) {
