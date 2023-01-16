@@ -12,8 +12,6 @@ import java.util.Set;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
-import com.socialmeli.be_java_hisp_w20_g8.models.User;
-import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.PostRepositoryImp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
