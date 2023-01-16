@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 public class ProductRequestDto {
     @NotNull(message = "El id no puede estar vacío")
     @Min(value = 1, message = "El id debe ser mayor a 0")
-    private int productId;
+    private Integer productId;
     @NotBlank(message = "El campo no puede estar vacío")
     @Size(max = 40, message = "La longitud no puede superar los 40 caracteres")
     @Pattern(regexp = "^[\\w ]+$", message = "El campo no puede poseer caracteres especiales.")

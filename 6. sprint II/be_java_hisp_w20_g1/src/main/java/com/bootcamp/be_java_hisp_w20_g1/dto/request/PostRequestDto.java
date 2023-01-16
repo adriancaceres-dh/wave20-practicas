@@ -22,17 +22,17 @@ public class PostRequestDto {
     private LocalDate date;
     @NotNull(message = "El id no puede estar vacío")
     @Min(value = 1, message = "El id debe ser mayor a 0")
-    private int userId;
+    private Integer userId;
     @NotNull(message = "Debe ingresar un producto")
     @Valid
     private ProductRequestDto product;
     @NotNull(message = "El campo no puede estar vacío")
     @Min(value = 1, message = "El campo debe ser mayor a 0")
-    private int category;
+    private Integer category;
     @NotNull(message = "El campo no puede estar vacío")
     @DecimalMax(value = "10000000", message = "El precio máximo por producto es de 10.000.000")
     @DecimalMin(value = "0.10", message = "El precio mínimo por producto es de 0.1")
-    private double price;
+    private Double price;
 
 
 }
