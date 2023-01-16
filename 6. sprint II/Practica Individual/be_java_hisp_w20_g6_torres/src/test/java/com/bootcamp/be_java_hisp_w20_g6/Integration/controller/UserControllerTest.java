@@ -22,12 +22,31 @@ public class UserControllerTest {
     MockMvc mockMvc;
 
     @Test
+    @DisplayName("Test de integracion para endopint: /users/{userId}/followers/count")
     void countFollowers() throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 1))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.followers_count").value(0));
+    }
+
+    @Test
+    @DisplayName("Test de integracion para endopint: /users/{userId}/followers/list ")
+    void listFollowers() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/list", 1))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"));
+    }
+
+    @Test
+    @DisplayName("Test de integracion para endopint: /users/{userId}/followed/list ")
+    void listFollowed() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list", 1))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"));
     }
 
 }
