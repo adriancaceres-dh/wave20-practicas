@@ -1,8 +1,10 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.sellers;
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.SellerFollowersDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.UserCountDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.UserDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
+import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.models.User;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -146,5 +148,25 @@ class SellerServiceTest {
         for(int i = 1; i < actual.size(); i++) {
             assertTrue(actual.get(i-1).getUser_name().compareTo(actual.get(i).getUser_name()) >= 0);
         }
+    }
+
+    @DisplayName("T-0007 -> Amount of followers of a user is correct")
+    @Test
+    public void followersCountTest(){
+
+        //arrange
+        int userId = 9;
+        UserCountDTO sellExcpected = new UserCountDTO(9,"user1",3);
+        when(personRepository.getById(9)).thenReturn(
+                new Seller(9,"user1",
+                        new HashSet<>(){{add(1);add(2);add(3);}},
+                        new HashSet<>()));
+
+        //act
+        UserCountDTO sellActual = sellerService.followersCount(userId);
+
+        //assert
+        assertEquals(sellExcpected.getFollowers_count(),sellActual.getFollowers_count());
+        assertThrows(NotFoundException.class,()->sellerService.followersCount(2));
     }
 }

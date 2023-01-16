@@ -22,18 +22,18 @@ import java.util.stream.Collectors;
 public class UserService implements IUserService {
 
     @Autowired
-    IPersonRepository IPersonRepository;
+    IPersonRepository personRepository;
     ModelMapper modelMapper = new ModelMapper();
 
     public UserFollowedDTO getAllFollowed(int userId, String order) {
-        if (IPersonRepository.checkUser(userId)) {
+        if (personRepository.checkUser(userId)) {
             // Getting User and converting to UserDTO
-            User user = IPersonRepository.findUserById(userId);
+            User user = personRepository.findUserById(userId);
 
 
             //Getting List of sellers and converting to SellerDTO
-            List<Seller> sellers = IPersonRepository.getAllFollowed(userId).stream()
-                    .map(seller_id -> IPersonRepository.findSellerById(seller_id))
+            List<Seller> sellers = personRepository.getAllFollowed(userId).stream()
+                    .map(seller_id -> personRepository.findSellerById(seller_id))
                     .collect(Collectors.toList());
 
             List<SellerDTO> sellersDTO = sellers.stream()
@@ -62,9 +62,9 @@ public class UserService implements IUserService {
 
     public ResponseDTO addNewFollow(int userId, int sellerId) {
         if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
-        if (IPersonRepository.checkUser(userId) && IPersonRepository.checkUser(sellerId)) {
-            IPersonRepository.addFollowing(userId, sellerId);
-            IPersonRepository.addFollower(sellerId, userId);
+        if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
+            personRepository.addFollowing(userId, sellerId);
+            personRepository.addFollower(sellerId, userId);
             return ResponseDTO.builder()
                     .ok(true)
                     .message("New Follower add successfully").build();
@@ -75,9 +75,9 @@ public class UserService implements IUserService {
 
     @Override
     public ResponseDTO unfollow(int userid, int sellerId) {
-        if (IPersonRepository.checkUser(userid) && IPersonRepository.checkUser(sellerId)) {
-            IPersonRepository.unfollowing(userid, sellerId);
-            IPersonRepository.unfollower(sellerId, userid);
+        if (personRepository.checkUser(userid) && personRepository.checkUser(sellerId)) {
+            personRepository.unfollowing(userid, sellerId);
+            personRepository.unfollower(sellerId, userid);
             return ResponseDTO.builder()
                     .ok(true)
                     .message("you have unfollowed the user").build();

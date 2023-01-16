@@ -78,22 +78,25 @@ public class UserControllerIntegrationTest {
                 .andDo(print()).andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(expectedMessageError))
                 .andReturn();
-
-
     }
 
     @Test
     @DisplayName("T-0001 -> Checking endpoint validations")
     void TestNewFollowValidations() throws Exception{
 
+        int userId =-1;
+        int userIdToFollow =-2;
+        String expectedeMessage= "ConstraintViolationException";
 
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/users/users/{userId}/follow/{userIdToFollow}", null, userIdToFollow))
-//                .andDo(print()).andExpect(status().isBadRequest())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("MethodArgumentNotValidException"));
-
-
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/users/users/{userId}/follow/{userIdToFollow}", userId, userIdToFollow))
+                .andDo(print()).andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedeMessage));
     }
+
+
+    //Bonus
+
 
 
 }

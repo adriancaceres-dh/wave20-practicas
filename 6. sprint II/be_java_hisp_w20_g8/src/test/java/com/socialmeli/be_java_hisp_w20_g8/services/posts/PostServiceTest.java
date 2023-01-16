@@ -1,5 +1,6 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.PostRepositoryImp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +38,7 @@ class PostServiceTest {
 
     @Test
     public void findPostByIdSellerTestAscendentOrder() {
-        List<PostDTO> listPostExpectd = new ArrayList<>();
+        List<PostDTO> listPostExpected = new ArrayList<>();
 
         Set<Seller> sellers = new HashSet<>();
         sellers.addAll(Set.of(
@@ -60,10 +62,10 @@ class PostServiceTest {
         PostDTO post3 = PostDTO.builder().post_id(3).user_id(7).date(LocalDate.now().minusDays(2)).build();
         PostDTO post4 = PostDTO.builder().post_id(4).user_id(6).date(LocalDate.now().minusDays(1)).build();
 
-        listPostExpectd.add(post1);
-        listPostExpectd.add(post2);
-        listPostExpectd.add(post3);
-        listPostExpectd.add(post4);
+        listPostExpected.add(post1);
+        listPostExpected.add(post2);
+        listPostExpected.add(post3);
+        listPostExpected.add(post4);
 
         setPost.add(post1);
         setPost.add(post2);
@@ -97,7 +99,7 @@ class PostServiceTest {
         // Act
         ResponsePostDTO actual = postService.findPostByIdSeller(sellers, 1, "date_asc");
         // Assert
-        Assertions.assertEquals(listPostExpectd, actual.getPosts());
+        Assertions.assertEquals(listPostExpected, actual.getPosts());
         ;
 
     }
