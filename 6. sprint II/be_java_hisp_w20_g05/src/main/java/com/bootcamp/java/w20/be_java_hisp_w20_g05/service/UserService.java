@@ -51,7 +51,7 @@ public class UserService implements IUserService{
         User user1 = userRepository.getById(userId)
                 .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
         User user2 = userRepository.getById(userIdToFollow)
-                .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
+                .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userIdToFollow+" was not found")));
 
         if (userId == userIdToFollow)
             throw new InvalidFollowUnfollowException(new MessageExceptionDTO("No puedes seguirte a tí mismo"));
@@ -68,7 +68,7 @@ public class UserService implements IUserService{
         User user1 = userRepository.getById(userId)
             .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
         User user2 = userRepository.getById(userIdToUnfollow)
-            .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userId+" was not found")));
+            .orElseThrow(()->new IdNotFoundException(new MessageExceptionDTO("User with id: "+userIdToUnfollow+" was not found")));
 
         if (!user1.unfollowUser(user2.getId()))
             throw new InvalidFollowUnfollowException(new MessageExceptionDTO(String.format("Actualmente no sigues al usuario %d", userIdToUnfollow)));
