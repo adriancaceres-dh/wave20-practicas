@@ -31,7 +31,7 @@ public class Test_T007_VerificarFollowers {
 
     @Test
     @DisplayName("Test para verificar la cantidad de seguidores de un determinado usuario")
-    public void verifyFollowOK(){
+    public void verifyFollowOK() {
 
         //Arrange
 
