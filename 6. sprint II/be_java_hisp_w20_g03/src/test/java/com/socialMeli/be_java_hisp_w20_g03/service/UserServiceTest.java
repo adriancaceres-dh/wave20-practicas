@@ -39,7 +39,7 @@ class UserServiceTest {
     UserService userService;
 
     @Test
-    @DisplayName("US0001-Permite continuar con normalidad.")
+    @DisplayName("T-0001: Permite continuar con normalidad.")
     void addFollower() {
         //Arrange
         int idRequestUser = 234;
@@ -55,7 +55,7 @@ class UserServiceTest {
         Assertions.assertEquals(expected,result);
     }
     @Test
-    @DisplayName("US0001-Verificando la excepcion cuando el usuario no existe.")
+    @DisplayName("T-0001: Verificando la excepcion cuando el usuario no existe.")
     void addFollowerThrowsNotFoundException() {
         //Arrange
         int idRequestUser = 23;
@@ -65,7 +65,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0007-Cantidad de seguidores adecuada.")
+    @DisplayName("T-0007: Cantidad de seguidores adecuada.")
     void getFollowerCount() {
         //Arrange
         User user = UserUtils.buildUser();
@@ -81,7 +81,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-0007-Usuario inexistente")
+    @DisplayName("T-0007: Usuario inexistente")
     void getFollowerCountUserDoesntExists() {
         //Arrange
         when(userRepository.getUserById(anyInt())).thenReturn(null);
@@ -91,7 +91,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T-003-Camino Feliz")
+    @DisplayName("T-0003: Camino Feliz")
     void getFollowersListOrderDesc() {
         //arrange
         int userId = 234;
@@ -105,7 +105,7 @@ class UserServiceTest {
         assertEquals(expect,actual);
     }
     @Test
-    @DisplayName("T-003-Camino Feliz")
+    @DisplayName("T-0003: Camino Feliz")
     void getFollowersListOrderAsc() {
         //arrange
         int userId = 234;
@@ -119,7 +119,7 @@ class UserServiceTest {
         assertEquals(expect,actual);
     }
     @Test
-    @DisplayName("T-004-Excepción cuando el usuario no existe")
+    @DisplayName("T-0004: Excepción cuando el usuario no existe")
     void getFollowersListUserNotFound() {
         //arrange
         when(userRepository.getUserById(000)).thenThrow(NotFoundException.class);
@@ -127,7 +127,7 @@ class UserServiceTest {
         assertThrows(NotFoundException.class, ()->userService.getFollowersList(000,null));
     }
     @Test
-    @DisplayName("T-003-Excepción cuando ingresa un orden incorrecto")
+    @DisplayName("T-0003: Excepción cuando ingresa un orden incorrecto")
     void getFollowersListUserNotFoundOrder() {
         //arrange
         when(userRepository.getUserById(234)).thenThrow(BadRequestException.class);
@@ -135,7 +135,7 @@ class UserServiceTest {
         assertThrows(BadRequestException.class, ()->userService.getFollowersList(234,"name_null"));
     }
 
-    @DisplayName("US0002-Permite continuar con normalidad.")
+    @DisplayName("T-0002: Permite continuar con normalidad.")
     @Test
     void unfollowOk() {
         //arrange
@@ -157,7 +157,7 @@ class UserServiceTest {
         assertEquals(expectedString,unfollowResponse);
 
     }
-    @DisplayName("US0002- Usuario no existe.")
+    @DisplayName("T-0002: Usuario no existe.")
     @Test
     void unfollowUserNotFound() {
         //arrange
@@ -169,7 +169,7 @@ class UserServiceTest {
         //Assert
         assertThrows(NotFoundException.class, ()->userService.unfollow(userIdFollower,userIdToUnfollow));
     }
-    @DisplayName("US0002-Usuario no es seguido")
+    @DisplayName("T-0002: Usuario no es seguido")
     @Test
     void unfollowUserNotFollowed() {
         int userIdFollower = 234;
