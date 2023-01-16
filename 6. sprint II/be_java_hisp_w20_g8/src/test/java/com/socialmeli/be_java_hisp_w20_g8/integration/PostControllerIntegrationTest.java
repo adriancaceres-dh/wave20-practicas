@@ -7,6 +7,7 @@ import com.socialmeli.be_java_hisp_w20_g8.dto.ErrorDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDTO;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -41,6 +42,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T-0009 -> Create a post successfully")
     void postPostOk() throws Exception {
         // arrange
         ProductDTO productDTO = new ProductDTO(5, "Gamer Chair", "Gamer", "Racer", "Red and Black", "Special Edition");
@@ -63,6 +65,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T-0009 -> Create a post that has an invalid field")
     void postPostInvalidPayload() throws Exception {
         // arrange
         ProductDTO productDTO = new ProductDTO(5, "Gamer Chair", "Gamer", "Racer", "Red and Black", "Special % Edition");
@@ -85,6 +88,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T-0010 -> Get all the posts from the sellers followed by a user")
     void findAllPostsByIdUserOk() throws Exception {
         // arrange
         int userId = 2;
@@ -102,6 +106,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T-0010 -> Get all the posts from the sellers followed by an invalid user")
     void findAllPostsByIdUserInvalidUserId() throws Exception {
         // arrange
         int userId = -2;
