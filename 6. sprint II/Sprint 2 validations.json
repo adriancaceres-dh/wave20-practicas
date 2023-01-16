@@ -278,7 +278,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user_id\": 3,\n    \"date\": \"01-01-2023\",\n    \"product\": {\n        \"product_id\": \"\",\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 10,\n    \"price\": 1500.50\n}\n",
+									"raw": "{\n    \"user_id\": 3,\n    \"date\": \"01-01-2023\",\n    \"product\": {\n        \"product_id\": 0,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 10,\n    \"price\": 1500.50\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -878,7 +878,7 @@
 							"response": []
 						},
 						{
-							"name": "product color length",
+							"name": "product color special characters",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1148,7 +1148,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 10,\n    \"price\": 1500.50\n}\n",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": null,\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 10,\n    \"price\": 1500.50\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
