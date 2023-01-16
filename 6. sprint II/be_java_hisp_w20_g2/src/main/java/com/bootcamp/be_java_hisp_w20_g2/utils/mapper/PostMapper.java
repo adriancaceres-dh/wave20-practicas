@@ -12,10 +12,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PostMapper {
-    @Autowired
+    //@Autowired
     private CategoryRepository categoryRepository;
-    @Autowired
+    //@Autowired
     private ProductMapper productMapper;
+
+    public PostMapper() {
+        this.categoryRepository = new CategoryRepository();
+        this.productMapper = new ProductMapper();
+    }
 
     public Post toPost(PostDTO postDTO) {
         Product product = productMapper.toProduct(postDTO.getProduct());

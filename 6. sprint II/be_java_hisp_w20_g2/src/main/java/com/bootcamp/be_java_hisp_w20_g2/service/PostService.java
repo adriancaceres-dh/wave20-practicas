@@ -21,7 +21,12 @@ public class PostService implements IPostService {
     @Autowired
     private IUserRepository userRepository;
     @Autowired
+    private ICategoryRepository categoryRepository;
     private PostMapper postMapper;
+
+    public PostService() {
+        this.postMapper = new PostMapper();
+    }
 
     /**
      * Creates a post and saves it in a user posts list.

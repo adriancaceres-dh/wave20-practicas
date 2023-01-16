@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 @Repository
 public class UserRepository implements IUserRepository {
-    private static int currentId = 0;
+    private static int currentId = 1;
 
     private final HashMap<Integer, User> users;
     @Autowired
