@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g1.util;
 
+import com.bootcamp.be_java_hisp_w20_g1.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.PostResponseDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.ProductResponseDto;
@@ -30,11 +31,23 @@ public class TestUtil {
                 userId(id).
                 price(400D).
                 productId(2).
-                date(LocalDate.of(2023, 01, 10)).
+                date(LocalDate.now().minusDays(Parameter.getInteger("NumberOfDays")-1)).
                 category(50).
                 build());
 
         return posts;
+    }
+
+    public static Post getPostFromFifteenDaysAgo() {
+
+        return Post.builder().
+                userId(3).
+                price(500D).
+                productId(1).
+                date(LocalDate.now().minusDays(Parameter.getInteger("NumberOfDays"))).
+                category(100).
+                build();
+
     }
 
     public static ProductResponseDto getProductById(int id) {
@@ -55,7 +68,7 @@ public class TestUtil {
                 collect(Collectors.toList());
 
         for (int i = 0; i < 2; i++) {
-            postDto.get(i).setProduct(getProductById(i+1));
+            postDto.get(i).setProduct(getProductById(i + 1));
         }
         return new PostListResponseDto(id, postDto);
     }
