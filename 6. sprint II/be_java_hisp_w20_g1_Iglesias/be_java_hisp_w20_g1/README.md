@@ -483,3 +483,5 @@ Se llevó a cabo un test de integración de manera individual (realizado por Agu
 - Finalmente el @dirtiesContext elimina el contexto, asegurando que nuestro test se descarte.
 
 Además, dado que fue necesario utilizar @beforeAll para el setup, se establece la propiedad @testInstance para que la clase solo se inicialice una sola vez y luego se reúse.
+
+Se alcanzó un coverage del 55,4%.
