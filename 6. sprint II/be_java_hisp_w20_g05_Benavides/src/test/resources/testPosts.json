@@ -1,0 +1,223 @@
+[
+  {
+    "id":1,
+    "userId":2,
+    "date":"2023-01-04",
+    "category":20,
+    "price":930,
+    "discount":0.35,
+    "product":
+    {
+      "id":13,
+      "name":"azelastine hcl nasal",
+      "brand":"PerrigoNewYorkInc",
+      "type":"AzelastineHCl",
+      "color":"green",
+      "notes":"Progressive 5th generation pricing structure"
+    }
+  },
+  {
+    "id":2,
+    "userId":1,
+    "date":"2023-01-06",
+    "category":23,
+    "price":1070,
+    "discount":0.25,
+    "product":
+    {
+      "id":14,
+      "name":"Stool Softener",
+      "brand":"Dolgencorp, Inc. (DOLLAR GENERAL & REXALL)",
+      "type":"DOCUSATE SODIUM",
+      "color":"red",
+      "notes":"Synergized system-worthy emulation"
+    }
+  },
+  {
+    "id":3,
+    "userId":2,
+    "date":"2023-01-07",
+    "category":20,
+    "price":1120,
+    "discount":0.3,
+    "product":
+    {
+      "id":12,
+      "name":"Ultra Tuss DM",
+      "brand":"Ultra Seal Corporation",
+      "type":"guaifenesin dextromethorphan HBr",
+      "color":"orange",
+      "notes":"Organic uniform core"
+    }
+  },
+  {
+    "id":4,
+    "userId":2,
+    "date":"2023-01-08",
+    "category":20,
+    "price":1670,
+    "discount":0.1,
+    "product":
+    {
+      "id":13,
+      "name":"azelastine hcl nasal",
+      "brand":"Perrigo New York Inc",
+      "type":"Azelastine HCl",
+      "color":"green",
+      "notes":"Progressive 5th generation pricing structure"
+    }
+  },
+  {
+    "id":5,
+    "userId":3,
+    "date":"2023-01-09",
+    "category":22,
+    "price":1850,
+    "discount":0.25,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  },
+    {
+    "id":6,
+    "userId":4,
+    "date":"2023-01-10",
+    "category":22,
+    "price":260,
+    "discount":0.05,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  },
+    {
+    "id":7,
+    "userId":2,
+    "date":"2023-01-12",
+    "category":22,
+    "price":1030,
+    "discount":0.25,
+    "product":
+    {
+      "id":10,
+      "name":"Pure Petroleum",
+      "brand":"Pan Aromas LLC",
+      "type":"White Petroleum",
+      "color":"orange",
+      "notes":"Front-line dedicated instruction set"
+    }
+  },
+  {
+    "id":8,
+    "userId":1,
+    "date":"2023-01-12",
+    "category":20,
+    "price":1590,
+    "discount":0.15,
+    "product":
+    {
+      "id":5,
+      "name":"Modesa",
+      "brand":"Shanghai Weierya Daily Chemicals Factory",
+      "type":"Ethyl Alcohol",
+      "color":"orange",
+      "notes":"Fundamental modular extranet"
+    }
+  },
+  {
+    "id":9,
+    "userId":2,
+    "date":"2023-01-13",
+    "category":20,
+    "price":1800,
+    "discount":0.15,
+    "product":
+    {
+      "id":7,
+      "name":"Prednisolone Sodium Phosphate",
+      "brand":"Hi-Tech Pharmacal Co., Inc.",
+      "type":"Prednisolone Sodium Phosphate",
+      "color":"orange",
+      "notes":"Reverse-engineered intermediate Graphic Interface"
+    }
+  },
+  {
+    "id":10,
+    "userId":1,
+    "date":"2023-01-14",
+    "category":20,
+    "price":1760,
+    "discount":0.2,
+    "product":
+    {
+      "id":3,
+      "name":"antacid",
+      "brand":"Meijer Distribution Inc",
+      "type":"Calcium carbonate",
+      "color":"blue",
+      "notes":"Profound heuristic firmware"
+    }
+  },
+  {
+    "id":11,
+    "userId":2,
+    "date":"2023-01-14",
+    "category":22,
+    "price":1850,
+    "discount":0.25,
+    "product":
+    {
+      "id":10,
+      "name":"Pure Petroleum",
+      "brand":"Pan Aromas LLC",
+      "type":"White Petroleum",
+      "color":"orange",
+      "notes":"Front-line dedicated instruction set"
+    }
+  },
+  {
+    "id":12,
+    "userId":1,
+    "date":"2023-01-15",
+    "category":20,
+    "price":1100,
+    "discount":0.25,
+    "product":
+    {
+      "id":12,
+      "name":"Ultra Tuss DM",
+      "brand":"Ultra Seal Corporation",
+      "type":"guaifenesin dextromethorphan HBr",
+      "color":"orange",
+      "notes":"Organic uniform core"
+    }
+  },
+  {
+    "id":13,
+    "userId":2,
+    "date":"2023-01-16",
+    "category":22,
+    "price":1600,
+    "discount":0.25,
+    "product":
+    {
+      "id":16,
+      "name":"EROS SILICONE GLIDE AND CARE",
+      "brand":"MEGASOL COSMETIC GMBH",
+      "type":"DIMETHICONE",
+      "color":"purple",
+      "notes":"Self-enabling explicit productivity"
+    }
+  }
+]
