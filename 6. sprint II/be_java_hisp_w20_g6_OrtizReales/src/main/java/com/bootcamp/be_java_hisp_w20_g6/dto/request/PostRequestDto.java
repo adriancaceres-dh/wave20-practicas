@@ -1,10 +1,11 @@
 package com.bootcamp.be_java_hisp_w20_g6.dto.request;
 
-import com.bootcamp.be_java_hisp_w20_g6.model.ProductModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+
+import com.bootcamp.be_java_hisp_w20_g6.model.ProductModel;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BeJavaHispW20G6Application {
+public class BeJavaHispW20G6OrtizRealesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BeJavaHispW20G6Application.class, args);
+		SpringApplication.run(BeJavaHispW20G6OrtizRealesApplication.class, args);
 	}
 
 }

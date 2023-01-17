@@ -8,6 +8,7 @@ import com.bootcamp.be_java_hisp_w20_g6.repository.PostRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Implement.PostServiceImpl;
 import com.bootcamp.be_java_hisp_w20_g6.service.Implement.UserServiceImpl;
 import com.bootcamp.be_java_hisp_w20_g6.util.TestsUtilsGenerator;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -65,10 +66,10 @@ public class PostServiceImplTest {
         String typeSort="date_asc";
         List<PostResponseDTO> listPosts=TestsUtilsGenerator.getPostsDto();
         //act
-        List<PostResponseDTO> response =mockPostServiceImpl.returnOrderPostByDate(listPosts, typeSort);
+        List<PostResponseDTO> response = mockPostServiceImpl.returnOrderPostByDate(listPosts, typeSort);
         //assert
         assertEquals(LocalDate.of(2022,1,1),response.get(0).getDate());
-        assertEquals(LocalDate.of(2023,1,13),response.get(1).getDate());
+        assertEquals(LocalDate.now().minusDays(4),response.get(1).getDate());
     }
     @Test
     @DisplayName("US-0009 - T-0006, Verificar el correcto ordenamiento descendente")
@@ -77,10 +78,10 @@ public class PostServiceImplTest {
         String typeSort="date_desc";
         List<PostResponseDTO> listPosts=TestsUtilsGenerator.getPostsDto();
         //act
-        List<PostResponseDTO> response =mockPostServiceImpl.returnOrderPostByDate(listPosts, typeSort);
+        List<PostResponseDTO> response = mockPostServiceImpl.returnOrderPostByDate(listPosts, typeSort);
         //assert
-        assertEquals(LocalDate.of(2023,1,17),response.get(0).getDate());
-        assertEquals(LocalDate.of(2023,1,15),response.get(1).getDate());
+        assertEquals(LocalDate.now(),response.get(0).getDate());
+        assertEquals(LocalDate.now().minusDays(2),response.get(1).getDate());
     }
 
     @Test

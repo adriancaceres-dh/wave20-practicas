@@ -1,12 +1,12 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Interface;
 
+import java.util.List;
+
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowedListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
-
-import java.util.List;
 
 
 public interface IUserService{

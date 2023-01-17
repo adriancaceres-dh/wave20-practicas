@@ -1,5 +1,8 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Implement;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowedListResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersCountResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersListResponseDto;
@@ -8,8 +11,6 @@ import com.bootcamp.be_java_hisp_w20_g6.exception.*;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
