@@ -68,7 +68,7 @@ public class PostService implements IPostService {
         List<PostResponseDto> posts = followedByuserId.stream()
                 .map(postRepository::getPostsByUserId) // Obtiene la lista de Posts de cada vendedor.
                 .flatMap(List::stream) // Concatena lista de publicaciones de todos los vendedores a una única lista.
-                .filter(post -> LocalDate.now().minusDays(30).isBefore(post.getDate()))
+                .filter(post -> LocalDate.now().minusDays(Parameter.getInteger("NumberOfDays")).isBefore(post.getDate()))
                 .map(post -> PostResponseDto.builder().userId(post.getUserId()) // Solo mapea los posts de los últimos 14 días.
                         .postId(post.getId())
                         .date(post.getDate())
