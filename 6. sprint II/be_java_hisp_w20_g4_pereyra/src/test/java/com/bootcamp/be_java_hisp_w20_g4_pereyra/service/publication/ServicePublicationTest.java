@@ -9,6 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.publication.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.repository.user.IUserRepository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.*;
@@ -53,7 +54,7 @@ class ServicePublicationTest {
     private Buyer buyer;
 
 
-    @BeforeEach
+    @BeforeEach @AfterEach
     void setUp(){
         Product product1 = new Product(
                 12, "twingo",

@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.request.ProductRequestDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.product.ProductResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.PublicationDTO;
 
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.utils.TestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -35,15 +36,8 @@ public class IntegrationTestPublicationService {
     PostDTO postDTO;
     ProductRequestDTO productRequestDTO;
 
-    private static ObjectWriter writer;
-
     @BeforeEach
     void setUp() {
-        writer = new ObjectMapper()
-                .registerModule(new JavaTimeModule())
-                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
-                .writer();
-
         productRequestDTO = new ProductRequestDTO(1, "Silla Gamer", "Gamer", "Racer", "Red Black", "Special Edition");
         postDTO = new PostDTO(3, LocalDate.of(2023, 1,1), productRequestDTO, 10, 1500.50);
     }
@@ -51,11 +45,11 @@ public class IntegrationTestPublicationService {
     @Test
     @DisplayName("Test de integración de agregar una nueva publicación")
     public void testAddNewPost() throws Exception {
-        String postDtoRequestJson = writer.writeValueAsString(postDTO);
+        String postDtoRequestJson = TestUtils.writer.writeValueAsString(postDTO);
 
         ProductResponseDTO productResponseDTO = new ProductResponseDTO(1, "Silla Gamer", "Gamer", "Racer", "Red Black", "Special Edition");
         PublicationDTO publicationDtoExpected = new PublicationDTO(LocalDate.of(2023, 01, 01), productResponseDTO, 10, 1500.5);
-        String expectedPublicationDto = writer.writeValueAsString(publicationDtoExpected);
+        String expectedPublicationDto = TestUtils.writer.writeValueAsString(publicationDtoExpected);
 
         ResultMatcher expectedStatus = status().isOk();
         ResultMatcher expectedJson = content().json(expectedPublicationDto);
