@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g1.integration;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,6 +24,7 @@ public class UserControllerIntegrationTest {
     MockMvc mockMvc;
 
     @Test
+    @DisplayName("T12: Si el id de usuario es valido, devuelve lista de seguidores" )
     public void givenValidId_getUserFollowers_ShouldReturnUserFollowersList() throws Exception {
         Integer validId = 2;
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/list", validId)
@@ -36,6 +38,7 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T12: Se devuelve excepcion si el usuario a seguir no existe" )
     public void givenInvalidId_getUserFollowers_ShouldThrowException() throws Exception {
         Integer inexistentId = 99;
         String expectedErrorMessage = "El usuario no existe";
@@ -50,6 +53,7 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T13: Se devuelve lista de seguidos si el usuario es valido" )
     public void givenValidId_getUserFollowed_ShouldReturnUserFollowedList() throws Exception {
         Integer validId = 2;
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list", validId)
@@ -63,6 +67,7 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T13: Se devuelve excepcion si el usuario a consultar lista de seguidos no existe" )
     public void givenInvalidId_getUserFollowed_ShouldThrowException() throws Exception {
         Integer inexistentId = 99;
         String expectedErrorMessage = "El usuario no existe";
