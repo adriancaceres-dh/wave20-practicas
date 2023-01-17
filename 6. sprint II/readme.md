@@ -4,10 +4,10 @@ SocialMeli se ha convertido en todo un éxito. Mercado Libre estableció una ser
 ## Objetivo
 El objetivo de este desafío es aplicar los contenidos dados hasta el momento durante el BOOTCAMP (Git, Java, Spring y Testing), haciendo principal hincapié en las validaciones y tipos de testing que pueden ser utilizados a partir de un enunciado propuesto, una especificación de requerimientos y documentación técnica.
 
-## Rama principal
-Se utilizó como repositorio principal la rama de John Edward Garcia Saavedra **EdwardGs1702**.
+## Rama grupal
+Se utilizó como repositorio principal la rama **grupo8**.
 
-## Proyecto realizado por:
+## Proyecto grupal realizado por:
 - John Edward Garcia Saavedra **github: EdwardGs1702**
 - Juan Camilo Arango Valle **github: jcamiloarangov**
 - Julian Atehortua Zapata **github: juatehortua**
@@ -16,6 +16,8 @@ Se utilizó como repositorio principal la rama de John Edward Garcia Saavedra **
 - Luis Francisco López **github: luis-lopezgomez**
 - Diego Alejandro Malagon Ruiz **github: DiegoAlejandroMalagon**
 
+## Sección individual realizada por:
+- Luis Francisco López **github: luis-lopezgomez**
 
 ## Requisitos para el correcto funcionamiento del proyecto
 Este proyecto fue realizado a partir del proyecto grupal final del primer sprint: **SocialMeli**.
@@ -81,3 +83,10 @@ SocialMeli contaba anteriormente con las siguientes User Stories y requerimiento
 | T-0006 |                                           Verificar el correcto ordenamiento ascendente y descendente por fecha.                                           |                                       Verificar el correcto ordenamiento ascendente y descendente por fecha.                                       |           Adrian Isaac Gomez |
 | T-0007 |                                      Verificar que la cantidad de seguidores de un determinado usuario sea correcta.                                       |                             Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                              |      Julian Atehortua Zapata |
 | T-0008 | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. |                       Grupal |
+
+## Tests de Integración
+| Código |                                                Situaciones de entrada                                                 |                                                  Comportamiento esperado                                                   |                   By |
+|:-------|:---------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|---------------------:|
+| T-0009 |           Verificar que se pueda agregar una publicación correctamente tomando en cuenta alguna validación.           |    Se cumple: Permite continuar con normalidad. No se cumple: Notifica por mensaje la validación que se ha de cumplir.     | Luis Francisco López |
+| T-0010 |             Verificar que se obtenga un arreglo de posts de los sellers a quien sigue un usuario válido.              |   Se cumple: Permite continuar con normalidad. No se cumple: Notifica que el usuario es inválido mediante una excepción.   | Luis Francisco López |
+| T-0011 | Verificar que un usuario pueda seguir a un seller, comprobando la existencia de ambos y que no sean la misma persona. | Se cumple: Permite continuar con normalidad. No se cumple: Notifica el problema sobre los usuarios mediante una excepción. | Luis Francisco López |
