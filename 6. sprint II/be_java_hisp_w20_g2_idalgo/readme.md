@@ -6,11 +6,14 @@ ______
 3. _*
    *[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)
    **_
-4.
+4. _*
+   *[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---20-)
+   **_
+5.
 _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)
 **_
-5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
-6. _**[Bitácora](#-bitácora-)**_
+6. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
+7. _**[Bitácora](#-bitácora-)**_
     1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
     2. _**[Repository](#-repository-)**_
     3. _**[Model](#-model-)**_
@@ -19,9 +22,16 @@ _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-inc
     6. _**[Controller](#-controller-)**_
     7. _**[Exception y config](#-exception-y-config-)**_
     8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
-7. _**[Endpoints](#-endpoints-)**_
-8. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
-9. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
+8. _**[Endpoints](#-endpoints-)**_
+9. _**[Resumen de datos de entrada US](#-resumen-de-datos-de-entrada-según-las-us-)**_
+10. _**[Validaciones en campos de las US](#-validaciones-en-campos-de-las-us-)**_
+11. _**[Test Unitarios](#-tests-unitarios-)**_
+12. _**[Test Unitarios](#implementación-de-test-unitarios---grupal)**_
+    1. [Test de Controllers](#-controller-)
+    2. [Test de Services](#-service-)
+13. [Tests de Integración](#implementación-de-tests-de-integración---individual)
+14. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
+15. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
 
 ## 📌 Objetivo 📌
 
@@ -81,7 +91,6 @@ Para esta parte se plantea la creación de una API Rest que permita:
 Por otra parte, dado que se pretende una buena experiencia de usuario con respecto a la forma de presentación de los
 resultados
 de cada consulta, se necesita que los mismos puedan ser ordenados mediante cualquiera de los siguientes criterios:
-
 8. Alfabético Ascendente y Descendente.
 9. Fecha Ascendente y Descendente.
 
@@ -112,7 +121,6 @@ con ofertas
 o descuentos especiales exclusivos para sus seguidores por un determinado período de tiempo. Para ello propone los
 siguientes
 requerimientos:
-
 10. Llevar a cabo la publicación de un nuevo producto en promoción.
 11. Obtener la cantidad de productos en promoción de un determinado vendedor.
 
@@ -369,6 +377,7 @@ _**Sign:**_
 |              | Ejemplo: /users/4698/followed/list                                                                                                                                                                                                                                                                                          | 
 | **Response** | <pre>{<br/>  "user_id": 4698,<br/>  "user_name": "usuario1",<br/>  "followed":[<br/>  {<br/>    "user_id": 234,<br/>    "user_name": "vendedor1"<br/>  },<br/>  {<br/>    "user_id": 6932,<br/>    "user_name": "vendedor2"<br/>  },<br/>  {<br/>    "user_id": 6631,<br/>    "user_name": "vendedor3"<br/>  }<br/> ]<br/>} |
 
+
 _**Filtros/Parámetros:**_
 
 | Parámetros | Tipo | Descripción/Ejemplo                  |
@@ -503,7 +512,6 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 ____
 
 # 📦 Resumen de Datos de entrada según las US 📦
-
 | Datos/Parámetros        |   Tipo    |     Longitud     | Descripción                                                                                                              |
 |-------------------------|:---------:|:----------------:|--------------------------------------------------------------------------------------------------------------------------|
 | **user_id**             |  Integer  |                  | Número que identifica al usuario actual                                                                                  |
@@ -524,7 +532,6 @@ ____
 | **order**               |  String   |                  | Establece el ordenamiento. Puede poseer los valores: name_asc, name_desc, date_asc, date_desc                            |
 
 # ⚠️ Validaciones en campos de las US ⚠️
-
 | Datos/Parámetros | ¿Obligatorio? | Validación                                                                                                                  | Mensaje de error                                                                                                                             |
 |------------------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | **user_id**      |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id no puede estar vacío.<br/>- El id debe ser mayor a cero                                                                              |
@@ -539,6 +546,7 @@ ____
 | **notes**        |      No       | - Longitud máxima de 80 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc)                                   | - La longitud no puede superar los 80 caracteres.<br/>- El campo no puede poseer caracteres especiales.                                      |
 | **category**     |      No       | - Que el campo no esté vacío.                                                                                               | - El campo no puede estar vacío.                                                                                                             |
 | **price**        |      No       | - Que el campo no esté vacío.<br/>- El precio máximo puede ser 10.000.000                                                   | - El campo no puede estar vacío.<br/>- El precio máximo por producto es de 10.000.000                                                        |
+
 
 # 🛃 Tests Unitarios 🛃
 
@@ -559,11 +567,18 @@ necesario implementar otros, esto es totalmente viable.
 Los test desarrollados, durante la realización del Sprint II será realizado en un Sistema Bajo Prueba - SUT y principio
 F.I.R.S.T.
 
-## Implementación de Test Unitarios - Grupal
+## 🪤 Implementación de Test Unitarios - Grupal 🪤
 
 ____
 
-### Service
+### 🛃 Controller 🛃
+
+* _PostControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación
+  individual.
+* _UserControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación
+  individual.
+
+### 🏪 Service 🏪
 
 * _PostServiceTest_:
 
@@ -603,6 +618,28 @@ ____
   repositorios.
   Se trata de cubrir todos los caminos posibles.
 
+Se finaliza con una cobertura (en líneas) del **82%** usando Coverage integrado de IntelliJ.
+
+____
+
+### 🛎 Creación de validaciones y colección de postman 🛎
+
+Fue desarrollado por:
+_[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
+[Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+[Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
+
+Las validaciones realizadas fueron sobre la creación de un nuevo post verificando:
+
++ Que el user_id no este vacío.
++ Que no tenga un post_id.
++ Que no tenga fecha.
++ Que el tipo de la colección no supere una longitud máx. de 40 caracteres.
++ Que el precio máximo no supere los 10.000.000
+
+No se realizan todos las validaciones de todos los atributos, ya que se entiende que muchas de las validaciones
+son la misma implementación, sin cambios, en otros objetos y atributos.
+
 ____
 
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
@@ -637,9 +674,12 @@ ____
 
 ## ✅ Correcciones Sprint 1 ✅
 
-Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
-Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete),
-[Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron),
-[Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
-[Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml),
-[Emanuel Fonseca](https://github.com/Emanoide47)._
+- Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
+  Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete),
+  [Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron),
+  [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+  [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml),
+  [Emanuel Fonseca](https://github.com/Emanoide47)._
+
+- Cambio de variables static dentro de las variables _currentId_, ya que afectaban al correr los test de integración de
+  forma grupal, dentro de todas las clases de repositorios.
