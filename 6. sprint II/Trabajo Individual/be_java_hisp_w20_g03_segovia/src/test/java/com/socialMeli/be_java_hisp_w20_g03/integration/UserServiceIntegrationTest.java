@@ -59,7 +59,7 @@ public class UserServiceIntegrationTest {
         Assertions.assertEquals(response, mvcResult.getResponse().getContentAsString(Charset.defaultCharset()));
 
     }
-   /* @Test
+    @Test
     void getFollowersListTestOK() throws Exception{
         User user = UserUtils.getUserAddFollower(234);
 
@@ -75,7 +75,7 @@ public class UserServiceIntegrationTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                .andReturn();
-    }*/
+    }
 
 
 }
