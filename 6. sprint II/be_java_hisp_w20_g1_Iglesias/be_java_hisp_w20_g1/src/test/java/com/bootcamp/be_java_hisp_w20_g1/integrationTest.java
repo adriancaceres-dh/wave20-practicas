@@ -12,12 +12,17 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.event.annotation.BeforeTestClass;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -39,6 +44,7 @@ import java.util.List;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext
+@TestInstance(Lifecycle.PER_CLASS)
 public class integrationTest {
     @Autowired
     private MockMvc mockMvc;
@@ -87,7 +93,7 @@ public class integrationTest {
         product = new ProductRequestDto();
         product.setProductId(22);
         product.setProductName("Televisores");
-        product.setType("Electordomesticos");
+        product.setType("Teles");
         product.setBrand("Wahuuu");
         product.setColor("Negros");
         product.setNotes("Una tele trucha");
@@ -98,31 +104,20 @@ public class integrationTest {
     }
 
     @Test
+    @Order(1)
     void shouldInsertANewPost() throws Exception {
+// Vamos a insertar los posts de nuestro setup.
+        for (PostRequestDto payloadDto : posts) {
+            ObjectWriter writer = new ObjectMapper().registerModule(new JavaTimeModule()).configure(SerializationFeature.WRAP_ROOT_VALUE, false).writer();
+            String payloadJson = writer.writeValueAsString(payloadDto); // convertimos nuestro objeto dto a String.
 
-        PostRequestDto payloadDto = new PostRequestDto(); // creamos nuestro objeto dto y empezamos a preparar nuestro payload para enviárselo al método.
-        LocalDate fecha = LocalDate.now();
-        payloadDto.setDate(fecha);
-        payloadDto.setUserId(2);
-        ProductRequestDto product = new ProductRequestDto();
-        product.setProductId(20);
-        product.setProductName("Galletas");
-        product.setType("Alimentos");
-        product.setBrand("Oreo");
-        product.setColor("Marrones");
-        product.setNotes("Deliciosas galletas");
-        payloadDto.setProduct(product);
-        payloadDto.setCategory(4);
-        payloadDto.setPrice(50.0);
-        ObjectWriter writer = new ObjectMapper().registerModule(new JavaTimeModule()).configure(SerializationFeature.WRAP_ROOT_VALUE, false).writer();
-        String payloadJson = writer.writeValueAsString(payloadDto); // convertimos nuestro objeto dto a String.
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/products/post").contentType(MediaType.APPLICATION_JSON).content(payloadJson)).andDo(print()).andExpect(status().isCreated())
-                .andReturn();
-
+            MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/products/post").contentType(MediaType.APPLICATION_JSON).content(payloadJson)).andDo(print())
+                    .andExpect(status().isCreated()).andReturn();
+        }
     }
 
     @Test
+    @Order(2)
     void shouldReturnAnInvalidParam() throws Exception {
         // Vamos a ponerle un precio indebido al producto y vamos a testear que dé error.
         // Esto se puede hacer para todos los campos, para asegurar que todas las validaciones estén OK.
