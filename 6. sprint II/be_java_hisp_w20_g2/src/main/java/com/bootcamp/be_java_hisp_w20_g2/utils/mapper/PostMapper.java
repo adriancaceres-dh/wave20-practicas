@@ -7,19 +7,16 @@ import com.bootcamp.be_java_hisp_w20_g2.model.Category;
 import com.bootcamp.be_java_hisp_w20_g2.model.Post;
 import com.bootcamp.be_java_hisp_w20_g2.model.Product;
 import com.bootcamp.be_java_hisp_w20_g2.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PostMapper {
-    //@Autowired
     private CategoryRepository categoryRepository;
-    //@Autowired
     private ProductMapper productMapper;
 
-    public PostMapper() {
-        this.categoryRepository = new CategoryRepository();
-        this.productMapper = new ProductMapper();
+    public PostMapper(CategoryRepository categoryRepository, ProductMapper productMapper) {
+        this.categoryRepository = categoryRepository;
+        this.productMapper = productMapper;
     }
 
     public Post toPost(PostDTO postDTO) {
