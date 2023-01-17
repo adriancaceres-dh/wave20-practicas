@@ -26,7 +26,7 @@ public class UserServiceImpl implements IUserService {
         UserModel user = getUserById(user_id);
 
         ArrayList<Integer> userFollowedList = user.getFollowed();
-        if (!userFollowedList.contains(userToFollow_id)) {
+          if (!userFollowedList.contains(userToFollow_id)) {
             user.getFollowed().add(userToFollow_id);
             userToFollow.getFollowers().add(user_id);
             return true;

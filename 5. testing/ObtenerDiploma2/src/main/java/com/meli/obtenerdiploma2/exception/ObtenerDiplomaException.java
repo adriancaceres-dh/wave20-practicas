@@ -12,6 +12,7 @@ public class ObtenerDiplomaException extends RuntimeException {
     private final HttpStatus status;
 
     public ObtenerDiplomaException(String message, HttpStatus status) {
+        super(message);
         this.error = new ErrorDTO(this.getClass().getSimpleName(), message);
         this.status = status;
     }
