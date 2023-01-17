@@ -309,17 +309,14 @@ Por ejemplo
   "status": 400,
   "timestamp": "2023-01-16T09:30:21.563110",
   "invalid_validations": [{
-    "field": "userId",
     "rejected_value": "0",
     "reason": "El id debe ser mayor a 0"
   },
     {
-      "field": "product.color",
       "rejected_value": "Red & Black",
       "reason": "El campo no puede poseer caracteres especiales."
     },
     {
-      "field": "price",
       "rejected_value": "1.500123123213231E15",
       "reason": "El precio máximo por producto es de 10.000.000"
     }
