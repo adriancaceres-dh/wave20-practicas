@@ -471,7 +471,7 @@ Por ejemplo
 </tbody>
 </table>
 
----
+--- 
 ## Test de integración (trabajo individual)
 ### (Coverage alcanzado: 76%)
 
