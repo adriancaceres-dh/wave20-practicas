@@ -49,6 +49,10 @@ Descripcion de User Stories.
 | `T-0008`  | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. **(US-0006)** | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. |
 
 
+## Test de integración
+
+Se realizan tests de integración adicionales para verificar el funcionamiento del controlador. 
+
 ## Responsables de cada unit test.
 - T0001 - Andrea
 - T0002 - Andrea
