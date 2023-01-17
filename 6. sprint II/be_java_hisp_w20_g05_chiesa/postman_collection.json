@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "473efe3e-f287-46e5-bfab-c1a0be96d250",
-		"name": "Sprint 1",
+		"_postman_id": "130cc51f-0fba-4ffb-a60d-c62911a6fd59",
+		"name": "Sprint 1 Copy 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1132,6 +1132,19 @@
 								"post"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 008 IdValueValidation",
+			"item": [
+				{
+					"name": "Id below zero",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
