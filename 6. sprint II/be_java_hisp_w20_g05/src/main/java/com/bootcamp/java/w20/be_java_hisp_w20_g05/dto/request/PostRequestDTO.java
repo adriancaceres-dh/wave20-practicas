@@ -19,8 +19,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class PostRequestDTO {
-    @JsonProperty("product_id")
-    private int id;
 
     @JsonProperty("user_id")
     @Min(value = 1, message= "El Id debe ser mayor a 0.")
@@ -40,6 +38,4 @@ public class PostRequestDTO {
     @Max(value = 10000000 , message = "El precio maximo por producto es de 10.000.000")
     @Min(value = 0)
     private double price;
-
-    private double discount;
 }
