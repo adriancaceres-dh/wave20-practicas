@@ -8,8 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -19,7 +18,7 @@ class IntegrationTestUserController {
     MockMvc mockMvc;
 
     @Test
-    void countFollowers() throws Exception {
+    void testValidUserCountFollowers() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 3))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(content().contentType("application/json"))
@@ -29,10 +28,12 @@ class IntegrationTestUserController {
     }
 
     @Test
-    void findAllFollowers() throws Exception {
-    }
-
-    @Test
-    void findUserFollowedList() throws Exception {
+    void testInvalidUserIdToCountFollowers() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 9))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.name").value("UserNotFoundException"))
+                .andExpect(jsonPath("$.message").value("User Not Found"));
     }
 }
