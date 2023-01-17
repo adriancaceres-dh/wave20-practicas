@@ -25,17 +25,6 @@ class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static ObjectWriter writer;
-
-    /*
-    @BeforeAll
-    public static void setUp() {
-        writer = new ObjectMapper()
-                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
-                .writer();
-    }
-     */
-
     @Test
     void followOk() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}", 2L, 3L)

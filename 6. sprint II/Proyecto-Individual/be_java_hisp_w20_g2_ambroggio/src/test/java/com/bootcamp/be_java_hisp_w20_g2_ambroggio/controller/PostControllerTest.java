@@ -59,6 +59,21 @@ class PostControllerTest {
     }
 
     @Test
+    void addNewProductMethodArgumentNotValidException() throws Exception {
+        ProductDTO productDTO = new ProductDTO(120, "Silla gamer", "Gamer", "Redragon", "Negro", "");
+        PostDTO postDTO = new PostDTO(1, LocalDate.now(), productDTO, 200, 1000000000D);
+        String payloadJson = writer.writeValueAsString(postDTO);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payloadJson))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("El precio máximo por producto es 10.000.000"))
+                .andReturn();
+    }
+
+    @Test
     void sendLastPostOfFollowedOk() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list", 1))
                 .andDo(print())
