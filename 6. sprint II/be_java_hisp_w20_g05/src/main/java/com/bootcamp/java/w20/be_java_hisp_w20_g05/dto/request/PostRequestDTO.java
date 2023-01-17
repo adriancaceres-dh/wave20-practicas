@@ -35,7 +35,7 @@ public class PostRequestDTO {
     private int category;
 
     @NotNull(message = "El precio no puede estar vacio.")
-    @Max(value = 10000000 , message = "El precio maximo por producto es de 10.000.000")
-    @Min(value = 0)
+    @Max(value = 10000000, message = "El precio maximo por producto es de 10.000.000")
+    @Min(value = 0, message = "El precio no puede ser menor a 0")
     private double price;
 }
