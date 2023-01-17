@@ -34,7 +34,7 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    @DisplayName("T1: Cuando el usuario a seguir existe se agrega como seguidor")
+    @DisplayName("T1: Se agrega como seguidor cuando el usuario a seguir existe ")
     void whenGivingValidUserId_followUser_ShouldFollowUser() {
 
         //Arrange
@@ -76,7 +76,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("T2: Cuando el usuario a dejar de seguir existe se deja de seguir")
+    @DisplayName("T2: Se deja de seguir Cuando el usuario a dejar de seguir existe ")
     void whenGivingValidUserId_unfollowUser_ShouldUnfollowUser() {
         //Arrange
         User validUser = TestUtil.getSellerUser("noahHoah", 1);
