@@ -195,4 +195,20 @@ public class TestUtil {
                 .color("Transparent")
                 .build();
     }
+
+    public static PostRequestDto getInvalidPostExistingProduct() {
+        Product product = getValidProduct();
+        product.setId(1);
+
+        return getPostRequestDtoWithGivenProduct(product);
+    }
+
+    public static PostRequestDto getInvalidPostInvalidUser() {
+        Product product = getValidProduct();
+        product.setId(99);
+        PostRequestDto postRequestDto = getPostRequestDtoWithGivenProduct(product);
+        postRequestDto.setUserId(999);
+
+        return postRequestDto;
+    }
 }
