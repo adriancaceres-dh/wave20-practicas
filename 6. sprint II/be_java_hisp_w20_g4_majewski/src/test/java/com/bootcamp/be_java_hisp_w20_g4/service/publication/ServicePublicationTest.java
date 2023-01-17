@@ -9,6 +9,7 @@ import com.bootcamp.be_java_hisp_w20_g4.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4.repository.publication.IPublicationRepository;
 import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import com.bootcamp.be_java_hisp_w20_g4.model.*;
@@ -53,7 +54,7 @@ class ServicePublicationTest {
     private Buyer buyer;
 
 
-    @BeforeEach
+    @BeforeEach @AfterEach
     void setUp(){
         Product product1 = new Product(
                 12, "twingo",
@@ -92,7 +93,7 @@ class ServicePublicationTest {
 
         ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
         //Act
-        ProductTwoWeeksResponseDTO response = mockServicePublication.getLastTwoWeeksPublications(1, "date_asc");
+        ProductTwoWeeksResponseDTO response = mockServicePublication.getLastTwoWeeksPublications(2, "date_asc");
         //Assert
         assertEquals(expected, response);
     }
