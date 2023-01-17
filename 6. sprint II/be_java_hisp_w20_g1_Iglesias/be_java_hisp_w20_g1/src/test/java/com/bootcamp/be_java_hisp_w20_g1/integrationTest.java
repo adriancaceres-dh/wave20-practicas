@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.ClassOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -45,6 +48,8 @@ import java.util.List;
 @AutoConfigureMockMvc
 @DirtiesContext
 @TestInstance(Lifecycle.PER_CLASS)
+@TestMethodOrder(org.junit.jupiter.api.MethodOrderer.OrderAnnotation.class)
+
 public class integrationTest {
     @Autowired
     private MockMvc mockMvc;
@@ -119,22 +124,22 @@ public class integrationTest {
     @Test
     @Order(2)
     void shouldReturnAnInvalidParam() throws Exception {
-        // Vamos a ponerle un precio indebido al producto y vamos a testear que dé error.
-        // Esto se puede hacer para todos los campos, para asegurar que todas las validaciones estén OK.
+// Vamos a hacer que salgan mal todas las validaciones.
+
 
         PostRequestDto payloadDto = new PostRequestDto(); // creamos nuestro objeto dto y empezamos a preparar nuestro payload para enviárselo al método.
-        LocalDate fecha = LocalDate.now();
-        payloadDto.setDate(fecha);
+        LocalDate datetime  = LocalDate.now();
+        payloadDto.setDate(datetime);
         payloadDto.setUserId(0);
         ProductRequestDto product = new ProductRequestDto();
-        product.setProductId(20);
-        product.setProductName("Galletas");
-        product.setType("Alimentos");
-        product.setBrand("Oreo");
-        product.setColor("Marrones");
-        product.setNotes("Deliciosas galletas");
+        product.setProductId(0);
+        product.setProductName("Galletás");
+        product.setType("Alimentós");
+        product.setBrand("Oreoooooooooooooo");
+        product.setColor("$$$.");
+        product.setNotes("Deliciosas galletas muy lindas muy deliciosas muy todo asdfjklñasdf vamos a superar el limite de caracteres que lindooo ");
         payloadDto.setProduct(product);
-        payloadDto.setCategory(4);
+        payloadDto.setCategory(-90);
         payloadDto.setPrice(0.0);
         ObjectWriter writer = new ObjectMapper().registerModule(new JavaTimeModule()).configure(SerializationFeature.WRAP_ROOT_VALUE, false).writer();
         String payloadJson = writer.writeValueAsString(payloadDto); // convertimos nuestro objeto dto a String.
