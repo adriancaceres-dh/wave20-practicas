@@ -1,9 +1,19 @@
 package com.bootcamp.be_java_hisp_w20_g1.util;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
+import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
+import com.bootcamp.be_java_hisp_w20_g1.repository.PostRepository;
+import com.bootcamp.be_java_hisp_w20_g1.repository.ProductRepository;
+import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IPostRepository;
+import com.bootcamp.be_java_hisp_w20_g1.repository.interfaces.IProductRepository;
+import com.bootcamp.be_java_hisp_w20_g1.service.PostService;
+import com.bootcamp.be_java_hisp_w20_g1.service.ProductService;
+import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IPostService;
+import com.bootcamp.be_java_hisp_w20_g1.service.interfaces.IProductService;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
@@ -156,6 +166,36 @@ public class TestUtil {
         return posts.stream().
                 map(p -> mapper.map(p, PostResponseDto.class)).
                 collect(Collectors.toList());
+    }
+
+    public static PostRequestDto postForSaveTest(){
+        IPostRepository postRepository = new PostRepository();
+        IProductRepository productRepository = new ProductRepository();
+
+        int numProduct = productRepository.getProducts().size()+1;
+        int userId = postRepository.getPosts().stream().map(x->x.getUserId()).findFirst().get();
+
+
+        PostRequestDto postRequestDto = new PostRequestDto();
+        ProductRequestDto productRequestDto = new ProductRequestDto();
+        productRequestDto.setProductId(numProduct);
+        productRequestDto.setProductName("Silla Gamer");
+        productRequestDto.setType("nose");
+        productRequestDto.setNotes("notas");
+        productRequestDto.setColor("rojo");
+        productRequestDto.setBrand("hjh");
+        postRequestDto.setCategory(1);
+        postRequestDto.setDate(LocalDate.now());
+        postRequestDto.setPrice(2000D);
+        postRequestDto.setUserId(userId);
+        postRequestDto.setProduct(productRequestDto);
+
+        return postRequestDto;
+
+    }
+    public static int getPostNumber(){
+        IPostRepository postRepository = new PostRepository();
+        return  postRepository.getPosts().size()+1;
     }
 
 }
