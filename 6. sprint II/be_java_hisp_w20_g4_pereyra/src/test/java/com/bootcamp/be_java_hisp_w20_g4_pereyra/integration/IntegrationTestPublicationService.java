@@ -57,7 +57,7 @@ public class IntegrationTestPublicationService {
 
     @Test
     @DisplayName("Test de integración de agregar una nueva publicación")
-    public void addNewpostTest() throws Exception {
+    public void addNewPostTest() throws Exception {
         String postDtoRequestJson = TestUtils.writer.writeValueAsString(postDTO);
 
         ProductResponseDTO productResponseDTO = new ProductResponseDTO(1, "Silla Gamer", "Gamer", "Racer", "Red Black", "Special Edition");
@@ -105,7 +105,6 @@ public class IntegrationTestPublicationService {
                 .andExpect(expectedStatus)
                 .andExpect(expectedJson)
                 .andExpect(expectedContentType);
-
     }
 
 }
