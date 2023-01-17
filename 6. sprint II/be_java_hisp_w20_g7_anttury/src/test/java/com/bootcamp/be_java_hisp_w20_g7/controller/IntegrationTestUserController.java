@@ -35,9 +35,9 @@ class IntegrationTestUserController {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 3))
                 .andDo(print())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.user_id").value(3))
-                .andExpect(jsonPath("$.user_name").value("Soraya"))
-                .andExpect(jsonPath("$.followers_count").value(4));
+                .andExpect(jsonPath("$.userId").value(3))
+                .andExpect(jsonPath("$.userName").value("Soraya"))
+                .andExpect(jsonPath("$.followersCount").value(4));
     }
 
     @Test
