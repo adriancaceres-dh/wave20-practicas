@@ -9,5 +9,9 @@ public interface IPostRepository {
     Set<PostDTO> findPostsById(Set<Integer> id);
 
     int createPost(Post post, PostDTO postDTO);
+    int countProductPromo(int idUser);
+
+    Set<PostDTO> findAllProductsPromoByIdUser(int idUser);
+
 
 }

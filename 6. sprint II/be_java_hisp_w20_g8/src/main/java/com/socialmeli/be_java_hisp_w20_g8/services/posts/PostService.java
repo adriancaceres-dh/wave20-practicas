@@ -1,9 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponseDTO;
-import com.socialmeli.be_java_hisp_w20_g8.dto.ResponsePostDTO;
+import com.socialmeli.be_java_hisp_w20_g8.dto.*;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.DoesntExistSellerException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Seller;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository;
@@ -11,7 +9,6 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 import com.socialmeli.be_java_hisp_w20_g8.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialmeli.be_java_hisp_w20_g8.dto.PostRequestDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.NotFoundException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Post;
@@ -57,15 +54,20 @@ public class PostService implements IPostService {
 
         // Create the post
         Post post = mapper.map(postRequestDTO, Post.class);
+        PostDTO postDTO;
+        int postId;
 
         // Create the post DTO
-        PostDTO postDTO = new PostDTO(post.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
-
-        int postId = postRepository.createPost(post, postDTO);
-
-        // Add the post to the seller's list
-         seller.getPost().add(postId);
-         return  new ResponseDTO(true, "Post added successfully");
+        if (!postRequestDTO.isHas_promo() && postRequestDTO.getDiscount() == null){
+            postDTO = new PostDTO(postRequestDTO.getUser_id(), post.getDate(), productService.getProductById(post.getProduct_id()), post.getCategory(), post.getPrice());
+        }
+        else{
+            postDTO = PostDTO.builder().user_id(postRequestDTO.getUser_id()).date(post.getDate()).product(postRequestDTO.getProductDTO()).category(post.getCategory())
+                    .price(post.getPrice()).has_promo(postRequestDTO.isHas_promo()).discount(postRequestDTO.getDiscount()).build();
+        }
+        postId = postRepository.createPost(post, postDTO);
+        seller.getPost().add(postId);
+        return  new ResponseDTO(true, "Post added successfully");
     }
 
     @Override
@@ -107,8 +109,30 @@ public class PostService implements IPostService {
                                .sorted((a,b)->b.getDate().compareTo(a.getDate()))
                                .collect(Collectors.toList()))
                        .build();
-
         }
+    }
 
+   @Override
+    public ProductsPromoCountDTO countProductsPromo(int userId) {
+        int countProductsPromo = 0;
+        Seller seller = personRepository.getById(userId);
+        if (seller == null)
+            throw new NotFoundException("User not found: " + userId);
+        countProductsPromo = postRepository.countProductPromo(userId);
+        ProductsPromoCountDTO productsPromoCountDTO = new ProductsPromoCountDTO(userId, seller.getUser_name(),countProductsPromo);
+
+        return productsPromoCountDTO;
+    }
+
+
+    @Override
+    public ResponsePostDTO findAllProductsPromoByIdUser(int userId){
+        List<PostDTO> listPostPromoByIdSeller = new ArrayList<>();
+        Seller seller = personRepository.getById(userId);
+        if (seller == null)
+            throw new NotFoundException("User not found: " + userId);
+        listPostPromoByIdSeller.addAll(postRepository.findAllProductsPromoByIdUser(userId));
+
+        return ResponsePostDTO.builder().id_user(userId).user_name(seller.getUser_name()).posts(listPostPromoByIdSeller).build();
     }
 }

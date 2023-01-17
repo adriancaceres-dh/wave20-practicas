@@ -35,4 +35,7 @@ public class PostRequestDTO {
     @NotNull(message = "El precio no puede estar vacio")
     @DecimalMax(value = "10000000.0", message = "El precio el producto no puede superar los 10.000.000 millones")
     private Double price;
+
+    private boolean has_promo;
+    private Double discount;
 }

@@ -20,6 +20,8 @@ public class PostRepositoryImp implements IPostRepository {
     private final Map<Integer, PostDTO> mapPosts;
     private final Set<Post> posts;
     private int postCount;
+    private int promoCount;
+
 
     public PostRepositoryImp() {
         this.mapPosts = new HashMap<>();
@@ -43,6 +45,28 @@ public class PostRepositoryImp implements IPostRepository {
         return postCount;
     }
 
+    @Override
+    public int countProductPromo(int idUser) {
+        promoCount = 0;
+        mapPosts.entrySet().forEach(x-> {
+            if (x.getValue().isHas_promo() && x.getValue().getUser_id() == idUser){
+                promoCount+=1;
+            }
+        });
+        return promoCount;
+    }
+
+    @Override
+    public Set<PostDTO> findAllProductsPromoByIdUser(int idUser) {
+        Set<PostDTO> postProductsPromo = new HashSet<>();
+        mapPosts.entrySet().forEach(x-> {
+            if (x.getValue().isHas_promo() && x.getValue().getUser_id() == idUser){
+                postProductsPromo.add(x.getValue());
+            }
+        });
+        return postProductsPromo;
+    }
+
     public Map<Integer, PostDTO> loadPost(){
         posts.add(new Post(1, 5, LocalDate.of(2022, 12, 29), 1, 2, 2000));
         posts.add(new Post(2, 5, LocalDate.of(2022, 12, 28), 2, 2, 2000));
@@ -51,7 +75,7 @@ public class PostRepositoryImp implements IPostRepository {
 
         mapPosts.put(1, PostDTO.builder().post_id(1).user_id(5).date(LocalDate.of(2022, 12, 31)).product(
                 ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()
-        ).category(2).price(2000).build());
+        ).category(2).price(2000).has_promo(true).discount(2.0).build());
         mapPosts.put(2, PostDTO.builder().post_id(2).user_id(5).date(LocalDate.of(2023, 1, 2)).product(
                 ProductDTO.builder().product_id(1).product_name("Freezer").type("Technology").brand("Samsung").color("Black").notes("Freezer").build()
         ).category(2).price(2000).build());
@@ -61,6 +85,15 @@ public class PostRepositoryImp implements IPostRepository {
         mapPosts.put(4, PostDTO.builder().post_id(4).user_id(6).date(LocalDate.of(2022, 12, 30)).product(
                 ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
         ).category(2).price(2000).build());
+        mapPosts.put(5, PostDTO.builder().post_id(5).user_id(5).date(LocalDate.of(2023, 11, 10)).product(
+                ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
+        ).category(2).price(2000).has_promo(true).discount(1.0).build());
+        mapPosts.put(6, PostDTO.builder().post_id(6).user_id(5).date(LocalDate.of(2023, 11, 10)).product(
+                ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
+        ).category(2).price(2000).has_promo(true).discount(1.0).build());
+        mapPosts.put(7, PostDTO.builder().post_id(7).user_id(5).date(LocalDate.of(2023, 11, 10)).product(
+                ProductDTO.builder().product_id(1).product_name("Shirt").type("Clothes").brand("Woft").color("Black").notes("Sports shirt").build()
+        ).category(2).price(2000).has_promo(true).discount(1.0).build());
 
        return mapPosts;
     }
