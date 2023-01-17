@@ -9,11 +9,6 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.publication.Publica
 
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.Category;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.utils.TestUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class IntegrationTestPublicationService {
+public class IntegrationTestPublicationController {
     @Autowired
     MockMvc mockMvc;
 
