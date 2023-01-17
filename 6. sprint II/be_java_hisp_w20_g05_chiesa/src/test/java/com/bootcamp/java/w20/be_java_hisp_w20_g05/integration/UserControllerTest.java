@@ -47,10 +47,4 @@ public class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    @DisplayName("Unfollow user")
-    public void unfollowUserTest() throws Exception {
-
-    }
-
 }
