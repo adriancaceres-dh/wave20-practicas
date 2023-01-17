@@ -601,8 +601,12 @@ ____
 ## Desarrollo Individual
 
 + Se implementan los test de integración para la clase UserController.
-+ Se realiza el test de todos los endpoints con sus distintas posibilidades de respuesta.
-+ Se logra una cobertura total de lineas del 79%.
+
+Se realiza el test de todos los endpoints con sus distintas posibilidades de respuesta.
+Se logra una cobertura total de lineas del 79%.
++ Se implementan los test de integración para la clase PostController.
+
+Se logra aumentar la cobertura total de lineas al 89%.
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____

@@ -26,17 +26,6 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     private static ObjectWriter writer;
-    private LoadExampleData loadExampleData;
-
-    @Autowired
-    public UserControllerTest(LoadExampleData loadExampleData) {
-        this.loadExampleData = loadExampleData;
-    }
-
-    @BeforeEach
-    public void SetUp(){
-        loadExampleData.loadDataToRepositories();
-    }
 
     /*
     @BeforeAll
