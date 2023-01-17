@@ -108,10 +108,8 @@ requerimientos técnicos y funcionales
 ## 👤 Requerimientos incrementales - Desarrollo Individual - 👤
 
 **SocialMeli** tiene como objetivo extra lograr permitir a los vendedores la posibilidad de publicar nuevos productos
-con ofertas
-o descuentos especiales exclusivos para sus seguidores por un determinado período de tiempo. Para ello propone los
-siguientes
-requerimientos:
+con ofertas o descuentos especiales exclusivos para sus seguidores por un determinado período de tiempo. Para ello propone los
+siguientes requerimientos:
 10. Llevar a cabo la publicación de un nuevo producto en promoción.
 11. Obtener la cantidad de productos en promoción de un determinado vendedor.
 
@@ -121,13 +119,27 @@ desarrollo base que se haya logrado en éste.
 Por otro lado, tener en cuenta para estos requerimientos la posibilidad de poder ordenarlos alfabéticamente por nombre
 de cada producto tanto de forma ascendente como descendente.
 
+## 👤 Requerimientos incrementales - Desarrollo Individual - 2.0 👤
+Siguiendo con el principio de que MeLi posee unos estándares de calidad muy altos, un especialista sugirió la posibilidad 
+de contar con la implementación de al menos un test de integración para lograr una cobertura de código mayor que la lograda 
+con los tests unitarios.
+Tener en cuenta que, se debe respetar el desarrollo base logrado en equipo para poder realizar este nuevo incremento de 
+manera individual.
+
+
 ## 🧨 Bonus - Desarrollo Individual EXTRA - 🧨
 
 Para finalizar, desde Mercado Libre dieron a conocer que están abiertos a cualquier nueva funcionalidad o propuesta de
-mejora
-para **“SocialMeli”**. En caso de que esto se lleve a cabo, será necesario, además de desarrollar la funcionalidad, *
-*presentar
-la documentación técnica asociada**.
+mejora para **“SocialMeli”**. En caso de que esto se lleve a cabo, será necesario, además de desarrollar la funcionalidad, *
+*presentar la documentación técnica asociada**.
+
+## 🧨 Bonus - Desarrollo Individual EXTRA - 2.0 🧨
+El mismo especialista en calidad que sugirió implementar al menos un test de integración anteriormente, sugiere que sería 
+ideal lograr contar con la implementación de otros tests de integración extra para intentar lograr un coverage mayor o 
+igual al 75%.
+El especialista conoce que los tiempos de desarrollo en bootcamp son acotados, por lo que sugiere llevar a cabo esta 
+implementación solo en caso de que alcancen los tiempos y se pueda cumplir con la fecha de entrega estimada.
+
 
 # 🗄 _Bitácora_ 🗄
 ______________
@@ -281,7 +293,6 @@ este método se inicializan algunos usuarios, categorías, productos y posts en 
 
 
 # 📌 _Endpoints_ 📌
-
 ____
 
 #### US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
@@ -596,7 +607,22 @@ Las validaciones realizadas fueron sobre la creación de un nuevo post verifican
 
 No se realizan todos las validaciones de todos los atributos, ya que se entiende que muchas de las validaciones
 son la misma implementación, sin cambios, en otros objetos y atributos.
+____
 
+## 🪤 Implementación de Test Integración - Individual 🪤
+Se realiza las especificaciones que detalladas en el apartado [Requerimientos incrementales - Desarrollo incremental - 2.0](#-requerimientos-incrementales---desarrollo-individual---20-)
+
+Se desarrolla el test integración de la función _follow()_. Realizando los siguientes contemplando los casos posible del método
+al que llama dentro de la capa de service _follow(Integer idFollower, Integer idFollowed)_:
+- _followAnUserExistingInTheDataBase_
+- _followYourselfAnUserExistingInTheDataBase_
+- _followAnUserExistingAlreadyFollowInTheDataBase_
+- _followAnUserNotExistingInTheDataBase_
+
+## 🧨 Bonus - Desarrollo Individual EXTRA - 2.0 🧨
+Se desarrolla la totalidad de los test de integración de la clase _UserController_ y con se llega a la covertura, de 
+líneas de 81%, llegando así a la pauta [BONUS](#-bonus---desarrollo-individual-extra---20-) antes del tiempo de entrega
+del desafio.
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
