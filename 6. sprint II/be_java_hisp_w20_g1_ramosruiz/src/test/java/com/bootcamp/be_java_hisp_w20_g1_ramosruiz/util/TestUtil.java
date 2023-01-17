@@ -179,9 +179,20 @@ public class TestUtil {
         return PostResponseDto.builder()
                 .date(LocalDate.now())
                 .userId(1)
+                .postId(7)
                 .product(productResponseDto)
                 .category(22)
                 .price(25d)
+                .build();
+    }
+
+    public static Product getValidProduct() {
+        return Product.builder()
+                .id(123)
+                .name("Copa")
+                .type("Glass")
+                .brand("Stronglass")
+                .color("Transparent")
                 .build();
     }
 }
