@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9ad3414f-282f-4560-83f5-7c13da71953b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../SocialMeli-2.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/BeJavaHispW20G8Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/config/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/controllers/PostController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/controllers/SellerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/controllers/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ErrorDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/PostDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/PostRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ProductDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/ResponsePostDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/SellerDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/SellerFollowersDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserCountDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/dto/UserFollowedDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/DoesntExistSellerException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/InvalidArgumentException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/exceptions/OperationFailedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/Seller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/models/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/persons/IPersonRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/persons/PersonRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/posts/IPostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/posts/PostRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/products/IProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/repositories/products/ProductRepositoryImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/posts/IPostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/posts/PostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/products/IProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/products/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/sellers/ISellerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/sellers/SellerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/users/IUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/services/users/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/socialmeli/be_java_hisp_w20_g8/utils/Validators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/BeJavaHispW20G8ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/integration/UserControllerTestIntegration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/repositories/posts/PostRepositoryImpTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/services/posts/PostServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/services/sellers/SellerServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/socialmeli/be_java_hisp_w20_g8/services/users/UserServiceTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2KHWIweR66vEK524O7RnH3zKoom" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/imahernandez/Desktop/Wave/wave20-practicas/6. sprint II/be_java_hisp_w20_g8&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.java in SocialMeli2">
+    <configuration name="BeJavaHispW20G8Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.socialmeli.be_java_hisp_w20_g8.BeJavaHispW20G8Application" />
+      <module name="SocialMeli2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.socialmeli.be_java_hisp_w20_g8.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTestIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SocialMeli2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.socialmeli.be_java_hisp_w20_g8.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.socialmeli.be_java_hisp_w20_g8.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.socialmeli.be_java_hisp_w20_g8.integration.UserControllerTestIntegration" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTestIntegration.getFollowGetIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SocialMeli2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.socialmeli.be_java_hisp_w20_g8.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.socialmeli.be_java_hisp_w20_g8.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.socialmeli.be_java_hisp_w20_g8.integration.UserControllerTestIntegration" />
+      <option name="METHOD_NAME" value="getFollowGetIntegrationTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTestIntegration.newFollowPostIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SocialMeli2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.socialmeli.be_java_hisp_w20_g8.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.socialmeli.be_java_hisp_w20_g8.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.socialmeli.be_java_hisp_w20_g8.integration.UserControllerTestIntegration" />
+      <option name="METHOD_NAME" value="newFollowPostIntegrationTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in SocialMeli2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SocialMeli2" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.BeJavaHispW20G8Application" />
+      <item itemvalue="JUnit.java in SocialMeli2" />
+      <item itemvalue="JUnit.UserControllerTestIntegration" />
+      <item itemvalue="JUnit.UserControllerTestIntegration.getFollowGetIntegrationTest" />
+      <item itemvalue="JUnit.UserControllerTestIntegration.newFollowPostIntegrationTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.java in SocialMeli2" />
+        <item itemvalue="Application.BeJavaHispW20G8Application" />
+        <item itemvalue="JUnit.UserControllerTestIntegration" />
+        <item itemvalue="JUnit.UserControllerTestIntegration.getFollowGetIntegrationTest" />
+        <item itemvalue="JUnit.UserControllerTestIntegration.newFollowPostIntegrationTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9ad3414f-282f-4560-83f5-7c13da71953b" name="Changes" comment="" />
+      <created>1673631913189</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673631913189</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$UserControllerTestIntegration.ic" NAME="UserControllerTestIntegration Coverage Results" MODIFIED="1673965398990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.socialmeli.be_java_hisp_w20_g8.integration.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$All_in_SocialMeli2.ic" NAME="All in SocialMeli2 Coverage Results" MODIFIED="1673896418858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$UserControllerTestIntegration_unfollowPostIntegrationTest.ic" NAME="UserControllerTestIntegration.unfollowPostIntegrationTest Coverage Results" MODIFIED="1673891354528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.socialmeli.be_java_hisp_w20_g8.integration.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$UserServiceTest_unfollowServiceNoExistTest.ic" NAME="UserServiceTest.unfollowServiceNoExistTest Coverage Results" MODIFIED="1673646703887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.socialmeli.be_java_hisp_w20_g8.services.users.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$java_in_SocialMeli2.ic" NAME="java in SocialMeli2 Coverage Results" MODIFIED="1673988333867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$UserServiceTest_unfollowServiceTest.ic" NAME="UserServiceTest.unfollowServiceTest Coverage Results" MODIFIED="1673644003295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.socialmeli.be_java_hisp_w20_g8.services.users.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g8$UserServiceTest.ic" NAME="UserServiceTest Coverage Results" MODIFIED="1673888587743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.socialmeli.be_java_hisp_w20_g8.services.users.*</FILTER>
+    </SUITE>
+  </component>
+</project>
