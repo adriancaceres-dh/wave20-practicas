@@ -59,6 +59,11 @@ public class Utils {
         return new PostDTO(userId, LocalDate.now(), productDTO, 125, 100d);
     }
 
+    public static PostDTO generatePostDTOWithInvalidCategory(int userId) {
+        ProductDTO productDTO = new ProductDTO(1000, "Silla gamer", "Gamer", "Redragon", "Negro", "");
+        return new PostDTO(userId, LocalDate.now(), productDTO, 100000, 100d);
+    }
+
     public static PostResponseDTO generatePostResponseDTOAsc() {
         List<PostWithIdDTO> posts = generatePostsWithIdDTO();
 

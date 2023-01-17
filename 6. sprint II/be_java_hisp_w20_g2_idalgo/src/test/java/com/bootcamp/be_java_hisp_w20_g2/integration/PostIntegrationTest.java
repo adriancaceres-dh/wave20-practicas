@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -53,11 +52,6 @@ public class PostIntegrationTest {
         this.userRepository = userRepository;
         this.dataLoader = dataLoader;
         this.postMapper = postMapper;
-    }
-
-    @BeforeEach
-    public void loadExampleData() {
-        dataLoader.loadDataToRepositories();
     }
 
     @Test
@@ -108,6 +102,22 @@ public class PostIntegrationTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=UTF-8"))
                 .andExpect(MockMvcResultMatchers.content().string("El campo no puede estar vacío."));
+
+    }
+
+    @Test
+    public void addNewProductFailsInvalidCategory() throws Exception {
+        User user1 = generateAndSaveUser();
+        PostDTO postDTO = Utils.generatePostDTOWithInvalidCategory(user1.getId());
+        String payload = writer.writeValueAsString(postDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers.content().string("Invalid category code"));
 
     }
 
