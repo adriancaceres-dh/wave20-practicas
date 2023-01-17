@@ -61,7 +61,7 @@ Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 | IT-0004 | US-0005    | Status code correcto, content type adecuado y se confirma que el contenido de la request sea el mismo que el payload preparado |
 ## Colección de Postman 
 
-Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/SocialMeli2/blob/main/be_java_hisp_w20_g6/src/main/resources/static/Validaciones%20DTO%C2%B4s.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
+Para el testeo de esta api colocamos a [disposición](https://github.com/adriancaceres-dh/wave20-practicas/blob/diaz_augusto/6.%20sprint%20II/Individual/be_java_hisp_w20_g6_diaz/src/main/resources/static/Validaciones%20DTO%C2%B4s.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
 
 ## Repositorio original
 [Enlace al repo original](https://github.com/alejandrotm20/SocialMeli2)

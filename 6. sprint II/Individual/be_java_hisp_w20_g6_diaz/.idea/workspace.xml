@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c7503cb-aa64-4a8a-9bc1-13040aa9a547" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/resources/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/resources/users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiplomaValidaciones/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiplomaValidaciones/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
