@@ -134,6 +134,24 @@ class ServiceUsrTest {
     }
 
     @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden null")
+    void followersOrderNullOKTest() {
+        //arrange
+        List<ListedUserDTO> listedUserExpected = seller.getFollowers()
+                .values().stream()
+                .map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class))
+                .collect(Collectors.toList());
+        UserFollowersDTO expected = new UserFollowersDTO(1,"Vendedor", listedUserExpected);
+        when(mockUserRepository.findById(1)).thenReturn(seller);
+        //act
+        UserFollowersDTO actual = mockServiceUser.followers(1, null);
+
+        //assert
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
     @DisplayName("T-0003 - Verificar que el orden exista. Orden inválido")
     void followersInvalidOrderTest() {
         //assert
