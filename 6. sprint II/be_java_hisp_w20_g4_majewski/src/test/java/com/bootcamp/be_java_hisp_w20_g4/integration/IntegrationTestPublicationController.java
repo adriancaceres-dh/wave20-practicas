@@ -37,7 +37,7 @@ public class IntegrationTestPublicationController {
 
 
     @Test
-    void promoPostOfSellerIntegrationTest() throws Exception{
+    void addPostIntegrationTest() throws Exception{
         ObjectWriter writer = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
