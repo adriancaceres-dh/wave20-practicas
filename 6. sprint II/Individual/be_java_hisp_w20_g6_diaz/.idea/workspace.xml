@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5c7503cb-aa64-4a8a-9bc1-13040aa9a547" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/controller/ObtenerDiplomaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/model/StudentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/java/com/meli/obtenerdiploma/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/resources/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiploma/src/main/resources/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../5. testing/ObtenerDiplomaValidaciones/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../5. testing/ObtenerDiplomaValidaciones/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2KQFY4rX9FER3K8U0hipkXRCqUO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/audiaz/Documents/wave20-practicas/6. sprint II/Individual/be_java_hisp_w20_g6_diaz&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.java in be_java_hisp_w20_g6">
+    <configuration name="PostControllerTest.shouldSaveAPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g6" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.PostControllerTest" />
+      <option name="METHOD_NAME" value="shouldSaveAPost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g6" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.shouldReturnCorrectFollowed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g6" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="shouldReturnCorrectFollowed" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.shouldReturnCorrectFollowersCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g6" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="shouldReturnCorrectFollowersCount" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in be_java_hisp_w20_g6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g6" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="be_java_hisp_w20_g6_diaz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="be_java_hisp_w20_g6_diaz" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.java in be_java_hisp_w20_g6" />
+        <item itemvalue="JUnit.PostControllerTest.shouldSaveAPost" />
+        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.UserControllerTest.shouldReturnCorrectFollowed" />
+        <item itemvalue="JUnit.UserControllerTest.shouldReturnCorrectFollowersCount" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c7503cb-aa64-4a8a-9bc1-13040aa9a547" name="Changes" comment="" />
+      <created>1673898943357</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673898943357</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g6_diaz$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1673899870185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g6_diaz$java_in_be_java_hisp_w20_g6.ic" NAME="java in be_java_hisp_w20_g6 Coverage Results" MODIFIED="1673906635064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
