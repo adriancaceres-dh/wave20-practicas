@@ -3,15 +3,16 @@ package com.bootcamp.be_java_hisp_w20_g2.service;
 import com.bootcamp.be_java_hisp_w20_g2.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2.model.User;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.ICategoryRepository;
-import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IPostRepository;
 import com.bootcamp.be_java_hisp_w20_g2.repository.interfaces.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g2.utils.mapper.PostMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,10 +24,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class PostServiceTest {
 
     @Mock
     private IUserRepository userRepository;
+
+    @SpyBean
+    private PostMapper postMapper;
 
     @InjectMocks
     private PostService postService;
@@ -60,7 +65,7 @@ class PostServiceTest {
         User user2 = new User(2, "Mariano", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         addPostsToUser(user2);
 
-        User user1 = new User("Pepe");
+        User user1 = new User(1, "Pepe", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         user1.follow(user2);
 
         PostResponseDTO expectedResponse = generatePostResponseDTODesc();
