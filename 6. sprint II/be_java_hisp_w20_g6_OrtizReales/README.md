@@ -61,6 +61,9 @@ Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 | IT-0004 | US-0004    | Verifica que el endPoint ***/users/1/followed/list*** devuelva un status OK |
 | IT-0005 | US-0002    | Verifica que el endPoint ***/users/1/followers/count*** devuelva un status OK |
 
+
+***Nota: Para los test de integracion incorporo la anotacion  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection") que quita la advertencion generada en el autowired del Mock***
+
 ## Colección de Postman 
 
 Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/SocialMeli2/blob/main/be_java_hisp_w20_g6/src/main/resources/static/Validaciones%20DTO%C2%B4s.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
