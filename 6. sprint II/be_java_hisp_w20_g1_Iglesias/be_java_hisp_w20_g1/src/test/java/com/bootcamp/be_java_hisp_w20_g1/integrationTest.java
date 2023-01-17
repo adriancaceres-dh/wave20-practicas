@@ -126,9 +126,8 @@ public class integrationTest {
     void shouldReturnAnInvalidParam() throws Exception {
 // Vamos a hacer que salgan mal todas las validaciones.
 
-
         PostRequestDto payloadDto = new PostRequestDto(); // creamos nuestro objeto dto y empezamos a preparar nuestro payload para enviárselo al método.
-        LocalDate datetime  = LocalDate.now();
+        LocalDate datetime = LocalDate.now();
         payloadDto.setDate(datetime);
         payloadDto.setUserId(0);
         ProductRequestDto product = new ProductRequestDto();
@@ -145,7 +144,16 @@ public class integrationTest {
         String payloadJson = writer.writeValueAsString(payloadDto); // convertimos nuestro objeto dto a String.
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/products/post").contentType(MediaType.APPLICATION_JSON).content(payloadJson)).andDo(print())
-                .andExpect(status().isBadRequest()).andReturn();
+                .andExpect(status().isBadRequest()).andExpect(content().contentType("application/json")).andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El precio mínimo por producto es de 0.1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[1].reason").value("La longitud no puede superar los 80 caracteres"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[2].reason").value("El campo no puede poseer caracteres especiales."))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[3].reason").value("El id debe ser mayor a 0"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[4].reason").value("El campo no puede poseer caracteres especiales."))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[5].reason").value("El campo debe ser mayor a 0"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[6].reason").value("El id debe ser mayor a 0"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[7].reason").value("El campo no puede poseer caracteres especiales."))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[8].reason").value("El campo no puede poseer caracteres especiales.")).andReturn();
 
     }
 }
