@@ -1,5 +1,6 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.util;
 
+import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request.PostRequestDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowedUsersPostsResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySellerDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
@@ -9,12 +10,14 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.modelmapper.ModelMapper;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,16 +52,20 @@ public class TestUtils {
             e.printStackTrace();
         }
         ObjectMapper objectMapper = new ObjectMapper();
+        ModelMapper modelMapper = new ModelMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
-        TypeReference<Set<Post>> typeRef = new TypeReference<>() {};
-        Set<Post> posts = null;
+        TypeReference<Set<PostRequestDTO>> typeRef = new TypeReference<>() {};
+        Set<PostRequestDTO> postsDTO = new HashSet<>();
 
         try {
-            posts = objectMapper.readValue(file, typeRef);
+            postsDTO = objectMapper.readValue(file, typeRef);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Set<Post> posts = new HashSet<>();
+        postsDTO.forEach(postDTO -> posts.add(modelMapper.map(postDTO, Post.class)));
         return posts;
     }
 

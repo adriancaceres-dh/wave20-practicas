@@ -1,7 +1,7 @@
 [
   {
     "id":1,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-04",
     "category":20,
     "price":930,
@@ -18,7 +18,7 @@
   },
   {
     "id":2,
-    "userId":1,
+    "user_id":1,
     "date":"2023-01-06",
     "category":23,
     "price":1070,
@@ -35,7 +35,7 @@
   },
   {
     "id":3,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-07",
     "category":20,
     "price":1120,
@@ -52,7 +52,7 @@
   },
   {
     "id":4,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-08",
     "category":20,
     "price":1670,
@@ -69,7 +69,7 @@
   },
   {
     "id":5,
-    "userId":3,
+    "user_id":3,
     "date":"2023-01-09",
     "category":22,
     "price":1850,
@@ -86,7 +86,7 @@
   },
     {
     "id":6,
-    "userId":4,
+    "user_id":4,
     "date":"2023-01-10",
     "category":22,
     "price":260,
@@ -103,7 +103,7 @@
   },
     {
     "id":7,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-12",
     "category":22,
     "price":1030,
@@ -120,7 +120,7 @@
   },
   {
     "id":8,
-    "userId":1,
+    "user_id":1,
     "date":"2023-01-12",
     "category":20,
     "price":1590,
@@ -137,7 +137,7 @@
   },
   {
     "id":9,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-13",
     "category":20,
     "price":1800,
@@ -154,7 +154,7 @@
   },
   {
     "id":10,
-    "userId":1,
+    "user_id":1,
     "date":"2023-01-14",
     "category":20,
     "price":1760,
@@ -171,7 +171,7 @@
   },
   {
     "id":11,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-14",
     "category":22,
     "price":1850,
@@ -188,7 +188,7 @@
   },
   {
     "id":12,
-    "userId":1,
+    "user_id":1,
     "date":"2023-01-15",
     "category":20,
     "price":1100,
@@ -205,7 +205,7 @@
   },
   {
     "id":13,
-    "userId":2,
+    "user_id":2,
     "date":"2023-01-16",
     "category":22,
     "price":1600,

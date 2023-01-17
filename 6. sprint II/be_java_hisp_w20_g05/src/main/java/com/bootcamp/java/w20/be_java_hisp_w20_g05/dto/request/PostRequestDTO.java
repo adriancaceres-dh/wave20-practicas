@@ -19,11 +19,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class PostRequestDTO {
+    private int id;
+
     @JsonProperty("user_id")
     @Min(value = 1, message= "El Id debe ser mayor a 0.")
     @NotNull(message = "El Id no puede estar vacio.")
     private int userId;
-    @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @NotNull(message = "La fecha no puede estar vacia.")
     private LocalDate date;
 
@@ -36,4 +39,6 @@ public class PostRequestDTO {
     @Max(value = 10000000 , message = "El precio maximo por producto es de 10.000.000")
     @Min(value = 0)
     private double price;
+
+    private double discount;
 }
