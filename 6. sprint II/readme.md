@@ -18,6 +18,7 @@ Se utilizó como repositorio principal la rama **grupo8**.
 
 ## Sección individual realizada por:
 - Luis Francisco López **github: luis-lopezgomez**
+- Se logró una cobertura del 81% de las líneas del código.
 
 ## Requisitos para el correcto funcionamiento del proyecto
 Este proyecto fue realizado a partir del proyecto grupal final del primer sprint: **SocialMeli**.
