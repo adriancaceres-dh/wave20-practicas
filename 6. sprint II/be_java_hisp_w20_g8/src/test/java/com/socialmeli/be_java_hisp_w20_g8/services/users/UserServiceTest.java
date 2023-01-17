@@ -29,7 +29,12 @@ import static org.mockito.Mockito.*;
 
 import static org.mockito.Mockito.when;
 
-
+/**
+ * This Test check if a user can follow a seller,
+ * check if a user can unfollow a seller,
+ * check the sorting options for the post service and check the result of the method against a mock
+ * @author: Diego Alejandro Malagon, Dimas Hernandez Mendoza, Juan Camilo Arango Valle and Luis López Gómez
+ */
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
     @Mock

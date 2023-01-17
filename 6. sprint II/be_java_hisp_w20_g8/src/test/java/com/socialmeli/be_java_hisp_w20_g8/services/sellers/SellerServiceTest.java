@@ -23,6 +23,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
+/**
+ * This test is used for check the sorting options for the seller service and check the result of the method against a mock
+ * and check the amount of followers of a seller
+ * @author: Juan Camilo Arango Valle, Luis López Gómez and Julian Atehortua Zapata
+ */
 @ExtendWith(MockitoExtension.class)
 class SellerServiceTest {
     @Mock

@@ -27,6 +27,13 @@ public class PersonRepositoryImp implements IPersonRepository {
 
     @Override
     public boolean addFollowing(int userId, int sellerId) {
+        /**
+         *
+         * @author: Luis López Gómez
+         * @param userId id of the user
+         * @param order sorting option used in the method
+         * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
+         */
 
         Set<Person> personSet = persons.get("users");
         User person = (User) personSet.stream().filter(p -> p.getId() == userId)

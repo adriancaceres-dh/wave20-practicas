@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +26,11 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 
+
+/**
+ * This test is used for check the sorting options for the post service and check the result of the method against a mock
+ * @author: Adrian Isaac Gomez Ocon and John Edward Garcia Saavedra
+ */
 @ExtendWith(MockitoExtension.class)
 class PostServiceTest {
     @Mock
@@ -89,7 +93,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Check ascending order of post by date")
+    @DisplayName("T-0006-> Check ascending order of post by date")
     public void findPostByIdSellerTestAscendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
@@ -132,7 +136,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Check descending order of post by date")
+    @DisplayName("T-0006-> Check descending order of post by date")
     public void findPostByIdSellerTestDescendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
@@ -175,7 +179,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Find post by id seller order asc test")
+    @DisplayName("T-0005-> Find post by id seller order asc test")
     void findPostByIdSellerTestAsc(){
         String orderOption = "date_asc";
 
@@ -188,7 +192,7 @@ class PostServiceTest {
 
     }
     @Test
-    @DisplayName("UT-Find post by id seller order desc test")
+    @DisplayName("T-0005-> Find post by id seller order desc test")
     void findPostByIdSellerTestDesc(){
         String orderOption = "date_desc";
 
@@ -202,7 +206,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Find post by id seller order invalid test")
+    @DisplayName("T-0005-> Find post by id seller order invalid test")
     void findPostByIdSellerOrderInvalidTest(){
         String orderOption = "not_sorting_option";
         String expectedErrorMessage = "Invalid sorting option";
