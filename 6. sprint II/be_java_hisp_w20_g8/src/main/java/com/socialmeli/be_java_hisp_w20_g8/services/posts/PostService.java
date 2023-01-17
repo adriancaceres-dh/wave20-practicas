@@ -80,6 +80,13 @@ public class PostService implements IPostService {
          return  new ResponseDTO(true, "Post added successfully");
     }
 
+    /**
+     * Find all sellers by id user and order sorting.
+     * @param id of user
+     * @param order order sorting option used in the method
+     * @return a ResponsePostDTO with the result of the operation
+     * @Author: John Edward Garcia Saavedra
+     */
     @Override
     public ResponsePostDTO findSellersByIdUser(int id, String order) {
         if (personRepository.checkUser(id)) {
@@ -94,6 +101,14 @@ public class PostService implements IPostService {
         }
     }
 
+    /**
+     * Find post by id seller and order sorting.
+     * @param sellers Set of Sellers
+     * @param idUser of user
+     * @param order order sorting option used in the method
+     * @return a ResponsePostDTO with the result of the operation
+     * @Author: John Edward Garcia Saavedra
+     */
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
        List<PostDTO> listPostSeller = new ArrayList<>();
