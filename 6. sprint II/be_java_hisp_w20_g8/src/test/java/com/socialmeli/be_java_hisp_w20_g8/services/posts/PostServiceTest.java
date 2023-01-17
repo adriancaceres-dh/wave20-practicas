@@ -89,7 +89,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Check ascending order of post by date")
+    @DisplayName("T-0005-> Check ascending order of post by date")
     public void findPostByIdSellerTestAscendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
@@ -132,7 +132,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Check descending order of post by date")
+    @DisplayName("T-0005-> Check descending order of post by date")
     public void findPostByIdSellerTestDescendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
@@ -175,7 +175,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Find post by id seller order asc test")
+    @DisplayName("T-0004-> Find post by id seller order asc test")
     void findPostByIdSellerTestAsc(){
         String orderOption = "date_asc";
 
@@ -188,7 +188,7 @@ class PostServiceTest {
 
     }
     @Test
-    @DisplayName("UT-Find post by id seller order desc test")
+    @DisplayName("T-0004-> Find post by id seller order desc test")
     void findPostByIdSellerTestDesc(){
         String orderOption = "date_desc";
 
@@ -202,7 +202,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("UT-Find post by id seller order invalid test")
+    @DisplayName("T-0004-> Find post by id seller order invalid test")
     void findPostByIdSellerOrderInvalidTest(){
         String orderOption = "not_sorting_option";
         String expectedErrorMessage = "Invalid sorting option";
