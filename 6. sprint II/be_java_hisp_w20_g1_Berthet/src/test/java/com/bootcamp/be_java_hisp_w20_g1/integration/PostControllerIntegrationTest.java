@@ -31,4 +31,16 @@ public class PostControllerIntegrationTest {
         System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
+    @Test
+    public void givenInvalidUserId_GetLastTwoWeeksPostFromUsers_ShouldReturnNotFound() throws Exception {
+        String expectedErrorMessage = "El usuario no existe";
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/99/list").contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value(expectedErrorMessage))
+                .andReturn();
+
+        System.out.println(mvcResult.getResponse().getContentAsString());
+
+    }
 }
