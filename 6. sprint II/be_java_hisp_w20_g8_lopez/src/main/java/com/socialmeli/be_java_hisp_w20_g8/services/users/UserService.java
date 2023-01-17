@@ -18,6 +18,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * This service allows the interaction between the user controller and the user repository, performing the operations
+ * of get a user with all the sellers he follows, allows the user to follow a seller and allows the user to unfollow
+ * a seller
+ *
+ * @author: Grupo 8
+ */
+
+
 @Service
 public class UserService implements IUserService {
 
@@ -25,6 +35,15 @@ public class UserService implements IUserService {
     IPersonRepository personRepository;
     ModelMapper modelMapper = new ModelMapper();
 
+
+    /**
+     * create a list of sellers followed by a specific user and is sorted by the order option
+     *
+     * @param userId id of the user
+     * @param order  sorting option used in the method
+     * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
+     * @author: Adrian Isaac Gomez Ocon y Grupo 8 (sorting functionality)
+     */
     public UserFollowedDTO getAllFollowed(int userId, String order) {
         if (personRepository.checkUser(userId)) {
             // Getting User and converting to UserDTO
@@ -60,7 +79,16 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * add a seller to the specific user followed list
+     * @author: Juan Camilo Arango Valle
+     * @param userId id of the user
+     * @param sellerId id of the seller to follow
+     * @return ResponseDTO the status of the operation and a message
+     */
+    @Override
     public ResponseDTO addNewFollow(int userId, int sellerId) {
+
         if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
             personRepository.addFollowing(userId, sellerId);
@@ -73,6 +101,15 @@ public class UserService implements IUserService {
         }
     }
 
+
+    /**
+     * Unfollow a seller
+     *
+     * @param userid   id of the user
+     * @param sellerId id of the seller to unfollow
+     * @return ResponseDTO the status of the operation and a message
+     * @author: Dimas Hernandez Mendoza
+     */
     @Override
     public ResponseDTO unfollow(int userid, int sellerId) {
         if (personRepository.checkUser(userid) && personRepository.checkUser(sellerId)) {
