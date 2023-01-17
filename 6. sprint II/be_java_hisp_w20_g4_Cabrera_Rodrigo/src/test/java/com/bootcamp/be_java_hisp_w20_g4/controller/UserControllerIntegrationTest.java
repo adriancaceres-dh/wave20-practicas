@@ -33,7 +33,7 @@ class UserControllerIntegrationTest {
     MockMvc mockMvc;
     @Test
     @DisplayName("Test para verificar el correcto funcionamiento de seguir a un vendedor")
-    void follow() throws Exception {
+    void followOkTest() throws Exception {
         int idUser = 1;
         int idToFollow = 3;
         ListedUserDTO listedUserExpected = new ListedUserDTO(3, "emi");
@@ -62,7 +62,7 @@ class UserControllerIntegrationTest {
 
     @Test
     @DisplayName("Test para verificar la cantidad de seguidores de un vendedor")
-    void followersCount() throws Exception{
+    void followersCountOkTest() throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 1))
                 .andDo(print()).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.followers_count").value(0));
     }

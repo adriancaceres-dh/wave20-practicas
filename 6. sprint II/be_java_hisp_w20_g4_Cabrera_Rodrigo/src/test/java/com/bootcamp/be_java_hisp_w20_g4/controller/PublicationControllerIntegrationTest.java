@@ -31,7 +31,7 @@ class PublicationControllerIntegrationTest {
     MockMvc mockMvc;
     @Test
     @DisplayName("Test verifica el correcto funcionamiento de agregar una publicacion")
-    void add() throws Exception {
+    void addOkTest() throws Exception {
 
         PostDTO postDTO =
                 new PostDTO(1, LocalDate.of(2021, 11, 3),
@@ -57,7 +57,8 @@ class PublicationControllerIntegrationTest {
     }
 
     @Test
-    void addPromo() throws Exception {
+    @DisplayName("Verifica el correcto funcionamiento de agregar una publicacion en promocion")
+    void addPromoOkTest() throws Exception {
         PromoPostDTO postDTO =
                 new PromoPostDTO(1, LocalDate.of(2021, 11, 3),
                         new ProductRequestDTO(2, "producto2", "tipo2", "nike", "red", "nota2"),10,15000.0, true, 15.0);
