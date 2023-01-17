@@ -26,7 +26,12 @@ public class SellerService implements ISellerService {
     @Autowired
     IPersonRepository IPersonRepository;
 
-
+    /**
+     * Count the total followers of a seller
+     * @author: Julian Atehortua Zapata
+     * @param userId id of the seller
+     * @return userCountDTO with seller id and total followers count
+     */
     public UserCountDTO followersCount(int userId) {
         Seller seller = IPersonRepository.getById(userId);
         if (seller == null) {
