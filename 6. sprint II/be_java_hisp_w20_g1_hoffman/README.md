@@ -18,7 +18,7 @@ SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el eq
   - Endponit POST: followUser.
 
 
-## Code coverage alcanzado: 60%
+## Code coverage alcanzado: 76%
 
 ### Tecnologias usadas.
 - Java 11

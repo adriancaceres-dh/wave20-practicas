@@ -2,6 +2,7 @@ package com.bootcamp.be_java_hisp_w20_g1_hoffman.integracion;
 
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.model.User;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.util.TestUtil;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Optional;
 import java.util.Set;
@@ -70,11 +72,13 @@ public class UserControllerTest {
         Set<User> users = TestUtil.getUsers();
         Optional<User> user = users.stream().filter(u -> u.getId() == id).findAny();
 
-         this.mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}", id, idToFollow)).
+        MvcResult result =  this.mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}", id, idToFollow)).
                  andDo(print()).
                  andExpect(status().isOk()).
                  andExpect(content().contentType("application/json")).
                  andExpect(jsonPath("$.followed").isArray()).
+                 //verifica que en la lista de "seguidos" este el id a seguir (idToFollow).
+                 andExpect(jsonPath("$.followed[0:].user_id", Matchers.containsInAnyOrder(idToFollow))).
                  andExpect(jsonPath("$.followed", hasSize(user.get().getFollowed().size() + 1))). //la lista de "seguidos" aumenta en 1.
                  andReturn();
 
