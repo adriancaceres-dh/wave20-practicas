@@ -20,20 +20,37 @@ public class UserControllerTest {
     private MockMvc mvc;
 
     private static String url;
+    private static int userId;
+    private String userName;
 
     @Test
     @DisplayName("Follow new user")
     public void followUserTest() throws Exception {
-        int userId = 8;
-        String userName = "pemblow6";
-        
+        userId = 8;
+        userName = "pemblow6";
         url = "/users/1/follow/" + userId;
 
-        mvc.perform(
-                MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).content(""))
+        mvc.perform(MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.user_id").value(userId))
                 .andExpect(jsonPath("$.user_name").value(userName));
     }
+
+    @Test
+    @DisplayName("Follow new user")
+    public void followUserWrongUrlTest() throws Exception {
+        url = "/users/error";
+
+        mvc.perform(MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON).content(""))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("Unfollow user")
+    public void unfollowUserTest() throws Exception {
+
+    }
+
 }
