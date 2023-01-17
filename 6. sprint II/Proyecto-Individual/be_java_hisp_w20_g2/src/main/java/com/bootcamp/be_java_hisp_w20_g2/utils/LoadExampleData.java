@@ -70,6 +70,9 @@ public class LoadExampleData {
         flavio.addFollower(diego);
         flavio.addFollower(ale);
 
+        ale.follow(diego);
+        diego.addFollower(ale);
+
         userRepository.save(diego);
         userRepository.save(flavio);
         userRepository.save(ale);

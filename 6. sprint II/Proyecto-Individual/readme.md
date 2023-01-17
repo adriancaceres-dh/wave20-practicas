@@ -3,14 +3,11 @@ ______
 ## 🔍🧮 Índice 🧮🔍
 1. _**[Objetivo](#-objetivo-)**_
 2. _**[Pautas para la actividad](#-pautas-para-la-actividad-)**_
-3. _*
-   *[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)
-   **_
-4.
-_**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)
-**_
-5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
-6. _**[Bitácora](#-bitácora-)**_
+3. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)**_
+4. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---20-)**_
+5. _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)**_
+6. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
+7. _**[Bitácora](#-bitácora-)**_
    1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
    2. _**[Repository](#-repository-)**_
    3. _**[Model](#-model-)**_
@@ -19,9 +16,15 @@ _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-inc
    6. _**[Controller](#-controller-)**_
    7. _**[Exception y config](#-exception-y-config-)**_
    8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
-7. _**[Endpoints](#-endpoints-)**_
-8. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
-9. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
+8. _**[Endpoints](#-endpoints-)**_
+9. _**[Resumen de datos de entrada US](#-resumen-de-datos-de-entrada-según-las-us-)**_
+10. _**[Validaciones en campos de las US](#-validaciones-en-campos-de-las-us-)**_
+11. _**[Test Unitarios](#-tests-unitarios-)**_
+12. _**[Test Unitarios](#implementación-de-test-unitarios---grupal)**_
+    1. [Test de Controllers](#-controller-)
+    2. [Test de Services](#-service-)
+13. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
+14. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
 
 ## 📌 Objetivo 📌
 
@@ -489,6 +492,7 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
 
 ____
+
 # 📦 Resumen de Datos de entrada según las US 📦
 | Datos/Parámetros        |   Tipo    |     Longitud     | Descripción                                                                                                              |
 |-------------------------|:---------:|:----------------:|--------------------------------------------------------------------------------------------------------------------------|
@@ -542,13 +546,13 @@ A continuación se solicita una serie de test unitarios a llevar a cabo; sin emb
 
 Los test desarrollados, durante la realización del Sprint II será realizado en un Sistema Bajo Prueba - SUT y principio F.I.R.S.T.
 
-## Implementación de Test Unitarios - Grupal
+## 🪤 Implementación de Test Unitarios - Grupal 🪤
 ____
-### Controller
+### 🛃 Controller 🛃
 *  _PostControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación individual.
 * _UserControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación individual.
 
-### Service
+### 🏪 Service 🏪
 * _PostServiceTest_:
 
 | TEST   | Desarrollador                                           |
@@ -576,6 +580,29 @@ ____
   validador creado que se mencionó anteriormente.
   - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
     validador creado que se mencionó anteriormente.
+
+### 🛎 Creación de validaciones y colección de postman 🛎
+Fue desarrollado por:
+_[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
+[Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+[Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
+
+Las validaciones realizadas fueron sobre la creación de un nuevo post verificando:
++ Que el user_id no este vacío.
++ Que no tenga un post_id.
++ Que no tenga fecha.
++ Que el tipo de la colección no supere una longitud máx. de 40 caracteres.
++ Que el precio máximo no supere los 10.000.000
+
+No se realizan todos las validaciones de todos los atributos, ya que se entiende que muchas de las validaciones
+son la misma implementación, sin cambios, en otros objetos y atributos.
+____
+# 🏭 Tests Integrales  🏭
+## Desarrollo Individual
+
++ Se implementan los test de integración para la clase UserController.
++ Se realiza el test de todos los endpoints con sus distintas posibilidades de respuesta.
++ Se logra una cobertura total de lineas del 79%.
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
@@ -606,9 +633,12 @@ ____
 - Mockito
 
 ## ✅ Correcciones Sprint 1 ✅
-Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
+- Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
 Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), 
 [Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron), 
 [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
 [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), 
 [Emanuel Fonseca](https://github.com/Emanoide47)._
+
+- Cambio de variables static dentro de las variables _currentId_, ya que afectaban al correr los test de integración de 
+  forma grupal, dentro de todas las clases de repositorios.

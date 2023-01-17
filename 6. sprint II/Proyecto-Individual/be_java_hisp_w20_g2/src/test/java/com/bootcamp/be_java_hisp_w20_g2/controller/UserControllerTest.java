@@ -88,11 +88,11 @@ class UserControllerTest {
     }
 
     @Test
-    void countFollowers() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 1L))
+    void countFollowersOk() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 3L))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Diego"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Ale"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.followers_count").value(0))
                 .andReturn();
     }
@@ -106,7 +106,7 @@ class UserControllerTest {
     }
 
     @Test
-    void getFollowedById() throws Exception {
+    void getFollowedByIdOk() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list", 1L))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
@@ -115,7 +115,6 @@ class UserControllerTest {
                 .andReturn();
     }
 
-    /*
     @Test
     void getFollowedByIdNameAsc() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list", 3L)
@@ -127,7 +126,16 @@ class UserControllerTest {
                 .andReturn();
     }
 
-     */
+    @Test
+    void getFollowedByIdNameDesc() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list", 3L)
+                        .param("order", "name_desc"))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Ale"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.followed[0].user_name").value("Flavio"))
+                .andReturn();
+    }
 
     @Test
     void getFollowedByIdUserNotFound() throws Exception {
@@ -138,22 +146,52 @@ class UserControllerTest {
     }
 
     @Test
-    void getFollowersById() throws Exception {
+    void getFollowersByIdOk() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/list", 1L))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Diego"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.followers").isEmpty())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.followers[0].user_name").value("Ale"))
                 .andReturn();
     }
 
     @Test
-    void unfollow() throws Exception {
+    void unfollowOk() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToUnfollow}", 3L, 2L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("Operación exitosa"))
+                .andReturn();
+    }
+
+    @Test
+    void unfollowUser1NotFound() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToUnfollow}", 55L, 2L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("User not found"))
+                .andReturn();
+    }
+
+    @Test
+    void unfollowUser2NotFound() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToUnfollow}", 3L,55L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("User to unfollow not found"))
+                .andReturn();
+    }
+
+    @Test
+    void unfollowUsersNoLongerFollow() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToUnfollow}", 1L, 3L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Users no longer follow each other"))
                 .andReturn();
     }
 
