@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -38,11 +39,10 @@ class PublicationControllerIntegrationTest {
 @Autowired
 private MockMvc mockMvc;
     @Test
+    @DisplayName("Se prueba agregar una nueva publicación")
     void add() throws Exception{
-
         ProductResponseDTO product = new ProductResponseDTO(1,"Silla Gamer","Gamer", "Racer","Red Black","Special Edition");
-        PublicationDTO publication1 = new PublicationDTO(LocalDate.of(2023, 1, 9),
-                 product, 10, 10.0);
+        PublicationDTO publication1 = new PublicationDTO(LocalDate.of(2023, 1, 9), product, 10, 10.0);
 
         ObjectWriter writer = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
@@ -58,6 +58,7 @@ private MockMvc mockMvc;
     }
 
     @Test
+    @DisplayName("Se lanza excepción al intentar agregar una publicación vacía")
     void  addException() throws  Exception{
         PublicationDTO emptyPublication = new PublicationDTO();
         ErrorDTO errorDTO = new ErrorDTO ("Not Valid Exception exception","El id no puede estar vacío");
@@ -73,6 +74,7 @@ private MockMvc mockMvc;
                 .andReturn();
     }
     @Test
+    @DisplayName("Se prueba buscar las publicaciones de las últimas dos semanas de un usuario")
     void last2WeeksPublications() throws  Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list",1))
                 .andDo(print()).andExpect(status().isOk())
@@ -81,6 +83,7 @@ private MockMvc mockMvc;
                 .andReturn();
     }
     @Test
+    @DisplayName("Se lanza excepción al buscar las publicaciones de un usuario inexistente")
     void last2WeeksPublicationsException()throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list",99))
                 .andDo(print()).andExpect(status().isBadRequest())
@@ -89,6 +92,7 @@ private MockMvc mockMvc;
     }
 
     @Test
+    @DisplayName("Se prueba contar las publicaciones con promoción de un vendedor")
     void promoProductsOfSeller() throws  Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/products/promo-post/count")
                 .param("user_id", String.valueOf(1)))
