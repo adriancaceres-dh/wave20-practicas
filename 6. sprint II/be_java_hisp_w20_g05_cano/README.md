@@ -71,4 +71,12 @@ El objetivo de este desafío es aplicar los contenidos dados hasta el momento du
 ## Agradecimientos
 Agradecer a nuestro Scrum Master, Adrián Cáceres, así como a Johanna Tabella y el resto del equipo de Digital House por su disposición y paciencia a lo largo del Bootcamp.
 
+## Desarrollo individual
+Se agregaron algunos test de integración para UserController y PostController logrando un code coverage del 76%.
+
+![Code coverage](coverage.png)
+_Captura de la IDE después de correr todos los test con code coverage._
+
+
+
 
