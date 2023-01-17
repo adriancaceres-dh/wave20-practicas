@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
                 .stream()
                 .map(e -> {
                             String rejectedValue = Objects.isNull(e.getRejectedValue()) ? "empty field" : e.getRejectedValue().toString();
-                            return new InvalidValidationMessage(e.getField(), rejectedValue, e.getDefaultMessage());
+                            return new InvalidValidationMessage(rejectedValue, e.getDefaultMessage());
                         }
                 )
                 .collect(Collectors.toSet());
