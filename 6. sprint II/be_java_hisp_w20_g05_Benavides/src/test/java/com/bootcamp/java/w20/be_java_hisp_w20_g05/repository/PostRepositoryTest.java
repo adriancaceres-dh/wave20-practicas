@@ -1,29 +1,11 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.repository;
 
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Post;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.util.TestUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
 
 public class PostRepositoryTest {
     IPostRepository postRepository = new PostRepository();
