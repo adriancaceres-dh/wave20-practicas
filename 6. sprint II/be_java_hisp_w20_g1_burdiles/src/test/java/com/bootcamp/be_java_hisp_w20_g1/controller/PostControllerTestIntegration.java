@@ -57,8 +57,6 @@ class PostControllerTestIntegration {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value("1"))
                 .andReturn();
-
-        System.out.println(mvcResult.getResponse().getContentAsString());
     }
 
     @Test
@@ -94,8 +92,6 @@ class PostControllerTestIntegration {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El id debe ser mayor a 0"))
                 .andReturn();
-
-        System.out.println(mvcResult.getResponse().getContentAsString());
 
     }
 }
