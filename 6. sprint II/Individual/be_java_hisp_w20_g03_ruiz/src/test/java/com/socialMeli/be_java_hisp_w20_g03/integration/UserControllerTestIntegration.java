@@ -99,6 +99,21 @@ public class UserControllerTestIntegration {
                 .andExpect(jsonPath("$").value("El usuario ingresado no existe."));
     }
 
+    @Test
+    @DisplayName("TI-0004 Camino Feliz")
+    void unfollowOk() throws Exception {
+        int userIdToUnfollow = 234;
+        int userId = 4698;
+        User user = UserUtils.buildUserWithOneFollower(userIdToUnfollow, 251);
 
+        String response = "Dejaste de seguir al usuario: " + user.getUserName();
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToUnfollow}", userId, userIdToUnfollow))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andReturn();
+
+        Assertions.assertEquals(response, mvcResult.getResponse().getContentAsString(Charset.defaultCharset()));
+    }
 
 }
