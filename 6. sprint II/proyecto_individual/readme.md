@@ -11,14 +11,7 @@ En SocialMeli en donde los compradores van a poder seguir a sus vendedores favor
 
 #### Developers 
 
-- [@efruizz](https://www.github.com/efruizz)
-- [@francoalva](https://www.github.com/francoalva)
 - [@itornati](https://www.github.com/itornati)
-- [@IvanGonWM](https://www.github.com/IvanGonWM)
-- [@lbalestrazzi](https://www.github.com/lbalestrazzi)
-- [@FlorSicre](https://www.github.com/octokatherine)
-- [@MatiasSegoviaML](https://www.github.com/MatiasSegoviaML)
-- [@cindyortegapalma](https://www.github.com/cindyortegapalma)
 
 ## Tecnologias Utilizadas
 
@@ -114,3 +107,11 @@ Ordenamiento por fecha ascendente y descendente.
 | T-0007 | Verificar que la cantidad de seguidores de un determinado usuario sea correcta. (US-0002)                                                                            | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                                                          | -                                                 | Ignacio Tornati |
 | T-0008 | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006) | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. | -                                                 | Efrain Francisco Ruiz | 
 
+
+### Test de integracion
+|        | Situaciones de entrada                                                                                                                                               | 
+|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| T-0009 | Test de integracion de US-0001 con todos sus posibles casos                                                                                                               | 
+| T-0010 | Test de integracion de US-0002 con todos sus posibles casos| 
+| T-0011 | Test de integracion de US-0007 con todos sus posibles casos| 
+| T-0012 | Test de integracion de US-0005 con todos sus posibles casos| 
