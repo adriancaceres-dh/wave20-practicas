@@ -1,51 +1,55 @@
-# Social Meli
+# Social Meli-II
+# Sprint II 
 
-## Sprint II
+## Desarrollo individual
+
+Luego de lograr implementar tests unitarios con todos los miembros del equip implementé tests de integración de manera individual hasta alcanzar el porcentaje de cobertura del 75%.
+
+
+## Responsable: 
+Gabriela Stocco
+
 ## Scrum Master: 
 Andres Bolognesi
-## Participantes: 
-Joaquin Pereyra, Martin Gonzalez, Tammara Trivelli, Emiliano Asprea, Ivan Majewski, Gabriela Stocco, Rodrigo Cabrera
-
-## Tecnologías Utilizadas: 
-Java 11, Maven, Spring Framework(Web, DevTools, Lombok), JUnit5, Mockito y Github.
-
-## Descripción de la API
-Dado a que MeLi tiene unos estándares de calidad muy altos con respecto a los productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta a la hora de incorporar datos como así también diferentes test unitarios que aseguren el correcto funcionamiento de cada una de las funcionalidades que incluye.
-Para llevar a cabo estas implementaciones se llevarán a cabo cada una de las validaciones y tests unitarios correspondientes.
-
-## Implementacion de validaciones en los campos de entrada.
-- user_id
-- id_post
-- date
-- product_id
-- product_name
-- type
-- brand
-- color
-- notes
-- category
-- price
-
-## Implementacion de Test Unitarios y Test de Integracion.
-
-![image](https://user-images.githubusercontent.com/119961027/212745767-a4f0262b-dd4a-4727-9ba2-0812e9181a9f.png)
-
-![image](https://user-images.githubusercontent.com/119961027/212745667-03a8d6b8-6aba-40b6-b459-3d647dd493f5.png)
-
-### Test Unitarios desarrollados grupalmente, dividiendo tareas entre los miembros del equipo: 
-*     US 001: followOkTest - Verificar que el usuario a seguir exista.                            Joaquin Pereyra
-*     US 002: unfollowOkTest - Verificar que el usuario a dejar de seguir exista.                 Ivan Majewski
-*     US 003: followersOrder(Asc/Desc)OkTest - Verificar que el orden exista.                     Gabriela Stocco
-*     US 004: followedOrder(Asc/Desc)OkTest - Verificar el ordenamiento ascendente por nombre.    Tammara Trivelli
-*     US 005: getPublicationsInvalidOrderTest - Parametro de orden de fecha incorrecto            Emiliano Asprea
-*     US 006: getPublicationsOrder(Asc/Desc)OKTest - Verificar que las publicaciones de las ultimas 2 semanas esten ordenadas. Rodrigo Cabrera
-*     US 007: followersCountOkTest - Verificar la cantidad de seguidores.                         Desarrollo grupal
-*     US 008: getLastTwoWeeksPublicationsOKTest - Verificar que las publicaciones sean de las últimas dos semanas.  Desarrollo grupal
-
-### Test de Integracion desarrollados individualmente.
 
 
-Diagrama UML sprint 1
-<img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
+# Tests de Integración 
+## Controlador de las publicaciones
 
-Agradecimientos para el equipo de Digital House y los coordinadores del Bootcamp Backend JAVA.
+* add -> Se prueba agregar una nueva publicación
+
+* addException -> Se lanza excepción al intentar agregar una publicación vacía
+
+* last2WeeksPublications -> Se prueba buscar las publicaciones de las últimas dos semanas de un usuario
+
+* last2WeeksPublicationsException -> Se lanza excepción al buscar las publicaciones de un usuario inexistente
+
+## Controlador de los usuarios
+
+* follow -> Se prueba que un usuario pueda seguir a un vendedor
+
+* followException -> Se lanza excepción cuando un usuario inválido intenta seguir a un seller inválido
+
+* followersCount -> Se prueba contabilizar los seguidores de un usuario
+
+* followersCountException -> Se lanza excepción cuando se intenta 
+contabilizar los seguidores de un usuario con id no válido
+
+* followersCountNullException -> Se lanza excepción cuando se pasa un id vacío e intentar contabilizar sus seguidores
+
+* followers -> Se prueba listar los seguidores de un usuario
+
+* followersException -> Se lanza excepción cuando se intenta listar los seguidores de un usuario no válido
+
+* followed -> Se prueba listar los vendedores seguidos por un usuario
+
+* unfollow -> Se prueba dejas de seguir a un usuario
+
+* unfollowException -> Se lanza excepción cuando se intenta dejar de seguir a un usuario que no forma parte de la lista
+
+
+# [Diagrama](https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png)
+
+
+# Agradecimientos 
+Al equipo de Digital House y los coordinadores del Bootcamp Backend JAVA, al profe Martín por sus clases y a los compañeros del Grupo-4.
