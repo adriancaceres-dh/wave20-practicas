@@ -1,4 +1,4 @@
-# Bootcamp Backend Java Sprint N°1 - Spring
+# Bootcamp Backend Java Sprint N°2 - Spring
 
 # Grupo 7
 
@@ -8,27 +8,35 @@
 
 ## Miembros del Proyecto
 
-- [@manueldiazmeli](https://github.com/manueldiazmeli)
-- [@TomasGonzalezDev](https://github.com/TomasGonzalezDev)
-- [@santtury](https://github.com/santtury)
-- [@NathamgML](https://github.com/NathamgML)
-- [@JuanSHenao](https://github.com/JuanSHenao)
-- [@RonaldRosero](https://github.com/RonaldRosero)
-- [@SoriGonzalezR](https://github.com/SoriGonzalezR)
+- 👨🏼‍💻 [@manueldiazmeli](https://github.com/manueldiazmeli)
+- 👨🏻‍💻 [@TomasGonzalezDev](https://github.com/TomasGonzalezDev)
+- 👨🏻‍💻 [@santtury](https://github.com/santtury)
+- 👩🏻‍💻 [@NathamgML](https://github.com/NathamgML)
+- 👨🏻‍💻 [@JuanSHenao](https://github.com/JuanSHenao)
+- 👨🏻‍💻 [@RonaldRosero](https://github.com/RonaldRosero)
+- 👩🏻‍💻 [@SoriGonzalezR](https://github.com/SoriGonzalezR)
 
-## Documentación
 
-Mercado Libre sigue creciendo y para el año que viene tiene como objetivo empezar a implementar una serie de
-herramientas que permitan a los compradores y vendedores tener una experiencia totalmente innovadora, en donde el lazo
-que los una sea mucho más cercano.
 
-La fecha de lanzamiento se aproxima, por lo cual es necesaria la presentación de una versión Beta de lo que va a ser
-conocido como “SocialMeli”, en donde los compradores van a poder seguir a sus vendedores favoritos y enterarse de todas
-las novedades que los mismos posteen.
+## Objetivo
+
+El objetivo de este desafío es aplicar los contenidos dados hasta el momento durante el BOOTCAMP (Git, Java, Spring y Testing),
+haciendo principal hincapié en las validaciones y tipos de testing que pueden ser utilizados a partir de un enunciado propuesto,
+una especificación de requerimientos y documentación técnica.
+## Pautas para la actividad
+El desafío que se propone a continuación consta de 2 partes:
+#### A. Implementar validaciones y diferentes tests a un escenario determinado (grupal):
+A partir de un primer incremento de un escenario conocido (Sprint Nº 1), se deberán establecer distintos procesos de validación de datos y de test unitarios necesarios.
+
+#### B. Apartado Individual:
+Luego de lograr implementar tests unitarios con todos los miembros del equipo, deberás implementar al menos un test de integración de manera individual.
+
+#### C. Bonus:
+En caso de que hayas logrado resolver tanto el apartado A de manera grupal como todo el apartado B de forma individual y aún cuentes con tiempo, te invitamos a que propongas otros tests de integración (diferentes al que hayas implementado en el punto B).  No te olvides que este apartado es 100% OPCIONAL y NO OBLIGATORIO.
 
 ## Tecnologias Utilizadas
 
-Java, Spring Boot
+Git, Java, Spring y Testing
 
 ## Decisiones de Equipo
 
@@ -37,339 +45,89 @@ Java, Spring Boot
 - Se agregó hasPromo desde el inicio del desarrollo y se tomó la decisión que se pasaría a falso si no está en
   promoción.
 
-## Endpoints
 
-#### A. Requerimientos Iniciales (Desarrollo GRUPAL)
+##  Requerimientos técnicos funcionales (Punto A)
 
-**Responsables:** Manuel Alejandro Diaz Isaza y Ronald Esteban Rosero Montana.
 
-```http
-  US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor.
-```
+#### User Stories
+SocialMeli contaba anteriormente con las siguientes User Stories y requerimientos técnicos:
 
-#### Sign:
 
-| Method.    | SIGN                                              |
-|------------|---------------------------------------------------|
-| `POST`     | /users/{userId}/follow/{userIdToFollow}           |
-| Ejemplo:   | /users/123/follow/234                             |
-| `Response` | /Status Code 200 (todo OK) - bodyless or dto      |
-|            | /Status Code 400 (Bad Request) -  bodyless or dto |
 
-#### Filtros/Parámetros:
+**US-0001:** Poder realizar la acción de “Follow” (seguir) a un determinado vendedor.
 
-| Parámetros       | Tipo  | Descripción/Ejemplo                       |
-|:-----------------|:------|:------------------------------------------|
-| `userId`         | `int` | Número que identifica al usuario actual   |
-| `userIdToFollow` | `int` | Número que identifica al usuario a seguir |
+**US-0002::** Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor.
 
-##   
+**US-0003:** Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?).
 
-**Responsables:** Todo el equipo.
+**US-0004:** Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?).
 
-```http
-  US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
-```
+**US-0005:** Dar de alta una nueva publicación.
 
-#### Sign:
+**US-0006:** Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
 
-| Method.  | SIGN                            |
-|----------|---------------------------------|
-| `GET`    | /users/{userId}/followers/count |
-| Ejemplo: | /users/234/followers/count/     |
+**US-0007:** Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado.
 
-`Response`
+**US-0008:** Ordenamiento alfabético ascendente y descendente.
 
-```http
-{
-    "user_id": 234,
-    "user_name": "vendedor1",
-    "followers_count": 35
-}
-```
+**US-0009:** Ordenamiento por fecha ascendente y descendente.
 
-#### Filtros/Parámetros:
+##  Resumen de Datos de entrada (todas las US):
 
-| Parámetros | Tipo  | Descripción/Ejemplo                      |
-|:-----------|:------|:-----------------------------------------|
-| `userId`   | `int` | Número que identifica a cantidad usuario |
 
-##   
+| Datos/Parámetros      | Tipo  | Longitud  | Descripción |
+|:-----------------|:------|:-----------------|:--------------------------|
+| `userId`         | `Integer` |   |Número que identifica al usuario actual |
+| `user_id_to_follow`| `Integer` |   |Número que identifica al usuario a seguir |
+| `user_name`         | `String` |  15 |Nombre de usuario asociado a la user_id |
+| `followers_count`| `Integer` |   |Cantidad de seguidores|
+| `id_post`         | `Integer` |   |Número identificatorio de cada una de las publicaciones|
+| `date`         | `LocalDate` |   |Fecha de la publicación en formato dd-MM-yyyy|
+| `product_id`  | `Integer` |   |Número identificatorio de cada uno de los productos asociados a una publicación|
+| `product_name`| `String` | 40  |Cadena de caracteres que representa el nombre de un producto|
+| `type`         | `String` |  15 |Cadena de caracteres que representa el tipo de un producto|
+| `brand`| `String` |  25 |Cadena de caracteres que representa la marca de un producto|
+| `color` | `String` |  15 |Cadena de caracteres que representa el color de un producto|
+| `notes`   | `String` |  80 |Cadena de caracteres para colocar notas u observaciones de un producto|
+| `category`| `Integer` |   |Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados|
+| `price` | `Double` | 10.000.000 (Max) |Precio del producto|
+| `user_id_to_unfollow`| `Integer` |   |Número que identifica al usuario a dejar de seguir|
+| `order` | `String` |  15 |Cadena de caracteres que representa el color de un producto|
+| `notes`   | `String` |  80 |Establece el ordenamiento. Puede poseer los valores: name_asc, name_desc, date_asc, date_desc|
 
-**Responsables:** Tomas Giovanny Gonzalez Romero y Juan Sebastian Henao Ramirez.
+#### Validaciones en campos (Todas las US):
+| Dato/Parámetro    | ¿Obligatorio?| Validación | Mensaje de error |
+|:-----------------|:------|:----------------------|----------|
+| `userId` | `Si` | - Que el campo no esté vacío - Mayor 0 |-El  id no puede estar vacío.  - El id debe ser mayor a cero|
+| `id_post`| `SI` |  - Que el campo no esté vacío - Mayor 0 |- El id_post no puede estar vacío. - El id_post debe ser mayor a cero.
+| `date`         | `SI` |  Que el campo no esté vacío. |- La fecha no puede estar vacía.|
+| `product_id`| `SI` | - Que el campo no esté vacío - Mayor 0   |- La id no puede estar vacía. -El id debe ser mayor a cero|
+| `product_name`| `SI` | - Que el campo no esté vacío. -Longitud máxima de 40 caracteres. - Que no posea caracteres especiales (%, &, $, etc) |- El campo no puede estar vacío. - La longitud no puede superar los 40 caracteres. - El campo no puede poseer caracteres especiales.|
+| `type`         | `SI` | - Que el campo no esté vacío. -Longitud máxima de 15 caracteres. - Que no posea caracteres especiales (%, &, $, etc) |- El campo no puede estar vacío. - La longitud no puede superar los 15 caracteres. - El campo no puede poseer caracteres especiales.|
+| `brand`  | `SI` | - Que el campo no esté vacío. -Longitud máxima de 25 caracteres. - Que no posea caracteres especiales (%, &, $, etc) |-El campo no puede estar vacío. - La longitud no puede superar los 25 caracteres. - El campo no puede poseer caracteres especiales.|
+| `color`| `SI` | - Que el campo no esté vacío.  - Que no posea caracteres especiales (%, &, $, etc), permite espacios. |- El campo no puede estar vacío. - La longitud no puede superar los 15 caracteres. - El campo no puede poseer caracteres especiales.|
+| `notes` | `No` | - Longitud máxima de 80 caracteres especiales -Que no posea caracteres especiales (%, &, $, etc), permite espacios. |- La longitud no puede superar los 80 caracteres. - El campo no puede poseer caracteres especiales.|
+| `category`| `SI` | - Que el campo no esté vacío. |- El campo no puede estar vacío.|
+| `price` | `SI` |  - Que el campo no esté vacío. -El precio máximo puede ser 10.000.000. |- El campo no puede estar vacío. - El precio máximo por producto es de 10.000.000|
 
-```http
-  US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
-```
+#### *Nota: Tener en cuenta que para la devolución de los mensajes de error es recomendable utilizar los status code correspondientes.
 
-#### Sign:
 
-| Method.  | SIGN                           |
-|----------|--------------------------------|
-| `GET`    | /users/{userId}/followers/list |
-| Ejemplo: | /users/234/followers/list      |
 
-`Response`
+#### Tests Unitarios::
 
-```http
-{
-    "user_id": 234,
-    "user_name": "vendedor1",
-    "followers": [
-        {
-            "user_id": 4698,
-            "user_name": "usuario1"
-        },
-        {
-            "user_id": 1536,
-            "user_name": "usuario2"
-        },
-        {
-            "user_id": 2236,
-            "user_name": "usuario3"
-        }
-    ]
-}
 
-```
-
-#### Filtros/Parámetros:
-
-| Parámetros | Tipo  | Descripción/Ejemplo                      |
-|:-----------|:------|:-----------------------------------------|
-| `userId`   | `int` | Número que identifica a cantidad usuario |
+|      | Situaciones de entrada | Comportamiento Esperado   | Responsables |
+|:-----------------|:------|:------------------------------------------|:------------------------------------------|
+| `T-0001`| `Verificar que el usuario a seguir exista. (US-0001)` | `Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción.| Manuel Alejandro Diaz Isaza y Ronald Esteban Rosero Montana|
+| `T-0002` | `Verificar que el usuario a dejar de seguir exista. (US-0007)` |`Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción. |Manuel Alejandro Diaz Isaza y Ronald Esteban Rosero Montana|
+| `T-0003` | `Verificar que el tipo de ordenamiento alfabético exista (US-0008)` | `Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción. |Tomas Giovanny Gonzalez Romero y Juan Sebastian Henao Ramirez|
+| `T-0004` | `Verificar el correcto ordenamiento ascendentey descendente por nombre. (US-0008)` | Devuelve la lista ordenada según el criterio solicitado|Stiven Gonzalez y Sebastian Camilo Anttury Sanchez |
+| `T-0005` | `Verificar que el tipo de ordenamiento por fecha exista (US-0009)` |`Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción.|Soraya Gonzalez y Nathalia Montero Gomez|
+| `T-0006` | `Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)` | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)|Soraya Gonzalez y Nathalia Montero Gomez|
+| `T-0007` | `Verificar que la cantidad de seguidores de un determinado usuario sea correcta. (US-0002)` | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario. |Soraya Gonzalez y Nathalia Montero Gomez|
+| `T-0008` | `Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006)` | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha.|Soraya Gonzalez y Nathalia Montero Gomez|
 
 ##   
 
-**Responsables:** Stiven Gonzalez y Sebastian Camilo Anttury Sanchez.
-
-```http
-  US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
-
-```
-
-#### Sign:
-
-| Method.  | SIGN                          |
-|----------|-------------------------------|
-| `GET`    | /users/{userId}/followed/list |
-| Ejemplo: | /users/4698/followed/list     |
-
-`Response`
-
-```http
-{
-    "user_id": 4698,
-    "user_name": "usuario1",
-    "followed": [
-        {
-            "user_id": 234,
-            "user_name": "vendedor1"
-        },
-        {
-            "user_id": 6932,
-            "user_name": "vendedor2"
-        },
-        {
-            "user_id": 6631,
-            "user_name": "vendedor3"
-        }
-    ]
-}
-
-
-
-```
-
-#### Filtros/Parámetros:
-
-| Parámetros | Tipo  | Descripción/Ejemplo                      |
-|:-----------|:------|:-----------------------------------------|
-| `userId`   | `int` | Número que identifica a cantidad usuario |
-
-##   
-
-**Responsables:** Soraya Carolina Gonzalez Ramirez y Nathalia Montero Gomez.
-
-```http
-  US 0005: Dar de alta una nueva publicación
-
-```
-
-#### Sign:
-
-| Method. | SIGN           |
-|---------|----------------|
-| `POST`  | /products/post |
-
-`PAYLOAD:`
-
-```http
-{
-    "user_id": 123,
-    "date": "29-04-2021",
-    "product": {
-        "product_id": 1,
-        "product_name": "Silla Gamer",
-        "type": "Gamer",
-        "brand": "Racer",
-        "color": "Red & Black",
-        "notes": "Special Edition"
-    },
-    "category": 100,
-    "price": 1500.50
-}
-
-```
-
-| RESPONSE | Status Code 200 (todo OK)     |
-|----------|-------------------------------|
-|          | Status Code 400 (Bad Request) 
-
-#### Filtros/Parámetros:
-
-| Parámetros     | Tipo        | Descripción/Ejemplo                                                                                                      |
-|:---------------|:------------|:-------------------------------------------------------------------------------------------------------------------------|
-| `userId`       | `int`       | Número que identifica a cantidad usuario                                                                                 |
-| `date`         | `LocalDate` | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
-| `product_id`   | `int`       | Número identificatorio de un producto asociado a una publicación                                                         |
-| `product_name` | `String`    | Cadena de caracteres que representa el nombre de un producto                                                             |
-| `type`         | `String`    | Cadena de caracteres que representa el tipo de un producto                                                               |
-| `brand`        | `String`    | Cadena de caracteres que representa la marca de un producto                                                              |
-| `color`        | `String`    | Cadena de caracteres que representa el color de un producto                                                              |
-| `notes`        | `String`    | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
-| `category`     | `int`       | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
-| `price`        | `double`    | Precio del producto                                                                                                      |
-
-###
-
-**Responsables:** Todo el equipo.
-
-```http
-  US 0006: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
-```
-
-#### Sign:
-
-| Method.  | SIGN                             |
-|----------|----------------------------------|
-| `GET`    | /products/followed/{userId}/list |
-| Ejemplo: | /products/followed/4698/list     |
-
-`Response`
-
-```http
-{
-    "user_id": 4698,
-    "posts": [ {
-            “user_id”: 123,
-            "post_id": 32,
-            "date": "01-05-2021",
-            "product": {
-                "product_id": 62,
-                "product_name": "Headset RGB Inalámbrico",
-                "type": "Gamer",
-                "brand": "Razer",
-                "color": "Green with RGB",
-                "notes": "Sin Batería"
-            },
-            "category": 120,
-            "price": 2800.69
-        },
-        {
-            “user_id”: 234,
-            "post_id": 18,
-            "date": "29-04-2021",
-            "product": {
-                "product_id": 1,
-                "productName": "Silla Gamer",
-                "type": "Gamer",
-                "brand": "Racer",
-                "color": "Red & Black",
-                "notes": "Special Edition"
-            },
-            "category": 100,
-            "price": 15000.50
-     }
-    ]
-}
-
-
-
-```
-
-#### Filtros/Parámetros:
-
-| Parámetros | Tipo  | Descripción/Ejemplo                      |
-|:-----------|:------|:-----------------------------------------|
-| `userId`   | `int` | Número que identifica a cantidad usuario |
-
-##   
-
-**Responsables:** Manuel Alejandro Diaz Isaza y Ronald Esteban Rosero Montana.
-
-```http
-  US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
-```
-
-#### Sign:
-
-| Method.  | SIGN                                        |
-|----------|---------------------------------------------|
-| `POST`   | /users/{userId}/unfollow/{userIdToUnfollow} |
-| Ejemplo: | /users/234/unfollow/123                     |
-
-#### Filtros/Parámetros:
-
-| Parámetros         | Tipo  | Descripción/Ejemplo                                |
-|:-------------------|:------|:---------------------------------------------------|
-| `userId`           | `int` | Número que identifica al usuario actual            |
-| `userIdToUnfollow` | `int` | Número que identifica al usuario a dejar de seguir |
-
-###
-
-**Responsables:** Stiven Gonzalez y Sebastian Camilo Anttury Sanchez.
-
-```http
-  US 0008: Ordenamiento alfabético ascendente y descendente.
-```
-
-#### Sign:
-
-| Method. | SIGN                                           |
-|---------|------------------------------------------------|
-| `GET`   | Ejemplo:                                       |
-|         | /users/{UserID}/followers/list?order=name_asc  |
-|         | /users/{UserID}/followers/list?order=name_desc |
-|         | /users/{UserID}/followed/list?order=name_asc   |
-|         | /users/{UserID}/followed/list?order=name_desc  |
-
-| order     | Description            |
-|-----------|------------------------|
-| name_asc  | Alfabético ascendente  |
-| name_desc | Alfabético descendente |
-
-**Nota:** Este ordenamiento aplica solo para US-003 y US-004.
-
-###
-
-**Responsables:** Todo el equipo.
-
-```http
-  US 0009: Ordenamiento por fecha ascendente y descendente
-```
-
-#### Sign:
-
-| Method. | SIGN                                             |
-|---------|--------------------------------------------------|
-| `GET`   | Ejemplo:                                         |
-|         | /products/followed/{userId}/list?order=date_asc  |
-|         | /products/followed/{userId}/list?order=date_desc |
-
-| order     | Description                                    |
-|-----------|------------------------------------------------|
-| date_asc  | Fecha ascendente (de más antigua a más nueva)  |
-| date_desc | Fecha descendente (de más nueva a más antigua) |
-
-**Nota:** Este ordenamiento aplica solo para la US-006. 
+#### Agradecimientos: A nuestra queridisima Scrum Master Johanna Tabella ❤️  por apoyo incondicional y a nuestros instructores Martin y Adrian por compartir su conocimiento!! 
