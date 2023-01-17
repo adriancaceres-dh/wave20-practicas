@@ -30,7 +30,7 @@ public class ProductDTO {
     private String brand;
 
     @NotBlank(message = "El campo no puede estar vacio")
-    @Size(max = 15,message = "La longitud no puede superar los 40 caracteres.")
+    @Size(max = 15,message = "La longitud no puede superar los 15 caracteres.")
     @Pattern(regexp = RegexConstants.NO_SPECIAL_CHARACTERS,message = "El campo no puede poseer caracteres especiales.")
     private String color;
     @Size(max = 80,message = "La longitud no puede superar los 80 caracteres.")
