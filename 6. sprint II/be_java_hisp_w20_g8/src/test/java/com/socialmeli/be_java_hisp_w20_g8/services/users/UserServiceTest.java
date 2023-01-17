@@ -151,6 +151,7 @@ class UserServiceTest {
     void getAllFollowedAsc() {
         // arrange
         int userId = 2;
+        String order = "name_asc";
         List<SellerDTO> expected = List.of(
                 new SellerDTO(7, "ana_ortiz"),
                 new SellerDTO(10, "ana_real"),
@@ -169,16 +170,13 @@ class UserServiceTest {
         when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
 
         // act
-        UserFollowedDTO userFollowedDTO = injectMockUserService.getAllFollowed(userId, "name_asc");
+        UserFollowedDTO userFollowedDTO = injectMockUserService.getAllFollowed(userId, order);
         List<SellerDTO> actual = userFollowedDTO.getFollowed();
 
         // assert
         verify(mockPersonRepository, atLeastOnce()).getAllFollowed(anyInt());
         assertNotNull(actual);
         assertEquals(expected, actual);
-        for (int i = 1; i < actual.size(); i++) {
-            assertTrue(actual.get(i - 1).getUser_name().compareTo(actual.get(i).getUser_name()) <= 0);
-        }
     }
 
     @Test
@@ -186,6 +184,7 @@ class UserServiceTest {
     void getAllFollowedDesc() {
         // arrange
         int userId = 2;
+        String order = "name_desc";
         List<SellerDTO> expected = List.of(
                 new SellerDTO(9, "jesus_rivera"),
                 new SellerDTO(6, "jesus_flores"),
@@ -204,16 +203,13 @@ class UserServiceTest {
         when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
 
         // act
-        UserFollowedDTO userFollowedDTO = injectMockUserService.getAllFollowed(userId, "name_desc");
+        UserFollowedDTO userFollowedDTO = injectMockUserService.getAllFollowed(userId, order);
         List<SellerDTO> actual = userFollowedDTO.getFollowed();
 
         // assert
         verify(mockPersonRepository, atLeastOnce()).getAllFollowed(anyInt());
         assertNotNull(actual);
         assertEquals(expected, actual);
-        for (int i = 1; i < actual.size(); i++) {
-            assertTrue(actual.get(i - 1).getUser_name().compareTo(actual.get(i).getUser_name()) >= 0);
-        }
     }
         @Test
         @DisplayName("T-0003 Users-> Ascending sort test")
@@ -232,7 +228,6 @@ class UserServiceTest {
             when(mockPersonRepository.findSellerById(10)).thenReturn(new Seller(10, "ana_real"));
             //Action
             UserFollowedDTO sellerFollowers = injectMockUserService.getAllFollowed(userId,orderOption);
-            System.out.println("sellerFollowers = " + sellerFollowers);
 
             //assert
             assertNotNull(sellerFollowers);
