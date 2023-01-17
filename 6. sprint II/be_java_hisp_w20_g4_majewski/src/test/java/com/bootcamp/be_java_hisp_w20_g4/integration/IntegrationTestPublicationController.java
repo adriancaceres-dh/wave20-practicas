@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -37,6 +38,7 @@ public class IntegrationTestPublicationController {
 
 
     @Test
+    @DisplayName("T- Individual - Valida la creación de una publicación")
     void addPostIntegrationTest() throws Exception{
         ObjectWriter writer = new ObjectMapper()
                 .registerModule(new JavaTimeModule())

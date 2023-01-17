@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g4.dto.response.user.UserFollowedDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,6 +30,7 @@ public class IntegrationTestUserController {
     MockMvc mockMvc;
 
     @Test
+    @DisplayName("T- Individual (Bonus) - Valida la funcionalidad de seguir a un vendedor")
     void followIntegrationTest() throws Exception{
 
         ObjectWriter writer = new ObjectMapper()
