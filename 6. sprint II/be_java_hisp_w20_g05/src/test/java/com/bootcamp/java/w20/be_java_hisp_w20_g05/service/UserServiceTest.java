@@ -22,7 +22,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -37,6 +36,7 @@ public class UserServiceTest {
     IUserRepository userRepository;
     @InjectMocks
     UserService userService;
+
     private static ObjectWriter writer;
     private AutoCloseable closeable;
     @BeforeAll
@@ -213,6 +213,65 @@ public class UserServiceTest {
         Assertions.assertThrows(WrongRequestParamException.class,()->userService.getFollowedListDto(id,order));
     }
 
+    @Test
+    @DisplayName("T-0003 Followers_Ord_Desc_Exists")
+    public void getFollowersBySellerTestOrderDescExists() throws Exception{
+        //Arrange
+        int id=1;
+        String order="naME_DeSc";
+        String original = writer.writeValueAsString(TestUtils.createFollsListDto(id,false));
+
+        when(userRepository.getById(id)).thenReturn(Optional.of(new User(id,"usu1",Set.of(2,4),null)));
+        when(userRepository.getById(2)).thenReturn(Optional.of(new User(2,"hbowstead0",null,null)));
+        when(userRepository.getById(4)).thenReturn(Optional.of(new User(4,"jmedcraft2",null,null)));
+        //Act
+        String ordered = writer.writeValueAsString(userService.getFollowersBySeller(id, order).getFollowers());
+        //Assert
+        Assertions.assertNotEquals(original,ordered);
+    }
+
+    @Test
+    @DisplayName("T-0003 Followers_Ord_Asc_Exists")
+    public void getFollowersBySellerTestOrderAscExists() throws Exception{
+        //Arrange
+        int id=1;
+        String order="naME_aSc";
+        List<UserResponseDTO> folls= new ArrayList<>(){{//El metodo en el servicio crea la lista ya ordenada por nombre ascendentemente asi que no pude seguir usando el metodo del utils para crear la lista y comparar. Crear otro metodo en utils por solo dos lineas me parecio innecesario.
+            add(new UserResponseDTO(4,"jmedcraft2"));
+            add(new UserResponseDTO(2,"hbowstead0")); }};
+        String original = writer.writeValueAsString(folls);
+
+        when(userRepository.getById(id)).thenReturn(Optional.of(new User(id,"usu1",Set.of(2,4),null)));
+        when(userRepository.getById(2)).thenReturn(Optional.of(new User(2,"hbowstead0",null,null)));
+        when(userRepository.getById(4)).thenReturn(Optional.of(new User(4,"jmedcraft2",null,null)));
+        //Act
+        String ordered = writer.writeValueAsString(userService.getFollowersBySeller(id, order).getFollowers());
+        //Assert
+        Assertions.assertNotEquals(original,ordered);
+    }
+
+    @Test
+    @DisplayName("T-0003 Followers_Order_Empty_list")
+    public void getFollowersBySellerTestEmptyList() throws Exception{
+        //Arrange
+        int id=123;
+        String order="NAmE_aSC";
+        when(userRepository.getById(id)).thenReturn(Optional.of(new User(id,"user",Set.of(),null)));
+        //Act
+        String ordered = writer.writeValueAsString(userService.getFollowersBySeller(id,order).getFollowers());
+        //Assert
+        Assertions.assertEquals("[]",ordered);
+    }
+
+    @Test
+    @DisplayName("T-0003 Followers_Order_Exception")
+    public void getFollowersBySellerTestWrongOrderException(){
+        //Arrange
+        int id=1;
+        String order="wrong_order";
+        //Act & Assert
+        Assertions.assertThrows(WrongRequestParamException.class,()->userService.getFollowersBySeller(id,order));
+    }
 
     // TEST T-0004
     // Verificar el correcto ordenamiento ascendente y descendente por nombre.
@@ -300,67 +359,7 @@ public class UserServiceTest {
     }
 
     // FIN DE TEST T-0004
-
-
-    @Test
-    @DisplayName("T-0003 Followers_Ord_Desc_Exists")
-    public void getFollowersBySellerTestOrderDescExists() throws Exception{
-        //Arrange
-        int id=1;
-        String order="naME_DeSc";
-        String original = writer.writeValueAsString(TestUtils.createFollsListDto(id,false));
-
-        when(userRepository.getById(id)).thenReturn(Optional.of(new User(id,"usu1",Set.of(2,4),null)));
-        when(userRepository.getById(2)).thenReturn(Optional.of(new User(2,"hbowstead0",null,null)));
-        when(userRepository.getById(4)).thenReturn(Optional.of(new User(4,"jmedcraft2",null,null)));
-        //Act
-        String ordered = writer.writeValueAsString(userService.getFollowersBySeller(id, order).getFollowers());
-        //Assert
-        Assertions.assertNotEquals(original,ordered);
-    }
-
-    @Test
-    @DisplayName("T-0003 Followers_Ord_Asc_Exists")
-    public void getFollowersBySellerTestOrderAscExists() throws Exception{
-        //Arrange
-        int id=1;
-        String order="naME_aSc";
-        List<UserResponseDTO> folls= new ArrayList<>(){{//El metodo en el servicio crea la lista ya ordenada por nombre ascendentemente asi que no pude seguir usando el metodo del utils para crear la lista y comparar. Crear otro metodo en utils por solo dos lineas me parecio innecesario.
-            add(new UserResponseDTO(4,"jmedcraft2"));
-            add(new UserResponseDTO(2,"hbowstead0")); }};
-        String original = writer.writeValueAsString(folls);
-
-        when(userRepository.getById(id)).thenReturn(Optional.of(new User(id,"usu1",Set.of(2,4),null)));
-        when(userRepository.getById(2)).thenReturn(Optional.of(new User(2,"hbowstead0",null,null)));
-        when(userRepository.getById(4)).thenReturn(Optional.of(new User(4,"jmedcraft2",null,null)));
-        //Act
-        String ordered = writer.writeValueAsString(userService.getFollowersBySeller(id, order).getFollowers());
-        //Assert
-        Assertions.assertNotEquals(original,ordered);
-    }
-
-    @Test
-    @DisplayName("T-0003 Followers_Order_Empty_list")
-    public void getFollowersBySellerTestEmptyList() throws Exception{
-        //Arrange
-        int id=123;
-        String order="NAmE_aSC";
-        when(userRepository.getById(id)).thenReturn(Optional.of(new User(id,"user",Set.of(),null)));
-        //Act
-        String ordered = writer.writeValueAsString(userService.getFollowersBySeller(id,order).getFollowers());
-        //Assert
-        Assertions.assertEquals("[]",ordered);
-    }
-
-    @Test
-    @DisplayName("T-0003 Followers_Order_Exception")
-    public void getFollowersBySellerTestWrongOrderException(){
-        //Arrange
-        int id=1;
-        String order="wrong_order";
-        //Act & Assert
-        Assertions.assertThrows(WrongRequestParamException.class,()->userService.getFollowersBySeller(id,order));
-    }
+    
     @Test
     @DisplayName("T-0007 Cantidad de Segiodores correcta")
     public void getFollowersCountTest() throws Exception {
@@ -374,5 +373,4 @@ public class UserServiceTest {
         verify(userRepository, atLeastOnce()).getById(user1.get().getId());
         assertEquals(user1.get().getFollowers().size(), followersCountDTO.getFollowers_count());
     }
-
 }
