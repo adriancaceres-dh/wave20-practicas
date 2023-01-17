@@ -128,7 +128,7 @@ SocialMeli contaba anteriormente con las siguientes User Stories y requerimiento
 | `T-0008` | `Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006)` | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. | Soraya Gonzalez y Nathalia Montero Gomez                      |
 
 
-#### Tests de Integración (Parte individual)::
+#### Tests de Integración (Parte individual y Bonus)::
 
 | Historia de Usuario | Endpoint de prueba                                                                                                                                                     | Comportamiento Esperado                                                                                                                            |
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------|
