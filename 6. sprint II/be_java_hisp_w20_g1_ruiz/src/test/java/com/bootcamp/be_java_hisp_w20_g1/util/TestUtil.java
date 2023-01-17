@@ -158,4 +158,25 @@ public class TestUtil {
                 collect(Collectors.toList());
     }
 
+    public static PostResponseDto getPostRequestDto() {
+        ProductResponseDto prod = ProductResponseDto
+                .builder()
+                .brand("Racer")
+                .productId(60)
+                .productName("Silla Gamer")
+                .color("Red")
+                .notes("Special Edition")
+                .type("Gamer")
+                .build();
+
+        return PostResponseDto
+                .builder()
+                .userId(1)
+                .date(LocalDate.now())
+                .product(prod)
+                .category(100)
+                .price(1500.50)
+                .build();
+    }
+
 }
