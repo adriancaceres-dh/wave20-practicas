@@ -31,8 +31,6 @@ public class PostServiceImplTest {
     UserServiceImpl mockUserService;
     @InjectMocks
     PostServiceImpl mockPostServiceImpl;
-
-
     @Test
     @DisplayName("US-0009 - T-0005, Verificar el correcto ordenamiento por fecha")
     void shouldValidateOrderList(){
@@ -68,7 +66,7 @@ public class PostServiceImplTest {
         List<PostResponseDTO> response =mockPostServiceImpl.returnOrderPostByDate(listPosts, typeSort);
         //assert
         assertEquals(LocalDate.of(2022,1,1),response.get(0).getDate());
-        assertEquals(LocalDate.of(2023,1,13),response.get(1).getDate());
+        assertEquals(LocalDate.now().minusDays(4),response.get(1).getDate());
     }
     @Test
     @DisplayName("US-0009 - T-0006, Verificar el correcto ordenamiento descendente")
@@ -79,8 +77,8 @@ public class PostServiceImplTest {
         //act
         List<PostResponseDTO> response =mockPostServiceImpl.returnOrderPostByDate(listPosts, typeSort);
         //assert
-        assertEquals(LocalDate.of(2023,1,17),response.get(0).getDate());
-        assertEquals(LocalDate.of(2023,1,15),response.get(1).getDate());
+        assertEquals(LocalDate.now(),response.get(0).getDate());
+        assertEquals(LocalDate.now().minusDays(2),response.get(1).getDate());
     }
 
     @Test

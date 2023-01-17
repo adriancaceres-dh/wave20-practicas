@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "7730e92b-e500-4414-a6ba-ad7e387be6a9",
+		"_postman_id": "7738a772-8070-4526-a29c-abd444a48f3f",
 		"name": "Validaciones DTO´s",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25120454"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -44,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": null,\n    \"date\": \"24-12-2022\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n\n",
+							"raw": "{\n    \"user_id\": null,\n    \"date\": \"24-12-2022\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red and Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +71,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": -3,\n    \"date\": \"24-12-2022\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n\n",
+							"raw": "{\n    \"user_id\": -3,\n    \"date\": \"24-12-2022\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red and Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,7 +99,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": 3,\n    \"date\": null,\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n\n",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": null,\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red and Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -268,7 +267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"24-12-2022\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red and Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 10000001\n}\n\n",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"24-12-2022\",\n    \"product\": {\n        \"product_id\": 1,\n        \"product_name\": \"Silla normal\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1000\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
