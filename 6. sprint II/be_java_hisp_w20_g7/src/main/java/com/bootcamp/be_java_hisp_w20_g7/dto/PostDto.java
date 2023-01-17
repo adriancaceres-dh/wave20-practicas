@@ -1,12 +1,12 @@
 package com.bootcamp.be_java_hisp_w20_g7.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -16,28 +16,27 @@ import java.time.LocalDate;
 @Data
 public class PostDto {
 
-    @NotNull(message = "userId is a mandatory field")
-    @Min(value = 1, message = "Id must be greater than 0")
+    @NotNull(message = "El id no puede estar vacio")
+    @Min(value = 1, message = "El id debe ser mayor a cero")
     private int userId;
 
-    //@NotBlank(message = "Id cannot be empty")
-    @NotNull(message = "postId is a mandatory field")
-    @Min(value = 1, message = "Id must be greater than 0")
+    @NotNull(message = "El id_post no puede estar vacio")
+    @Min(value = 1, message = "El id_post debe ser mayor a cero")
     private int postId;
-    @NotEmpty(message = "Date cannot be empty")
+    @NotEmpty(message = "La fecha no puede estar vacia")
     @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
 
-    @NotNull(message = "userId is a mandatory field")
+    @NotNull(message = "El producto no puede estar vacio")
     private ProductDto product;
 
-    @NotNull(message = "Field cannot be empty")
-    @Min(value = 1, message = "category must be greather than 0")
+    @NotNull(message = "El campo no puede estar vacio")
+    @Min(value = 1, message = "Categoria debe ser mayor a cero")
     private int category;
 
-    //@NotEmpty(message = "Field cannot be empty")
-    @Max(value = 10000000, message = "Max price is 10000000")
-    @Min(1000)
+    @NotNull(message = "El campo no puede estar vació")
+    @Max(value = 10000000, message = "El precio maximo por producto es de 10.000.000")
+    @Min(value = 1, message = "El precio minimo por producto es de 1")
     private double price;
 
 }

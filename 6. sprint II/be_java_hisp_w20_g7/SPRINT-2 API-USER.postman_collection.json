@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0f47a8d2-6556-4603-9b6f-5118d2f603a1",
+		"_postman_id": "7f151634-2ae3-468e-830e-24c0ed0b3cf1",
 		"name": "SPRINT-2 API-USER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24803262"
+		"_exporter_id": "25045481"
 	},
 	"item": [
 		{
@@ -849,7 +849,7 @@
 							"name": "notes_validation",
 							"item": [
 								{
-									"name": "color_max_length_equals_to_80_validation",
+									"name": "notes_max_length_equals_to_80_validation",
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -878,7 +878,7 @@
 									"response": []
 								},
 								{
-									"name": "color_no_special_characteres_validation",
+									"name": "notes_no_special_characteres_validation",
 									"request": {
 										"method": "POST",
 										"header": [],
