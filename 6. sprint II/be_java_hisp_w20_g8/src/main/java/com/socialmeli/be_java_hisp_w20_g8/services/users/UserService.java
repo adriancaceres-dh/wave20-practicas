@@ -34,14 +34,14 @@ public class UserService implements IUserService {
     IPersonRepository personRepository;
     ModelMapper modelMapper = new ModelMapper();
 
-    /**
-     * create a list of sellers followed by a specific user and is sorted by the order option
-     * @author: Luis López Gómez
-     * @param userId id of the user
-     * @param order sorting option used in the method
-     * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
-     */
     public UserFollowedDTO getAllFollowed(int userId, String order) {
+        /**
+         * create a list of sellers followed by a specific user and is sorted by the order option
+         * @author: Luis López Gómez
+         * @param userId id of the user
+         * @param order sorting option used in the method
+         * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
+         */
         if (personRepository.checkUser(userId)) {
             // Getting User and converting to UserDTO
             User user = personRepository.findUserById(userId);
@@ -77,6 +77,13 @@ public class UserService implements IUserService {
     }
 
     public ResponseDTO addNewFollow(int userId, int sellerId) {
+        /**
+         * add a seller to the specific user followed list
+         * @author: Juan Camilo Arango Valle
+         * @param userId id of the user
+         * @param sellerId id of the seller to follow
+         * @return ResponseDTO the status of the operation and a message
+         */
         if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
             personRepository.addFollowing(userId, sellerId);

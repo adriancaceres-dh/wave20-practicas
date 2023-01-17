@@ -29,7 +29,7 @@ import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 
 /**
  * This test is used for check the sorting options for the post service and check the result of the method against a mock
- * @author: Adrian Isaac Gomez Ocon
+ * @author: Adrian Isaac Gomez Ocon and John Edward Garcia Saavedra
  */
 @ExtendWith(MockitoExtension.class)
 class PostServiceTest {
@@ -93,7 +93,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T-0005-> Check ascending order of post by date")
+    @DisplayName("T-0006-> Check ascending order of post by date")
     public void findPostByIdSellerTestAscendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
@@ -136,7 +136,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T-0005-> Check descending order of post by date")
+    @DisplayName("T-0006-> Check descending order of post by date")
     public void findPostByIdSellerTestDescendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
@@ -179,7 +179,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T-0004-> Find post by id seller order asc test")
+    @DisplayName("T-0005-> Find post by id seller order asc test")
     void findPostByIdSellerTestAsc(){
         String orderOption = "date_asc";
 
@@ -192,7 +192,7 @@ class PostServiceTest {
 
     }
     @Test
-    @DisplayName("T-0004-> Find post by id seller order desc test")
+    @DisplayName("T-0005-> Find post by id seller order desc test")
     void findPostByIdSellerTestDesc(){
         String orderOption = "date_desc";
 
@@ -206,7 +206,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("T-0004-> Find post by id seller order invalid test")
+    @DisplayName("T-0005-> Find post by id seller order invalid test")
     void findPostByIdSellerOrderInvalidTest(){
         String orderOption = "not_sorting_option";
         String expectedErrorMessage = "Invalid sorting option";
