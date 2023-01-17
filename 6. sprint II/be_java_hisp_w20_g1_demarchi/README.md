@@ -2,10 +2,11 @@
 # Sprint 2 Social MELI.
 
 ### Miembros del equipo.
+Entrega individual ❗
 
 - **Scrum Master** Johanna Tabella.
 - Agustin Iglesias.
-- Esteban Jose Demarchi.
+- **Esteban Jose Demarchi.** ❗
 - Facundo Andres Ruiz.
 - Francisco Nicolas Berthet Cosentino.
 - Juan Pablo Ramos Ruiz.
@@ -470,6 +471,95 @@ Por ejemplo
 <td style="height: 73px;">
 <p><span style="font-weight: 400;">Devuelve &uacute;nicamente los datos de las publicaciones que tengan fecha de publicaci&oacute;n dentro de las &uacute;ltimas dos semanas a partir del d&iacute;a de la fecha.</span></p>
 </td>
+</tr>
+</tbody>
+</table>
+
+## Test de integración
+
+<table style="width: 1020px;">
+<tbody>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;">
+<p><strong>T-0009</strong></p>
+</td>
+<td style="height: 73px; width: 176px;">&nbsp;Esteban Jose Demarchi</td>
+<td style="height: 73px; width: 394.062px;">Verificar que la consulta de obtener la cantidad de usuarios que siguen a un vendedor sea correcta.&nbsp;<strong>(US-0002)&nbsp;</strong></td>
+<td style="height: 73px; width: 352.938px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n (usuario no es vendedor)</span></p>
+Notifica la no existencia mediante una excepci&oacute;n (usuario existe)&nbsp;</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;"><strong>T-0010</strong>&nbsp;</td>
+<td style="height: 73px; width: 176px;">&nbsp;Esteban Jose Demarchi&nbsp;</td>
+<td style="height: 73px; width: 394.062px;">Verificar que la consulta de obtener la lista de seguidores que siguen a un vendedor sea correcta&nbsp;<strong>(US-0003)&nbsp;</strong></td>
+<td style="height: 73px; width: 352.938px;">&nbsp;
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n (usuario no es vendedor)</span></p>
+</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;"><strong>T-0011</strong>&nbsp;</td>
+<td style="height: 73px; width: 176px;">&nbsp;&nbsp;Esteban Jose Demarchi</td>
+<td style="height: 73px; width: 394.062px;">Verificar que la consulta de obtener la lista de seguidores que&nbsp;el usuario sigue&nbsp;<strong>(US-0004)&nbsp;</strong></td>
+<td style="height: 73px; width: 352.938px;">&nbsp;
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n (se pasa un valor de query param incorrecto)</span></p>
+</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;"><strong>T-0012</strong>&nbsp;</td>
+<td style="height: 73px; width: 176px;">&nbsp;Esteban Jose Demarchi&nbsp;</td>
+<td style="height: 73px; width: 394.062px;">&nbsp;Verificar que se pueda seguir a un usuario&nbsp;<strong>(US-0001)</strong></td>
+<td style="height: 73px; width: 352.938px;">&nbsp;
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n (usuario no es vendedor)</span></p>
+</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;"><strong>T-0013</strong>&nbsp;</td>
+<td style="height: 73px; width: 176px;">&nbsp;Esteban Jose Demarchi&nbsp;</td>
+<td style="height: 73px; width: 394.062px;">&nbsp;Verificar que se pueda dejar de seguir a un usuario&nbsp;<strong>(US-0007)</strong></td>
+<td style="height: 73px; width: 352.938px;">Permite continuar con normalidad&nbsp;</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;"><strong>T-0014</strong>&nbsp;</td>
+<td style="height: 73px; width: 176px;">&nbsp;Esteban Jose Demarchi&nbsp;</td>
+<td style="height: 73px; width: 394.062px;">&nbsp;Verificar que se pueda agregar un producto de acuerdo a las validaciones requeridas&nbsp;<strong>(US-0005)</strong></td>
+<td style="height: 73px; width: 352.938px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Variable de tipo incorrecto</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Se env&iacute;a una categor&iacute;a inv&aacute;lida</span></p>
+<p><span style="font-weight: 400;">&nbsp; - No se env&iacute;a una categor&iacute;a</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Se env&iacute;a un id inv&aacute;lido</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Se envia un post sin producto</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Producto con precio superior al m&aacute;ximo</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Producto con nombre inv&aacute;lido</span></p>
+<p><span style="font-weight: 400;">&nbsp; - Producto con id inv&aacute;lido</span></p>
+&nbsp;</td>
+</tr>
+<tr style="height: 73px;">
+<td style="height: 73px; width: 91px;"><strong>T-0015</strong>&nbsp;</td>
+<td style="height: 73px; width: 176px;">&nbsp;&nbsp;Esteban Jose Demarchi</td>
+<td style="height: 73px; width: 394.062px;"><span style="font-weight: 400;">Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las &uacute;ltimas dos semanas&nbsp;<strong>(US-0006)</strong></span></td>
+<td style="height: 73px; width: 352.938px;">&nbsp;Permite continuar con normalidad.</td>
 </tr>
 </tbody>
 </table>
