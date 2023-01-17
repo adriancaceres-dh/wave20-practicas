@@ -1,0 +1,1151 @@
+{
+	"info": {
+		"_postman_id": "473efe3e-f287-46e5-bfab-c1a0be96d250",
+		"name": "Sprint 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "US 001",
+			"item": [
+				{
+					"name": "Existing user follows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/follow/2",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"2"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Existing user follows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/follow/{{nonExistingID}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"{{nonExistingID}}"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user follows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/{{nonExistingID}}/follow/2",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"{{nonExistingID}}",
+								"follow",
+								"2"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user follows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/{{nonExistingID}}/follow/800",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"{{nonExistingID}}",
+								"follow",
+								"800"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "User follows itself",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/follow/1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"1"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "User already following user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/2/follow/3",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"2",
+								"follow",
+								"3"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 002",
+			"item": [
+				{
+					"name": "Existing user followers count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/2/followers/count",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"2",
+								"followers",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user followers count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/{{nonExistingID}}/followers/count",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"{{nonExistingID}}",
+								"followers",
+								"count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 003",
+			"item": [
+				{
+					"name": "Existing user followers list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/2/followers/list",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"2",
+								"followers",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user followers list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/{{nonExistingID}}/followers/list",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"{{nonExistingID}}",
+								"followers",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 004",
+			"item": [
+				{
+					"name": "Existing user following list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/followed/list",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"followed",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user following list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/{{nonExistingID}}/followed/list",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"{{nonExistingID}}",
+								"followed",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 005",
+			"item": [
+				{
+					"name": "New Post - OK",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Missing body",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 006",
+			"item": [
+				{
+					"name": "Existing user following posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/products/followed/2/list",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"followed",
+								"2",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user following posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/products/followed/{{nonExistingID}}/list",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"followed",
+								"{{nonExistingID}}",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 007",
+			"item": [
+				{
+					"name": "Non existing user unfollows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/follow/{{nonExistingID}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"{{nonExistingID}}"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Existing user unfollows existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/unfollow/2",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"unfollow",
+								"2"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Non existing user unfollows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/follow/{{nonExistingID}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"{{nonExistingID}}"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Existing user unfollows non existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/1/follow/{{nonExistingID}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"follow",
+								"{{nonExistingID}}"
+							]
+						},
+						"description": "Existing user follows another existing user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 008",
+			"item": [
+				{
+					"name": "Followers list ascending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/5/followers/list?order=name_asc",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"5",
+								"followers",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Followers list descending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/5/followers/list?order=name_desc",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"5",
+								"followers",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Following list ascending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/8/followed/list?order=name_asc",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"8",
+								"followed",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Following list descending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/8/followed/list?order=name_desc",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"8",
+								"followed",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "name_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid sort parameter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/users/8/followed/list?order=namasd",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"users",
+								"8",
+								"followed",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "namasd"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 009",
+			"item": [
+				{
+					"name": "Posts list descending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/products/followed/2/list?order=date_desc",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"followed",
+								"2",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "date_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts list ascending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/products/followed/2/list?order=date_asc",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"followed",
+								"2",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "date_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid sort parameter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/products/followed/2/list?order=datasd",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"followed",
+								"2",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "datasd"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "US 005 ProductValidations",
+			"item": [
+				{
+					"name": "New Post - Validation Exception user ID value",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": -3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception blank date",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception min price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": -100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception max price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": -3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 20000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Min Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 0,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Name Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla G@mer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Name Size Max",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamerdkjsahdsakdhaskjdbskjdbsakjdbshjbjhcyhbjechebjhasbdjhbvdjhdbasnbvjhvsjhdbsn dsmcnsabjhcasbdmsahbfsajhdvsahmdbsmndbsajhdbasdmasbdhjdbwhjdb c asbmndbashdsbhdnbdba\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Name Not Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Type Not Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Type Size",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamerrsadsfndkjfbdkhjfbdhkfbdkjfbdskjfbdkfnjk\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Type Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer$\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Brand Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"R@cer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Color Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"R%d\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Color Not Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": null,\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Color Size",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Reddjkashdkjsbdkajsbdkjsasasd\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Notes Size",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Editionkjfbdskfjdnsfkjdnfkjdsbfkjdbfkjdsbjhbjhds bjhdkjasbdkjsabdfkjhsabfjhdasbjhasbfjhdvbfjasbdkabkdjbasdhasbdjhasbdfjhasbjashvdjashdvbsajhdbsajhdbaskhjdbsakjdbasnkjdnsakjdnsakjdnaskjdnkhdbjhbdjhdbjehdbejhbdfkjdbkajnskjdnkjsabdkasbfjhbfjhdbfdbfdsnfdmfjnsakjdnkjfbdhjkbfsdkjfnjkenfkjenfkjenfkjfbdscbhdnvbdhjbvdksjhvbdskjcndksjcndskjbdshjkbvjhdsbkdsjbvkdjsnckdjnckjdsnkbsdhkjbekfbewkjfbdkjfbdkhfbekwbfkdjscbkdsjnbkejbfkdsjbvkjdsnckjsdnkdsjbckdsjbkdshbvksjvnksfjbvjkdbjkdsbkjdbchjk\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Notes Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special_&Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "nonExistingID",
+			"value": "500"
+		},
+		{
+			"key": "localhost",
+			"value": "http://localhost:8080"
+		}
+	]
+}
