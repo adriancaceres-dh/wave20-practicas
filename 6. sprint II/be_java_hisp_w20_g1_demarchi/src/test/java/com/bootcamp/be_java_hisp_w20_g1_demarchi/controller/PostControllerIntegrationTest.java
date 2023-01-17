@@ -239,7 +239,7 @@ class PostControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T15: Se obtienen los productos de un vendedor de hasta 14 días")
+    @DisplayName("T15: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas")
     public void givenAnIdOfASellerWithFollowers_whenGettingFollowers_thenFollowersResponseIsShown() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list", 1))
                 .andExpect(status().isOk())
