@@ -620,8 +620,8 @@ al que llama dentro de la capa de service _follow(Integer idFollower, Integer id
 - _followAnUserNotExistingInTheDataBase_
 
 ## 🧨 Bonus - Desarrollo Individual EXTRA - 2.0 🧨
-Se desarrolla la totalidad de los test de integración de la clase _UserController_ y con se llega a la covertura, de 
-líneas de 81%, llegando así a la pauta [BONUS](#-bonus---desarrollo-individual-extra---20-) antes del tiempo de entrega
+Se desarrolla la totalidad de los test de integración de la clase _UserController_ y con eso se llega a un Coverage, de 
+líneas de 79%, llegando así a la pauta [BONUS](#-bonus---desarrollo-individual-extra---20-) antes del tiempo de entrega
 del desafio.
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
