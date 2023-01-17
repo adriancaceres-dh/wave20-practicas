@@ -75,8 +75,8 @@ class UserControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T11: Se muestra mensaje de error porque el usuario no es vendedor cuando se quiere obtener lista de seguidores")
-    public void givenAnIdOfANonSeller_whenGettingHisFollowedList_thenAnErrorMessageIsShown() throws Exception {
+    @DisplayName("T11: Se muestran los vendedor que un usuario sigue")
+    public void givenAnId_whenGettingHisFollowedList_thenAnSellersAreShown() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list", 1))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(1))
