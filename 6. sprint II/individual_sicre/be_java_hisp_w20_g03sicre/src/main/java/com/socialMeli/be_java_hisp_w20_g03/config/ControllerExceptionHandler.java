@@ -16,7 +16,7 @@ public class ControllerExceptionHandler {
 
   @ExceptionHandler(NotFoundException.class)
   public ResponseEntity<String> userNotFound(NotFoundException e) {
-    return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(BadRequestException.class)

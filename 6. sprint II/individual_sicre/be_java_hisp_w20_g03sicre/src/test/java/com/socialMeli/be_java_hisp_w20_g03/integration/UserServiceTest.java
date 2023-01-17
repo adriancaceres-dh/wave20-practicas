@@ -35,7 +35,7 @@ public class UserServiceTest {
     @DisplayName("T-Integracion sobre US-002. Devuelve una excepción ")
     void getFollowedCountUserNotFound()throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count",000))
-                .andDo(print()).andExpect(status().isBadRequest())
+                .andDo(print()).andExpect(status().isNotFound())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=UTF-8"))
                 .andExpect(MockMvcResultMatchers.content().string("El usuario ingresado no existe."));
 
