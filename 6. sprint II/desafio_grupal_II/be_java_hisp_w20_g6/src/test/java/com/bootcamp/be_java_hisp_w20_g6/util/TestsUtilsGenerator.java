@@ -48,13 +48,13 @@ public class TestsUtilsGenerator {
     public static List<PostResponseDTO> getPostsDto() {
         return new ArrayList<>(
                 Arrays.asList(
-                        new PostResponseDTO(1, 1, LocalDate.of(2023, 1, 13),
+                        new PostResponseDTO(1, 1, LocalDate.now().minusDays(4),
                             new ProductModel(1, "Silla", "Gamer", "Racer", "Red & Black", "Special Edition"),
                         100, 1500.5),
-                        new PostResponseDTO(1, 2, LocalDate.of(2023, 1, 15),
+                        new PostResponseDTO(1, 2, LocalDate.now().minusDays(2),
                             new ProductModel(1, "Silla", "Gamer", "Racer", "Red & Black", "Special Edition"),
                             100, 1500.50),
-                        new PostResponseDTO(1, 3, LocalDate.of(2023, 1, 17),
+                        new PostResponseDTO(1, 3, LocalDate.now(),
                             new ProductModel(1, "Silla", "Gamer", "Racer", "Red & Black", "Special Edition"),
                             100, 1500.50),
                         new PostResponseDTO(1, 4, LocalDate.of(2022, 1, 1),
