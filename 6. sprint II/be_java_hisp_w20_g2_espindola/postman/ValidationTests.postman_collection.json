@@ -34,7 +34,7 @@
 			"response": []
 		},
 		{
-			"name": "US 0005 - Register a new Post Validations Tests - Post id not valid",
+			"name": "US 0005 - Register a new Post Validations Tests - Product id not valid",
 			"request": {
 				"method": "POST",
 				"header": [],
