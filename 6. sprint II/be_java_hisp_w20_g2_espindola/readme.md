@@ -615,7 +615,7 @@ ____
 ## 🪤 Implementación de Test Integración - Individual 🪤
 Se realizan los test de integración detallados en el apartado [Requerimientos incrementales - Desarrollo incremental - 2.0](#-requerimientos-incrementales---desarrollo-individual---20-)
 
-Se desarrolla el test integración dela clase _UserController_. Se realizan los test contemplando los casos borde de cada respectivo método dentro de la capa de service:
+Se desarrolla el test integración dela clase _UserController_. Se realizan los test contemplando los casos borde y excepciones de cada respectivo método:
 - _follow_
 - _countFollowers_
 - _getFollowersById_
