@@ -189,7 +189,7 @@ public class TestUtil {
     public static Product getValidProduct() {
         return Product.builder()
                 .id(123)
-                .name("Copa")
+                .name("Cup")
                 .type("Glass")
                 .brand("Stronglass")
                 .color("Transparent")
@@ -208,6 +208,20 @@ public class TestUtil {
         product.setId(99);
         PostRequestDto postRequestDto = getPostRequestDtoWithGivenProduct(product);
         postRequestDto.setUserId(999);
+
+        return postRequestDto;
+    }
+
+    public static PostRequestDto getInvalidPostEmptyFields() {
+        Product product = getValidProduct();
+
+        return new PostRequestDto();
+    }
+
+    public static PostRequestDto getInvalidPostPriceOverMax() {
+        Product product = getValidProduct();
+        PostRequestDto postRequestDto = getPostRequestDtoWithGivenProduct(product);
+        postRequestDto.setPrice(10000001d);
 
         return postRequestDto;
     }

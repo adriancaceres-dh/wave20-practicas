@@ -67,17 +67,19 @@ public class PostControllerIntegrationTest {
         assertEquals(expectedResponse, mvcResult.getResponse().getContentAsString());
     }
 
-    private static Stream<Arguments> invalidPostProvider() {
+    private static Stream<Arguments> invalidPostIdsProvider() {
         return Stream.of(
                 arguments(getInvalidPostExistingProduct(), Parameter.getString("EX_ExistingProduct")),
-                arguments(getInvalidPostInvalidUser(), Parameter.getString("EX_InvalidUser"))
+                arguments(getInvalidPostInvalidUser(), Parameter.getString("EX_InvalidUser")),
+                arguments(getInvalidPostEmptyFields(), "Campos inválidos o faltantes"),
+                arguments(getInvalidPostPriceOverMax(), "Campos inválidos o faltantes")
         );
     }
 
     @ParameterizedTest
-    @MethodSource("invalidPostProvider")
-    @DisplayName("Add invalid post")
-    public void whenGivenInvalidPost_addPost_shouldThrowException(PostRequestDto postRequestDto, String message) throws Exception {
+    @MethodSource("invalidPostIdsProvider")
+    @DisplayName("Add invalid post with existing user and post ids")
+    public void whenGivenInvalidPostIds_addPost_shouldThrowBadRequestException(PostRequestDto postRequestDto, String message) throws Exception {
         String payloadJson = writer.writeValueAsString(postRequestDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
