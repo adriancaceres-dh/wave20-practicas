@@ -53,6 +53,10 @@ Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 ***
 ​
 ## Test de Integración
+Se hacen test de integración para todo el paquete de controller, en la parte de arriba se encuentras los metodos Get con algunas excepciones 
+y debajo se encuentran los metodos Post con algunas excepciones, se valida siempre que el content-type sea apliccation/json, ademas de otras
+validaciones que el valor del campo sea lo esperado
+
 ​
 ​
 ## Colección de Postman
