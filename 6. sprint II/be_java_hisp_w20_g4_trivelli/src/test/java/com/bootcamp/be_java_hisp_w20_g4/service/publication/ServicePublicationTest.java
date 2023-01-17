@@ -92,7 +92,7 @@ class ServicePublicationTest {
 
         ProductTwoWeeksResponseDTO expected = new ProductTwoWeeksResponseDTO(buyer.getUser_id(), listedPostDTOList);
         //Act
-        ProductTwoWeeksResponseDTO response = mockServicePublication.getLastTwoWeeksPublications(1, "date_asc");
+        ProductTwoWeeksResponseDTO response = mockServicePublication.getLastTwoWeeksPublications(2, "date_asc");
         //Assert
         assertEquals(expected, response);
     }
