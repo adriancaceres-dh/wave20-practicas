@@ -21,6 +21,7 @@ public class PostControllerIntegrationTest {
     MockMvc mockMvc;
 
     @Test
+    @DisplayName("T9: GetLastTwoWeeksPostFromUsers devuelve lista de seguidos" )
     public void givenValidtUserId_GetLastTwoWeeksPostFromUsers_ShouldReturnSucess() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/1/list")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -33,6 +34,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("T9: GetLastTwoWeeksPostFromUsers devuelve excepcion si id no existe" )
     public void givenInvalidUserId_GetLastTwoWeeksPostFromUsers_ShouldReturnNotFound() throws Exception {
         String expectedErrorMessage = "El usuario no existe";
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/99/list").contentType(MediaType.APPLICATION_JSON))
