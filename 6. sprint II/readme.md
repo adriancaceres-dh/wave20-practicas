@@ -46,6 +46,6 @@ en la clase "UserController" con ruta: /users/users/{userId}/follow/{userIdToFol
 - Para la tercera parte (Bonus) con el fin de lograr el coverage esperado (Mayor al 75%) opté por realizar test de integración sobre el endpoint denominado "postPost" en la clase "PostController"
 con ruta: /products/post, el cual al abarcar todas las capas y un número amplio de métodos permitió conseguir el objetivo. Los escenarios tomados en cuenta fueron:
 
- - Caso feliz.
+ - Caso feliz proporcionado por el compañero Luis Lopez.
  - Vendedor que postea la publicación no existe.
  - Testeo de la validación que impide crear un post sin producto (ProductDTO nulo)
