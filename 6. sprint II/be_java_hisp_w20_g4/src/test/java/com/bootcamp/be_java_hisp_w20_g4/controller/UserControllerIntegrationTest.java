@@ -51,7 +51,7 @@ class UserControllerIntegrationTest {
 
         ObjectWriter mapper = new ObjectMapper().configure(SerializationFeature.WRAP_ROOT_VALUE,false).writer();
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/1/follow/2")
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}","1","2")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(content().contentType("application/json"))
@@ -66,11 +66,11 @@ class UserControllerIntegrationTest {
         UserCountDTO expected = new UserCountDTO(1,"rodri",1);
         ObjectWriter mapper = new ObjectMapper().configure(SerializationFeature.WRAP_ROOT_VALUE,false).writer();
 
-        MvcResult follow = mockMvc.perform(MockMvcRequestBuilders.post("/users/2/follow/1")
+        MvcResult follow = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}","2","1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/1/followers/count")
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count","1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(content().contentType("application/json"))
