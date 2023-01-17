@@ -79,15 +79,17 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * add a seller to the specific user followed list
+     * @author: Juan Camilo Arango Valle
+     * @param userId id of the user
+     * @param sellerId id of the seller to follow
+     * @return ResponseDTO the status of the operation and a message
+     */
+    @Override
     public ResponseDTO addNewFollow(int userId, int sellerId) {
-        /**
-         * add a seller to the specific user followed list
-         * @author: Juan Camilo Arango Valle
-         * @param userId id of the user
-         * @param sellerId id of the seller to follow
-         * @return ResponseDTO the status of the operation and a message
-         */
-        if (userId == sellerId) throw new OperationFailedException("A user can't follow himself");
+
+        if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
             personRepository.addFollowing(userId, sellerId);
             personRepository.addFollower(sellerId, userId);
@@ -98,6 +100,7 @@ public class UserService implements IUserService {
             throw new NotFoundException("Invalid users please check information.");
         }
     }
+
 
     /**
      * Unfollow a seller
