@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Collectors;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -96,7 +97,7 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("T-0003 - Verificar que el orden exista. Orden name_asc")
+    @DisplayName("T-0004 - Verificar que el ordenamiento ascendente sea correcto. Orden name_asc")
     void followersOrderAscOKTest() {
         //arrange
         List<ListedUserDTO> listedUserExpected = seller.getFollowers()
@@ -113,7 +114,24 @@ class ServiceUsrTest {
 
     }
     @Test
-    @DisplayName("T-0003 - Verificar que el orden exista. Orden name_desc")
+    @DisplayName("T-0004 - Verificar que el ordenamiento sin orden sea correcto. Orden null")
+    void followersOrderNullOKTest() {
+        //arrange
+        List<ListedUserDTO> listedUserExpected = seller.getFollowers()
+                .values().stream()
+                .map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class))
+                .collect(Collectors.toList());
+        UserFollowersDTO expected = new UserFollowersDTO(1,"Vendedor", listedUserExpected);
+        when(mockUserRepository.findById(1)).thenReturn(seller);
+        //act
+        UserFollowersDTO actual = mockServiceUser.followers(1, null);
+
+        //assert
+        Assertions.assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("T-0004 - Verificar que el ordenamiento ascendente sea correcto. Orden name_desc")
     void followersOrderDescOKTest() {
         //arrange
         List<ListedUserDTO> listedUserExpected = seller.getFollowers()
@@ -134,30 +152,45 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("T-0003 - Verificar que el orden exista. Orden null")
-    void followersOrderNullOKTest() {
-        //arrange
-        List<ListedUserDTO> listedUserExpected = seller.getFollowers()
-                .values().stream()
-                .map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class))
-                .collect(Collectors.toList());
-        UserFollowersDTO expected = new UserFollowersDTO(1,"Vendedor", listedUserExpected);
-        when(mockUserRepository.findById(1)).thenReturn(seller);
-        //act
-        UserFollowersDTO actual = mockServiceUser.followers(1, null);
-
-        //assert
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
     @DisplayName("T-0003 - Verificar que el orden exista. Orden inválido")
     void followersInvalidOrderTest() {
         //assert
        assertThrows(BadRequestException.class, ()->mockServiceUser.followers(1, "aaa"));
 
     }
+    @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden válido - name_adc")
+    void followersValidOrderAscTest() {
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(seller);
+        //act
+        UserFollowersDTO result = mockServiceUser.followers(1, "name_asc");
+        //assert
+        assertNotNull(result);
+
+    }
+    @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden válido - name_desc")
+    void followersValidOrderDescTest() {
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(seller);
+        //act
+        UserFollowersDTO result = mockServiceUser.followers(1, "name_desc");
+        //assert
+        assertNotNull(result);
+    }
+    @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden válido - null")
+    void followersValidOrderNullTest() {
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(seller);
+        //act
+        UserFollowersDTO result = mockServiceUser.followers(1, null);
+        //assert
+        assertNotNull(result);
+    }
+
+
 
     @Test
     @DisplayName("T-0004 - Verificar el ordenamiento ascendente por nombre")
@@ -171,6 +204,21 @@ class ServiceUsrTest {
         when(mockUserRepository.findById(1)).thenReturn(seller);
         //Act
         UserFollowedDTO result = mockServiceUser.followed(1,"name_asc");
+        //Assert
+        Assertions.assertEquals(expected,result);
+    }
+    @Test
+    @DisplayName("T-0004 - Verificar el ordenamiento por nombre cuando el orden en null")
+    void followedOrderNullOKTest() {
+        //Arrage
+        List<ListedUserDTO> expectedList = new ArrayList<>();
+        expectedList = seller.getFollowed().values().stream().map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class)).collect(Collectors.toList());
+
+        UserFollowedDTO expected = new UserFollowedDTO(1,"Vendedor",expectedList);
+
+        when(mockUserRepository.findById(1)).thenReturn(seller);
+        //Act
+        UserFollowedDTO result = mockServiceUser.followed(1,null);
         //Assert
         Assertions.assertEquals(expected,result);
     }
@@ -192,26 +240,43 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("T-0004 - Verificar el ordenamiento por nombre cuando el orden en null")
-    void followedOrderNullOKTest() {
-        //Arrage
-        List<ListedUserDTO> expectedList = new ArrayList<>();
-        expectedList = seller.getFollowed().values().stream().map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class)).collect(Collectors.toList());
-
-        UserFollowedDTO expected = new UserFollowedDTO(1,"Vendedor",expectedList);
-
-        when(mockUserRepository.findById(1)).thenReturn(seller);
-        //Act
-        UserFollowedDTO result = mockServiceUser.followed(1,null);
-        //Assert
-        Assertions.assertEquals(expected,result);
-    }
-
-    @Test
     @DisplayName("UT-0003 - Verificar que el orden exista. Orden inválido")
     void followedInvalidOrderTest() {
         assertThrows(BadRequestException.class, ()-> mockServiceUser.followed(1, "aaa") );
     }
+
+    @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden válido - name_adc")
+    void followedValidOrderAscTest() {
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(seller);
+        //act
+        UserFollowedDTO result = mockServiceUser.followed(1, "name_asc");
+        //assert
+        assertNotNull(result);
+
+    }
+    @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden válido - name_desc")
+    void followedValidOrderDescTest() {
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(seller);
+        //act
+        UserFollowedDTO result = mockServiceUser.followed(1, "name_desc");
+        //assert
+        assertNotNull(result);
+    }
+    @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden válido - null")
+    void followedValidOrderNullTest() {
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(seller);
+        //act
+        UserFollowedDTO result = mockServiceUser.followed(1, null);
+        //assert
+        assertNotNull(result);
+    }
+
 
     @Test
     @DisplayName("T-0002 -  verificar que el usuario a dejar de seguir exista")
