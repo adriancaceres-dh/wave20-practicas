@@ -32,6 +32,9 @@ Se plantea creación de una API Rest que permita:
 6. Dar de alta una nueva publicación.
 7. Obtener un listado de las publicaciones realizadas en las últimas dos semanas, por los vendedores que un usuario sigue (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
 
+### Sprint 2
+
+
 ## Metodología de trabajo
 
 El trabajo consistió de 2 estapas claramente diferentes:

@@ -19,6 +19,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class PostRequestDTO {
+    @JsonProperty("product_id")
     private int id;
 
     @JsonProperty("user_id")
@@ -26,7 +27,7 @@ public class PostRequestDTO {
     @NotNull(message = "El Id no puede estar vacio.")
     private int userId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING)
     @NotNull(message = "La fecha no puede estar vacia.")
     private LocalDate date;
 
