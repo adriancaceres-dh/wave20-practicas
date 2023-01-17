@@ -16,14 +16,13 @@ import javax.validation.constraints.*;
 @Data
 public class UserDto {
 
-    @NotBlank(message = "userId is a mandatory field")
-    @Min(value = 1, message = "Id must be greater than 0")
+    @NotBlank(message = "El id no puede estar vacio")
+    @Min(value = 1, message = "El id debe ser mayor a cero")
     private int userId;
 
-    @NotNull(message = "userName is a mandatory field")
-    @Size(max = 15, message = "Field cannot have more than 15 characters")
-    @Pattern(regexp = "(([A-Z]* | [a-z]* | [ñ,ó,í,á,é,ú,Á,Ó,É,Í,Ú]*))*", message = "Name cannot hace especial characters")
-    //creo que esto valida que solo sean letras ahorita lo probamos
+    @NotNull(message = "Nombre de usuario no puede estar vacio")
+    @Size(max = 15, message = "La longitud no puede superar los 15 caracteres")
+    @Pattern(regexp = "(([A-Z]* | [a-z]* | [ñ,ó,í,á,é,ú,Á,Ó,É,Í,Ú]*))*", message = "Nombre de usuario no puede poseer caracteres especiales")
     private String userName;
 
 }

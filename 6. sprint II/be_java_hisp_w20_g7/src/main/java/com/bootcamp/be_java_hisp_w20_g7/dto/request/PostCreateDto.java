@@ -18,24 +18,24 @@ import java.time.LocalDate;
 @Data
 public class PostCreateDto {
 
-    @NotNull(message = "User id is a mandatory field")
-    @Min(value = 0, message = "User id must be greater than 0")
+    @NotNull(message = "El id no puede estar vació")
+    @Min(value = 0, message = "El id debe ser mayor a cero")
     private Integer userId;
-    @NotNull(message = "Date is a mandatory filed")
+    @NotNull(message = "La fecha no puede estar vaciá")
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
-    @NotNull(message = "Product is a mandatory field")
+    @NotNull(message = "Producto no puede estar vació")
     @Valid
     private ProductDto product;
 
-    @NotNull(message = "Category is a mandatory field")
-    @Min(value = 0, message = "Category must be greather than 0")
+    @NotNull(message = "El campo no puede estar vació")
+    @Min(value = 0, message = "La categoria debe ser mayor a cero")
     private Integer category;
 
-    @NotNull(message = "Price is a mandatory field")
-    @Max(value = 10000000, message = "Max price is 10000000")
-    @Min(value = 1000, message = "Price must be greater than o equals to 1000")
+    @NotNull(message = "El campo no puede estar vació")
+    @Max(value = 10000000, message = "El precio maximo por producto es de 10.000.000")
+    @Min(value = 1, message = "El precio minimo por producto es de 1")
     private Double price;
 
 }
