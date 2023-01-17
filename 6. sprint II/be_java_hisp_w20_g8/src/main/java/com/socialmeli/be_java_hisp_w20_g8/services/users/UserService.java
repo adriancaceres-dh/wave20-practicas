@@ -35,14 +35,15 @@ public class UserService implements IUserService {
     IPersonRepository personRepository;
     ModelMapper modelMapper = new ModelMapper();
 
+
+    /**
+     * create a list of sellers followed by a specific user and is sorted by the order option
+     * @author: Adrian Isaac Gomez Ocon y Grupo 8 (sorting functionality)
+     * @param userId id of the user
+     * @param order sorting option used in the method
+     * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
+     */
     public UserFollowedDTO getAllFollowed(int userId, String order) {
-        /**
-         * create a list of sellers followed by a specific user and is sorted by the order option
-         * @author: Luis López Gómez
-         * @param userId id of the user
-         * @param order sorting option used in the method
-         * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
-         */
         if (personRepository.checkUser(userId)) {
             // Getting User and converting to UserDTO
             User user = personRepository.findUserById(userId);
