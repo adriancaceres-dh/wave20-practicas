@@ -10,8 +10,8 @@ Joaquin Pereyra, Martin Gonzalez, Tammara Trivelli, Emiliano Asprea, Ivan Majews
 Java 11, Maven, Spring Framework(Web, DevTools, Lombok), JUnit5, Mockito y Github.
 
 ## Descripción de la API
-Desarrollo de una API REST para mejorar la experiencia entre compradores y vendedores.
-Los compradores podran seguir a sus vendedores favoritos y enterarse de sus posteos de nuevos productos.
+Dado a que MeLi tiene unos estándares de calidad muy altos con respecto a los productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta a la hora de incorporar datos como así también diferentes test unitarios que aseguren el correcto funcionamiento de cada una de las funcionalidades que incluye.
+Para llevar a cabo estas implementaciones se llevarán a cabo cada una de las validaciones y tests unitarios correspondientes.
 
 ## Implementacion de validaciones en los campos de entrada.
 - user_id
