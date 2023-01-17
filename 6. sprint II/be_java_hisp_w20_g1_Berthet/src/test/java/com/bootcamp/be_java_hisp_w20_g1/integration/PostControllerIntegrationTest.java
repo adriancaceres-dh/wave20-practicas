@@ -39,13 +39,13 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T9: GetLastTwoWeeksPostFromUsers devuelve lista de seguidos" )
+    @DisplayName("T9: Devuelve lista de publicaciones de las ultimas dos semanas de los usuarios seguidos " )
     public void givenValidtUserId_GetLastTwoWeeksPostFromUsers_ShouldReturnSucess() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/2/list")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.posts").exists())
                 .andReturn();
 
        System.out.println(mvcResult.getResponse().getContentAsString());
@@ -65,7 +65,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T9: Se devuelve post creado si el post es valido" )
+    @DisplayName("T10: Se devuelve post creado si el post es valido" )
     public void givenValidPost_AddPost_ShouldReturnAddedPost() throws Exception {
         PostRequestDto postRequestDto = TestUtil.getPostRequestDTO();
         String jsonPostRequestDto = writer.writeValueAsString(postRequestDto);
@@ -80,7 +80,7 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T9: Se devuelve excepcion si request contiene campos faltantes" )
+    @DisplayName("T10: Se devuelve excepcion si request contiene campos faltantes" )
     public void givenInvalidRequest_AddPost_ShouldThrowException() throws Exception {
 
     PostRequestDto invalidPostRequestDto = TestUtil.getPostRequestDTO();
