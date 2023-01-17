@@ -43,6 +43,8 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 *     US 008: getLastTwoWeeksPublicationsOKTest - Verificar que las publicaciones sean de las últimas dos semanas.  Desarrollo grupal
 
 ### Test de Integracion desarrollados individualmente.
+*     US 009: addNewPostTest - Test de integración de agregar una nueva publicación
+*     US 010: followUserTest - Tes de integración de seguir a un usuario
 
 
 Diagrama UML sprint 1
