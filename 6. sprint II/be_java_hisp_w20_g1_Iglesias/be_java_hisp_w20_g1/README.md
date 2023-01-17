@@ -472,3 +472,14 @@ Por ejemplo
 </tr>
 </tbody>
 </table>
+
+# Test de integración.
+
+Se llevó a cabo un test de integración de manera individual (realizado por Agustín Iglesias) del servicio de post, concretamente del método addPost. En este se llevan a cabo 3 métodos.
+
+- El setup, en donde se definen 3 posts diferentes (esto por si a futuro se quiere probar otros métodos, por ejemplo, el de ver los últimos posts de  las últimas 2 semanas).
+- Un método que añade los posts (camino feliz).
+- Y un método que testea todas las validaciones de los posts (sus mensajes).
+- Finalmente el @dirtiesContext elimina el contexto, asegurando que nuestro test se descarte.
+
+Además, dado que fue necesario utilizar @beforeAll para el setup, se establece la propiedad @testInstance para que la clase solo se inicialice una sola vez y luego se reúse.
