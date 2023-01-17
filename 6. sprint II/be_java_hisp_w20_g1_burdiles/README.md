@@ -313,12 +313,10 @@ Por ejemplo
     "reason": "El id debe ser mayor a 0"
   },
     {
-      "field": "product.color",
       "rejected_value": "Red & Black",
       "reason": "El campo no puede poseer caracteres especiales."
     },
     {
-      "field": "price",
       "rejected_value": "1.500123123213231E15",
       "reason": "El precio máximo por producto es de 10.000.000"
     }
@@ -473,3 +471,44 @@ Por ejemplo
 </tr>
 </tbody>
 </table>
+
+## Implementación de Tests de Integración - Individual
+<table>
+<tbody>
+<tr style="height: 33px;">
+<td style="height: 33px;">&nbsp;</td>
+<td style="height: 33px;">
+<p><strong>Responsable</strong></p>
+</td>
+<td style="height: 33px;">
+<p><strong>Test</strong></p>
+</td>
+<td style="height: 33px;">
+<p><strong>Comportamiento Esperado</strong></p>
+</td>
+</tr>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>Test Integracíon PostController</strong></p>
+</td>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Armando Burdiles</span></p>
+</td>
+<td style="height: 143px;">
+<li style="font-weight: 400;"><span style="font-weight: 400;">Integracion PostController lastTwoWeeksPostsFromFollowers valido</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Integracion PostController addPost con datos validos</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Integracion PostController addPost con userId invalido</span></li>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">Permite continuar con normalidad.</span></p>
+<br />
+<p><strong>No se cumple:</strong></p>
+<p><span style="font-weight: 400;">Notifica la no existencia mediante una excepci&oacute;n.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+### *Cobertura final (en líneas) del 75% usando Coverage integrado de IntelliJ.
+
