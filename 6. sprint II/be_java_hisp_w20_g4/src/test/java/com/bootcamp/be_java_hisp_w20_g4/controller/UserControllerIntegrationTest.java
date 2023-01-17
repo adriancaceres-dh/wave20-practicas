@@ -60,4 +60,22 @@ class UserControllerIntegrationTest {
         assertEquals(mapper.writeValueAsString(expected),mvcResult.getResponse().getContentAsString());
     }
 
+    @Test
+    void followersCountTest() throws Exception {
+
+        UserCountDTO expected = new UserCountDTO(1,"rodri",1);
+        ObjectWriter mapper = new ObjectMapper().configure(SerializationFeature.WRAP_ROOT_VALUE,false).writer();
+
+        MvcResult follow = mockMvc.perform(MockMvcRequestBuilders.post("/users/2/follow/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/1/followers/count")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(content().contentType("application/json"))
+                .andReturn();
+        assertEquals(mapper.writeValueAsString(expected),mvcResult.getResponse().getContentAsString());
+    }
+
 }
