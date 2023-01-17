@@ -17,6 +17,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static com.bootcamp.be_java_hisp_w20_g2_espindola.util.UtilsTest.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -151,7 +154,7 @@ class PostControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list", 1))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.posts[0].user_id").value(2))
-                .andExpect(jsonPath("$.posts[0].date").value("17-01-2023"))
+                .andExpect(jsonPath("$.posts[0].date").value((LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))))
                 .andExpect(jsonPath("$.posts[1].user_id").value(2))
                 .andExpect(jsonPath("$.posts[1].date").value("10-01-2023"));
     }
@@ -174,7 +177,7 @@ class PostControllerTest {
                 .andExpect(jsonPath("$.posts[0].user_id").value(2))
                 .andExpect(jsonPath("$.posts[0].date").value("10-01-2023"))
                 .andExpect(jsonPath("$.posts[1].user_id").value(2))
-                .andExpect(jsonPath("$.posts[1].date").value("17-01-2023"));
+                .andExpect(jsonPath("$.posts[1].date").value((LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))));
     }
 
     @Test
@@ -183,7 +186,7 @@ class PostControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list", 1).param("order","date_desc"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.posts[0].user_id").value(2))
-                .andExpect(jsonPath("$.posts[0].date").value("17-01-2023"))
+                .andExpect(jsonPath("$.posts[0].date").value((LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))))
                 .andExpect(jsonPath("$.posts[1].user_id").value(2))
                 .andExpect(jsonPath("$.posts[1].date").value("10-01-2023"));
     }
