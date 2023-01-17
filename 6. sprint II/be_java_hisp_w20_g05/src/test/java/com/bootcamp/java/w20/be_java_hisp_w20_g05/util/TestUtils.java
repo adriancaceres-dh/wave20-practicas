@@ -50,27 +50,22 @@ public class TestUtils {
 
     public static Set<Post> createMockPosts() {
         File file = null;
-        String path = "classpath:testPosts.json"; // "./src/test/resources/testPosts.json"
         try {
-            file = ResourceUtils.getFile(path);
+            file = ResourceUtils.getFile("classpath:testPosts.json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        ModelMapper modelMapper = new ModelMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
-        TypeReference<Set<PostRequestDTO>> typeRef = new TypeReference<>() {};
-        Set<PostRequestDTO> postsDTO = new HashSet<>();
+        TypeReference<Set<Post>> typeRef = new TypeReference<>() {};
+        Set<Post> posts = null;
 
         try {
-            postsDTO = objectMapper.readValue(file, typeRef);
+            posts = objectMapper.readValue(file, typeRef);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Set<Post> posts = new HashSet<>();
-        postsDTO.forEach(postDTO -> posts.add(modelMapper.map(postDTO, Post.class)));
         return posts;
     }
 
