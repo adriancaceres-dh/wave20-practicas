@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g6.util.TestsUtilsGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,7 +27,8 @@ public class PostControllerTest {
     MockMvc mockMvc;
 
     @Test
-    void integracionPostTest() throws Exception {
+    @DisplayName("IT-0004, US-0005 endpoint:/products/post. Result Ok")
+    void shouldReturnStatusOkWhenPublicPost() throws Exception {
         PostRequestDto post = TestsUtilsGenerator.getPostsRequest();
 
         ObjectWriter writer = new ObjectMapper()

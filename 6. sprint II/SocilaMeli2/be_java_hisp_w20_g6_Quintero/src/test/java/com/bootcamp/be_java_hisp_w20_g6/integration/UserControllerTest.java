@@ -29,7 +29,7 @@ public class UserControllerTest {
     MockMvc mockMvc;
 
     @Test
-    @DisplayName("Test integracion endpoint:/users/{userId}/followers/list. Result Ok")
+    @DisplayName("IT-0001, US-0003 endpoint:/users/{userId}/followers/list. Result Ok")
     void shouldReturnStatusOkFollowersList()throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/list",1))
                 .andDo(print())
@@ -38,7 +38,7 @@ public class UserControllerTest {
 
     }
     @Test
-    @DisplayName("Test integracion endpoint:/users/{userId}/followed/list. Result Ok")
+    @DisplayName("IT-0002, US-0004 endpoint:/users/{userId}/followed/list. Result Ok")
     void shouldReturnStatusOkFollowedList()throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followed/list",1))
                 .andDo(print())
@@ -48,6 +48,7 @@ public class UserControllerTest {
     }
 
     @Test
+    @DisplayName("IT-0003, US-0001  endpoint:/users/{userId}/follow/{userIdToFollow}. HandlerException,")
     void shouldHandlerExceptionNotFollowSameUser() throws Exception {
 
 
