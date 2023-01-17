@@ -31,7 +31,7 @@ class PostControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
-    private static final String TIMESTAMP_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}";
+    private static final String TIMESTAMP_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{1,6}";
     private static ObjectWriter writer;
 
 

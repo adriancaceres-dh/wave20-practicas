@@ -23,7 +23,7 @@ class UserControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
-    private static final String TIMESTAMP_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}";
+    private static final String TIMESTAMP_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{1,6}";
 
     @Test
     @DisplayName("T9: Se obtiene la cantidad de usuarios que siguen a un usuario")
