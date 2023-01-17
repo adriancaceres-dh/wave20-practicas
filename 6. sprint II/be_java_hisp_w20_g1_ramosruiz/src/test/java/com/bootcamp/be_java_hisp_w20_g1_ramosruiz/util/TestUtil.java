@@ -1,8 +1,11 @@
 package com.bootcamp.be_java_hisp_w20_g1_ramosruiz.util;
 
 import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.Parameter;
+import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.model.Post;
+import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1_ramosruiz.model.User;
 import org.modelmapper.ModelMapper;
 
@@ -158,4 +161,27 @@ public class TestUtil {
                 collect(Collectors.toList());
     }
 
+    public static PostRequestDto getPostRequestDtoWithGivenProduct(Product product) {
+        ProductRequestDto productRequestDto = mapper.map(product, ProductRequestDto.class);
+
+        return PostRequestDto.builder()
+                .date(LocalDate.now())
+                .userId(1)
+                .product(productRequestDto)
+                .category(22)
+                .price(25d)
+                .build();
+    }
+
+    public static PostResponseDto getPostResponseDtoWithGivenProduct(Product product) {
+        ProductResponseDto productResponseDto = mapper.map(product, ProductResponseDto.class);
+
+        return PostResponseDto.builder()
+                .date(LocalDate.now())
+                .userId(1)
+                .product(productResponseDto)
+                .category(22)
+                .price(25d)
+                .build();
+    }
 }
