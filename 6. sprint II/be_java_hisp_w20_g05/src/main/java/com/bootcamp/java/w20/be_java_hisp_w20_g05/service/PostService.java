@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService implements IPostService{
-    private int post_id = 36;
+    private int post_id = 39;
     @Autowired
     public IPostRepository postRepository;
     @Autowired
@@ -49,6 +49,7 @@ public class PostService implements IPostService{
 
     //Requerimiento 006 + 009
     public FollowedUsersPostsResponseDTO getFollowedUsersPosts(int userId, String order){
+
         User userInBd = userService.getById(userId);
 
         List<Post> followedUsersPosts = postRepository.getAll().stream()
@@ -76,4 +77,5 @@ public class PostService implements IPostService{
         if (!order.equalsIgnoreCase("date_asc") && !order.equalsIgnoreCase("date_desc"))
             throw new WrongRequestParamException(new MessageExceptionDTO("WRONG ORDER PARAMETER"));
     }
+
 }

@@ -22,7 +22,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -37,6 +36,7 @@ public class UserServiceTest {
     IUserRepository userRepository;
     @InjectMocks
     UserService userService;
+
     private static ObjectWriter writer;
     private AutoCloseable closeable;
     @BeforeAll
@@ -374,5 +374,4 @@ public class UserServiceTest {
         verify(userRepository, atLeastOnce()).getById(user1.get().getId());
         assertEquals(user1.get().getFollowers().size(), followersCountDTO.getFollowers_count());
     }
-
 }
