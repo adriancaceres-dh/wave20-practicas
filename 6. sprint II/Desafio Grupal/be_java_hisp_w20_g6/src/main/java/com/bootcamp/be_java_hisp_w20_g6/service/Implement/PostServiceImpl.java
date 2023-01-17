@@ -71,6 +71,11 @@ public class PostServiceImpl implements IPostService {
                     ));
         }
 
+        return new PostListResponseDTO(user_id, returnOrderPostByDate(followedPost, orderBy) );
+    }
+
+    public List<PostResponseDTO> returnOrderPostByDate(List<PostResponseDTO> followedPost, String orderBy ) {
+
         if(orderBy != null && orderBy.equals("date_asc")) {
             followedPost.sort(Comparator.comparing(PostResponseDTO::getDate));
         }else if(orderBy == null || orderBy.equals("date_desc")){
@@ -78,8 +83,7 @@ public class PostServiceImpl implements IPostService {
         }else{
             throw new InvalidParamException("Argumento invalido");
         }
-
-        return new PostListResponseDTO(user_id,followedPost );
+        return followedPost;
     }
 
 }

@@ -1,15 +1,16 @@
 package com.bootcamp.be_java_hisp_w20_g6.service.Implement;
 
-import com.bootcamp.be_java_hisp_w20_g6.dto.response.*;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowedListResponseDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersCountResponseDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.FollowersListResponseDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.exception.*;
 import com.bootcamp.be_java_hisp_w20_g6.model.UserModel;
 import com.bootcamp.be_java_hisp_w20_g6.repository.UserRepository;
 import com.bootcamp.be_java_hisp_w20_g6.service.Interface.IUserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements IUserService {
         UserModel userToFollow = getUserById(userToFollow_id);
         UserModel user = getUserById(user_id);
 
-        ArrayList<Integer> userFollowedList = user.getFollowed();
+        List<Integer> userFollowedList = user.getFollowed();
           if (!userFollowedList.contains(userToFollow_id)) {
             user.getFollowed().add(userToFollow_id);
             userToFollow.getFollowers().add(user_id);
@@ -85,11 +86,11 @@ public class UserServiceImpl implements IUserService {
         UserModel userToUnfollow = getUserById(userToUnfollow_id);
         UserModel user = getUserById(user_id);
 
-        ArrayList<Integer> fanFollowedList = user.getFollowed();
+        List<Integer> fanFollowedList = user.getFollowed();
         int followIndex = fanFollowedList.indexOf(userToUnfollow_id);
         if (followIndex >= 0) {
-            user.getFollowed().remove(followIndex);
-            userToUnfollow.getFollowers().remove((Integer) user_id);
+             user.getFollowed().remove(followIndex);
+             userToUnfollow.getFollowers().remove((Integer) user_id);
             return true;
         } else {
             throw new FollowerNotFoundException("Usuario no esta siguiendo al vendedor.");
