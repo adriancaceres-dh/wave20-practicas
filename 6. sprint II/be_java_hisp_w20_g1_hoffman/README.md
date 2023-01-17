@@ -10,15 +10,15 @@
 SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el equipo de desarrollo “Bootcamp” se ha convertido en ¡Todo un éxito!. Dado esto y a que MeLi tiene unos estándares de calidad muy altos con respecto a los productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta a la hora de incorporar datos como así también diferentes test unitarios y de *integración* que aseguren el correcto funcionamiento de cada una de las funcionalidades que incluye. 
 **En este proyecto se incluye el código vinculado a los siguientes test de integracion.**
 
-- Controlador de usuario: 
+*Controlador de usuario*: 
 
-  1- Endponit GET: getSellerFollowers.
-  2- Endponit GET: getFollowersCount.
-  3- Endponit GET: getUserFollowed.
-  4- Endponit POST: followUser.
+  - Endponit GET: getSellerFollowers.
+  - Endponit GET: getFollowersCount.
+  - Endponit GET: getUserFollowed.
+  - Endponit POST: followUser.
 
 
-## Code coverage alcanzado: 57%
+## Code coverage alcanzado: 60%
 
 ### Tecnologias usadas.
 - Java 11
