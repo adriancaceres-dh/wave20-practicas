@@ -44,8 +44,31 @@ En SocialMeli en donde los compradores van a poder seguir a sus vendedores favor
 ## API Reference
 #### Test de integracion 
 
-Realizado a partir de UserController 
-- Enpoint : /users/{userId}/followers/count
+```
+  GET /users/{userId}/followers/count
+```
+
+| Parameter |  Description                |
+| :-------- | :------------------------- |
+| Verifico la devolucion de un UserFollowerCountDTO |  ** Test de integración US-0002 |
+
+#### Get item
+
+```
+  GET /users/{userId}/followers/count
+```
+
+| Parameter | Description                       |
+| :-------- | :-------------------------------- |
+| Verifico el funcionamiento de excepción NotFoundException | ** Test de integración US -0002|
+
+#### Descrición de la US-0002
+
+Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
+
+
+
+
  
 
 
