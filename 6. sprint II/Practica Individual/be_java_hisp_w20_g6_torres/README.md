@@ -52,8 +52,15 @@ Debido a que MeLi tiene unos estándares de calidad muy altos con respecto a los
 Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 ***
 
-## Test de Integración 
+## Test de Integración y bonus
 
+| TEST      | CONTROLLER         | END POINT                          | VERIFICACIÓN                                                                                                             | VALIDACIÓN                                                                           | 
+|-----------|--------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `T-0009`  | PostControllerTest | `/products/followed/{userId}/list` | Verificar un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas. | Status code correcto, content type adecuado de acuerdo a las restricciones de fecha. |
+| `T-0010 ` | PostControllerTest | `/products/post/`                  | Verificar el dar de alta una nueva publicación                                                                           | Status code correcto, content type adecuado, se guarda la publicación.               |                                    
+| `T-0011 ` | UserContollerTest  | `/users/{userId}/followers/count`  | Verificar la cantidad de usuarios que siguen a un determinado vendedor                                                   | Status code correcto, content type adecuado y correcto conteo de seguidores.         |     
+| `T-0012 ` | UserContollerTest  | `/users/{userId}/followers/list`   | Verificar un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)                       | Status code correcto, content type adecuado e información correcta sobre seguidores. | 
+| `T-0013 ` | UserContollerTest  | `/users/{userId}/followed/list`    | Verificar un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)                  | Status code correcto, content type adecuado e información correcta sobre seguidos.   |  
 
 ## Colección de Postman 
 
