@@ -576,6 +576,10 @@ ____
   validador creado que se mencionó anteriormente.
   - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
     validador creado que se mencionó anteriormente.
+
+## Implementación de Test Integrador - Individual
+____
+* Se realizó la implementación del test integrador sobre todos los endpoint y sus posibles excepciones del controlador de usarios logrando un coverage del 81% 
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
