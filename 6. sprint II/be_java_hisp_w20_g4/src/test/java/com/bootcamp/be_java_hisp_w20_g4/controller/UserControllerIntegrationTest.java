@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ class UserControllerIntegrationTest {
 
 
     @Test
+    @DisplayName("Individual - Verifica el correcto funcionamiento de seguir un usuario.")
     void followTest() throws Exception {
         ListedUserDTO listedUser = new ListedUserDTO(2,"ivan");
         UserFollowedDTO expected = new UserFollowedDTO(1,"rodri", Arrays.asList(listedUser));
@@ -61,6 +63,7 @@ class UserControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("Individual - Verifica el correcto funcionamiento de obtener la cantidad de seguidores de un usuario.")
     void followersCountTest() throws Exception {
 
         UserCountDTO expected = new UserCountDTO(1,"rodri",1);

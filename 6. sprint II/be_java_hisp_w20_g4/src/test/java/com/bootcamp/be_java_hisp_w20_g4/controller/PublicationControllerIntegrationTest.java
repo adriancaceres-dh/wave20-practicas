@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -46,6 +47,7 @@ public class PublicationControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("Individual - Verifica la correcta publicacion de un post.")
     void addPostTest() throws Exception {
 
         ProductRequestDTO productRequestDTO = new ProductRequestDTO(1,"Silla Gamer","Gamer","Racer","Red Black","Special Edition");
