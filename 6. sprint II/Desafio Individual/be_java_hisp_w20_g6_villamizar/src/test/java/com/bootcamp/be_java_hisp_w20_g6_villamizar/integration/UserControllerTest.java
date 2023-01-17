@@ -30,4 +30,16 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.followers_count").value("2"));
     }
 
+    @Test
+    @DisplayName("US0003 - TI0002, Verificar lista de usuarios seguidores ")
+    void listFollowers() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/users/{userId}/followers/list", "4"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.followers", hasSize(2)));
+
+    }
+
 }
