@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g4.service.publication;
 
 import com.bootcamp.be_java_hisp_w20_g4.dto.request.PostDTO;
+import com.bootcamp.be_java_hisp_w20_g4.dto.request.PromoPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.publication.ListedPostDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g4.dto.response.product.ProductTwoWeeksResponseDTO;
@@ -19,7 +20,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.isValidDateOrder;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.Validators.*;
+import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isSeller;
 import static com.bootcamp.be_java_hisp_w20_g4.helpers.user.UserValidator.isValidUser;
 
 @Service
@@ -83,6 +85,24 @@ public class ServicePublication implements IServicePublication {
         if(order == null || order.equals("date_desc")) Collections.reverse(listedPostDTO);
 
         return new ProductTwoWeeksResponseDTO(user.getUser_id(), listedPostDTO);
+    }
+
+    @Override
+    public PromoPostDTO addPromo(PromoPostDTO promoPost) {
+        User user = userRepository.findById(promoPost.getUser_id());
+        isValidUser(user);
+        isSeller(user);
+        if(promoPost.getHas_promo().equals(false)) throw new BadRequestException("No se puede agregar un producto sin promocion");
+        Category category = categoryRepository.findById(promoPost.getCategory());
+        isValidCategory(category);
+        Product product = mapper.map(promoPost.getProduct(), Product.class);
+        isValidProduct(product);
+        Publication publication = new Publication(promoPost.getDate(), promoPost.getPrice(), product, category, promoPost.getUser_id(), promoPost.getHas_promo(), promoPost.getDiscount());
+        if(publicationRepository.addPublication(publication)){
+            ((Seller) user).addPublication(publication);
+            return new PromoPostDTO(promoPost.getUser_id(), promoPost.getDate(), promoPost.getProduct(), promoPost.getCategory(), promoPost.getPrice(), promoPost.getHas_promo(), promoPost.getDiscount());
+        }
+        return null;
     }
 
 

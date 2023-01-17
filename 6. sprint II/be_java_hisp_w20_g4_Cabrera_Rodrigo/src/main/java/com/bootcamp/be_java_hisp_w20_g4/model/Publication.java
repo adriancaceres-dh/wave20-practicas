@@ -35,4 +35,16 @@ public class Publication {
         contador++;
         this.post_id = contador;
     }
+
+    public Publication(LocalDate date, Double price, Product product, Category category, Integer userId, Boolean hasPromo, Double discount) {
+        this.user_id = userId;
+        this.date = date;
+        this.price = price;
+        this.product = product;
+        this.category = category;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
+        contador++;
+        this.post_id = contador;
+    }
 }
