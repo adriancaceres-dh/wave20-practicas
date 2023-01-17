@@ -1,6 +1,6 @@
-# MeliSocial
-## Sprint 1
-
+# MeliSocial2
+## Sprint 2
+​
 ## Miembros
 * Alejandro Torres
 * Augusto Díaz
@@ -10,246 +10,54 @@
 * Diana Parra
 * Juan Carlos Ortiz
 ## Consigna del ejercicio
-
-Mercado Libre sigue creciendo y para el año que viene  tiene como objetivo empezar a implementar una serie de herramientas que permitan a los compradores y vendedores tener una experiencia totalmente innovadora, en donde el lazo que los una sea mucho más cercano. 
-
-Para poder realizar esto, un analista funcional relevó una serie de requerimientos que deben llevarse a cabo.
+​
+Debido a que MeLi tiene unos estándares de calidad muy altos con respecto a los productos de software que utiliza, estableció una serie de validaciones y diferentes test unitarios que deberán ser empleados para asegurar el correcto funcionamiento de las funcionalidades en SocialMeli.
 ## Tecnologías
 * Java 11
 * SpringBoot 2.7.7
-* LucidaChart
 * Postman
 ## Decisiones de equipo
-1. El modelado de las entidades fue realizado previamente al desarrollo en una reunión grupal donde todos aportamos y estuvimos de acuerdo con el resultado final.
-2. En el repositorio de usuarios optamos por implementar un HashMap para almacenar el mock destinado a las pruebas de la api por una cuestión de eficiencia en el acceso de datos.
-3. Para los response que podían ser bodyless optamos por dejarlos así ya que concluimos que no era necesario implementar un DTO.
-
-## Modelado
-
-### Usuario
-![Modelado de clase Usuario](https://i.ibb.co/dBqjCJP/Diagrama-Sprint1-Pa-gina-1-3.jpg)
-
-### Producto
-![Modelado de clase producto](https://i.ibb.co/DKpNSpt/Diagrama-Sprint1-Pa-gina-1-4.jpg)
-
-### Publicación
-![Modelado de la clase publicación](https://i.ibb.co/t4xHWZH/Diagrama-Sprint1-Pa-gina-1-5.jpg)
-
-## Endpoints
-**US0001**:
-Poder realizar la acción de "Follow" (seguir) a un determinado vendedor
-
-| METHOD | SIGN                                      | EJEMPLO                    |
-|:-------|:------------------------------------------|:---------------------------|
-| `POST` | `/users/{userId}/follow/{userIdToFollow}` | `/users/1/followers/count` |
-
-RESPONSE: Status code 200 - Bodyless | Status code 400 - Bodyless
-
-RESPONSABLE: Daniela Villamizar
+1. Las validaciones y correcciones fueron realizadas de manera oportuna antes de iniciar con los test unitarios.
+2. Utilizamos el patrón de diseño "Factory" para la simulación de la data a utilizar en los test.
+3. Decidimos que los caracteres especiales serán: (%, &, $, etc).  
+   ​
+## Validaciones
+| Dato/Parámetro | ¿Obligatorio? | Validación                                                                                                                         | Mensaje de error                                                                                                               |
+|:---------------|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+| `user_id`      | SI            | Que el campo no esté vacío. Mayor 0.                                                                                               | El id no puede estar vacío. El id debe ser mayor a cero                                                                        |
+| `id_post`      | SI            | Que el campo no esté vacío. Mayor 0                                                                                                | El id_post no puede estar vacío. El id_post debe ser mayor a cero                                                              |
+| `date`         | SI            | Que el campo no esté vacío.                                                                                                        | La fecha no puede estar vacía.                                                                                                 |
+| `product_id`   | SI            | Que el campo no esté vacío. Mayor 0                                                                                                | La id no puede estar vacía. El id debe ser mayor a cero                                                                        |
+| `product_name` | SI            | Que el campo no esté vacío. Longitud máxima de 40 caracteres. Que no posea caracteres especiales (%, &, $, etc), permite espacios. | El campo no puede estar vacío. La longitud no puede superar los 40 caracteres. El campo no puede poseer caracteres especiales. |
+| `type`         | SI            | Que el campo no esté vacío. Longitud máxima de 15 caracteres. Que no posea caracteres especiales (%, &, $, etc)                    | El campo no puede estar vacío. La longitud no puede superar los 15 caracteres. El campo no puede poseer caracteres especiales. |
+| `brand`        | SI            | Que el campo no esté vacío. Longitud máxima de 25 caracteres. Que no posea caracteres especiales (%, &, $, etc)                    | La longitud no puede superar los 25 caracteres. El campo no puede estar vacío. El campo no puede poseer caracteres especiales. |
+| `color`        | SI            | Que el campo no esté vacío.Longitud máxima de 15 caracteres. Que no posea caracteres especiales (%, &, $, etc)                     | El campo no puede estar vacío. La longitud no puede superar los 15 caracteres. El campo no puede poseer caracteres especiales. |
+| `notes`        | NO            | Longitud máxima de 80 caracteres. Que no posea caracteres especiales (%, &, $, etc), permite espacios.                             | La longitud no puede superar los 80 caracteres. El campo no puede poseer caracteres especiales.                                |
+| `category`     | SI            | Que el campo no esté vacío.                                                                                                        | El campo no puede estar vacío.                                                                                                 |
+| `price`        | SI            | Que el campo no esté vacío El precio máximo puede ser 10.000.000.                                                                  | El campo no puede estar vacío. El precio máximo por producto es de 10.000.000                                                  |
+​
+## Test Unitarios
+​
+| TEST      | USER STORY | VERIFICACIÓN                                                                                                                                               | SE CUMPLE                                                                                                                                          | NO SE CUMPLE                                      |
+|-----------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `T-0001`  | `US-0001`  | Verificar que el usuario a seguir exista.                                                                                                                  | Permite continuar con normalidad.                                                                                                                  | Notifica la no existencia mediante una excepción. |
+| `T-0002 ` | `US-0007`  | Verificar que el usuario a dejar de seguir exista.                                                                                                         | Permite continuar con normalidad.                                                                                                                  | Notifica la no existencia mediante una excepción. |
+| `T-0003 ` | `US-0008`  | Verificar que el tipo de ordenamiento alfabético exista.                                                                                                   | Permite continuar con normalidad.                                                                                                                  | Notifica la no existencia mediante una excepción. |       
+| `T-0004 ` | `US-0008`  | Verificar el correcto ordenamiento ascendente y descendente por nombre.                                                                                    | Devuelve la lista ordenada según el criterio solicitado                                                                                            | N/A                                               |
+| `T-0005 ` | `US-0009`  | Verificar que el tipo de ordenamiento por fecha exista                                                                                                     | Permite continuar con normalidad.                                                                                                                  | Notifica la no existencia mediante una excepción. |
+| `T-0006 ` | `US-0009`  | Verificar el correcto ordenamiento ascendente y descendente por fecha.                                                                                     | Verificar el correcto ordenamiento ascendente y descendente por fecha.                                                                             | N/A                                               |
+| `T-0007 ` | `US-0002`  | Verificar que la cantidad de seguidores de un determinado usuario sea correcta.                                                                            | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                                                          | N/A                                               |
+| `T-0008 ` | `US-0006`  | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. | N/A                                               |
 ***
-**US0002**:
-Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
-
-| METHOD | SIGN                              | EJEMPLO                    | 
-|:-------|:----------------------------------|:---------------------------|
-| `GET`  | `/users/{userId}/followers/count` | `/users/1/followers/count` |
-
-
-
-RESPONSE:
-~~~json
-{
-    "user_id": 1,
-    "user_name": "pablito1",
-    "followers_count": 35
-}
-~~~
-
-Responsable: Alejandro Torres
+Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 ***
-**US0003**:
-Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
-
-| METHOD | SIGN                             | EJEMPLO                   |
-|:-------|:---------------------------------|:--------------------------|
-| `GET`  | `/users/{userId}/followers/list` | `/users/1/followers/list` |
-
-
-
-RESPONSE:
-```json
-{
-    "user_id": 1,
-    "user_name": "vendedor1",
-    "followers": [
-        {
-            "user_id": 4698,
-            "user_name": "usuario1"
-        },
-        {
-            "user_id": 1536,
-            "user_name": "usuario2"
-        },
-        {
-            "user_id": 2236,
-            "user_name": "usuario3"
-        }
-    ]
-}
-```
-RESPONSABLE: Daniel Andres Angel Rojas
-***
-**US0004**: 
-Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
-
-| METHOD | SIGN                            | EJEMPLO                  |
-|:-------|:--------------------------------|:-------------------------|
-| `POST` | `/users/{userId}/followed/list` | `/users/1/followed/list` |
-
-RESPONSE:
-```json
-{
-    "user_id": 1,
-    "user_name": "vendedor1",
-    "followed": [
-        {
-            "user_id": 4698,
-            "user_name": "usuario1"
-        },
-        {
-            "user_id": 1536,
-            "user_name": "usuario2"
-        },
-        {
-            "user_id": 2236,
-            "user_name": "usuario3"
-        }
-    ]
-}
-```
-
-RESPONSABLE: Augusto Díaz
-***
-**US0005**: 
-Dar de alta una nueva publicación
-
-| METHOD | SIGN             |
-|:-------|:-----------------|
-| `POST` | `/products/post` |
-
-PAYLOAD:
-```json
-{
-    "user_id": 123,
-    "date": "29-04-2021",
-    "product": {
-        "product_id": 1,
-        "product_name": "Silla Gamer",
-        "type": "Gamer",
-        "brand": "Racer",
-        "color": "Red & Black",
-        "notes": "Special Edition"
-    },
-    "category": 100,
-    "price": 1500.50
-}
-```
-RESPONSE: Status code 200 (OK) | Status code 400 (Bad request)
-
-Responsable: Juan Carlos Ortiz
-***
-**US0006**: 
-Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
-
-| METHOD | SIGN                               | EJEMPLO                     |
-|:-------|:-----------------------------------|:----------------------------|
-| `GET`  | `/products/followed/{userId}/list` | `/products/followed/1/list` |
-
-RESPONSE:
-```json
-{
-    "user_id": 4698,
-    "posts": [ {
-            "user_id": 123,
-            "post_id": 32,
-            "date": "01-05-2021",
-            "product": {
-                "product_id": 62,
-                "product_name": "Headset RGB Inalámbrico",
-                "type": "Gamer",
-                "brand": "Razer",
-                "color": "Green with RGB",
-                "notes": "Sin Batería"
-            },
-            "category": 120,
-            "price": 2800.69
-        },
-        {
-            "user_id": 234,
-            "post_id": 18,
-            "date": "29-04-2021",
-            "product": {
-                "product_id": 1,
-                "productName": "Silla Gamer",
-                "type": "Gamer",
-                "brand": "Racer",
-                "color": "Red & Black",
-                "notes": "Special Edition"
-            },
-            "category": 100,
-            "price": 15000.50
-        }
-    ]
-}
-```
-RESPOSANBLE: David Nuñez
-***
-**US0007**: 
-Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
-
-| METHOD | SIGN                                          | EJEMPLO                    |
-|:-------|:----------------------------------------------|:---------------------------|
-| `POST` | `/users/{userId}/unfollow/{userIdToUnfollow}` | ` /users/234/unfollow/123` |
-
-RESPONSE: Status code 200 (OK) - Bodyless | Status code 400 (Bad request) - Bodyless
-
-RESPONSABLE: Diana Parra
-***
-**US0008**:
-Ordenamiento alfabético ascendente y descendente
-
-| METHOD | EJEMPLOS                                                                                                                                                                                                 |
-|:-------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `GET`  | `/users/{UserID}/followers/list?order=name_asc`<br>`/users/{UserID}/followers/list?order=name_desc`<br>`/users/{UserID}/followed/list?order=name_asc`<br>`/users/{UserID}/followed/list?order=name_desc` |
-
-| ORDER       | DESCRIPTION            |
-|:------------|:-----------------------|
-| `name_asc`  | Alfabético ascendente  |
-| `name_desc` | Alfabético descendente |
-
-**NOTA**: Este ordenamiento solo aplica para **US0003** y **US0004**
-
-RESPONSABLE: Daniela Villamizar
-***
-**US0009**:
-Ordenamiento por fecha ascendente y descendente
-
-| METHOD | EJEMPLOS                                                                                                |
-|:-------|:--------------------------------------------------------------------------------------------------------|
-| `GET`  | `/products/followed/{userId}/list?order=date_asc`<br>`/products/followed/{userId}/list?order=date_desc` |
-
-| ORDER       | DESCRIPTION                                    |
-|:------------|:-----------------------------------------------|
-| `date_asc`  | Fecha ascendente (de más antigua a más nueva)  |
-| `date_desc` | Fecha descendente (de más nueva a más antigua) | 
-
-**NOTA**: Este ordenamiento solo aplica para **US0006**
-
-Responsable: Juan Carlos Ortiz
-***
-## Colección de Postman 
-
-Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/be_java_hisp_w20_g6/blob/main/src/main/resources/static/User%20Tests.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
-
+​
+## Test de Integración
+​
+​
+## Colección de Postman
+​
+Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/SocialMeli2/blob/main/be_java_hisp_w20_g6/src/main/resources/static/Validaciones%20DTO%C2%B4s.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
+​
 ## Repositorio original
-[Enlace al repo original](https://github.com/alejandrotm20/be_java_hisp_w20_g6)
+[Enlace al repo original](https://github.com/alejandrotm20/SocialMeli2)
