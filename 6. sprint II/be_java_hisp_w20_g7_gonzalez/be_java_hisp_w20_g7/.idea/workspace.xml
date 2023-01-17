@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4b8cf141-3ffb-41f1-89e6-36bb702a8606" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2KPp5fHJi3HRB9W4hBpiA3mpb0R" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/namontero/Documents/repoPracticas/wave20-practicas/6. sprint II/be_java_hisp_w20_g7_montero/be_java_hisp_w20_g7",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "spring.configuration.checksum": "300b2674736b60d8c5e6f96e87f7cc68",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bootcamp.be_java_hisp_w20_g7.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BeJavaHispW20G7Application">
+    <configuration name="BeJavaHispW20G7ApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7_montero" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.BeJavaHispW20G7ApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test_T005_T006_T0008_OrderedByDatePostService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7_montero" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service.Test_T005_T006_T0008_OrderedByDatePostService" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test_T005_T006_T0008_OrderedByDatePostService.t0008LastTwoWeekPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7_montero" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service.Test_T005_T006_T0008_OrderedByDatePostService" />
+      <option name="METHOD_NAME" value="t0008LastTwoWeekPosts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserIntegrationTest.testNameSorayaOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7_montero" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service.UserIntegrationTest" />
+      <option name="METHOD_NAME" value="testNameSorayaOutput" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="service in be_java_hisp_w20_g7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7_montero" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BeJavaHispW20G7Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ENABLE_JMX_AGENT" value="false" />
+      <module name="be_java_hisp_w20_g7_montero" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bootcamp.be_java_hisp_w20_g7.BeJavaHispW20G7Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.service in be_java_hisp_w20_g7" />
+        <item itemvalue="JUnit.BeJavaHispW20G7ApplicationTests" />
+        <item itemvalue="JUnit.UserIntegrationTest.testNameSorayaOutput" />
+        <item itemvalue="JUnit.Test_T005_T006_T0008_OrderedByDatePostService" />
+        <item itemvalue="JUnit.Test_T005_T006_T0008_OrderedByDatePostService.t0008LastTwoWeekPosts" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b8cf141-3ffb-41f1-89e6-36bb702a8606" name="Changes" comment="" />
+      <created>1673885891231</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673885891231</updated>
+      <workItem from="1673885892289" duration="3121000" />
+      <workItem from="1673891055711" duration="10921000" />
+      <workItem from="1673908108943" duration="3186000" />
+      <workItem from="1673911447197" duration="830000" />
+      <workItem from="1673963654559" duration="5748000" />
+      <workItem from="1673978148374" duration="18000" />
+      <workItem from="1673978335324" duration="1001000" />
+      <workItem from="1673979347410" duration="30000" />
+      <workItem from="1673979525746" duration="11000" />
+      <workItem from="1673979857934" duration="16000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g7$BeJavaHispW20G7ApplicationTests.ic" NAME="BeJavaHispW20G7ApplicationTests Coverage Results" MODIFIED="1673905866771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.bootcamp.be_java_hisp_w20_g7.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g7$Test_T005_T006_OrderedByDate.ic" NAME="Test_T005_T006_OrderedByDate Coverage Results" MODIFIED="1673905912216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.bootcamp.be_java_hisp_w20_g7.service.*</FILTER>
+    </SUITE>
+  </component>
+</project>
