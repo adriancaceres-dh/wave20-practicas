@@ -174,7 +174,7 @@ class ServiceUsrTest {
     }
 
     @Test
-    @DisplayName("UT-0003 - Verificar que el orden exista. Orden inválido")
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden inválido")
     void followedInvalidOrderTest() {
         assertThrows(BadRequestException.class, ()-> mockServiceUser.followed(1, "aaa") );
     }

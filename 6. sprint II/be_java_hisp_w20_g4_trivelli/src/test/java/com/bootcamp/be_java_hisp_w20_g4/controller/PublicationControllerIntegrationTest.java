@@ -6,13 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
@@ -24,11 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PublicationControllerTest {
+public class PublicationControllerIntegrationTest {
     @Autowired
     MockMvc mockMvc;
 
     @Test
+    @DisplayName("Individual- Verifica que agrega un post")
     void addPublicationTest() throws Exception {
         PostDTO publicationDTO = new PostDTO(1, LocalDate.of(2022,11,2), new ProductRequestDTO(4,"producto4","tipo4","adidas","green","nota4"),20,1200.0);
         ObjectWriter writer = new ObjectMapper()
@@ -37,11 +38,13 @@ public class PublicationControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         String payloadDto = writer.writeValueAsString(publicationDTO);
-        MvcResult mvcResult = (MvcResult) mockMvc.perform(post("/products/post")
+        mockMvc.perform(post("/products/post")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payloadDto))
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.category").value(20))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(1200.0))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.date").value("2022-11-02"))
                 .andReturn();
 
 

@@ -19,10 +19,8 @@ import java.time.LocalDate;
 public class ListedPostDTO {
     private Integer user_id;
     private Integer post_id;
-   // @JsonFormat(pattern="dd-MM-yyyy")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate date;
     private ProductResponseDTO product;
     private Category category;

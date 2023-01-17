@@ -1,6 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
 import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class UserControllerIntegrationTest{
 
 
     @Test
+    @DisplayName("Individual- Verifica la candidad de seguidores de un vendedor")
     public void followersCountTest() throws Exception {
          this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", 1))
                 .andDo(print()).andExpect(status().isOk())
