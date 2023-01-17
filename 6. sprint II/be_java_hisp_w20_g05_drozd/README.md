@@ -35,6 +35,253 @@ Descripcion de User Stories.
 * US-0008: Ordenamiento alfabético ascendente y descendente.
 * US-0009: Ordenamiento por fecha ascendente y descendente.
 
+## Validaciones
+
+Fueron hechas completamente en conjunto con todo el equipo.
+
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>Dato/Par&aacute;metro</strong></p>
+</td>
+<td>
+<p><strong>&iquest;Obligatorio?</strong></p>
+</td>
+<td>
+<p><strong>Validaci&oacute;n</strong></p>
+</td>
+<td>
+<p><strong>Mensaje de error</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">user_id</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Si</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mayor 0</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El&nbsp; id no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id debe ser mayor a cero</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">id_post</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mayor 0</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id_post no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id_post debe ser mayor a cero</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">date</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La fecha no puede estar vac&iacute;a.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">product_id</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mayor 0</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La id no puede estar vac&iacute;a.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El id debe ser mayor a cero</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">product_name</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 40 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc), permite espacios.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 40 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">type</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc)&nbsp;</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">brand</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 25 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc)&nbsp;</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 25 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+<br /><br /><br /></td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">color</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc)</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 15 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">notes</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">NO</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Longitud m&aacute;xima de 80 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que no posea caracteres especiales (%, &amp;, $, etc), permite espacios.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">La longitud no puede superar los 80 caracteres.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede poseer caracteres especiales.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">category</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">price</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">SI</span></p>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Que el campo no est&eacute; vac&iacute;o</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El precio m&aacute;ximo puede ser 10.000.000.</span></li>
+</ul>
+</td>
+<td>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El campo no puede estar vac&iacute;o.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">El precio m&aacute;ximo por producto es de 10.000.000</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
 ## Tests Unitarios
 
 | Test      | Situaciones de entrada    | Comportamiento Esperado    |
@@ -49,7 +296,7 @@ Descripcion de User Stories.
 | `T-0008`  | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. **(US-0006)** | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. |
 
 
-## Responsables de cada unit test.
+## Responsables de cada test.
 - T0001 - Andrea
 - T0002 - Andrea
 - T0003 - José
@@ -85,5 +332,9 @@ El objetivo de este desafío es aplicar los contenidos dados hasta el momento du
 
 ## Agradecimientos
 Agradecer a nuestro Scrum Master, Adrián Cáceres, así como a Johanna Tabella y el resto del equipo de Digital House por su disposición y paciencia a lo largo del Bootcamp.
+
+## Anotaciones 
+
+- Quite un UserRequestDTO y un metodo de los repositorios que no se utilizan en ningun momento.
 
 
