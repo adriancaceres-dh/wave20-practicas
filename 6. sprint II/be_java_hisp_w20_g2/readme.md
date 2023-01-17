@@ -8,21 +8,21 @@ ______
 5. _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)**_
 6. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
 7. _**[Bitácora](#-bitácora-)**_
-   1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
-   2. _**[Repository](#-repository-)**_
-   3. _**[Model](#-model-)**_
-   4. _**[DTO](#-dto-)**_
-   5. _**[Service](#-service-)**_
-   6. _**[Controller](#-controller-)**_
-   7. _**[Exception y config](#-exception-y-config-)**_
-   8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
+    1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
+    2. _**[Repository](#-repository-)**_
+    3. _**[Model](#-model-)**_
+    4. _**[DTO](#-dto-)**_
+    5. _**[Service](#-service-)**_
+    6. _**[Controller](#-controller-)**_
+    7. _**[Exception y config](#-exception-y-config-)**_
+    8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
 8. _**[Endpoints](#-endpoints-)**_
 9. _**[Resumen de datos de entrada US](#-resumen-de-datos-de-entrada-según-las-us-)**_
 10. _**[Validaciones en campos de las US](#-validaciones-en-campos-de-las-us-)**_
 11. _**[Test Unitarios](#-tests-unitarios-)**_
 12. _**[Test Unitarios](#implementación-de-test-unitarios---grupal)**_
-   1. [Test de Controllers](#-controller-)
-   2. [Test de Services](#-service-)
+    1. [Test de Controllers](#-controller-)
+    2. [Test de Services](#-service-)
 13. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
 14. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
 
@@ -146,12 +146,12 @@ tarea. Esta división consta de 5 capas:
 - Exception
 - Config
 - Utils
-   - Constants
-   - Mapper
-   - Sort
-   - Validator
-      - Post
-      - UserResponse
+    - Constants
+    - Mapper
+    - Sort
+    - Validator
+        - Post
+        - UserResponse
 
 ### 🗂 Repository 🗂
 
@@ -248,34 +248,34 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 Se crea, por decisión del equipo, el package _Utils_ y dentro de él se encuentra la clase _LoadExampleData_, un package
 que posee las clases _PostMapper_ y _ProductMapper_.
 - **Utils/Constants**
-   - _RegexConstants_: Esta clase posee una constante final para los regex utilizado en algunos patrones de verificación, a
-     través de validaciones, de no utilización de caracteres especiales dentro de variables que llegarán por parámetros a nuestra API.
+    - _RegexConstants_: Esta clase posee una constante final para los regex utilizado en algunos patrones de verificación, a
+      través de validaciones, de no utilización de caracteres especiales dentro de variables que llegarán por parámetros a nuestra API.
 
 - **Utils/Mapper**
-   - _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-     viceversa.
-   - _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-     viceversa.
+    - _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+      viceversa.
+    - _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+      viceversa.
 
 - **Utils/sort**
-   - PostStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
-     especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
-     la clase PostService.
-   - UserResponseDTOStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
-     especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
-     la clase UserService.
+    - PostStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
+      especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+      la clase PostService.
+    - UserResponseDTOStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
+      especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+      la clase UserService.
 
 - **Utils/Validator**
-   - **Validator/Post**
-      - _PostSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
-        los orders que pasaremos por parámetro en las US0003, US0004, US0006 y US0009
-      - _UserResponseSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
-        en caso de que el valor pasado por parámetro sea invalido.
-   - **Validator/userResponse**
-      - _UserResponseSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
-        los orders que pasaremos por parámetro en las US0006 y US0009
-      - _PostSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
-        en caso de que el valor pasado por parámetro sea invalido.
+    - **Validator/Post**
+        - _PostSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+          los orders que pasaremos por parámetro en las US0003, US0004, US0006 y US0009
+        - _UserResponseSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+          en caso de que el valor pasado por parámetro sea invalido.
+    - **Validator/userResponse**
+        - _UserResponseSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+          los orders que pasaremos por parámetro en las US0006 y US0009
+        - _PostSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+          en caso de que el valor pasado por parámetro sea invalido.
 - _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En
   este método se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
 
@@ -571,15 +571,48 @@ ____
 | T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)        |
 | T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)                    |
 
+### Service
+
+* _PostServiceTest_:
+
+| TEST   | Desarrollador                                           |
+|--------|---------------------------------------------------------|
+| T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
+| T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
+
+* _userServiceTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0001 | [Federico Javier Veron](https://github.com/fedeveron)         |
+| T-0002 | [Francisco Liz Mardones](https://github.com/FranLizMeli)      |
+| T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)  |
+| T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)              |
+
+### Validator
+
+* _UserValidatorTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0003 | [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) |
+
+
+* _PostSortValidatorTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)     |
+
 * Test/Util
-   - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
-     creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
-     los test, solo sean encargados de testear los métodos.
+    - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
+      creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
+      los test, solo sean encargados de testear los métodos.
 * Validator
-   - _PostSortValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
-     validador creado que se mencionó anteriormente.
-   - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
-     validador creado que se mencionó anteriormente.
+    - _PostSortValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+      validador creado que se mencionó anteriormente.
+    - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+      validador creado que se mencionó anteriormente.
 
 ### 🛎 Creación de validaciones y colección de postman 🛎
 Fue desarrollado por:
