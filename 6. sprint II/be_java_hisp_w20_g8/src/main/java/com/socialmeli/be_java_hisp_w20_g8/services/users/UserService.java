@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
  * This service allows the interaction between the user controller and the user repository, performing the operations
  * of get a user with all the sellers he follows, allows the user to follow a seller and allows the user to unfollow
  * a seller
+ *
  * @author: Grupo 8
  */
 
@@ -84,7 +85,7 @@ public class UserService implements IUserService {
          * @param sellerId id of the seller to follow
          * @return ResponseDTO the status of the operation and a message
          */
-        if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
+        if (userId == sellerId) throw new OperationFailedException("A user can't follow himself");
         if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
             personRepository.addFollowing(userId, sellerId);
             personRepository.addFollower(sellerId, userId);
@@ -98,6 +99,13 @@ public class UserService implements IUserService {
 
     @Override
     public ResponseDTO unfollow(int userid, int sellerId) {
+        /**
+         * Unfollow a seller
+         * @author: Dimas Hernandez Mendoza
+         * @param userId id of the user
+         * @param sellerId id of the seller to unfollow
+         * @return ResponseDTO the status of the operation and a message
+         */
         if (personRepository.checkUser(userid) && personRepository.checkUser(sellerId)) {
             personRepository.unfollowing(userid, sellerId);
             personRepository.unfollower(sellerId, userid);
