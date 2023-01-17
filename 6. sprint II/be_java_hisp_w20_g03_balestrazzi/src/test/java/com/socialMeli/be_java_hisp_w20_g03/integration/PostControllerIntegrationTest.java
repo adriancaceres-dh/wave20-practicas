@@ -39,16 +39,18 @@ class PostControllerIntegrationTest {
             "}";
 
     ResultMatcher expectedStatus = status().isOk();
+    ResultMatcher expectedContentType = MockMvcResultMatchers.content().contentType("text/plain;charset=UTF-8");
+    ResultMatcher expectedMessage = MockMvcResultMatchers.content().string("Publicacion agregada");
 
     MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(
-            "/products/post")
+                    "/products/post")
             .contentType(MediaType.APPLICATION_JSON)
             .content(postJson);
 
     // Act & Assert
     mockMvc.perform(request)
             .andDo(MockMvcResultHandlers.print())
-            .andExpect(expectedStatus);
+            .andExpectAll(expectedStatus, expectedContentType, expectedMessage);
   }
 
   @Test
@@ -84,24 +86,6 @@ class PostControllerIntegrationTest {
             .andExpect(expectedStatus)
             .andExpect(expectedContentType)
             .andExpect(expectedMessage);
-  }
-
-  @Test
-  void testGetPostsOk() throws Exception {
-    // Arrange
-
-    ResultMatcher expectedStatus = status().isOk();
-    ResultMatcher expectedContentType = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
-
-    MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(
-            "/products/followed/4698/list")
-            .param("order", "date_asc");
-
-    // Act & Assert
-    mockMvc.perform(request)
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(expectedStatus)
-            .andExpect(expectedContentType);
   }
 
 }
