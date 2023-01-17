@@ -68,15 +68,5 @@ public class Test_T003_US003_OrderedFollowers {
 
     }
 
-    @Test
-    @DisplayName("Test de validacion de orden por nombre invalido")
-    public void userFollowersInvalidOrderTest() {
-        // Arrange
-        int id = 1;
-        String order = "order";
-        when(userRepository.findById(1)).thenReturn(TestUtils.usersTest().get(4));
 
-        // Act & Assert
-        Assertions.assertThrows(OrderNotValidException.class, () -> userService.userFollowers(id, order));
-    }
 }

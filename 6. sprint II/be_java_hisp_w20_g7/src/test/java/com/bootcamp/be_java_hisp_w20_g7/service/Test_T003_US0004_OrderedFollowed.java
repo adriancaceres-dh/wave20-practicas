@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g7.service;
 
+import com.bootcamp.be_java_hisp_w20_g7.exception.OrderNotValidException;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IFollowRepository;
 import com.bootcamp.be_java_hisp_w20_g7.repository.IUserRepository;
 import com.bootcamp.be_java_hisp_w20_g7.utils.TestUtils;
@@ -63,23 +64,17 @@ public class Test_T003_US0004_OrderedFollowed {
         Assertions.assertTrue(existe);
     }
 
+
+
     @Test
     @DisplayName("T003 Orden no existe")
     public void userFollowedOrderNotExist() {
         // Arrange
-        int userId = 5;
-        String order = "asd";
-        boolean existe = true;
-        when(userRepository.findById(5)).thenReturn(TestUtils.usersTest().get(4));
+        int id = 1;
+        String order = "order";
+        when(userRepository.findById(1)).thenReturn(TestUtils.usersTest().get(4));
 
-        // Act
-        if (!order.equals("name_asc") || !order.equals("name_desc")) {
-            existe = false;
-        } else {
-            userService.userFollowed(userId, order);
-        }
-
-        // Assert
-        Assertions.assertTrue(existe);
+        // Act & Assert
+        Assertions.assertThrows(OrderNotValidException.class, () -> userService.userFollowers(id, order));
     }
 }
