@@ -15,13 +15,13 @@ import javax.validation.constraints.*;
 public class ProductRequestDTO {
     @NotNull(message = "La Id no puede estar vacia.")
     @Min(value = 1, message = "El id debe ser mayor a 0")
-    @JsonProperty("user_id")
+    @JsonProperty("product_id")
     private int id;
 
     @NotBlank(message = "El campo no puede estar vacio.")
     @Pattern(regexp = "^[a-zA-Z0-9_\\s]*$", message = "El campo product-name no puede tener caracteres especiales.")
     @Size(max = 40, message = "La longitud no puede superar los 40 caracteres.")
-    @JsonProperty("user_name")
+    @JsonProperty("product_name")
     private String name;
 
     @NotBlank(message = "El campo no puede estar vacio.")
