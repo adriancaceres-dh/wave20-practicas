@@ -22,6 +22,12 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This service allows the interaction between the Post controller,the Product repository,the
+ * Person repository and the Post repository, create new post in the repository and get all
+ * the post of a specific seller and sort the result by an sorting option
+ * @author: Grupo 8
+ */
 
 @Service
 public class PostService implements IPostService {

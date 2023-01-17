@@ -18,6 +18,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * This service allows the interaction between the user controller and the user repository, performing the operations
+ * of get a user with all the sellers he follows, allows the user to follow a seller and allows the user to unfollow
+ * a seller
+ * @author: Grupo 8
+ */
+
+
 @Service
 public class UserService implements IUserService {
 
@@ -25,6 +34,13 @@ public class UserService implements IUserService {
     IPersonRepository personRepository;
     ModelMapper modelMapper = new ModelMapper();
 
+    /**
+     * create a list of sellers followed by a specific user and is sorted by the order option
+     * @author: Luis López Gómez
+     * @param userId id of the user
+     * @param order sorting option used in the method
+     * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
+     */
     public UserFollowedDTO getAllFollowed(int userId, String order) {
         if (personRepository.checkUser(userId)) {
             // Getting User and converting to UserDTO

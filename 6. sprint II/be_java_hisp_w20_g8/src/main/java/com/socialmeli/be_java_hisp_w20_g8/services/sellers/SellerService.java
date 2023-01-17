@@ -15,6 +15,11 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * This service allows the interaction between the Seller controller and the person repository,
+ * get the count of users that follows a specific seller and get all the users that follows a specific seller
+ * @author: Grupo 8
+ */
 @Service
 public class SellerService implements ISellerService {
 

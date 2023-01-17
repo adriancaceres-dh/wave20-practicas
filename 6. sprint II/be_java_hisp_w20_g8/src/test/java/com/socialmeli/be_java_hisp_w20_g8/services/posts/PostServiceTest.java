@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +26,11 @@ import com.socialmeli.be_java_hisp_w20_g8.repositories.persons.IPersonRepository
 import com.socialmeli.be_java_hisp_w20_g8.repositories.posts.IPostRepository;
 import com.socialmeli.be_java_hisp_w20_g8.services.products.IProductService;
 
+
+/**
+ * This test is used for check the sorting options for the post service and check the result of the method against a mock
+ * @author: Adrian Isaac Gomez Ocon
+ */
 @ExtendWith(MockitoExtension.class)
 class PostServiceTest {
     @Mock

@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
+/**
+ * This service allows the interaction between the post service and the product repository, it creates new products
+ * in the repository and find products by it Id
+ * @author: Grupo 8
+ */
 @Service
 public class ProductService implements IProductService {
     private final ModelMapper mapper = new ModelMapper();
