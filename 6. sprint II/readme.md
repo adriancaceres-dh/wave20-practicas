@@ -49,8 +49,8 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 *     US 012: followersUsertest - Test de integración para consultar los seguidores de un usuarios.
 *     US 013: followersCountTest - Test de integración para obtener la cantidad de seguidores que siguen a un usuario.
 
-Codo coverage
-<img width="1422" alt="image" src="https://user-images.githubusercontent.com/119888769/212995067-38518a2e-e0d3-48e0-87b8-bb0ed13c7ff1.png">
+Code coverage
+<img width="1422" alt="image" src="https://user-images.githubusercontent.com/119888769/213003869-3a74b59c-1451-48e0-b01b-d446ec2fb35f.png">
 
 
 Diagrama UML sprint 1
