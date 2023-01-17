@@ -39,9 +39,6 @@ public class PostServiceTest {
     @Mock
     IPostRepository postRepository;
     @Mock
-    UserService userService;
-
-    @Mock
     IUserService userService;
 
     @InjectMocks
@@ -81,8 +78,7 @@ public class PostServiceTest {
     }
     @DisplayName("Test T-0005 - Order: desc - OK")
     @Test
-    void verifyPerformOrderTestDescOk()
-    {
+    void verifyPerformOrderTestDescOk() {
         //arrange
         int userId = 1;
         String order = "date_desc";
@@ -101,15 +97,17 @@ public class PostServiceTest {
 
         //assert
         List<LocalDate> expectedDates = new ArrayList<>();
-        expected.getPosts().stream().forEach( e -> expectedDates.add(e.getDate()));
+        expected.getPosts().stream().forEach(e -> expectedDates.add(e.getDate()));
 
         List<LocalDate> resultDates = new ArrayList<>();
-        result.getPosts().stream().forEach( r -> resultDates.add(r.getDate()));
+        result.getPosts().stream().forEach(r -> resultDates.add(r.getDate()));
 
-        assertEquals(resultDates,expectedDates);
+        assertEquals(resultDates, expectedDates);
         assertEquals(expected.getPosts().size(), result.getPosts().size());
         verify(userService, atLeastOnce()).getById(userId);
         verify(postRepository, atLeastOnce()).getAll();
+    }
+
     @Test
     @DisplayName("T-0006 Ordenamiento ascendente")
     public void sortAscendingFollowedUserPosts() {
