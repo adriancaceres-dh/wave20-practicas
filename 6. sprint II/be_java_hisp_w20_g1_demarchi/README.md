@@ -1,5 +1,4 @@
-
-# Sprint 2 Social MELI.
+# Sprint 2 Social MELI - Entrega Individual
 
 ### Miembros del equipo.
 Entrega individual ❗
@@ -560,3 +559,11 @@ Notifica la no existencia mediante una excepci&oacute;n (usuario existe)&nbsp;</
 </tr>
 </tbody>
 </table>
+
+## Coverage
+[📈 Acceder al reporte generado en .html](reporte)
+
+El coverage alcanzado con los tests unitarios y los de integración fue de **86%**
+
+<img src="reporte/CoveragePorcentajes.png" alt="Coverage alcanzado">
+
