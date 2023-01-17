@@ -472,7 +472,7 @@ Por ejemplo
 </table>
 
 ---
-## Test de integración
+## Test de integración (trabajo individual)
 ### (Coverage alcanzado: 76%)
 
 |     | Endpoint                           | Casos                                                                                                            |
