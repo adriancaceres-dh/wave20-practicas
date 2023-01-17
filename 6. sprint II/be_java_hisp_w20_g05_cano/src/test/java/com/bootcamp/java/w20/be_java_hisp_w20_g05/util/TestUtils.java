@@ -222,13 +222,13 @@ public class TestUtils {
         return new FollowersBySellerDTO(2, "hbowstead0", userResponseDTOList);
     }
 
-    public static PostRequestDTO getPostRequestDTOForIntegrationTest (int userId, int postId) {
+    public static PostRequestDTO getPostRequestDTOForIntegrationTest (int userId, int productId) {
 
         PostRequestDTO postRequestDTO = new PostRequestDTO(
                 userId,
                 LocalDate.now(),
                 new ProductRequestDTO(
-                        postId,
+                        productId,
                         "Test",
                         "Test",
                         "Test",

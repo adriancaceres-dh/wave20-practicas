@@ -81,7 +81,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @DisplayName("US0008: Followers list in descending order")
+    @DisplayName("US0008: Followers list in ascending order")
     public void getFollowersByIdNameAscOutputTest () throws Exception {
         // Creamos el DTO para comparar con la respuesta
         FollowersBySellerDTO followersBySellerDTO = TestUtils.getFollowersBySellerDTOForIntegrationTest("name_asc");
