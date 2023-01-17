@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g2_espindola.util;
 
+import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.PostWithIdDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.ProductDTO;
 import com.bootcamp.be_java_hisp_w20_g2_espindola.dto.response.PostResponseDTO;
@@ -61,6 +62,36 @@ public class UtilsTest {
         postResponseDTO.addPost(posts.get(0));
 
         return postResponseDTO;
+    }
+
+    public static PostDTO generatePostDTO(Integer userId) {
+        ProductDTO producto = new ProductDTO(1000, "Silla gamer", "Gamer", "Redragon", "Negro", "");
+
+        return new PostDTO(userId, LocalDate.now(), producto, 12, 1500.50);
+    }
+
+    public static PostDTO generatePostDTOInvalidCategory(Integer userId) {
+        ProductDTO producto = new ProductDTO(1000, "Silla gamer", "Gamer", "Redragon", "Negro", "");
+
+        return new PostDTO(userId, LocalDate.now(), producto, 0, 1500.50);
+    }
+
+    public static PostDTO generatePostDTOInvalidProductId(Integer userId) {
+        ProductDTO producto = new ProductDTO(-15, "Silla gamer", "Gamer", "Redragon", "Negro", "");
+
+        return new PostDTO(userId, LocalDate.now(), producto, 0, 1500.50);
+    }
+
+    public static PostDTO generatePostDTOInvalidType(Integer userId) {
+        ProductDTO producto = new ProductDTO(1, "Silla gamer", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "Redragon", "Negro", "");
+
+        return new PostDTO(userId, LocalDate.now(), producto, 0, 1500.50);
+    }
+
+    public static PostDTO generatePostDTOInvalidPrice(Integer userId) {
+        ProductDTO producto = new ProductDTO(1, "Silla gamer", "Gamer", "Redragon", "Negro", "");
+
+        return new PostDTO(userId, LocalDate.now(), producto, 0, 150000000000000.50);
     }
 
     private static List<PostWithIdDTO> generatePostsDTO() {
