@@ -27,7 +27,7 @@ public class UserControllerIntegrationTest {
     MockMvc mockMvc;
 
     @Test
-    @DisplayName("T-0001 -> Testing of new follow user endpoint")
+    @DisplayName("Testing of new follow user endpoint")
     void testNewFollowOK() throws Exception {
 
         int userId = 1;
@@ -51,7 +51,7 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T-0001 -> Testing of new follow user endpoint but userId doesn't exist ")
+    @DisplayName("Testing of new follow user endpoint but userId doesn't exist ")
     void testNewFollow() throws Exception {
 
         int userId = 8; //UserId doesn't exist
@@ -67,7 +67,7 @@ public class UserControllerIntegrationTest {
 
     }
     @Test
-    @DisplayName("T-0001 -> Testing of new follow user endpoint but userIdToFollow doesn't exist ")
+    @DisplayName("Testing of new follow user endpoint but userIdToFollow doesn't exist ")
     void testNewFollowNotOKV2() throws Exception {
 
         int userId = 1; //UserId  exist
@@ -82,7 +82,7 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("T-0001 -> Checking endpoint validations")
+    @DisplayName("Checking endpoint validations")
     void TestNewFollowValidations() throws Exception{
 
         int userId =-1;
@@ -94,10 +94,6 @@ public class UserControllerIntegrationTest {
                 .andDo(print()).andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(expectedMessage));
     }
-
-
-    //Bonus
-
 
 
 }
