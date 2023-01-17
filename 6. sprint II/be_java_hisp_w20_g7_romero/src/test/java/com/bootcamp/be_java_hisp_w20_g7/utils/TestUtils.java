@@ -3,6 +3,7 @@ package com.bootcamp.be_java_hisp_w20_g7.utils;
 import com.bootcamp.be_java_hisp_w20_g7.dto.PostDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.ProductDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.UserDto;
+import com.bootcamp.be_java_hisp_w20_g7.dto.request.PostCreateDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowedDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersCountDto;
 import com.bootcamp.be_java_hisp_w20_g7.dto.response.UserFollowersDto;
@@ -153,5 +154,12 @@ public class TestUtils {
                         productDto2, 100, 3000),
                 new PostDto(3, 1, date, productDto, 100, 2000));
         return postDtosExpectAsc;
+    }
+
+    public static List<PostCreateDto> postCreateDtos(){
+        List<PostCreateDto> postCreateDtos = new ArrayList<>();
+        PostCreateDto postCreateDto = new PostCreateDto(13,LocalDate.parse("2021-04-29"),new ProductDto(3,"Silla Gameer","Gamer","Racer","red","Especial Edition"),100,2000000.0);
+        postCreateDtos.add(postCreateDto);
+        return postCreateDtos;
     }
 }

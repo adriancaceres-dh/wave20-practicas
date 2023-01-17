@@ -18,6 +18,8 @@ import java.time.LocalDate;
 @Data
 public class PostCreateDto {
 
+
+
     @NotNull(message = "El id no puede estar vació")
     @Min(value = 0, message = "El id debe ser mayor a cero")
     private Integer userId;
