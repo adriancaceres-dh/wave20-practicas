@@ -4,13 +4,20 @@ import com.bootcamp.be_java_hisp_w20_g1_hoffman.Parameter;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.model.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
-
+import com.fasterxml.jackson.core.type.TypeReference;
+import org.springframework.util.ResourceUtils;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class TestUtil {
+
+    private static Set<User> users = new HashSet<>();
 
     static ModelMapper mapper = new ModelMapper();
 
@@ -158,4 +165,29 @@ public class TestUtil {
                 collect(Collectors.toList());
     }
 
+
+    public static void loadData() {
+        Set<User> loadedData = new HashSet<>();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file;
+        try {
+            file = ResourceUtils.getFile("classpath:users.json");
+            loadedData = objectMapper.readValue(file, new TypeReference<Set<User>>(){});
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Failed while initializing DB, check your resources files");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed while initializing DB, check your JSON formatting.");
+        }
+
+        users = loadedData;
+    }
+    
+
+    public static Set<User> getUsers() {
+        return users;
+    }
 }
+
