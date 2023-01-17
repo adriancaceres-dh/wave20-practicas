@@ -54,7 +54,25 @@ Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 
 ## Test de Integración 
 
+| TEST      | USER STORY | VERIFICACIÓN                                                     |
+|:----------|:-----------|:-----------------------------------------------------------------|
+| `0001`    | `0001`     | Verificación - Seguir un usuario.                                |
+| `0002 `   | `0002`     | Verificación - No seguirse a si mismo.                           |
+| `0003 `   | `0003`     | Verificación - Usuario seguidor no encontrado.                   |
+| `0004 `   | `0004`     | Verificación - Lista de conteo de seguidores.                    |
+| `0005 `   | `0005`     | Verificación - Lista de seguidos.                                |
+| `0006 `   | `0006`     | Verificación - Usuario a consultar seguidores no encontrado.     | 
+| `0007 `   | `0007`     | Verificación - Lista de seguidores.                              |
+| `0008 `   | `0008`     | Verificación - Usuario a consultar seguidos no encontrado.       |
+| `0009 `   | `0009`     | Verificación - Usuario a dejar de seguir no encontrado.          |
+| `00010 `  | `00010`    | Verificación - Publicacion de producto.                          |
+| `00011 `  | `00011`    | Verificación - Publicación con datos errados.                    |
+| `00012 `  | `00012`    | Verificación - Lista de productos de un usuario.                 |
+| `00013 `  | `00013`    | Verificación - Lista de productos de un usuario que no existe.   |
 
+***
+Los test de integración fueron desarrollados por Diana Paola Parra Espinosa.
+***
 ## Colección de Postman 
 
 Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/SocialMeli2/blob/main/be_java_hisp_w20_g6/src/main/resources/static/Validaciones%20DTO%C2%B4s.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
