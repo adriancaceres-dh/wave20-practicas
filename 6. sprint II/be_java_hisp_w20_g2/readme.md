@@ -1,16 +1,13 @@
-# ❗️📜 Bootcamp backend Java Sprint N°1 - Spring ❗️📜
+# ❗️📜 Bootcamp backend Java Sprint N°2 - Testing ❗️📜
 ______
 ## 🔍🧮 Índice 🧮🔍
 1. _**[Objetivo](#-objetivo-)**_
 2. _**[Pautas para la actividad](#-pautas-para-la-actividad-)**_
-3. _*
-   *[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)
-   **_
-4.
-_**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)
-**_
-5. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
-6. _**[Bitácora](#-bitácora-)**_
+3. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---)**_
+4. _**[Escenario y requerimientos iniciales - Desarrollo grupal](#-escenario-y-requerimientos-iniciales---desarrollo-grupal---20-)**_
+5. _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-incrementales---desarrollo-individual---)**_
+6. _**[Bonus - Desarrollo Individual EXTRA -](#-bonus---desarrollo-individual-extra---)**_
+7. _**[Bitácora](#-bitácora-)**_
    1. _**[Desarrollo Multicapa](#-desarrollo-multicapa-)**_
    2. _**[Repository](#-repository-)**_
    3. _**[Model](#-model-)**_
@@ -19,9 +16,15 @@ _**[Requerimientos incrementales - Desarrollo Individual -](#-requerimientos-inc
    6. _**[Controller](#-controller-)**_
    7. _**[Exception y config](#-exception-y-config-)**_
    8. _**[Utils y Utils/Mapper](#-utils-y--utilsmapper-)**_
-7. _**[Endpoints](#-endpoints-)**_
-8. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
-9. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
+8. _**[Endpoints](#-endpoints-)**_
+9. _**[Resumen de datos de entrada US](#-resumen-de-datos-de-entrada-según-las-us-)**_
+10. _**[Validaciones en campos de las US](#-validaciones-en-campos-de-las-us-)**_
+11. _**[Test Unitarios](#-tests-unitarios-)**_
+12. _**[Test Unitarios](#implementación-de-test-unitarios---grupal)**_
+   1. [Test de Controllers](#-controller-)
+   2. [Test de Services](#-service-)
+13. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
+14. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
 
 ## 📌 Objetivo 📌
 
@@ -50,7 +53,7 @@ los
 implementes como extra. Para ello tendrás un requerimiento de referencia para que sepas a qué tipo de mejoras podés
 apuntar.
 
-## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 🫂
+## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 1.0 🫂
 
 Mercado Libre sigue creciendo y para el año que viene tiene como objetivo empezar a implementar una serie de
 herramientas
@@ -90,6 +93,18 @@ que se cita a continuación para tener en cuenta a la hora de llevar a cabo el d
 
 **[Especificación técnica funcional](https://docs.google.com/document/d/1L9zmNgsB_YZoB6V5LpPyciwCXD2ir6-X/edit)**
 
+## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 2.0 🫂
+SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el equipo de desarrollo “Bootcamp” se ha
+convertido en ¡Todo un éxito!. Dado esto y a que MeLi tiene unos estándares de calidad muy altos con respecto a los
+productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta
+a la hora de incorporar datos como así también diferentes test unitarios que aseguren el correcto funcionamiento de cada
+una de las funcionalidades que incluye. Para llevar a cabo estas implementaciones, se deberá tomar como base el proyecto
+desarrollado de forma grupal en el Sprint Nº1. A partir de él, se llevarán a cabo cada una de las validaciones y tests
+unitarios correspondientes. Como documentación de respaldo, un analista funcional nos proporciona documento de
+requerimientos técnicos y funcionales
+
+**[Especificación técnica funcional](https://docs.google.com/document/d/1rdOxsPdY_Cxls-Fl9J62lWYRjddh6imT/edit)**
+
 ## 👤 Requerimientos incrementales - Desarrollo Individual - 👤
 
 **SocialMeli** tiene como objetivo extra lograr permitir a los vendedores la posibilidad de publicar nuevos productos
@@ -102,11 +117,9 @@ requerimientos:
 
 Estos requerimientos están pensados para ser llevados a cabo de manera individual por un especialista.
 Tener en cuenta que, como son requerimientos incrementales al trabajo que se haya hecho en equipo, se debe respetar el
-desarrollo
-base que se haya logrado en éste.
+desarrollo base que se haya logrado en éste.
 Por otro lado, tener en cuenta para estos requerimientos la posibilidad de poder ordenarlos alfabéticamente por nombre
-de cada
-producto tanto de forma ascendente como descendente.
+de cada producto tanto de forma ascendente como descendente.
 
 ## 🧨 Bonus - Desarrollo Individual EXTRA - 🧨
 
@@ -132,6 +145,13 @@ tarea. Esta división consta de 5 capas:
 - Controller
 - Exception
 - Config
+- Utils
+   - Constants
+   - Mapper
+   - Sort
+   - Validator
+      - Post
+      - UserResponse
 
 ### 🗂 Repository 🗂
 
@@ -223,18 +243,42 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 - PostCreationException
 - UserNotFoundException
 
-### 🧰 Utils y  Utils/Mapper 🧰
+### 🧰 Utils 🧰
 
 Se crea, por decisión del equipo, el package _Utils_ y dentro de él se encuentra la clase _LoadExampleData_, un package
 que posee las clases _PostMapper_ y _ProductMapper_.
+- **Utils/Constants**
+   - _RegexConstants_: Esta clase posee una constante final para los regex utilizado en algunos patrones de verificación, a
+     través de validaciones, de no utilización de caracteres especiales dentro de variables que llegarán por parámetros a nuestra API.
 
+- **Utils/Mapper**
+   - _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+     viceversa.
+   - _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+     viceversa.
+
+- **Utils/sort**
+   - PostStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
+     especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+     la clase PostService.
+   - UserResponseDTOStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
+     especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+     la clase UserService.
+
+- **Utils/Validator**
+   - **Validator/Post**
+      - _PostSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+        los orders que pasaremos por parámetro en las US0003, US0004, US0006 y US0009
+      - _UserResponseSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+        en caso de que el valor pasado por parámetro sea invalido.
+   - **Validator/userResponse**
+      - _UserResponseSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+        los orders que pasaremos por parámetro en las US0006 y US0009
+      - _PostSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+        en caso de que el valor pasado por parámetro sea invalido.
 - _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En
-  este método
-  se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
-- _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-  viceversa.
-- _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-  viceversa.
+  este método se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
+
 
 # 📌 _Endpoints_ 📌
 
@@ -440,7 +484,7 @@ _**Filtros/Parámetros:**_
 | **date_asc**  | Fecha ascendente (de más antigua a más nueva)  |
 | **date_desc** | Fecha descendente (de más nueva a más antigua) |
 
-***Nota**: Este ordenamiento aplica solo para US-003 y US-004.
+**Nota**: Este ordenamiento aplica solo para US-003 y US-004.
 
 Fue desarrollado por:
 _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
@@ -449,6 +493,111 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 
 ____
 
+# 📦 Resumen de Datos de entrada según las US 📦
+| Datos/Parámetros        |   Tipo    |     Longitud     | Descripción                                                                                                              |
+|-------------------------|:---------:|:----------------:|--------------------------------------------------------------------------------------------------------------------------|
+| **user_id**             |  Integer  |                  | Número que identifica al usuario actual                                                                                  |
+| **user_id_to_follow**   |  Integer  |                  | Número que identifica al usuario a seguir                                                                                |
+| **user_name**           |  String   |        15        | Nombre de usuario asociado a la user_id                                                                                  |
+| **followers_count**     |  Integer  |                  | Cantidad de seguidores                                                                                                   |
+| **id_post**             |  Integer  |                  | Número identificatorio de cada una de las publicaciones                                                                  |
+| **date**                | LocalDate |                  | Fecha de la publicación en formato dd-MM-yyyy                                                                            |
+| **product_id**          |  Integer  |                  | Número identificatorio de cada uno de los productos asociados a una publicación                                          |
+| **product_name**        |  String   |        40        | Cadena de caracteres que representa el nombre de un producto                                                             |
+| **type**                |  String   |        15        | Cadena de caracteres que representa el tipo de un producto                                                               |
+| **brand**               |  String   |        25        | Cadena de caracteres que representa la marca de un producto                                                              |
+| **color**               |  String   |        15        | Cadena de caracteres que representa el color de un producto                                                              |
+| **notes**               |  String   |        80        | Cadena de caracteres para colocar notas u observaciones de un producto                                                   |
+| **category**            |  Integer  |                  | Identificador que sirve para conocer la categoría a la que pertenece un producto. Por ejemplo: 100: Sillas, 58: Teclados |
+| **price**               |  Double   | 10.000.000 (Max) | Precio del producto                                                                                                      |
+| **user_id_to_unfollow** |  Integer  |                  | Número que identifica al usuario a dejar de seguir                                                                       |
+| **order**               |  String   |                  | Establece el ordenamiento. Puede poseer los valores: name_asc, name_desc, date_asc, date_desc                            |
+
+# ⚠️ Validaciones en campos de las US ⚠️
+| Datos/Parámetros | ¿Obligatorio? | Validación                                                                                                                  | Mensaje de error                                                                                                                             |
+|------------------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| **user_id**      |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id no puede estar vacío.<br/>- El id debe ser mayor a cero                                                                              |
+| **id_post**      |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id_post no puede estar vacío.<br/>- El id_post debe ser mayor a cero                                                                    |
+| **date**         |      Si       | - Que el campo no esté vacío.                                                                                               | - La fecha no puede estar vacía.                                                                                                             |
+| **product_id**   |      Si       | - Que el campo no esté vacío.<br/>- Mayor a 0                                                                               | - El id no puede estar vacía<br/>- El id debe ser mayor a cero                                                                               |
+| **product_name** |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 40 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 40 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **type**         |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 15 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 15 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **brand**        |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 25 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 25 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **brand**        |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 25 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 25 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **color**        |      Si       | - Que el campo no esté vacío.<br/>- Longitud máxima de 15 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc) | - El campo no puede estar vacío.<br/>- La longitud no puede superar los 15 caracteres.<br/>- El campo no puede poseer caracteres especiales. |
+| **notes**        |      No       | - Longitud máxima de 80 caracteres.<br/> - Que no posea caracteres especiales (%,&,$,etc)                                   | - La longitud no puede superar los 80 caracteres.<br/>- El campo no puede poseer caracteres especiales.                                      |
+| **category**     |      No       | - Que el campo no esté vacío.                                                                                               | - El campo no puede estar vacío.                                                                                                             |
+| **price**        |      No       | - Que el campo no esté vacío.<br/>- El precio máximo puede ser 10.000.000                                                   | - El campo no puede estar vacío.<br/>- El precio máximo por producto es de 10.000.000                                                        |
+
+
+# 🛃 Tests Unitarios 🛃
+A continuación se solicita una serie de test unitarios a llevar a cabo; sin embargo, en caso de que se considere necesario implementar otros, esto es totalmente viable.
+
+|            | Situaciones de entrada                                                                                                                                                | Comportamiento Esperado                                                                                                                             |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **T-0001** | Verificar que el usuario a seguir exista. (US-0001)                                                                                                                   | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0002** | Verificar que el usuario a dejar de seguir exista. (US-0007)                                                                                                          | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0003** | Verificar que el tipo de ordenamiento alfabético exista (US-0008)                                                                                                     | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0004** | Verificar el correcto ordenamiento ascendente y descendente por nombre. (US-0008)                                                                                     | Devuelve la lista ordenada según el criterio solicitado                                                                                             |
+| **T-0005** | Verificar que el tipo de ordenamiento por fecha exista (US-0009)                                                                                                      | **Se cumple:**<br/>Permite continuar con normalidad.<br/> <br/>**No se cumple:**<br/> Notifica la no existencia mediante una excepción.             |
+| **T-0006** | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)                                                                                      | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)                                                                    |
+| **T-0007** | Verificar que la cantidad de seguidores de un determinado usuario sea correcta. (US-0002)                                                                             | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                                                           |
+| **T-0008** | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006)  | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha.  |
+
+Los test desarrollados, durante la realización del Sprint II será realizado en un Sistema Bajo Prueba - SUT y principio F.I.R.S.T.
+
+## 🪤 Implementación de Test Unitarios - Grupal 🪤
+____
+### 🛃 Controller 🛃
+*  _PostControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación individual.
+* _UserControllerTest_: Test que se desarrollaran de manera individual. Solo se dejan para posterior implementación individual.
+
+### 🏪 Service 🏪
+* _PostServiceTest_:
+
+| TEST   | Desarrollador                                           |
+|--------|---------------------------------------------------------|
+| T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)      |
+| T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
+| T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
+
+* _userServiceTest_:
+
+| TEST   | Descripción/Ejemplo                                                 |
+|--------|---------------------------------------------------------------------|
+| T-0001 | [Federico Javier Veron](https://github.com/fedeveron)               |
+| T-0002 | [Francisco Liz Mardones](https://github.com/FranLizMeli)            |
+| T-0003 | [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) |
+| T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)        |
+| T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)                    |
+
+* Test/Util
+   - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
+     creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
+     los test, solo sean encargados de testear los métodos.
+* Validator
+   - _PostSortValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+     validador creado que se mencionó anteriormente.
+   - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+     validador creado que se mencionó anteriormente.
+
+### 🛎 Creación de validaciones y colección de postman 🛎
+Fue desarrollado por:
+_[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra Espindola](https://github.com/ale-espindola),
+[Federico Javier Veron](https://github.com/fedeveron), [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+[Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), [Emanuel Fonseca](https://github.com/Emanoide47)._
+
+Las validaciones realizadas fueron sobre la creación de un nuevo post verificando:
++ Que el user_id no este vacío.
++ Que no tenga un post_id.
++ Que no tenga fecha.
++ Que el tipo de la colección no supere una longitud máx. de 40 caracteres.
++ Que el precio máximo no supere los 10.000.000
+
+No se realizan todos las validaciones de todos los atributos, ya que se entiende que muchas de las validaciones
+son la misma implementación, sin cambios, en otros objetos y atributos.
+
+____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
 - [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete)
@@ -470,3 +619,20 @@ ____
 - Git
 - Git Hub
 - Lombok
+- Bean Validation 2.0 JSR 380
+- Hibernate Validator 6.0.13
+- JSR 380 3.0
+- JUnit 5
+- Spring Boot Starter Test
+- Mockito
+
+## ✅ Correcciones Sprint 1 ✅
+- Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
+  Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete),
+  [Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron),
+  [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+  [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml),
+  [Emanuel Fonseca](https://github.com/Emanoide47)._
+
+- Cambio de variables static dentro de las variables _currentId_, ya que afectaban al correr los test de integración de
+  forma grupal, dentro de todas las clases de repositorios.
