@@ -5,6 +5,7 @@ import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.user.UserCountDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.user.UserFollowedDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.dto.response.user.UserFollowersDTO;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.BadRequestException;
+import com.bootcamp.be_java_hisp_w20_g4_pereyra.exception.NotFoundException;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.Buyer;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.Seller;
 import com.bootcamp.be_java_hisp_w20_g4_pereyra.model.User;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Collectors;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -94,6 +96,14 @@ class ServiceUsrTest {
         UserCountDTO result = mockServiceUser.followersCount(1);
         //assert
         assertEquals(expected, result);
+    }
+    @Test
+    @DisplayName("T-0007 - Verificar la cantidad de seguidores. Lanza excepción.")
+    void followersCount(){
+        //arrange
+        when(mockUserRepository.findById(anyInt())).thenReturn(null);
+        //act & assert
+        Assertions.assertThrows(NotFoundException.class,() -> mockServiceUser.followersCount(1));
     }
 
     @Test
