@@ -571,6 +571,39 @@ ____
 | T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)        |
 | T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)                    |
 
+### Service
+
+* _PostServiceTest_:
+
+| TEST   | Desarrollador                                           |
+|--------|---------------------------------------------------------|
+| T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
+| T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
+
+* _userServiceTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0001 | [Federico Javier Veron](https://github.com/fedeveron)         |
+| T-0002 | [Francisco Liz Mardones](https://github.com/FranLizMeli)      |
+| T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)  |
+| T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)              |
+
+### Validator
+
+* _UserValidatorTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0003 | [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) |
+
+
+* _PostSortValidatorTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)     |
+
 * Test/Util
   - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
   creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
