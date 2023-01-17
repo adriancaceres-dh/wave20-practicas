@@ -1,6 +1,5 @@
 package com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.request;
 
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.Product;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

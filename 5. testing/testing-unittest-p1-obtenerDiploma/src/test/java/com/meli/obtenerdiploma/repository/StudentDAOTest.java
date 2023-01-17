@@ -1,2 +1,8 @@
-package com.meli.obtenerdiploma.repository;public class StudentDAOTest {
+package com.meli.obtenerdiploma.repository;
+
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class StudentDAOTest {
+
 }

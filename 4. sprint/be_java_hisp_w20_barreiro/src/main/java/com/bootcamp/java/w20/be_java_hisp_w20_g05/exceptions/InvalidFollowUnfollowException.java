@@ -6,7 +6,7 @@ public class InvalidFollowUnfollowException extends RuntimeException{
 
     private MessageExceptionDTO messageExceptionDTO;
     public InvalidFollowUnfollowException(MessageExceptionDTO messageExceptionDTO){
-        this.messageExceptionDTO=messageExceptionDTO;
+        this.messageExceptionDTO = messageExceptionDTO;
     }
 
     public MessageExceptionDTO getMessageExceptionDto(){
