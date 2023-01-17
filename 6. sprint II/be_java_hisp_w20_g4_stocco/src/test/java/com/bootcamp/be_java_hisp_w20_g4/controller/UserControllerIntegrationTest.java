@@ -103,7 +103,7 @@ private MockMvc mockMvc;
     }
 
     @Test
-    @DisplayName("Se prueba dejas de seguir a un usuario")
+    @DisplayName("Se prueba dejar de seguir a un usuario")
     void unfollow() throws  Exception{
         ListedUserDTO listedUser = new ListedUserDTO(2,"ivan");
         UserFollowedDTO expected = new UserFollowedDTO(1,"rodri", Arrays.asList(listedUser));
