@@ -4,8 +4,7 @@
 ## Scrum Master: 
 Andres Bolognesi
 ## Participantes: 
-Joaquin Pereyra, Martin Gonzalez, Tammara Trivelli, Emiliano Asprea, Ivan Majewski, Gabriela Stocco, Rodrigo Cabrera
-
+Emiliano Asprea
 ## Tecnologías Utilizadas: 
 Java 11, Maven, Spring Framework(Web, DevTools, Lombok), JUnit5, Mockito y Github.
 
