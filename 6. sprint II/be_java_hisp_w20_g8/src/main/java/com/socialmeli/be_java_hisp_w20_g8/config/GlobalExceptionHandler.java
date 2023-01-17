@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice(annotations = RestController.class)
@@ -56,7 +57,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     protected ResponseEntity<ErrorDTO> handleValidationExceptions(ConstraintViolationException e) {
-        ErrorDTO error = new ErrorDTO("ConstraintViolationException", e.getLocalizedMessage());
+        ErrorDTO error = new ErrorDTO("ConstraintViolationException", e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).findFirst().orElse("Parámetros inválidos"));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

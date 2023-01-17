@@ -9,6 +9,11 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This test check  the difference between the date when a post is created and the current date
+ * @author: Grupo 8
+ */
+
 class PostRepositoryImpTest {
 
     private final PostRepositoryImp postRepository;
