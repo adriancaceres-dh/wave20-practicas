@@ -19,4 +19,15 @@ class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Test
+    @DisplayName("US0002 - TI0001, Verificar cantidad de usuarios seguidos ")
+    void countFollowers() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/users/{userId}/followers/count", "4"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.followers_count").value("2"));
+    }
+
 }
