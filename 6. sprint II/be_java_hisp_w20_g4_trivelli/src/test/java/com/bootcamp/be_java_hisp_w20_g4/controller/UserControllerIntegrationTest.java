@@ -1,6 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g4.controller;
 
-import com.bootcamp.be_java_hisp_w20_g4.repository.user.IUserRepository;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,6 @@ public class UserControllerIntegrationTest{
 
     @Autowired
     MockMvc mockMvc;
-
 
 
     @Test

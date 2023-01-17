@@ -19,6 +19,7 @@ import java.time.LocalDate;
 
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 
@@ -29,7 +30,7 @@ public class PublicationControllerIntegrationTest {
     MockMvc mockMvc;
 
     @Test
-    @DisplayName("Individual- Verifica que agrega un post")
+    @DisplayName("Individual- Verifica que el post sea este agregado")
     void addPublicationTest() throws Exception {
         PostDTO publicationDTO = new PostDTO(1, LocalDate.of(2022,11,2), new ProductRequestDTO(4,"producto4","tipo4","adidas","green","nota4"),20,1200.0);
         ObjectWriter writer = new ObjectMapper()
@@ -41,6 +42,7 @@ public class PublicationControllerIntegrationTest {
         mockMvc.perform(post("/products/post")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payloadDto))
+                .andDo(print())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.category").value(20))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(1200.0))
