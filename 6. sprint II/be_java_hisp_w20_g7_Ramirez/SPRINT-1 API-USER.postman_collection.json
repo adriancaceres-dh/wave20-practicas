@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "77fe473c-6a02-4d83-bea6-86ccbeabd656",
+    "name": "SPRINT-1 API-USER",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "US 0001 - Follow",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/80/follow/56",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "80",
+            "follow",
+            "56"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0002 - Followers-count",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{userId}/followers/count",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{userId}",
+            "followers",
+            "count"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0003 - Followers-List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/3/followers/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "3",
+            "followers",
+            "list"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0004 - Followed -List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{userId}/followed/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{userId}",
+            "followed",
+            "list"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0005 - Create-Post",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"user_id\":13,\n    \"date\": \"29-04-2021\",\n    \"product\": {\n        \"product_id\": 3,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red & Black\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 222\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/products/post",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "products",
+            "post"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0006 - Post-List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/products/followed/{userId}/list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "products",
+            "followed",
+            "{userId}",
+            "list"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0007 - Unfollow",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{userId}/unfollow/{userIdToUnfollow}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{userId}",
+            "unfollow",
+            "{userIdToUnfollow}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0008 - Followers Order by Asc",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{UserID}/followers/list?order=name_asc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{UserID}",
+            "followers",
+            "list"
+          ],
+          "query": [
+            {
+              "key": "order",
+              "value": "name_asc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0008 - Followers Order by Desc",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{UserID}/followers/list?order=name_desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{UserID}",
+            "followers",
+            "list"
+          ],
+          "query": [
+            {
+              "key": "order",
+              "value": "name_desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0008 - Followed  Order by Asc",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{UserID}/followed/list?order=name_asc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{UserID}",
+            "followed",
+            "list"
+          ],
+          "query": [
+            {
+              "key": "order",
+              "value": "name_asc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0008 - Followed  Order by Desc",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/users/{UserID}/followed/list?order=name_desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{UserID}",
+            "followed",
+            "list"
+          ],
+          "query": [
+            {
+              "key": "order",
+              "value": "name_desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0009 - Followed  Order by Date Asc",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/products/followed/{userId}/list?order=date_asc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "products",
+            "followed",
+            "{userId}",
+            "list"
+          ],
+          "query": [
+            {
+              "key": "order",
+              "value": "date_asc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "US 0009 - Followed  Order by Date Desc",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/products/followed/{userId}/list?order=date_desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "products",
+            "followed",
+            "{userId}",
+            "list"
+          ],
+          "query": [
+            {
+              "key": "order",
+              "value": "date_desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
