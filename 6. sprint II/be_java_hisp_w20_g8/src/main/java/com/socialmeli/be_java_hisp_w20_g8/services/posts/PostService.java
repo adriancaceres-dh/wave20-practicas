@@ -21,8 +21,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+/**
+ * This service allows the interaction between the Post controller,the Product repository,the
+ * Person repository and the Post repository, create new post in the repository and get all
+ * the post of a specific seller and sort the result by an sorting option
+ * @author: Grupo 8
+ */
 
 @Service
 public class PostService implements IPostService {
@@ -44,13 +49,14 @@ public class PostService implements IPostService {
                 .addMapping(src -> src.getProductDTO().getProduct_id(), Post::setProductId);
     }
 
+    /**
+     * Creates a post in the repository from a PostRequestDTO base. It also calls for the creation of the product if it doesn't exist yet.
+     * @param postRequestDTO the post to be created
+     * @return a ResponseDTO with the result of the operation
+     * @Author: Luis Francisco López Gómez
+     */
     @Override
     public ResponseDTO createPost(PostRequestDTO postRequestDTO) {
-        // Check if all the fields are present
-        if(!Stream.of(postRequestDTO.getUser_id(), postRequestDTO.getDate(), postRequestDTO.getProductDTO(), postRequestDTO.getCategory(), postRequestDTO.getPrice())
-                .allMatch(Objects::nonNull))
-            throw new InvalidArgumentException("All the fields are required");
-
         // Get the seller
         Seller seller = personRepository.findSellerById(postRequestDTO.getUser_id());
 
@@ -72,10 +78,15 @@ public class PostService implements IPostService {
         // Add the post to the seller's list
          seller.getPost().add(postId);
          return  new ResponseDTO(true, "Post added successfully");
-
-
     }
 
+    /**
+     * Find all sellers by id user and order sorting.
+     * @param id of user
+     * @param order order sorting option used in the method
+     * @return a ResponsePostDTO with the result of the operation
+     * @Author: John Edward Garcia Saavedra
+     */
     @Override
     public ResponsePostDTO findSellersByIdUser(int id, String order) {
         if (personRepository.checkUser(id)) {
@@ -90,6 +101,14 @@ public class PostService implements IPostService {
         }
     }
 
+    /**
+     * Find post by id seller and order sorting.
+     * @param sellers Set of Sellers
+     * @param idUser of user
+     * @param order order sorting option used in the method
+     * @return a ResponsePostDTO with the result of the operation
+     * @Author: John Edward Garcia Saavedra
+     */
     @Override
     public ResponsePostDTO findPostByIdSeller(Set<Seller> sellers, int idUser,String order) {
        List<PostDTO> listPostSeller = new ArrayList<>();

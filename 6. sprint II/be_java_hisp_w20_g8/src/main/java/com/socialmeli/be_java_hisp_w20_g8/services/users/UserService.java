@@ -18,22 +18,41 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * This service allows the interaction between the user controller and the user repository, performing the operations
+ * of get a user with all the sellers he follows, allows the user to follow a seller and allows the user to unfollow
+ * a seller
+ *
+ * @author: Grupo 8
+ */
+
+
 @Service
 public class UserService implements IUserService {
 
     @Autowired
-    IPersonRepository IPersonRepository;
+    IPersonRepository personRepository;
     ModelMapper modelMapper = new ModelMapper();
 
+
+    /**
+     * create a list of sellers followed by a specific user and is sorted by the order option
+     *
+     * @param userId id of the user
+     * @param order  sorting option used in the method
+     * @return userFollowedDTO with the id of the user, his name and the list of sellers the users follows
+     * @author: Adrian Isaac Gomez Ocon y Grupo 8 (sorting functionality)
+     */
     public UserFollowedDTO getAllFollowed(int userId, String order) {
-        if (IPersonRepository.checkUser(userId)) {
+        if (personRepository.checkUser(userId)) {
             // Getting User and converting to UserDTO
-            User user = IPersonRepository.findUserById(userId);
+            User user = personRepository.findUserById(userId);
 
 
             //Getting List of sellers and converting to SellerDTO
-            List<Seller> sellers = IPersonRepository.getAllFollowed(userId).stream()
-                    .map(seller_id -> IPersonRepository.findSellerById(seller_id))
+            List<Seller> sellers = personRepository.getAllFollowed(userId).stream()
+                    .map(seller_id -> personRepository.findSellerById(seller_id))
                     .collect(Collectors.toList());
 
             List<SellerDTO> sellersDTO = sellers.stream()
@@ -60,11 +79,20 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * add a seller to the specific user followed list
+     * @author: Juan Camilo Arango Valle
+     * @param userId id of the user
+     * @param sellerId id of the seller to follow
+     * @return ResponseDTO the status of the operation and a message
+     */
+    @Override
     public ResponseDTO addNewFollow(int userId, int sellerId) {
+
         if(userId == sellerId) throw new OperationFailedException("A user can't follow himself");
-        if (IPersonRepository.checkUser(userId) && IPersonRepository.checkUser(sellerId)) {
-            IPersonRepository.addFollowing(userId, sellerId);
-            IPersonRepository.addFollower(sellerId, userId);
+        if (personRepository.checkUser(userId) && personRepository.checkUser(sellerId)) {
+            personRepository.addFollowing(userId, sellerId);
+            personRepository.addFollower(sellerId, userId);
             return ResponseDTO.builder()
                     .ok(true)
                     .message("New Follower add successfully").build();
@@ -73,11 +101,20 @@ public class UserService implements IUserService {
         }
     }
 
+
+    /**
+     * Unfollow a seller
+     *
+     * @param userid   id of the user
+     * @param sellerId id of the seller to unfollow
+     * @return ResponseDTO the status of the operation and a message
+     * @author: Dimas Hernandez Mendoza
+     */
     @Override
     public ResponseDTO unfollow(int userid, int sellerId) {
-        if (IPersonRepository.checkUser(userid) && IPersonRepository.checkUser(sellerId)) {
-            IPersonRepository.unfollowing(userid, sellerId);
-            IPersonRepository.unfollower(sellerId, userid);
+        if (personRepository.checkUser(userid) && personRepository.checkUser(sellerId)) {
+            personRepository.unfollowing(userid, sellerId);
+            personRepository.unfollower(sellerId, userid);
             return ResponseDTO.builder()
                     .ok(true)
                     .message("you have unfollowed the user").build();

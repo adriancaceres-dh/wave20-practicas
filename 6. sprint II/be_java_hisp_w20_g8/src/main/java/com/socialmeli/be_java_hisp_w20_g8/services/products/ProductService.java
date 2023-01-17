@@ -2,7 +2,6 @@ package com.socialmeli.be_java_hisp_w20_g8.services.products;
 
 
 import com.socialmeli.be_java_hisp_w20_g8.dto.ProductDTO;
-import com.socialmeli.be_java_hisp_w20_g8.exceptions.InvalidArgumentException;
 import com.socialmeli.be_java_hisp_w20_g8.exceptions.OperationFailedException;
 import com.socialmeli.be_java_hisp_w20_g8.models.Product;
 import com.socialmeli.be_java_hisp_w20_g8.repositories.products.IProductRepository;
@@ -11,10 +10,14 @@ import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Stream;
 
+
+/**
+ * This service allows the interaction between the post service and the product repository, it creates new products
+ * in the repository and find products by it Id
+ * @author: Grupo 8
+ */
 @Service
 public class ProductService implements IProductService {
     private final ModelMapper mapper = new ModelMapper();
@@ -28,13 +31,14 @@ public class ProductService implements IProductService {
                 .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
     }
 
+    /**
+     * Creates a product in the repository from a ProductDTO base.
+     * @param productDTO the product to be created
+     * @return true if the product was created, otherwise false
+     * @Author: Luis Francisco López Gómez
+     */
     @Override
     public boolean createProduct(ProductDTO productDTO) {
-        // Check if all the product fields are present
-        if(!Stream.of(productDTO.getProduct_id(), productDTO.getProduct_name(), productDTO.getType(), productDTO.getBrand(), productDTO.getColor(), productDTO.getNotes())
-                .allMatch(Objects::nonNull))
-            throw new InvalidArgumentException("All the fields are required");
-
         // Get the product if exists
         Product product = mapper.map(productDTO, Product.class);
         Optional<Product> existing = productRepository.getProductById(product.getProduct_id());
@@ -51,6 +55,12 @@ public class ProductService implements IProductService {
         return false;
     }
 
+    /**
+     * Finds a product in the repository by its ID, and returns its respective ProductDTO.
+     * @param productId the ID of the requested product
+     * @return a ProductDTO object of the product
+     * @Author: Luis Francisco López Gómez
+     */
     @Override
     public ProductDTO getProductById(int productId) {
         Optional<Product> product = productRepository.getProductById(productId);
