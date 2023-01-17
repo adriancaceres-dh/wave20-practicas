@@ -32,7 +32,7 @@ class StudentDAOTest {
     @Test
     void testFindStudentById(){
         //Arrange
-        List< SubjectDTO> subjectsDTOS = new ArrayList<>();
+        List<SubjectDTO> subjectsDTOS = new ArrayList<>();
         subjectsDTOS.add(new SubjectDTO("Maths",4.0) );
         subjectsDTOS.add(new SubjectDTO("History",4.5) );
         StudentDTO stu = new StudentDTO(1231L,"Camilo","Buen estudiante"

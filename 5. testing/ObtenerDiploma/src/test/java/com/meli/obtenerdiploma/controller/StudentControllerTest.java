@@ -33,7 +33,7 @@ class StudentControllerTest {
         StudentDTO stu = new StudentDTO(5L,"Camilo","Buen estudiante"
                 , 4.0, subjectsDTOS );
 
-        //Acton
+        //Action
         studentController.studentService.create(stu);
 
         //Assert
