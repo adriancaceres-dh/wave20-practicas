@@ -1,6 +1,8 @@
 package com.bootcamp.be_java_hisp_w20_g1_hoffman.util;
 
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.Parameter;
+import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.model.User;
@@ -163,6 +165,13 @@ public class TestUtil {
         return posts.stream().
                 map(p -> mapper.map(p, PostResponseDto.class)).
                 collect(Collectors.toList());
+    }
+
+    public static PostRequestDto getPostRequestDto() {
+        ProductRequestDto product = new ProductRequestDto(140, "producto", "tipo", "marca", "color", "notas");
+        PostRequestDto postDto = new PostRequestDto(LocalDate.now(), 3, product, 100, 150.44);
+        postDto.setProduct(product);
+        return postDto;
     }
 
 
