@@ -77,7 +77,7 @@ public class PostControllerIntegrationTest {
 
     @ParameterizedTest
     @MethodSource("invalidPostProvider")
-    @DisplayName("Add invalid post")
+    @DisplayName("Submit an invalid post")
     public void whenGivenInvalidPost_addPost_shouldThrowBadRequestException(PostRequestDto postRequestDto, String message) throws Exception {
         String payloadJson = writer.writeValueAsString(postRequestDto);
 
