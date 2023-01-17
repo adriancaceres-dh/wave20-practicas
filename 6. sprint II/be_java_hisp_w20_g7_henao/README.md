@@ -1,10 +1,54 @@
-git# Bootcamp Backend Java Sprint N°2 - Spring
+# Bootcamp Backend Java Sprint N°2 - Spring
 
 # Grupo 7
 
 ## Roadmap
 
 ![Logo](https://assets.digitalhouse.com/content/AR/CTD/DESAFIO%20SPRING_Mesa%20de%20trabajo%201.jpg)
+
+## Proyecto individual
+- 👨🏻‍💻 [@JuanSHenao](https://github.com/JuanSHenao)
+
+
+## Objetivo
+
+El objetivo de este desafío es aplicar los contenidos dados hasta el momento durante el BOOTCAMP (Git, Java, Spring y Testing),
+haciendo principal hincapié en las validaciones y tipos de testing que pueden ser utilizados a partir de un enunciado propuesto,
+una especificación de requerimientos y documentación técnica.
+## Pautas para la actividad
+El desafío que se propone a continuación consta de 2 partes:
+
+#### B. Apartado Individual:
+Luego de lograr implementar tests unitarios con todos los miembros del equipo, deberás implementar al menos un test de integración de manera individual.
+
+##  Requerimientos técnicos funcionales (Punto B)
+
+Siguiendo con el principio de que MeLi posee unos estándares de calidad muy altos, un especialista sugirió la posibilidad de contar con la implementación de al menos un test de integración
+
+### Test de Integración
+
+Se crea un archivo para el test de integración de endpoints relacionados con el controller de usuario.
+
+|         | Situaciones de entrada                   | Comportamiento Esperado                            |
+|:--------|:-----------------------------------------|:---------------------------------------------------|
+| `T-0001`| `Verificar los datos del Get. (US-0002)` | `Mismo userId, userName y followersCount`          |
+| `T-0002`| `Verificar los datos del Get. (US-0003)` | `Mismo userId, userName y lista de followers`      | 
+| `T-0003`| `Verificar el retorno del Post. (US-0001)` | `Retornar status OK y content type adecuado`      | 
+| `T-0003`| `Verificar el retorno del Post. (US-0007)` | `Retornar status OK y content type adecuado`      | 
+
+#### C. Bonus:
+En caso de que hayas logrado resolver tanto el apartado A de manera grupal como todo el apartado B de forma individual y aún cuentes con tiempo, te invitamos a que propongas otros tests de integración (diferentes al que hayas implementado en el punto B).  No te olvides que este apartado es 100% OPCIONAL y NO OBLIGATORIO.
+
+*NOTA:* En este caso no fue posible realizar el bonus por temas de tiempo por lo que solo se pudo llegar al 70% de coverage y no el 75%.
+
+## Tecnologias Utilizadas
+
+Git, Java, Spring y Testing
+
+
+#### A. Implementar validaciones y diferentes tests a un escenario determinado (grupal):
+A partir de un primer incremento de un escenario conocido (Sprint Nº 1), se deberán establecer distintos procesos de validación de datos y de test unitarios necesarios.
+
 
 ## Miembros del Proyecto
 
@@ -16,27 +60,6 @@ git# Bootcamp Backend Java Sprint N°2 - Spring
 - 👨🏻‍💻 [@RonaldRosero](https://github.com/RonaldRosero)
 - 👩🏻‍💻 [@SoriGonzalezR](https://github.com/SoriGonzalezR)
 
-
-
-## Objetivo
-
-El objetivo de este desafío es aplicar los contenidos dados hasta el momento durante el BOOTCAMP (Git, Java, Spring y Testing),
-haciendo principal hincapié en las validaciones y tipos de testing que pueden ser utilizados a partir de un enunciado propuesto,
-una especificación de requerimientos y documentación técnica.
-## Pautas para la actividad
-El desafío que se propone a continuación consta de 2 partes:
-#### A. Implementar validaciones y diferentes tests a un escenario determinado (grupal):
-A partir de un primer incremento de un escenario conocido (Sprint Nº 1), se deberán establecer distintos procesos de validación de datos y de test unitarios necesarios.
-
-#### B. Apartado Individual:
-Luego de lograr implementar tests unitarios con todos los miembros del equipo, deberás implementar al menos un test de integración de manera individual.
-
-#### C. Bonus:
-En caso de que hayas logrado resolver tanto el apartado A de manera grupal como todo el apartado B de forma individual y aún cuentes con tiempo, te invitamos a que propongas otros tests de integración (diferentes al que hayas implementado en el punto B).  No te olvides que este apartado es 100% OPCIONAL y NO OBLIGATORIO.
-
-## Tecnologias Utilizadas
-
-Git, Java, Spring y Testing
 
 ## Decisiones de Equipo
 
