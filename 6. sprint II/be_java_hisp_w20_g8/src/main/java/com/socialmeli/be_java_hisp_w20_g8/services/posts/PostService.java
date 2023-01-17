@@ -49,6 +49,11 @@ public class PostService implements IPostService {
                 .addMapping(src -> src.getProductDTO().getProduct_id(), Post::setProductId);
     }
 
+    /**
+     * Creates a post in the repository from a PostRequestDTO base. It also calls for the creation of the product if it doesn't exist yet.
+     * @param postRequestDTO the post to be created
+     * @return a ResponseDTO with the result of the operation
+     */
     @Override
     public ResponseDTO createPost(PostRequestDTO postRequestDTO) {
         // Get the seller
