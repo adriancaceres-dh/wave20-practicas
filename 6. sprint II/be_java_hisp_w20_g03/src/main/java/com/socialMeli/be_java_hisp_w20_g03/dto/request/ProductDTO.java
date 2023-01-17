@@ -2,6 +2,7 @@ package com.socialMeli.be_java_hisp_w20_g03.dto.request;
 
 import lombok.AllArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
