@@ -1,5 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g6.util;
 
+import com.bootcamp.be_java_hisp_w20_g6.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g6.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g6.dto.response.UserResponseDto;
 import com.bootcamp.be_java_hisp_w20_g6.model.PostModel;
@@ -48,13 +50,13 @@ public class TestsUtilsGenerator {
     public static List<PostResponseDTO> getPostsDto() {
         return new ArrayList<>(
                 Arrays.asList(
-                        new PostResponseDTO(1, 1, LocalDate.of(2023, 1, 13),
+                        new PostResponseDTO(1, 1, LocalDate.now().minusDays(4),
                             new ProductModel(1, "Silla", "Gamer", "Racer", "Red & Black", "Special Edition"),
                         100, 1500.5),
-                        new PostResponseDTO(1, 2, LocalDate.of(2023, 1, 15),
+                        new PostResponseDTO(1, 2, LocalDate.now().minusDays(2),
                             new ProductModel(1, "Silla", "Gamer", "Racer", "Red & Black", "Special Edition"),
                             100, 1500.50),
-                        new PostResponseDTO(1, 3, LocalDate.of(2023, 1, 17),
+                        new PostResponseDTO(1, 3, LocalDate.now(),
                             new ProductModel(1, "Silla", "Gamer", "Racer", "Red & Black", "Special Edition"),
                             100, 1500.50),
                         new PostResponseDTO(1, 4, LocalDate.of(2022, 1, 1),
@@ -71,4 +73,12 @@ public class TestsUtilsGenerator {
                 .map(p -> mapper.map(p, PostModel.class))
                 .collect(Collectors.toList());
     }
+
+    public static PostRequestDto getPostRequestDto() {
+        return new PostRequestDto(1,"01-01-2023",23,
+                new ProductRequestDto(1, "Silla", "Gamer", "Racer", "Red and Black", "Special Edition")
+                ,4500.5,false,null);
+    }
+
+
 }
