@@ -75,7 +75,8 @@ class PostControllerTest {
                 .andDo(print())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.posts[0].post_id").value(0))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.posts[0].price").value(100000))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.posts[1].price").value(120000))
                 .andReturn();
     }
 
@@ -87,6 +88,8 @@ class PostControllerTest {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.posts[0].post_id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.posts[0].price").value(120000))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.posts[1].price").value(100000))
                 .andReturn();
     }
 

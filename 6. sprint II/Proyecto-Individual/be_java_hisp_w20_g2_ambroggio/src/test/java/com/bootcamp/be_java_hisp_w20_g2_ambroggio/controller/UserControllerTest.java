@@ -112,6 +112,7 @@ class UserControllerTest {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Ale"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.followed[0].user_name").value("Diego"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.followed[1].user_name").value("Flavio"))
                 .andReturn();
     }
 
@@ -123,6 +124,7 @@ class UserControllerTest {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Ale"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.followed[0].user_name").value("Flavio"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.followed[1].user_name").value("Diego"))
                 .andReturn();
     }
 
