@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     protected ResponseEntity<ErrorDTO> handleValidationExceptions(ConstraintViolationException e) {
-        ErrorDTO error = new ErrorDTO("ConstraintViolationException",e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).findFirst().orElse("Parámetros inválidos"));
+        ErrorDTO error = new ErrorDTO("ConstraintViolationException", e.getConstraintViolations().stream().map(ConstraintViolation::getMessage).findFirst().orElse("Parámetros inválidos"));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
