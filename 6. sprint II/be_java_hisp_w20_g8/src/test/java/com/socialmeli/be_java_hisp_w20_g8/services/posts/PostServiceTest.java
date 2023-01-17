@@ -1,7 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.services.posts;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -51,72 +51,55 @@ class PostServiceTest {
         listPostDTO = new ArrayList<>();
         setPostDTO = new HashSet<>();
         sellerSet = new HashSet<>();
-        idPost = new HashSet<>();
 
-        PostDTO postDTO1 = PostDTO.builder().post_id(1).user_id(5).date(LocalDate.of(2023, 01, 10)).product(
-                ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()).build();
-
-        PostDTO postDTO2 = PostDTO.builder().post_id(2).user_id(5).date(LocalDate.of(2023, 01, 02)).product(
-                ProductDTO.builder().product_id(1).product_name("Television").type("Technology").brand("Samsung").color("Black").notes("TV 68 inches").build()).build();
+        // setting postDTO for testing
+        PostDTO postDTO1 = PostDTO.builder().post_id(1).user_id(5).date(LocalDate.now().minusDays(4)).build();
+        PostDTO postDTO2 = PostDTO.builder().post_id(2).user_id(5).date(LocalDate.now().minusDays(3)).build();
+        PostDTO postDTO3 = PostDTO.builder().post_id(3).user_id(7).date(LocalDate.now().minusDays(2)).build();
+        PostDTO postDTO4 = PostDTO.builder().post_id(4).user_id(6).date(LocalDate.now().minusDays(1)).build();
 
         listPostDTO.add(postDTO1);
         listPostDTO.add(postDTO2);
+        listPostDTO.add(postDTO3);
+        listPostDTO.add(postDTO4);
 
         setPostDTO.add(postDTO1);
         setPostDTO.add(postDTO2);
-
-        idPost.add(postDTO1.getPost_id());
-        idPost.add(postDTO2.getPost_id());
+        setPostDTO.add(postDTO3);
+        setPostDTO.add(postDTO4);
 
         responsePostDTO = ResponsePostDTO.builder().id_user(1).posts(listPostDTO).build();
 
+        // setting sellers for testing
         sellerSet.addAll(Set.of(
-            new Seller(5, "seller4", new HashSet<>(), new HashSet<>() {
-                {
-                    add(1);
-                    add(2);
-                }
-            })));
-
-    }
-
-    @Test
-    @DisplayName("UT-Check ascending order of post by date")
-    public void findPostByIdSellerTestAscendentOrder() {
-        List<PostDTO> listPostExpected = new ArrayList<>();
-
-        Set<Seller> sellers = new HashSet<>();
-        sellers.addAll(Set.of(
                 new Seller(5, "seller3", new HashSet<>(), new HashSet<>() {
                     {
                         add(4);
                         add(2);
                     }
                 }),
-                new Seller(5, "seller4", new HashSet<>(), new HashSet<>() {
+                new Seller(6, "seller4", new HashSet<>(), new HashSet<>() {
                     {
                         add(1);
                         add(3);
                     }
                 }),
                 new Seller(8, "seller5", new HashSet<>(), new HashSet<>())));
-        Set<PostDTO> setPost = new HashSet<>();
 
-        PostDTO post1 = PostDTO.builder().post_id(1).user_id(5).date(LocalDate.now().minusDays(4)).build();
-        PostDTO post2 = PostDTO.builder().post_id(2).user_id(5).date(LocalDate.now().minusDays(3)).build();
-        PostDTO post3 = PostDTO.builder().post_id(3).user_id(7).date(LocalDate.now().minusDays(2)).build();
-        PostDTO post4 = PostDTO.builder().post_id(4).user_id(6).date(LocalDate.now().minusDays(1)).build();
+    }
 
-        listPostExpected.add(post1);
-        listPostExpected.add(post2);
-        listPostExpected.add(post3);
-        listPostExpected.add(post4);
+    @Test
+    @DisplayName("UT-Check ascending order of post by date")
+    public void findPostByIdSellerTestAscendentOrder() {
+        List<PostDTO> listPostExpectd = new ArrayList<>();
 
-        setPost.add(post1);
-        setPost.add(post2);
-        setPost.add(post3);
-        setPost.add(post4);
+//        List with the correct order of posts
+        listPostExpectd.add(listPostDTO.get(0));
+        listPostExpectd.add(listPostDTO.get(1));
+        listPostExpectd.add(listPostDTO.get(2));
+        listPostExpectd.add(listPostDTO.get(3));
 
+//        Returning the set of post of each seller
         when(postRepository.findPostsById(new HashSet<Integer>() {
             {
                 add(1);
@@ -124,8 +107,8 @@ class PostServiceTest {
             }
         })).thenReturn(new HashSet<PostDTO>() {
             {
-                add(post1);
-                add(post3);
+                add(listPostDTO.get(0));
+                add(listPostDTO.get(2));
             }
         });
         when(postRepository.findPostsById(new HashSet<Integer>() {
@@ -135,17 +118,16 @@ class PostServiceTest {
             }
         })).thenReturn(new HashSet<PostDTO>() {
             {
-                add(post4);
-                add(post2);
+                add(listPostDTO.get(3));
+                add(listPostDTO.get(1));
             }
         });
         when(postRepository.findPostsById(new HashSet<>())).thenReturn(new HashSet<PostDTO>());
 
         // Act
-        ResponsePostDTO actual = postService.findPostByIdSeller(sellers, 1, "date_asc");
+        ResponsePostDTO actual = postService.findPostByIdSeller(sellerSet, 1, "date_asc");
         // Assert
-        Assertions.assertEquals(listPostExpected, actual.getPosts());
-        ;
+        Assertions.assertEquals(listPostExpectd, actual.getPosts());
 
     }
 
@@ -154,38 +136,13 @@ class PostServiceTest {
     public void findPostByIdSellerTestDescendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
-        Set<Seller> sellers = new HashSet<>();
-        sellers.addAll(Set.of(
-                new Seller(5, "seller3", new HashSet<>(), new HashSet<>() {
-                    {
-                        add(4);
-                        add(2);
-                    }
-                }),
-                new Seller(5, "seller4", new HashSet<>(), new HashSet<>() {
-                    {
-                        add(1);
-                        add(3);
-                    }
-                }),
-                new Seller(8, "seller5", new HashSet<>(), new HashSet<>())));
-        Set<PostDTO> setPost = new HashSet<>();
+//        List with the correct order of posts
+        listPostExpectd.add(listPostDTO.get(3));
+        listPostExpectd.add(listPostDTO.get(2));
+        listPostExpectd.add(listPostDTO.get(1));
+        listPostExpectd.add(listPostDTO.get(0));
 
-        PostDTO post1 = PostDTO.builder().post_id(1).user_id(5).date(LocalDate.now().minusDays(4)).build();
-        PostDTO post2 = PostDTO.builder().post_id(2).user_id(5).date(LocalDate.now().minusDays(3)).build();
-        PostDTO post3 = PostDTO.builder().post_id(3).user_id(7).date(LocalDate.now().minusDays(2)).build();
-        PostDTO post4 = PostDTO.builder().post_id(4).user_id(6).date(LocalDate.now().minusDays(1)).build();
-
-        listPostExpectd.add(post4);
-        listPostExpectd.add(post3);
-        listPostExpectd.add(post2);
-        listPostExpectd.add(post1);
-
-        setPost.add(post1);
-        setPost.add(post2);
-        setPost.add(post3);
-        setPost.add(post4);
-
+//        Returning the set of post of each seller
         when(postRepository.findPostsById(new HashSet<Integer>() {
             {
                 add(1);
@@ -193,8 +150,8 @@ class PostServiceTest {
             }
         })).thenReturn(new HashSet<PostDTO>() {
             {
-                add(post1);
-                add(post3);
+                add(listPostDTO.get(0));
+                add(listPostDTO.get(2));
             }
         });
         when(postRepository.findPostsById(new HashSet<Integer>() {
@@ -204,14 +161,14 @@ class PostServiceTest {
             }
         })).thenReturn(new HashSet<PostDTO>() {
             {
-                add(post4);
-                add(post2);
+                add(listPostDTO.get(3));
+                add(listPostDTO.get(1));
             }
         });
         when(postRepository.findPostsById(new HashSet<>())).thenReturn(new HashSet<PostDTO>());
 
         // Act
-        ResponsePostDTO actual = postService.findPostByIdSeller(sellers, 1, "date_desc");
+        ResponsePostDTO actual = postService.findPostByIdSeller(sellerSet, 1, "date_desc");
         // Assert
         Assertions.assertEquals(listPostExpectd, actual.getPosts());
 
@@ -222,7 +179,7 @@ class PostServiceTest {
     void findPostByIdSellerTestAsc(){
         String orderOption = "date_asc";
 
-        when(postRepository.findPostsById(idPost)).thenReturn(setPostDTO);
+        when(postRepository.findPostsById(anySet())).thenReturn(setPostDTO);
 
         ResponsePostDTO responseExpected = postService.findPostByIdSeller(sellerSet, 1, orderOption);
 
@@ -235,7 +192,7 @@ class PostServiceTest {
     void findPostByIdSellerTestDesc(){
         String orderOption = "date_desc";
 
-        when(postRepository.findPostsById(idPost)).thenReturn(setPostDTO);
+        when(postRepository.findPostsById(anySet())).thenReturn(setPostDTO);
 
         ResponsePostDTO responseExpected = postService.findPostByIdSeller(sellerSet, 1, orderOption);
 
@@ -250,7 +207,7 @@ class PostServiceTest {
         String orderOption = "not_sorting_option";
         String expectedErrorMessage = "Invalid sorting option";
 
-        when(postRepository.findPostsById(idPost)).thenReturn(setPostDTO);
+        when(postRepository.findPostsById(anySet())).thenReturn(setPostDTO);
 
         Exception exception = assertThrows(InvalidArgumentException.class,()-> postService.findPostByIdSeller(sellerSet,1, orderOption));
 
