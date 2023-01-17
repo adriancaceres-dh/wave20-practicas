@@ -137,7 +137,7 @@ class UserControllerTest {
     }
 
     /*
-    * Para probar el ordenamiento no contamos con más usuarios generados en los respositorios,
+    * Para probar el ordenamiento no contamos con más usuarios generados en los repositorios,
     * el desarrollo de los tests sería, en este caso, el mismo para el visto con los test de Find All followers
     */
 
