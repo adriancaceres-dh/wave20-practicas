@@ -473,3 +473,59 @@ Por ejemplo
 </tr>
 </tbody>
 </table>
+
+## Test de integración (individual)
+
+<table>
+<tbody>
+<tr style="height: 33px;">
+<td style="height: 33px;">&nbsp;</td>
+<td style="height: 33px;">
+<p><strong>Situaciones de entrada</strong></p>
+</td>
+<td style="height: 33px;">
+<p><strong>Comportamiento Esperado</strong></p>
+</td>
+</tr>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>Test Integración</strong></p>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Listar usuarios seguidos de un usuario válido </span><strong>(US-0003)</strong></p>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">
+<li>Status Code: 200</li>
+<li>Body: Listado de vendedores seguidos por el usuario</li>
+</span></p>
+<br/>
+<p><strong>No se cumple:</strong></p>
+<li>Status Code: 404</li>
+<li>Body: Detalles del error con un mensaje, código de estado y timestamp</li>
+<p><span style="font-weight: 400;">
+</span></p>
+</td>
+</tr>
+<tr style="height: 143px;">
+<td style="height: 143px;">
+<p><strong>Test Bonus</strong></p>
+<td style="height: 143px;">
+<p><span style="font-weight: 400;">Realizar una publicación válida </span><strong>(US-0005)</strong></p>
+</td>
+<td style="height: 143px;">
+<p><strong>Se cumple:</strong></p>
+<p><span style="font-weight: 400;">
+<li>Status Code: 201</li>
+<li>Body: Datos de la publicación creada.</li>
+</span></p>
+<br/>
+<p><strong>No se cumple:</strong></p>
+<li>Status Code: 400</li>
+<li>Body: Detalles del error con un mensaje, código de estado, timestamp y campos que ocasionaron el error, de haberlos</li>
+<p><span style="font-weight: 400;">
+</span></p>
+</td>
+</tr>
+</tbody>
+</table>
