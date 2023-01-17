@@ -81,6 +81,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("UT-Check ascending order of post by date")
     public void findPostByIdSellerTestAscendentOrder() {
         List<PostDTO> listPostExpected = new ArrayList<>();
 
@@ -149,6 +150,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("UT-Check descending order of post by date")
     public void findPostByIdSellerTestDescendentOrder() {
         List<PostDTO> listPostExpectd = new ArrayList<>();
 
