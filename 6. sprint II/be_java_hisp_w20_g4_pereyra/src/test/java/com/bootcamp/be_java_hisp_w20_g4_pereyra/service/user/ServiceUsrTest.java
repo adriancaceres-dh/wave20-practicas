@@ -41,7 +41,7 @@ class ServiceUsrTest {
     private Buyer buyer;
 
     @BeforeEach
-     void setUp(){
+    void setUp(){
         seller = new Seller(1, "Vendedor");
         buyer = new Buyer(2, "nina");
         seller.addUserToMyFollowersList(buyer);
@@ -113,6 +113,23 @@ class ServiceUsrTest {
 
     }
     @Test
+    @DisplayName("T-0003 - Verificar que el orden exista. Orden null")
+    void followersOrderNullOKTest() {
+        //arrange
+        List<ListedUserDTO> listedUserExpected = seller.getFollowers()
+                .values().stream()
+                .map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class))
+                .collect(Collectors.toList());
+        UserFollowersDTO expected = new UserFollowersDTO(1,"Vendedor", listedUserExpected);
+        when(mockUserRepository.findById(1)).thenReturn(seller);
+        //act
+        UserFollowersDTO actual = mockServiceUser.followers(1, null);
+
+        //assert
+        Assertions.assertEquals(expected, actual);
+
+    }
+    @Test
     @DisplayName("T-0003 - Verificar que el orden exista. Orden name_desc")
     void followersOrderDescOKTest() {
         //arrange
@@ -137,7 +154,7 @@ class ServiceUsrTest {
     @DisplayName("T-0003 - Verificar que el orden exista. Orden inválido")
     void followersInvalidOrderTest() {
         //assert
-       assertThrows(BadRequestException.class, ()->mockServiceUser.followers(1, "aaa"));
+        assertThrows(BadRequestException.class, ()->mockServiceUser.followers(1, "aaa"));
 
     }
 
@@ -153,6 +170,21 @@ class ServiceUsrTest {
         when(mockUserRepository.findById(1)).thenReturn(seller);
         //Act
         UserFollowedDTO result = mockServiceUser.followed(1,"name_asc");
+        //Assert
+        Assertions.assertEquals(expected,result);
+    }
+    @Test
+    @DisplayName("T-0004 - Verificar el ordenamiento por nombre cuando el orden en null")
+    void followedOrderNullOKTest() {
+        //Arrage
+        List<ListedUserDTO> expectedList = new ArrayList<>();
+        expectedList = seller.getFollowed().values().stream().map(s -> mockServiceUser.mapper.map(s, ListedUserDTO.class)).collect(Collectors.toList());
+
+        UserFollowedDTO expected = new UserFollowedDTO(1,"Vendedor",expectedList);
+
+        when(mockUserRepository.findById(1)).thenReturn(seller);
+        //Act
+        UserFollowedDTO result = mockServiceUser.followed(1,null);
         //Assert
         Assertions.assertEquals(expected,result);
     }
