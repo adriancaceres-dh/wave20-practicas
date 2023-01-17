@@ -1,4 +1,3 @@
-
 # SocialMeli
 
 Mercado Libre sigue creciendo y para el año que viene  tiene como objetivo empezar a implementar una serie de herramientas que permitan a los compradores y vendedores tener una experiencia totalmente innovadora, en donde el lazo que los una sea mucho más cercano. 
@@ -113,4 +112,17 @@ Ordenamiento por fecha ascendente y descendente.
 | T-0006 | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)                                                                                     | Verificar el correcto ordenamiento ascendente y descendente por fecha. (US-0009)                                                                   | -                                                 | Ivan Amaro |
 | T-0007 | Verificar que la cantidad de seguidores de un determinado usuario sea correcta. (US-0002)                                                                            | Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                                                          | -                                                 | Ignacio Tornati |
 | T-0008 | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. (US-0006) | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. | -                                                 | Efrain Francisco Ruiz | 
+ 
 
+### Test unitarios individuales:
+|        | Situaciones de entrada                                                                       | Se cumple                                                                                                                                          | No se cumple                               | Asignado        |
+|--------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|-----------------|
+| T-0009 | Verificar que se agrega una publicación nueva correctamente con un usuario válido. (US-0005) | Permite continuar con normalidad.| Notifica la no existencia mediante una excepción. | Efrain Francisco Ruiz |
+
+### Test de integración:
+|         | Validar US                                                                                     |  
+|---------|------------------------------------------------------------------------------------------------|
+| TI-0001 | Poder realizar la acción de “Follow” (seguir) a un determinado vendedor (US-0001)              | 
+| TI-0002 | Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor (US-0002) | 
+| TI-0003 | Dar de alta una nueva publicación (US-0005)                                                    | 
+| TI-0004 | Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor. (US-0007)  | 
