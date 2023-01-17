@@ -46,6 +46,14 @@ public class SellerService implements ISellerService {
     ModelMapper modelMapper = new ModelMapper();
 
 
+    /**
+     * Get the seller followers by the seller id, sorted ascending or descending according to the parameter "order" received by params
+     * @author: Diego Alejandro Malagón Ruiz y Grupo 8 (sorting functionality)
+     * @param userId id of the user
+     * @param order sorting option used in the method
+     * @return SellerFollowersDTO with the id of the user, his name and the follower list.
+     */
+
     @Override
     public SellerFollowersDTO getSellerFollowers(Integer userId, String order) {
 
