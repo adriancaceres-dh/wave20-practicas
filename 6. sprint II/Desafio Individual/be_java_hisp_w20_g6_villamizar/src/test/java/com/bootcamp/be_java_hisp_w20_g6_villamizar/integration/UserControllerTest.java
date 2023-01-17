@@ -42,4 +42,14 @@ class UserControllerTest {
 
     }
 
+    @Test
+    @DisplayName("US0004 - TI0003, Verificar lista de usuarios seguidos ")
+    void listFollowed() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.get("/users/{userId}/followed/list", "4"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.followed", hasSize(1)));
+    }
 }
