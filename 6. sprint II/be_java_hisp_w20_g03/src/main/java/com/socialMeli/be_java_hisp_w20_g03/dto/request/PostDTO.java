@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PostDTO {
     @JsonProperty("post_id")
     @NotNull(message = "El post_id no puede estar vacio")

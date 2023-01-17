@@ -1,6 +1,7 @@
 package com.socialMeli.be_java_hisp_w20_g03.utils;
 
 import com.socialMeli.be_java_hisp_w20_g03.dto.request.PostDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.request.ProductDTO;
 import com.socialMeli.be_java_hisp_w20_g03.model.Post;
 import com.socialMeli.be_java_hisp_w20_g03.model.Product;
 import org.modelmapper.ModelMapper;
@@ -119,5 +120,27 @@ public class PostUtils {
         posts.add(post2);
         posts.add(post3);
         return posts;
+    }
+
+    public static PostDTO createPost (int userId){
+        LocalDate currentDate = LocalDate.now();
+        PostDTO post = PostDTO.builder()
+                .postId(500)
+                .userId(userId)
+                .date(currentDate.minusDays(1))
+                .product(ProductDTO.builder()
+                        .productId(1)
+                        .productName("Silla Gamer")
+                        .type("Gamer")
+                        .brand("Racer")
+                        .color("Red and Black")
+                        .notes("Special Edition")
+                        .build()
+                )
+                .category(100)
+                .price(1500.50)
+                .build();
+
+        return post;
     }
 }

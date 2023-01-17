@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ProductDTO {
     @JsonProperty("product_id")
     @NotNull(message = "La id no puede estar vacía.")
