@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.MediaType;
 
 public class TestUtils {
 
@@ -15,4 +16,5 @@ public class TestUtils {
             .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
             .writer();
 
+    public static MediaType mediaTypeJson = MediaType.APPLICATION_JSON;
 }

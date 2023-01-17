@@ -69,7 +69,7 @@ public class IntegrationTestPublicationService {
         ResultMatcher expectedContentType = content().contentType(MediaType.APPLICATION_JSON);
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(TestUtils.mediaTypeJson)
                         .content(postDtoRequestJson))
                 .andDo(print())
                 .andExpect(expectedStatus)
@@ -91,7 +91,7 @@ public class IntegrationTestPublicationService {
 
         // el usuario 1 sigue al usuario 3
         this.mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}",1,3)
-                .contentType(MediaType.APPLICATION_JSON));
+                .contentType(TestUtils.mediaTypeJson));
         // se crea una publicacion para el usuario 3
         String postDtoRequestJson = TestUtils.writer.writeValueAsString(postDTO);
         this.mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
@@ -100,7 +100,7 @@ public class IntegrationTestPublicationService {
 
         // se consultan las publicaciones de los usuarios que sigue el usuario 1
         this.mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/1/list")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(TestUtils.mediaTypeJson))
                 .andDo(print())
                 .andExpect(expectedStatus)
                 .andExpect(expectedJson)
