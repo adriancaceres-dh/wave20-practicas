@@ -4,7 +4,6 @@ import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersBySeller
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.FollowersCountDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.UserResponseDTO;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.dto.response.followed_users_posts.FollowedListDTO;
-import com.bootcamp.java.w20.be_java_hisp_w20_g05.model.User;
 import com.bootcamp.java.w20.be_java_hisp_w20_g05.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
 
 @RestController
 @Validated
@@ -45,7 +40,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getFollowersCount(userId), HttpStatus.OK);
     }
 
-    //Retorna un dto con  los username y userid de los de los usuarios seguidos por un usuario según su id
+    //Retorna un dto con los username y userid de los de los usuarios seguidos por un usuario según su id
     @GetMapping("/{userId}/followed/list")
     public ResponseEntity<FollowedListDTO> getFollowedById(@PathVariable @Min(value = 1, message= "El Id debe ser mayor a 0.") int userId,
                                                            @RequestParam(required = false) String order){
