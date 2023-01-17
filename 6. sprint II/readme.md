@@ -43,9 +43,13 @@ Los compradores podran seguir a sus vendedores favoritos y enterarse de sus post
 *     US 008: getLastTwoWeeksPublicationsOKTest - Verificar que las publicaciones sean de las últimas dos semanas.  Desarrollo grupal
 
 ### Test de Integracion desarrollados individualmente.
+*     US 009: followOkTest - Verificar que un usuario pueda seguir a otro                         Individual
+*     US 010: followersCountOkTes - Verificar que la cantidad de seguidores sea la correcta       Individual
+*     US 011: addOkTest - Verificar el correcto funcionamiento de agregar una publicacion         Individual
+*     US 012: addPromoOkTest - Verificar el correcto agregado de una publicacion en promocion     Individual
 
+### Coverage del proyecto 79%
+![image](https://user-images.githubusercontent.com/119961027/212961572-6896d755-e083-430c-b307-3c5b0d709b2b.png)
 
-Diagrama UML sprint 1
-<img width="866" alt="Captura de pantalla 2022-12-29 a la(s) 15 45 44" src="https://user-images.githubusercontent.com/119961027/209996229-832d4c74-948f-40f8-ba4b-442d76f39a92.png">
 
 Agradecimientos para el equipo de Digital House y los coordinadores del Bootcamp Backend JAVA.
