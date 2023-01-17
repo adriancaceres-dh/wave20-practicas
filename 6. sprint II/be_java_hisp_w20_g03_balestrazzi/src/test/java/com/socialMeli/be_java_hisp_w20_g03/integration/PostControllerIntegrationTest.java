@@ -83,9 +83,7 @@ class PostControllerIntegrationTest {
     // Act & Assert
     mockMvc.perform(request)
             .andDo(MockMvcResultHandlers.print())
-            .andExpect(expectedStatus)
-            .andExpect(expectedContentType)
-            .andExpect(expectedMessage);
+            .andExpectAll(expectedStatus, expectedContentType, expectedMessage);
   }
 
 }
