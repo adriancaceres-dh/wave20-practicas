@@ -1,8 +1,11 @@
 package com.bootcamp.be_java_hisp_w20_g1.util;
 
 import com.bootcamp.be_java_hisp_w20_g1.Parameter;
+import com.bootcamp.be_java_hisp_w20_g1.dto.request.PostRequestDto;
+import com.bootcamp.be_java_hisp_w20_g1.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1.dto.response.*;
 import com.bootcamp.be_java_hisp_w20_g1.model.Post;
+import com.bootcamp.be_java_hisp_w20_g1.model.Product;
 import com.bootcamp.be_java_hisp_w20_g1.model.User;
 import org.modelmapper.ModelMapper;
 
@@ -158,4 +161,18 @@ public class TestUtil {
                 collect(Collectors.toList());
     }
 
+    public static PostRequestDto getPostRequestDTO(){
+        Product testProduct = Product.builder().id(99).name("Generic Product").type("Generic")
+                .color("red").brand("brand").build();
+
+        ModelMapper modelMapper = new ModelMapper();
+        ProductRequestDto productRequestDTO = modelMapper.map(testProduct, ProductRequestDto.class);
+
+        Post post = Post.builder().userId(1).id(99).productId(testProduct.getId()).date(LocalDate.now()).category(100).price(99).build();
+
+        PostRequestDto postRequestDto = modelMapper.map(post, PostRequestDto.class);
+
+        postRequestDto.setProduct(productRequestDTO);
+        return postRequestDto;
+    }
 }
