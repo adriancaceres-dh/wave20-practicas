@@ -17,4 +17,7 @@ public class PublicationDTO {
     private ProductResponseDTO product;
     private Integer category;
     private double price;
+
+    public PublicationDTO(LocalDate date, int i, ProductResponseDTO product, int i1, double v) {
+    }
 }
