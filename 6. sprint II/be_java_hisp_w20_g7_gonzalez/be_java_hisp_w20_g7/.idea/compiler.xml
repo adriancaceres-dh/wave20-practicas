@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="be_java_hisp_w20_g7_montero" />
+        <module name="be_java_hisp_w20_g7" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="be_java_hisp_w20_g7" options="-parameters" />
       <module name="be_java_hisp_w20_g7_montero" options="-parameters" />
     </option>
   </component>
