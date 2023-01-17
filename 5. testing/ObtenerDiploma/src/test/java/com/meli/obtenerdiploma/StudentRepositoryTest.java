@@ -1,2 +1,6 @@
-package com.meli.obtenerdiploma;public class StudentRepositoryTest {
+package com.meli.obtenerdiploma;
+
+public class StudentRepositoryTest {
+
+
 }

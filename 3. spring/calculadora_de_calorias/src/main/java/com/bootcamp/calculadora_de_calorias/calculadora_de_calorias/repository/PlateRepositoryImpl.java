@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 public class PlateRepositoryImpl implements PlateRepositoryI{
     private List<PlateDTO> plates;
+    private List<IngredientDTO> plate_ingredients;
 
     @Override
     public List<PlateDTO> getPlates() {
