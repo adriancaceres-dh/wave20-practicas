@@ -28,7 +28,6 @@ public class PostDTO {
     private Integer user_id;
 
     @NotNull(message = "La fecha no puede estar vacía")
-  //  @JsonFormat(pattern="dd-MM-yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
