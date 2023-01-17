@@ -36,5 +36,33 @@ public class IntegrationTestPublicationController {
     MockMvc mockMvc;
 
 
-   
+    @Test
+    void promoPostOfSellerIntegrationTest() throws Exception{
+        ObjectWriter writer = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
+                .writer().withDefaultPrettyPrinter();
+
+
+        ProductRequestDTO productRequestDTO = new ProductRequestDTO(2, "producto2", "tipo2", "nike", "red", "nota2");
+        PostDTO postDTO = new PostDTO(1,LocalDate.now(), productRequestDTO, 20, 100.0);
+        String payload = writer.writeValueAsString(postDTO);
+
+        ProductResponseDTO expectedProduct = new ProductResponseDTO(2,"producto2", "tipo2", "nike", "red", "nota2");
+        PublicationDTO expectedPublication = new PublicationDTO(LocalDate.now(), expectedProduct, 20, 100.0);
+        String json = writer.writeValueAsString(expectedPublication);
+
+        ResultMatcher expectedStatus = MockMvcResultMatchers.status().isOk();
+        ResultMatcher expextedContentType = content().contentType(MediaType.APPLICATION_JSON);
+        ResultMatcher expectedJson = content().json(json);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(payload))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(expectedJson);
+
+    }
 }
