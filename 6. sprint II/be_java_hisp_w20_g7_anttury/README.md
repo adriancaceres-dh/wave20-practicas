@@ -137,8 +137,8 @@ SocialMeli contaba anteriormente con las siguientes User Stories y requerimiento
 |          | Situaciones de entrada                                                               | Comportamiento Esperado   | Responsables                                                |
 |:---------|:-------------------------------------------------------------------------------------|:------------------------------------------|:------------------------------------------------------------|
 | `T-0009` | `Verificar que exista el usuario al que se le contabiliza los seguidores. (US-0002)` | `Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción.| Sebastian Camilo Anttury Sanchez                            |
-| `T-0010` | `Verificar los seguidores del vendedor. (US-0003)`                                   | `Se cumple:` Permite continuar con normalidad.  | Sebastian Camilo Anttury Sanchez                            |
-| `T-0011` | `Verificar los seguidos del vendedor. (US-0004)`                                     | `Se cumple:` Permite continuar con normalidad.  | Sebastian Camilo Anttury Sanchez                            |
+| `T-0010` | `Verificar los seguidores del vendedor. (US-0003)`                                   | `Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción.| Sebastian Camilo Anttury Sanchez                            |
+| `T-0011` | `Verificar los seguidos del vendedor. (US-0004)`                                     | `Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción.| Sebastian Camilo Anttury Sanchez                            |
 
 ###
 
