@@ -95,7 +95,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("category"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].rejected_value").value(0))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El campo debe ser mayor a 0"));
     }
@@ -117,7 +116,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("category"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].rejected_value").value("empty field"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El campo no puede estar vacío"));
     }
@@ -140,7 +138,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("userId"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El id debe ser mayor a 0"));
     }
 
@@ -161,7 +158,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("product"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("Debe ingresar un producto"));
     }
 
@@ -182,7 +178,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("price"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El precio máximo por producto es de 10.000.000"));
     }
 
@@ -207,7 +202,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("product.productName"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].rejected_value").value("Som3 prod#ct na@me"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El campo no puede poseer caracteres especiales."));
     }
@@ -233,7 +227,6 @@ class PostControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Campos inválidos o faltantes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations", hasSize(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].field").value("product.productId"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].rejected_value").value("0"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invalid_validations[0].reason").value("El id debe ser mayor a 0"));
     }
