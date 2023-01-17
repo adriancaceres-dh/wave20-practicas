@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 @Repository
 public class PostRepository implements IPostRepository {
-    private static int currentId = 0;
+    private int currentId = 0;
     private final HashMap<Integer, Post> posts; // Se crea por tema de búsqueda, de actualización y eliminación.
     @Autowired
     private ProductRepository productRepository;
