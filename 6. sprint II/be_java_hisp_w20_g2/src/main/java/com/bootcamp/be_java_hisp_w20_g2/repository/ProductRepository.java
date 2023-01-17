@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 @Repository
 public class ProductRepository implements IProductRepository {
-    private static int currentId = 0;
+    private int currentId = 0;
     private final HashMap<Integer, Product> products;
 
     public ProductRepository() {
