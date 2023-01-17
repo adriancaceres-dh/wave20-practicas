@@ -1,0 +1,96 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > IUserService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces</a>
+</div>
+
+<h1>Coverage Summary for Class: IUserService (com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IUserService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces;
+&nbsp;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowedResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowersCountResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowersResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.User;
+&nbsp;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;public interface IUserService {
+&nbsp;
+&nbsp;    UserFollowersResponseDto getSellerFollowersDto(int id, String order);
+&nbsp;
+&nbsp;    UserFollowersCountResponseDto getFollowersCountDto(int id);
+&nbsp;
+&nbsp;    UserFollowedResponseDto getFollowedDto(int id, String order);
+&nbsp;
+&nbsp;    UserFollowedResponseDto followUser(int userId, int userIdToFollow);
+&nbsp;
+&nbsp;    UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow);
+&nbsp;
+&nbsp;    boolean validateUserExistById(int id);
+&nbsp;
+&nbsp;    Set&lt;Integer&gt; getUserFollowed(int id);
+&nbsp;
+&nbsp;    boolean alreadyExists(int userId);
+&nbsp;
+&nbsp;    User updateUser(int userId, int postId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>

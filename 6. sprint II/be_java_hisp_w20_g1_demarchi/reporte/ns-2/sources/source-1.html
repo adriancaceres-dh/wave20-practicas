@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PostController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: PostController (com.bootcamp.be_java_hisp_w20_g1_demarchi.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PostController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.controller;
+&nbsp;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.PostRequestDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostListResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.PostResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.PostService;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IPostService;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import javax.validation.Valid;
+&nbsp;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/products&quot;)
+&nbsp;public class PostController {
+&nbsp;    private IPostService postService;
+&nbsp;
+<b class="fc">&nbsp;    public PostController(PostService service) {</b>
+<b class="fc">&nbsp;        this.postService = service;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @GetMapping(&quot;/followed/{userId}/list&quot;)
+&nbsp;    public ResponseEntity&lt;PostListResponseDto&gt; lastTwoWeeksPostsFromFollowers(@PathVariable int userId, @RequestParam(defaultValue = &quot;date_desc&quot;) String order) {
+<b class="fc">&nbsp;        return ResponseEntity.ok(postService.lastTwoWeeksPostsFromFollowers(userId, order));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @PostMapping(&quot;/post&quot;)
+&nbsp;    public ResponseEntity&lt;PostResponseDto&gt; addPost(@Valid @RequestBody PostRequestDto post) {
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(postService.add(post), HttpStatus.CREATED);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>

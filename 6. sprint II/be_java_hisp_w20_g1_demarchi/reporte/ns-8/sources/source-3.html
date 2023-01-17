@@ -1,0 +1,345 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.service</a>
+</div>
+
+<h1>Coverage Summary for Class: UserService (com.bootcamp.be_java_hisp_w20_g1_demarchi.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,2%
+  </span>
+  <span class="absValue">
+    (82/88)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$8kiWQuNw</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$aNNlYj2F</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$FpmFhVf1</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$gCdBgy4R</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$KqHZO28g</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$OGzPtt0A</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$ON8iOiYM</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$pgwF8drc</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$Vr4lQpEV</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$wNnH5NwS</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$eTp2qsZr$auxiliary$wT5kV2fN</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,2%
+  </span>
+  <span class="absValue">
+    (82/88)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.service;
+&nbsp;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.Parameter;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.*;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowedResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.BadRequestException;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.InvalidQueryParamValueException;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.NotFoundException;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.User;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IUserRepository;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IUserService;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class UserService implements IUserService {
+&nbsp;
+&nbsp;
+&nbsp;    //@Autowired
+&nbsp;    private IUserRepository userRepository;
+&nbsp;
+<b class="fc">&nbsp;    public UserService(IUserRepository userRepository) {</b>
+<b class="fc">&nbsp;        this.userRepository = userRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserFollowersResponseDto getSellerFollowersDto(int id, String order) {
+<b class="fc">&nbsp;        User user = userRepository.getUserById(id);</b>
+<b class="fc">&nbsp;        doValidations(user);</b>
+<b class="fc">&nbsp;        validateOrder(order);</b>
+<b class="fc">&nbsp;        UserFollowersResponseDto userResponse = new UserFollowersResponseDto();</b>
+<b class="fc">&nbsp;        userResponse.setUserId(user.getId());</b>
+<b class="fc">&nbsp;        userResponse.setUserName(user.getName());</b>
+<b class="fc">&nbsp;        userResponse.setFollowers(getFollowersDto(user, order));</b>
+<b class="fc">&nbsp;        return userResponse;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;UserResponseDto&gt; getFollowersDto(User user, String order) {
+<b class="fc">&nbsp;        return getUserListDto(user.getFollowers(), order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserFollowersCountResponseDto getFollowersCountDto(int id) {
+<b class="fc">&nbsp;        User user = userRepository.getUserById(id);</b>
+<b class="fc">&nbsp;        doValidations(user);</b>
+<b class="fc">&nbsp;        UserFollowersCountResponseDto userFollowersCountResponse = new UserFollowersCountResponseDto();</b>
+<b class="fc">&nbsp;        userFollowersCountResponse.setUserId(user.getId());</b>
+<b class="fc">&nbsp;        userFollowersCountResponse.setUserName(user.getName());</b>
+<b class="fc">&nbsp;        userFollowersCountResponse.setFollowersCount(user.getFollowers().size());</b>
+<b class="fc">&nbsp;        return userFollowersCountResponse;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserFollowedResponseDto getFollowedDto(int id, String order) {
+<b class="fc">&nbsp;        User user = userRepository.getUserById(id);</b>
+<b class="fc">&nbsp;        validateUserExist(user);</b>
+<b class="fc">&nbsp;        validateOrder(order);</b>
+<b class="fc">&nbsp;        UserFollowedResponseDto userFollowedResponseDto = new UserFollowedResponseDto();</b>
+<b class="fc">&nbsp;        userFollowedResponseDto.setUserId(user.getId());</b>
+<b class="fc">&nbsp;        userFollowedResponseDto.setUserName(user.getName());</b>
+<b class="fc">&nbsp;        userFollowedResponseDto.setFollowed(getFollowedDto(user, order));</b>
+<b class="fc">&nbsp;        return userFollowedResponseDto;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;UserResponseDto&gt; getFollowedDto(User user, String order) {
+<b class="fc">&nbsp;        return getUserListDto(user.getFollowed(), order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;UserResponseDto&gt; getUserListDto(Set&lt;Integer&gt; users, String order) {
+<b class="fc">&nbsp;        List&lt;UserResponseDto&gt; filteredUsers = users.stream()</b>
+<b class="fc">&nbsp;                .map(userId -&gt; {</b>
+<b class="fc">&nbsp;                    User follower = this.userRepository.getUserById(userId);</b>
+<b class="fc">&nbsp;                    return new UserResponseDto(follower.getId(), follower.getName());</b>
+&nbsp;                })
+<b class="fc">&nbsp;                .collect(Collectors.toList());</b>
+<b class="fc">&nbsp;        return trySortOrderAlphabetically(filteredUsers, order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;UserResponseDto&gt; trySortOrderAlphabetically(List&lt;UserResponseDto&gt; users, String order) {
+<b class="fc">&nbsp;        List&lt;String&gt; orders = Arrays.asList(Parameter.getString(&quot;NameAsc&quot;), Parameter.getString(&quot;NameDesc&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        Comparator&lt;UserResponseBaseDto&gt; comparator = Comparator.comparing(UserResponseBaseDto::getUserName);</b>
+<b class="fc">&nbsp;        Comparator&lt;UserResponseBaseDto&gt; selectedOrder = (orders.get(0).equalsIgnoreCase(order) || order == null) ? comparator : comparator.reversed();</b>
+&nbsp;
+<b class="fc">&nbsp;        return users</b>
+<b class="fc">&nbsp;                .stream()</b>
+<b class="fc">&nbsp;                .sorted(selectedOrder)</b>
+<b class="fc">&nbsp;                .collect(Collectors.toList());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void doValidations(User user) {
+<b class="fc">&nbsp;        validateUserExist(user);</b>
+<b class="fc">&nbsp;        validateUserIsSeller(user);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    private void validateUserIsSeller(User user) {
+<b class="fc">&nbsp;        if (!user.isSeller()) {</b>
+<b class="fc">&nbsp;            throw new BadRequestException(Parameter.getString(&quot;EX_NotASeller&quot;));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean validateUserExist(User user) {
+<b class="fc">&nbsp;        if (user == null) {</b>
+<b class="fc">&nbsp;            throw new NotFoundException(Parameter.getString(&quot;EX_NotExistentUser&quot;));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void validateOrder(String order) {
+<b class="fc">&nbsp;        List&lt;String&gt; orders = Arrays.asList(Parameter.getString(&quot;NameAsc&quot;), Parameter.getString(&quot;NameDesc&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        if (!orders.contains(order) &amp;&amp; (order != null)) {</b>
+<b class="fc">&nbsp;            throw new InvalidQueryParamValueException(Parameter.getString(&quot;EX_InvalidQueryParamValue&quot;));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserFollowedResponseDto followUser(int userId, int userIdToFollow) {
+&nbsp;
+<b class="fc">&nbsp;        if (userId == userIdToFollow) {</b>
+<b class="nc">&nbsp;            throw new BadRequestException(Parameter.getString(&quot;EX_InvalidUser&quot;));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        User user = userRepository.getUserById(userId);</b>
+<b class="fc">&nbsp;        User userToFollow = userRepository.getUserById(userIdToFollow);</b>
+&nbsp;
+<b class="fc">&nbsp;        validateUserExist(user);</b>
+<b class="fc">&nbsp;        validateUserExist(userToFollow);</b>
+<b class="fc">&nbsp;        validateUserIsSeller(userToFollow);</b>
+&nbsp;
+<b class="fc">&nbsp;        userRepository.addFollowed(userId, userIdToFollow);</b>
+<b class="fc">&nbsp;        userRepository.addFollower(userIdToFollow, userId);</b>
+&nbsp;
+<b class="fc">&nbsp;        List&lt;UserResponseDto&gt; userFollowedList = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (Integer userFollowedId : user.getFollowed()) {</b>
+<b class="fc">&nbsp;            User userFollowed = userRepository.getUserById(userFollowedId);</b>
+<b class="fc">&nbsp;            userFollowedList.add(new UserResponseDto(userFollowedId, userFollowed.getName()));</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        return new UserFollowedResponseDto(user.getId(), user.getName(), userFollowedList);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserFollowedResponseDto unfollowUser(int userId, int userIdToUnfollow) {
+&nbsp;
+<b class="fc">&nbsp;        if (userId == userIdToUnfollow) {</b>
+<b class="nc">&nbsp;            throw new BadRequestException(Parameter.getString(&quot;EX_InvalidUser&quot;));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        User user = userRepository.getUserById(userId);</b>
+<b class="fc">&nbsp;        User userToFollow = userRepository.getUserById(userIdToUnfollow);</b>
+&nbsp;
+<b class="fc">&nbsp;        validateUserExist(user);</b>
+<b class="fc">&nbsp;        validateUserExist(userToFollow);</b>
+&nbsp;
+<b class="fc">&nbsp;        userRepository.removeFollowed(userId, userIdToUnfollow);</b>
+<b class="fc">&nbsp;        userRepository.removeFollower(userIdToUnfollow, userId);</b>
+&nbsp;
+<b class="fc">&nbsp;        List&lt;UserResponseDto&gt; userFollowedList = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (Integer userFollowedId : user.getFollowed()) {</b>
+<b class="nc">&nbsp;            User userFollowed = userRepository.getUserById(userFollowedId);</b>
+<b class="nc">&nbsp;            userFollowedList.add(new UserResponseDto(userFollowedId, userFollowed.getName()));</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        return new UserFollowedResponseDto(user.getId(), user.getName(), userFollowedList);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean validateUserExistById(int id) {
+<b class="fc">&nbsp;        User user = userRepository.getUserById(id);</b>
+<b class="fc">&nbsp;        return validateUserExist(user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean alreadyExists(int userId) {
+<b class="fc">&nbsp;        User user = userRepository.getUserById(userId);</b>
+<b class="fc">&nbsp;        return user != null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User updateUser(int userId, int postId) {
+<b class="fc">&nbsp;        if (!userRepository.isSeller(userId)) {</b>
+<b class="nc">&nbsp;            userRepository.getUserById(userId).setSeller(true);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        userRepository.getUserById(userId).getPosts().add(postId);</b>
+<b class="fc">&nbsp;        return userRepository.getUserById(userId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Set&lt;Integer&gt; getUserFollowed(int id) {
+<b class="fc">&nbsp;        return userRepository.getUserById(id).getFollowed();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>

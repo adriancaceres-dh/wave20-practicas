@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.service</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductService (com.bootcamp.be_java_hisp_w20_g1_demarchi.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,4%
+  </span>
+  <span class="absValue">
+    (17/18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$IYfADf70</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$IYfADf70$auxiliary$FWB7LypU</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$IYfADf70$auxiliary$MPC0BKov</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$IYfADf70$auxiliary$MZhyklX8</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$IYfADf70$auxiliary$uja9eqJx</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$IYfADf70$auxiliary$Zv9ZRiSh</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,4%
+  </span>
+  <span class="absValue">
+    (17/18)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.service;
+&nbsp;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.Parameter;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.ProductResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.request.ProductRequestDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.exception.NotFoundException;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.Product;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IProductRepository;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IProductService;
+&nbsp;import org.modelmapper.ModelMapper;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class ProductService implements IProductService {
+&nbsp;
+&nbsp;
+&nbsp;    private ModelMapper mapper;
+&nbsp;
+&nbsp;
+&nbsp;    private IProductRepository productRepository;
+&nbsp;
+<b class="fc">&nbsp;    public ProductService(IProductRepository productRepository, ModelMapper mapper) {</b>
+<b class="fc">&nbsp;        this.productRepository = productRepository;</b>
+<b class="fc">&nbsp;        this.mapper = mapper;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ProductResponseDto getProductById(int id) {
+<b class="fc">&nbsp;        Product product = productRepository.getProductById(id);</b>
+<b class="fc">&nbsp;        if (product != null) {</b>
+<b class="fc">&nbsp;            return ProductResponseDto.builder()</b>
+<b class="fc">&nbsp;                    .productId(id)</b>
+<b class="fc">&nbsp;                    .productName(product.getName())</b>
+<b class="fc">&nbsp;                    .type(product.getType())</b>
+<b class="fc">&nbsp;                    .brand(product.getBrand())</b>
+<b class="fc">&nbsp;                    .color(product.getColor())</b>
+<b class="fc">&nbsp;                    .notes(product.getNotes())</b>
+<b class="fc">&nbsp;                    .build();</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            throw new NotFoundException(Parameter.getString(&quot;EX_NotExistentProduct&quot;));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean alreadyExist(int id) {
+<b class="fc">&nbsp;        Optional&lt;Product&gt; product = productRepository.getProducts().stream().filter(p -&gt; p.getId() == id).findAny();</b>
+<b class="fc">&nbsp;        return product.isPresent();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ProductResponseDto  add(ProductRequestDto product) {
+<b class="fc">&nbsp;        return mapper.map(productRepository.addProduct(convertProduct(product)), ProductResponseDto.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Product convertProduct(ProductRequestDto product) {
+<b class="fc">&nbsp;        return mapper.map(product, Product.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>

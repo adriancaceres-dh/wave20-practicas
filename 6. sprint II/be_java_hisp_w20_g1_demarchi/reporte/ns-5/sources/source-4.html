@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > InvalidValidationMessage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.exception</a>
+</div>
+
+<h1>Coverage Summary for Class: InvalidValidationMessage (com.bootcamp.be_java_hisp_w20_g1_demarchi.exception)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InvalidValidationMessage</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90,9%
+  </span>
+  <span class="absValue">
+    (10/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.exception;
+&nbsp;
+&nbsp;import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+&nbsp;import com.fasterxml.jackson.databind.annotation.JsonNaming;
+&nbsp;import lombok.Getter;
+&nbsp;import lombok.Setter;
+&nbsp;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;@Getter
+<b class="nc">&nbsp;@Setter</b>
+&nbsp;@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+&nbsp;public class InvalidValidationMessage {
+<b class="fc">&nbsp;    private String rejectedValue;</b>
+<b class="fc">&nbsp;    private String reason;</b>
+&nbsp;
+<b class="fc">&nbsp;    public InvalidValidationMessage(String rejectedValue, String reason) {</b>
+<b class="fc">&nbsp;        this.rejectedValue = rejectedValue;</b>
+<b class="fc">&nbsp;        this.reason = reason;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="fc">&nbsp;        if (this == o) return true;</b>
+<b class="fc">&nbsp;        if (o == null || getClass() != o.getClass()) return false;</b>
+<b class="fc">&nbsp;        InvalidValidationMessage that = (InvalidValidationMessage) o;</b>
+<b class="fc">&nbsp;        return Objects.equals(rejectedValue, that.rejectedValue) &amp;&amp; Objects.equals(reason, that.reason);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="fc">&nbsp;        return Objects.hash(rejectedValue, reason);</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>

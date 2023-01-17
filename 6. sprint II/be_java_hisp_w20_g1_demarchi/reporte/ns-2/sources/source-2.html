@@ -1,0 +1,162 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: UserController (com.bootcamp.be_java_hisp_w20_g1_demarchi.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.controller;
+&nbsp;
+&nbsp;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowedResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowersCountResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.dto.response.UserFollowersResponseDto;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.UserService;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.service.interfaces.IUserService;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/users&quot;)
+&nbsp;public class UserController {
+&nbsp;
+&nbsp;
+&nbsp;    private IUserService userService;
+&nbsp;
+<b class="fc">&nbsp;    public UserController(UserService service) {</b>
+<b class="fc">&nbsp;        this.userService = service;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{userId}/followers/list&quot;)
+&nbsp;    public ResponseEntity&lt;UserFollowersResponseDto&gt; getSellerFollowers(
+&nbsp;            @PathVariable int userId,
+&nbsp;            @RequestParam(required = false) String order) {
+<b class="fc">&nbsp;        return ResponseEntity.ok().body(userService.getSellerFollowersDto(userId, order));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{userId}/followers/count&quot;)
+&nbsp;    public ResponseEntity&lt;UserFollowersCountResponseDto&gt; getFollowersCount(@PathVariable int userId) {
+<b class="fc">&nbsp;        return ResponseEntity.ok().body(userService.getFollowersCountDto(userId));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{userId}/followed/list&quot;)
+&nbsp;    public ResponseEntity&lt;UserFollowedResponseDto&gt; getUserFollowed(
+&nbsp;            @PathVariable int userId,
+&nbsp;            @RequestParam(required = false) String order) {
+<b class="fc">&nbsp;        return ResponseEntity.ok().body(userService.getFollowedDto(userId, order));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping(&quot;/{userId}/follow/{userIdToFollow}&quot;)
+&nbsp;    public ResponseEntity&lt;UserFollowedResponseDto&gt; followUser(@PathVariable int userId, @PathVariable int userIdToFollow) {
+<b class="fc">&nbsp;        return ResponseEntity.ok(userService.followUser(userId, userIdToFollow));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping(&quot;/{userId}/unfollow/{userIdToUnfollow}&quot;)
+&nbsp;    public ResponseEntity&lt;UserFollowedResponseDto&gt; unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+<b class="fc">&nbsp;        return ResponseEntity.ok(userService.unfollowUser(userId, userIdToUnfollow));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>

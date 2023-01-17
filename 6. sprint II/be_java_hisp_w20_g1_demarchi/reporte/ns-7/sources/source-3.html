@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bootcamp.be_java_hisp_w20_g1_demarchi.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: UserRepository (com.bootcamp.be_java_hisp_w20_g1_demarchi.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    76,2%
+  </span>
+  <span class="absValue">
+    (32/42)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserRepository$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    76,7%
+  </span>
+  <span class="absValue">
+    (33/43)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bootcamp.be_java_hisp_w20_g1_demarchi.repository;
+&nbsp;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.Parameter;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.model.User;
+&nbsp;import com.bootcamp.be_java_hisp_w20_g1_demarchi.repository.interfaces.IUserRepository;
+&nbsp;import com.fasterxml.jackson.core.type.TypeReference;
+&nbsp;import com.fasterxml.jackson.databind.ObjectMapper;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;import org.springframework.util.ResourceUtils;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.io.FileNotFoundException;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Repository
+&nbsp;public class UserRepository implements IUserRepository {
+&nbsp;
+&nbsp;    private List&lt;User&gt; users;
+&nbsp;
+<b class="fc">&nbsp;    public UserRepository() {</b>
+<b class="fc">&nbsp;        this.users = buildUserRepository();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean isValidId(int id) {
+<b class="nc">&nbsp;        return getUserById(id) != null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean isSeller(int id) {
+<b class="fc">&nbsp;        return getUserById(id).isSeller();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User getUserById(int id) {
+<b class="fc">&nbsp;        return users.stream().filter(u -&gt; id == u.getId()).findFirst().orElse(null);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User addFollower(int userIdToModify, int userIdOfFollower) {
+<b class="fc">&nbsp;        for (User user : users) {</b>
+<b class="fc">&nbsp;            if (user.getId() == userIdToModify) {</b>
+<b class="fc">&nbsp;                user.getFollowers().add(userIdOfFollower);</b>
+<b class="fc">&nbsp;                return user;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User removeFollower(int userIdToModify, int userIdOfFollower) {
+<b class="fc">&nbsp;        for (User user : users) {</b>
+<b class="fc">&nbsp;            if (user.getId() == userIdToModify) {</b>
+<b class="fc">&nbsp;                user.getFollowers().remove(userIdOfFollower);</b>
+<b class="fc">&nbsp;                return user;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User addFollowed(int userIdToModify, int userIdToFollow) {
+<b class="fc">&nbsp;        for (User user : users) {</b>
+<b class="fc">&nbsp;            if (user.getId() == userIdToModify) {</b>
+<b class="fc">&nbsp;                user.getFollowed().add(userIdToFollow);</b>
+<b class="fc">&nbsp;                return user;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public User removeFollowed(int userIdToModify, int userIdToFollow) {
+<b class="fc">&nbsp;        for (User user : users) {</b>
+<b class="fc">&nbsp;            if (user.getId() == userIdToModify) {</b>
+<b class="fc">&nbsp;                user.getFollowed().remove(userIdToFollow);</b>
+<b class="fc">&nbsp;                return user;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    List&lt;User&gt; buildUserRepository() {
+<b class="fc">&nbsp;        File file = null;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            file = ResourceUtils.getFile(Parameter.getString(&quot;UserJsonPath&quot;));</b>
+<b class="nc">&nbsp;        } catch (FileNotFoundException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        ObjectMapper objectMapper = new ObjectMapper();</b>
+<b class="fc">&nbsp;        TypeReference&lt;List&lt;User&gt;&gt; typeRef = new TypeReference&lt;&gt;() {</b>
+&nbsp;        };
+<b class="fc">&nbsp;        List&lt;User&gt; users = null;</b>
+&nbsp;        try {
+&nbsp;
+<b class="fc">&nbsp;            users = objectMapper.readValue(file, typeRef);</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return users;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-17 13:13</div>
+</div>
+</body>
+</html>
