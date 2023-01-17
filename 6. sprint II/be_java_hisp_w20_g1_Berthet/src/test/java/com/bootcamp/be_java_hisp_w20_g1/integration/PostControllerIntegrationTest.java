@@ -20,6 +20,15 @@ public class PostControllerIntegrationTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Test
+    public void givenValidtUserId_GetLastTwoWeeksPostFromUsers_ShouldReturnSucess() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/1/list").contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
+                .andReturn();
 
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
 
 }
