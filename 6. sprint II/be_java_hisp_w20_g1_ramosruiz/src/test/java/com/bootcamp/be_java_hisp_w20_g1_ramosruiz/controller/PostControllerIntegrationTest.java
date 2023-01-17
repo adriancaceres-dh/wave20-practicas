@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,7 +66,7 @@ public class PostControllerIntegrationTest {
         assertEquals(expectedResponse, mvcResult.getResponse().getContentAsString());
     }
 
-    private static Stream<Arguments> invalidPostIdsProvider() {
+    private static Stream<Arguments> invalidPostProvider() {
         return Stream.of(
                 arguments(getInvalidPostExistingProduct(), Parameter.getString("EX_ExistingProduct")),
                 arguments(getInvalidPostInvalidUser(), Parameter.getString("EX_InvalidUser")),
@@ -77,9 +76,9 @@ public class PostControllerIntegrationTest {
     }
 
     @ParameterizedTest
-    @MethodSource("invalidPostIdsProvider")
-    @DisplayName("Add invalid post with existing user and post ids")
-    public void whenGivenInvalidPostIds_addPost_shouldThrowBadRequestException(PostRequestDto postRequestDto, String message) throws Exception {
+    @MethodSource("invalidPostProvider")
+    @DisplayName("Add invalid post")
+    public void whenGivenInvalidPost_addPost_shouldThrowBadRequestException(PostRequestDto postRequestDto, String message) throws Exception {
         String payloadJson = writer.writeValueAsString(postRequestDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
