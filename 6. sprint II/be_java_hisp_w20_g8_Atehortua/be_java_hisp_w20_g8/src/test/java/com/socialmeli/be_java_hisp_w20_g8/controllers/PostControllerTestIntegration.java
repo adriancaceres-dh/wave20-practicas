@@ -1,6 +1,7 @@
 package com.socialmeli.be_java_hisp_w20_g8.controllers;
 
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,6 +23,7 @@ public class PostControllerTestIntegration {
     private MockMvc mockMvc;
 
     @Test
+    @DisplayName("TI-01")
     public void testPostFindByUserController() throws Exception{
         MvcResult respuesta = this.mockMvc.perform(MockMvcRequestBuilders.get("/products/followed/{userId}/list",1))
                 .andDo(print()).andExpect(status().isOk())

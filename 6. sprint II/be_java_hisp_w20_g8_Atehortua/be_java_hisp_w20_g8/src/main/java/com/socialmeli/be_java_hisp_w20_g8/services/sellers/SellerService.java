@@ -15,13 +15,23 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * This service allows the interaction between the Seller controller and the person repository,
+ * get the count of users that follows a specific seller and get all the users that follows a specific seller
+ * @author: Grupo 8
+ */
 @Service
 public class SellerService implements ISellerService {
 
     @Autowired
     IPersonRepository IPersonRepository;
 
-
+    /**
+     * Count the total followers of a seller
+     * @author: Julian Atehortua Zapata
+     * @param userId id of the seller
+     * @return userCountDTO with seller id and total followers count
+     */
     public UserCountDTO followersCount(int userId) {
         Seller seller = IPersonRepository.getById(userId);
         if (seller == null) {
@@ -35,6 +45,14 @@ public class SellerService implements ISellerService {
 
     ModelMapper modelMapper = new ModelMapper();
 
+
+    /**
+     * Get the seller followers by the seller id, sorted ascending or descending according to the parameter "order" received by params
+     * @author: Diego Alejandro Malagón Ruiz y Grupo 8 (sorting functionality)
+     * @param userId id of the user
+     * @param order sorting option used in the method
+     * @return SellerFollowersDTO with the id of the user, his name and the follower list.
+     */
 
     @Override
     public SellerFollowersDTO getSellerFollowers(Integer userId, String order) {

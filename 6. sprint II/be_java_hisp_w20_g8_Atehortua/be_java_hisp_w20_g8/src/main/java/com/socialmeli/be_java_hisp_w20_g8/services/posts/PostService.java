@@ -22,6 +22,12 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This service allows the interaction between the Post controller,the Product repository,the
+ * Person repository and the Post repository, create new post in the repository and get all
+ * the post of a specific seller and sort the result by an sorting option
+ * @author: Grupo 8
+ */
 
 @Service
 public class PostService implements IPostService {
@@ -43,6 +49,12 @@ public class PostService implements IPostService {
                 .addMapping(src -> src.getProductDTO().getProduct_id(), Post::setProductId);
     }
 
+    /**
+     * Creates a post in the repository from a PostRequestDTO base. It also calls for the creation of the product if it doesn't exist yet.
+     * @param postRequestDTO the post to be created
+     * @return a ResponseDTO with the result of the operation
+     * @Author: Luis Francisco López Gómez
+     */
     @Override
     public ResponseDTO createPost(PostRequestDTO postRequestDTO) {
         // Get the seller

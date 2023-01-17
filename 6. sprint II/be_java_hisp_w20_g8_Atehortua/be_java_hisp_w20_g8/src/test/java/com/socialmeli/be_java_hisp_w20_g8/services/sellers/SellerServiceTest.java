@@ -23,6 +23,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
+/**
+ * This test is used for check the sorting options for the seller service and check the result of the method against a mock
+ * and check the amount of followers of a seller
+ * @author: Juan Camilo Arango Valle, Luis López Gómez and Julian Atehortua Zapata
+ */
 @ExtendWith(MockitoExtension.class)
 class SellerServiceTest {
     @Mock
@@ -91,6 +96,7 @@ class SellerServiceTest {
     void getSellerFollowersAsc() {
         // arrange
         int sellerId = 6;
+        String order = "name_asc";
         List<UserDTO> expected = List.of(
                 new UserDTO(2, "ana_ortiz"),
                 new UserDTO(5, "ana_real"),
@@ -107,15 +113,12 @@ class SellerServiceTest {
         when(personRepository.findUserById(5)).thenReturn(new User(5, "ana_real", new HashSet<>()));
 
         // act
-        SellerFollowersDTO sellerFollowersDTO = sellerService.getSellerFollowers(sellerId, "name_asc");
+        SellerFollowersDTO sellerFollowersDTO = sellerService.getSellerFollowers(sellerId, order);
         List<UserDTO> actual = sellerFollowersDTO.getFollowers();
 
         // assert
         assertNotNull(actual);
         assertEquals(expected, actual);
-        for(int i = 1; i < actual.size(); i++) {
-            assertTrue(actual.get(i-1).getUser_name().compareTo(actual.get(i).getUser_name()) <= 0);
-        }
     }
 
     @Test
@@ -123,6 +126,7 @@ class SellerServiceTest {
     void getSellerFollowersDesc() {
         // arrange
         int sellerId = 6;
+        String order = "name_desc";
         List<UserDTO> expected = List.of(
                 new UserDTO(4, "jesus_rivera"),
                 new UserDTO(1, "jesus_flores"),
@@ -139,15 +143,12 @@ class SellerServiceTest {
         when(personRepository.findUserById(5)).thenReturn(new User(5, "ana_real", new HashSet<>()));
 
         // act
-        SellerFollowersDTO sellerFollowersDTO = sellerService.getSellerFollowers(sellerId, "name_desc");
+        SellerFollowersDTO sellerFollowersDTO = sellerService.getSellerFollowers(sellerId, order);
         List<UserDTO> actual = sellerFollowersDTO.getFollowers();
 
         // assert
         assertNotNull(actual);
         assertEquals(expected, actual);
-        for(int i = 1; i < actual.size(); i++) {
-            assertTrue(actual.get(i-1).getUser_name().compareTo(actual.get(i).getUser_name()) >= 0);
-        }
     }
 
     @DisplayName("T-0007 -> Amount of followers of a user is correct")
