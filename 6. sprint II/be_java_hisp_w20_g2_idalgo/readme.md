@@ -616,9 +616,11 @@ ____
 
 * _PostIntegrationTest_: Tests encargados de probar la integración del PostController con el PostService y los
   repositorios.
+* _UserIntegration_Test_: Tests encargados de probar la integración del UserController con el UserServices y los
+  repositorios.
   Se trata de cubrir todos los caminos posibles.
 
-Se finaliza con una cobertura (en líneas) del **82%** usando Coverage integrado de IntelliJ.
+Se finaliza con una cobertura (en líneas) del **89%** usando Coverage integrado de IntelliJ.
 
 ____
 
