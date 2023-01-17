@@ -1,9 +1,7 @@
 package com.bootcamp.be_java_hisp_w20_g1_hoffman.integracion;
 
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.request.PostRequestDto;
-import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.request.ProductRequestDto;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.dto.response.PostResponseDto;
-import com.bootcamp.be_java_hisp_w20_g1_hoffman.model.Post;
 import com.bootcamp.be_java_hisp_w20_g1_hoffman.util.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -23,11 +21,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.awt.*;
-import java.time.LocalDate;
-
-import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

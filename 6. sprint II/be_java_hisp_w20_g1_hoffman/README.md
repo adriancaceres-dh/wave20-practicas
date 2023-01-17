@@ -46,5 +46,5 @@ SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el eq
 [📮Link para validaciones en Postman](Validaciones.postman_collection.json)
 
 ## Agradecimientos:
-_A mis compañeros de equipo y Scrum Master (joy) por todo el apoyo brindado durante todo el Sprint II_
+_A mis compañeros de equipo y Scrum Master (Joy) por el apoyo brindado durante todo el Sprint II_
 
