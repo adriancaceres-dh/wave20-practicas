@@ -4,12 +4,15 @@ import com.bootcamp.be_java_hisp_w20_g2_podio.dto.response.PostResponseDTO;
 import com.bootcamp.be_java_hisp_w20_g2_podio.exception.BadRequestException;
 import com.bootcamp.be_java_hisp_w20_g2_podio.model.User;
 import com.bootcamp.be_java_hisp_w20_g2_podio.repository.interfaces.IUserRepository;
+import com.bootcamp.be_java_hisp_w20_g2_podio.utils.mapper.PostMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,11 +24,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class PostServiceTest {
 
     @Mock
     private IUserRepository userRepository;
 
+    @SpyBean
+    private PostMapper postMapper;
     @InjectMocks
     private PostService postService;
 
