@@ -1,21 +1,11 @@
-# Sprint 2 - wave20 - Tests SocialMeli
+# Sprint 2 - wave20 - Tests SocialMeli (PARTE UNITARIA Y BONUS)
 SocialMeli se ha convertido en todo un éxito. Mercado Libre estableció una serie de validaciones necesarias a tener en cuenta, como así también diferentes test unitarios y de integración que aseguren el correcto funcionamiento de cada una de las funcionalidades que incluye.
 
 ## Objetivo
 El objetivo de este desafío es aplicar los contenidos dados hasta el momento durante el BOOTCAMP (Git, Java, Spring y Testing), haciendo principal hincapié en las validaciones y tipos de testing que pueden ser utilizados a partir de un enunciado propuesto, una especificación de requerimientos y documentación técnica.
 
-## Rama principal
-Se utilizó como repositorio principal la rama de John Edward Garcia Saavedra **EdwardGs1702**.
-
-## Proyecto realizado por:
-- John Edward Garcia Saavedra **github: EdwardGs1702**
-- Juan Camilo Arango Valle **github: jcamiloarangov**
-- Julian Atehortua Zapata **github: juatehortua**
-- Dimas Hernandez Mendoza **github: dimashernandez14**
-- Adrian Isaac Gomez **github: IsaacGmz**
-- Luis Francisco López **github: luis-lopezgomez**
+## Parte individual realizada por:
 - Diego Alejandro Malagon Ruiz **github: DiegoAlejandroMalagon**
-
 
 ## Requisitos para el correcto funcionamiento del proyecto
 Este proyecto fue realizado a partir del proyecto grupal final del primer sprint: **SocialMeli**.
@@ -42,42 +32,20 @@ Para el correcto uso de este proyecto es necesario contar con la version 11 del 
   - US-0005 - Special Character Validation
   - US-0005 - Missing Date Validation
 
-## User Stories
-SocialMeli contaba anteriormente con las siguientes User Stories y requerimientos técnicos:
+## Consideraciones individuales
 
-- **US-0001**: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
-- **US-0002**: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
-- **US-0003**: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
-- **US-0004**: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
-- **US-0005**: Dar de alta una nueva publicación.
-- **US-0006**: Obtener un listado de las publicaciones realizadas por los vendedores que un usuario sigue en las últimas dos semanas (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
-- **US-0007**: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
-- **US-0008**: Ordenamiento alfabético ascendente y descendente.
-- **US-0009**: Ordenamiento por fecha ascendente y descendente.
+- Para la segunda parte (apartado individual) opté por realizar el test de integración sobre el endpoint que consumía el servicio que testee de manera unitaria, denominado "newFollow"
+en la clase "UserController" con ruta: /users/users/{userId}/follow/{userIdToFollow}. Los escenarios tomados en cuenta fueron:
 
-## Validaciones en campos (Todas las US)
-| Dato/Parámetro | ¿Obligatorio? |                                                             Validación                                                             |                                                        Mensaje de error                                                        |
-|:---------------|:-------------:|:----------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
-| user_id        |      Si       |                                                Que el campo no esté vacío. Mayor 0                                                 |                                    El  id no puede estar vacío. El id debe ser mayor a cero                                    |
-| id_post        |      SI       |                                                Que el campo no esté vacío. Mayor 0                                                 |                               El id_post no puede estar vacío. El id_post debe ser mayor a cero                                |
-| date           |      SI       |                                                    Que el campo no esté vacío.                                                     |                                                 La fecha no puede estar vacía.                                                 |
-| product_id     |      SI       |                                                Que el campo no esté vacío. Mayor 0                                                 |                                    La id no puede estar vacía. El id debe ser mayor a cero                                     |
-| product_name   |      SI       | Que el campo no esté vacío. Longitud máxima de 40 caracteres. Que no posea caracteres especiales (%, &, $, etc), permite espacios. | El campo no puede estar vacío. La longitud no puede superar los 40 caracteres. El campo no puede poseer caracteres especiales. |
-| type           |      SI       |          Que el campo no esté vacío. Longitud máxima de 15 caracteres. Que no posea caracteres especiales (%, &, $, etc)           | El campo no puede estar vacío. La longitud no puede superar los 15 caracteres. El campo no puede poseer caracteres especiales. |
-| brand          |      SI       |          Que el campo no esté vacío. Longitud máxima de 25 caracteres. Que no posea caracteres especiales (%, &, $, etc)           | La longitud no puede superar los 25 caracteres. El campo no puede estar vacío. El campo no puede poseer caracteres especiales. |
-| color          |      SI       |          Que el campo no esté vacío. Longitud máxima de 15 caracteres. Que no posea caracteres especiales (%, &, $, etc)           | El campo no puede estar vacío. La longitud no puede superar los 15 caracteres. El campo no puede poseer caracteres especiales. |
-| notes          |      NO       |               Longitud máxima de 80 caracteres. Que no posea caracteres especiales (%, &, $, etc), permite espacios.               |                La longitud no puede superar los 80 caracteres. El campo no puede poseer caracteres especiales.                 |
-| category       |      SI       |                                                    Que el campo no esté vacío.                                                     |                                                 El campo no puede estar vacío.                                                 |
-| price          |      SI       |                                 Que el campo no esté vacío. El precio máximo puede ser 10.000.000.                                 |                         El campo no puede estar vacío. El precio máximo por producto es de 10.000.000                          |
+  - Caso feliz.
+  - Usuario seguidor no existente.
+  - Vendedor a seguir no existente.
+  - testeo de la validación que impide ingresar ids negativos.
 
-## Tests Unitarios
-| Código |                                                                   Situaciones de entrada                                                                   |                                                              Comportamiento esperado                                                               |                           By |
-|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|-----------------------------:|
-| T-0001 |                                                         Verificar que el usuario a seguir exista.                                                          |                    Se cumple: Permite continuar con normalidad. No se cumple: Notifica la no existencia mediante una excepción.                    | Diego Alejandro Malagon Ruiz |
-| T-0002 |                                                     Verificar que el usuario a dejar de seguir exista.                                                     |                    Se cumple: Permite continuar con normalidad. No se cumple: Notifica la no existencia mediante una excepción.                    |      Dimas Hernandez Mendoza |
-| T-0003 |                                                  Verificar que el tipo de ordenamiento alfabético exista.                                                  |                    Se cumple: Permite continuar con normalidad. No se cumple: Notifica la no existencia mediante una excepción.                    |     Juan Camilo Arango Valle |
-| T-0004 |                                          Verificar el correcto ordenamiento ascendente y descendente por nombre.                                           |                                              Devuelve la lista ordenada según el criterio solicitado                                               |         Luis Francisco López |
-| T-0005 |                                                  Verificar que el tipo de ordenamiento por fecha exista.                                                   |                    Se cumple: Permite continuar con normalidad. No se cumple: Notifica la no existencia mediante una excepción.                    |  John Edward Garcia Saavedra |
-| T-0006 |                                           Verificar el correcto ordenamiento ascendente y descendente por fecha.                                           |                                       Verificar el correcto ordenamiento ascendente y descendente por fecha.                                       |           Adrian Isaac Gomez |
-| T-0007 |                                      Verificar que la cantidad de seguidores de un determinado usuario sea correcta.                                       |                             Devuelve el cálculo correcto del total de la cantidad de seguidores que posee un usuario.                              |      Julian Atehortua Zapata |
-| T-0008 | Verificar que la consulta de publicaciones realizadas en las últimas dos semanas de un determinado vendedor sean efectivamente de las últimas dos semanas. | Devuelve únicamente los datos de las publicaciones que tengan fecha de publicación dentro de las últimas dos semanas a partir del día de la fecha. |                       Grupal |
+
+- Para la tercera parte (Bonus) con el fin de lograr el coverage esperado (Mayor al 75%) opté por realizar test de integración sobre el endpoint denominado "postPost" en la clase "PostController"
+con ruta: /products/post, el cual al abarcar todas las capas y un número amplio de métodos permitió conseguir el objetivo. Los escenarios tomados en cuenta fueron:
+
+ - Caso feliz.
+ - Vendedor que postea la publicación no existe.
+ - Testeo de la validación que impide crear un post sin producto (ProductDTO nulo)
