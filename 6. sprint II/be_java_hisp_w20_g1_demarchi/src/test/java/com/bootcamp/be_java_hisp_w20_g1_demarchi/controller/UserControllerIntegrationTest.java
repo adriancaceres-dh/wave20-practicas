@@ -124,11 +124,9 @@ class UserControllerIntegrationTest {
     @Test
     @DisplayName("T13: Se puede dejar de seguir a un usuario")
     public void givenAnUserId_whenUnfollowingAnUser_thenUserDoesNotFollowHimAnymore() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToFollow}", 1, 3))
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/unfollow/{userIdToFollow}", 3, 1))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.followed[0].user_id").value(2))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.followed[0].user_name").value("zmohamedDohamed"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.followed", hasSize(1)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(3))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.followed", hasSize(0)));
     }
 }
