@@ -672,6 +672,470 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "US 005 ProductValidations",
+			"item": [
+				{
+					"name": "New Post - Validation Exception user ID value",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": -3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception blank date",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception min price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": -100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception max price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": -3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 20000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Min Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 0,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Name Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla G@mer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Name Size Max",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamerdkjsahdsakdhaskjdbskjdbsakjdbshjbjhcyhbjechebjhasbdjhbvdjhdbasnbvjhvsjhdbsn dsmcnsabjhcasbdmsahbfsajhdvsahmdbsmndbsajhdbasdmasbdhjdbwhjdb c asbmndbashdsbhdnbdba\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Name Not Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Type Not Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Type Size",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamerrsadsfndkjfbdkhjfbdhkfbdkjfbdskjfbdkfnjk\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Type Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer$\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Brand Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"R@cer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Color Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"R%d\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Color Not Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": null,\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Color Size",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Reddjkashdkjsbdkajsbdkjsasasd\",\n        \"notes\": \"Special Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Notes Size",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special Editionkjfbdskfjdnsfkjdnfkjdsbfkjdbfkjdsbjhbjhds bjhdkjasbdkjsabdfkjhsabfjhdasbjhasbfjhdvbfjasbdkabkdjbasdhasbdjhasbdfjhasbjashvdjashdvbsajhdbsajhdbaskhjdbsakjdbasnkjdnsakjdnsakjdnaskjdnkhdbjhbdjhdbjehdbejhbdfkjdbkajnskjdnkjsabdkasbfjhbfjhdbfdbfdsnfdmfjnsakjdnkjfbdhjkbfsdkjfnjkenfkjenfkjenfkjfbdscbhdnvbdhjbvdksjhvbdskjcndksjcndskjbdshjkbvjhdsbkdsjbvkdjsnckdjnckjdsnkbsdhkjbekfbewkjfbdkjfbdkhfbekwbfkdjscbkdsjnbkejbfkdsjbvkjdsnckjsdnkdsjbckdsjbkdshbvksjvnksfjbvjkdbjkdsbkjdbchjk\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Post - Validation Exception Notes Special Characters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"date\": \"29-12-2022\",\n    \"product\": {\n        \"product_id\": 21,\n        \"product_name\": \"Silla Gamer\",\n        \"type\": \"Gamer\",\n        \"brand\": \"Racer\",\n        \"color\": \"Red\",\n        \"notes\": \"Special_&Edition\"\n    },\n    \"category\": 100,\n    \"price\": 1500.50\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/products/post",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"products",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"variable": [
