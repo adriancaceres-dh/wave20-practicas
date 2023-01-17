@@ -1,5 +1,5 @@
 
-# Sprint 2 Social MELI.
+# Sprint 2 Social MELI - Entrega Individual.
 
 ### Miembros del equipo.
 
@@ -308,17 +308,14 @@ Por ejemplo
   "status": 400,
   "timestamp": "2023-01-16T09:30:21.563110",
   "invalid_validations": [{
-    "field": "userId",
     "rejected_value": "0",
     "reason": "El id debe ser mayor a 0"
   },
     {
-      "field": "product.color",
       "rejected_value": "Red & Black",
       "reason": "El campo no puede poseer caracteres especiales."
     },
     {
-      "field": "price",
       "rejected_value": "1.500123123213231E15",
       "reason": "El precio máximo por producto es de 10.000.000"
     }
@@ -473,3 +470,14 @@ Por ejemplo
 </tr>
 </tbody>
 </table>
+
+---
+## Test de integración
+### (Coverage alcanzado: 76%)
+
+|     | Endpoint                           | Casos                                                                                                            |
+|-----|------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| T10 | `/products/followed/<userId>/list` | Se cumple: Se devuelve id de usuario y lista de posts<br/>No se cumple: Notifica que el usuario no existe        |
+| T11 | `/products/post`                   | Se cumple: Se devuelve el post creado<br/>No se cumple: Se indica que faltan campos o son invalidos en el request |
+| T12 | `/users/{userId}/followers/list`   | Se cumple: Se devuelve lista de seguidores<br/>No se cumple: Notifica que el usuario no existe                   |
+| T13 | `/users/{userId}/followed/list`    | Se cumple: Se devuelve lista de seguidos<br/>No se cumple: Notifica que el usuario no existe                    |
