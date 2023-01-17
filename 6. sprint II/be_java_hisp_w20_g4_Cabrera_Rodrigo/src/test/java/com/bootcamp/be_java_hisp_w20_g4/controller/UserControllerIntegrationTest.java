@@ -19,7 +19,9 @@ class UserControllerIntegrationTest {
 @Autowired
     MockMvc mockMvc;
     @Test
-    void follow() {
+    @DisplayName("Test para verificar el correcto funcionamiento de seguir a un vendedor")
+    void follow() throws Exception {
+
     }
 
     @Test
