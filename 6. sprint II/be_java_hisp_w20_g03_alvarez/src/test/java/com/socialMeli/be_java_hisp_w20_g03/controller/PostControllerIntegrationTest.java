@@ -29,7 +29,7 @@ public class PostControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @DisplayName("T-0010: Integration test for US-0010")
+    @DisplayName("T-0010: Integration test for US-0005")
     @Test
     public void testAddPostOutput () throws Exception{
         PostDTO payloadDto = PostUtils.getPostDto();
