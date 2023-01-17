@@ -1,5 +1,6 @@
 package com.bootcamp.be_java_hisp_w20_g7.controller;
 
+import com.bootcamp.be_java_hisp_w20_g7.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,4 +37,5 @@ class IntegrationTestUserController {
                 .andExpect(jsonPath("$.name").value("UserNotFoundException"))
                 .andExpect(jsonPath("$.message").value("User Not Found"));
     }
+
 }
