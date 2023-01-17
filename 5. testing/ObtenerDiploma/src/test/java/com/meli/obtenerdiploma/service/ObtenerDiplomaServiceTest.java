@@ -1,4 +1,4 @@
-package com.meli.obtenerdiploma.serviceTest;
+package com.meli.obtenerdiploma.service;
 
 import com.meli.obtenerdiploma.model.StudentDTO;
 import com.meli.obtenerdiploma.model.SubjectDTO;
@@ -36,6 +36,25 @@ public class ObtenerDiplomaServiceTest {
 
         Double expectedScore = ((3D + 8D) / 2);
         String expectedMessage = "El alumno Anibal ha obtenido un promedio de 5.5. Puedes mejorar.";
+
+        when(studentDAO.findById(anyLong())).thenReturn(student);
+
+        StudentDTO analyzedStudent = obtenerDiplomaService.analyzeScores(0L);
+        verify(studentDAO, atLeastOnce()).findById(anyLong());
+        assertEquals(expectedMessage, analyzedStudent.getMessage());
+        assertEquals(expectedScore, analyzedStudent.getAverageScore());
+    }
+
+    @Test
+    void shouldAnalyzeHighScore() {
+        StudentDTO student = new StudentDTO(0L,
+                "Anibal",
+                null,
+                null,
+                List.of(new SubjectDTO("Quimica", 10D), new SubjectDTO("Algebra", 9D)));
+
+        Double expectedScore = ((10D + 9D) / 2);
+        String expectedMessage = "El alumno Anibal ha obtenido un promedio de 9.5. Felicitaciones!";
 
         when(studentDAO.findById(anyLong())).thenReturn(student);
 
