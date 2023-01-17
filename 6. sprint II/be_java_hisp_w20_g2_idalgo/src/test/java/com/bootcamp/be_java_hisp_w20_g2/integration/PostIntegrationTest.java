@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class PostIntegrationTest {
+class PostIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
     private final ObjectWriter writer;
@@ -74,7 +74,7 @@ public class PostIntegrationTest {
     }
 
     @Test
-    public void addNewProductFailsInvalidPayloadPost() throws Exception {
+    void addNewProductFailsInvalidPayloadPost() throws Exception {
         User user1 = generateAndSaveUser();
         PostDTO postDTO = Utils.generatePostDTOWithNegativePrice(user1.getId());
         String payload = writer.writeValueAsString(postDTO);
@@ -90,7 +90,7 @@ public class PostIntegrationTest {
     }
 
     @Test
-    public void addNewProductFailsInvalidPayloadProduct() throws Exception {
+    void addNewProductFailsInvalidPayloadProduct() throws Exception {
         User user1 = generateAndSaveUser();
         PostDTO postDTO = Utils.generatePostDTOWithUnnamedProduct(user1.getId());
         String payload = writer.writeValueAsString(postDTO);
@@ -106,7 +106,7 @@ public class PostIntegrationTest {
     }
 
     @Test
-    public void addNewProductFailsInvalidCategory() throws Exception {
+    void addNewProductFailsInvalidCategory() throws Exception {
         User user1 = generateAndSaveUser();
         PostDTO postDTO = Utils.generatePostDTOWithInvalidCategory(user1.getId());
         String payload = writer.writeValueAsString(postDTO);
@@ -122,7 +122,7 @@ public class PostIntegrationTest {
     }
 
     @Test
-    public void addNewProductFailsInvalidUserId() throws Exception {
+    void addNewProductFailsInvalidUserId() throws Exception {
         PostDTO postDTO = Utils.generatePostDTO(5000);
         String payload = writer.writeValueAsString(postDTO);
 
