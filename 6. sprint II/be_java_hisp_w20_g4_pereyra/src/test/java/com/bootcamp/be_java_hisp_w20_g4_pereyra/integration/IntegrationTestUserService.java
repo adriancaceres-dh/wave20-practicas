@@ -27,8 +27,6 @@ public class IntegrationTestUserService {
     @Autowired
     MockMvc mockMvc;
 
-
-
     @Test
     @DisplayName("Test de integración - seguir a un usuario")
     public void followUserTest() throws Exception {
@@ -51,7 +49,29 @@ public class IntegrationTestUserService {
                 .andExpect(expectedContentType);
     }
 
+    @Test
+    public void followersUserTest() throws Exception {
+        int idUser = 1;
+        int idUserToFollow = 2;
 
+        ListedUserDTO expectedListedUserDTO = new ListedUserDTO(2, "ivan");
+        UserFollowedDTO expectedResponseDto = new UserFollowedDTO(1, "rodri", List.of(expectedListedUserDTO));
+        String expectedResponse = TestUtils.writer.writeValueAsString(expectedResponseDto);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}",idUser,idUserToFollow)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        ResultMatcher expectedStatus = status().isOk();
+        ResultMatcher expectedJson = content().json(expectedResponse);
+        ResultMatcher expectedContentType = content().contentType(MediaType.APPLICATION_JSON);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/followers/list",idUser)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(expectedStatus)
+                .andExpect(expectedJson)
+                .andExpect(expectedContentType);
+    }
 
 
 }
