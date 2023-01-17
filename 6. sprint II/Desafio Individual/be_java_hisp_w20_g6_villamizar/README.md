@@ -52,7 +52,16 @@ Debido a que MeLi tiene unos estándares de calidad muy altos con respecto a los
 Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 ***
 
-## Test de Integración 
+## Test de Integración - DESAFIO INDIVIDUAL
+
+| TEST      | US        | SITUACIONES DE ENTRADA                                                                                                                                     | COMPORTAMIENTO ESPERADO                                      |
+|:----------|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------|
+| `TI-0001` | `US-0002` | Verificar el correcto funcionamiento del endpoint de obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor                  | Retorna la data del *FollowersCountResponseDto* y status 200 |
+| `TI-0002` | `US-0003` | Verificar el correcto funcionamiento del endpoint de obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)      | Retorna la data del *FollowersListResponseDto* y status 200  |
+| `TI-0003` | `US-0004` | Verificar el correcto funcionamiento del endpoint de obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?) | Retorna la data del *FollowedListResponseDto* y status 200   |
+| `TI-0004` | `US-0005` | Verificar el correcto funcionamiento del endpoint de dar de alta una nueva publicación                                                                     | Retorna *true* y status 200                                  |
+
+
 ## Colección de Postman 
 
 Para el testeo de esta api colocamos a [disposición](https://github.com/alejandrotm20/SocialMeli2/blob/main/be_java_hisp_w20_g6/src/main/resources/static/Validaciones%20DTO%C2%B4s.postman_collection.json) una colección de Postman en formato JSON que se puede encontrar en este proyecto, en el path: **src/java/resources/static/User Tests.postman_collection.json**
