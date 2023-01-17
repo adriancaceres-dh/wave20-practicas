@@ -35,6 +35,7 @@ public class ProductService implements IProductService {
      * Creates a product in the repository from a ProductDTO base.
      * @param productDTO the product to be created
      * @return true if the product was created, otherwise false
+     * @Author: Luis Francisco López Gómez
      */
     @Override
     public boolean createProduct(ProductDTO productDTO) {
@@ -58,6 +59,7 @@ public class ProductService implements IProductService {
      * Finds a product in the repository by its ID, and returns its respective ProductDTO.
      * @param productId the ID of the requested product
      * @return a ProductDTO object of the product
+     * @Author: Luis Francisco López Gómez
      */
     @Override
     public ProductDTO getProductById(int productId) {
