@@ -333,8 +333,4 @@ El objetivo de este desafío es aplicar los contenidos dados hasta el momento du
 ## Agradecimientos
 Agradecer a nuestro Scrum Master, Adrián Cáceres, así como a Johanna Tabella y el resto del equipo de Digital House por su disposición y paciencia a lo largo del Bootcamp.
 
-## Anotaciones 
-
-- Quite un UserRequestDTO y un metodo de los repositorios que no se utilizan en ningun momento.
-
 
