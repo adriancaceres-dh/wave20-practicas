@@ -25,6 +25,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * This integration test performs the following checks:
+ * 1. Add a new follower
+ * 2. Unfollow a seller
+ * 3. Show list of all followed sellers
+ * 4. Creation of a new post
+ *
+ * @author: Dimas Hernandez Mendoza.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserControllerTestIntegration {
