@@ -17,6 +17,8 @@ public class TestFollowersCount
     @Autowired
     private MockMvc mockMvc;
 
+    //TEST INDIVIDUALES - US 02
+
     @DisplayName("Test UserId Followers count - OK")
     @Test
     void testGetFollowersCount() throws Exception
