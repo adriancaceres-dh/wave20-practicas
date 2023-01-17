@@ -3,13 +3,14 @@ package com.socialMeli.be_java_hisp_w20_g03.integration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.socialMeli.be_java_hisp_w20_g03.controller.UserController;
 import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserExtendedDTO;
+import com.socialMeli.be_java_hisp_w20_g03.dto.response.UserFollowerCountDTO;
 import com.socialMeli.be_java_hisp_w20_g03.model.User;
-import com.socialMeli.be_java_hisp_w20_g03.service.UserService;
+import com.socialMeli.be_java_hisp_w20_g03.repository.UserRepository;
 import com.socialMeli.be_java_hisp_w20_g03.utils.UserUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -31,9 +33,6 @@ public class UserControllerTestIntegration {
     @Autowired
     MockMvc mockMvc;
 
-    @Autowired
-    UserService userService;
-
     private static ObjectWriter writer;
 
     @BeforeAll
@@ -44,10 +43,11 @@ public class UserControllerTestIntegration {
     }
 
     @Test
-    void addFollowerOk() throws Exception{
+    @DisplayName("TI-0001 Camino Feliz")
+    void addFollowerOk() throws Exception {
         int userIdToFollow = 234;
         int userId = 123;
-        User user = UserUtils.buildUserWithOneFollower(userIdToFollow,251);
+        User user = UserUtils.buildUserWithOneFollower(userIdToFollow, 251);
 
         String response = "Comenzaste a seguir al usuario: " + user.getUserName();
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/users/{userId}/follow/{userIdToFollow}", userId, userIdToFollow))
@@ -60,7 +60,8 @@ public class UserControllerTestIntegration {
     }
 
     @Test
-    void addFollowerThrowExceptionMessage() throws Exception{
+    @DisplayName("TI-0001 Mensaje de excepción cuando el usuario no existe")
+    void addFollowerThrowExceptionMessage() throws Exception {
         int userIdToFollow = 4698;
         int userId = 465;
 
@@ -70,6 +71,34 @@ public class UserControllerTestIntegration {
                 .andExpect(content().contentType("text/plain;charset=UTF-8"))
                 .andExpect(jsonPath("$").value("El usuario ingresado no existe"));
     }
+
+    @Test
+    @DisplayName("TI-0002 Camino Feliz")
+    void getFollowerCountOk() throws Exception {
+        int userId = 6631;
+        UserFollowerCountDTO userFollowerCountDTO = new UserFollowerCountDTO(6631, "usuario2", 2);
+        String response = writer.writeValueAsString(userFollowerCountDTO);
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", userId))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        Assertions.assertEquals(response, mvcResult.getResponse().getContentAsString(Charset.defaultCharset()));
+    }
+
+    @Test
+    @DisplayName("TI-0002 Mensaje de excepción cuando el usuario no existe")
+    void getFollowerCountThrowExceptionMessage() throws Exception {
+        int userId = 465;
+
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}/followers/count", userId))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(jsonPath("$").value("El usuario ingresado no existe."));
+    }
+
 
 
 }
