@@ -31,7 +31,7 @@ SELECT * FROM actors LIMIT 10;
 SELECT title, rating FROM movies WHERE title="Toy Story";
 
 -- Mostrar a todos los actores cuyos nombres empiezan con Sam.
-SELECT * FROM actors WHERE name="Sam";
+SELECT * FROM actors WHERE first_name="Sam";
 
 -- Mostrar el título de las películas que salieron entre el 2004 y 2008.
 SELECT title FROM movies WHERE (release_date BETWEEN "2004-01-01 00:00:00" AND "2008-12-31 23:59:59");
