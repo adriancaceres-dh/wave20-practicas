@@ -130,4 +130,10 @@ SocialMeli contaba anteriormente con las siguientes User Stories y requerimiento
 
 ##   
 
+#### Test de Integracion
+
+|      | Situaciones de entrada | Comportamiento Esperado   | Responsables |
+|:-----------------|:------|:------------------------------------------|:------------------------------------------|
+| `TI-0001`| `Verificar que el usuario exista)` | `Se cumple:` Permite continuar con normalidad. `No se cumple:` Notifica la no existencia mediante una excepción.| Stiven Gonzalez |
+
 #### Agradecimientos: A nuestra queridisima Scrum Master Johanna Tabella ❤️  por apoyo incondicional y a nuestros instructores Martin y Adrian por compartir su conocimiento!! 
