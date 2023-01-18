@@ -34,7 +34,7 @@ SELECT title, rating FROM movies WHERE title="Toy Story";
 SELECT * FROM actors WHERE first_name="Sam";
 
 -- Mostrar el título de las películas que salieron entre el 2004 y 2008.
-SELECT title FROM movies WHERE (release_date BETWEEN "2004-01-01 00:00:00" AND "2008-12-31 23:59:59");
+SELECT title FROM movies WHERE YEAR(release_date) BETWEEN "2004" AND "2008";
 
 -- Traer el título de las películas con el rating mayor a 3, con más de 1 premio y con fecha de lanzamiento entre el año 1988 al 2009. Ordenar los resultados por rating.
-SELECT title FROM movies WHERE (rating > 3 AND awards > 1 AND (release_date BETWEEN "1998-01-01 00:00:00" AND "2009-12-31 23:59:59")) ORDER BY rating DESC;
+SELECT title FROM movies WHERE (rating > 3 AND awards > 1 AND YEAR(release_date) BETWEEN "1998" AND "2009") ORDER BY rating DESC;
