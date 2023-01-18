@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "734f4e46-9151-49ed-9f3d-ec729cb66db1",
+		"_postman_id": "bd5a1321-dea8-4979-98f4-3f835a439615",
 		"name": "SocialMeli-2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25120202"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -327,6 +326,33 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "US-0012",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "US-0011",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "US-0010",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
 			},
 			"response": []
 		}
