@@ -54,7 +54,7 @@ Todos los requisitos y/o test unitarios fueron desarrollados de manera grupal.
 
 ## Test de Integración 
 
-| TEST       | USER STORY | VERIFICACIÓN                                                         | Return           |
+| TEST       | USER STORY | VERIFICACIÓN                                                         | Return Status          |
 |------------|------------|----------------------------------------------------------------------|------------------|
 | `IT-0001`  | `US-0003`  | Verificar integacion cuando se piden los seguidores.                 | status code 200  | 
 | `IT-0002 ` | `US-0004`  | Verificar integacion cuando se piden los seguidos.                   | status code 200  |
