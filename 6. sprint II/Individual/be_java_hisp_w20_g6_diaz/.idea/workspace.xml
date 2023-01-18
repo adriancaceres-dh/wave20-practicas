@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c7503cb-aa64-4a8a-9bc1-13040aa9a547" name="Changes" comment="" />
+    <list default="true" id="5c7503cb-aa64-4a8a-9bc1-13040aa9a547" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,9 +138,9 @@
       <list>
         <item itemvalue="JUnit.java in be_java_hisp_w20_g6" />
         <item itemvalue="JUnit.PostControllerTest.shouldSaveAPost" />
+        <item itemvalue="JUnit.UserControllerTest.shouldReturnCorrectFollowersCount" />
         <item itemvalue="JUnit.UserControllerTest" />
         <item itemvalue="JUnit.UserControllerTest.shouldReturnCorrectFollowed" />
-        <item itemvalue="JUnit.UserControllerTest.shouldReturnCorrectFollowersCount" />
       </list>
     </recent_temporary>
   </component>
@@ -157,6 +159,6 @@
     <SUITE FILE_PATH="coverage/be_java_hisp_w20_g6_diaz$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1673899870185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.bootcamp.be_java_hisp_w20_g6.Integration.Controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g6_diaz$java_in_be_java_hisp_w20_g6.ic" NAME="java in be_java_hisp_w20_g6 Coverage Results" MODIFIED="1673906635064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/be_java_hisp_w20_g6_diaz$java_in_be_java_hisp_w20_g6.ic" NAME="java in be_java_hisp_w20_g6 Coverage Results" MODIFIED="1673988174586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
