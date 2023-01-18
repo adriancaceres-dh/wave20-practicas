@@ -1,2 +1,11 @@
-package com.meli.obtenerdiploma.model;public class ErrorDTO {
+package com.meli.obtenerdiploma.model;
+
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ErrorDTO {
+
+    private String message;
 }
