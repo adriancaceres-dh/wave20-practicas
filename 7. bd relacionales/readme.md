@@ -25,6 +25,10 @@ El [siguiente documento](Material/Bases_de_Datos_Relacionales-2.Sentencias_SQL_I
 La [siguiente presentación](Material/Bases_de_Datos_Relacionales-3.Consultas_SQL.pdf) desarrolla la sentencia SELECT utilizada para realizar consultas a una base de datos en SQL, junto con las cláusulas básicas que esta admite.
 
 ### Referencias Externas
+1. Visual JOIN  
+   Understand how joins work by interacting and see it visually
+
+   https://joins.spathon.com/
 
 ## Ejercicios Prácticos
 
@@ -32,6 +36,6 @@ La [siguiente presentación](Material/Bases_de_Datos_Relacionales-3.Consultas_SQ
 
 #### Ejercicio 1. Películas
 
-[Propuesta](Ejercicios/Bases_de_Datos_Relacionales-Practica1.Consultas_SQL.pdf)
+[Propuesta](Ejercicios/RDB-Consultas_SQL-P1-Peliculas/Propuesta1.Consultas_SQL.pdf)
 
 [Archivos](Archivos/15.%20movies-db.sql)
