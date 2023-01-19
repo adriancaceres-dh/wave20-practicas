@@ -39,3 +39,5 @@ La [siguiente presentación](Material/Bases_de_Datos_Relacionales-3.Consultas_SQ
 [Propuesta](Ejercicios/RDB-Consultas_SQL-P1-Peliculas/Propuesta1.Consultas_SQL.pdf)
 
 [Archivos](Archivos/15.%20movies-db.sql)
+
+[Resolución](Archivos/rdb-consultas_sql-p1-movies.sql)
