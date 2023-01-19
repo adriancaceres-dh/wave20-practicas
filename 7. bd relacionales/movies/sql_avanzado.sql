@@ -28,7 +28,7 @@ HAVING movie_count >= 3;
 -- 5. Mostrar sólo el nombre y apellido de los actores que trabajan en todas las películas de la guerra de las galaxias y que estos no se repitan.
 SELECT a.first_name, a.last_name
 FROM actors AS a
-LEFT JOIN actor_movie AS axm ON axm.actor_id = a.id
-LEFT JOIN movies AS m ON m.id = axm.movie_id
+INNER JOIN actor_movie AS axm ON axm.actor_id = a.id
+INNER JOIN movies AS m ON m.id = axm.movie_id
 WHERE m.title LIKE "%guerra de las galaxias%"
 GROUP BY a.id;
