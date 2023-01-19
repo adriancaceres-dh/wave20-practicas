@@ -4,4 +4,4 @@
 
 - [🎥 Ejercicio de queries a _movies_db_](movies)
 
-
+- [🌐 Ejercicio de planes de internet](internet)
