@@ -1,6 +1,6 @@
 ## Ejercicio 1
 
-<img src="parte1.png" alt="Resolucion parte 1">
+<img src="ejercicio1.png" alt="Resolucion parte 1">
 
 ## Ejercicio 2
 
