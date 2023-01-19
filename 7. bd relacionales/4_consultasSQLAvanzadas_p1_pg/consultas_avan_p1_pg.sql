@@ -27,17 +27,31 @@ SELECT COUNT(1) FROM seasons sea WHERE serie_id = 2;
 
 -- Mostrar el nombre de todos los géneros y la cantidad total de películas por cada uno, siempre que sea mayor o igual a 3.
 
-SELECT ge.name, COUNT(1)
+SELECT ge.name, COUNT(1) cantPeli
 FROM genres ge, movies mo
 WHERE mo.genre_id = ge.id
 GROUP BY ge.name
-HAVING COUNT(1) >= 3;
+HAVING cantPeli >= 3;
 
 -- Mostrar sólo el nombre y apellido de los actores que trabajan en todas las películas de la guerra de las galaxias y que estos no se repitan.
+
+SELECT DISTINCT ac.first_name, ac.last_name
+FROM actors ac JOIN actor_movie actMov JOIN movies mo
+ON ac.id = actMov.actor_id AND mo.id = actMov.movie_id
+WHERE mo.title LIKE "%la guerra de las galaxias%";
 
 SELECT DISTINCT ac.first_name, ac.last_name
 FROM actors ac INNER JOIN actor_movie actMov
 ON ac.id = actMov.actor_id
 INNER JOIN movies mo 
 ON mo.id = actMov.movie_id
-WHERE mo.title LIKE "%la guerra de las galaxias%"
+WHERE mo.title LIKE "%la guerra de las galaxias%";
+
+-- Sacar el actor con mas rating y su nombre - No es muy buena opcion con subconsulta
+
+SELECT rating, first_name
+FROM actors
+WHERE rating = (SELECT MIN(rating) from actors);
+
+SELECT first_name, rating FROM actors ORDER BY rating DESC LIMIT 1;
+
