@@ -14,15 +14,15 @@ Estas apliaciones se pueden descargar gratuitamente en https://dev.mysql.com/dow
 ## Material de Referencia
 
 ### Introducción
-La [siguiente presentación](/Material/Bases%20de%20Datos%20Relacionales%20-%201.%20Introducción.pdf) explica brevemente las nociones básicas de Bases de Datos.
+La [siguiente presentación](Material/Bases_de_Datos_Relacionales-1.Introduccion.pdf) explica brevemente las nociones básicas de Bases de Datos.
 
 ### Lenguaje SQL
 
 #### Sentencias Básicas
-El [siguiente documento](/Material/Bases%20de%20Datos%20Relacionales%20-%202.%20Intro%20a%20Sentencias%20SQL.%20DDL%20y%20DML.pdf) introduce el lenguaje SQL, describiendo las sentencias básicas DDL (de modificación de bases de datos) y DML (de manipulación dentro de una base de datos). Desarrolla en mayor profundidad las 4 sentencias DML fundamentales: SELECT, INSERT, UPDATE y DELETE.
+El [siguiente documento](Material/Bases_de_Datos_Relacionales-2.Sentencias_SQL_Intro.pdf) introduce el lenguaje SQL, describiendo las sentencias básicas DDL (de modificación de bases de datos) y DML (de manipulación dentro de una base de datos). Desarrolla en mayor profundidad las 4 sentencias DML fundamentales: SELECT, INSERT, UPDATE y DELETE.
 
 #### Consultas SQL
-La [siguiente presentación](/Material/Bases%20de%20Datos%20Relacionales%20-%203.%20Consultas%20SQL.pdf) desarrolla la sentencia SELECT utilizada para realizar consultas a una base de datos en SQL, junto con las cláusulas básicas que esta admite.
+La [siguiente presentación](Material/Bases_de_Datos_Relacionales-3.Consultas_SQL.pdf) desarrolla la sentencia SELECT utilizada para realizar consultas a una base de datos en SQL, junto con las cláusulas básicas que esta admite.
 
 ### Referencias Externas
 
@@ -32,6 +32,6 @@ La [siguiente presentación](/Material/Bases%20de%20Datos%20Relacionales%20-%203
 
 #### Ejercicio 1. Películas
 
-[Propuesta](/Ejercicios/RDB-consultasSQL-p1-peliculas.pdf)
+[Propuesta](Ejercicios/Bases_de_Datos_Relacionales-Practica1.Consultas_SQL.pdf)
 
-[Archivos](/Archivos/15.%20movies-db.sql)
+[Archivos](Archivos/15.%20movies-db.sql)
