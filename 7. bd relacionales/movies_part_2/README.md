@@ -8,8 +8,8 @@ SELECT title, genres.name AS genero FROM series
 
 - Mostrar el título de los episodios, el nombre y apellido de los actores que trabajan en cada uno de ellos.
 ~~~~sql
-SELECT episodes.title, actors.first_name, actors.last_name FROM actor_episode
-  JOIN episodes ON episodes.id = actor_episode.episode_id
+SELECT episodes.title, actors.first_name, actors.last_name FROM episodes
+  JOIN actor_episode ON episodes.id = actor_episode.episode_id
   JOIN actors ON actors.id = actor_episode.actor_id;
 ~~~~
 
