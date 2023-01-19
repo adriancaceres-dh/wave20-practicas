@@ -20,9 +20,9 @@ ______
 9. _**[Resumen de datos de entrada US](#-resumen-de-datos-de-entrada-según-las-us-)**_
 10. _**[Validaciones en campos de las US](#-validaciones-en-campos-de-las-us-)**_
 11. _**[Test Unitarios](#-tests-unitarios-)**_
-12. _**[Test Unitarios Implementación](#-implementación-de-test-unitarios---grupal-)**_
-    1. _**[Test de Controllers](#-controller-)**_
-    2. _**[Test de Services](#-service-)**_
+12. _**[Test Unitarios](#implementación-de-test-unitarios---grupal)**_
+    1. [Test de Controllers](#-controller-)
+    2. [Test de Services](#-service-)
 13. _**[Miembros del Equipo N°2](#-miembros-del-equipo-n2-)**_
 14. _**[Tecnologías utilizadas](#-tecnologías-utilizadas-)**_
 
@@ -76,7 +76,7 @@ Para esta parte se plantea la creación de una API Rest que permita:
 3. Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?).
 4. Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?).
 5. Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor.
-6. Dar de alta una nueva publicación.
+6. Dar de alta una nueva públicación.
 7. Obtener un listado de las publicaciones realizadas en las últimas dos semanas, por los vendedores que un usuario
    sigue
    (para esto tener en cuenta ordenamiento por fecha, publicaciones más recientes primero).
@@ -94,13 +94,13 @@ que se cita a continuación para tener en cuenta a la hora de llevar a cabo el d
 **[Especificación técnica funcional](https://docs.google.com/document/d/1L9zmNgsB_YZoB6V5LpPyciwCXD2ir6-X/edit)**
 
 ## 🫂 Escenario y requerimientos iniciales - Desarrollo grupal - 2.0 🫂
-SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el equipo de desarrollo “Bootcamp” se ha
-convertido en ¡Todo un éxito!. Dado esto y a que MeLi tiene unos estándares de calidad muy altos con respecto a los
-productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta
-a la hora de incorporar datos como así también diferentes test unitarios que aseguren el correcto funcionamiento de cada
-una de las funcionalidades que incluye. Para llevar a cabo estas implementaciones, se deberá tomar como base el proyecto
-desarrollado de forma grupal en el Sprint Nº1. A partir de él, se llevarán a cabo cada una de las validaciones y tests
-unitarios correspondientes. Como documentación de respaldo, un analista funcional nos proporciona documento de
+SocialMeli, la nueva implementación de MercadoLibre que fue realizada por el equipo de desarrollo “Bootcamp” se ha 
+convertido en ¡Todo un éxito!. Dado esto y a que MeLi tiene unos estándares de calidad muy altos con respecto a los 
+productos de software que utiliza, estableció una serie de validaciones que considera que sean necesarias tener en cuenta 
+a la hora de incorporar datos como así también diferentes test unitarios que aseguren el correcto funcionamiento de cada 
+una de las funcionalidades que incluye. Para llevar a cabo estas implementaciones, se deberá tomar como base el proyecto 
+desarrollado de forma grupal en el Sprint Nº1. A partir de él, se llevarán a cabo cada una de las validaciones y tests 
+unitarios correspondientes. Como documentación de respaldo, un analista funcional nos proporciona documento de 
 requerimientos técnicos y funcionales
 
 **[Especificación técnica funcional](https://docs.google.com/document/d/1rdOxsPdY_Cxls-Fl9J62lWYRjddh6imT/edit)**
@@ -108,8 +108,10 @@ requerimientos técnicos y funcionales
 ## 👤 Requerimientos incrementales - Desarrollo Individual - 👤
 
 **SocialMeli** tiene como objetivo extra lograr permitir a los vendedores la posibilidad de publicar nuevos productos
-con ofertas o descuentos especiales exclusivos para sus seguidores por un determinado período de tiempo. Para ello propone los
-siguientes requerimientos:
+con ofertas
+o descuentos especiales exclusivos para sus seguidores por un determinado período de tiempo. Para ello propone los
+siguientes
+requerimientos:
 10. Llevar a cabo la publicación de un nuevo producto en promoción.
 11. Obtener la cantidad de productos en promoción de un determinado vendedor.
 
@@ -119,27 +121,13 @@ desarrollo base que se haya logrado en éste.
 Por otro lado, tener en cuenta para estos requerimientos la posibilidad de poder ordenarlos alfabéticamente por nombre
 de cada producto tanto de forma ascendente como descendente.
 
-## 👤 Requerimientos incrementales - Desarrollo Individual - 2.0 👤
-Siguiendo con el principio de que MeLi posee unos estándares de calidad muy altos, un especialista sugirió la posibilidad
-de contar con la implementación de al menos un test de integración para lograr una cobertura de código mayor que la lograda
-con los tests unitarios.
-Tener en cuenta que, se debe respetar el desarrollo base logrado en equipo para poder realizar este nuevo incremento de
-manera individual.
-
-
 ## 🧨 Bonus - Desarrollo Individual EXTRA - 🧨
 
 Para finalizar, desde Mercado Libre dieron a conocer que están abiertos a cualquier nueva funcionalidad o propuesta de
-mejora para **“SocialMeli”**. En caso de que esto se lleve a cabo, será necesario, además de desarrollar la funcionalidad, *
-*presentar la documentación técnica asociada**.
-
-## 🧨 Bonus - Desarrollo Individual EXTRA - 2.0 🧨
-El mismo especialista en calidad que sugirió implementar al menos un test de integración anteriormente, sugiere que sería
-ideal lograr contar con la implementación de otros tests de integración extra para intentar lograr un coverage mayor o
-igual al 75%.
-El especialista conoce que los tiempos de desarrollo en bootcamp son acotados, por lo que sugiere llevar a cabo esta
-implementación solo en caso de que alcancen los tiempos y se pueda cumplir con la fecha de entrega estimada.
-
+mejora
+para **“SocialMeli”**. En caso de que esto se lleve a cabo, será necesario, además de desarrollar la funcionalidad, *
+*presentar
+la documentación técnica asociada**.
 
 # 🗄 _Bitácora_ 🗄
 ______________
@@ -158,12 +146,12 @@ tarea. Esta división consta de 5 capas:
 - Exception
 - Config
 - Utils
-   - Constants
-   - Mapper
-   - Sort
-   - Validator
-      - Post
-      - UserResponse
+  - Constants
+  - Mapper
+  - Sort
+  - Validator
+    - Post
+    - UserResponse
 
 ### 🗂 Repository 🗂
 
@@ -179,7 +167,7 @@ clases, el resto del código no tenga que ser modificado según cambios de imple
    la de repositorios de
    Spring el cual tiene el comportamiento básico que todos los Repository deberían tener.
 2. Cómo no poseemos una base de datos para poder guardar los datos de nuestro modelo, se optó por la implementación de
-   una colección Map, específicamente un HashMap donde la key será el Wrapper Integer para identificar los objetos y como
+   una colección Map, específicamente un HashMap donde la key será el Wrapper Integer para identificar los obetos y como
    clave
    el objeto. Esto ayuda en tiempo de búsqueda, eliminación y agregación, por ejemplo, lo que puede ser un usuario o
    producto, el tiempo de ejecución
@@ -260,39 +248,40 @@ Los mensajes de excepción y error enviados serán breves y significativos.
 Se crea, por decisión del equipo, el package _Utils_ y dentro de él se encuentra la clase _LoadExampleData_, un package
 que posee las clases _PostMapper_ y _ProductMapper_.
 - **Utils/Constants**
-   - _RegexConstants_: Esta clase posee una constante final para los regex utilizado en algunos patrones de verificación, a
-     través de validaciones, de no utilización de caracteres especiales dentro de variables que llegarán por parámetros a nuestra API.
+  - _RegexConstants_: Esta clase posee una constante final para los regex utilizado en algunos patrones de verificación, a 
+  través de validaciones, de no utilización de caracteres especiales dentro de variables que llegarán por parámetros a nuestra API.
 
 - **Utils/Mapper**
-   - _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-     viceversa.
-   - _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
-     viceversa.
+  - _PostMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+    viceversa.
+  - _ProductMapper_: Posee la responsabilidad, a través de funciones, de transformar objetos de nuestro modelo en DTO o
+    viceversa.
 
 - **Utils/sort**
-   - PostStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
-     especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
-     la clase PostService.
-   - UserResponseDTOStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
-     especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
-     la clase UserService.
+  - PostStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro 
+  especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+  la clase PostService.
+  - UserResponseDTOStreamSorter: Clase encargada de contener las funciones necesarias para comparar y devolverlas según el parámetro
+    especificado. De esta manera validamos que la entrada sea correcta y separamos la responsabilidad de validación de
+    la clase UserService.
 
 - **Utils/Validator**
-   - **Validator/Post**
+  - **Validator/Post**
       - _PostSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
         los orders que pasaremos por parámetro en las US0003, US0004, US0006 y US0009
       - _UserResponseSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
         en caso de que el valor pasado por parámetro sea invalido.
-   - **Validator/userResponse**
-      - _UserResponseSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
-        los orders que pasaremos por parámetro en las US0006 y US0009
-      - _PostSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
-        en caso de que el valor pasado por parámetro sea invalido.
-- _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En
-  este método se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
+  - **Validator/userResponse**
+    - _UserResponseSortValidator_: Clase que, al igual que @Valid, nos ayuda a chequer el valor de entrada por parámetro en los
+      los orders que pasaremos por parámetro en las US0006 y US0009
+    - _PostSorterConstraint_: Clase que construye el validador expresado anteriormente y también setea el mensaje
+      en caso de que el valor pasado por parámetro sea invalido.
+- _LoadExampleData_: Es la encargada, a través de una anotación @EventListener, detectar de eventos de la aplicación. En 
+este método se inicializan algunos usuarios, categorías, productos y posts en nuestras "base de datos" dentro de los Repository.
 
 
 # 📌 _Endpoints_ 📌
+
 ____
 
 #### US 0001: Poder realizar la acción de “Follow” (seguir) a un determinado vendedor
@@ -568,9 +557,9 @@ ____
 
 | TEST   | Desarrollador                                           |
 |--------|---------------------------------------------------------|
-| T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)      |
-| T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
-| T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
+ | T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)      |
+ | T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
+ | T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
 
 * _userServiceTest_:
 
@@ -582,15 +571,48 @@ ____
 | T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)        |
 | T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)                    |
 
+### Service
+
+* _PostServiceTest_:
+
+| TEST   | Desarrollador                                           |
+|--------|---------------------------------------------------------|
+| T-0006 | [Alejandra Espindola](https://github.com/ale-espindola) |
+| T-0008 | [Lorenzo Pedro Podio](https://github.com/lpodio)        |
+
+* _userServiceTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0001 | [Federico Javier Veron](https://github.com/fedeveron)         |
+| T-0002 | [Francisco Liz Mardones](https://github.com/FranLizMeli)      |
+| T-0004 | [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli)  |
+| T-0007 | [Emanuel Fonseca](https://github.com/Emanoide47)              |
+
+### Validator
+
+* _UserValidatorTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0003 | [Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete) |
+
+
+* _PostSortValidatorTest_:
+
+| TEST   | Descripción/Ejemplo                                           |
+|--------|---------------------------------------------------------------|
+| T-0005 | [Franciso Idalgo](https://github.com/franidalgoml)     |
+
 * Test/Util
-   - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
-     creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
-     los test, solo sean encargados de testear los métodos.
+  - _UtilsTest_: Clase que se encarga de la creación de usuarios. Seguimiento entre usuarios creados, creación de productos,
+  creación de post y objetos. Esto quita la responsabilidad o conocimiento de creación de estos objetos a los test para que,
+  los test, solo sean encargados de testear los métodos.
 * Validator
-   - _PostSortValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
-     validador creado que se mencionó anteriormente.
-   - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
-     validador creado que se mencionó anteriormente.
+  - _PostSortValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+  validador creado que se mencionó anteriormente.
+  - _UserValidatorTest_: Se realizan los test para poder corroboran las correctas validaciones, unitariamente, del
+    validador creado que se mencionó anteriormente.
 
 ### 🛎 Creación de validaciones y colección de postman 🛎
 Fue desarrollado por:
@@ -600,13 +622,14 @@ _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), [Alejandra
 
 Las validaciones realizadas fueron sobre la creación de un nuevo post verificando:
 + Que el user_id no este vacío.
-+ Que no tenga un product_id.
++ Que no tenga un post_id.
 + Que no tenga fecha.
 + Que el tipo de la colección no supere una longitud máx. de 40 caracteres.
 + Que el precio máximo no supere los 10.000.000
 
 No se realizan todos las validaciones de todos los atributos, ya que se entiende que muchas de las validaciones
 son la misma implementación, sin cambios, en otros objetos y atributos.
+
 ____
 # 🇨🇱🇺🇾🇦🇷 _Miembros del equipo N°2_ 🇨🇱🇺🇾🇦🇷
 ____
@@ -638,11 +661,11 @@ ____
 
 ## ✅ Correcciones Sprint 1 ✅
 - Se realizan correcciones de feedback dada por la cátedra según el desarrollo del Sprint 1.
-  Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete),
-  [Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron),
-  [Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
-  [Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml),
-  [Emanuel Fonseca](https://github.com/Emanoide47)._
+Se realiza el día 13/01/2023 por: _[Diego Fernando Alderete](https://github.com/DiegoFernandoAlderete), 
+[Alejandra Espindola](https://github.com/ale-espindola), [Federico Javier Veron](https://github.com/fedeveron), 
+[Flavio Ambroggio](https://github.com/flavio-ambroggio-meli), [Francisco Liz Mardones](https://github.com/FranLizMeli),
+[Lorenzo Pedro Podio](https://github.com/lpodio), [Franciso Idalgo](https://github.com/franidalgoml), 
+[Emanuel Fonseca](https://github.com/Emanoide47)._
 
-- Cambio de variables static dentro de las variables _currentId_, ya que afectaban al correr los test de integración de
+- Cambio de variables static dentro de las variables _currentId_, ya que afectaban al correr los test de integración de 
   forma grupal, dentro de todas las clases de repositorios.
