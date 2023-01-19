@@ -1,0 +1,11 @@
+use empresa_internet;
+-- select * from Cliente;
+-- select * from Cliente where dni = "17671173-6";
+-- select * from Cliente where nombre = "armando2";
+-- select * from Cliente where apellido = "burdiles" and nombre = "armando";
+-- select * from Cliente where fechaNacimiento between "1990-09-14 00:00:00" and "1995-09-14 00:00:00" and ciudad = "santiago" and provincia = "pudahuel";
+-- select nombrePlan as nombre from PlanInternet where precio >=16000 and precio <=27000;
+-- select precio from PlanInternet where nombrePlan = "full";
+-- select nombrePlan, precio from PlanInternet where velocidadMB >=400;
+-- select avg(precio) as precioIntermedio from PlanInternet;
+-- select count(*) from PlanInternet;
