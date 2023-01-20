@@ -15,7 +15,12 @@ select series.title, MAX(number) from series left join seasons on seasons.serie_
 
 select name, COUNT(*) as peliculas from genres join movies on movies.genre_id = genres.id group by name having peliculas >= 3;
 
-select distinct first_name as nombre, last_name as apellido from actors 
-join actor_movie 
-join movies on movies.title like '%la guerra de las galaxias%' group by actors.id;
+select distinct first_name as nombre, last_name as apellido from movies inner join actor_movie on movies.id = actor_movie.movie_id inner join 
+actors on actors.id = actor_movie.actor_id where movies.title like '%la guerra de las galaxias%' group by actors.id, first_name, last_name
+having count(movies.id) = (select count(movies.id) from movies where movies.title like '%la guerra de las galaxias%');
+
+ -- Mejoro la query anterior
+SELECT DISTINCT act.first_name, act.last_name FROM actors AS act JOIN actor_movie AS act_mov JOIN movies AS mo ON 
+(act.id = act_mov.actor_id AND act_mov.movie_id = mo.id AND mo.title LIKE "%La guerra de las galaxias%");
+
 
