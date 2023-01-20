@@ -69,9 +69,17 @@ La [siguiente presentación](Material/Bases_de_Datos_Relacionales-7.Tablas_Tempo
 
 [Resolución](Prácticas/RDB-Consultas_Avanzadas_SQL-P1-Peliculas/rdb-consultas_avanzadas_sql-p1-movies-queries.sql)
 
+#### Práctica 2. Empleados
+
+[Propuesta](Prácticas/RDB-Consultas_Avanzadas_SQL-P2-Empleados/RDB-Consultas_Avanzadas_SQL-P2-Empleados.pdf)
+
+[Archivos](Prácticas/RDB-Consultas_Avanzadas_SQL-P2-Empleados/rdb-p2-employees-data.sql)
+
+[Resolución](Prácticas/RDB-Consultas_Avanzadas_SQL-P2-Empleados/rdb-consultas_avanzadas_sql-p2-empleados-queries.sql)
+
 #### Práctica 3. Biblioteca
 
-[Propuesta](Prácticas/RDB-Consultas_Avanzadas_SQL-P3-Biblioteca/Consultas_Avanzadas_SQL-P3-Biblioteca.pdf)
+[Propuesta](Prácticas/RDB-Consultas_Avanzadas_SQL-P3-Biblioteca/RDB-Consultas_Avanzadas_SQL-P3-Biblioteca.pdf)
 
 [Datos](Prácticas/RDB-Consultas_Avanzadas_SQL-P3-Biblioteca/rdb-consultas_avanzadas_sql-p3-biblioteca-data.sql)
 
