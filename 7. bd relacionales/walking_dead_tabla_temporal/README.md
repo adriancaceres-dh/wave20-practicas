@@ -1,3 +1,5 @@
+## Ejercicio 1 - Tablas temporales
+
 - Con la base de datos “movies”, se propone crear una tabla temporal llamada “TWD” y guardar en la misma los episodios
   de todas las temporadas de “The Walking Dead”.
 - Realizar una consulta a la tabla temporal para ver los episodios de la primera temporada.
