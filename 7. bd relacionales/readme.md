@@ -24,13 +24,25 @@ El [siguiente documento](Material/Bases_de_Datos_Relacionales-2.Sentencias_SQL_I
 #### Consultas SQL
 La [siguiente presentación](Material/Bases_de_Datos_Relacionales-3.Consultas_SQL.pdf) desarrolla la sentencia SELECT utilizada para realizar consultas a una base de datos en SQL, junto con las cláusulas básicas que esta admite.
 
+#### GROUP BY y HAVING
+La [siguiente presentación](Material/Bases_de_Datos_Relacionales-4.Agrupamiento.pdf) desarrolla el funcionamiento de las sentencias GROUP BY y HAVING.
+
+#### Subconsultas
+La [siguiente presentación](Material/Bases_de_Datos_Relacionales-5.Subconsultas.pdf) ejemplifica el uso de subconsultas en una consulta SQL.
+
 ### Optimización de Bases de Datos
 
 #### Normalización
-El [siguiente documento](Material/Bases_de_Datos_Relacionales-6.Normalización.pdf) estudia el proceso de normalización de una base de datos para mejorar la organización de los datos y optimizar su rendimiento.
+El [siguiente documento](Material/Bases_de_Datos_Relacionales-6.Normalización.pdf) estudia el proceso de normalización de una base de datos para mejorar la organización de los datos y optimizar su rendimiento. 
+
+#### Tablas Temporales e Índices
+La [siguiente presentación](Material/Bases_de_Datos_Relacionales-7.Tablas_Temporales_Indices.pdf) introduce los usos de tablas temporales e índices, para mejorar la performance de una base de datos.
 
 ### Referencias Externas
-1. Visual JOIN  
+1. MySQL 8.0 Reference Manual
+
+   https://dev.mysql.com/doc/refman/8.0/en/
+2. Visual JOIN  
    Understand how joins work by interacting and see it visually
 
    https://joins.spathon.com/
@@ -43,11 +55,19 @@ El [siguiente documento](Material/Bases_de_Datos_Relacionales-6.Normalización.p
 
 [Propuesta](Prácticas/RDB-Consultas_SQL-P1-Peliculas/Consultas_SQL-P1-Peliculas.pdf)
 
-[Archivos](Archivos/15.%20movies-db.sql)
+[Archivos](Prácticas/RDB-Consultas_SQL-P1-Peliculas/15.%20movies-db.sql)
 
-[Resolución](Archivos/rdb-consultas_sql-p1-movies.sql)
+[Resolución](Prácticas/RDB-Consultas_SQL-P1-Peliculas/rdb-consultas_sql-p1-movies.sql)
 
 ### Consultas Avanzadas SQL
+
+#### Práctica 1. Películas
+
+[Propuesta](Prácticas/RDB-Consultas_Avanzadas_SQL-P1-Peliculas/RDB-Consultas_Avanzadas_SQL-P1-Peliculas.pdf)
+
+[Archivos](Prácticas/RDB-Consultas_Avanzadas_SQL-P1-Peliculas/4.%20b.%20movies-db.sql)
+
+[Resolución](Prácticas/RDB-Consultas_Avanzadas_SQL-P1-Peliculas/rdb-consultas_avanzadas_sql-p1-movies-queries.sql)
 
 #### Práctica 3. Biblioteca
 
