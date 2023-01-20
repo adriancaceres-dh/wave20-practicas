@@ -22,4 +22,4 @@
 
 - [🎥 Ejercicio de queries a _movies_db_ indices](movies_index)
 
-- [🎥 Ejercicio de queries a _movies_db_](movies_advanced_3)
+- [🎥 Ejercicio de queries avanzadas a _movies_db_](movies_advanced_3)
