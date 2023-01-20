@@ -1,4 +1,5 @@
-package com.bootcamp.be_java_hisp_w20_g7.service;
+package com.bootcamp.be_java_hisp_w20_g7.controllers;
+
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,22 +22,20 @@ public class IntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    /*
 
     @Test
-    public void testFollowOutput() throws Exception {
+    public void testFollowOutputOK() throws Exception {
+        // Respuesta satisfactoria al hacer Follow correctamente
+        String expectResult = "User has been followed succesfully";
+
+
         MvcResult mvcResult =
-                this.mockMvc.perform(MockMvcRequestBuilders.get("/sayHello"))
+                this.mockMvc.perform(MockMvcRequestBuilders.post("/users/{id}/follow/{idToFollow}", 3, 4))
                         .andDo(print()).andExpect(status().isOk())
-                        .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World!"))
+                        .andExpect(MockMvcResultMatchers.jsonPath("$").value("User has been followed succesfully"))
                         .andReturn();
 
-        Assertions.assertEquals("application/json", mvcResult.getResponse().getContentType());
+        Assertions.assertEquals(expectResult, mvcResult.getResponse().getContentAsString());
 
     }
-
-    
-     */
-
-
 }
