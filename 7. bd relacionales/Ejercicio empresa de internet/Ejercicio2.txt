@@ -1,0 +1,13 @@
+Respuestas del ejercicio 2:
+
+a. Utilizando unicamente los requerimientos entregados, la primary key sería el 
+DNI ya que es un dato que por naturaleza es único e irrepetible, pero se recomienda
+crear un ID de uso interno de la empresa para la bd.
+
+b. Para la tabla de planes de internet nos entregan en los requisitos una identificación del plan
+así que la tomaremos como primary key, ya que estaba está modelada como un entero autoincremental
+que no se podrá repetir en ningún momento.
+
+c. Ya que cada cliente posee un plan, pero el mismo plan puede ser contratado por
+muchos clientes, la relación es de 1:n, en este caso usamos como foreign key el id del plan de internet
+en la tabla de cliente, ya que es quienes deben poder relacionarse con los paquetes ya existentes en la bd 
