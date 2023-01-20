@@ -130,7 +130,7 @@ SocialMeli contaba anteriormente con las siguientes User Stories y requerimiento
 
 ##  
 #### B. Tests de Integración:
-*Nota: No alcance a termirar el test de integración individual, sigo trabandolo.
 
+| `T-0009` | `Verifica poder realizar la acción de “Follow” (seguir) a un determinado vendedor (US-0001)` | Verifica que un usuario pueda seguir a otro usuario de forma exitosa |Ronald Esteban Rosero Montana|
 
 #### Agradecimientos: A nuestra queridisima Scrum Master Johanna Tabella ❤️  por apoyo incondicional y a nuestros instructores Martin y Adrian por compartir su conocimiento!! 
