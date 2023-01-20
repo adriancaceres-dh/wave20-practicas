@@ -5,7 +5,7 @@
 CREATE INDEX actors_name_index
     ON actors (first_name, last_name);
 ~~~~
-
+```
 +-------------------+--------------+------+-----+---------+----------------+
 | Field             | Type         | Null | Key | Default | Extra          |
 +-------------------+--------------+------+-----+---------+----------------+
@@ -17,6 +17,7 @@ CREATE INDEX actors_name_index
 | rating            | decimal(3,1) | YES  |     | <null>  |                |
 | favorite_movie_id | int unsigned | YES  | MUL | <null>  |                |
 +-------------------+--------------+------+-----+---------+----------------+
+```
 
 - Analizar por qué crearía un índice en la tabla indicada y con qué criterio se elige/n el/los campos.
 
