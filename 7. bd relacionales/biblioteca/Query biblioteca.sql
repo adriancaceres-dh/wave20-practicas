@@ -1,0 +1,4 @@
+-- SELECT nombre, edad FROM biblioteca.Estudiante order by edad asc limit 1;  -- 11
+-- select l.* from Libro l inner join LibroAutor la on l.idLibro = la.idLibro inner join Autor a on a.idAutor = la.idAutor where a.nombre = "J.K. Rowling"; -- 13
+-- select nombre from Estudiante e where e.apellido like "G%" -- 8
+-- select * from Estudiante where edad > (select avg(edad) from Estudiante) --7
