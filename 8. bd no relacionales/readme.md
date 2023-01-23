@@ -44,9 +44,6 @@ GET employee/_search?q=firstname:(>= Meriel)
 
 ## Filtrar por fecha 
 ```
-```
-```
-
 GET employee/_search
 {
   "query": {
