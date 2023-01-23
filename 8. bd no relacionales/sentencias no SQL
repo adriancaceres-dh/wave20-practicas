@@ -1,3 +1,58 @@
+# Devuelve todos los datos de los documentos del index
+GET employees/_search?size=1000
+{
+  "query": {
+    "match_all": {
+    }
+  }
+}
+
+GET employeesdata/_search?q="Janenna"
+
+GET employeesdata/_search?q=firstname: Janenna OR lastname: Leonard
+
+GET employeesdata/_search?q=firstname:(>=Meriel)
+
+GET employeesdata/_search?q=id:(>=500 AND <=510)
+
+
+# GTE (GREATER THAN EQUALS) >=
+# GT (GREATER THAN) >
+# LTE (LESS THAN EQUALS) <=
+# LT (LESS THAN) <
+GET employeesdata/_search
+{
+  "query": {
+    "bool": {
+     "must_not": [
+        {
+          "range": {
+            "birthdate": {
+              "gte": "1998-02-05",
+              "lte": "2002-02-05"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET employeesdata/_search
+{
+  "query":{
+    "multi_match": {
+      "query": "Jean",
+      "fields": ["firstname", "lastname"]
+    }
+  }
+}
+
+
+# Must not - NADA DEBE CUMPLIRSE
+# Must - EQUIVALENTE AL AND
+# Should - EQUIVALENTE AL OR
+
 GET employeesdata/_search
 {
   "query":{
@@ -83,3 +138,100 @@ GET employeesdata/_search
         }
     }
 }
+
+
+
+#CRUD DE ELASTIC
+
+# POST -- INSERT, UPDATE Y DELETE DE DOCUMENTOS
+
+POST employeesdata/_doc
+{
+  "profession": "doctor",
+  "email2": "Jean.Rudolph@gmail.com",
+  "firstname": "Jean",
+  "birthdate": "1963-03-16",
+  "id": 1071,
+  "email": "Jean.Rudolph@yopmail.com",
+  "lastname": "Rudolph",
+  "telefono" : 4444000
+}
+
+
+POST employeesdata/_doc/AAAAAAAAAA
+{
+  "profession": "doctor",
+  "email2": "Jean.Rudolph@gmail.com",
+  "firstname": "Jean",
+  "birthdate": "1963-03-16",
+  "id": 1071,
+  "email": "Jean.Rudolph@yopmail.com",
+  "lastname": "Rudolph",
+  "telefono" : 4444000
+}
+
+POST employeesdata/_doc/AAAAAAAAAA
+{
+  "query":{
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "firstname": "Jean"
+          }
+        }
+      ]
+    }
+  },
+  "script": {
+    "source": "ctx._source['firstname'] = 'Franco';ctx._source['lastname'] = 'Cardo'",
+    "lang": "painless"
+  }
+}
+
+
+POST employeesdata/_delete_by_query
+{
+  "query":{
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "firstname": "Franco"
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET employeesdata/_search?q=Janenna
+
+# PUT -- UPDATE DE DOCUMENTOS
+
+PUT employeesdata/_doc/AAAAAAAAAA
+{
+  "profession": "doctor",
+  "email2": "Jean.Rudolph@gmail.com",
+  "firstname": "Jean",
+  "birthdate": "1963-03-16",
+  "id": 1071,
+  "email": "Jean.Rudolph@yopmail.com",
+  "lastname": "Rudolph",
+  "telefono" : 4444000
+}
+
+# DELETE -- DELETE DE DOCUMENTOS
+
+DELETE employeesdata/_doc/AAAAAAAAAA
+
+# ESTA REQUEST ME PERMITE HACER CREATION, UPDATE OR DELETETION AL MISMO TIEMPO
+POST /_bulk
+{"create": { "_index": "employeesdata"}}
+{"profession": "programador","email2": "Janenna.Cullin@gmail.com","firstname": "Janenna1","birthdate": "1917-03-21","@timestamp": "1917-03-21T00:00:00.000-04:16","id": 936,"email": "Janenna.Cullin@yopmail.com","lastname": "Cullin"}
+{"create": { "_index": "employeesdata"}}
+{"profession": "programador","email2": "Janenna.Cullin@gmail.com","firstname": "Janenna2","birthdate": "1917-03-21","@timestamp": "1917-03-21T00:00:00.000-04:16","id": 936,"email": "Janenna.Cullin@yopmail.com","lastname": "Cullin"}
+{"create": { "_index": "employeesdata"}}
+{"profession": "programador","email2": "Janenna.Cullin@gmail.com","firstname": "Janenna3","birthdate": "1917-03-21","@timestamp": "1917-03-21T00:00:00.000-04:16","id": 936,"email": "Janenna.Cullin@yopmail.com","lastname": "Cullin"}
+{"create": { "_index": "employeesdata"}}
+{"profession": "programador","email2": "Janenna.Cullin@gmail.com","firstname": "Janenna4","birthdate": "1917-03-21","@timestamp": "1917-03-21T00:00:00.000-04:16","id": 936,"email": "Janenna.Cullin@yopmail.com","lastname": "Cullin"}
