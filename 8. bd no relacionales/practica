@@ -1,0 +1,85 @@
+GET employeesdata/_search
+{
+  "query":{
+    "bool": {
+      "should": [
+        {
+          "term": {
+            "firstname": {
+              "value": "Janenna"
+            }
+          }
+        },
+        {
+          "term": {
+            "lastname": {
+              "value": "Leonard"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET employeesdata/_search
+{
+  "query":{
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "firstname": {
+              "value": "Janenna"
+            }
+          }
+        },
+        {
+          "term": {
+            "lastname": {
+              "value": "Leonard"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET employeesdata/_search
+{
+    "query": {
+        "bool": {
+            "should": [
+                {
+                    "bool": {
+                        "must": [
+                            {
+                                "term": {
+                                    "firstname": {
+                                        "value": "Janenna"
+                                    }
+                                }
+                            },
+                            {
+                                "term": {
+                                    "lastname": {
+                                        "value": "Leonard"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                  "term": {
+                    "firstname": {
+                      "value": "Jean"
+                    }
+                  }
+                }
+            ]
+        }
+    }
+}
