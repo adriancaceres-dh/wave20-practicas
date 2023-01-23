@@ -1,0 +1,141 @@
+# Devuelve todos los datos del index
+GET employees/_search
+{
+  "query": {
+    "match_all": {
+      }
+  }
+}
+
+# Devuelve todos los datos del index limitando la cantidad
+GET employees/_search?size=10
+{
+  "query": {
+    "match_all": {
+      }
+  }
+}
+
+# Buscar un valor en todos los campos con coicidencia exacta
+GET employees/_search?q=Janenna
+
+# Buscar un valor especifico que coincida con los campos firstname y lastname
+GET employees/_search?q=firstname:Janenna AND lastname: Nance
+
+# Buscar un valor especifico que coincida con los campos firstname or lastname
+GET employees/_search?q=firstname:Janenna OR lastname: Leonard
+
+# Buscar los documentos con id en un rango
+GET employees/_search?q=id:(>500 AND <=510)
+
+# Consulta para filtrar los documentos en un rango del campo birthdate
+GET employees/_search
+{
+  "query":
+  {
+    "bool": {
+      "filter":
+        {
+        "range": {
+          "birthdate": {
+            "gte": "1998-02-05",
+            "lte": "2001-02-05"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+# Buscar un valor dentro de los campos seleccionados
+GET employees/_search
+{
+  "query":
+  {
+    "multi_match": {
+      "query": "Jean",
+      "fields": ["firstname", "lastname"]
+    }
+  }
+}
+
+# Should - equivalente al OR
+GET employees/_search
+{
+  "query":
+  {
+   "bool": {
+     "should": [
+       {
+         "term": {
+           "firstname": {
+             "value": "Janenna"
+           }
+         }
+       }, 
+       {
+         "term": {
+           "lastname": {
+             "value": "Leonard"
+           }
+         }
+       }
+     ]
+   }
+  }
+}
+
+# Must - equivalente al AND
+GET employees/_search
+{
+  "query":
+  {
+   "bool": {
+     "must": [
+       {
+         "term": {
+           "firstname": {
+             "value": "Janenna"
+           }
+         }
+       }, 
+       {
+         "term": {
+           "lastname": {
+             "value": "Leonard"
+           }
+         }
+       }
+     ]
+   }
+  }
+}
+
+# Must no - no se cumple ninguna de las condiciones
+GET employees/_search
+{
+  "query":
+  {
+   "bool": {
+     "must_not": [
+       {
+         "term": {
+           "firstname": {
+             "value": "Janenna"
+           }
+         }
+       }, 
+       {
+         "term": {
+           "lastname": {
+             "value": "Leonard"
+           }
+         }
+       }
+     ]
+   }
+  }
+}
+
+
