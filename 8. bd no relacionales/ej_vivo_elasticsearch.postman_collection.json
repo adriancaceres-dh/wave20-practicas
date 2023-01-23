@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "29f49298-5b5b-494b-95b1-24385aa6f9e7",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/employees/_search?q=\"Janenna\"",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"employees",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "\"Janenna\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/employees/_search?q=firstname: Janenna OR lastname: Leonard",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"employees",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "firstname: Janenna OR lastname: Leonard"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/employees/_search?q=id:(>=500 AND <=510)",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"employees",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "id:(>=500 AND <=510)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/employees/_search?q=firstname:(>Meriel)",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"employees",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "firstname:(>Meriel)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"filter\": {\n                \"range\": {\n                    \"birthdate\": {\n                        \"gte\": \"1998-02-05\",\n                        \"lte\": \"2001-02-05\"\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/employees/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"employees",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\" :{\n\t\t\"bool\":{\n\t\t\t\"filter\":{\n\t\t\t\t\"term\":{\n\t\t\t\t\t\"firstname\":\"Jean\"\n\t\t\t\t}\n\t\t\t}\t\n\t\t}\n\t\t\n\t},\n\t\"script\": {\n\t\"source\": \"ctx._source['firstname'] = 'Franco'\", \n    \"lang\": \"painless\"\n\t}\t\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/employees/_doc/insert_by_query",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"employees",
+						"_doc",
+						"insert_by_query"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
