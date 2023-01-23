@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "a94ffbc6-59b4-4af1-a040-3b375f8dab7a",
+		"name": "postman_elastic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25033833"
+	},
+	"item": [
+		{
+			"name": "add index",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mappings\":{\n    \"properties\":{\n        \"marca\": {\n            \"type\": \"text\"\n        },\n        \"talle\": {\n            \"type\": \"integer\"\n        },\n        \"precio\": {\n            \"type\": \"double\"\n        }\n    }\n}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/zapatillasDeportivas",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"zapatillasDeportivas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add 20 shoes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\":{\n        \"marca\":\"patito\",\n        \"talle\":35,\n        \"precio\":1000.0\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/zapatillas_deportivas/_doc",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"zapatillas_deportivas",
+						"_doc"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
