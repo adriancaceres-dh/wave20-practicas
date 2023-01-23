@@ -13,6 +13,8 @@ Estas apliaciones se pueden descargar gratuitamente en https://dev.mysql.com/dow
 
 ## Material de Referencia
 
+### _© 2023 Digital House_
+
 ### Introducción
 La [siguiente presentación](Material/Bases_de_Datos_Relacionales-1.Introduccion.pdf) explica brevemente las nociones básicas de Bases de Datos.
 
