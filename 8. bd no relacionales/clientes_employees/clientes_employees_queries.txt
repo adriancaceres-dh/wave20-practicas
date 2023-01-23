@@ -1,0 +1,226 @@
+# PRÁCTICA CLIENTES
+
+GET clientes/_search
+{
+  "query": {
+    "match": {
+      "pais": "IT"
+    }
+  }
+}
+
+# PRÁCTICA EMPLOYEES
+
+# Buscar todo
+GET employees/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# Buscar en todos los campos
+GET employees/_search?q="Janenna"
+
+# AND
+GET employees/_search?q=firstname: Janenna AND lastname: Nance
+
+# OR
+GET employees/_search?q=firstname: Janenna, lastname: Leonard
+
+# Mayor a
+GET employees/_search?q=firstname: (>=Meriel)
+
+# Rango
+GET employees/_search?q=id: (>=500 AND <=510)
+
+# "gte" -> greater than equals (>=)
+# "gt" -> greater than (>)
+# "lte" -> less than equals (<=)
+# "lt" -> less than (<)
+GET employees/_search
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "birthdate": {
+              "gte": "1998-02-05",
+              "lte": "2001-02-05"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+# Filtro negado
+# "must_not" -> Nada debe cumplirse
+GET employees/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        {
+          "range": {
+            "birthdate": {
+              "gte": "1998-02-05",
+              "lte": "2001-02-05"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+# Multi-match query
+# Case sensitive
+GET employees/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Janenna",
+      "fields": ["firstname", "lastname", "email"]
+    }
+  }
+}
+
+# "must" -> Equivalente a AND
+GET employees/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "firstname": {
+              "value": "Janenna"
+            }
+          }
+        },
+        {
+          "term": {
+            "lastname": {
+              "value": "Leonard"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+# "should" -> Equivalente a OR
+GET employees/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "term": {
+            "firstname": {
+              "value": "Janenna"
+            }
+          }
+        },
+        {
+          "term": {
+            "lastname": {
+              "value": "Leonard"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+# CRUD Elasticsearch
+
+# POST -> insert, update y delete de documentos
+# Se crea automáticamente el "_id" en una operación extra
+POST employees/_doc
+{
+  "profession": "doctor",
+  "firstname": "Janenna",
+  "birthdate": "1999-03-02",
+  "lastname": "Parker",
+  "email2": "Janenna.Parker@gmail.com",
+  "id": 1234567,
+  "email": "Janenna.Parker@yopmail.com"
+}
+# Crear con un "_id" específico o actualizar un registro existente
+POST employees/_doc/new_or_existing_id
+{
+  "profession": "doctor",
+  "firstname": "Janenna",
+  "birthdate": "1999-03-02",
+  "lastname": "Parker",
+  "email2": "Janenna.Parker@gmail.com",
+  "id": 1234567,
+  "email": "Janenna.Parker@yopmail.com"
+}
+# Update documents by query
+# Se usa el contexto (ctx) para poder usar los resultados de la query
+# "_source" -> cada elemento del contexto
+POST employees/_update_by_query
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "firstname": "Mariel"
+          }
+        }
+      ]
+    },
+    "script": {
+      "source": "ctx._source['firstname'] = 'Martha'; ctx._source['lastname'] = 'Flores'",
+      "lang": "painless"
+    }
+  }
+}
+# Delete documents by query
+POST employees/_delete_by_query
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "firstname": "Mariel"
+          }
+        }
+      ]
+    }
+  }
+}
+# Cambiar varios documentos en una query
+# Se puede usar "create", "update" y "delete"
+# Cada documento debe ir en una sola línea
+POST employees/_bulk
+{ "create": { "_index": "employees" } }
+{ "profession": "Programmer", "firstname": "Something", "lastname": "SomethingLastName" }
+{ "profession": "Worker", "firstname": "Something2", "lastname": "Something2LastName" }
+
+
+# PUT -> update de documentos
+# Se pasa el "_id" existente en el endpoint
+# Si el "_id" no existe, se crea un nuevo documento, y después se actualiza
+PUT employees/_doc/existing_id
+{
+  "profession": "doctor",
+  "firstname": "Janenna",
+  "birthdate": "1999-03-02",
+  "lastname": "Parker",
+  "email2": "Janenna.Parker@gmail.com",
+  "id": 1234567,
+  "email": "Janenna.Parker@yopmail.com"
+}
+
+# DELETE -> delete de documentos
+DELETE employees/_doc/existing_id
