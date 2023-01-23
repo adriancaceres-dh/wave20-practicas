@@ -9,8 +9,7 @@ CREATE TEMPORARY TABLE twd (
     release_date DATETIME NOT NULL,
     rating DECIMAL(3,1)
     );
-    
-drop table twd;
+
 
 INSERT INTO twd (title, season, number, release_date, rating)
 SELECT e.title, ss.number, e.number, e.release_date, e.rating FROM episodes e
