@@ -1,0 +1,74 @@
+# Get all sneakers
+GET sneakers/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# Get all models for woman
+GET sneakers/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "gender": {
+              "value": "F"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+# Get all but the running models
+GET sneakers/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        {
+          "term": {
+            "sport": {
+              "value": "Running"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+# Create a new model
+POST sneakers/_doc
+{
+  "gender": "M",
+  "model": "Soccer M10",
+  "id": 21,
+  "brand": "Pirma",
+  "sport": "Soccer"
+}
+
+# Update a model
+PUT sneakers/_doc/2w3434UBRHFjWivG4oM9
+{
+  "sport": "Soccer 7"
+}
+
+# Delete a model
+DELETE sneakers/_doc/2w3434UBRHFjWivG4oM9
+
+
+# PRÁCTICA CLIENTES
+
+GET clientes/_search
+{
+  "query": {
+    "match": {
+      "pais": "IT"
+    }
+  }
+}

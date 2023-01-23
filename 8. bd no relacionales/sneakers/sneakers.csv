@@ -1,0 +1,21 @@
+id,brand,model,gender,sport
+1,Nike,Soccer M1,M,Soccer
+2,Nike,Soccer M2,M,Soccer
+3,Nike,Soccer M3,F,Soccer
+4,Nike,Basket M4,F,Basketball
+5,Nike,Basket M5,F,Basketball
+6,Nike,Basket M6,M,Basketball
+7,Adidas,Gym M1,M,Gym
+8,Adidas,Gym M2,M,Gym
+9,Adidas,Gym M3,F,Gym
+10,Adidas,Gym M4,F,Gym
+11,Adidas,Running M1,M,Running
+12,Adidas,Running M2,F,Running
+13,Puma,Running M3,M,Running
+14,Puma,Running M4,M,Running
+15,Puma,Running M5,F,Running
+16,Puma,Soccer M1,F,Soccer
+17,Puma,Soccer M2,M,Soccer
+18,Under Armour,Soccer M3,M,Soccer
+19,Under Armour,Gym M1,M,Gym
+20,Under Armour,Gym M2,F,Gym
