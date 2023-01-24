@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class JoyaResponseDto {
+public class JoyaDto {
     private String nombre;
     private String material;
     private Integer peso;

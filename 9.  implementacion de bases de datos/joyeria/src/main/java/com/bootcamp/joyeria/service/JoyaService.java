@@ -1,9 +1,10 @@
 package com.bootcamp.joyeria.service;
 
-import com.bootcamp.joyeria.dtos.JoyaResponseDto;
+import com.bootcamp.joyeria.dtos.JoyaDto;
 import com.bootcamp.joyeria.entity.Joya;
 import com.bootcamp.joyeria.repository.JoyaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,19 +17,26 @@ public class JoyaService implements IJoyaService{
         this.joyaRepo = joyaRepo;
     }
 
-    public List<JoyaResponseDto> getJoyas() {
+    @Transactional (readOnly = true)
+    public List<JoyaDto> getJoyas() {
+        List<Joya> joyaList = joyaRepo.findAll();
         return null;
     }
 
-    public void saveJoya(Joya joya) {
-
+    @Transactional
+    public Long saveJoya(Joya joya) {
+        return joyaRepo.save(joya).getNro_identificatorio();
     }
 
+    @Transactional
     public boolean deleteJoya(Long id) {
-        return false;
+        boolean deleted = findJoya(id) != null;
+        joyaRepo.deleteById(id);
+        return deleted;
     }
 
+    @Transactional (readOnly = true)
     public Joya findJoya(Long id) {
-        return null;
+        return joyaRepo.findById(id).orElse(null);
     }
 }
