@@ -15,16 +15,4 @@ public class JoyaRequestDto {
     private String particularidad;
     private Boolean posee_piedra;
     private Boolean ventaONo;
-
-    @Override
-    public String toString() {
-        return "JoyaRequestDto{" +
-                "nombre='" + nombre + '\'' +
-                ", material='" + material + '\'' +
-                ", peso=" + peso +
-                ", particularidad='" + particularidad + '\'' +
-                ", posee_piedra=" + posee_piedra +
-                ", ventaONo=" + ventaONo +
-                '}';
-    }
 }

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageDto {
-    private String msg;
-    private Integer status;
+public class MensajeDto {
+    private String mensaje;
+    private Integer estado;
 }

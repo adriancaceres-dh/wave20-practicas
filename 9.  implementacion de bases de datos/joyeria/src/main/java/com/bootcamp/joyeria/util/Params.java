@@ -10,6 +10,7 @@ public class Params {
             put("JoyaEliminada", "La joya se ha eliminado satisfactoriamente.");
             put("JoyaNoEncontrada", "No se ha encontrado la joya solicitada.");
             put("JoyaCreada", "Se creó la joya satisfactoriamente con id: ");
+            put("JoyaActualizada", "Se actualizó la joya satisfactoriamente.");
         }
     };
 
