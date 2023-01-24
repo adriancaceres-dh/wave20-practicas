@@ -1,14 +1,17 @@
 package com.bootcamp.joyeria.service;
 
-import com.bootcamp.joyeria.dtos.JoyaDto;
+import com.bootcamp.joyeria.dtos.JoyaRequestDto;
+import com.bootcamp.joyeria.dtos.JoyaResponseDto;
+import com.bootcamp.joyeria.dtos.MessageDto;
 import com.bootcamp.joyeria.entity.Joya;
 
 import java.util.List;
 
 public interface IJoyaService {
 
-    List<JoyaDto> getJoyas();
-    Long saveJoya(JoyaDto joyaDto);
-    boolean deleteJoya(Long id);
-    Joya findJoya(Long id);
+    List<JoyaResponseDto> obtenerJoyas();
+    Long guardarJoya(Joya joya);
+    MessageDto eliminarJoya(Long id);
+    Joya buscarJoya(Long id);
+    MessageDto crearJoya(JoyaRequestDto joyaDto);
 }
