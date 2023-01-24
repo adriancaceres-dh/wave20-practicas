@@ -14,6 +14,6 @@ public class ActualizaJoyaDto extends MensajeDto {
 
     public ActualizaJoyaDto(JoyaResponseDto joyaResponseDto) {
         super(Params.obtenerString("JoyaActualizada"), HttpStatus.OK.value());
-        this.joyaResponseDto = joyaResponseDto;
+        this.joyaActualizada = joyaResponseDto;
     }
 }

@@ -46,11 +46,11 @@ public class JoyaService implements IJoyaService {
         if (joya != null) {
             joya.setVentaONo(false);
             guardarJoya(joya);
-            mensajeDto.setMsg(Params.obtenerString("JoyaEliminada"));
-            mensajeDto.setStatus(HttpStatus.OK.value());
+            mensajeDto.setMensaje(Params.obtenerString("JoyaEliminada"));
+            mensajeDto.setEstado(HttpStatus.OK.value());
         } else {
-            mensajeDto.setMsg(Params.obtenerString("JoyaNoEncontrada"));
-            mensajeDto.setStatus(HttpStatus.NOT_FOUND.value());
+            mensajeDto.setMensaje(Params.obtenerString("JoyaNoEncontrada"));
+            mensajeDto.setEstado(HttpStatus.NOT_FOUND.value());
         }
         return mensajeDto;
     }
