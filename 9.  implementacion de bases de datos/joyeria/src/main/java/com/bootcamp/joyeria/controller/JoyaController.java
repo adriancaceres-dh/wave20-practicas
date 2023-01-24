@@ -7,12 +7,11 @@ import com.bootcamp.joyeria.dto.response.UpdatedJoyaDTO;
 import com.bootcamp.joyeria.service.IJoyaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/jewerly")
 public class JoyaController {
 
