@@ -41,7 +41,7 @@ public class JoyaController {
         return ResponseEntity.status(HttpStatus.OK).body(joyaService.updateJoya(id, joyaDTO));
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<MessageDTO> deleteJoyaById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(joyaService.deleteJoyaById(id));
     }
