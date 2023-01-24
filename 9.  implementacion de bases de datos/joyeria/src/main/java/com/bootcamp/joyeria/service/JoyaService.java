@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JoyaService implements IJoyaService{
@@ -22,8 +23,9 @@ public class JoyaService implements IJoyaService{
 
     @Transactional (readOnly = true)
     public List<JoyaDto> getJoyas() {
-        List<Joya> joyaList = joyaRepo.findAll();
-        return null;
+        return joyaRepo.findAll().stream()
+                .map(joya -> mapper.map(joya, JoyaDto.class))
+                .collect(Collectors.toList());
     }
 
     @Transactional
