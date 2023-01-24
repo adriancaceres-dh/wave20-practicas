@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "f6a8f244-f50f-4c5f-b81f-8d50fc3fac2d",
+		"name": "extra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "jpa.Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\n    \"nombre\":\"lautaro\",\n    \"apellido\":\"walsh\",\n    \"mail\":\"lautaro.walsh.95@gmail.com\",\n    \"edad\":27,\n    \"dni\" : \"39106633\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080",
+					"host": [
+						"localhost"
+					],
+					"port": "8080"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jpa.getById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/id/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"id",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jpa.getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/id/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"id",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jpa.delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
