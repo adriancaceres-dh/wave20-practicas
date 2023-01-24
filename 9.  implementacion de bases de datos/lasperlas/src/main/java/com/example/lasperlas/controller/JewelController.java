@@ -26,8 +26,8 @@ public class JewelController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<JewelResponseDto>> getAllJewels() {
-        return ResponseEntity.ok().body(jewelService.getAllJewels());
+    public ResponseEntity<List<JewelResponseDto>> getAllSellableJewels() {
+        return ResponseEntity.ok().body(jewelService.getAllSellableJewels());
     }
 
     @DeleteMapping("delete/{id}")

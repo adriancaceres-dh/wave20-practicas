@@ -55,7 +55,7 @@ public class JewelServiceImpl implements JewelService {
     }
 
     @Override
-    public List<JewelResponseDto> getAllJewels() {
+    public List<JewelResponseDto> getAllSellableJewels() {
         return jewelRepository.findAll()
                 .stream()
                 .map(j -> modelMapper.map(j, JewelResponseDto.class))

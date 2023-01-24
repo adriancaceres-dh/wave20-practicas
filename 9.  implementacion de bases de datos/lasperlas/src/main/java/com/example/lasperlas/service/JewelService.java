@@ -10,5 +10,5 @@ public interface JewelService {
     JewelOperationResponseDto addJewel(JewelRequestDto jewelRequestDto);
     JewelOperationResponseDto setAsUnsellable(Long id);
     JewelOperationResponseDto updateJewel(Long id, JewelRequestDto jewelRequestDto);
-    List<JewelResponseDto> getAllJewels();
+    List<JewelResponseDto> getAllSellableJewels();
 }
