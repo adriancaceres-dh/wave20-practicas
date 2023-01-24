@@ -3,6 +3,7 @@ package com.bootcamp.joyeria.service;
 import com.bootcamp.joyeria.dtos.JoyaDto;
 import com.bootcamp.joyeria.entity.Joya;
 import com.bootcamp.joyeria.repository.JoyaRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class JoyaService implements IJoyaService{
 
     private final JoyaRepository joyaRepo;
+    private ModelMapper mapper;
 
-    public JoyaService(JoyaRepository joyaRepo) {
+    public JoyaService(JoyaRepository joyaRepo, ModelMapper mapper) {
         this.joyaRepo = joyaRepo;
+        this.mapper = mapper;
     }
 
     @Transactional (readOnly = true)
@@ -24,7 +27,8 @@ public class JoyaService implements IJoyaService{
     }
 
     @Transactional
-    public Long saveJoya(Joya joya) {
+    public Long saveJoya(JoyaDto joyaDto) {
+        Joya joya = mapper.map(joyaDto, Joya.class);
         return joyaRepo.save(joya).getNro_identificatorio();
     }
 

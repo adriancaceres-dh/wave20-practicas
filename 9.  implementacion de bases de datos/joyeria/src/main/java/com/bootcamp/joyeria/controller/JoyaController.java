@@ -17,6 +17,6 @@ public class JoyaController {
 
     @PostMapping("/new")
     public ResponseEntity<String> crearJoya(JoyaDto joyaDto) {
-        return ResponseEntity.ok("Se creó la joya satisfactoriamente con el id: " + crearJoya(joyaDto));
+        return ResponseEntity.ok("Se creó la joya satisfactoriamente con el id: " + joyaService.saveJoya(joyaDto));
     }
 }

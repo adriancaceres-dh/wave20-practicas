@@ -8,7 +8,7 @@ import java.util.List;
 public interface IJoyaService {
 
     List<JoyaDto> getJoyas();
-    Long saveJoya(Joya joya);
+    Long saveJoya(JoyaDto joyaDto);
     boolean deleteJoya(Long id);
     Joya findJoya(Long id);
 }
