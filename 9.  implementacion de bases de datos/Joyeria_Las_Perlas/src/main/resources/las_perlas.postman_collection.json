@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "bf75e26d-f085-4130-ba22-2fdb1903e044",
+		"name": "las_perlas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nro_identificatorio\":12,\n    \"nombre\": \"Emanuel\",\n    \"material\": \"Oro\",\n    \"Peso\": 12.3,\n    \"Particularidad\": \"Exclusivo\",\n    \"posee_piedra\": true,\n    \"ventaONo\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/jewerly/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jewerly",
+						"new"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
