@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a448052e-f2a6-4b33-b1e4-941704cbc9a9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../3. spring/10_ManejoExp_VIVO_blog/8. Ejercicio Manejo de Excepciones.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../3. spring/6_Ejercicios_DTO_Response_deportes/4. Ejercicio integrador_ Detectando deportistas.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../3. spring/7_DTO_response_entity_covid - v1/4. Ejercicio integrador_ Detectando personas de riesgo.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../3. spring/8_Arquitectura_Multicapa_starwars/2. Ejercicio_ Star Wars .docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../3. spring/9_ArqMulti_IoC_DI_calculadoraCalorias/2. Ejercicio_ Calculadora de calorías.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../3. spring/11_excepciones_Book/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -58,7 +58,7 @@ public class IntegrationTestObtenerDiploma {
         musica = new SubjectDTO("Musica", 9.0);
         poo =    new SubjectDTO("POO",    2.0);
 
-        student =new StudentDTO(1L, "Anibal","El alumno Anibal ha obtenido un promedio de 4,00. Puedes mejorar.", 4.0, List.of(kahoot, musica, poo) );
+        student =new StudentDTO(1L, "Anibal","El alumno Anibal ha obtenido un promedio de 4.00. Puedes mejorar.", 4.0, List.of(kahoot, musica, poo) );
 
         if( ! studentDAO.exists( student ) )
             studentDAO.save( student );
