@@ -10,6 +10,6 @@ public interface IUsersService {
     List<Users> findAllUsers();
     Users findUsersById(Integer id);
 
-    String deleteUserById(Integer id);
+    void deleteUserById(Integer id);
 
 }

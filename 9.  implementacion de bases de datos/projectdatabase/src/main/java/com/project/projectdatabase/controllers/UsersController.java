@@ -37,4 +37,10 @@ public class UsersController {
         users = iUsersService.findUsersById(id);
         return new ResponseEntity(users, HttpStatus.OK);
     }
+
+
+    @DeleteMapping("/deleteUser/{id}")
+    public void deleteUser(@PathVariable Integer id){
+        iUsersService.deleteUserById(id);
+    }
 }

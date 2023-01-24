@@ -34,8 +34,7 @@ public class UserService implements IUsersService{
     }
 
     @Override
-    public String deleteUserById(Integer id) {
+    public void deleteUserById(Integer id) {
         iUsersRepository.deleteById(id);
-        return null;
     }
 }
