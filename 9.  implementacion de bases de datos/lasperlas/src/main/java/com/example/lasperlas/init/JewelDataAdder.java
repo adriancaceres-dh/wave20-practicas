@@ -22,7 +22,6 @@ public class JewelDataAdder implements ApplicationRunner {
         for (int i = 0; i < 10; i++) {
             jewelRepository.save(getNewJewel());
         }
-
     }
 
     private Jewel getNewJewel() {
