@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "4054104e-b0ea-46d9-8450-246966a30b8b",
+		"name": "joyeria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "obtener joyas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jewelry/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jewelry",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar joya",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{          \n    \"nombre\" : \"Anillo\",\n\t\"material\": \"platino\",\n\t\"peso\": 500,\n\t\"particularidad\" : \"Forma circular con triángulos\",\n\t\"posee_piedra\" : false,\n\t\"ventaONo\" : true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/jewelry/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jewelry",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar joya",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jewelry/delete/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jewelry",
+						"delete",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar joya",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"material\": \"platino\",\n    \"idNum\": 1,\n    \"nombre\": \"Anillo\",\n    \"peso\": 500.0,\n    \"particularidad\": \"Forma circular con triángulos\",\n    \"posee_piedra\": false,\n    \"ventaONo\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/jewelry/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jewelry",
+						"new"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
