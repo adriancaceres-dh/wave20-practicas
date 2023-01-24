@@ -29,8 +29,13 @@ public class JewelController {
         return new ResponseEntity<>(jewelService.getJewerly(), HttpStatus.OK);
     }
 
-    @PostMapping("/delete/{id}")
-    public ResponseEntity<MessageDTO> deleteJewel(@PathVariable Long id){
+    @PostMapping("/delete{id}")
+    public ResponseEntity<MessageDTO> deleteJewel(@RequestParam Long id){
         return new ResponseEntity<>(jewelService.deleteJewelLogically(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/update{id}")
+    public ResponseEntity<MessageDTO> updateJewel(@RequestParam Long id, @RequestBody JewelRequestDTO jewelRequestDTO){
+        return new ResponseEntity<>(jewelService.updateJewel(id, jewelRequestDTO), HttpStatus.OK);
     }
 }

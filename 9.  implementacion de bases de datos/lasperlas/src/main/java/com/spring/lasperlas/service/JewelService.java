@@ -1,6 +1,5 @@
 package com.spring.lasperlas.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.lasperlas.dto.MessageDTO;
 import com.spring.lasperlas.dto.request.JewelRequestDTO;
 import com.spring.lasperlas.dto.response.JewelListedDTO;
@@ -47,5 +46,14 @@ public class JewelService implements IJewelService{
         jewelToDelete.setForSale(false);
         jewelRepository.save(jewelToDelete);
         return MessageDTO.builder().message("Joya eliminada.").build();
+    }
+
+    @Override
+    public MessageDTO updateJewel(Long id, JewelRequestDTO jewelRequestDTO) {
+        Jewel jewelOnDataBase = jewelRepository.findById(id).orElseThrow(() -> {return new JewelNotFoundException("Joya no encontrada");});
+        Jewel jewelToSave = mapper.map(jewelRequestDTO, Jewel.class);
+        jewelToSave.setId(jewelOnDataBase.getId());
+        jewelRepository.save(jewelToSave);
+        return MessageDTO.builder().message("Joya actualizada correctamente").description(jewelToSave.toString()).build();
     }
 }

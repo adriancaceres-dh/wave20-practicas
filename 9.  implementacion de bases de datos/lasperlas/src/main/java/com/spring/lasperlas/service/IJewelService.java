@@ -10,4 +10,6 @@ public interface IJewelService {
     JewelListedDTO getJewerly();
 
     MessageDTO deleteJewelLogically(Long id);
+
+    MessageDTO updateJewel(Long id, JewelRequestDTO jewelRequestDTO);
 }
