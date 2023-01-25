@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "f9323fb9-9b00-419e-9102-94c0c7a7c7db",
+		"name": "Burami",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25045748"
+	},
+	"item": [
+		{
+			"name": "Actualizar Joya",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"idJoya\" : 1,\n    \"nombre\" : \"Anillo\",\n\t\"material\": \"oro\",\n\t\"peso\": 300,\n\t\"particularidad\" : \"Otra particularidad\",\n\t\"posee_piedra\" : false,\n\t\"ventaONo\" : true\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/jewerly/id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"jewerly",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Joya",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"nombre\" : \"Anillo\",\n\t\"material\": \"oro\",\n\t\"peso\": 300,\n\t\"particularidad\" : \"una Particularidad\",\n\t\"posee_piedra\" : false,\n\t\"ventaONo\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/jewerly/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"jewerly",
+						"new"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
