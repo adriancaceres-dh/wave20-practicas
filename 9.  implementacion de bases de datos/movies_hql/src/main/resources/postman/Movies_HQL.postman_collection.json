@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "e1370445-555d-4943-ba60-460b346d086e",
+		"name": "Movies HQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25120202"
+	},
+	"item": [
+		{
+			"name": "actors",
+			"item": [
+				{
+					"name": "actors-favorite-movie-not-null",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/actors/favorite_movie_not_null",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"favorite_movie_not_null"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actors-rating-greater-than",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/actors/rating/8.8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"rating",
+								"8.8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actors-movie-worked-in",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/actors/movie/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"movie",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "episodes",
+			"item": [
+				{
+					"name": "episodes-actor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/episodes/actor/38",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"episodes",
+								"actor",
+								"38"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "movies-genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movies/genre/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"genre",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movies-actor-count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movies/actor_count/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"actor_count",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "movies-actor-rating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movies/actor_rating/6.0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"actor_rating",
+								"6.0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "series",
+			"item": [
+				{
+					"name": "series-season-count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/series/season_count/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"series",
+								"season_count",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
