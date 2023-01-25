@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "99731e9e-b66f-43d6-84aa-9aa51d843b64",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "newTestCase",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"prueba\",\n    \"passed\": true,\n    \"numberOfTries\": 5,\n    \"lastUpdate\": \"2020/04/03\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/testcases/new"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/testcases"
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/testcases/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"update2\",\n    \"passed\": true,\n    \"numberOfTries\": 5,\n    \"lastUpdate\": \"2021-04-30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/testcases/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/testcases/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Date before date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/testcases/before?last_update=2019-03-04",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testcases",
+						"before"
+					],
+					"query": [
+						{
+							"key": "last_update",
+							"value": "2019-03-04"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "last_update after date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/testcases/after?last_update=2025-03-04",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"testcases",
+						"after"
+					],
+					"query": [
+						{
+							"key": "last_update",
+							"value": "2025-03-04"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
