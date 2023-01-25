@@ -37,13 +37,13 @@ public class TestCaseController {
     }
 
     @GetMapping("/{idn}")
-    public ResponseEntity<TestCaseDTO> getEntityById(@PathVariable Long id){
-        return ResponseEntity.ok(testCaseService.getEntityById(id));
+    public ResponseEntity<TestCaseDTO> getEntityById(@PathVariable Long idn){
+        return ResponseEntity.ok(testCaseService.getEntityById(idn));
     }
 
     @DeleteMapping("/{idnn}")
-    public ResponseEntity<MessageDTO> deleteEntityById(@PathVariable Long id){
-        return ResponseEntity.ok(testCaseService.deleteEntity(id));
+    public ResponseEntity<MessageDTO> deleteEntityById(@PathVariable Long idnn){
+        return ResponseEntity.ok(testCaseService.deleteEntity(idnn));
     }
 
 }
