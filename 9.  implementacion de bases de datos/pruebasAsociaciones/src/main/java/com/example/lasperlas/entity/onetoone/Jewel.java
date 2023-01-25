@@ -1,4 +1,4 @@
-package com.example.lasperlas.entity;
+package com.example.lasperlas.entity.onetoone;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
