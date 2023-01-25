@@ -35,4 +35,14 @@ public class TestCaseController {
         else
             return ResponseEntity.ok(testCaseService.findByUpdateDate(LocalDate.parse(last_update)));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TestCaseDTO> getTestCaseById(@PathVariable Long id) {
+        return ResponseEntity.ok(testCaseService.getEntityById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessageDTO> deleteTestCaseById(@PathVariable Long id) {
+        return ResponseEntity.ok(testCaseService.deleteEntity(id));
+    }
 }
