@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,4 +27,7 @@ public class Invoice {
 
     @ManyToOne
     private Client client;
+
+    @ManyToMany
+    private List<Product> products;
 }

@@ -28,6 +28,9 @@ public class Client {
     @Column(name = "numero_tarjeta", length = 20)
     private String cardNumber;
 
-    @OneToMany
+    @OneToMany(mappedBy = "client")
     private List<Invoice> invoices;
+
+    @OneToOne
+    private Person person;
 }

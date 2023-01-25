@@ -1,5 +1,7 @@
 package com.JPA.demo.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,4 +25,7 @@ public class Product {
 
     @Column(name = "descripcion", length = 255)
     private String description;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Invoice> invoices;
 }

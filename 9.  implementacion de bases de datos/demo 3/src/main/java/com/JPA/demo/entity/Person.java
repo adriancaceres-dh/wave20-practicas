@@ -41,6 +41,6 @@ public class Person {
     @Column(name = "salario", precision = 2)
     private Double salary;
 
-    
+   
 
 }
