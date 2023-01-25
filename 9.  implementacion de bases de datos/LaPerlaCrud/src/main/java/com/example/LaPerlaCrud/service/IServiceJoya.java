@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IServiceJoya {
 
-    JoyaDTO saveJoya(JoyaDTO personDTO);
+    MessageDTO saveJoya(JoyaDTO joyaDTO);
 
-    JoyaDTO getJoyaById(Integer id);
+    JoyaDTO updateJoya(Integer id_modificar,JoyaDTO joyaDTO);
 
     List<JoyaDTO> getAllJoyas();
 
