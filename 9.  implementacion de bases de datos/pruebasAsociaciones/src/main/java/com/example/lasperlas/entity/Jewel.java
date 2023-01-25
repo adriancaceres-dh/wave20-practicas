@@ -31,4 +31,7 @@ public class Jewel {
 
     @Column(name = "can_be_sold")
     private boolean canBeSold;
+
+    @OneToOne(mappedBy = "jewel")
+    private Customer customer;
 }

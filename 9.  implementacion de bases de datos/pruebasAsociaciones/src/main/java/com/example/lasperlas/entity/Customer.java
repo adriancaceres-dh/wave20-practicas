@@ -19,4 +19,8 @@ public class Customer {
     private Long id;
 
     private String name;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "jewel_id", referencedColumnName = "id")
+    private Jewel jewel;
 }
