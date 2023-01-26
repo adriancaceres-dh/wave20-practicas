@@ -2,7 +2,7 @@ package com.bootcamp.clothes_relational.controller;
 
 import com.bootcamp.clothes_relational.dto.common.GarmentDTO;
 import com.bootcamp.clothes_relational.dto.response.MessageDTO;
-import com.bootcamp.clothes_relational.service.IGarmentService;
+import com.bootcamp.clothes_relational.service.garment.IGarmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +47,7 @@ public class GarmentController {
     }
 
     @DeleteMapping("/{code}")
-    ResponseEntity<MessageDTO> deleteGarmentById(@PathVariable Long code) {
+    ResponseEntity<MessageDTO> deleteGarmentByCode(@PathVariable Long code) {
         return ResponseEntity.status(HttpStatus.OK).body(garmentService.deleteById(code));
     }
 }

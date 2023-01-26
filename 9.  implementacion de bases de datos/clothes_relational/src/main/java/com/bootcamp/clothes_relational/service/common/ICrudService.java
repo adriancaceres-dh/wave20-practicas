@@ -1,4 +1,4 @@
-package com.bootcamp.clothes_relational.service;
+package com.bootcamp.clothes_relational.service.common;
 
 import com.bootcamp.clothes_relational.dto.response.MessageDTO;
 

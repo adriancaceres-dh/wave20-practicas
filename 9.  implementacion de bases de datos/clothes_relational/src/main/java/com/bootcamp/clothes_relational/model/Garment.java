@@ -22,7 +22,7 @@ public class Garment {
     private String color;
     @Column(nullable = false)
     private String size;
-    private String quantity;
+    private Integer quantity;
     @Column(nullable = false)
     private Double price;
 }

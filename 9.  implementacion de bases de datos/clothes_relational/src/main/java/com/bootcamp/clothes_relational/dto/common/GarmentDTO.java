@@ -13,6 +13,6 @@ public class GarmentDTO {
     private String brand;
     private String color;
     private String size;
-    private String quantity;
+    private Integer quantity;
     private Double price;
 }
