@@ -1,5 +1,6 @@
 package com.bootcamp.movies.model;
 
+import com.bootcamp.movies.model.intermediate.ActorEpisode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
-import javax.persistence.OneToOne;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,4 +32,6 @@ public class Episode {
     private LocalDateTime endDate;
     @ManyToOne
     private Season season;
+    @OneToMany(mappedBy = "episode")
+    private Set<ActorEpisode> actorEpisodes;
 }

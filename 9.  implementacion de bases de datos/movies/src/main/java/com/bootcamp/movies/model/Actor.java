@@ -1,5 +1,8 @@
 package com.bootcamp.movies.model;
 
+import com.bootcamp.movies.model.intermediate.ActorEpisode;
+import com.bootcamp.movies.model.intermediate.ActorMovie;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -27,4 +31,15 @@ public class Actor {
     private Double rating;
     @ManyToOne
     private Movie favoriteMovie;
+    @OneToMany(mappedBy = "actor")
+    private Set<ActorEpisode> actorEpisodes;
+    @OneToMany(mappedBy = "actor")
+    @JsonManagedReference
+    private Set<ActorMovie> actorMovies;
 }
+
+//@Entity
+//public class Order {
+//    @OneToMany (mappedBy = "order")
+//    private Set<OrderItem> orderItems;
+//}
