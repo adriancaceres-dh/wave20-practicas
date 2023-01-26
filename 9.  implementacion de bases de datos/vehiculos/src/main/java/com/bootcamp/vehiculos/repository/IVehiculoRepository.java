@@ -21,11 +21,13 @@ public interface IVehiculoRepository extends JpaRepository<Vehiculo, Long> {
     List<String> listPatentesOfFourWheeledFromCurrentYear();
 
     @Query("select new com.bootcamp.vehiculos.model.template.PatenteMarcaModelo(v.patente, v.marca, v.modelo)" +
-            "from Siniestro s inner join s.vehiculoDenunciado as v where s.perdidaEconomica > 10000")
+            "from Siniestro s inner join s.vehiculoDenunciado as v where s.perdidaEconomica > 10000" +
+            "group by v.id")
     List<PatenteMarcaModelo> listPatenteMarcaModeloByGranPerdidaEconomica();
 
     @Query("select new com.bootcamp.vehiculos.model.template.VehiculoPerdida(v, sum(s.perdidaEconomica))" +
-            "from Siniestro s inner join s.vehiculoDenunciado as v where s.perdidaEconomica > 10000")
+            "from Siniestro s inner join s.vehiculoDenunciado as v where s.perdidaEconomica > 10000" +
+            "group by v.id")
     List<VehiculoPerdida> listVehiculoPerdida();
 
 }

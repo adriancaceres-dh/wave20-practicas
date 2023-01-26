@@ -1,0 +1,90 @@
+{
+  "info": {
+    "_postman_id": "98dfcb78-b944-4ec9-b61b-6279a12abccf",
+    "name": "Vehiculos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar Patentes",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Patentes y Marcas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{endpoint_vehiculos}}/patente_marca",
+          "host": [
+            "{{endpoint_vehiculos}}"
+          ],
+          "path": [
+            "patente_marca"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear Vehiculo",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"patente\": \"abc123\",\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Etios\",\n    \"anioFabricacion\": 2017,\n    \"cantRuedas\": 4\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{endpoint_vehiculos}}/",
+          "host": [
+            "{{endpoint_vehiculos}}"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Patente de vehiculos nuevos > 4 ruedas",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Patente, marca y modelo de vehículos con Siniestro > 10000",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Vehiculo y suma de siniestros de vehículos con Siniestro > 10000",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "endpoint_vehiculos",
+      "value": "localhost:8080/vehiculos"
+    }
+  ]
+}
