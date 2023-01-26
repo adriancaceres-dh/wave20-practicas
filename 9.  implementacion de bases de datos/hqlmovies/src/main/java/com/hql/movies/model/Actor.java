@@ -2,11 +2,16 @@ package com.hql.movies.model;
 
 import com.hql.movies.model.intermediate.ActorEpisode;
 import com.hql.movies.model.intermediate.ActorMovie;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "actors")
 public class Actor {
