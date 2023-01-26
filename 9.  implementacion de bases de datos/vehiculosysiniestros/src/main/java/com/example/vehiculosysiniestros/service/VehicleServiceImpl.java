@@ -48,7 +48,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public List<VehiclePlateBrandModelResponseDto> asd() {
-        return vehicleRepository.findaaa();
+    public List<VehiclePlateBrandModelResponseDto> getVehiclesThatSufferedExpensiveAccidents() {
+        return vehicleRepository.findVehiclesThatHadExpensiveAccidents();
     }
 }

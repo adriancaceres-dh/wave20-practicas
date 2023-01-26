@@ -42,6 +42,6 @@ public class VehicleController {
     @GetMapping("/expensive-accidents")
     public ResponseEntity<List<VehiclePlateBrandModelResponseDto>> getAllWithExpensiveAccidents() {
         return ResponseEntity.ok()
-                .body(vehicleService.asd());
+                .body(vehicleService.getVehiclesThatSufferedExpensiveAccidents());
     }
 }

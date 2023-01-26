@@ -18,6 +18,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     //Listar la matrícula, marca y modelo de todos los vehículos
     //  que hayan tenido un siniestro con pérdida mayor de 10000 pesos.
     @Query("SELECT new com.example.vehiculosysiniestros.dto.response.VehiclePlateBrandModelResponseDto(a.reportedVehicle.licensePlate, a.reportedVehicle.brand, a.reportedVehicle.model )  FROM Accident a JOIN a.reportedVehicle r WHERE a.economicLoss > 10000")
-    List<VehiclePlateBrandModelResponseDto> findaaa();
+    List<VehiclePlateBrandModelResponseDto> findVehiclesThatHadExpensiveAccidents();
 
 }

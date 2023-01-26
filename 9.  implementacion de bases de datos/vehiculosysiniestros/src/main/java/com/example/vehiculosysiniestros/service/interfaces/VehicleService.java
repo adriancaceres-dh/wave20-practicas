@@ -10,5 +10,5 @@ public interface VehicleService {
     List<VehicleLicensePlateResponseDto> getAllLicensePlates();
     List<VehicleLicenseAndBrandResponseDto> getAllLicenseAndBrandOrderedByFabricationYear();
     List<VehicleLicensePlateResponseDto> getAllLicensePlatesOfVehiclesWithMoreThan4WheelsAndFabricatedThisYear();
-    List<VehiclePlateBrandModelResponseDto> asd();
+    List<VehiclePlateBrandModelResponseDto> getVehiclesThatSufferedExpensiveAccidents();
 }
