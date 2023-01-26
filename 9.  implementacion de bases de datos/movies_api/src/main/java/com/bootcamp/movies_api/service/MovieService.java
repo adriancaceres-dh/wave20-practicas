@@ -31,7 +31,7 @@ public class MovieService {
                 auxmovie.getAwards(),
                 auxmovie.getRelease_date(),
                 auxmovie.getLength(),
-                auxmovie.getGenre().getName(),
+                auxmovie.getGenre()!= null? auxmovie.getGenre().getName() : "NA",
                 castList
             ));
             }
@@ -52,6 +52,7 @@ public class MovieService {
 
     public List<MovieResponseDTO> getMovieWithCastRatingOver(Double rating){
         List<Movie> movieListFromBD = repo.findByCastRatingGreaterThan(rating);
+        System.out.println(movieListFromBD);
         return convertMovieToResponseDTO(movieListFromBD);
     }
     public List<MovieResponseDTO> getMoviesByGenre(String genre){

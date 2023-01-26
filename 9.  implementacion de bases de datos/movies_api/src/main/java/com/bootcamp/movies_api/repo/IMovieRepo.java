@@ -15,11 +15,25 @@ public interface IMovieRepo extends JpaRepository<Movie, Integer> {
 
       Movie findByTitleIs(@Param("title") String title);
 
+      //@Query("from Movie m inner join m.cast a WHERE :rating > a.rating")
+     // @Query("select distinct m from Movie m WHERE :rating < all elements(m.cast.rating)")
+     // @Query("select distinct m from Movie m  join m.cast a WHERE :rating < all elements(a.rating)")
+    //  @Query("select distinct m from Movie m WHERE :rating < all (select a.rating from Movie m2 join m.cast a where m.id = m2.id)")
+      //@Query("from Movie m INNER JOIN m.cast actor WHERE :rating < ALL( select subA.rating from Movie subM INNER JOIN m.cast subA where subM.id = m.id)")
+   /* @Query(value="SELECT m.* FROM movies m \n" +
+            "inner join actor_movie am \n" +
+            "on m.id = am.movie_id \n" +
+            "inner join actors a \n" +
+            "on a.id = am.actor_id \n" +
+            "where 5.5 < ALL(\n" +
+            "\tselect a2.rating from movies m2 \n" +
+            "\tinner join actor_movie am2\n" +
+            "\ton m2.id = am2.movie_id \n" +
+            "\tinner join actors a2 \n" +
+            "\ton a2.id = am2.actor_id \n" +
+            "    where m2.id = m.id);", nativeQuery = true)*/
+    //@Query("SELECT DISTINCT m FROM Movie m JOIN m.cast a WHERE :rating < ALL (SELECT a2.rating FROM a.movies m2 JOIN m2.cast a2)")
       List<Movie> findByCastRatingGreaterThan(@Param("rating") Double rating);
-      @Query("from Movie m INNER JOIN m.cast actor WHERE actor.rating > :rating")
-      List<Movie> findByCastRatingGreaterThanQuery(@Param("rating") Double rating);
-
-
-    //  @Query("from Movie m INNER JOIN m.cast actor WHERE actor.rating > :rating")
+   // findByCastRatingGreaterThan
       List<Movie> findByGenreNameIs(@Param("genre") String genre);
 }
