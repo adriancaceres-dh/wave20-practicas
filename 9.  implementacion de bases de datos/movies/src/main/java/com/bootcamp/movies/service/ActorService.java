@@ -2,9 +2,9 @@ package com.bootcamp.movies.service;
 
 import com.bootcamp.movies.dto.response.ActorFavoriteMovieResponseDto;
 import com.bootcamp.movies.dto.response.ActorWithFullNameAndRatingResponseDto;
-import com.bootcamp.movies.model.Actor;
 import com.bootcamp.movies.repository.ActorMovieRepository;
 import com.bootcamp.movies.repository.ActorRepository;
+import com.bootcamp.movies.service.interfaces.IActorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

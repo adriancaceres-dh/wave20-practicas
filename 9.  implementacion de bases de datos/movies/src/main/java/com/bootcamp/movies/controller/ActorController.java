@@ -3,8 +3,7 @@ package com.bootcamp.movies.controller;
 
 import com.bootcamp.movies.dto.response.ActorFavoriteMovieResponseDto;
 import com.bootcamp.movies.dto.response.ActorWithFullNameAndRatingResponseDto;
-import com.bootcamp.movies.model.Actor;
-import com.bootcamp.movies.service.IActorService;
+import com.bootcamp.movies.service.interfaces.IActorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

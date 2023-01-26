@@ -1,7 +1,7 @@
 package com.bootcamp.movies.controller;
 
 import com.bootcamp.movies.dto.response.SimpleEpisodeDto;
-import com.bootcamp.movies.service.IEpisodeService;
+import com.bootcamp.movies.service.interfaces.IEpisodeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

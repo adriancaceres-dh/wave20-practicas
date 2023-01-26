@@ -2,6 +2,7 @@ package com.bootcamp.movies.service;
 
 import com.bootcamp.movies.dto.response.SimpleSerieDto;
 import com.bootcamp.movies.repository.SerieRepository;
+import com.bootcamp.movies.service.interfaces.ISerieService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SerieService implements ISerieService{
+public class SerieService implements ISerieService {
 
     private final SerieRepository serieRepository;
     private final ModelMapper modelMapper;

@@ -1,4 +1,4 @@
-package com.bootcamp.movies.service;
+package com.bootcamp.movies.service.interfaces;
 
 import com.bootcamp.movies.dto.response.ActorFavoriteMovieResponseDto;
 import com.bootcamp.movies.dto.response.ActorWithFullNameAndRatingResponseDto;

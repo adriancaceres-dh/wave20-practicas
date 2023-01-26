@@ -3,6 +3,7 @@ package com.bootcamp.movies.service;
 import com.bootcamp.movies.dto.response.SimpleMovieDto;
 import com.bootcamp.movies.repository.ActorMovieRepository;
 import com.bootcamp.movies.repository.MovieRepository;
+import com.bootcamp.movies.service.interfaces.IMovieService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

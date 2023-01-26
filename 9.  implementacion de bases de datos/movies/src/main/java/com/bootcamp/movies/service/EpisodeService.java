@@ -2,6 +2,7 @@ package com.bootcamp.movies.service;
 
 import com.bootcamp.movies.dto.response.SimpleEpisodeDto;
 import com.bootcamp.movies.repository.ActorEpisodeRepository;
+import com.bootcamp.movies.service.interfaces.IEpisodeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
