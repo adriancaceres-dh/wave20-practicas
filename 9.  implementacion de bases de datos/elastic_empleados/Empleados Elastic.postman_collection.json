@@ -1,0 +1,84 @@
+{
+  "info": {
+    "_postman_id": "817d3931-f0b1-4ce1-8621-01a0e23351fc",
+    "name": "Empleados Elastic",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear empleado",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"nombre\": \"John\",\n    \"apellido\": \"Doe\",\n    \"edad\": 26,\n    \"ciudad\": \"Lanus\",\n    \"provincia\": \"Buenos Aires\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{endpoint}}/create",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar empleado",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": \"qsLc7oUBN_eOOeSA_YRD\",\n    \"nombre\": \"John\",\n    \"apellido\": \"Doe\",\n    \"edad\": 26,\n    \"ciudad\": \"La Plata\",\n    \"provincia\": \"Buenos Aires\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{endpoint}}/update",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Traer empleado",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{endpoint}}/qsLc7oUBN_eOOeSA_YRD",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "qsLc7oUBN_eOOeSA_YRD"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "endpoint",
+      "value": "localhost:8080"
+    }
+  ]
+}
