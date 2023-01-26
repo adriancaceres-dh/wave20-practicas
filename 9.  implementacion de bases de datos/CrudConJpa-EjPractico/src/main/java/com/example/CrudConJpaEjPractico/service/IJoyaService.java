@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface IJoyaService {
 
-    JoyaDTO create(JoyaDTO joyaDTO);
+    Integer create(JoyaDTO joyaDTO);
     List<JoyaDTO> getJoyas();
+
+    int deleteLogic(int id);
 
 }

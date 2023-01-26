@@ -18,10 +18,10 @@ public class JoyaService implements IJoyaService{
     ModelMapper mapper = new ModelMapper();
 
     @Override
-    public JoyaDTO create(JoyaDTO joyaDTO) {
+    public Integer create(JoyaDTO joyaDTO) {
         var joyaEntity = mapper.map(joyaDTO, Joya.class);
         joyaEntity = repository.save(joyaEntity);
-        return mapper.map(joyaEntity, JoyaDTO.class);
+        return joyaEntity.getId();
     }
 
     @Override
@@ -32,5 +32,19 @@ public class JoyaService implements IJoyaService{
         return list.stream().map(
                 joya -> mapper.map(joya, JoyaDTO.class)
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public int deleteLogic(int id)
+    {
+        if(repository.existsById(id))
+        {
+            repository.deleteById(id);
+            return id;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
