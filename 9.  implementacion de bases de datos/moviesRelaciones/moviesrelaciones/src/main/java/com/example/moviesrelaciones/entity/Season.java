@@ -47,6 +47,6 @@ public class Season {
     private LocalDate endDate;
 
     @OneToMany()
-    @JoinColumn(name = "season_id")
+    @JoinColumn(name = "season_id",referencedColumnName = "id")
     private List<Episode> episodes;
 }

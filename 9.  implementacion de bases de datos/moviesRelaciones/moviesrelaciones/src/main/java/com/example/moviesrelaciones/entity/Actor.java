@@ -43,8 +43,7 @@ public class Actor {
     @Column(name = "rating",precision = 1,scale = 2)
     private Double rating;
 
-    @OneToMany()
-    @JoinColumn(name = "actor_id",nullable = false)
+    @OneToMany(mappedBy = "actor")
     private List<ActorMovie> actorMovies;
 
     @OneToMany()

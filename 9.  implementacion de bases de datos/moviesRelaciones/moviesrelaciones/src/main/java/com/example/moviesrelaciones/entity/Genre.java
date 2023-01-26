@@ -44,10 +44,10 @@ public class Genre {
     private Boolean active;
 
     @OneToMany()
-    @JoinColumn(name = "genre_id")
+    @JoinColumn(name = "genre_id",referencedColumnName = "id")
     private List<Movie> movies;
 
     @OneToMany()
-    @JoinColumn(name = "genre_id")
+    @JoinColumn(name = "genre_id",referencedColumnName = "id")
     private List<Serie> series;
 }

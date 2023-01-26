@@ -32,4 +32,12 @@ public class ActorMovie {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "actor_id")
+    private Actor actor;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
 }

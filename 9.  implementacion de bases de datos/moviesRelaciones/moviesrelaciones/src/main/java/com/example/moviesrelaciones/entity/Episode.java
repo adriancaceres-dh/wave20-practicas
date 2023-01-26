@@ -48,6 +48,6 @@ public class Episode {
     private Double rating;
 
     @OneToMany()
-    @JoinColumn(name = "episode_id",nullable = false)
+    @JoinColumn(name = "episode_id",nullable = false,referencedColumnName = "id")
     private List<ActorEpisode> actorEpisodes;
 }

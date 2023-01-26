@@ -48,8 +48,11 @@ public class Movie {
     @Column(name = "length")
     private Integer legth;
 
-    @OneToMany()
-    @JoinColumn(name = "movie_id",nullable = false)
+    @OneToMany(mappedBy = "movie")
     private List<ActorMovie> actorMovies;
+
+    @OneToMany()
+    @JoinColumn(name = "favorite_movie_id")
+    private List<Actor> actorsFavoriteMovie;
 
 }
