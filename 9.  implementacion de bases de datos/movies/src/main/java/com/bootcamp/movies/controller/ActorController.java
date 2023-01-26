@@ -1,6 +1,7 @@
 package com.bootcamp.movies.controller;
 
 
+import com.bootcamp.movies.dto.response.ActorFavoriteMovieResponseDto;
 import com.bootcamp.movies.model.Actor;
 import com.bootcamp.movies.service.IActorService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class ActorController {
     }
 
     @GetMapping("/favorite-not-null")
-    public ResponseEntity<List<Actor>> getAllActorsWithFavoriteMovie() {
+    public ResponseEntity<List<ActorFavoriteMovieResponseDto>> getAllActorsWithFavoriteMovie() {
         return ResponseEntity.ok(actorService.findAllActorsWhichFavoriteMovieIsNotNull());
     }
 
