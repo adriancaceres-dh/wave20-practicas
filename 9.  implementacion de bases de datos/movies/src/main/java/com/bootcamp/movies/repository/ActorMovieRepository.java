@@ -13,6 +13,6 @@ public interface ActorMovieRepository extends JpaRepository<ActorMovie, Integer>
     @Query("SELECT am.actor FROM ActorMovie am WHERE am.movie.id = :movieId")
     List<Actor> findActorsThatWorkedInMovie(Integer movieId);
 
-    @Query("SELECT am.movie FROM ActorMovie am WHERE am.actor.rating > :aboveRating")
+    @Query("SELECT DISTINCT am.movie FROM ActorMovie am WHERE am.movie.id IN ( SELECT am2.movie.id FROM ActorMovie am2 WHERE am2.actor.rating > :aboveRating GROUP BY am2.movie.id HAVING COUNT(am2.actor) = (SELECT COUNT(am3.actor) FROM ActorMovie am3 WHERE am3.movie = am2.movie))")
     List<Movie> findMoviesWhichActorsHasRatingAbove(Double aboveRating);
 }
