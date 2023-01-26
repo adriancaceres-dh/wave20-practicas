@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "fcc81b6f-2c7c-488f-9446-80befb300912",
+		"name": "Joyeria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25044638"
+	},
+	"item": [
+		{
+			"name": "new jewe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"anillo\",\n    \"material\":\"plata\",\n    \"peso\":0.28,\n    \"particularidad\":\"labrado\",\n    \"ventaONo\":true\n\n}"
+				},
+				"url": {
+					"raw": "localhost:8090/jewerly/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"jewerly",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit jewe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8090/jewerly/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"jewerly",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all jewes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/jewerly/",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"jewerly",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
