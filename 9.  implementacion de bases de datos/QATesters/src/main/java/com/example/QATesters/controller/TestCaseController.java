@@ -42,4 +42,10 @@ public class TestCaseController {
         return ResponseEntity.ok(testCaseService.getEntityById(id));
     }
 
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<MessageDTO> deleteEntityById(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(testCaseService.deleteEntity(id));
+    }
+
 }

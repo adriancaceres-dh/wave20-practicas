@@ -77,7 +77,21 @@ public class TestCaseService implements ITestCaseService{
 
     @Override
     public MessageDTO deleteEntity(Long id) {
-        return null;
+
+        if(testCaseRepository.existsById(id))
+        {
+            testCaseRepository.deleteById(id);
+
+            return MessageDTO.builder()
+                .message("Se borro exitosamente el testcase")
+                .action("DELETE")
+                .build();
+        }
+        else
+        {
+            throw new RuntimeException("No se pudo encontrar ese id para borrar.");
+        }
+
     }
 
     @Override
