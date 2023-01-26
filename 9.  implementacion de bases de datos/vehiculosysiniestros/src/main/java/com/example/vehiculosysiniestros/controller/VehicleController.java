@@ -2,6 +2,7 @@ package com.example.vehiculosysiniestros.controller;
 
 import com.example.vehiculosysiniestros.dto.response.VehicleLicenseAndBrandResponseDto;
 import com.example.vehiculosysiniestros.dto.response.VehicleLicensePlateResponseDto;
+import com.example.vehiculosysiniestros.dto.response.VehiclePlateBrandModelAndTotalLossResponseDto;
 import com.example.vehiculosysiniestros.dto.response.VehiclePlateBrandModelResponseDto;
 import com.example.vehiculosysiniestros.service.interfaces.VehicleService;
 import org.springframework.http.ResponseEntity;
@@ -44,4 +45,11 @@ public class VehicleController {
         return ResponseEntity.ok()
                 .body(vehicleService.getVehiclesThatSufferedExpensiveAccidents());
     }
+
+    @GetMapping("/expensive-total-loss")
+    public ResponseEntity<List<VehiclePlateBrandModelAndTotalLossResponseDto>> getAllWithExpensiveAccidentsAndTotal() {
+        return ResponseEntity.ok()
+                .body(vehicleService.getVehiclesThatSufferedExpensiveAccidentsAndGetTotalLoss());
+    }
+
 }

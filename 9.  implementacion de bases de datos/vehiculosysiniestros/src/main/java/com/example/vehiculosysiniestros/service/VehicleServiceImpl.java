@@ -2,6 +2,7 @@ package com.example.vehiculosysiniestros.service;
 
 import com.example.vehiculosysiniestros.dto.response.VehicleLicenseAndBrandResponseDto;
 import com.example.vehiculosysiniestros.dto.response.VehicleLicensePlateResponseDto;
+import com.example.vehiculosysiniestros.dto.response.VehiclePlateBrandModelAndTotalLossResponseDto;
 import com.example.vehiculosysiniestros.dto.response.VehiclePlateBrandModelResponseDto;
 import com.example.vehiculosysiniestros.repository.VehicleRepository;
 import com.example.vehiculosysiniestros.service.interfaces.VehicleService;
@@ -50,5 +51,10 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public List<VehiclePlateBrandModelResponseDto> getVehiclesThatSufferedExpensiveAccidents() {
         return vehicleRepository.findVehiclesThatHadExpensiveAccidents();
+    }
+
+    @Override
+    public List<VehiclePlateBrandModelAndTotalLossResponseDto> getVehiclesThatSufferedExpensiveAccidentsAndGetTotalLoss() {
+        return vehicleRepository.findVehiclesThatHadExpensiveAccidentsAndGetTotalOfThatLoss();
     }
 }
