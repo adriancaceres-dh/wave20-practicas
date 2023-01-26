@@ -1,6 +1,7 @@
 package com.bootcamp.movies.service;
 
 import com.bootcamp.movies.dto.response.ActorFavoriteMovieResponseDto;
+import com.bootcamp.movies.dto.response.ActorWithFullNameAndRatingResponseDto;
 import com.bootcamp.movies.model.Actor;
 import com.bootcamp.movies.repository.ActorMovieRepository;
 import com.bootcamp.movies.repository.ActorRepository;
@@ -33,8 +34,11 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    public List<Actor> findAllActorsWhichRatingExceeds(Double lowerBound) {
-        return actorRepo.findAllByRatingGreaterThan(lowerBound);
+    public List<ActorWithFullNameAndRatingResponseDto> findAllActorsWhichRatingExceeds(Double lowerBound) {
+        return actorRepo.findAllByRatingGreaterThan(lowerBound)
+                .stream()
+                .map(a -> modelMapper.map(a, ActorWithFullNameAndRatingResponseDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

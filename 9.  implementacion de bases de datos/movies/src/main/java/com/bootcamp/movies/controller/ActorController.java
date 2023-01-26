@@ -2,6 +2,7 @@ package com.bootcamp.movies.controller;
 
 
 import com.bootcamp.movies.dto.response.ActorFavoriteMovieResponseDto;
+import com.bootcamp.movies.dto.response.ActorWithFullNameAndRatingResponseDto;
 import com.bootcamp.movies.model.Actor;
 import com.bootcamp.movies.service.IActorService;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class ActorController {
     }
 
     @GetMapping("/rating-greater-than/{lowerBound}")
-    public ResponseEntity<List<Actor>> getAllActorsWithRatingGraterThan(@PathVariable Double lowerBound) {
+    public ResponseEntity<List<ActorWithFullNameAndRatingResponseDto>> getAllActorsWithRatingGraterThan(@PathVariable Double lowerBound) {
         return ResponseEntity.ok(actorService.findAllActorsWhichRatingExceeds(lowerBound));
     }
 
