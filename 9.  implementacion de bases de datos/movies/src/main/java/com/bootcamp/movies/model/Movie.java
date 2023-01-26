@@ -34,6 +34,5 @@ public class Movie {
     @ManyToOne
     private Genre genre;
     @OneToMany(mappedBy = "movie")
-    @JsonBackReference
     private Set<ActorMovie> actorMovies;
 }

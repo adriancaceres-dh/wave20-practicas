@@ -26,11 +26,9 @@ public class ActorMovie {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    @JsonBackReference
     private Actor actor;
     @ManyToOne
     @JoinColumn(nullable = false)
-    @JsonManagedReference
     private Movie movie;
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -34,6 +34,5 @@ public class Actor {
     @OneToMany(mappedBy = "actor")
     private Set<ActorEpisode> actorEpisodes;
     @OneToMany(mappedBy = "actor")
-    @JsonManagedReference
     private Set<ActorMovie> actorMovies;
 }
