@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "7413ab82-b922-451f-8271-2113e5b1f40f",
+		"name": "Clothes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25120202"
+	},
+	"item": [
+		{
+			"name": "clothes",
+			"item": [
+				{
+					"name": "create-garment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sweatshirt\",\n    \"type\": \"Shirt\",\n    \"brand\": \"Adidas\",\n    \"color\": \"Black\",\n    \"size\": \"L\",\n    \"quantity\": 5,\n    \"price\": 1200\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/clothes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-clothes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/clothes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-garment-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/clothes/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-clothes-size",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/clothes/M",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes",
+								"M"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-clothes-name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/clothes?name=shirt",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "shirt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-garment-id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"code\": 5,\n        \"name\": \"Training tank\",\n        \"type\": \"Shirt\",\n        \"brand\": \"Venum\",\n        \"color\": \"Black\",\n        \"size\": \"M\",\n        \"quantity\": \"6\",\n        \"price\": 450.0\n    },",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/clothes/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-garment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/clothes/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clothes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sales",
+			"item": [
+				{
+					"name": "create-sale",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"21/01/2023\",\n    \"payment_method\": \"Credit card\",\n    \"clothes\": [\n        {\n            \"code\": 1,\n            \"name\": \"Running shorts\",\n            \"type\": \"Shorts\",\n            \"brand\": \"Adidas\",\n            \"color\": \"Black\",\n            \"size\": \"M\",\n            \"quantity\": \"3\",\n            \"price\": 300.0\n        },\n        {\n            \"code\": 2,\n            \"name\": \"Running shirt\",\n            \"type\": \"Shirt\",\n            \"brand\": \"Nike\",\n            \"color\": \"Blue\",\n            \"size\": \"S\",\n            \"quantity\": \"2\",\n            \"price\": 500.0\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/sale",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sale",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-sale-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sale/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-sales-date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sale?date=21/01/2023",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "21/01/2023"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-clothes-sale-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sale/clothes/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale",
+								"clothes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-sale-id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"number\": 1,\n    \"date\": \"21/01/2023\",\n    \"payment_method\": \"Cash\",\n    \"clothes\": [\n        {\n            \"code\": 1,\n            \"name\": \"Running shorts\",\n            \"type\": \"Shorts\",\n            \"brand\": \"Adidas\",\n            \"color\": \"Black\",\n            \"size\": \"M\",\n            \"quantity\": \"3\",\n            \"price\": 300.0\n        },\n        {\n            \"code\": 2,\n            \"name\": \"Running shirt\",\n            \"type\": \"Shirt\",\n            \"brand\": \"Nike\",\n            \"color\": \"Blue\",\n            \"size\": \"S\",\n            \"quantity\": \"2\",\n            \"price\": 500.0\n        },\n        {\n            \"code\": 3,\n            \"name\": \"Polo shirt\",\n            \"type\": \"Shirt\",\n            \"brand\": \"Adidas\",\n            \"color\": \"Black\",\n            \"size\": \"M\",\n            \"quantity\": 3,\n            \"price\": 300.0\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/sale/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-sale",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/sale/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sale",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
