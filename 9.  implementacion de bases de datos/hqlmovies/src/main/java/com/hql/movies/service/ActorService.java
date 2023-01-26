@@ -54,6 +54,10 @@ public class ActorService implements IActorService {
 
     @Override
     public ActorsRatingDTO getActorsByRating(Double rating) {
-        return null;
+        List<Actor> actorsWithLikedMovies = actorRepository.findAll().stream().filter(actor -> actor.getRating() >= rating).collect(Collectors.toList());
+        List<ActorDto> actorsByRating = actorsWithLikedMovies.stream()
+                .map(actor -> mapper.map(actor, ActorDto.class))
+                .collect(Collectors.toList());
+        return ActorsRatingDTO.builder().actorsByRating(actorsByRating).build();
     }
 }
