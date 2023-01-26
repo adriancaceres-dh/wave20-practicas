@@ -7,3 +7,7 @@
 ### Paso a paso + Ejercicios en Vivo
 
 - [🧪 QATesters (ejercicio hecho por el profe al que le añadí los endpoints restantes)](QATesters)
+
+### HQL: Hibernate Query Language - VIVO
+
+- [🚗 Vehiculos y siniestros](vehiculosysiniestros)
