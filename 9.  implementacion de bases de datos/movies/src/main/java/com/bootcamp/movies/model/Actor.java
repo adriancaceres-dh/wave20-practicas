@@ -37,9 +37,3 @@ public class Actor {
     @JsonManagedReference
     private Set<ActorMovie> actorMovies;
 }
-
-//@Entity
-//public class Order {
-//    @OneToMany (mappedBy = "order")
-//    private Set<OrderItem> orderItems;
-//}
