@@ -1,6 +1,8 @@
 package com.hql.movies.model;
 
 
+import com.hql.movies.model.intermediate.ActorMovie;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,17 +16,16 @@ public class Movie {
     private LocalDate createdAt;
     private LocalDate updatedAt;
     private String title;
-    private Double raiting;
+    private Double rating;
     private Integer awards;
     private LocalDate releaseDate;
     private Integer length;
 
     private Integer genreId;
 
-    @ManyToMany
-    @JoinTable(
-            name = "actors_movies",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id"))
-    private List<Actor> actors;
+    @OneToMany(
+            mappedBy = "movie",
+            cascade = CascadeType.ALL
+    )
+    private List<ActorMovie> actors;
 }

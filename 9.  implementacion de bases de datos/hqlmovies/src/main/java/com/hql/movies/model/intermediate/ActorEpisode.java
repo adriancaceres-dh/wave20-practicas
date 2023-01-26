@@ -1,4 +1,8 @@
-package com.hql.movies.model;
+package com.hql.movies.model.intermediate;
+
+import com.hql.movies.model.Actor;
+import com.hql.movies.model.ActorEpisodeID;
+import com.hql.movies.model.Episode;
 
 import javax.persistence.*;
 import java.time.LocalDate;

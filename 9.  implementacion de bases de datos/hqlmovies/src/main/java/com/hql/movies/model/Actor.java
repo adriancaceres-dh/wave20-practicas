@@ -1,9 +1,11 @@
 package com.hql.movies.model;
 
+import com.hql.movies.model.intermediate.ActorEpisode;
+import com.hql.movies.model.intermediate.ActorMovie;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "actors")
@@ -17,8 +19,11 @@ public class Actor {
     private String lastName;
     private Double rating;
 
-    @ManyToMany(mappedBy = "actors")
-    private List<Movie> movies;
+    @OneToMany(
+            mappedBy = "actor",
+            cascade = CascadeType.ALL
+    )
+    private List<ActorMovie> movies;
     @OneToMany(
             mappedBy = "actor",
             cascade = CascadeType.ALL

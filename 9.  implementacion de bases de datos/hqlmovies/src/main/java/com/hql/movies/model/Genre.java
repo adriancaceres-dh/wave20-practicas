@@ -15,7 +15,7 @@ public class Genre {
     private LocalDate updatedAt;
     private String name;
     private Integer ranking;
-
+    private Boolean active;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "genreId")
     private List<Movie> movies;

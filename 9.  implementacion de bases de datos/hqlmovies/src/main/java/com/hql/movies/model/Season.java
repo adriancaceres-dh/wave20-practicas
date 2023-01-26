@@ -18,7 +18,7 @@ public class Season {
     private LocalDate endDate;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "seasonId")
     private List<Episode> episodes;
 
     private Integer serieId;
