@@ -11,16 +11,16 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "users")
 public class User {
-    private Timestamp createdAt;
-    @Column(length = 255)
-    private String email;
     @Id
     private Integer id;
+    /*private Timestamp createdAt;
+    @Column(length = 255)
+    private String email;
     @Column(length = 255)
     private String name;
     @Column(length = 255)
     private String password;
     @Column(length = 100)
     private String rememberToken;
-    private Timestamp updatedAt;
+    private Timestamp updatedAt;*/
 }

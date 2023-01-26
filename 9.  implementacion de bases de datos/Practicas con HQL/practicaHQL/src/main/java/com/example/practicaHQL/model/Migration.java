@@ -8,9 +8,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "migrations")
 public class Migration {
-    private Integer batch;
     @Id
     private Integer id;
+    /*private Integer batch;
     @Column(length = 255)
-    private String migration;
+    private String migration;*/
 }

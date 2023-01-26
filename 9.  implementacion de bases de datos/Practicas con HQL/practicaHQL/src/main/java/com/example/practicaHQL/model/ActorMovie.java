@@ -1,18 +1,18 @@
 package com.example.practicaHQL.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "actor_movie")
 public class ActorMovie {
-    private Integer actorId;
-    private Timestamp createdAt;
     @Id
     private Integer id;
-    private Integer movieId;
-    private Timestamp updatedAt;
+/*    @ManyToOne
+    private Actor actorId;
+    private Timestamp createdAt;
+    @ManyToOne
+    private Movie movieId;
+    private Timestamp updatedAt;*/
 }

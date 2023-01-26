@@ -10,7 +10,7 @@ import java.util.List;
 public class Serie {
     @Id
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@ManyToOne
     private Genre genre_id;
     private Date endDate;
     private Timestamp createdAt;
@@ -20,5 +20,5 @@ public class Serie {
     private Timestamp updatedAt;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "season_id")
-    private List<Season> seasons;
+    private List<Season> seasons;*/
 }
