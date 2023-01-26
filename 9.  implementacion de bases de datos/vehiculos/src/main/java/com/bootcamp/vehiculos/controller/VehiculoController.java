@@ -1,7 +1,9 @@
 package com.bootcamp.vehiculos.controller;
 
 import com.bootcamp.vehiculos.dto.VehiculoDTO;
+import com.bootcamp.vehiculos.model.template.PatenteMarcaModelo;
 import com.bootcamp.vehiculos.model.template.PatenteYMarca;
+import com.bootcamp.vehiculos.model.template.VehiculoPerdida;
 import com.bootcamp.vehiculos.service.VehiculoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,4 +32,20 @@ public class VehiculoController {
     public VehiculoDTO crearVehiculo(@RequestBody VehiculoDTO vehiculoDTO) {
         return vehiculoService.crearVehiculo(vehiculoDTO);
     }
+
+    @GetMapping("/patente_nuevo")
+    public List<String> listarPatentesDeVehiculosNuevosConMasDe4Ruedas() {
+        return vehiculoService.listarPatentesDeVehiculosNuevosConMasDe4Ruedas();
+    }
+
+    @GetMapping("/patente_marca_modelo")
+    public List<PatenteMarcaModelo> listarPatenteMarcaModeloDeVehiculosConSiniestroConGranPerdida() {
+        return vehiculoService.listarPatenteMarcaModeloDeVehiculosConSiniestroConGranPerdida();
+    }
+
+    @GetMapping("/vehiculo_perdida")
+    public List<VehiculoPerdida> listarVehiculosYPerdidaParaVehiculosConGrandesSiniestros() {
+        return vehiculoService.listarVehiculosYPerdidaParaVehiculosConGrandesSiniestros();
+    }
+
 }

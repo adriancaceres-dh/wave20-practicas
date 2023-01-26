@@ -1,7 +1,9 @@
 package com.bootcamp.vehiculos.service;
 
 import com.bootcamp.vehiculos.dto.VehiculoDTO;
+import com.bootcamp.vehiculos.model.template.PatenteMarcaModelo;
 import com.bootcamp.vehiculos.model.template.PatenteYMarca;
+import com.bootcamp.vehiculos.model.template.VehiculoPerdida;
 import com.bootcamp.vehiculos.repository.IVehiculoRepository;
 import com.bootcamp.vehiculos.util.VehiculoModelMapper;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,18 @@ public class VehiculoService {
 
     public List<PatenteYMarca> listarPatentesYMarcasPorAnio() {
         return vehiculoRepository.listPatenteYMarcaOrderByAnioFabricacion();
+    }
+
+    public List<String> listarPatentesDeVehiculosNuevosConMasDe4Ruedas() {
+        return vehiculoRepository.listPatentesOfFourWheeledFromCurrentYear();
+    }
+
+    public List<PatenteMarcaModelo> listarPatenteMarcaModeloDeVehiculosConSiniestroConGranPerdida() {
+        return vehiculoRepository.listPatenteMarcaModeloByGranPerdidaEconomica();
+    }
+
+    public List<VehiculoPerdida> listarVehiculosYPerdidaParaVehiculosConGrandesSiniestros() {
+        return vehiculoRepository.listVehiculoPerdida();
     }
 
     public VehiculoDTO crearVehiculo(VehiculoDTO vehiculoDTO) {
