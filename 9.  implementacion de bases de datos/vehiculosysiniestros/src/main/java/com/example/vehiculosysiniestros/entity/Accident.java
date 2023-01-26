@@ -21,6 +21,6 @@ public class Accident {
     private LocalDate date;
     @Column(name = "economic_loss")
     private Double economicLoss;
-    @OneToOne
+    @ManyToOne
     private Vehicle reportedVehicle;
 }

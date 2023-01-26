@@ -21,9 +21,3 @@ VALUES (1,'2023-01-01', 1000, 2);
 
 INSERT INTO accidents (id, date, economic_loss, reported_vehicle_id)
 VALUES (2,'2023-01-02', 30000, 3);
-
-INSERT INTO vehicles_reported_accidents (vehicle_id, reported_accidents_id)
-VALUES (1, 1);
-
-INSERT INTO vehicles_reported_accidents (vehicle_id, reported_accidents_id)
-VALUES (1, 2);

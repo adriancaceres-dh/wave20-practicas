@@ -25,7 +25,6 @@ public class Vehicle {
     @Column(name = "manufacturing_year")
     private Integer manufacturingYear;
     @Column(name = "number_of_wheels")
+    @JoinColumn(nullable = false)
     private Integer numberOfWheels;
-    @OneToMany
-    private List<Accident> reportedAccidents;
 }
