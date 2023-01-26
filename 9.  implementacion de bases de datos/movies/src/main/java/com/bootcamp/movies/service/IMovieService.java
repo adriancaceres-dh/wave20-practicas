@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IMovieService {
     List<SimpleMovieDto> findMoviesWhichActorsHasRatingAbove(Double aboveRating);
+    List<SimpleMovieDto> findMoviesWhichGenreIs(Integer genreId);
 }

@@ -24,4 +24,9 @@ public class MovieController {
     public ResponseEntity<List<SimpleMovieDto>> getMoviesWhichActorsRatingAreAbove(@PathVariable Double rating) {
         return ResponseEntity.ok(movieService.findMoviesWhichActorsHasRatingAbove(rating));
     }
+
+    @GetMapping("/filter-by-genre/{genreId}")
+    public ResponseEntity<List<SimpleMovieDto>> getMoviesWhichGenreIs(@PathVariable Integer genreId) {
+        return ResponseEntity.ok(movieService.findMoviesWhichGenreIs(genreId));
+    }
 }
