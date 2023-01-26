@@ -33,7 +33,7 @@ public class ActorController {
     }
 
     @GetMapping("/movie-worked/{movieId}")
-    public ResponseEntity<List<Actor>> getActorsThatWorkedInMovie(@PathVariable Integer movieId) {
+    public ResponseEntity<List<ActorWithFullNameAndRatingResponseDto>> getActorsThatWorkedInMovie(@PathVariable Integer movieId) {
         return ResponseEntity.ok(actorService.findActorsThatWorkedInMovie(movieId));
     }
 }

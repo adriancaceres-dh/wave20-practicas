@@ -42,8 +42,11 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    public List<Actor> findActorsThatWorkedInMovie(Integer movieId) {
-        return actorMovieRepository.findActorsThatWorkedInMovie(movieId);
+    public List<ActorWithFullNameAndRatingResponseDto> findActorsThatWorkedInMovie(Integer movieId) {
+        return actorMovieRepository.findActorsThatWorkedInMovie(movieId)
+                .stream()
+                .map(a -> modelMapper.map(a, ActorWithFullNameAndRatingResponseDto.class))
+                .collect(Collectors.toList());
     }
 
 

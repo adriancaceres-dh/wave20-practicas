@@ -11,5 +11,5 @@ public interface IActorService {
 
     List<ActorWithFullNameAndRatingResponseDto> findAllActorsWhichRatingExceeds(Double lowerBound);
 
-    List<Actor> findActorsThatWorkedInMovie(Integer movieId);
+    List<ActorWithFullNameAndRatingResponseDto> findActorsThatWorkedInMovie(Integer movieId);
 }
