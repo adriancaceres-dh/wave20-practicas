@@ -29,7 +29,6 @@ public class UserIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_name").value("Sebastian"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.user_id").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.followers_count").value(0));
-
     }
 
 

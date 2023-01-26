@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b8cf141-3ffb-41f1-89e6-36bb702a8606" name="Changes" comment="" />
+    <list default="true" id="4b8cf141-3ffb-41f1-89e6-36bb702a8606" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/service/UserIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/service/UserIntegrationTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,32 +44,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/namontero/Documents/repoPracticas/wave20-practicas/6. sprint II/be_java_hisp_w20_g7_montero/be_java_hisp_w20_g7",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "spring.configuration.checksum": "300b2674736b60d8c5e6f96e87f7cc68",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/namontero/Documents/repoPracticas/wave20-practicas/6. sprint II/be_java_hisp_w20_g7_montero/be_java_hisp_w20_g7&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;300b2674736b60d8c5e6f96e87f7cc68&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.bootcamp.be_java_hisp_w20_g7.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BeJavaHispW20G7Application">
+  <component name="RunManager" selected="JUnit.service in be_java_hisp_w20_g7">
     <configuration name="BeJavaHispW20G7ApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="be_java_hisp_w20_g7_montero" />
       <extension name="coverage">
@@ -82,7 +85,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test_T005_T006_T0008_OrderedByDatePostService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_T005_T006_T0008_OrderedByDatePostService.t0005AscDescTestPathVariable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="be_java_hisp_w20_g7_montero" />
       <extension name="coverage">
         <pattern>
@@ -92,12 +95,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service" />
       <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service.Test_T005_T006_T0008_OrderedByDatePostService" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="t0005AscDescTestPathVariable(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test_T005_T006_T0008_OrderedByDatePostService.t0008LastTwoWeekPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_T005_T006_T0008_OrderedByDatePostService.t0005AscDescTestPathVariableException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="be_java_hisp_w20_g7_montero" />
       <extension name="coverage">
         <pattern>
@@ -107,7 +111,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service" />
       <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service.Test_T005_T006_T0008_OrderedByDatePostService" />
-      <option name="METHOD_NAME" value="t0008LastTwoWeekPosts" />
+      <option name="METHOD_NAME" value="t0005AscDescTestPathVariableException(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,10 +152,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.service in be_java_hisp_w20_g7" />
+        <item itemvalue="JUnit.Test_T005_T006_T0008_OrderedByDatePostService.t0005AscDescTestPathVariableException" />
+        <item itemvalue="JUnit.Test_T005_T006_T0008_OrderedByDatePostService.t0005AscDescTestPathVariable" />
         <item itemvalue="JUnit.BeJavaHispW20G7ApplicationTests" />
         <item itemvalue="JUnit.UserIntegrationTest.testNameSorayaOutput" />
-        <item itemvalue="JUnit.Test_T005_T006_T0008_OrderedByDatePostService" />
-        <item itemvalue="JUnit.Test_T005_T006_T0008_OrderedByDatePostService.t0008LastTwoWeekPosts" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +176,8 @@
       <workItem from="1673978335324" duration="1001000" />
       <workItem from="1673979347410" duration="30000" />
       <workItem from="1673979525746" duration="11000" />
-      <workItem from="1673979857934" duration="16000" />
+      <workItem from="1673979857934" duration="2810000" />
+      <workItem from="1674479459877" duration="9000" />
     </task>
     <servers />
   </component>
