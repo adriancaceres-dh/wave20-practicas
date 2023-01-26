@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "movies")
@@ -24,7 +25,13 @@ public class Movie {
     private Integer awards;
     private Date release_date;
     private Integer length;
-
+    @ManyToMany
+    @JoinTable(
+            name = "actor_movie",
+            joinColumns = @JoinColumn(name = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    Set<Actor> cast;
 
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)

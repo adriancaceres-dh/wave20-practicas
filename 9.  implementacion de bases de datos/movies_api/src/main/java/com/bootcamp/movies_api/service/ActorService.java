@@ -21,8 +21,7 @@ public class ActorService {
         mapper = new ObjectMapper();
     }
 
-    public List<ActorResponseDTO> getActorsWithFavMovies(){
-        List<Actor> actorsListFromRepo = repo.findByFavMovieIsNotNull();
+    private List<ActorResponseDTO> convertActorToResponseDTO(List<Actor> actorsListFromRepo){
         List<ActorResponseDTO> responseList = new ArrayList<>();
         actorsListFromRepo.forEach(auxActor -> {
             if(auxActor.getFavMovie() != null) {
@@ -34,6 +33,16 @@ public class ActorService {
             }
         });
         return responseList;
+    }
+
+    public List<ActorResponseDTO> getActorsWithFavMovies(){
+        List<Actor> actorsListFromRepo = repo.findByFavMovieIsNotNull();
+        return convertActorToResponseDTO(actorsListFromRepo);
+    }
+
+    public List<ActorResponseDTO> getActorsWithRatingGreaterThanEqual(Double rating){
+        List<Actor> actorsListFromRepo = repo.findByRatingGreaterThanEqual(rating);
+        return convertActorToResponseDTO(actorsListFromRepo);
     }
 
 }
