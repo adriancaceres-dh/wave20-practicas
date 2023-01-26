@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Serie {
@@ -17,4 +18,7 @@ public class Serie {
     @Column(length = 500)
     private String title;
     private Timestamp updatedAt;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "season_id")
+    private List<Season> seasons;
 }
