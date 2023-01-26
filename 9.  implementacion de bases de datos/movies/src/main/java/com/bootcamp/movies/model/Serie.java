@@ -7,8 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,8 +26,10 @@ public class Serie {
     private String title;
     @Column(name = "release_date")
     private LocalDateTime releaseDate;
-    @Column(name = "end_ate")
+    @Column(name = "end_date")
     private LocalDateTime endDate;
     @ManyToOne
     private Genre genre;
+    @OneToMany(mappedBy = "serie")
+    private List<Season> season;
 }
