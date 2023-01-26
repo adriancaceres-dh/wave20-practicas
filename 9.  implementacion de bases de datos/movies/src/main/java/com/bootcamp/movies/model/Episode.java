@@ -25,6 +25,7 @@ public class Episode {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
     private String title;
+    private Double rating;
     private Integer number;
     @Column(name = "release_date")
     private LocalDateTime releaseDate;
