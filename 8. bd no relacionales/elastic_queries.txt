@@ -1,0 +1,119 @@
+# Devuelve todos los documentos del index
+GET /employees/_search?size=1000
+{
+  "query": {
+      "match_all": {
+      }
+  }
+}
+
+# Query con paramQueries
+GET /employees/_search?q=Janenna
+
+GET employees/_search?q=firstname: Janenna OR lastname: Leonard
+
+GET employees/_search?q=firstname:(>Meriel)
+
+GET employees/_search?q=id:(>=500 AND <=510)
+
+
+# GTE (GREATER THAN EQUALS) >=
+# GT (GREATER THAN) >
+# LTE (LESS THAN EQUALS) <=
+# LT (LESS THAN) <
+GET employees/_search
+{
+  "query": {
+    "bool": {
+      "must_not": {
+        "range" : {
+          "birthdate" : {"gte": "1998-02-05", "lte": "2002-02-05"}
+        }
+      }
+    }
+  }
+}
+
+GET employees/_search
+{
+  "query": {
+    "multi_match" : {
+      "query" : "Jean",
+      "fields" : ["firstname", "lastname"]
+    }
+  }
+}
+
+# must_not - Nada debe cumplirse
+# must - equivalente al and
+# should - equivalente al or
+
+GET employees/_search
+{
+    "query": {
+        "bool": {
+            "should": [
+                {
+                    "bool": {
+                        "must": [
+                            {
+                                "term": {
+                                    "firstname": {
+                                        "value": "Janenna"
+                                    }
+                                }
+                            },
+                            {
+                                "term": {
+                                    "lastname": {
+                                        "value": "Leonard"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                  "term": {
+                    "firstname": {
+                      "value": "Jean"
+                    }
+                  }
+                }
+            ]
+        }
+    }
+}
+
+#CRUD DE ELASTIC
+#POST -- INSERT UPDATE Y DELETE DE DOCUMENTOS
+
+POST employees/_doc
+{
+  "profession" : "Developer",
+  "email" : "juan.castillo@mail.com",
+  "email2" : "",
+  "firstname" : "Juan",
+  "birthdate" : "1999-04-30",
+  "id" : "123123",
+  "lastname" : "Castillo"
+}
+
+GET employees/_search?q="Juan Manuel"
+
+# PUT -- UPDATE DE DOCUMENTOS
+
+PUT employees/_doc/01ZO34UBuisftqEPYflr
+{
+  "profession" : "Developer",
+  "email" : "juan.castillo@mail.com",
+  "email2" : "",
+  "firstname" : "Juan Manuel",
+  "birthdate" : "1999-04-30",
+  "id" : "123123",
+  "lastname" : "Castillo"
+}
+
+#DELETE -- DELETE DE DOCUMENTOS
+
+DELETE employees/_doc/01ZO34UBuisftqEPYflr
