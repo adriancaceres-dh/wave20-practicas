@@ -2,7 +2,6 @@ package com.hql.movies.dto.response;
 
 import lombok.*;
 
-import java.time.LocalDate;
 
 @Data
 @Builder
