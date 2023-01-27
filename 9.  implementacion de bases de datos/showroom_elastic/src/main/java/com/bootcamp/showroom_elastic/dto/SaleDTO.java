@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class SellDTO {
+public class SaleDTO {
     private String id;
     private LocalDate date;
     private BigDecimal total;

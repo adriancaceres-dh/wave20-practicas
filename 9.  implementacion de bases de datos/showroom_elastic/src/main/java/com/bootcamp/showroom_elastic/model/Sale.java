@@ -14,9 +14,9 @@ import java.util.List;
 @Getter
 @Setter
 @Document(indexName = "showroom")
-public class Sell {
+public class Sale {
     @Id
-    private String id;
+    private Long id;
     @Field(type = FieldType.Date)
     private LocalDate date;
     private BigDecimal total;

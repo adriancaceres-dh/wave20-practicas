@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ElasticClothingRepository extends ElasticsearchRepository<Clothing, String> {
     List<Clothing> findAll();
+    List<Clothing> findBySize(String size);
+    List<Clothing> findByNameContains(String name);
 }
