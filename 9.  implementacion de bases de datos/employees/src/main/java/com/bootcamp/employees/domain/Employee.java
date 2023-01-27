@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 
 @Getter @Setter
 @Document(indexName = "employees_spring")
-@TypeAlias("document")
+@TypeAlias("employee")
 public class Employee {
 
     @Id
