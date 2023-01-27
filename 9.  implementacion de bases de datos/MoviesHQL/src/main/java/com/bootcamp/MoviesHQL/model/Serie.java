@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "series")
@@ -24,6 +25,8 @@ public class Serie {
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
+    @OneToMany(mappedBy = "serie")
+    private List<Season> seasons;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
