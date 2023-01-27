@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2705678-b418-4458-a3e5-a7370dc7c5c2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/controllers/EmpleadoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/controllers/EmpleadoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/elasticrepositories/EmpleadoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/elasticrepositories/EmpleadoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/services/EmpleadoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/services/EmpleadoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/services/EmpleadoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EstudiantesElasticSearch base/src/main/java/com/example/demo/services/EmpleadoServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="d2705678-b418-4458-a3e5-a7370dc7c5c2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
