@@ -16,7 +16,7 @@ public class EpisodeService implements IEpisodeService {
 
     public List<Episode> findAll(String actorName){
         if(actorName!=null)
-            return null; //iEpisodeRepository.findByFullNameLike(actorName);
+            return iEpisodeRepository.findByFullNameLike(actorName);
         else
             return iEpisodeRepository.findAll();
     }

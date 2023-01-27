@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface IEpisodeRepository extends JpaRepository<Episode,Integer> {
 
-/*    @Query("FROM episodes AS e JOIN e.actorEpisodes AS ae "+
-            "WHERE concat(ae.actor.first_name,' ',ae.actor.last_name) = :actorName")
-    List<Episode> findByFullNameLike(@Param("actorName") String actorName);*/
+    @Query("FROM episodes AS e JOIN e.actorEpisodes AS ae "+
+            "WHERE concat(ae.actor.firstName,' ',ae.actor.lastName) = :actorName")
+    List<Episode> findByFullNameLike(@Param("actorName") String actorName);
 
 }
