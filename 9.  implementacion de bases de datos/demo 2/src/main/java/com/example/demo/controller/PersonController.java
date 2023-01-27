@@ -30,4 +30,9 @@ public class PersonController {
     public ResponseEntity<MessageDto> delete(@PathVariable Integer id) {
         return ResponseEntity.ok(personService.deleteEntity(id));
     }
+
+    @GetMapping("/byName")
+    public ResponseEntity<List<PersonDto>> getByName(@RequestParam(name = "nombre") String nombre) {
+        return ResponseEntity.ok(personService.getEntityByName(nombre));
+    }
 }

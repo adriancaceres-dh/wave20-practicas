@@ -14,6 +14,6 @@ public class SinisterDto {
     @Nullable
     private Integer id;
     private LocalDate fecha;
-    private Double perdidaEconomica;
-    private Vehicle vehicle;
+    private Double perdida_economica;
+    private Integer vehiculo;
 }

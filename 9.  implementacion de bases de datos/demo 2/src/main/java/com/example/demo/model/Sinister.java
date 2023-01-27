@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -22,9 +21,9 @@ public class Sinister {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate fecha;
-    private Double perdidaEconomica;
+    private Double perdida_economica;
     private boolean eliminado;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Vehicle vehicle;
 
 }

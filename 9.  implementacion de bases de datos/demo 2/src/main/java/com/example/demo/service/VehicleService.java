@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.MessageDto;
+import com.example.demo.dto.PersonDto;
 import com.example.demo.dto.SinisterDto;
 import com.example.demo.dto.VehicleDto;
 import com.example.demo.exception.NotFoundException;
+import com.example.demo.model.Person;
 import com.example.demo.model.Sinister;
 import com.example.demo.model.Vehicle;
 import com.example.demo.repository.IVehicleRepository;
@@ -11,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -46,11 +49,17 @@ public class VehicleService implements IVehicleService{
     }
 
     @Override
+    @Transactional
     public MessageDto deleteEntity(Integer id) {
         Optional<Vehicle> vehicle = vehicleRepository.findById(id);
         if (vehicle.isPresent() && vehicle.get().isEliminado())
             return new MessageDto(400, "El recurso no existe");
         vehicleRepository.logicDelete(id);
             return new MessageDto(200, "El recurso fue eliminado con exito");
+    }
+
+    public List<VehicleDto> getEntityByMarca(String marca) {
+        List<Vehicle> vehicles = vehicleRepository.findByMarca(marca);
+        return vehicles.stream().map(v -> mapper.map(v, VehicleDto.class)).collect(Collectors.toList());
     }
 }

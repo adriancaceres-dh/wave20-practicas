@@ -56,4 +56,9 @@ public class PersonService implements IPersonService{
         personRepository.logicDelete(id);
         return new MessageDto(200, "El recurso fue eliminado con exito");
     }
+
+    public List<PersonDto> getEntityByName(String nombre) {
+        List<Person> persons = personRepository.findByNombre(nombre);
+        return persons.stream().map(p -> mapper.map(p, PersonDto.class)).collect(Collectors.toList());
+    }
 }

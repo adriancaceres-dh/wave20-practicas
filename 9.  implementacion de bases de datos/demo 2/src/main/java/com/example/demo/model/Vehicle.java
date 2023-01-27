@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Where;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -24,6 +25,7 @@ public class Vehicle {
     private Long fabricacion;
     private Integer cantidad_ruedas;
     private boolean eliminado;
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     @Nullable
     private List<Sinister> sinisters;

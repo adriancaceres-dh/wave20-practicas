@@ -15,11 +15,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "personas")
+//Se probó el funcionamiento de la clave compuesta pero luego se elimino porque generaba algunos conflictos
+// para seguir utilizando la clase en otro ejericio.
 //@IdClass(value= PersonKey.class)
 @Where(clause = "eliminado = false")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     //@Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
