@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dacd29cc-d9b7-4975-967c-0927a9191423" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../jpa_1/src/main/java/com/example/jpa_1/controller/controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jpa_1/src/main/java/com/example/jpa_1/entity/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jpa_1/src/main/java/com/example/jpa_1/repository/IPersonaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jpa_1/src/main/java/com/example/jpa_1/service/IPersonaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jpa_1/src/main/java/com/example/jpa_1/service/PersonService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KmUBuri3C4MFDjWaFDzQkawzuH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "73041db62587a7d7283eb24f01d1e661"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CrudJoyeriaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="crud_joyeria" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.crud_joyeria.CrudJoyeriaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dacd29cc-d9b7-4975-967c-0927a9191423" name="Changes" comment="" />
+      <created>1674579119513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674579119513</updated>
+      <workItem from="1674579120624" duration="3663000" />
+      <workItem from="1674587406669" duration="4297000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
