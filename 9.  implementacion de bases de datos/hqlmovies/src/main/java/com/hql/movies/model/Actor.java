@@ -1,5 +1,6 @@
 package com.hql.movies.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.hql.movies.model.intermediate.ActorEpisode;
 import com.hql.movies.model.intermediate.ActorMovie;
 import lombok.*;
@@ -28,11 +29,13 @@ public class Actor {
             mappedBy = "actor",
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<ActorMovie> movies;
     @OneToMany(
             mappedBy = "actor",
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<ActorEpisode> episodes;
     @OneToOne
     private Movie favoriteMovie;

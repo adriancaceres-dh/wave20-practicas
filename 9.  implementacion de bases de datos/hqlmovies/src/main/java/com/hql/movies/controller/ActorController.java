@@ -1,15 +1,16 @@
 package com.hql.movies.controller;
 
-import com.hql.movies.dto.response.ActorsLikedMoviesDTO;
+import com.hql.movies.dto.response.ActorListedDTO;
+import com.hql.movies.model.Actor;
 import com.hql.movies.service.interfaces.IActorService;
-import com.hql.movies.dto.response.ActorsRatingDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/actors")
@@ -21,11 +22,12 @@ public class ActorController {
     }
 
     @GetMapping("/likedMovies")
-    public ResponseEntity<ActorsLikedMoviesDTO> getActorsLikedMovies(){
+    public ResponseEntity<ActorListedDTO> getActorsLikedMovies(){
         return new ResponseEntity<>(actorService.getActorsWithLikedMovies(), HttpStatus.OK);
     }
     @GetMapping("/actorByRating{rating}")
-    public ResponseEntity<ActorsRatingDTO> getActorsByRating(@RequestParam Double rating){
-        return new ResponseEntity<>(actorService.getActorsByRating(rating), HttpStatus.OK);
+    public ResponseEntity<ActorListedDTO> getActorsByRating(@RequestParam Double rating){
+        return new ResponseEntity<>(actorService.getActorsByRatingHQL(rating), HttpStatus.OK);
     }
+
 }

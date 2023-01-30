@@ -1,6 +1,7 @@
 package com.hql.movies.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.hql.movies.model.intermediate.ActorMovie;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +36,6 @@ public class Movie {
             mappedBy = "movie",
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<ActorMovie> actors;
 }

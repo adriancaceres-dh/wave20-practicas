@@ -1,12 +1,12 @@
 package com.hql.movies.service.interfaces;
 
-import com.hql.movies.dto.response.ActorsLikedMoviesDTO;
-import com.hql.movies.dto.response.ActorsRatingDTO;
+import com.hql.movies.dto.response.ActorListedDTO;
 import com.hql.movies.model.Actor;
 import com.hql.movies.service.interfaces.generics.ICrudService;
 
 public interface IActorService extends ICrudService<Actor, Integer> {
-    ActorsLikedMoviesDTO getActorsWithLikedMovies();
+    ActorListedDTO getActorsWithLikedMovies();
 
-    ActorsRatingDTO getActorsByRating(Double rating);
+    ActorListedDTO getActorsByRating(Double rating);
+    ActorListedDTO getActorsByRatingHQL(Double rating);
 }
