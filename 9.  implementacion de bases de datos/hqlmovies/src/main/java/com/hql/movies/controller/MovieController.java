@@ -1,7 +1,7 @@
 package com.hql.movies.controller;
 
 import com.hql.movies.dto.response.ActorListedDTO;
-import com.hql.movies.model.Actor;
+import com.hql.movies.model.*;
 import com.hql.movies.service.interfaces.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,5 +26,10 @@ public class MovieController {
     @GetMapping("/actorsInMovie{movieName}")
     public ResponseEntity<List<Actor>> getActorsInMovie(@RequestParam String movieName){
         return new ResponseEntity<>(movieService.getActorsInMovie(movieName), HttpStatus.OK);
+    }
+
+    @GetMapping("/byGenre{genreID}")
+    public ResponseEntity<List<Movie>> getMoviesByGenreID(@RequestParam Integer genreId){
+        return new ResponseEntity<>(movieService.getMoviesByGenreId(genreId), HttpStatus.OK);
     }
 }

@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface IMovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findMoviesByTitle(String title);
-    @Query("select am.actor from ActorMovie am where am.movie.title like 'galaxia'")
-    List<Actor> findActorsInMovie(@Param("title") String title);
+
+    List<Movie> findMovieByGenreId(Integer genreId);
 }

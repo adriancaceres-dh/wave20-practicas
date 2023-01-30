@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IMovieService extends ICrudService<Movie, Integer> {
     List<Actor> getActorsInMovie(String movieName);
+    List<Movie> getMoviesByGenreId(Integer genreId);
 }

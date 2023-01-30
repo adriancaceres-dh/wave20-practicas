@@ -45,4 +45,9 @@ public class MovieService implements IMovieService {
     public List<Actor> getActorsInMovie(String movieTitle) {
         return actorMovieRepository.findAllActorsInMovie(movieTitle);
     }
+
+    @Override
+    public List<Movie> getMoviesByGenreId(Integer genreId) {
+       return movieRepository.findMovieByGenreId(genreId);
+    }
 }
