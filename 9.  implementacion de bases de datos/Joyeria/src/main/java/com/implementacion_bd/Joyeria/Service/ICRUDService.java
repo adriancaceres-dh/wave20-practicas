@@ -4,16 +4,20 @@ import com.implementacion_bd.Joyeria.Entities.Joya;
 
 import java.util.List;
 
-public interface ICRUDService<T> {
+public interface ICRUDService<T, U, V, W> {
+    //T = request
+    //U = id
+    //V = response with only id
+    //W = responseDTO
 
-    List<T> findAll();
+    List<W> findAll();
 
-    T findById(Integer id);
+    W findById(U id);
 
-    T create(T requestDto);
+    V create(T requestDto);
 
-    T update(T requestDto);
+    W update(U id, T requestDto);
 
-    void delete(Integer id);
+    void delete(U id);
 
 }

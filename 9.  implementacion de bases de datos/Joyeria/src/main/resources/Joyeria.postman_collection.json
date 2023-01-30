@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "ce318fdb-d3e0-4ef0-9a4b-1e93a7eaa398",
+		"name": "Joyeria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "postJoya",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{          \n    \"nombre\" : \"diadema\",\n\t\"material\": \"plata\",\n\t\"peso\": 300,\n\t\"particularidad\" : \"Forma circular\",\n\t\"posee_piedra\" : false,\n\t\"ventaONo\" : true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/Jewerly/new",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Jewerly",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getJoyaById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Jewerly/id/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Jewerly",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteJoya",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Jewerly/id/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Jewerly",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllJoyas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Jewerly",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Jewerly"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putJoya",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\" : \"corona\",\n\t\"material\": \"oro\",\n\t\"peso\": 300,\n\t\"particularidad\" : \"Forma circular\",\n\t\"posee_piedra\" : false,\n\t\"ventaONo\" : true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/Jewerly/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Jewerly",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
