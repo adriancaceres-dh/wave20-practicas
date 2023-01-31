@@ -1,0 +1,42 @@
+PUT zapatillas/
+{
+  "mappings": {
+    "properties": {
+      "marca":{
+        "type": "text"
+      },
+      "modelo":{
+        "type":"text"
+      },
+      "precio":{
+        "type": "double"
+      },
+      "sexo":{
+        "type": "text"
+      }
+    }
+  }
+}
+POST zapatillas/_doc
+{
+  "marca":"nike",
+  "modelo":"mod1",
+  "precio": 10.0,
+  "sexo":"M"
+}
+POST zapatillas/_doc
+{
+  "marca":"nike",
+  "modelo":"mod2",
+  "precio": 12.0,
+  "sexo":"F"
+}
+POST zapatillas/_doc
+{
+  "marca":"adidas",
+  "modelo":"mod3",
+  "precio": 13.0,
+  "sexo":"M"
+}
+
+GET zapatillas/_search?q=nike
