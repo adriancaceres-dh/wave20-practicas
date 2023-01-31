@@ -1,5 +1,6 @@
-package com.bootcamp.vehicles.model;
+package com.bootcamp.vehicles.model.templates;
 
+import com.bootcamp.vehicles.model.Vehicle;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

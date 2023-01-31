@@ -2,12 +2,11 @@ package com.bootcamp.vehicles.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
-public class PatentDTO {
+public class MessageDTO {
 
-    private String patent;
+    private Integer status;
+    private String message;
 }

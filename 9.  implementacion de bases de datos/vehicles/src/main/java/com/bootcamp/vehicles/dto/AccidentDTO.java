@@ -1,6 +1,7 @@
 package com.bootcamp.vehicles.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,6 +16,7 @@ public class AccidentDTO {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate date;
+    @JsonProperty("economic_loss")
     private Double economicLoss;
     private VehicleDTO vehicle;
 }

@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "31e01244-3824-49dd-af4f-586885e84f8f",
+		"name": "Vehicles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25120202"
+	},
+	"item": [
+		{
+			"name": "vehicles",
+			"item": [
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 8,\n    \"patent\": \"ZAB\",\n    \"brand\": \"VW\",\n    \"model\": \"Model 10\",\n    \"production_year\": 2023,\n    \"wheel_count\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vehicles",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vehicles",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-patents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vehicles/patents",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles",
+								"patents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-patent-brand-sorted-by-year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vehicles/patent-brands",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles",
+								"patent-brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-patent-4-wheels-current-year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vehicles/patent/wheels/4/year/current",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles",
+								"patent",
+								"wheels",
+								"4",
+								"year",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-patent-brand-model-ten-thousand-loss",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vehicles/patent-brand-models/economic-loss/10000",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles",
+								"patent-brand-models",
+								"economic-loss",
+								"10000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-ten-thousand-loss",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vehicles/economic-loss/10000",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vehicles",
+								"economic-loss",
+								"10000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "accidents",
+			"item": [
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/accidents",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accidents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 9,\n    \"date\": \"20/01/2023\",\n    \"vehicle\": {\n        \"id\": 8,\n        \"patent\": \"ZAB\",\n        \"brand\": \"VW\",\n        \"model\": \"Model 10\",\n        \"production_year\": 2023,\n        \"wheel_count\": 6\n    },\n    \"economic_loss\": 12000.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/accidents",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accidents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
