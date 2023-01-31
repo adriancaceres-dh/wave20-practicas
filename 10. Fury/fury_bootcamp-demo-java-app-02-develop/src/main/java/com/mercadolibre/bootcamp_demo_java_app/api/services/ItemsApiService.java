@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 
 import com.mercadolibre.bootcamp_demo_java_app.dtos.ConvertionRatioDTO;
+import com.mercadolibre.bootcamp_demo_java_app.dtos.CurrencyEnum;
 import com.mercadolibre.bootcamp_demo_java_app.dtos.ItemPriceUsdDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -42,9 +43,10 @@ public class ItemsApiService extends RestClientService{
         return resp.getData(ItemDTO.class);
     }
 
-    public ConvertionRatioDTO getConvertionRatioToUsd (String currencyId) throws ParseException, RestException{
+    public ConvertionRatioDTO getConvertionRatioToUsd (CurrencyEnum currencyId) throws ParseException, RestException{
         String conversionUrl = baseUrl + "/currency_conversions/search?from=" +
-                currencyId + "&to=USD";
+                currencyId
+                + "&to=USD";
         Response response = itemsApiClient.get(conversionUrl);
         return response.getData(ConvertionRatioDTO.class);
     }

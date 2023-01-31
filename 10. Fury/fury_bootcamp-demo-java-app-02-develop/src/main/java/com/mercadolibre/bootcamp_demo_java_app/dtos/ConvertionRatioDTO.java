@@ -9,10 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConvertionRatioDTO {
-    @JsonProperty("currency_base")
-    private String currencyBase;
-    @JsonProperty("currency_quote")
-    private String currencyQuote;
-    @JsonProperty("ratio")
+    @JsonProperty("rate")
     private Double ratio;
 }

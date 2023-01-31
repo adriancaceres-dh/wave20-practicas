@@ -31,7 +31,8 @@ public class ItemsService {
 	}
 
 	public ItemPriceUsdDTO getItemPriceInUsd(String itemId) throws ParseException, RestException {
-		ConvertionRatioDTO ratio = itemsApiService.getConvertionRatioToUsd(itemId);
+		ItemDTO itemInfo = itemsApiService.getItemInfo(itemId);
+		ConvertionRatioDTO ratio = itemsApiService.getConvertionRatioToUsd(itemInfo.getCurrencyId());
 		Double price = getItemPrice(itemId);
 		return new ItemPriceUsdDTO(itemId, price * ratio.getRatio());
 	}
