@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b8cf141-3ffb-41f1-89e6-36bb702a8606" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/integration/TestTI001_Integration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/integration/Test_T010_IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/integration/Test_T010_IntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,26 +39,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/manuelstivgo/Documents/github/wave20-practicas/6. sprint II/be_java_hisp_w20_g7_gonzalez/be_java_hisp_w20_g7",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "spring.configuration.checksum": "fd064b2f34e73d64adbf38466d498284",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/manuelstivgo/Documents/github/wave20-practicas/6. sprint II/be_java_hisp_w20_g7_gonzalez/be_java_hisp_w20_g7&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;fd064b2f34e73d64adbf38466d498284&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.bootcamp.be_java_hisp_w20_g7.service" />
@@ -72,7 +71,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestTI001_Integration">
+  <component name="RunManager" selected="JUnit.com.bootcamp.be_java_hisp_w20_g7 in be_java_hisp_w20_g7">
     <configuration name="All in be_java_hisp_w20_g7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="be_java_hisp_w20_g7" />
       <option name="PACKAGE_NAME" value="" />
@@ -112,24 +111,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.bootcamp.be_java_hisp_w20_g7.service in be_java_hisp_w20_g7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_T010_IntegrationTest.testNotValidUserFollowers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="be_java_hisp_w20_g7" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.service.*" />
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.service" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.bootcamp.be_java_hisp_w20_g7.integration.Test_T010_IntegrationTest" />
+      <option name="METHOD_NAME" value="testNotValidUserFollowers" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="service in be_java_hisp_w20_g7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="be_java_hisp_w20_g7_montero" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java/com/bootcamp/be_java_hisp_w20_g7/service" />
+    <configuration name="com.bootcamp.be_java_hisp_w20_g7 in be_java_hisp_w20_g7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="be_java_hisp_w20_g7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bootcamp.be_java_hisp_w20_g7.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bootcamp.be_java_hisp_w20_g7" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.com.bootcamp.be_java_hisp_w20_g7 in be_java_hisp_w20_g7" />
+        <item itemvalue="JUnit.Test_T010_IntegrationTest.testNotValidUserFollowers" />
         <item itemvalue="JUnit.TestTI001_Integration" />
         <item itemvalue="JUnit.TestTI001_Integration.testInvalidUserIdToCountFollowers" />
         <item itemvalue="JUnit.All in be_java_hisp_w20_g7" />
-        <item itemvalue="JUnit.com.bootcamp.be_java_hisp_w20_g7.service in be_java_hisp_w20_g7" />
-        <item itemvalue="JUnit.service in be_java_hisp_w20_g7" />
       </list>
     </recent_temporary>
   </component>
@@ -179,6 +186,9 @@
       <workItem from="1673979857934" duration="16000" />
       <workItem from="1673985217517" duration="2466000" />
       <workItem from="1673996229821" duration="1471000" />
+      <workItem from="1674799371537" duration="10000" />
+      <workItem from="1675437594853" duration="585000" />
+      <workItem from="1675438191242" duration="809000" />
     </task>
     <servers />
   </component>
