@@ -128,7 +128,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"code\": 5,\n        \"name\": \"Training tank\",\n        \"type\": \"Shirt\",\n        \"brand\": \"Venum\",\n        \"color\": \"Black\",\n        \"size\": \"M\",\n        \"quantity\": \"6\",\n        \"price\": 450.0\n    },",
+							"raw": "{\n    \"code\": 5,\n    \"name\": \"Training tank\",\n    \"type\": \"Shirt\",\n    \"brand\": \"Venum\",\n    \"color\": \"Black\",\n    \"size\": \"M\",\n    \"quantity\": \"6\",\n    \"price\": 450.0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
